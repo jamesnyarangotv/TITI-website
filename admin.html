@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TITI | Administrator Login</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f3f5f8;
+ color:#172033;
+}
+:root{
+ --maroon:#7A1220;
+ --navy:#0F2A5E;
+ --gold:#D4AF37;
+}
+#loginScreen{
+ min-height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ padding:20px;
+ background:linear-gradient(135deg,#0F2A5E,#18243c);
+}
+.login-card{
+ background:white;
+ width:100%;
+ max-width:420px;
+ padding:38px;
+ border-radius:12px;
+ box-shadow:0 15px 45px #0004;
+}
+.logo{
+ text-align:center;
+ color:var(--maroon);
+ font-size:27px;
+ font-weight:800;
+ letter-spacing:1px;
+}
+.subtitle{
+ text-align:center;
+ color:#687386;
+ margin:9px 0 30px;
+ font-size:13px;
+}
+h2{color:var(--navy)}
+label{
+ display:block;
+ font-weight:bold;
+ margin:17px 0 7px;
+ font-size:13px;
+}
+input,textarea{
+ width:100%;
+ padding:13px;
+ border:1px solid #d8dee8;
+ border-radius:6px;
+ font-size:14px;
+ outline:none;
+}
+input:focus,textarea:focus{
+ border-color:var(--navy);
+}
+button{
+ cursor:pointer;
+ border:0;
+ border-radius:6px;
+ padding:12px 17px;
+ font-weight:bold;
+}
+.primary{
+ background:var(--maroon);
+ color:white;
+ width:100%;
+ margin-top:22px;
+}
+.primary:hover{background:#5c0c18}
+button:disabled{opacity:.6;cursor:wait}
+.error{
+ color:#b42318;
+ background:#fff0ee;
+ padding:11px;
+ border-radius:5px;
+ margin-top:15px;
+ font-size:13px;
+ display:none;
+}
+#dashboard{display:none}
+.topbar{
+ background:var(--navy);
+ color:white;
+ padding:18px 5%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+ flex-wrap:wrap;
+}
+.brand{font-size:20px;font-weight:bold}
+.brand small{
+ display:block;
+ color:#d8dfeb;
+ font-size:11px;
+ margin-top:5px;
+}
+.logout{
+ background:white;
+ color:var(--navy);
+}
+.container{
+ max-width:1250px;
+ margin:30px auto;
+ padding:0 20px;
+}
+.welcome{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ flex-wrap:wrap;
+ gap:10px;
+ margin-bottom:25px;
+}
+.welcome h2{margin:0 0 7px}
+.muted{color:#687386;font-size:13px}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:16px;
+ margin-bottom:25px;
+}
+.stat{
+ background:white;
+ border-radius:9px;
+ padding:20px;
+ border:1px solid #e7eaf0;
+}
+.stat strong{
+ display:block;
+ font-size:29px;
+ color:var(--navy);
+ margin-top:9px;
+}
+.panel{
+ background:white;
+ padding:22px;
+ border-radius:9px;
+ border:1px solid #e7eaf0;
+ margin-bottom:22px;
+}
+.panel h3{color:var(--navy);margin-top:0}
+.toolbar{
+ display:flex;
+ gap:10px;
+ margin-bottom:18px;
+ flex-wrap:wrap;
+}
+.toolbar input{max-width:450px}
+table{
+ width:100%;
+ border-collapse:collapse;
+ font-size:13px;
+}
+th,td{
+ text-align:left;
+ padding:13px 10px;
+ border-bottom:1px solid #e9edf2;
+}
+th{
+ background:#f5f6f9;
+ color:var(--navy);
+}
+.table-wrap{overflow-x:auto}
+.view-btn{
+ background:var(--navy);
+ color:white;
+ padding:8px 12px;
+}
+.status{
+ display:inline-block;
+ padding:6px 9px;
+ border-radius:20px;
+ background:#fff3d8;
+ color:#805500;
+ font-size:11px;
+ font-weight:bold;
+}
+.status.APPROVED{background:#e1f5e9;color:#126536}
+.status.REJECTED{background:#fde7e7;color:#a11919}
+.detail-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:15px;
+}
+.detail-item{
+ padding:12px;
+ background:#f6f7fa;
+ border-radius:6px;
+ overflow-wrap:anywhere;
+}
+.detail-item small{
+ display:block;
+ color:#687386;
+ margin-bottom:6px;
+}
+.detail-item strong{font-size:14px}
+.actions{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-top:18px;
+}
+.approve{background:#167744;color:white}
+.reject{background:#a51d2d;color:white}
+.refresh{background:var(--navy);color:white}
+.secondary{background:#e8edf4;color:var(--navy)}
+#detailPanel{display:none}
+#message{
+ padding:12px;
+ margin-bottom:15px;
+ border-radius:6px;
+ display:none;
+ font-size:13px;
+}
+footer{
+ text-align:center;
+ padding:25px;
+ color:#7a8495;
+ font-size:12px;
+}
+@media(max-width:750px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .detail-grid{grid-template-columns:1fr}
+}
+@media(max-width:450px){
+ .login-card{padding:25px}
+ .stats{gap:9px}
+ .stat{padding:14px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<section id="loginScreen">
+<div class="login-card">
+
+<div class="logo">TITI</div>
+<div class="subtitle">
+TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>
+ADMINISTRATION PORTAL
+</div>
+
+<h2>Administrator Login</h2>
+<p class="muted">Sign in using your existing administrator account.</p>
+
+<form id="loginForm">
+<label>Email Address</label>
+<input id="email" type="email" required autocomplete="username"
+placeholder="Enter administrator email">
+
+<label>Password</label>
+<input id="password" type="password" required
+autocomplete="current-password" placeholder="Enter password">
+
+<button class="primary" id="loginButton" type="submit">
+SIGN IN
+</button>
+</form>
+
+<div id="loginError" class="error"></div>
+</div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+
+<header class="topbar">
+<div class="brand">
+TITI ADMISSIONS
+<small>ADMINISTRATION MANAGEMENT SYSTEM</small>
+</div>
+
+<div>
+<span id="adminName"></span>
+<button class="logout" id="logoutButton">LOG OUT</button>
+</div>
+</header>
+
+<main class="container">
+
+<div class="welcome">
+<div>
+<h2>Admissions Dashboard</h2>
+<div class="muted">Manage applications and admission decisions.</div>
+</div>
+<button class="refresh" id="refreshButton">↻ Refresh Data</button>
+</div>
+
+<div id="message"></div>
+
+<div class="stats">
+<div class="stat">
+<span class="muted">Total Applications</span>
+<strong id="totalCount">0</strong>
+</div>
+<div class="stat">
+<span class="muted">Submitted</span>
+<strong id="submittedCount">0</strong>
+</div>
+<div class="stat">
+<span class="muted">Approved</span>
+<strong id="approvedCount">0</strong>
+</div>
+<div class="stat">
+<span class="muted">Rejected</span>
+<strong id="rejectedCount">0</strong>
+</div>
+</div>
+
+<div class="panel">
+<h3>Applicant Records</h3>
+
+<div class="toolbar">
+<input id="searchInput" type="search"
+placeholder="Search name, reference, phone or email...">
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Applicant</th>
+<th>Programme</th>
+<th>Submission Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="applicationsBody">
+<tr><td colspan="6">Loading applications...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="panel" id="detailPanel">
+<h3>Applicant Information</h3>
+<div id="applicantDetails"></div>
+
+<h3 style="margin-top:25px">Administrator Review</h3>
+
+<label>Administrator Remarks</label>
+<textarea id="remarks" rows="4"
+placeholder="Enter comments about this application..."></textarea>
+
+<div class="actions">
+<button class="approve" id="approveButton">APPROVE APPLICATION</button>
+<button class="reject" id="rejectButton">REJECT APPLICATION</button>
+<button class="secondary" id="closeDetails">CLOSE</button>
+</div>
+
+<p class="muted" style="margin-top:15px">
+Admission decisions update the application record. Please verify
+the applicant's documents before making a final decision.
+</p>
+</div>
+
+<div class="panel">
+<h3>Document Verification</h3>
+<p class="muted">
+The applicant document records and private storage access have not
+yet been configured for dashboard viewing. No documents will be
+made public. Secure document viewing will be implemented separately.
+</p>
+</div>
+
+</main>
+
+<footer>
+TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>
+BREAKING THE LIMITS<br><br>
+TITI Administration Portal
+</footer>
+
+</section>
+
+<script>
+const SUPABASE_URL = "https://jlmbiauilmajuvrnuaul.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+
+const db = window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+let currentAdmin = null;
+let applications = [];
+let selectedApplication = null;
+
+const $ = id => document.getElementById(id);
+
+function escapeHTML(value){
+ return String(value ?? "").replace(/[&<>"']/g, char => ({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ })[char]);
+}
+
+function showLoginError(message){
+ $("loginError").textContent = message;
+ $("loginError").style.display = "block";
+}
+
+function showMessage(message, error=false){
+ $("message").textContent = message;
+ $("message").style.display = "block";
+ $("message").style.background = error ? "#fff0ee" : "#e5f5eb";
+ $("message").style.color = error ? "#a11919" : "#126536";
+}
+
+async function verifyAdministrator(user){
+
+ const {data,error} = await db
+  .from("administrator_profiles")
+  .select("id,full_name,role")
+  .eq("id",user.id)
+  .maybeSingle();
+
+ if(error) throw error;
+
+ if(!data){
+  throw new Error(
+   "This account has no administrator profile. Access denied."
+  );
+ }
+
+ currentAdmin = data;
+
+ return data;
+}
+
+function showDashboard(){
+
+ $("loginScreen").style.display = "none";
+ $("dashboard").style.display = "block";
+
+ $("adminName").textContent =
+ currentAdmin.full_name + " | " + currentAdmin.role;
+}
+
+function showLogin(){
+
+ $("dashboard").style.display = "none";
+ $("loginScreen").style.display = "flex";
+
+ currentAdmin = null;
+ applications = [];
+ selectedApplication = null;
+ $("password").value = "";
+ $("loginError").style.display = "none";
+ $("detailPanel").style.display = "none";
+}
+
+async function loadApplications(){
+
+ $("applicationsBody").innerHTML =
+ '<tr><td colspan="6">Loading applications...</td></tr>';
+
+ const {data,error} = await db
+  .from("applications")
+  .select(`
+   id,
+   reference_number,
+   first_name,
+   middle_name,
+   last_name,
+   gender,
+   date_of_birth,
+   nationality,
+   phone_number,
+   email,
+   residential_address,
+   programme_id,
+   application_status,
+   administrator_remarks,
+   submitted_at,
+   highest_qualification,
+   awarding_institution,
+   year_completed,
+   programmes(
+    programme_name,
+    programme_level
+   )
+  `)
+  .order("submitted_at",{ascending:false});
+
+ if(error){
+  $("applicationsBody").innerHTML =
+  '<tr><td colspan="6">Unable to load applications.</td></tr>';
+  showMessage(error.message,true);
+  return;
+ }
+
+ applications = data || [];
+
+ updateStatistics();
+ renderApplications();
+}
+
+function updateStatistics(){
+
+ $("totalCount").textContent = applications.length;
+
+ $("submittedCount").textContent =
+ applications.filter(a=>a.application_status==="SUBMITTED").length;
+
+ $("approvedCount").textContent =
+ applications.filter(a=>a.application_status==="APPROVED").length;
+
+ $("rejectedCount").textContent =
+ applications.filter(a=>a.application_status==="REJECTED").length;
+}
+
+function renderApplications(){
+
+ const query = $("searchInput").value.toLowerCase().trim();
+
+ const filtered = applications.filter(a=>{
+  const name = [
+   a.first_name,a.middle_name,a.last_name
+  ].filter(Boolean).join(" ");
+
+  const text = [
+   name,
+   a.reference_number,
+   a.phone_number,
+   a.email,
+   a.programmes?.programme_name
+  ].join(" ").toLowerCase();
+
+  return text.includes(query);
+ });
+
+ if(!filtered.length){
+  $("applicationsBody").innerHTML =
+  '<tr><td colspan="6">No matching applications found.</td></tr>';
+  return;
+ }
+
+ $("applicationsBody").innerHTML = filtered.map(a=>{
+
+  const name = [
+   a.first_name,a.middle_name,a.last_name
+  ].filter(Boolean).join(" ");
+
+  const date = a.submitted_at
+   ? new Date(a.submitted_at).toLocaleDateString()
+   : "Not recorded";
+
+  const status = escapeHTML(a.application_status);
+
+  return `
+  <tr>
+   <td>${escapeHTML(a.reference_number)}</td>
+   <td>${escapeHTML(name)}</td>
+   <td>${escapeHTML(a.programmes?.programme_name || "Not assigned")}</td>
+   <td>${date}</td>
+   <td><span class="status ${status}">${status}</span></td>
+   <td>
+    <button class="view-btn"
+     data-id="${escapeHTML(a.id)}">VIEW</button>
+   </td>
+  </tr>`;
+ }).join("");
+
+ document.querySelectorAll(".view-btn").forEach(button=>{
+  button.addEventListener("click",()=>{
+   openApplication(button.dataset.id);
+  });
+ });
+}
+
+function detailItem(label,value){
+ return `
+ <div class="detail-item">
+  <small>${escapeHTML(label)}</small>
+  <strong>${escapeHTML(value || "Not provided")}</strong>
+ </div>`;
+}
+
+function openApplication(id){
+
+ const a = applications.find(x=>x.id===id);
+ if(!a) return;
+
+ selectedApplication = a;
+
+ const name = [
+  a.first_name,a.middle_name,a.last_name
+ ].filter(Boolean).join(" ");
+
+ $("applicantDetails").innerHTML = `
+ <div class="detail-grid">
+ ${detailItem("Reference Number",a.reference_number)}
+ ${detailItem("Full Name",name)}
+ ${detailItem("Gender",a.gender)}
+ ${detailItem("Date of Birth",a.date_of_birth)}
+ ${detailItem("Nationality",a.nationality)}
+ ${detailItem("Phone Number",a.phone_number)}
+ ${detailItem("Email",a.email)}
+ ${detailItem("Residential Address",a.residential_address)}
+ ${detailItem("Programme",a.programmes?.programme_name)}
+ ${detailItem("Programme Level",a.programmes?.programme_level)}
+ ${detailItem("Highest Qualification",a.highest_qualification)}
+ ${detailItem("Awarding Institution",a.awarding_institution)}
+ ${detailItem("Year Completed",a.year_completed)}
+ ${detailItem("Submission Date",a.submitted_at
+  ? new Date(a.submitted_at).toLocaleString()
+  : "Not recorded")}
+ ${detailItem("Current Status",a.application_status)}
+ </div>`;
+
+ $("remarks").value = a.administrator_remarks || "";
+
+ $("detailPanel").style.display = "block";
+ $("detailPanel").scrollIntoView({behavior:"smooth"});
+}
+
+async function updateDecision(status){
+
+ if(!selectedApplication){
+  showMessage("Select an applicant first.",true);
+  return;
+ }
+
+ const confirmation = confirm(
+  "Are you sure you want to mark this application as "+status+"?"
+ );
+
+ if(!confirmation) return;
+
+ const remarks = $("remarks").value.trim();
+
+ $("approveButton").disabled = true;
+ $("rejectButton").disabled = true;
+
+ const {data,error} = await db
+  .from("applications")
+  .update({
+   application_status:status,
+   administrator_remarks:remarks
+  })
+  .eq("id",selectedApplication.id)
+  .select("id");
+
+ $("approveButton").disabled = false;
+ $("rejectButton").disabled = false;
+
+ if(error){
+  showMessage(
+   "Unable to update application: "+error.message,true
+  );
+  return;
+ }
+
+ if(!data || !data.length){
+  showMessage(
+   "No application was updated. Check administrator permissions.",true
+  );
+  return;
+ }
+
+ showMessage("Application updated successfully.");
+ $("detailPanel").style.display = "none";
+
+ await loadApplications();
+}
+
+async function signOut(){
+
+ await db.auth.signOut();
+ showLogin();
+}
+
+$("loginForm").addEventListener("submit",async event=>{
+
+ event.preventDefault();
+
+ $("loginButton").disabled = true;
+ $("loginButton").textContent = "SIGNING IN...";
+ $("loginError").style.display = "none";
+
+ try{
+
+  const {data,error} = await db.auth.signInWithPassword({
+   email:$("email").value.trim(),
+   password:$("password").value
+  });
+
+  if(error) throw error;
+
+  await verifyAdministrator(data.user);
+
+  showDashboard();
+
+  await loadApplications();
+
+ }catch(error){
+
+  await db.auth.signOut();
+
+  showLoginError(error.message || "Login failed.");
+
+ }finally{
+
+  $("loginButton").disabled = false;
+  $("loginButton").textContent = "SIGN IN";
+ }
+});
+
+$("logoutButton").addEventListener("click",signOut);
+
+$("refreshButton").addEventListener("click",loadApplications);
+
+$("searchInput").addEventListener("input",renderApplications);
+
+$("approveButton").addEventListener("click",()=>{
+ updateDecision("APPROVED");
+});
+
+$("rejectButton").addEventListener("click",()=>{
+ updateDecision("REJECTED");
+});
+
+$("closeDetails").addEventListener("click",()=>{
+ $("detailPanel").style.display = "none";
+ selectedApplication = null;
+});
+
+async function restoreSession(){
+
+ try{
+
+  const {data,error} = await db.auth.getSession();
+
+  if(error) throw error;
+
+  if(data.session){
+
+   await verifyAdministrator(data.session.user);
+
+   showDashboard();
+
+   await loadApplications();
+
+  }
+
+ }catch(error){
+
+  await db.auth.signOut();
+  showLogin();
+
+  console.error(error);
+ }
+}
+
+restoreSession();
+
+</script>
+</body>
+</html>
