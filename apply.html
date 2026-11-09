@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Application | TITI</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+ --maroon:#7A1220;
+ --navy:#0F2A5E;
+ --gold:#D4AF37;
+ --white:#FFFFFF;
+ --grey:#F5F5F5;
+ --text:#263247;
+}
+
+* { box-sizing:border-box; }
+
+body {
+ margin:0;
+ font-family:'Manrope',sans-serif;
+ background:var(--grey);
+ color:var(--text);
+}
+
+header {
+ background:var(--white);
+ border-bottom:4px solid var(--gold);
+ padding:17px 5%;
+ display:flex;
+ align-items:center;
+ gap:15px;
+}
+
+header img {
+ width:65px;
+ height:65px;
+ object-fit:contain;
+}
+
+.brand h2 {
+ font-family:'Playfair Display',serif;
+ color:var(--maroon);
+ margin:0;
+ font-size:23px;
+}
+
+.brand p {
+ margin:5px 0 0;
+ color:var(--navy);
+ font-size:11px;
+ font-weight:800;
+ letter-spacing:1px;
+}
+
+.container {
+ max-width:900px;
+ margin:35px auto;
+ padding:0 16px;
+}
+
+.heading {
+ text-align:center;
+ margin-bottom:25px;
+}
+
+.heading h1 {
+ font-family:'Playfair Display',serif;
+ color:var(--maroon);
+ font-size:30px;
+ margin:0 0 8px;
+}
+
+.heading p {
+ font-size:13px;
+ color:#64748b;
+}
+
+.card {
+ background:white;
+ padding:28px;
+ border-radius:9px;
+ margin-bottom:20px;
+ box-shadow:0 3px 16px rgba(0,0,0,.045);
+}
+
+.section-title {
+ color:var(--navy);
+ font-size:16px;
+ font-weight:800;
+ border-bottom:1px solid #e5e7eb;
+ padding-bottom:12px;
+ margin:0 0 20px;
+}
+
+.grid {
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:17px;
+}
+
+.field {
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+}
+
+.full { grid-column:1/-1; }
+
+label {
+ font-size:12px;
+ font-weight:800;
+ color:var(--navy);
+}
+
+input,select,textarea {
+ width:100%;
+ padding:12px;
+ border:1px solid #d8dee8;
+ border-radius:5px;
+ font-family:inherit;
+ font-size:13px;
+ background:white;
+ outline:none;
+}
+
+input:focus,select:focus,textarea:focus {
+ border-color:var(--maroon);
+ box-shadow:0 0 0 2px rgba(122,18,32,.08);
+}
+
+input[type=file] {
+ background:#fafafa;
+ padding:10px;
+}
+
+small {
+ color:#64748b;
+ font-size:10px;
+ line-height:1.6;
+}
+
+.notice {
+ background:#fff8e7;
+ border-left:4px solid var(--gold);
+ padding:13px;
+ font-size:12px;
+ line-height:1.7;
+ margin-bottom:18px;
+}
+
+button {
+ border:0;
+ background:var(--maroon);
+ color:white;
+ padding:15px 24px;
+ border-radius:5px;
+ font-family:inherit;
+ font-weight:800;
+ cursor:pointer;
+ width:100%;
+ font-size:14px;
+}
+
+button:hover { background:#590b17; }
+button:disabled { opacity:.6; cursor:wait; }
+
+.message {
+ display:none;
+ padding:15px;
+ margin:15px 0;
+ border-radius:5px;
+ font-size:13px;
+ line-height:1.7;
+ overflow-wrap:anywhere;
+}
+
+.success { display:block; background:#e9f8ef; color:#17643a; }
+.error { display:block; background:#fff0f0; color:#a31515; }
+.info { display:block; background:#eef4ff; color:var(--navy); }
+
+footer {
+ text-align:center;
+ padding:25px;
+ background:var(--navy);
+ color:white;
+ font-size:11px;
+ line-height:2;
+}
+
+footer strong { color:var(--gold); }
+
+@media(max-width:600px) {
+ .grid { grid-template-columns:1fr; }
+ .full { grid-column:auto; }
+ .card { padding:19px; }
+ .heading h1 { font-size:25px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <img src="TITI LOGO.png" alt="TITI Logo">
+ <div class="brand">
+  <h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
+  <p>BREAKING THE LIMITS</p>
+ </div>
+</header>
+
+<main class="container">
+
+<div class="heading">
+ <h1>ONLINE APPLICATION FORM</h1>
+ <p>Apply for admission to Tahidi International Training Institute.</p>
+</div>
+
+<div id="message" class="message"></div>
+
+<form id="applicationForm">
+
+<div class="card">
+<h3 class="section-title">01. PERSONAL INFORMATION</h3>
+
+<div class="grid">
+
+<div class="field">
+<label>First Name *</label>
+<input name="first_name" required>
+</div>
+
+<div class="field">
+<label>Middle Name</label>
+<input name="middle_name">
+</div>
+
+<div class="field">
+<label>Last Name *</label>
+<input name="last_name" required>
+</div>
+
+<div class="field">
+<label>Gender *</label>
+<select name="gender" required>
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="field">
+<label>Date of Birth *</label>
+<input type="date" name="date_of_birth" id="dob" required>
+</div>
+
+<div class="field">
+<label>Nationality *</label>
+<input name="nationality" value="Ugandan" required>
+</div>
+
+<div class="field">
+<label>Telephone Number *</label>
+<input type="tel" name="phone_number" placeholder="+256..." required>
+</div>
+
+<div class="field">
+<label>Email Address *</label>
+<input type="email" name="email" required>
+</div>
+
+<div class="field full">
+<label>Residential Address *</label>
+<input name="residential_address" required>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+<h3 class="section-title">02. ACADEMIC INFORMATION</h3>
+
+<div class="grid">
+
+<div class="field full">
+<label>Programme Applying For *</label>
+<select name="programme_id" id="programme" required>
+<option value="">Loading available programmes...</option>
+</select>
+<small>Choose from the programmes currently open for admission.</small>
+</div>
+
+<div class="field">
+<label>Highest Qualification *</label>
+<select name="highest_qualification" required>
+<option value="">Select Qualification</option>
+<option>Primary Leaving Certificate</option>
+<option>UCE / O-Level Certificate</option>
+<option>UACE / A-Level Certificate</option>
+<option>Certificate</option>
+<option>Diploma</option>
+<option>Advanced Diploma</option>
+<option>Bachelor's Degree</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="field">
+<label>Awarding Institution *</label>
+<input name="awarding_institution" required>
+</div>
+
+<div class="field">
+<label>Year Completed *</label>
+<input type="number" name="year_completed"
+min="1950" max="2026" required>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+<h3 class="section-title">03. DOCUMENT UPLOAD</h3>
+
+<div class="notice">
+Please upload clear, readable copies of your documents.
+Accepted formats: PDF, JPG and PNG. Maximum file size: 10 MB per file.
+Your documents are stored in private institutional storage.
+</div>
+
+<div class="grid">
+
+<div class="field full">
+<label>Passport-Size Photograph</label>
+<input type="file" id="photo" accept=".jpg,.jpeg,.png">
+<small>Upload a recent passport photograph. Optional.</small>
+</div>
+
+<div class="field full">
+<label>National ID / Identification Document *</label>
+<input type="file" id="identity"
+accept=".pdf,.jpg,.jpeg,.png" required>
+<small>Upload your National ID or another accepted identification document.</small>
+</div>
+
+<div class="field full">
+<label>Academic Certificates and Transcripts *</label>
+<input type="file" id="academic"
+accept=".pdf,.jpg,.jpeg,.png" multiple required>
+<small>You may select multiple academic certificates and transcripts.</small>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+
+<h3 class="section-title">04. DECLARATION</h3>
+
+<label style="display:flex;gap:10px;align-items:flex-start;line-height:1.7">
+<input type="checkbox" id="declaration" required
+style="width:17px;height:17px;flex-shrink:0;margin-top:2px">
+<span>I declare that the information provided is true and accurate.
+I understand that false information may result in rejection of my application.</span>
+</label>
+
+<div style="margin-top:23px">
+<button type="submit" id="submitBtn">
+SUBMIT APPLICATION
+</button>
+</div>
+
+</div>
+
+</form>
+
+</main>
+
+<footer>
+<strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong><br>
+BREAKING THE LIMITS<br>
+Official Online Admissions Portal
+</footer>
+
+<script>
+const SUPABASE_URL =
+'https://jlmbiauilmajuvrnuaul.supabase.co';
+
+const SUPABASE_KEY =
+'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
+
+const db = window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_KEY
+);
+
+const form = document.getElementById('applicationForm');
+const message = document.getElementById('message');
+const submitBtn = document.getElementById('submitBtn');
+const programmeSelect = document.getElementById('programme');
+
+document.getElementById('dob').max =
+new Date().toISOString().split('T')[0];
+
+document.querySelector('[name="year_completed"]').max =
+new Date().getFullYear();
+
+function showMessage(text, type) {
+ message.className = 'message ' + type;
+ message.textContent = text;
+ message.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+async function loadProgrammes() {
+ const {data,error} = await db
+ .from('programmes')
+ .select('id, programme_name, programme_level')
+ .eq('application_open',true)
+ .order('programme_name');
+
+ if(error) {
+  programmeSelect.innerHTML =
+  '<option value="">Unable to load programmes</option>';
+  showMessage('Unable to load programmes. Please check the database permissions.', 'error');
+  return;
+ }
+
+ if(!data || data.length === 0) {
+  programmeSelect.innerHTML =
+  '<option value="">No programmes currently open</option>';
+  return;
+ }
+
+ programmeSelect.innerHTML =
+ '<option value="">Select your programme</option>';
+
+ data.forEach(p => {
+  const option = document.createElement('option');
+  option.value = p.id;
+  option.textContent =
+   p.programme_name + ' — ' + p.programme_level;
+  programmeSelect.appendChild(option);
+ });
+}
+
+function selectedFiles() {
+ const items = [];
+
+ if(document.getElementById('photo').files[0]) {
+  items.push({
+   type:'Passport Photograph',
+   files:[document.getElementById('photo').files[0]]
+  });
+ }
+
+ if(document.getElementById('identity').files[0]) {
+  items.push({
+   type:'Identification Document',
+   files:[document.getElementById('identity').files[0]]
+  });
+ }
+
+ if(document.getElementById('academic').files.length) {
+  items.push({
+   type:'Academic Certificate or Transcript',
+   files:Array.from(document.getElementById('academic').files)
+  });
+ }
+
+ return items;
+}
+
+function validateFiles(groups) {
+ let total = 0;
+
+ for(const group of groups) {
+  for(const file of group.files) {
+   if(file.size > 10 * 1024 * 1024) {
+    return file.name + ' exceeds the 10 MB limit.';
+   }
+
+   total += file.size;
+
+   const allowed = [
+    'application/pdf',
+    'image/jpeg',
+    'image/png'
+   ];
+
+   if(!allowed.includes(file.type)) {
+    return file.name + ' has an unsupported file format.';
+   }
+  }
+ }
+
+ if(total > 40 * 1024 * 1024) {
+  return 'Your total document size exceeds 40 MB.';
+ }
+
+ return null;
+}
+
+async function uploadDocuments(reference, groups) {
+ const bucket = 'titi-applicant-documents';
+
+ for(const group of groups) {
+  for(const file of group.files) {
+
+   const safeName = file.name
+    .normalize('NFKD')
+    .replace(/[^\w.-]+/g,'_')
+    .slice(0,100);
+
+   const path =
+    reference + '/' + crypto.randomUUID() + '-' + safeName;
+
+   const {error:uploadError} = await db.storage
+    .from(bucket)
+    .upload(path,file,{
+     contentType:file.type,
+     upsert:false
+    });
+
+   if(uploadError) {
+    throw new Error(
+     'Could not upload ' + file.name + ': ' + uploadError.message
+    );
+   }
+
+   const {error:recordError} = await db.rpc(
+    'register_titi_application_document',
+    {
+     p_reference_number:reference,
+     p_document_type:group.type,
+     p_storage_path:path
+    }
+   );
+
+   if(recordError) {
+    throw new Error(
+     'File uploaded, but its document record could not be saved: ' +
+     recordError.message
+    );
+   }
+  }
+ }
+}
+
+form.addEventListener('submit',async function(e) {
+ e.preventDefault();
+
+ if(!form.reportValidity()) return;
+
+ const groups = selectedFiles();
+
+ if(!document.getElementById('identity').files.length ||
+    !document.getElementById('academic').files.length) {
+  showMessage(
+   'Please upload your identification document and at least one academic document.',
+   'error'
+  );
+  return;
+ }
+
+ const fileError = validateFiles(groups);
+
+ if(fileError) {
+  showMessage(fileError,'error');
+  return;
+ }
+
+ if(!document.getElementById('declaration').checked) {
+  showMessage('Please accept the declaration.','error');
+  return;
+ }
+
+ submitBtn.disabled = true;
+ submitBtn.textContent = 'PROCESSING APPLICATION...';
+
+ showMessage(
+  'Submitting your application. Please do not close this page.',
+  'info'
+ );
+
+ try {
+  const f = new FormData(form);
+
+  const year = Number(f.get('year_completed'));
+
+  if(year < 1950 || year > new Date().getFullYear()) {
+   throw new Error('Please enter a valid year of completion.');
+  }
+
+  const {data,error} = await db.rpc(
+   'submit_titi_application',
+   {
+    p_first_name:f.get('first_name').trim(),
+    p_middle_name:f.get('middle_name').trim(),
+    p_last_name:f.get('last_name').trim(),
+    p_gender:f.get('gender'),
+    p_date_of_birth:f.get('date_of_birth'),
+    p_nationality:f.get('nationality').trim(),
+    p_phone_number:f.get('phone_number').trim(),
+    p_email:f.get('email').trim(),
+    p_residential_address:f.get('residential_address').trim(),
+    p_highest_qualification:f.get('highest_qualification'),
+    p_awarding_institution:f.get('awarding_institution').trim(),
+    p_year_completed:year,
+    p_programme_id:f.get('programme_id')
+   }
+  );
+
+  if(error) throw error;
+
+  const reference =
+   typeof data === 'string' ? data : data?.reference_number;
+
+  if(!reference) {
+   throw new Error(
+    'The application response did not contain a reference number. Contact TITI admissions before submitting again.'
+   );
+  }
+
+  showMessage(
+   'Application received. Your reference number is ' +
+   reference + '. Now securely uploading your documents...',
+   'info'
+  );
+
+  await uploadDocuments(reference,groups);
+
+  form.reset();
+
+  programmeSelect.value = '';
+
+  showMessage(
+   'APPLICATION SUCCESSFULLY SUBMITTED!\n\n' +
+   'Your application reference number is: ' + reference +
+   '\n\nYour documents have also been uploaded successfully to private TITI storage. Keep this reference number for future enquiries.',
+   'success'
+  );
+
+  submitBtn.textContent = 'APPLICATION SUBMITTED';
+
+ } catch(error) {
+
+  console.error('TITI application error:',error);
+
+  showMessage(
+   'APPLICATION PROCESSING MESSAGE: ' +
+   (error.message || 'An unexpected error occurred.') +
+   '\n\nPlease retain any application reference number displayed above and contact TITI admissions before trying again.',
+   'error'
+  );
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'RETRY / CONTACT ADMISSIONS';
+ }
+});
+
+loadProgrammes();
+</script>
+
+</body>
+</html>
