@@ -1,3 +1,75 @@
+
+DIRECT LINK TO HTML
+Sir, open your TITI GitHub repository here:
+
+TITI GitHub Repository
+OPEN TITI WEBSITE FILES
+
+Then:
+
+Open application-status.html.
+
+Click the pencil icon (Edit).
+
+Copy the complete code and paste it here.
+
+We will upgrade it into the professional TITI Applicant Admission Record Portal. 🤝
+
+BUT IN TRANSCRIPT DONT PUT EVERYTING NAME DOB NATIONALITY........ UKNOW
+Absolutely, sir. I agree. We should not make the admission record look like a personal data form.
+
+We will follow a university transcript-style design, displaying only essential academic and admission information.
+
+TITI – OFFICIAL ADMISSION RECORD
+The document will contain:
+
+TITI logo and institutional heading.
+
+Applicant photograph.
+
+Student's full name.
+
+Application reference number.
+
+Programme/course applied for.
+
+Award level.
+
+Academic year and intake.
+
+Application submission date.
+
+Admission decision – Pending, Approved or Rejected.
+
+Official administrator's remarks.
+
+Verification reference and institutional footer.
+
+We will exclude:
+
+Date of birth.
+
+Nationality.
+
+Gender.
+
+Unnecessary personal information.
+
+Design standard
+A4 portrait layout.
+
+Jost font throughout.
+
+Maroon, navy blue, gold and white.
+
+Formal academic-document appearance.
+
+Print and Save as PDF.
+
+The result should look like an official university academic document, not an ordinary application form.
+
+Our principle: Academic presentation, minimal personal information, maximum professionalism. 🤝
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -474,4 +546,1170 @@ form.addEventListener("submit", async function(e) {
 </script>
 
 </body>
+</html>OUER GOLDEN RULE EVEN TRANCRIPTS ALL JOST HE CAN PRINT IT
+…
+YES, SIR! Now we have the actual application-status.html. We can build directly on this file.
+
+I will follow our golden rule:
+
+Jost everywhere — headings, labels, results, buttons and footer. Remove Playfair Display and Manrope completely.
+
+Transcript-style admission record — A4 portrait, formal institutional heading, student photograph, reference number, applicant name, programme, intake and admission decision.
+
+Print / Save as PDF — the student can print the record or save it as a PDF.
+
+Professional TITI footer — matching the main website's maroon, navy, gold and white identity.
+
+Keep the existing Supabase connection — same project, function, reference-number verification and registered-email verification.
+
+No unnecessary personal information — no DOB, gender or nationality in the admission record.
+
+One important point: the current Edge Function only returns the applicant's name, status, remarks and submission date. The photograph, course and intake will require additional fields from the actual Supabase application record. I will not invent those details.
+
+Complete replacement application-status.html
+Replace the entire existing file with this version. It retains your existing Supabase endpoint and verification process.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Applicant Admission Record | TITI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --maroon:#7A1220;
+  --navy:#0F2A5E;
+  --gold:#D4AF37;
+  --white:#FFFFFF;
+  --grey:#F5F5F5;
+  --text:#263247;
+  --muted:#64748b;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  font-family:'Jost',sans-serif;
+  background:var(--grey);
+  color:var(--text);
+  line-height:1.6;
+}
+
+button,input {
+  font-family:'Jost',sans-serif;
+}
+
+header {
+  background:white;
+  border-bottom:4px solid var(--gold);
+  padding:14px 5%;
+}
+
+.header-inner {
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+header img {
+  width:65px;
+  height:65px;
+  object-fit:contain;
+}
+
+.brand h2 {
+  color:var(--maroon);
+  margin:0;
+  font-size:19px;
+  font-weight:800;
+  line-height:1.25;
+}
+
+.brand p {
+  margin:4px 0 0;
+  color:var(--navy);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.container {
+  max-width:850px;
+  margin:42px auto;
+  padding:0 16px;
+}
+
+.heading {
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.heading h1 {
+  color:var(--maroon);
+  font-size:29px;
+  font-weight:800;
+  margin:0 0 7px;
+}
+
+.heading p {
+  font-size:14px;
+  color:var(--muted);
+  margin:0;
+}
+
+.gold-line {
+  width:65px;
+  height:4px;
+  background:var(--gold);
+  margin:13px auto;
+}
+
+.card {
+  background:white;
+  padding:30px;
+  border-radius:7px;
+  box-shadow:0 3px 16px rgba(0,0,0,.05);
+}
+
+.section-title {
+  color:var(--navy);
+  font-size:16px;
+  font-weight:800;
+  border-bottom:1px solid #e5e7eb;
+  padding-bottom:12px;
+  margin:0 0 22px;
+}
+
+.field {
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  margin-bottom:18px;
+}
+
+label {
+  font-size:12px;
+  font-weight:800;
+  color:var(--navy);
+}
+
+input {
+  width:100%;
+  padding:13px;
+  border:1px solid #d8dee8;
+  border-radius:4px;
+  font-size:14px;
+  outline:none;
+}
+
+input:focus {
+  border-color:var(--maroon);
+  box-shadow:0 0 0 2px rgba(122,18,32,.08);
+}
+
+button {
+  border:0;
+  cursor:pointer;
+  font-weight:800;
+  border-radius:4px;
+  transition:.2s;
+}
+
+.check-btn {
+  width:100%;
+  background:var(--maroon);
+  color:white;
+  padding:14px;
+  font-size:14px;
+}
+
+.check-btn:hover {
+  background:#590b17;
+}
+
+button:disabled {
+  opacity:.6;
+  cursor:wait;
+}
+
+.message {
+  display:none;
+  padding:13px;
+  margin-top:17px;
+  border-radius:4px;
+  font-size:13px;
+  overflow-wrap:anywhere;
+}
+
+.success {
+  display:block;
+  background:#e9f8ef;
+  color:#17643a;
+}
+
+.error {
+  display:block;
+  background:#fff0f0;
+  color:#a31515;
+}
+
+.info {
+  display:block;
+  background:#eef4ff;
+  color:var(--navy);
+}
+
+/* ADMISSION RECORD */
+
+.result {
+  display:none;
+  margin-top:30px;
+}
+
+.record {
+  background:white;
+  padding:35px;
+  border:1px solid #dce1e9;
+  box-shadow:0 5px 22px rgba(0,0,0,.06);
+}
+
+.record-header {
+  text-align:center;
+  border-bottom:3px double var(--navy);
+  padding-bottom:20px;
+}
+
+.record-logo {
+  width:75px;
+  height:75px;
+  object-fit:contain;
+  margin:0 auto 10px;
+}
+
+.record-header h2 {
+  color:var(--navy);
+  font-size:21px;
+  font-weight:800;
+  margin:0;
+  line-height:1.3;
+}
+
+.record-header p {
+  color:var(--maroon);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  margin:5px 0;
+}
+
+.record-header h3 {
+  color:var(--maroon);
+  font-size:19px;
+  font-weight:800;
+  margin:17px 0 3px;
+}
+
+.record-subtitle {
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+.student-summary {
+  display:flex;
+  align-items:center;
+  gap:22px;
+  padding:23px 0;
+  border-bottom:1px solid #dce1e9;
+}
+
+.student-photo {
+  width:105px;
+  height:120px;
+  border:2px solid var(--gold);
+  object-fit:cover;
+  display:none;
+}
+
+.student-photo-placeholder {
+  width:105px;
+  height:120px;
+  border:1px solid #dce1e9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  background:var(--grey);
+}
+
+.student-details {
+  flex:1;
+}
+
+.student-details h3 {
+  color:var(--navy);
+  font-size:20px;
+  font-weight:800;
+  margin:0 0 6px;
+}
+
+.student-details p {
+  margin:3px 0;
+  font-size:12px;
+}
+
+.record-section {
+  margin-top:23px;
+}
+
+.record-section h4 {
+  color:var(--white);
+  background:var(--navy);
+  padding:9px 13px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.6px;
+  margin:0 0 10px;
+}
+
+.record-table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+.record-table td {
+  padding:10px 12px;
+  border:1px solid #e2e6ec;
+  font-size:13px;
+  vertical-align:top;
+}
+
+.record-table td:first-child {
+  width:40%;
+  color:var(--navy);
+  font-weight:700;
+  background:#f8f9fb;
+}
+
+.status-cell {
+  font-weight:800;
+  color:var(--navy);
+}
+
+.status-badge {
+  display:inline-block;
+  padding:5px 12px;
+  border-radius:3px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.status-approved {
+  background:#e5f5eb;
+  color:#17643a;
+}
+
+.status-pending {
+  background:#fff5dc;
+  color:#805900;
+}
+
+.status-rejected {
+  background:#ffeded;
+  color:#a31515;
+}
+
+.status-other {
+  background:#eef4ff;
+  color:var(--navy);
+}
+
+.remarks {
+  min-height:55px;
+  padding:12px;
+  border:1px solid #e2e6ec;
+  font-size:13px;
+  background:#fafbfc;
+}
+
+.verification {
+  margin-top:28px;
+  padding:16px;
+  border:1px solid var(--gold);
+  text-align:center;
+}
+
+.verification strong {
+  display:block;
+  color:var(--navy);
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.verification p {
+  font-size:11px;
+  color:var(--muted);
+  margin:0;
+}
+
+.record-footer {
+  margin-top:22px;
+  padding-top:15px;
+  border-top:2px solid var(--gold);
+  text-align:center;
+}
+
+.record-footer strong {
+  color:var(--navy);
+  font-size:13px;
+}
+
+.record-footer p {
+  font-size:11px;
+  color:var(--muted);
+  margin:3px 0;
+}
+
+.print-actions {
+  display:flex;
+  gap:12px;
+  margin-top:20px;
+}
+
+.print-btn {
+  flex:1;
+  padding:13px;
+  background:var(--navy);
+  color:white;
+  font-size:13px;
+}
+
+.print-btn:hover {
+  background:var(--maroon);
+}
+
+.back-link {
+  text-align:center;
+  margin-top:22px;
+  font-size:13px;
+}
+
+.back-link a {
+  color:var(--maroon);
+  font-weight:800;
+  text-decoration:none;
+}
+
+/* MAIN FOOTER */
+
+.site-footer {
+  background:#091B3D;
+  color:white;
+  border-top:4px solid var(--gold);
+  margin-top:55px;
+  padding:45px 5% 0;
+}
+
+.footer-inner {
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.1fr .9fr 1.2fr;
+  gap:35px;
+  padding-bottom:30px;
+}
+
+.footer-column h3 {
+  font-size:15px;
+  font-weight:800;
+  border-bottom:2px solid var(--gold);
+  display:inline-block;
+  padding-bottom:9px;
+  margin:0 0 15px;
+}
+
+.footer-column p,
+.footer-column li {
+  color:#d0d8e6;
+  font-size:12px;
+  line-height:1.9;
+}
+
+.footer-column ul {
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.footer-column a {
+  color:#d0d8e6;
+  text-decoration:none;
+}
+
+.footer-column a:hover {
+  color:var(--gold);
+}
+
+.footer-bottom {
+  border-top:1px solid rgba(255,255,255,.15);
+  text-align:center;
+  padding:17px 0;
+  font-size:11px;
+  color:#d0d8e6;
+}
+
+.footer-bottom strong {
+  color:var(--gold);
+}
+
+@media(max-width:700px) {
+  .footer-inner {
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .record {
+    padding:18px;
+  }
+
+  .record-header h2 {
+    font-size:17px;
+  }
+
+  .student-summary {
+    gap:12px;
+  }
+
+  .student-details h3 {
+    font-size:16px;
+  }
+}
+
+@media(max-width:420px) {
+  .heading h1 {
+    font-size:24px;
+  }
+
+  .card {
+    padding:20px;
+  }
+
+  .student-photo,
+  .student-photo-placeholder {
+    width:80px;
+    height:100px;
+  }
+
+  .record-table td {
+    padding:8px;
+    font-size:12px;
+  }
+
+  .print-actions {
+    flex-direction:column;
+  }
+}
+
+/* PRINT / SAVE AS PDF */
+
+@page {
+  size:A4 portrait;
+  margin:12mm;
+}
+
+@media print {
+  body {
+    background:white;
+    color:#172033;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  header,
+  .heading,
+  .card,
+  .back-link,
+  .site-footer,
+  .print-actions,
+  .message {
+    display:none !important;
+  }
+
+  .container {
+    max-width:none;
+    width:100%;
+    margin:0;
+    padding:0;
+  }
+
+  .result {
+    display:block !important;
+    margin:0;
+  }
+
+  .record {
+    display:block;
+    box-shadow:none;
+    border:0;
+    padding:0;
+  }
+
+  .record-section,
+  .student-summary,
+  .verification {
+    break-inside:avoid;
+  }
+
+  .record-header {
+    padding-bottom:15px;
+  }
+
+  .record-table td {
+    font-size:11px;
+    padding:8px;
+  }
+
+  .record-section h4 {
+    background:var(--navy) !important;
+    color:white !important;
+  }
+
+  .record-footer {
+    margin-top:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <img src="TITI%20LOGO.png" alt="TITI Logo">
+    <div class="brand">
+      <h2>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h2>
+      <p>BREAKING THE LIMITS</p>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="heading">
+    <h1>APPLICATION STATUS</h1>
+    <div class="gold-line"></div>
+    <p>
+      Welcome to the TITI Online Admissions Portal.
+      Enter your application reference number and registered email
+      to access your official admission record.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 class="section-title">CHECK YOUR APPLICATION</h3>
+
+    <form id="statusForm">
+
+      <div class="field">
+        <label for="reference">APPLICATION REFERENCE NUMBER</label>
+        <input
+          type="text"
+          id="reference"
+          placeholder="Enter your reference number"
+          required
+          autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="email">REGISTERED EMAIL ADDRESS</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your registered email"
+          required
+          autocomplete="email">
+      </div>
+
+      <button type="submit" id="checkBtn" class="check-btn">
+        CHECK APPLICATION STATUS
+      </button>
+
+    </form>
+
+    <div id="message" class="message" role="alert"></div>
+  </div>
+
+  <!-- OFFICIAL ADMISSION RECORD -->
+
+  <div id="result" class="result" aria-live="polite">
+
+    <div class="record" id="printRecord">
+
+      <div class="record-header">
+        <img
+          src="TITI%20LOGO.png"
+          alt="TITI Official Logo"
+          class="record-logo">
+
+        <h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
+        <p>BREAKING THE LIMITS</p>
+
+        <h3>APPLICANT ADMISSION RECORD</h3>
+
+        <div class="record-subtitle">
+          OFFICIAL ELECTRONIC ADMISSIONS DOCUMENT
+        </div>
+      </div>
+
+      <div class="student-summary">
+
+        <img
+          id="rPhoto"
+          class="student-photo"
+          alt="Applicant photograph">
+
+        <div id="photoPlaceholder" class="student-photo-placeholder">
+          APPLICANT<br>PHOTOGRAPH
+        </div>
+
+        <div class="student-details">
+          <h3 id="rName">Applicant Name</h3>
+
+          <p>
+            <strong>APPLICATION REFERENCE:</strong>
+            <span id="rReference"></span>
+          </p>
+
+          <p>
+            <strong>ACADEMIC YEAR:</strong>
+            <span id="rAcademicYear">Not provided</span>
+          </p>
+        </div>
+
+      </div>
+
+      <div class="record-section">
+        <h4>SECTION A: ACADEMIC PARTICULARS</h4>
+
+        <table class="record-table">
+          <tr>
+            <td>Programme / Course</td>
+            <td id="rCourse">Not provided</td>
+          </tr>
+
+          <tr>
+            <td>Award Level</td>
+            <td id="rAward">Not provided</td>
+          </tr>
+
+          <tr>
+            <td>Intake</td>
+            <td id="rIntake">Not provided</td>
+          </tr>
+
+          <tr>
+            <td>Application Submission Date</td>
+            <td id="rDate">Not provided</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="record-section">
+        <h4>SECTION B: ADMISSION DECISION</h4>
+
+        <table class="record-table">
+          <tr>
+            <td>Application Reference</td>
+            <td id="rReference2"></td>
+          </tr>
+
+          <tr>
+            <td>Admission Decision</td>
+            <td class="status-cell">
+              <span id="rStatus" class="status-badge status-other"></span>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="record-section">
+        <h4>SECTION C: OFFICIAL ADMINISTRATIVE REMARKS</h4>
+        <div class="remarks" id="rRemarks">
+          No administrative remarks provided.
+        </div>
+      </div>
+
+      <div class="verification">
+        <strong>OFFICIAL APPLICATION RECORD</strong>
+        <p>
+          This electronic document reflects the application information
+          recorded by Tahidi International Training Institute.
+        </p>
+        <p>
+          For further verification, contact the Institute Administration.
+        </p>
+      </div>
+
+      <div class="record-footer">
+        <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong>
+        <p>BREAKING THE LIMITS</p>
+        <p>Official Online Admissions Portal</p>
+      </div>
+
+    </div>
+
+    <div class="print-actions">
+      <button class="print-btn" onclick="window.print()">
+        PRINT / SAVE AS PDF
+      </button>
+    </div>
+
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">← BACK TO TITI HOMEPAGE</a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+
+  <div class="footer-inner">
+
+    <div class="footer-column">
+      <h3>ABOUT TITI</h3>
+      <p>
+        Tahidi International Training Institute is committed to
+        quality education, practical skills and professional training.
+      </p>
+      <p><strong>BREAKING THE LIMITS</strong></p>
+    </div>
+
+    <div class="footer-column">
+      <h3>QUICK LINKS</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#programmes">Programmes</a></li>
+        <li><a href="index.html#admissions">Admissions</a></li>
+        <li><a href="apply.html">Apply Now</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>ADMISSIONS</h3>
+      <p>
+        For application assistance, programme information and
+        admission enquiries, contact the Institute Administration.
+      </p>
+      <p>
+        <a href="index.html">Visit TITI Official Website</a>
+      </p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © <span id="footerYear"></span>
+    <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE.</strong>
+    All Rights Reserved.
+  </div>
+
+</footer>
+
+<script>
+const SUPABASE_URL =
+  "https://jlmbiauilmajuvrnuaul.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+
+const STATUS_FUNCTION =
+  SUPABASE_URL + "/functions/v1/check-application-status";
+
+const form = document.getElementById("statusForm");
+const message = document.getElementById("message");
+const result = document.getElementById("result");
+const checkBtn = document.getElementById("checkBtn");
+
+document.getElementById("footerYear").textContent =
+  new Date().getFullYear();
+
+function showMessage(text, type) {
+  message.className = "message " + type;
+  message.textContent = text;
+}
+
+function displayValue(id, value) {
+  document.getElementById(id).textContent =
+    value === null || value === undefined || value === ""
+      ? "Not provided"
+      : String(value);
+}
+
+function formatDate(value) {
+  if (!value) return "Not provided";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) return "Not provided";
+
+  return date.toLocaleDateString("en-GB", {
+    day:"2-digit",
+    month:"long",
+    year:"numeric"
+  });
+}
+
+function displayStatus(status) {
+  const element = document.getElementById("rStatus");
+  const value = String(status || "Pending").trim();
+
+  element.textContent = value;
+  element.className = "status-badge";
+
+  const normalized = value.toLowerCase();
+
+  if (normalized.includes("approv")) {
+    element.classList.add("status-approved");
+  } else if (normalized.includes("pending")) {
+    element.classList.add("status-pending");
+  } else if (
+    normalized.includes("reject") ||
+    normalized.includes("declin")
+  ) {
+    element.classList.add("status-rejected");
+  } else {
+    element.classList.add("status-other");
+  }
+}
+
+function displayPhoto(photo) {
+  const image = document.getElementById("rPhoto");
+  const placeholder = document.getElementById("photoPlaceholder");
+
+  image.style.display = "none";
+  placeholder.style.display = "flex";
+  image.removeAttribute("src");
+
+  if (!photo) return;
+
+  try {
+    const url = new URL(photo, window.location.href);
+
+    if (url.protocol !== "https:" && url.protocol !== "http:") {
+      return;
+    }
+
+    image.onload = function() {
+      image.style.display = "block";
+      placeholder.style.display = "none";
+    };
+
+    image.onerror = function() {
+      image.style.display = "none";
+      placeholder.style.display = "flex";
+    };
+
+    image.src = url.href;
+
+  } catch {
+    // Keep the photograph placeholder if the image URL is invalid.
+  }
+}
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const reference = document
+    .getElementById("reference")
+    .value.trim();
+
+  const email = document
+    .getElementById("email")
+    .value.trim()
+    .toLowerCase();
+
+  if (!reference || !email) {
+    showMessage(
+      "Please enter your reference number and registered email.",
+      "error"
+    );
+    return;
+  }
+
+  checkBtn.disabled = true;
+  checkBtn.textContent = "CHECKING APPLICATION...";
+  result.style.display = "none";
+
+  showMessage(
+    "Please wait while we securely retrieve your application record.",
+    "info"
+  );
+
+  try {
+    const response = await fetch(STATUS_FUNCTION, {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":SUPABASE_KEY
+      },
+      body:JSON.stringify({
+        reference_number:reference,
+        email:email
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(
+        data.error || "Unable to retrieve your application."
+      );
+    }
+
+    const app = data.application;
+
+    if (!app) {
+      throw new Error("Application information was not returned.");
+    }
+
+    const fullName = [
+      app.first_name,
+      app.middle_name,
+      app.last_name
+    ].filter(Boolean).join(" ");
+
+    displayValue("rName", fullName || "Applicant");
+    displayValue("rReference", app.reference_number);
+    displayValue("rReference2", app.reference_number);
+
+    displayValue(
+      "rAcademicYear",
+      app.academic_year || app.academic_session
+    );
+
+    displayValue(
+      "rCourse",
+      app.course || app.course_applied_for ||
+      app.programme || app.program
+    );
+
+    displayValue(
+      "rAward",
+      app.award_level || app.qualification ||
+      app.study_level
+    );
+
+    displayValue(
+      "rIntake",
+      app.intake || app.admission_intake
+    );
+
+    displayValue("rDate", formatDate(app.submitted_at));
+
+    displayStatus(app.application_status);
+
+    displayValue(
+      "rRemarks",
+      app.administrator_remarks || "No administrative remarks provided."
+    );
+
+    displayPhoto(
+      app.photo_url || app.photo || app.passport_photo ||
+      app.photograph
+    );
+
+    result.style.display = "block";
+
+    showMessage(
+      "Your application record has been successfully retrieved.",
+      "success"
+    );
+
+    result.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  } catch (error) {
+    console.error("Application status error:", error);
+
+    showMessage(
+      error.message ||
+      "Unable to check your application. Please try again.",
+      "error"
+    );
+
+  } finally {
+    checkBtn.disabled = false;
+    checkBtn.textContent = "CHECK APPLICATION STATUS";
+  }
+});
+</script>
+
+</body>
 </html>
+
+Important: one remaining backend step
+The frontend now supports a photograph, course, award level, intake and academic year, but your current Edge Function does not yet return these fields. The record will show "Not provided" until we add the actual database fields to its response.
+
+Next: Open Supabase → Table Editor → applications and send me a screenshot showing the column names. I will then give you the complete corrected Edge Function without guessing your database structure.
+
+Also, the student will only see their own record after reference-number and registered-email verification.
+
+Open TITI live website
+
+Open TITI application status page
+
+We are keeping the existing admissions system intact while upgrading the presentation to a professional institutional standard. 🤝
+
+DIRECT LINK TO APPLICATIONS
+Sir, open your Supabase Applications Table directly:
+
+OPEN TITI APPLICATIONS TABLE
+
+Select the applications table.
+
+Open its columns or structure.
+
+Take a screenshot showing all column names.
+
+Send it here.
+
+We need this to connect the student's photograph, course and intake to the transcript-style admission record correctly. 🤝
+
+I WANT TO PASTE YR CODE
+Yes sir. Here is the direct link to open your TITI website application form code (apply.html) on GitHub, where you can paste my complete replacement code:
+
+OPEN APPLICATION FORM CODE – apply.html
+
+If you mean the application status page where we are building the printable Jost admission record, use this link:
+
+OPEN APPLICATION STATUS CODE – application-status.html
+
+Paste the code, then click Commit changes.
+
+
+Context window full
+Start a new chat with an automatic summary of this conversation, or upgrade to continue here with more context available in every chat.
+
+
+
+
+https://github.com/jamesnyarangotv/TITI-...
