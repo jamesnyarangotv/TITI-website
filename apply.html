@@ -232,7 +232,7 @@ button:hover {
 
 button:disabled {
  opacity:.6;
- cursor:wait;
+ cursor:not-allowed;
 }
 
 /* APPLICATION MESSAGES */
@@ -623,7 +623,7 @@ button:disabled {
 <div class="field">
 <label>Year Completed *</label>
 <input type="number" name="year_completed"
-min="1950" max="2026" required>
+min="1950" required>
 </div>
 
 </div>
@@ -685,8 +685,6 @@ SUBMIT APPLICATION
 </form>
 
 </main>
-
-<!-- HOMEPAGE FOOTER -->
 
 <footer class="site-footer">
 
@@ -771,6 +769,9 @@ const submitBtn = document.getElementById('submitBtn');
 const programmeSelect = document.getElementById('programme');
 const successActions = document.getElementById('successActions');
 
+/* Tracks whether the application record has already been created. */
+let applicationReference = null;
+
 document.getElementById('footer-year').textContent =
 new Date().getFullYear();
 
@@ -795,14 +796,14 @@ function showMessage(text, type) {
 
 async function loadProgrammes() {
  const {data,error} = await db
- .from('programmes')
- .select('id, programme_name, programme_level')
- .eq('application_open',true)
- .order('programme_name');
+  .from('programmes')
+  .select('id, programme_name, programme_level')
+  .eq('application_open',true)
+  .order('programme_name');
 
  if(error) {
   programmeSelect.innerHTML =
-  '<option value="">Unable to load programmes</option>';
+   '<option value="">Unable to load programmes</option>';
 
   showMessage(
    'Unable to load programmes. Please check the database permissions.',
@@ -813,12 +814,12 @@ async function loadProgrammes() {
 
  if(!data || data.length === 0) {
   programmeSelect.innerHTML =
-  '<option value="">No programmes currently open</option>';
+   '<option value="">No programmes currently open</option>';
   return;
  }
 
  programmeSelect.innerHTML =
- '<option value="">Select your programme</option>';
+  '<option value="">Select your programme</option>';
 
  data.forEach(p => {
   const option = document.createElement('option');
@@ -935,6 +936,17 @@ async function uploadDocuments(reference, groups) {
 form.addEventListener('submit',async function(e) {
  e.preventDefault();
 
+ /* Prevent another application after a reference has been issued. */
+ if(applicationReference) {
+  showMessage(
+   'Your application has already been received. Your reference number is ' +
+   applicationReference +
+   '. Do not submit another application. Contact TITI admissions if you need assistance with your documents.',
+   'info'
+  );
+  return;
+ }
+
  if(!form.reportValidity()) return;
 
  const groups = selectedFiles();
@@ -1003,13 +1015,21 @@ form.addEventListener('submit',async function(e) {
 
   if(!reference) {
    throw new Error(
-    'The application response did not contain a reference number. Contact TITI admissions before submitting again.'
+    'The application response did not contain a reference number. Please contact TITI admissions before submitting again.'
    );
   }
 
+  /*
+   * IMPORTANT:
+   * The application record now exists.
+   * Never allow this form to create another application.
+   */
+  applicationReference = reference;
+
   showMessage(
-   'Application received. Your reference number is ' +
-   reference + '. Now securely uploading your documents...',
+   'Your application has been received. Your reference number is ' +
+   reference +
+   '. Your documents are now being uploaded...',
    'info'
   );
 
@@ -1027,20 +1047,43 @@ form.addEventListener('submit',async function(e) {
   );
 
   submitBtn.textContent = 'APPLICATION SUBMITTED';
+  submitBtn.disabled = true;
 
  } catch(error) {
 
   console.error('TITI application error:',error);
 
-  showMessage(
-   'APPLICATION PROCESSING MESSAGE: ' +
-   (error.message || 'An unexpected error occurred.') +
-   '\n\nPlease retain any application reference number displayed above and contact TITI admissions before trying again.',
-   'error'
-  );
+  /*
+   * If an application reference exists, the application was created.
+   * Do not enable another submission when document uploading fails.
+   */
+  if(applicationReference) {
 
-  submitBtn.disabled = false;
-  submitBtn.textContent = 'RETRY / CONTACT ADMISSIONS';
+   showMessage(
+    'YOUR APPLICATION HAS BEEN RECEIVED.\n\n' +
+    'Application reference number: ' + applicationReference +
+    '\n\nHowever, one or more documents could not be uploaded or registered.\n\n' +
+    'DO NOT SUBMIT ANOTHER APPLICATION.\n' +
+    'Please contact TITI admissions and provide your reference number.\n\n' +
+    'Technical details: ' + (error.message || 'Document processing error.'),
+    'error'
+   );
+
+   submitBtn.disabled = true;
+   submitBtn.textContent = 'APPLICATION RECEIVED — CONTACT ADMISSIONS';
+
+  } else {
+
+   showMessage(
+    'APPLICATION COULD NOT BE CONFIRMED.\n\n' +
+    (error.message || 'An unexpected error occurred.') +
+    '\n\nIf you are unsure whether your application was received, contact TITI admissions before trying again.',
+    'error'
+   );
+
+   submitBtn.disabled = false;
+   submitBtn.textContent = 'RETRY / CONTACT ADMISSIONS';
+  }
  }
 });
 
