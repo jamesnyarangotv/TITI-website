@@ -3,626 +3,482 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Applicant Admission Record | TITI</title>
+<title>Application Status | TITI</title>
+<meta name="description" content="Official TITI applicant status and admission record.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root {
-  --maroon:#7A1220;
-  --navy:#0F2A5E;
-  --gold:#D4AF37;
-  --white:#FFFFFF;
-  --grey:#F5F5F5;
-  --text:#263247;
-  --muted:#64748b;
+ --maroon:#7A1220;
+ --navy:#0F2A5E;
+ --gold:#D4AF37;
+ --white:#FFFFFF;
+ --grey:#F5F5F5;
+ --text:#263247;
 }
 
-* {
-  box-sizing:border-box;
-}
+* {box-sizing:border-box;}
 
 body {
-  margin:0;
-  font-family:'Jost',sans-serif;
-  background:var(--grey);
-  color:var(--text);
-  line-height:1.6;
-}
-
-button,input {
-  font-family:'Jost',sans-serif;
+ margin:0;
+ font-family:'Jost',sans-serif;
+ background:var(--grey);
+ color:var(--text);
+ line-height:1.6;
 }
 
 header {
-  background:white;
-  border-bottom:4px solid var(--gold);
-  padding:14px 5%;
+ background:white;
+ border-bottom:4px solid var(--gold);
+ padding:12px 5%;
 }
 
 .header-inner {
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  gap:15px;
+ max-width:1150px;
+ margin:auto;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:20px;
 }
 
-header img {
-  width:65px;
-  height:65px;
-  object-fit:contain;
+.header-brand {
+ display:flex;
+ align-items:center;
+ gap:13px;
+}
+
+.header-logo {
+ width:62px;
+ height:62px;
+ object-fit:contain;
 }
 
 .brand h2 {
-  color:var(--maroon);
-  margin:0;
-  font-size:19px;
-  font-weight:800;
-  line-height:1.25;
+ color:var(--maroon);
+ font-size:18px;
+ font-weight:800;
+ line-height:1.25;
+ margin:0;
 }
 
 .brand p {
-  margin:4px 0 0;
-  color:var(--navy);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2px;
+ color:var(--navy);
+ font-size:11px;
+ font-weight:700;
+ letter-spacing:1.5px;
+ margin:4px 0 0;
+}
+
+nav {
+ display:flex;
+ gap:9px;
+ align-items:center;
+ flex-wrap:wrap;
+}
+
+nav a {
+ text-decoration:none;
+ padding:9px 13px;
+ border-radius:4px;
+ font-size:12px;
+ font-weight:700;
+}
+
+.home-link {
+ color:var(--navy);
+ border:1px solid #dce2eb;
+}
+
+.courses-link {
+ background:var(--maroon);
+ color:white;
+}
+
+.status-link {
+ background:var(--navy);
+ color:white;
 }
 
 .container {
-  max-width:850px;
-  margin:42px auto;
-  padding:0 16px;
+ max-width:850px;
+ margin:35px auto;
+ padding:0 16px;
 }
 
 .heading {
-  text-align:center;
-  margin-bottom:25px;
+ text-align:center;
+ margin-bottom:25px;
 }
 
 .heading h1 {
-  color:var(--maroon);
-  font-size:29px;
-  font-weight:800;
-  margin:0 0 7px;
-}
-
-.heading p {
-  font-size:14px;
-  color:var(--muted);
-  margin:0;
+ color:var(--maroon);
+ font-size:27px;
+ font-weight:800;
+ margin:0;
 }
 
 .gold-line {
-  width:65px;
-  height:4px;
-  background:var(--gold);
-  margin:13px auto;
+ width:60px;
+ height:4px;
+ background:var(--gold);
+ margin:12px auto;
+}
+
+.heading p {
+ color:#64748b;
+ font-size:13px;
+ margin:0;
 }
 
 .card {
-  background:white;
-  padding:30px;
-  border-radius:7px;
-  box-shadow:0 3px 16px rgba(0,0,0,.05);
+ background:white;
+ padding:27px;
+ border-radius:7px;
+ box-shadow:0 3px 16px rgba(0,0,0,.045);
 }
 
 .section-title {
-  color:var(--navy);
-  font-size:16px;
-  font-weight:800;
-  border-bottom:1px solid #e5e7eb;
-  padding-bottom:12px;
-  margin:0 0 22px;
+ color:var(--navy);
+ font-size:15px;
+ font-weight:800;
+ border-bottom:1px solid #e5e7eb;
+ padding-bottom:11px;
+ margin:0 0 20px;
 }
 
 .field {
-  display:flex;
-  flex-direction:column;
-  gap:7px;
-  margin-bottom:18px;
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+ margin-bottom:17px;
 }
 
 label {
-  font-size:12px;
-  font-weight:800;
-  color:var(--navy);
+ color:var(--navy);
+ font-size:12px;
+ font-weight:700;
+}
+
+input,button {
+ font-family:'Jost',sans-serif;
 }
 
 input {
-  width:100%;
-  padding:13px;
-  border:1px solid #d8dee8;
-  border-radius:4px;
-  font-size:14px;
-  outline:none;
+ width:100%;
+ padding:12px;
+ border:1px solid #d8dee8;
+ border-radius:4px;
+ font-size:14px;
+ outline:none;
 }
 
 input:focus {
-  border-color:var(--maroon);
-  box-shadow:0 0 0 2px rgba(122,18,32,.08);
+ border-color:var(--maroon);
 }
 
 button {
-  border:0;
-  cursor:pointer;
-  font-weight:800;
-  border-radius:4px;
-  transition:.2s;
+ border:0;
+ cursor:pointer;
+ border-radius:4px;
+ font-weight:800;
 }
 
 .check-btn {
-  width:100%;
-  background:var(--maroon);
-  color:white;
-  padding:14px;
-  font-size:14px;
+ width:100%;
+ background:var(--maroon);
+ color:white;
+ padding:14px;
+ font-size:13px;
 }
 
-.check-btn:hover {
-  background:#590b17;
-}
+.check-btn:hover {background:#590b17;}
 
 button:disabled {
-  opacity:.6;
-  cursor:wait;
+ opacity:.6;
+ cursor:wait;
 }
 
 .message {
-  display:none;
-  padding:13px;
-  margin-top:17px;
-  border-radius:4px;
-  font-size:13px;
-  overflow-wrap:anywhere;
+ display:none;
+ padding:13px;
+ margin-top:17px;
+ border-radius:4px;
+ font-size:13px;
+ overflow-wrap:anywhere;
+ white-space:pre-line;
 }
 
-.success {
-  display:block;
-  background:#e9f8ef;
-  color:#17643a;
-}
+.success {display:block;background:#e9f8ef;color:#17643a;}
+.error {display:block;background:#fff0f0;color:#a31515;}
+.info {display:block;background:#eef4ff;color:var(--navy);}
 
-.error {
-  display:block;
-  background:#fff0f0;
-  color:#a31515;
-}
-
-.info {
-  display:block;
-  background:#eef4ff;
-  color:var(--navy);
-}
-
-/* OFFICIAL ADMISSION RECORD */
+/* ADMISSION RECORD */
 
 .result {
-  display:none;
-  margin-top:30px;
+ display:none;
+ margin-top:28px;
 }
 
 .record {
-  background:white;
-  padding:35px;
-  border:1px solid #dce1e9;
-  box-shadow:0 5px 22px rgba(0,0,0,.06);
+ background:white;
+ border:1px solid #dce1e9;
+ padding:32px;
 }
 
 .record-header {
-  text-align:center;
-  border-bottom:3px double var(--navy);
-  padding-bottom:20px;
+ text-align:center;
+ border-bottom:3px double var(--navy);
+ padding-bottom:17px;
 }
 
 .record-logo {
-  width:75px;
-  height:75px;
-  object-fit:contain;
-  margin:0 auto 10px;
+ width:75px;
+ height:75px;
+ object-fit:contain;
+ display:block;
+ margin:0 auto 8px;
 }
 
 .record-header h2 {
-  color:var(--navy);
-  font-size:21px;
-  font-weight:800;
-  margin:0;
-  line-height:1.3;
+ color:var(--navy);
+ font-size:20px;
+ font-weight:800;
+ line-height:1.3;
+ margin:0;
 }
 
 .record-header p {
-  color:var(--maroon);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:2px;
-  margin:5px 0;
+ color:var(--maroon);
+ font-size:11px;
+ font-weight:800;
+ letter-spacing:2px;
+ margin:5px 0;
 }
 
 .record-header h3 {
-  color:var(--maroon);
-  font-size:19px;
-  font-weight:800;
-  margin:17px 0 3px;
+ color:var(--maroon);
+ font-size:18px;
+ margin:15px 0 0;
 }
 
 .record-subtitle {
-  color:var(--muted);
-  font-size:11px;
-  font-weight:600;
-  letter-spacing:1px;
+ color:#64748b;
+ font-size:10px;
+ letter-spacing:1px;
 }
 
 .student-summary {
-  display:flex;
-  align-items:center;
-  gap:22px;
-  padding:23px 0;
-  border-bottom:1px solid #dce1e9;
+ display:flex;
+ align-items:center;
+ gap:20px;
+ padding:20px 0;
+ border-bottom:1px solid #dce1e9;
 }
 
 .student-photo {
-  width:105px;
-  height:120px;
-  border:2px solid var(--gold);
-  object-fit:cover;
-  display:none;
+ width:105px;
+ height:120px;
+ object-fit:cover;
+ border:2px solid var(--gold);
+ display:none;
 }
 
-.student-photo-placeholder {
-  width:105px;
-  height:120px;
-  border:1px solid #dce1e9;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:var(--muted);
-  font-size:11px;
-  background:var(--grey);
-}
-
-.student-details {
-  flex:1;
-  min-width:0;
-}
+.student-details {flex:1;min-width:0;}
 
 .student-details h3 {
-  color:var(--navy);
-  font-size:20px;
-  font-weight:800;
-  margin:0 0 6px;
+ color:var(--navy);
+ font-size:19px;
+ margin:0 0 5px;
 }
 
 .student-details p {
-  margin:3px 0;
-  font-size:12px;
-  overflow-wrap:anywhere;
+ font-size:12px;
+ margin:3px 0;
+ overflow-wrap:anywhere;
 }
 
-.record-section {
-  margin-top:23px;
-}
+.record-section {margin-top:22px;}
 
 .record-section h4 {
-  color:white;
-  background:var(--navy);
-  padding:9px 13px;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.6px;
-  margin:0 0 10px;
+ background:var(--navy);
+ color:white;
+ padding:9px 12px;
+ font-size:12px;
+ margin:0 0 10px;
 }
 
 .record-table {
-  width:100%;
-  border-collapse:collapse;
+ width:100%;
+ border-collapse:collapse;
 }
 
 .record-table td {
-  padding:10px 12px;
-  border:1px solid #e2e6ec;
-  font-size:13px;
-  vertical-align:top;
-  overflow-wrap:anywhere;
+ border:1px solid #e2e6ec;
+ padding:9px 11px;
+ font-size:12px;
+ overflow-wrap:anywhere;
 }
 
 .record-table td:first-child {
-  width:40%;
-  color:var(--navy);
-  font-weight:700;
-  background:#f8f9fb;
-}
-
-.status-cell {
-  font-weight:800;
-  color:var(--navy);
+ width:40%;
+ background:#f8f9fb;
+ color:var(--navy);
+ font-weight:700;
 }
 
 .status-badge {
-  display:inline-block;
-  padding:5px 12px;
-  border-radius:3px;
-  font-size:12px;
-  font-weight:800;
+ display:inline-block;
+ padding:5px 12px;
+ border-radius:3px;
+ font-size:12px;
+ font-weight:800;
 }
 
-.status-approved {
-  background:#e5f5eb;
-  color:#17643a;
-}
-
-.status-pending {
-  background:#fff5dc;
-  color:#805900;
-}
-
-.status-rejected {
-  background:#ffeded;
-  color:#a31515;
-}
-
-.status-other {
-  background:#eef4ff;
-  color:var(--navy);
-}
+.status-approved {background:#e5f5eb;color:#17643a;}
+.status-pending {background:#fff5dc;color:#805900;}
+.status-rejected {background:#ffeded;color:#a31515;}
+.status-other {background:#eef4ff;color:var(--navy);}
 
 .remarks {
-  min-height:55px;
-  padding:12px;
-  border:1px solid #e2e6ec;
-  font-size:13px;
-  background:#fafbfc;
-  overflow-wrap:anywhere;
+ border:1px solid #e2e6ec;
+ background:#fafbfc;
+ padding:12px;
+ font-size:12px;
+ min-height:45px;
+ overflow-wrap:anywhere;
 }
 
 .verification {
-  margin-top:28px;
-  padding:16px;
-  border:1px solid var(--gold);
-  text-align:center;
+ margin-top:25px;
+ padding:15px;
+ border:1px solid var(--gold);
+ text-align:center;
 }
 
 .verification strong {
-  display:block;
-  color:var(--navy);
-  font-size:12px;
-  margin-bottom:4px;
+ color:var(--navy);
+ font-size:12px;
 }
 
 .verification p {
-  font-size:11px;
-  color:var(--muted);
-  margin:0;
+ color:#64748b;
+ font-size:10px;
+ margin:4px 0 0;
 }
 
 .record-footer {
-  margin-top:22px;
-  padding-top:15px;
-  border-top:2px solid var(--gold);
-  text-align:center;
+ border-top:2px solid var(--gold);
+ margin-top:20px;
+ padding-top:14px;
+ text-align:center;
 }
 
 .record-footer strong {
-  color:var(--navy);
-  font-size:13px;
+ color:var(--navy);
+ font-size:12px;
 }
 
 .record-footer p {
-  font-size:11px;
-  color:var(--muted);
-  margin:3px 0;
+ color:#64748b;
+ font-size:10px;
+ margin:3px;
 }
 
 .print-actions {
-  display:flex;
-  gap:12px;
-  margin-top:20px;
+ display:flex;
+ gap:12px;
+ margin-top:17px;
 }
 
 .print-btn {
-  flex:1;
-  padding:13px;
-  background:var(--navy);
-  color:white;
-  font-size:13px;
+ flex:1;
+ background:var(--navy);
+ color:white;
+ padding:13px;
+ font-size:12px;
 }
 
-.print-btn:hover {
-  background:var(--maroon);
-}
-
-.back-link {
-  text-align:center;
-  margin-top:22px;
-  font-size:13px;
-}
-
-.back-link a {
-  color:var(--maroon);
-  font-weight:800;
-  text-decoration:none;
-}
-
-/* WEBSITE FOOTER */
+.print-btn:hover {background:var(--maroon);}
 
 .site-footer {
-  background:#091B3D;
-  color:white;
-  border-top:4px solid var(--gold);
-  margin-top:55px;
-  padding:45px 5% 0;
+ background:#091B3D;
+ color:white;
+ border-top:4px solid var(--gold);
+ margin-top:55px;
+ padding:40px 5% 0;
 }
 
 .footer-inner {
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.1fr .9fr 1.2fr;
-  gap:35px;
-  padding-bottom:30px;
+ max-width:1100px;
+ margin:auto;
+ display:grid;
+ grid-template-columns:1fr 1fr 1.2fr;
+ gap:35px;
+ padding-bottom:28px;
 }
 
 .footer-column h3 {
-  font-size:15px;
-  font-weight:800;
-  border-bottom:2px solid var(--gold);
-  display:inline-block;
-  padding-bottom:9px;
-  margin:0 0 15px;
+ font-size:14px;
+ border-bottom:2px solid var(--gold);
+ display:inline-block;
+ padding-bottom:8px;
 }
 
 .footer-column p,
 .footer-column li {
-  color:#d0d8e6;
-  font-size:12px;
-  line-height:1.9;
+ color:#d0d8e6;
+ font-size:12px;
+ line-height:1.9;
 }
 
-.footer-column ul {
-  list-style:none;
-  padding:0;
-  margin:0;
-}
-
-.footer-column a {
-  color:#d0d8e6;
-  text-decoration:none;
-}
-
-.footer-column a:hover {
-  color:var(--gold);
-}
+.footer-column ul {padding:0;list-style:none;}
+.footer-column a {color:#d0d8e6;text-decoration:none;}
+.footer-column a:hover {color:var(--gold);}
 
 .footer-bottom {
-  border-top:1px solid rgba(255,255,255,.15);
-  text-align:center;
-  padding:17px 0;
-  font-size:11px;
-  color:#d0d8e6;
-}
-
-.footer-bottom strong {
-  color:var(--gold);
+ border-top:1px solid rgba(255,255,255,.15);
+ text-align:center;
+ padding:16px 0;
+ color:#d0d8e6;
+ font-size:11px;
 }
 
 @media(max-width:700px) {
-  .footer-inner {
-    grid-template-columns:1fr;
-    gap:22px;
-  }
-
-  .record {
-    padding:18px;
-  }
-
-  .record-header h2 {
-    font-size:17px;
-  }
-
-  .student-summary {
-    gap:12px;
-  }
-
-  .student-details h3 {
-    font-size:16px;
-  }
+ .header-inner {flex-wrap:wrap;}
+ nav {width:100%;}
+ nav a {flex:1;text-align:center;}
+ .footer-inner {grid-template-columns:1fr;}
+ .record {padding:17px;}
+ .student-summary {gap:12px;}
+ .student-details h3 {font-size:15px;}
 }
 
 @media(max-width:420px) {
-  .heading h1 {
-    font-size:24px;
-  }
-
-  .card {
-    padding:20px;
-  }
-
-  .student-photo,
-  .student-photo-placeholder {
-    width:80px;
-    height:100px;
-  }
-
-  .record-table td {
-    padding:8px;
-    font-size:12px;
-  }
-
-  .print-actions {
-    flex-direction:column;
-  }
+ .heading h1 {font-size:23px;}
+ .student-photo {width:85px;height:105px;}
+ .record-table td {padding:7px;font-size:11px;}
+ .print-actions {flex-direction:column;}
 }
 
-/* A4 PRINTING */
-
 @page {
-  size:A4 portrait;
-  margin:12mm;
+ size:A4 portrait;
+ margin:12mm;
 }
 
 @media print {
-  body {
-    background:white;
-    color:#172033;
-    -webkit-print-color-adjust:exact;
-    print-color-adjust:exact;
-  }
-
-  header,
-  .heading,
-  .card,
-  .back-link,
-  .site-footer,
-  .print-actions,
-  .message {
-    display:none !important;
-  }
-
-  .container {
-    max-width:none;
-    width:100%;
-    margin:0;
-    padding:0;
-  }
-
-  .result {
-    display:block !important;
-    margin:0;
-  }
-
-  .record {
-    display:block;
-    box-shadow:none;
-    border:0;
-    padding:0;
-  }
-
-  .record-section,
-  .student-summary,
-  .verification {
-    break-inside:avoid;
-  }
-
-  .record-header {
-    padding-bottom:15px;
-  }
-
-  .record-table td {
-    font-size:11px;
-    padding:8px;
-  }
-
-  .record-section h4 {
-    background:var(--navy) !important;
-    color:white !important;
-  }
-
-  .record-footer {
-    margin-top:20px;
-  }
+ body {background:white;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+ header,.heading,.card,.site-footer,.print-actions,.message {display:none!important;}
+ .container {max-width:none;width:100%;margin:0;padding:0;}
+ .result {display:block!important;margin:0;}
+ .record {border:0;padding:0;box-shadow:none;}
+ .record-section,.student-summary,.verification {break-inside:avoid;}
+ .record-table td {font-size:11px;padding:8px;}
+ .record-section h4 {background:var(--navy)!important;color:white!important;}
 }
 </style>
 </head>
@@ -630,467 +486,329 @@ button:disabled {
 <body>
 
 <header>
-  <div class="header-inner">
-    <img src="TITI%20LOGO.png" alt="TITI Logo">
-    <div class="brand">
-      <h2>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h2>
-      <p>BREAKING THE LIMITS</p>
-    </div>
+ <div class="header-inner">
+  <div class="header-brand">
+   <img src="TITI%20LOGO.png" class="header-logo" alt="TITI Logo">
+   <div class="brand">
+    <h2>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h2>
+    <p>BREAKING THE LIMITS</p>
+   </div>
   </div>
+
+  <nav>
+   <a href="index.html" class="home-link">HOME</a>
+   <a href="index.html#programmes" class="courses-link">EXPLORE COURSES</a>
+   <a href="application-status.html" class="status-link">CHECK STATUS</a>
+  </nav>
+ </div>
 </header>
 
 <main class="container">
 
-  <div class="heading">
-    <h1>APPLICATION STATUS</h1>
-    <div class="gold-line"></div>
-    <p>
-      Welcome to the TITI Online Admissions Portal.
-      Enter your application reference number and registered email
-      to access your official admission record.
-    </p>
-  </div>
+ <div class="heading">
+  <h1>APPLICATION STATUS</h1>
+  <div class="gold-line"></div>
+  <p>Official TITI Online Admissions Portal. Check your application and admission record.</p>
+ </div>
 
-  <div class="card">
-    <h3 class="section-title">CHECK YOUR APPLICATION</h3>
+ <div class="card">
+  <h3 class="section-title">CHECK YOUR APPLICATION</h3>
 
-    <form id="statusForm">
+  <form id="statusForm">
+   <div class="field">
+    <label for="reference">APPLICATION REFERENCE NUMBER</label>
+    <input id="reference" required placeholder="Enter your application reference" autocomplete="off">
+   </div>
 
-      <div class="field">
-        <label for="reference">APPLICATION REFERENCE NUMBER</label>
-        <input
-          type="text"
-          id="reference"
-          placeholder="Enter your reference number"
-          required
-          autocomplete="off">
-      </div>
+   <div class="field">
+    <label for="email">REGISTERED EMAIL ADDRESS</label>
+    <input id="email" type="email" required placeholder="Enter your registered email">
+   </div>
 
-      <div class="field">
-        <label for="email">REGISTERED EMAIL ADDRESS</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your registered email"
-          required
-          autocomplete="email">
-      </div>
+   <button type="submit" id="checkBtn" class="check-btn">
+    CHECK APPLICATION STATUS
+   </button>
+  </form>
 
-      <button type="submit" id="checkBtn" class="check-btn">
-        CHECK APPLICATION STATUS
-      </button>
+  <div id="message" class="message" role="status" aria-live="polite"></div>
+ </div>
 
-    </form>
+ <div id="result" class="result">
 
-    <div id="message" class="message" role="alert"></div>
-  </div>
+  <div class="record" id="printRecord">
 
-  <!-- OFFICIAL ADMISSION RECORD -->
+   <div class="record-header">
+    <img src="TITI%20LOGO.png" class="record-logo" alt="Official TITI Logo">
+    <h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
+    <p>BREAKING THE LIMITS</p>
+    <h3>OFFICIAL ADMISSION RECORD</h3>
+    <div class="record-subtitle">APPLICANT ADMISSION PARTICULARS</div>
+   </div>
 
-  <div id="result" class="result" aria-live="polite">
-
-    <div class="record" id="printRecord">
-
-      <div class="record-header">
-        <img
-          src="TITI%20LOGO.png"
-          alt="TITI Official Logo"
-          class="record-logo">
-
-        <h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
-        <p>BREAKING THE LIMITS</p>
-
-        <h3>APPLICANT ADMISSION RECORD</h3>
-
-        <div class="record-subtitle">
-          OFFICIAL ELECTRONIC ADMISSIONS DOCUMENT
-        </div>
-      </div>
-
-      <div class="student-summary">
-
-        <img
-          id="rPhoto"
-          class="student-photo"
-          alt="Applicant photograph">
-
-        <div id="photoPlaceholder" class="student-photo-placeholder">
-          APPLICANT<br>PHOTOGRAPH
-        </div>
-
-        <div class="student-details">
-          <h3 id="rName">Applicant Name</h3>
-
-          <p>
-            <strong>APPLICATION REFERENCE:</strong>
-            <span id="rReference"></span>
-          </p>
-
-          <p>
-            <strong>ACADEMIC YEAR:</strong>
-            <span id="rAcademicYear">Not provided</span>
-          </p>
-        </div>
-
-      </div>
-
-      <div class="record-section">
-        <h4>SECTION A: ACADEMIC PARTICULARS</h4>
-
-        <table class="record-table">
-          <tr>
-            <td>Programme / Course</td>
-            <td id="rCourse">Not provided</td>
-          </tr>
-
-          <tr>
-            <td>Award Level</td>
-            <td id="rAward">Not provided</td>
-          </tr>
-
-          <tr>
-            <td>Intake</td>
-            <td id="rIntake">Not provided</td>
-          </tr>
-
-          <tr>
-            <td>Application Submission Date</td>
-            <td id="rDate">Not provided</td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="record-section">
-        <h4>SECTION B: ADMISSION DECISION</h4>
-
-        <table class="record-table">
-          <tr>
-            <td>Application Reference</td>
-            <td id="rReference2"></td>
-          </tr>
-
-          <tr>
-            <td>Admission Decision</td>
-            <td class="status-cell">
-              <span id="rStatus" class="status-badge status-other"></span>
-            </td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="record-section">
-        <h4>SECTION C: OFFICIAL ADMINISTRATIVE REMARKS</h4>
-        <div class="remarks" id="rRemarks">
-          No administrative remarks provided.
-        </div>
-      </div>
-
-      <div class="verification">
-        <strong>OFFICIAL APPLICATION RECORD</strong>
-        <p>
-          This electronic document reflects the application information
-          recorded by Tahidi International Training Institute.
-        </p>
-        <p>
-          For further verification, contact the Institute Administration.
-        </p>
-      </div>
-
-      <div class="record-footer">
-        <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong>
-        <p>BREAKING THE LIMITS</p>
-        <p>Official Online Admissions Portal</p>
-      </div>
-
+   <div class="student-summary">
+    <img id="rPhoto" class="student-photo" alt="Applicant passport photograph">
+    <div class="student-details">
+     <h3 id="rName">Applicant Name</h3>
+     <p><strong>Reference:</strong> <span id="rReference"></span></p>
+     <p><strong>Email:</strong> <span id="rEmail"></span></p>
+     <p><strong>Telephone:</strong> <span id="rPhone"></span></p>
     </div>
+   </div>
 
-    <div class="print-actions">
-      <button class="print-btn" onclick="window.print()">
-        PRINT / SAVE AS PDF
-      </button>
-    </div>
+   <div class="record-section">
+    <h4>01. PERSONAL INFORMATION</h4>
+    <table class="record-table">
+     <tr><td>Full Name</td><td id="rFullName"></td></tr>
+     <tr><td>Gender</td><td id="rGender"></td></tr>
+     <tr><td>Date of Birth</td><td id="rDob"></td></tr>
+     <tr><td>Nationality</td><td id="rNationality"></td></tr>
+     <tr><td>Residential Address</td><td id="rAddress"></td></tr>
+    </table>
+   </div>
+
+   <div class="record-section">
+    <h4>02. ACADEMIC AND ADMISSION INFORMATION</h4>
+    <table class="record-table">
+     <tr><td>Programme</td><td id="rProgramme"></td></tr>
+     <tr><td>Award</td><td id="rAward"></td></tr>
+     <tr><td>Intake</td><td id="rIntake"></td></tr>
+     <tr><td>Academic Year</td><td id="rAcademicYear"></td></tr>
+     <tr><td>Highest Qualification</td><td id="rQualification"></td></tr>
+     <tr><td>Awarding Institution</td><td id="rInstitution"></td></tr>
+     <tr><td>Year Completed</td><td id="rYearCompleted"></td></tr>
+     <tr><td>Application Date</td><td id="rDate"></td></tr>
+     <tr><td>Admission Decision</td><td class="status-cell"><span id="rStatus" class="status-badge"></span></td></tr>
+    </table>
+   </div>
+
+   <div class="record-section">
+    <h4>03. ADMISSION REMARKS</h4>
+    <div class="remarks" id="rRemarks">No additional remarks.</div>
+   </div>
+
+   <div class="verification">
+    <strong>OFFICIAL TITI ADMISSIONS RECORD</strong>
+    <p>Present this record to the admissions office when requested. Verify its authenticity through TITI.</p>
+    <p>Application Reference: <strong id="rVerify"></strong></p>
+   </div>
+
+   <div class="record-footer">
+    <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong>
+    <p>BREAKING THE LIMITS</p>
+    <p>Official applicant admission record</p>
+    <p>Printed on: <span id="rPrinted"></span></p>
+   </div>
 
   </div>
 
-  <div class="back-link">
-    <a href="index.html">← BACK TO TITI HOMEPAGE</a>
+  <div class="print-actions">
+   <button class="print-btn" type="button" onclick="window.print()">PRINT / SAVE AS PDF</button>
   </div>
+ </div>
 
 </main>
 
 <footer class="site-footer">
-
-  <div class="footer-inner">
-
-    <div class="footer-column">
-      <h3>ABOUT TITI</h3>
-      <p>
-        Tahidi International Training Institute is committed to
-        quality education, practical skills and professional training.
-      </p>
-      <p><strong>BREAKING THE LIMITS</strong></p>
-    </div>
-
-    <div class="footer-column">
-      <h3>QUICK LINKS</h3>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#about">About Us</a></li>
-        <li><a href="index.html#programmes">Programmes</a></li>
-        <li><a href="index.html#admissions">Admissions</a></li>
-        <li><a href="apply.html">Apply Now</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-column">
-      <h3>ADMISSIONS</h3>
-      <p>
-        For application assistance, programme information and
-        admission enquiries, contact the Institute Administration.
-      </p>
-      <p>
-        <a href="index.html">Visit TITI Official Website</a>
-      </p>
-    </div>
-
+ <div class="footer-inner">
+  <div class="footer-column">
+   <h3>ABOUT TITI</h3>
+   <p>TAHIDI INTERNATIONAL TRAINING INSTITUTE</p>
+   <p>Empowering learners through professional education, practical skills and quality training.</p>
   </div>
 
-  <div class="footer-bottom">
-    © <span id="footerYear"></span>
-    <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE.</strong>
-    All Rights Reserved.
+  <div class="footer-column">
+   <h3>QUICK LINKS</h3>
+   <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About Us</a></li>
+    <li><a href="index.html#programmes">Programmes</a></li>
+    <li><a href="apply.html">Apply Online</a></li>
+    <li><a href="application-status.html">Check Application Status</a></li>
+   </ul>
   </div>
 
+  <div class="footer-column">
+   <h3>ADMISSIONS</h3>
+   <p>For application enquiries and admission verification, contact the TITI admissions office.</p>
+   <a href="apply.html">Apply Now</a>
+  </div>
+ </div>
+
+ <div class="footer-bottom">
+  &copy; <span id="footerYear"></span> Tahidi International Training Institute. All Rights Reserved.
+ </div>
 </footer>
 
 <script>
-const SUPABASE_URL =
-  "https://jlmbiauilmajuvrnuaul.supabase.co";
+const SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
 
-const SUPABASE_KEY =
-  "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const STATUS_FUNCTION =
-  SUPABASE_URL + "/functions/v1/check-application-status";
+const form = document.getElementById('statusForm');
+const message = document.getElementById('message');
+const result = document.getElementById('result');
+const checkBtn = document.getElementById('checkBtn');
 
-const form = document.getElementById("statusForm");
-const message = document.getElementById("message");
-const result = document.getElementById("result");
-const checkBtn = document.getElementById("checkBtn");
+document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-document.getElementById("footerYear").textContent =
-  new Date().getFullYear();
-
-function showMessage(text, type) {
-  message.className = "message " + type;
-  message.textContent = text;
+function showMessage(text,type) {
+ message.className = 'message ' + type;
+ message.textContent = text;
 }
 
-function displayValue(id, value) {
-  document.getElementById(id).textContent =
-    value === null || value === undefined || value === ""
-      ? "Not provided"
-      : String(value);
-}
-
-function formatDate(value) {
-  if (!value) return "Not provided";
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) return "Not provided";
-
-  return date.toLocaleDateString("en-GB", {
-    day:"2-digit",
-    month:"long",
-    year:"numeric"
-  });
+function setText(id,value) {
+ document.getElementById(id).textContent =
+  value === null || value === undefined || value === ''
+  ? '—' : String(value);
 }
 
 function displayStatus(status) {
-  const element = document.getElementById("rStatus");
-  const value = String(status || "Pending").trim();
+ const element = document.getElementById('rStatus');
+ const value = String(status || 'Pending').trim();
+ const normalized = value.toLowerCase();
 
-  element.textContent = value;
-  element.className = "status-badge";
+ element.className = 'status-badge';
 
-  const normalized = value.toLowerCase();
-
-  if (normalized.includes("approv")) {
-    element.classList.add("status-approved");
-  } else if (normalized.includes("pending")) {
-    element.classList.add("status-pending");
-  } else if (
-    normalized.includes("reject") ||
-    normalized.includes("declin")
-  ) {
-    element.classList.add("status-rejected");
-  } else {
-    element.classList.add("status-other");
-  }
+ if (normalized.includes('admitted') || normalized.includes('approved')) {
+  element.textContent = 'ADMITTED ✓';
+  element.classList.add('status-approved');
+ } else if (normalized.includes('pending') || normalized.includes('review')) {
+  element.textContent = 'UNDER REVIEW';
+  element.classList.add('status-pending');
+ } else if (normalized.includes('reject') || normalized.includes('declin')) {
+  element.textContent = 'REJECTED';
+  element.classList.add('status-rejected');
+ } else {
+  element.textContent = value.toUpperCase();
+  element.classList.add('status-other');
+ }
 }
 
-function displayPhoto(photo) {
-  const image = document.getElementById("rPhoto");
-  const placeholder = document.getElementById("photoPlaceholder");
+async function displayPhoto(path) {
+ const photo = document.getElementById('rPhoto');
+ photo.style.display = 'none';
+ photo.removeAttribute('src');
 
-  image.style.display = "none";
-  placeholder.style.display = "flex";
-  image.removeAttribute("src");
+ if (!path) return;
 
-  if (!photo) return;
+ // A public URL may be used if the stored value is already a URL.
+ if (/^https?:\/\//i.test(path)) {
+  photo.onload = () => photo.style.display = 'block';
+  photo.onerror = () => photo.style.display = 'none';
+  photo.src = path;
+  return;
+ }
 
-  try {
-    const url = new URL(photo, window.location.href);
+ // Private applicant storage: generate a temporary access URL.
+ const {data,error} = await db.storage
+  .from('titi-applicant-documents')
+  .createSignedUrl(path,3600);
 
-    if (url.protocol !== "https:" && url.protocol !== "http:") {
-      return;
-    }
+ if (error || !data?.signedUrl) {
+  console.error('Applicant photograph unavailable:',error);
+  return;
+ }
 
-    image.onload = function() {
-      image.style.display = "block";
-      placeholder.style.display = "none";
-    };
-
-    image.onerror = function() {
-      image.style.display = "none";
-      placeholder.style.display = "flex";
-    };
-
-    image.src = url.href;
-
-  } catch {
-    // Keep the photograph placeholder if the image URL is invalid.
-  }
+ photo.onload = () => photo.style.display = 'block';
+ photo.onerror = () => photo.style.display = 'none';
+ photo.src = data.signedUrl;
 }
 
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
+async function checkApplication(reference,email) {
+ /*
+  * IMPORTANT:
+  * This query assumes an applications table with these columns.
+  * Confirm the actual table and column names against your Supabase schema.
+  */
+ const {data,error} = await db
+  .from('applications')
+  .select('*')
+  .eq('reference_number',reference)
+  .ilike('email',email)
+  .maybeSingle();
 
-  const reference = document
-    .getElementById("reference")
-    .value.trim();
+ if (error) throw error;
+ if (!data) throw new Error('No matching application was found. Check your reference number and registered email.');
 
-  const email = document
-    .getElementById("email")
-    .value.trim()
-    .toLowerCase();
+ return data;
+}
 
-  if (!reference || !email) {
-    showMessage(
-      "Please enter your reference number and registered email.",
-      "error"
-    );
-    return;
-  }
+async function loadAdmissionRecord(app) {
+ result.style.display = 'block';
 
-  checkBtn.disabled = true;
-  checkBtn.textContent = "CHECKING APPLICATION...";
-  result.style.display = "none";
+ const fullName = [
+  app.first_name,
+  app.middle_name,
+  app.last_name
+ ].filter(Boolean).join(' ');
+
+ setText('rName',fullName);
+ setText('rFullName',fullName);
+ setText('rReference',app.reference_number);
+ setText('rVerify',app.reference_number);
+ setText('rEmail',app.email);
+ setText('rPhone',app.phone_number);
+ setText('rGender',app.gender);
+ setText('rDob',app.date_of_birth);
+ setText('rNationality',app.nationality);
+ setText('rAddress',app.residential_address);
+
+ setText('rProgramme',app.programme_name || app.programme);
+ setText('rAward',app.award || app.award_name || app.programme_level);
+ setText('rIntake',app.intake || app.intake_name);
+ setText('rAcademicYear',app.academic_year);
+ setText('rQualification',app.highest_qualification);
+ setText('rInstitution',app.awarding_institution);
+ setText('rYearCompleted',app.year_completed);
+
+ setText('rDate',app.created_at ? new Date(app.created_at).toLocaleDateString() : '—');
+ setText('rRemarks',app.remarks || app.rejection_reason || 'No additional remarks.');
+
+ displayStatus(app.status || app.application_status);
+
+ const photoPath = app.photo_path || app.photo_url || app.passport_photo || app.photograph_path;
+ await displayPhoto(photoPath);
+
+ document.getElementById('rPrinted').textContent =
+  new Date().toLocaleDateString();
+
+ result.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+form.addEventListener('submit',async function(e) {
+ e.preventDefault();
+
+ const reference = document.getElementById('reference').value.trim();
+ const email = document.getElementById('email').value.trim();
+
+ if (!reference || !email) return;
+
+ checkBtn.disabled = true;
+ checkBtn.textContent = 'CHECKING...';
+ result.style.display = 'none';
+
+ showMessage('Checking your application record. Please wait.','info');
+
+ try {
+  const app = await checkApplication(reference,email);
+  await loadAdmissionRecord(app);
 
   showMessage(
-    "Please wait while we securely retrieve your application record.",
-    "info"
+   'Your application record has been retrieved successfully.',
+   'success'
   );
-
-  try {
-    const response = await fetch(STATUS_FUNCTION, {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-        "apikey":SUPABASE_KEY
-      },
-      body:JSON.stringify({
-        reference_number:reference,
-        email:email
-      })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok || !data.success) {
-      throw new Error(
-        data.error || "Unable to retrieve your application."
-      );
-    }
-
-    const app = data.application;
-
-    if (!app) {
-      throw new Error("Application information was not returned.");
-    }
-
-    const fullName = [
-      app.first_name,
-      app.middle_name,
-      app.last_name
-    ].filter(Boolean).join(" ");
-
-    displayValue("rName", fullName || "Applicant");
-    displayValue("rReference", app.reference_number);
-    displayValue("rReference2", app.reference_number);
-
-    displayValue(
-      "rAcademicYear",
-      app.academic_year || app.academic_session
-    );
-
-    displayValue(
-      "rCourse",
-      app.course || app.course_applied_for ||
-      app.programme || app.program
-    );
-
-    displayValue(
-      "rAward",
-      app.award_level || app.qualification ||
-      app.study_level
-    );
-
-    displayValue(
-      "rIntake",
-      app.intake || app.admission_intake
-    );
-
-    displayValue("rDate", formatDate(app.submitted_at));
-
-    displayStatus(app.application_status);
-
-    displayValue(
-      "rRemarks",
-      app.administrator_remarks || "No administrative remarks provided."
-    );
-
-    displayPhoto(
-      app.photo_url || app.photo || app.passport_photo ||
-      app.photograph
-    );
-
-    result.style.display = "block";
-
-    showMessage(
-      "Your application record has been successfully retrieved.",
-      "success"
-    );
-
-    result.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-
-  } catch (error) {
-    console.error("Application status error:", error);
-
-    showMessage(
-      error.message ||
-      "Unable to check your application. Please try again.",
-      "error"
-    );
-
-  } finally {
-    checkBtn.disabled = false;
-    checkBtn.textContent = "CHECK APPLICATION STATUS";
-  }
+ } catch(error) {
+  console.error('TITI status check:',error);
+  showMessage(
+   'Unable to retrieve your application.\n\n' +
+   (error.message || 'Please contact TITI admissions.'),
+   'error'
+  );
+ } finally {
+  checkBtn.disabled = false;
+  checkBtn.textContent = 'CHECK APPLICATION STATUS';
+ }
 });
 </script>
 
