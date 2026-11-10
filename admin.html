@@ -3,23 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TITI | Administrator Login</title>
+<title>TITI | Administrator Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#f3f5f8;
- color:#172033;
-}
+
 :root{
  --maroon:#7A1220;
  --navy:#0F2A5E;
  --gold:#D4AF37;
 }
+
+body{
+ margin:0;
+ font-family:'Jost',sans-serif;
+ background:#f3f5f8;
+ color:#172033;
+}
+
+input,textarea,button{font-family:inherit}
+
 #loginScreen{
  min-height:100vh;
  display:flex;
@@ -28,6 +36,7 @@ body{
  padding:20px;
  background:linear-gradient(135deg,#0F2A5E,#18243c);
 }
+
 .login-card{
  background:white;
  width:100%;
@@ -36,6 +45,7 @@ body{
  border-radius:12px;
  box-shadow:0 15px 45px #0004;
 }
+
 .logo{
  text-align:center;
  color:var(--maroon);
@@ -43,19 +53,23 @@ body{
  font-weight:800;
  letter-spacing:1px;
 }
+
 .subtitle{
  text-align:center;
  color:#687386;
  margin:9px 0 30px;
  font-size:13px;
 }
+
 h2{color:var(--navy)}
+
 label{
  display:block;
- font-weight:bold;
+ font-weight:600;
  margin:17px 0 7px;
  font-size:13px;
 }
+
 input,textarea{
  width:100%;
  padding:13px;
@@ -64,24 +78,27 @@ input,textarea{
  font-size:14px;
  outline:none;
 }
-input:focus,textarea:focus{
- border-color:var(--navy);
-}
+
+input:focus,textarea:focus{border-color:var(--navy)}
+
 button{
  cursor:pointer;
  border:0;
  border-radius:6px;
  padding:12px 17px;
- font-weight:bold;
+ font-weight:700;
 }
+
 .primary{
  background:var(--maroon);
  color:white;
  width:100%;
  margin-top:22px;
 }
+
 .primary:hover{background:#5c0c18}
 button:disabled{opacity:.6;cursor:wait}
+
 .error{
  color:#b42318;
  background:#fff0ee;
@@ -91,7 +108,9 @@ button:disabled{opacity:.6;cursor:wait}
  font-size:13px;
  display:none;
 }
+
 #dashboard{display:none}
+
 .topbar{
  background:var(--navy);
  color:white;
@@ -102,22 +121,24 @@ button:disabled{opacity:.6;cursor:wait}
  gap:15px;
  flex-wrap:wrap;
 }
-.brand{font-size:20px;font-weight:bold}
+
+.brand{font-size:20px;font-weight:800}
+
 .brand small{
  display:block;
  color:#d8dfeb;
  font-size:11px;
  margin-top:5px;
 }
-.logout{
- background:white;
- color:var(--navy);
-}
+
+.logout{background:white;color:var(--navy)}
+
 .container{
  max-width:1250px;
  margin:30px auto;
  padding:0 20px;
 }
+
 .welcome{
  display:flex;
  justify-content:space-between;
@@ -126,26 +147,31 @@ button:disabled{opacity:.6;cursor:wait}
  gap:10px;
  margin-bottom:25px;
 }
+
 .welcome h2{margin:0 0 7px}
 .muted{color:#687386;font-size:13px}
+
 .stats{
  display:grid;
  grid-template-columns:repeat(4,1fr);
  gap:16px;
  margin-bottom:25px;
 }
+
 .stat{
  background:white;
  border-radius:9px;
  padding:20px;
  border:1px solid #e7eaf0;
 }
+
 .stat strong{
  display:block;
  font-size:29px;
  color:var(--navy);
  margin-top:9px;
 }
+
 .panel{
  background:white;
  padding:22px;
@@ -153,34 +179,35 @@ button:disabled{opacity:.6;cursor:wait}
  border:1px solid #e7eaf0;
  margin-bottom:22px;
 }
+
 .panel h3{color:var(--navy);margin-top:0}
+
 .toolbar{
  display:flex;
  gap:10px;
  margin-bottom:18px;
  flex-wrap:wrap;
 }
+
 .toolbar input{max-width:450px}
+
 table{
  width:100%;
  border-collapse:collapse;
  font-size:13px;
 }
+
 th,td{
  text-align:left;
  padding:13px 10px;
  border-bottom:1px solid #e9edf2;
 }
-th{
- background:#f5f6f9;
- color:var(--navy);
-}
+
+th{background:#f5f6f9;color:var(--navy)}
 .table-wrap{overflow-x:auto}
-.view-btn{
- background:var(--navy);
- color:white;
- padding:8px 12px;
-}
+
+.view-btn{background:var(--navy);color:white;padding:8px 12px}
+
 .status{
  display:inline-block;
  padding:6px 9px;
@@ -188,38 +215,50 @@ th{
  background:#fff3d8;
  color:#805500;
  font-size:11px;
- font-weight:bold;
+ font-weight:700;
+ white-space:nowrap;
 }
-.status.APPROVED{background:#e1f5e9;color:#126536}
-.status.REJECTED{background:#fde7e7;color:#a11919}
+
+.status.ADMITTED{background:#e1f5e9;color:#126536}
+.status.DECLINED{background:#fde7e7;color:#a11919}
+.status.VERIFIED{background:#e5edff;color:#17428b}
+.status.UNDER_REVIEW{background:#fff3d8;color:#805500}
+
 .detail-grid{
  display:grid;
  grid-template-columns:repeat(2,1fr);
  gap:15px;
 }
+
 .detail-item{
  padding:12px;
  background:#f6f7fa;
  border-radius:6px;
  overflow-wrap:anywhere;
 }
+
 .detail-item small{
  display:block;
  color:#687386;
  margin-bottom:6px;
 }
+
 .detail-item strong{font-size:14px}
+
 .actions{
  display:flex;
  gap:10px;
  flex-wrap:wrap;
  margin-top:18px;
 }
+
 .approve{background:#167744;color:white}
 .reject{background:#a51d2d;color:white}
 .refresh{background:var(--navy);color:white}
 .secondary{background:#e8edf4;color:var(--navy)}
+
 #detailPanel{display:none}
+
 #message{
  padding:12px;
  margin-bottom:15px;
@@ -227,16 +266,19 @@ th{
  display:none;
  font-size:13px;
 }
+
 footer{
  text-align:center;
  padding:25px;
  color:#7a8495;
  font-size:12px;
 }
+
 @media(max-width:750px){
  .stats{grid-template-columns:repeat(2,1fr)}
  .detail-grid{grid-template-columns:1fr}
 }
+
 @media(max-width:450px){
  .login-card{padding:25px}
  .stats{gap:9px}
@@ -247,11 +289,11 @@ footer{
 
 <body>
 
-<!-- LOGIN -->
 <section id="loginScreen">
 <div class="login-card">
 
 <div class="logo">TITI</div>
+
 <div class="subtitle">
 TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>
 ADMINISTRATION PORTAL
@@ -261,6 +303,7 @@ ADMINISTRATION PORTAL
 <p class="muted">Sign in using your existing administrator account.</p>
 
 <form id="loginForm">
+
 <label>Email Address</label>
 <input id="email" type="email" required autocomplete="username"
 placeholder="Enter administrator email">
@@ -272,13 +315,13 @@ autocomplete="current-password" placeholder="Enter password">
 <button class="primary" id="loginButton" type="submit">
 SIGN IN
 </button>
+
 </form>
 
 <div id="loginError" class="error"></div>
 </div>
 </section>
 
-<!-- DASHBOARD -->
 <section id="dashboard">
 
 <header class="topbar">
@@ -306,22 +349,27 @@ TITI ADMISSIONS
 <div id="message"></div>
 
 <div class="stats">
+
 <div class="stat">
 <span class="muted">Total Applications</span>
 <strong id="totalCount">0</strong>
 </div>
+
 <div class="stat">
 <span class="muted">Submitted</span>
 <strong id="submittedCount">0</strong>
 </div>
+
 <div class="stat">
 <span class="muted">Approved</span>
 <strong id="approvedCount">0</strong>
 </div>
+
 <div class="stat">
 <span class="muted">Rejected</span>
 <strong id="rejectedCount">0</strong>
 </div>
+
 </div>
 
 <div class="panel">
@@ -344,6 +392,7 @@ placeholder="Search name, reference, phone or email...">
 <th>Action</th>
 </tr>
 </thead>
+
 <tbody id="applicationsBody">
 <tr><td colspan="6">Loading applications...</td></tr>
 </tbody>
@@ -352,6 +401,7 @@ placeholder="Search name, reference, phone or email...">
 </div>
 
 <div class="panel" id="detailPanel">
+
 <h3>Applicant Information</h3>
 <div id="applicantDetails"></div>
 
@@ -368,17 +418,18 @@ placeholder="Enter comments about this application..."></textarea>
 </div>
 
 <p class="muted" style="margin-top:15px">
-Admission decisions update the application record. Please verify
-the applicant's documents before making a final decision.
+Admission decisions update the application record. Verify applicant
+documents before making a final decision.
 </p>
+
 </div>
 
 <div class="panel">
 <h3>Document Verification</h3>
 <p class="muted">
-The applicant document records and private storage access have not
-yet been configured for dashboard viewing. No documents will be
-made public. Secure document viewing will be implemented separately.
+Private applicant documents are not displayed in this version of the
+dashboard. Secure document viewing will be configured separately.
+No documents are made public.
 </p>
 </div>
 
@@ -393,14 +444,15 @@ TITI Administration Portal
 </section>
 
 <script>
+
 const SUPABASE_URL = "https://jlmbiauilmajuvrnuaul.supabase.co";
 
 const SUPABASE_KEY =
 "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 
 const db = window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+ SUPABASE_URL,
+ SUPABASE_KEY
 );
 
 let currentAdmin = null;
@@ -410,7 +462,7 @@ let selectedApplication = null;
 const $ = id => document.getElementById(id);
 
 function escapeHTML(value){
- return String(value ?? "").replace(/[&<>"']/g, char => ({
+ return String(value ?? "").replace(/[&<>"']/g,char=>({
   "&":"&amp;",
   "<":"&lt;",
   ">":"&gt;",
@@ -424,7 +476,7 @@ function showLoginError(message){
  $("loginError").style.display = "block";
 }
 
-function showMessage(message, error=false){
+function showMessage(message,error=false){
  $("message").textContent = message;
  $("message").style.display = "block";
  $("message").style.background = error ? "#fff0ee" : "#e5f5eb";
@@ -448,7 +500,6 @@ async function verifyAdministrator(user){
  }
 
  currentAdmin = data;
-
  return data;
 }
 
@@ -469,6 +520,7 @@ function showLogin(){
  currentAdmin = null;
  applications = [];
  selectedApplication = null;
+
  $("password").value = "";
  $("loginError").style.display = "none";
  $("detailPanel").style.display = "none";
@@ -528,186 +580,226 @@ function updateStatistics(){
  applications.filter(a=>a.application_status==="SUBMITTED").length;
 
  $("approvedCount").textContent =
- applications.filter(a=>a.application_status==="APPROVED").length;
+ applications.filter(a=>a.application_status==="ADMITTED").length;
 
  $("rejectedCount").textContent =
- applications.filter(a=>a.application_status==="REJECTED").length;
+ applications.filter(a=>a.application_status==="DECLINED").length;
 }
 
 function renderApplications(){
 
- const query = $("searchInput").value.toLowerCase().trim();
+ const search = $("searchInput").value.toLowerCase().trim();
 
  const filtered = applications.filter(a=>{
+
   const name = [
-   a.first_name,a.middle_name,a.last_name
+   a.first_name,
+   a.middle_name,
+   a.last_name
   ].filter(Boolean).join(" ");
 
-  const text = [
+  const programme = a.programmes?.programme_name || "";
+
+  return [
    name,
    a.reference_number,
    a.phone_number,
    a.email,
-   a.programmes?.programme_name
-  ].join(" ").toLowerCase();
-
-  return text.includes(query);
+   programme
+  ].join(" ").toLowerCase().includes(search);
  });
 
  if(!filtered.length){
   $("applicationsBody").innerHTML =
-  '<tr><td colspan="6">No matching applications found.</td></tr>';
+  '<tr><td colspan="6">No applications found.</td></tr>';
   return;
  }
 
  $("applicationsBody").innerHTML = filtered.map(a=>{
 
   const name = [
-   a.first_name,a.middle_name,a.last_name
+   a.first_name,
+   a.middle_name,
+   a.last_name
   ].filter(Boolean).join(" ");
+
+  const programme = a.programmes?.programme_name || "Not available";
+
+  const status = a.application_status || "SUBMITTED";
+
+  const statusClass = status.replace(/\s+/g,"_");
 
   const date = a.submitted_at
    ? new Date(a.submitted_at).toLocaleDateString()
-   : "Not recorded";
-
-  const status = escapeHTML(a.application_status);
+   : "Not available";
 
   return `
-  <tr>
-   <td>${escapeHTML(a.reference_number)}</td>
-   <td>${escapeHTML(name)}</td>
-   <td>${escapeHTML(a.programmes?.programme_name || "Not assigned")}</td>
-   <td>${date}</td>
-   <td><span class="status ${status}">${status}</span></td>
-   <td>
-    <button class="view-btn"
-     data-id="${escapeHTML(a.id)}">VIEW</button>
-   </td>
-  </tr>`;
+   <tr>
+    <td>${escapeHTML(a.reference_number)}</td>
+    <td>${escapeHTML(name)}</td>
+    <td>${escapeHTML(programme)}</td>
+    <td>${escapeHTML(date)}</td>
+    <td><span class="status ${escapeHTML(statusClass)}">${escapeHTML(status)}</span></td>
+    <td>
+     <button class="view-btn" data-id="${escapeHTML(a.id)}">VIEW</button>
+    </td>
+   </tr>
+  `;
  }).join("");
 
- document.querySelectorAll(".view-btn").forEach(button=>{
+ $("applicationsBody").querySelectorAll(".view-btn").forEach(button=>{
   button.addEventListener("click",()=>{
    openApplication(button.dataset.id);
   });
  });
 }
 
-function detailItem(label,value){
- return `
- <div class="detail-item">
-  <small>${escapeHTML(label)}</small>
-  <strong>${escapeHTML(value || "Not provided")}</strong>
- </div>`;
-}
-
 function openApplication(id){
 
- const a = applications.find(x=>x.id===id);
- if(!a) return;
+ selectedApplication = applications.find(a=>a.id===id);
 
- selectedApplication = a;
+ if(!selectedApplication) return;
+
+ const a = selectedApplication;
 
  const name = [
-  a.first_name,a.middle_name,a.last_name
+  a.first_name,
+  a.middle_name,
+  a.last_name
  ].filter(Boolean).join(" ");
 
- $("applicantDetails").innerHTML = `
- <div class="detail-grid">
- ${detailItem("Reference Number",a.reference_number)}
- ${detailItem("Full Name",name)}
- ${detailItem("Gender",a.gender)}
- ${detailItem("Date of Birth",a.date_of_birth)}
- ${detailItem("Nationality",a.nationality)}
- ${detailItem("Phone Number",a.phone_number)}
- ${detailItem("Email",a.email)}
- ${detailItem("Residential Address",a.residential_address)}
- ${detailItem("Programme",a.programmes?.programme_name)}
- ${detailItem("Programme Level",a.programmes?.programme_level)}
- ${detailItem("Highest Qualification",a.highest_qualification)}
- ${detailItem("Awarding Institution",a.awarding_institution)}
- ${detailItem("Year Completed",a.year_completed)}
- ${detailItem("Submission Date",a.submitted_at
-  ? new Date(a.submitted_at).toLocaleString()
-  : "Not recorded")}
- ${detailItem("Current Status",a.application_status)}
- </div>`;
+ const fields = {
+  "Reference Number":a.reference_number,
+  "Full Name":name,
+  "Gender":a.gender,
+  "Date of Birth":a.date_of_birth,
+  "Nationality":a.nationality,
+  "Phone Number":a.phone_number,
+  "Email Address":a.email,
+  "Residential Address":a.residential_address,
+  "Programme":a.programmes?.programme_name,
+  "Programme Level":a.programmes?.programme_level,
+  "Highest Qualification":a.highest_qualification,
+  "Awarding Institution":a.awarding_institution,
+  "Year Completed":a.year_completed,
+  "Current Status":a.application_status,
+  "Submitted At":a.submitted_at
+ };
+
+ $("applicantDetails").innerHTML =
+ '<div class="detail-grid">' +
+ Object.entries(fields).map(([label,value])=>`
+  <div class="detail-item">
+   <small>${escapeHTML(label)}</small>
+   <strong>${escapeHTML(value || "Not provided")}</strong>
+  </div>
+ `).join("") +
+ '</div>';
 
  $("remarks").value = a.administrator_remarks || "";
 
  $("detailPanel").style.display = "block";
- $("detailPanel").scrollIntoView({behavior:"smooth"});
+
+ $("detailPanel").scrollIntoView({
+  behavior:"smooth",
+  block:"start"
+ });
 }
 
 async function updateDecision(status){
 
  if(!selectedApplication){
-  showMessage("Select an applicant first.",true);
+  showMessage("Please select an application first.",true);
   return;
  }
 
- const confirmation = confirm(
-  "Are you sure you want to mark this application as "+status+"?"
- );
+ const allowedStatuses = ["ADMITTED","DECLINED"];
 
- if(!confirmation) return;
+ if(!allowedStatuses.includes(status)){
+  showMessage("Invalid admission decision.",true);
+  return;
+ }
 
  const remarks = $("remarks").value.trim();
 
- $("approveButton").disabled = true;
- $("rejectButton").disabled = true;
+ const confirmed = confirm(
+  status==="ADMITTED"
+   ? "Confirm that you want to admit this applicant?"
+   : "Confirm that you want to decline this applicant?"
+ );
 
- const {data,error} = await db
-  .from("applications")
-  .update({
-   application_status:status,
-   administrator_remarks:remarks
-  })
-  .eq("id",selectedApplication.id)
-  .select("id");
+ if(!confirmed) return;
 
- $("approveButton").disabled = false;
- $("rejectButton").disabled = false;
+ const buttons = [
+  $("approveButton"),
+  $("rejectButton")
+ ];
 
- if(error){
-  showMessage(
-   "Unable to update application: "+error.message,true
-  );
-  return;
- }
+ buttons.forEach(b=>b.disabled=true);
 
- if(!data || !data.length){
-  showMessage(
-   "No application was updated. Check administrator permissions.",true
-  );
-  return;
- }
-
- showMessage("Application updated successfully.");
- $("detailPanel").style.display = "none";
-
- await loadApplications();
-}
-
-async function signOut(){
-
- await db.auth.signOut();
- showLogin();
-}
-
-$("loginForm").addEventListener("submit",async event=>{
-
- event.preventDefault();
-
- $("loginButton").disabled = true;
- $("loginButton").textContent = "SIGNING IN...";
- $("loginError").style.display = "none";
+ showMessage("Updating application status...");
 
  try{
 
+  const {data,error} = await db
+   .from("applications")
+   .update({
+    application_status:status,
+    administrator_remarks:remarks
+   })
+   .eq("id",selectedApplication.id)
+   .select("id,application_status,administrator_remarks")
+   .single();
+
+  if(error) throw error;
+
+  if(!data){
+   throw new Error("No application record was updated.");
+  }
+
+  showMessage(
+   status==="ADMITTED"
+    ? "Application successfully admitted."
+    : "Application successfully declined."
+  );
+
+  $("detailPanel").style.display = "none";
+  selectedApplication = null;
+
+  await loadApplications();
+
+ }catch(error){
+
+  showMessage(
+   "Unable to update application: "+error.message,
+   true
+  );
+
+ }finally{
+
+  buttons.forEach(b=>b.disabled=false);
+
+ }
+}
+
+async function handleLogin(event){
+
+ event.preventDefault();
+
+ $("loginError").style.display = "none";
+
+ const button = $("loginButton");
+ button.disabled = true;
+ button.textContent = "SIGNING IN...";
+
+ try{
+
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
   const {data,error} = await db.auth.signInWithPassword({
-   email:$("email").value.trim(),
-   password:$("password").value
+   email,
+   password
   });
 
   if(error) throw error;
@@ -722,32 +814,41 @@ $("loginForm").addEventListener("submit",async event=>{
 
   await db.auth.signOut();
 
-  showLoginError(error.message || "Login failed.");
+  showLoginError(error.message);
 
  }finally{
 
-  $("loginButton").disabled = false;
-  $("loginButton").textContent = "SIGN IN";
- }
-});
+  button.disabled = false;
+  button.textContent = "SIGN IN";
 
-$("logoutButton").addEventListener("click",signOut);
+ }
+}
+
+$("loginForm").addEventListener("submit",handleLogin);
+
+$("logoutButton").addEventListener("click",async()=>{
+
+ await db.auth.signOut();
+
+ showLogin();
+
+});
 
 $("refreshButton").addEventListener("click",loadApplications);
 
 $("searchInput").addEventListener("input",renderApplications);
 
 $("approveButton").addEventListener("click",()=>{
- updateDecision("APPROVED");
+ updateDecision("ADMITTED");
 });
 
 $("rejectButton").addEventListener("click",()=>{
- updateDecision("REJECTED");
+ updateDecision("DECLINED");
 });
 
 $("closeDetails").addEventListener("click",()=>{
- $("detailPanel").style.display = "none";
- selectedApplication = null;
+ $("detailPanel").style.display="none";
+ selectedApplication=null;
 });
 
 async function restoreSession(){
@@ -773,12 +874,15 @@ async function restoreSession(){
   await db.auth.signOut();
   showLogin();
 
-  console.error(error);
+  console.error("Session restoration:",error.message);
+
  }
+
 }
 
 restoreSession();
 
 </script>
+
 </body>
 </html>
