@@ -78,9 +78,14 @@ header {
 }
 
 .brand img {
-  width: 76px;
-  height: 76px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
+  padding: 4px;
+  background: #FFFFFF;
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.18);
 }
 
 .brand-text h1 {
@@ -540,13 +545,19 @@ section { padding: 62px 0; }
   color: var(--gold);
 }
 
+/* MAKE EVERY FOOTER ELEMENT BOLD */
+.site-footer,
+.site-footer * {
+  font-weight: 700 !important;
+}
+
 /* RESPONSIVE */
 @media (max-width: 850px) {
   .header-inner { min-height: 78px; }
 
   .brand img {
-    width: 65px;
-    height: 65px;
+    width: 58px;
+    height: 58px;
   }
 
   .brand-text h1 { font-size: 17px; }
@@ -588,7 +599,12 @@ section { padding: 62px 0; }
   .topbar { font-size: 11px; }
 
   .brand { gap: 8px; }
-  .brand img { width: 54px; height: 54px; }
+
+  .brand img {
+    width: 50px;
+    height: 50px;
+  }
+
   .brand-text h1 { font-size: 14px; }
   .brand-text span { font-size: 10px; letter-spacing: 1px; }
 
