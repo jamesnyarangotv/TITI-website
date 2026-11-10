@@ -68,13 +68,17 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 8px;
+  flex-wrap: nowrap;
 }
 
+/* LOGO - ORIGINAL DESIGN PRESERVED */
 .brand {
   display: flex;
   align-items: center;
   gap: 13px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .brand img {
@@ -102,42 +106,64 @@ header {
   letter-spacing: 2px;
 }
 
+/* DESKTOP NAVIGATION - ONE HORIZONTAL LINE */
 nav {
   display: flex;
   align-items: center;
-  gap: 23px;
+  justify-content: flex-end;
+  gap: clamp(5px, .75vw, 11px);
+  flex: 1;
+  min-width: 0;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 nav a {
   color: var(--navy);
-  font-size: 14px;
+  font-size: clamp(9px, .82vw, 12px);
   font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: .25s;
 }
 
-nav a:hover { color: var(--maroon); }
-
-.nav-apply {
-  background: var(--maroon);
-  color: white !important;
-  padding: 10px 19px;
-  border-radius: 4px;
+nav a:hover {
+  color: var(--maroon);
 }
 
-/* CHECK APPLICATION STATUS NAVIGATION LINK */
+/* STATUS LINK - NO BACKGROUND */
 .nav-status {
-  background: var(--navy);
-  color: white !important;
-  padding: 10px 13px;
-  border-radius: 4px;
+  background: transparent;
+  color: var(--navy) !important;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-size: clamp(8px, .7vw, 10px);
+  font-weight: 700;
   white-space: nowrap;
 }
 
 .nav-status:hover {
+  background: transparent;
+  color: var(--maroon) !important;
+}
+
+/* APPLY NOW */
+.nav-apply {
   background: var(--maroon);
+  color: white !important;
+  padding: 9px 13px;
+  border-radius: 4px;
+  font-size: clamp(10px, .82vw, 12px);
+  font-weight: 700;
+}
+
+.nav-apply:hover {
+  background: var(--navy);
   color: white !important;
 }
 
+/* MOBILE MENU BUTTON */
 .menu-toggle {
   display: none;
   border: 0;
@@ -555,7 +581,7 @@ section { padding: 62px 0; }
   font-size: 12px;
 }
 
-/* APPLICATION STATUS LINK AT THE VERY BOTTOM OF THE FOOTER */
+/* FOOTER STATUS LINK */
 .footer-status-link {
   display: inline-block;
   margin-top: 6px;
@@ -572,24 +598,30 @@ section { padding: 62px 0; }
   color: var(--gold);
 }
 
-/* MAKE EVERY FOOTER ELEMENT BOLD */
+/* FOOTER TYPOGRAPHY */
 .site-footer,
 .site-footer * {
   font-weight: 700 !important;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE NAVIGATION */
 @media (max-width: 850px) {
-  .header-inner { min-height: 78px; }
+  .header-inner {
+    min-height: 78px;
+  }
 
   .brand img {
     width: 58px;
     height: 58px;
   }
 
-  .brand-text h1 { font-size: 17px; }
+  .brand-text h1 {
+    font-size: 17px;
+  }
 
-  .menu-toggle { display: block; }
+  .menu-toggle {
+    display: block;
+  }
 
   nav {
     display: none;
@@ -605,21 +637,40 @@ section { padding: 62px 0; }
     box-shadow: 0 8px 15px rgba(0,0,0,.1);
   }
 
-  nav.open { display: flex; }
+  nav.open {
+    display: flex;
+  }
 
   nav a {
+    font-size: 14px;
     padding: 11px 5px;
     border-bottom: 1px solid #eee;
   }
 
   .nav-status {
-    border-radius: 4px;
-    margin: 5px 0;
+    font-size: 12px;
+    padding: 11px 5px;
+    background: transparent;
+    color: var(--navy) !important;
   }
 
-  .about-grid { grid-template-columns: 1fr; }
-  .programme-grid { grid-template-columns: repeat(2, 1fr); }
-  .quick-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-apply {
+    padding: 10px 14px;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .programme-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
@@ -628,38 +679,73 @@ section { padding: 62px 0; }
 }
 
 @media (max-width: 560px) {
-  .topbar { font-size: 11px; }
+  .topbar {
+    font-size: 11px;
+  }
 
-  .brand { gap: 8px; }
+  .brand {
+    gap: 8px;
+  }
 
   .brand img {
     width: 50px;
     height: 50px;
   }
 
-  .brand-text h1 { font-size: 14px; }
-  .brand-text span { font-size: 10px; letter-spacing: 1px; }
+  .brand-text h1 {
+    font-size: 14px;
+  }
 
-  .hero { padding: 25px 0 30px; }
+  .brand-text span {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .hero {
+    padding: 25px 0 30px;
+  }
 
   .slideshow {
     height: 245px;
     border-width: 3px;
   }
 
-  section { padding: 45px 0; }
+  section {
+    padding: 45px 0;
+  }
 
-  .programme-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .programme-card { padding: 16px 12px; }
-  .programme-card h3 { font-size: 15px; }
+  .programme-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 
-  .gallery-grid { grid-template-columns: 1fr; }
-  .gallery-card img { height: 240px; }
+  .programme-card {
+    padding: 16px 12px;
+  }
 
-  .short-course-grid { grid-template-columns: 1fr 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
+  .programme-card h3 {
+    font-size: 15px;
+  }
 
-  .admissions h2 { font-size: 25px; }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-card img {
+    height: 240px;
+  }
+
+  .short-course-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admissions h2 {
+    font-size: 25px;
+  }
 
   .site-footer {
     padding-top: 40px;
@@ -686,6 +772,7 @@ section { padding: 62px 0; }
 
 <header>
   <div class="container header-inner">
+
     <a href="#home" class="brand">
       <img src="TITI%20LOGO.png" alt="TITI Logo">
       <div class="brand-text">
@@ -694,7 +781,8 @@ section { padding: 62px 0; }
       </div>
     </a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Open navigation" aria-expanded="false">☰</button>
 
     <nav id="mainNav">
       <a href="#home">Home</a>
@@ -706,6 +794,7 @@ section { padding: 62px 0; }
       <a href="application-status.html" class="nav-status">CHECK APPLICATION STATUS</a>
       <a href="apply.html" class="nav-apply">Apply Now</a>
     </nav>
+
   </div>
 </header>
 
@@ -921,7 +1010,6 @@ section { padding: 62px 0; }
 
     <div class="footer-grid">
 
-      <!-- INSTITUTE BRAND -->
       <div class="footer-brand">
         <img src="TITI%20LOGO.png" alt="Tahidi International Training Institute Logo">
 
@@ -935,7 +1023,6 @@ section { padding: 62px 0; }
         </p>
       </div>
 
-      <!-- QUICK NAVIGATION -->
       <div class="footer-column">
         <h3>Explore TITI</h3>
 
@@ -949,7 +1036,6 @@ section { padding: 62px 0; }
         </ul>
       </div>
 
-      <!-- CONTACT AND ADMISSIONS -->
       <div class="footer-column">
         <h3>Contact Information</h3>
 
@@ -976,7 +1062,6 @@ section { padding: 62px 0; }
 
     </div>
 
-    <!-- COPYRIGHT -->
     <div class="footer-bottom">
       <p>
         © <span id="footer-year"></span>
@@ -1037,7 +1122,3 @@ document.getElementById('footer-year').textContent =
 
 </body>
 </html>
-
-
-
-After pasting: Save and commit the file as index.html
