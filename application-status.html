@@ -1,581 +1,8 @@
-
-DIRECT LINK TO HTML
-Sir, open your TITI GitHub repository here:
-
-TITI GitHub Repository
-OPEN TITI WEBSITE FILES
-
-Then:
-
-Open application-status.html.
-
-Click the pencil icon (Edit).
-
-Copy the complete code and paste it here.
-
-We will upgrade it into the professional TITI Applicant Admission Record Portal. 🤝
-
-BUT IN TRANSCRIPT DONT PUT EVERYTING NAME DOB NATIONALITY........ UKNOW
-Absolutely, sir. I agree. We should not make the admission record look like a personal data form.
-
-We will follow a university transcript-style design, displaying only essential academic and admission information.
-
-TITI – OFFICIAL ADMISSION RECORD
-The document will contain:
-
-TITI logo and institutional heading.
-
-Applicant photograph.
-
-Student's full name.
-
-Application reference number.
-
-Programme/course applied for.
-
-Award level.
-
-Academic year and intake.
-
-Application submission date.
-
-Admission decision – Pending, Approved or Rejected.
-
-Official administrator's remarks.
-
-Verification reference and institutional footer.
-
-We will exclude:
-
-Date of birth.
-
-Nationality.
-
-Gender.
-
-Unnecessary personal information.
-
-Design standard
-A4 portrait layout.
-
-Jost font throughout.
-
-Maroon, navy blue, gold and white.
-
-Formal academic-document appearance.
-
-Print and Save as PDF.
-
-The result should look like an official university academic document, not an ordinary application form.
-
-Our principle: Academic presentation, minimal personal information, maximum professionalism. 🤝
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Check Application Status | TITI</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
-
-:root {
-  --maroon:#7A1220;
-  --navy:#0F2A5E;
-  --gold:#D4AF37;
-  --white:#FFFFFF;
-  --grey:#F5F5F5;
-  --text:#263247;
-}
-
-* { box-sizing:border-box; }
-
-body {
-  margin:0;
-  font-family:'Manrope',sans-serif;
-  background:var(--grey);
-  color:var(--text);
-}
-
-header {
-  background:white;
-  border-bottom:4px solid var(--gold);
-  padding:17px 5%;
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
-header img {
-  width:65px;
-  height:65px;
-  object-fit:contain;
-}
-
-.brand h2 {
-  font-family:'Playfair Display',serif;
-  color:var(--maroon);
-  margin:0;
-  font-size:21px;
-}
-
-.brand p {
-  margin:5px 0 0;
-  color:var(--navy);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:1px;
-}
-
-.container {
-  max-width:680px;
-  margin:45px auto;
-  padding:0 16px;
-}
-
-.heading {
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.heading h1 {
-  font-family:'Playfair Display',serif;
-  color:var(--maroon);
-  font-size:30px;
-  margin:0 0 10px;
-}
-
-.heading p {
-  font-size:13px;
-  color:#64748b;
-  line-height:1.7;
-}
-
-.card {
-  background:white;
-  padding:30px;
-  border-radius:9px;
-  box-shadow:0 3px 16px rgba(0,0,0,.045);
-}
-
-.section-title {
-  color:var(--navy);
-  font-size:16px;
-  font-weight:800;
-  border-bottom:1px solid #e5e7eb;
-  padding-bottom:13px;
-  margin:0 0 22px;
-}
-
-.field {
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-bottom:19px;
-}
-
-label {
-  font-size:12px;
-  font-weight:800;
-  color:var(--navy);
-}
-
-input {
-  width:100%;
-  padding:14px;
-  border:1px solid #d8dee8;
-  border-radius:5px;
-  font-family:inherit;
-  font-size:13px;
-  outline:none;
-}
-
-input:focus {
-  border-color:var(--maroon);
-  box-shadow:0 0 0 2px rgba(122,18,32,.08);
-}
-
-button {
-  border:0;
-  background:var(--maroon);
-  color:white;
-  padding:15px 20px;
-  border-radius:5px;
-  font-family:inherit;
-  font-weight:800;
-  cursor:pointer;
-  width:100%;
-  font-size:14px;
-}
-
-button:hover { background:#590b17; }
-
-button:disabled {
-  opacity:.6;
-  cursor:wait;
-}
-
-.message {
-  display:none;
-  padding:15px;
-  margin:18px 0;
-  border-radius:5px;
-  font-size:13px;
-  line-height:1.7;
-  overflow-wrap:anywhere;
-  white-space:pre-wrap;
-}
-
-.success { display:block; background:#e9f8ef; color:#17643a; }
-.error { display:block; background:#fff0f0; color:#a31515; }
-.info { display:block; background:#eef4ff; color:var(--navy); }
-
-.result {
-  display:none;
-  background:white;
-  padding:25px;
-  margin-top:22px;
-  border-radius:8px;
-  border-top:4px solid var(--gold);
-  box-shadow:0 3px 16px rgba(0,0,0,.045);
-}
-
-.result h3 {
-  color:var(--maroon);
-  font-family:'Playfair Display',serif;
-  margin:0 0 18px;
-  font-size:21px;
-}
-
-.result-row {
-  padding:12px 0;
-  border-bottom:1px solid #edf0f4;
-}
-
-.result-row:last-child { border-bottom:0; }
-
-.result-row strong {
-  display:block;
-  font-size:11px;
-  color:var(--navy);
-  margin-bottom:5px;
-}
-
-.result-row span {
-  font-size:13px;
-  overflow-wrap:anywhere;
-}
-
-.status-value {
-  display:inline-block;
-  padding:6px 12px;
-  background:#eef4ff;
-  color:var(--navy);
-  border-radius:4px;
-  font-weight:800;
-}
-
-.back-link {
-  text-align:center;
-  margin-top:22px;
-  font-size:12px;
-}
-
-.back-link a {
-  color:var(--maroon);
-  font-weight:800;
-  text-decoration:none;
-}
-
-footer {
-  text-align:center;
-  padding:25px;
-  background:var(--navy);
-  color:white;
-  font-size:11px;
-  line-height:2;
-  margin-top:40px;
-}
-
-footer strong { color:var(--gold); }
-
-@media(max-width:600px) {
-  header img { width:52px; height:52px; }
-  .brand h2 { font-size:15px; }
-  .heading h1 { font-size:25px; }
-  .card { padding:20px; }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <img src="TITI LOGO.png" alt="TITI Logo">
-  <div class="brand">
-    <h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
-    <p>BREAKING THE LIMITS</p>
-  </div>
-</header>
-
-<main class="container">
-
-  <div class="heading">
-    <h1>APPLICATION STATUS</h1>
-    <p>
-      Welcome to the TITI Online Admissions Portal.
-      Enter your application reference number and registered
-      email address to check your admission progress.
-    </p>
-  </div>
-
-  <div class="card">
-
-    <h3 class="section-title">CHECK YOUR APPLICATION</h3>
-
-    <form id="statusForm">
-
-      <div class="field">
-        <label for="reference">APPLICATION REFERENCE NUMBER</label>
-        <input
-          type="text"
-          id="reference"
-          placeholder="Enter your reference number"
-          required
-          autocomplete="off"
-        >
-      </div>
-
-      <div class="field">
-        <label for="email">REGISTERED EMAIL ADDRESS</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter the email used during application"
-          required
-          autocomplete="email"
-        >
-      </div>
-
-      <button type="submit" id="checkBtn">
-        CHECK APPLICATION STATUS
-      </button>
-
-    </form>
-
-    <div id="message" class="message" role="alert"></div>
-
-  </div>
-
-  <div id="result" class="result" aria-live="polite">
-
-    <h3>APPLICATION DETAILS</h3>
-
-    <div class="result-row">
-      <strong>REFERENCE NUMBER</strong>
-      <span id="rReference"></span>
-    </div>
-
-    <div class="result-row">
-      <strong>APPLICANT NAME</strong>
-      <span id="rName"></span>
-    </div>
-
-    <div class="result-row">
-      <strong>ADMISSION DECISION</strong>
-      <span id="rStatus" class="status-value"></span>
-    </div>
-
-    <div class="result-row">
-      <strong>ADMINISTRATOR'S REMARKS</strong>
-      <span id="rRemarks"></span>
-    </div>
-
-    <div class="result-row">
-      <strong>APPLICATION SUBMISSION DATE</strong>
-      <span id="rDate"></span>
-    </div>
-
-  </div>
-
-  <div class="back-link">
-    <a href="index.html">← BACK TO TITI HOMEPAGE</a>
-  </div>
-
-</main>
-
-<footer>
-  <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong><br>
-  BREAKING THE LIMITS<br>
-  Official Online Admissions Portal
-</footer>
-
-<script>
-const SUPABASE_URL =
-  "https://jlmbiauilmajuvrnuaul.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
-
-const STATUS_FUNCTION =
-  SUPABASE_URL + "/functions/v1/check-application-status";
-
-const form = document.getElementById("statusForm");
-const message = document.getElementById("message");
-const result = document.getElementById("result");
-const checkBtn = document.getElementById("checkBtn");
-
-function showMessage(text, type) {
-  message.className = "message " + type;
-  message.textContent = text;
-}
-
-function displayValue(id, value) {
-  document.getElementById(id).textContent =
-    value === null || value === undefined || value === ""
-      ? "Not provided"
-      : String(value);
-}
-
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const reference = document
-    .getElementById("reference")
-    .value.trim();
-
-  const email = document
-    .getElementById("email")
-    .value.trim()
-    .toLowerCase();
-
-  if (!reference || !email) {
-    showMessage(
-      "Please enter your reference number and registered email.",
-      "error"
-    );
-    return;
-  }
-
-  checkBtn.disabled = true;
-  checkBtn.textContent = "CHECKING APPLICATION...";
-  result.style.display = "none";
-
-  showMessage(
-    "Please wait while we securely retrieve your application details.",
-    "info"
-  );
-
-  try {
-    const response = await fetch(STATUS_FUNCTION, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": SUPABASE_KEY
-      },
-      body: JSON.stringify({
-        reference_number: reference,
-        email: email
-      })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok || !data.success) {
-      throw new Error(
-        data.error || "Unable to retrieve your application."
-      );
-    }
-
-    const app = data.application;
-
-    if (!app) {
-      throw new Error("Application information was not returned.");
-    }
-
-    const fullName = [
-      app.first_name,
-      app.middle_name,
-      app.last_name
-    ].filter(Boolean).join(" ");
-
-    displayValue("rReference", app.reference_number);
-    displayValue("rName", fullName);
-    displayValue("rStatus", app.application_status);
-    displayValue("rRemarks", app.administrator_remarks);
-
-    let submittedDate = "Not provided";
-
-    if (app.submitted_at) {
-      const date = new Date(app.submitted_at);
-
-      if (!Number.isNaN(date.getTime())) {
-        submittedDate = date.toLocaleString();
-      }
-    }
-
-    displayValue("rDate", submittedDate);
-
-    result.style.display = "block";
-
-    showMessage(
-      "Your application has been successfully retrieved.",
-      "success"
-    );
-
-    result.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-
-  } catch (error) {
-    console.error("Application status error:", error);
-
-    showMessage(
-      error.message ||
-      "Unable to check your application. Please try again.",
-      "error"
-    );
-
-  } finally {
-    checkBtn.disabled = false;
-    checkBtn.textContent = "CHECK APPLICATION STATUS";
-  }
-});
-</script>
-
-</body>
-</html>OUER GOLDEN RULE EVEN TRANCRIPTS ALL JOST HE CAN PRINT IT
-…
-YES, SIR! Now we have the actual application-status.html. We can build directly on this file.
-
-I will follow our golden rule:
-
-Jost everywhere — headings, labels, results, buttons and footer. Remove Playfair Display and Manrope completely.
-
-Transcript-style admission record — A4 portrait, formal institutional heading, student photograph, reference number, applicant name, programme, intake and admission decision.
-
-Print / Save as PDF — the student can print the record or save it as a PDF.
-
-Professional TITI footer — matching the main website's maroon, navy, gold and white identity.
-
-Keep the existing Supabase connection — same project, function, reference-number verification and registered-email verification.
-
-No unnecessary personal information — no DOB, gender or nationality in the admission record.
-
-One important point: the current Edge Function only returns the applicant's name, status, remarks and submission date. The photograph, course and intake will require additional fields from the actual Supabase application record. I will not invent those details.
-
-Complete replacement application-status.html
-Replace the entire existing file with this version. It retains your existing Supabase endpoint and verification process.
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Applicant Admission Record | TITI</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -771,7 +198,7 @@ button:disabled {
   color:var(--navy);
 }
 
-/* ADMISSION RECORD */
+/* OFFICIAL ADMISSION RECORD */
 
 .result {
   display:none;
@@ -859,6 +286,7 @@ button:disabled {
 
 .student-details {
   flex:1;
+  min-width:0;
 }
 
 .student-details h3 {
@@ -871,6 +299,7 @@ button:disabled {
 .student-details p {
   margin:3px 0;
   font-size:12px;
+  overflow-wrap:anywhere;
 }
 
 .record-section {
@@ -878,7 +307,7 @@ button:disabled {
 }
 
 .record-section h4 {
-  color:var(--white);
+  color:white;
   background:var(--navy);
   padding:9px 13px;
   font-size:12px;
@@ -897,6 +326,7 @@ button:disabled {
   border:1px solid #e2e6ec;
   font-size:13px;
   vertical-align:top;
+  overflow-wrap:anywhere;
 }
 
 .record-table td:first-child {
@@ -945,6 +375,7 @@ button:disabled {
   border:1px solid #e2e6ec;
   font-size:13px;
   background:#fafbfc;
+  overflow-wrap:anywhere;
 }
 
 .verification {
@@ -1015,7 +446,7 @@ button:disabled {
   text-decoration:none;
 }
 
-/* MAIN FOOTER */
+/* WEBSITE FOOTER */
 
 .site-footer {
   background:#091B3D;
@@ -1125,7 +556,7 @@ button:disabled {
   }
 }
 
-/* PRINT / SAVE AS PDF */
+/* A4 PRINTING */
 
 @page {
   size:A4 portrait;
@@ -1665,51 +1096,3 @@ form.addEventListener("submit", async function(e) {
 
 </body>
 </html>
-
-Important: one remaining backend step
-The frontend now supports a photograph, course, award level, intake and academic year, but your current Edge Function does not yet return these fields. The record will show "Not provided" until we add the actual database fields to its response.
-
-Next: Open Supabase → Table Editor → applications and send me a screenshot showing the column names. I will then give you the complete corrected Edge Function without guessing your database structure.
-
-Also, the student will only see their own record after reference-number and registered-email verification.
-
-Open TITI live website
-
-Open TITI application status page
-
-We are keeping the existing admissions system intact while upgrading the presentation to a professional institutional standard. 🤝
-
-DIRECT LINK TO APPLICATIONS
-Sir, open your Supabase Applications Table directly:
-
-OPEN TITI APPLICATIONS TABLE
-
-Select the applications table.
-
-Open its columns or structure.
-
-Take a screenshot showing all column names.
-
-Send it here.
-
-We need this to connect the student's photograph, course and intake to the transcript-style admission record correctly. 🤝
-
-I WANT TO PASTE YR CODE
-Yes sir. Here is the direct link to open your TITI website application form code (apply.html) on GitHub, where you can paste my complete replacement code:
-
-OPEN APPLICATION FORM CODE – apply.html
-
-If you mean the application status page where we are building the printable Jost admission record, use this link:
-
-OPEN APPLICATION STATUS CODE – application-status.html
-
-Paste the code, then click Commit changes.
-
-
-Context window full
-Start a new chat with an automatic summary of this conversation, or upgrade to continue here with more context available in every chat.
-
-
-
-
-https://github.com/jamesnyarangotv/TITI-...
