@@ -89,6 +89,8 @@ button{
  font-weight:700;
 }
 
+button:disabled{opacity:.6;cursor:wait}
+
 .primary{
  background:var(--maroon);
  color:white;
@@ -97,7 +99,6 @@ button{
 }
 
 .primary:hover{background:#5c0c18}
-button:disabled{opacity:.6;cursor:wait}
 
 .error{
  color:#b42318;
@@ -149,6 +150,7 @@ button:disabled{opacity:.6;cursor:wait}
 }
 
 .welcome h2{margin:0 0 7px}
+
 .muted{color:#687386;font-size:13px}
 
 .stats{
@@ -204,9 +206,14 @@ th,td{
 }
 
 th{background:#f5f6f9;color:var(--navy)}
+
 .table-wrap{overflow-x:auto}
 
-.view-btn{background:var(--navy);color:white;padding:8px 12px}
+.view-btn{
+ background:var(--navy);
+ color:white;
+ padding:8px 12px;
+}
 
 .status{
  display:inline-block;
@@ -215,12 +222,12 @@ th{background:#f5f6f9;color:var(--navy)}
  background:#fff3d8;
  color:#805500;
  font-size:11px;
- font-weight:700;
+ font-weight:bold;
  white-space:nowrap;
 }
 
-.status.ADMITTED{background:#e1f5e9;color:#126536}
-.status.DECLINED{background:#fde7e7;color:#a11919}
+.status.APPROVED{background:#e1f5e9;color:#126536}
+.status.REJECTED{background:#fde7e7;color:#a11919}
 .status.VERIFIED{background:#e5edff;color:#17428b}
 .status.UNDER_REVIEW{background:#fff3d8;color:#805500}
 
@@ -267,6 +274,70 @@ th{background:#f5f6f9;color:var(--navy)}
  font-size:13px;
 }
 
+.document-list{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:15px;
+}
+
+.document-card{
+ border:1px solid #e5e9f0;
+ padding:16px;
+ border-radius:8px;
+ background:#fff;
+ min-width:0;
+}
+
+.document-card h4{
+ color:var(--navy);
+ margin:0 0 8px;
+ font-size:15px;
+}
+
+.document-card img{
+ width:100%;
+ max-height:300px;
+ object-fit:contain;
+ background:#f3f5f8;
+ border-radius:6px;
+ margin-top:12px;
+}
+
+.document-card iframe{
+ width:100%;
+ height:350px;
+ border:1px solid #e5e9f0;
+ border-radius:6px;
+ margin-top:12px;
+}
+
+.document-actions{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+ margin-top:12px;
+}
+
+.document-actions a{
+ text-decoration:none;
+ background:var(--navy);
+ color:white;
+ padding:9px 12px;
+ border-radius:5px;
+ font-size:12px;
+ font-weight:600;
+}
+
+.document-actions a.download{background:#167744}
+
+.document-error{
+ background:#fff0ee;
+ color:#a11919;
+ padding:12px;
+ border-radius:6px;
+ font-size:13px;
+}
+
 footer{
  text-align:center;
  padding:25px;
@@ -276,7 +347,7 @@ footer{
 
 @media(max-width:750px){
  .stats{grid-template-columns:repeat(2,1fr)}
- .detail-grid{grid-template-columns:1fr}
+ .detail-grid,.document-list{grid-template-columns:1fr}
 }
 
 @media(max-width:450px){
@@ -289,6 +360,7 @@ footer{
 
 <body>
 
+<!-- LOGIN -->
 <section id="loginScreen">
 <div class="login-card">
 
@@ -300,17 +372,22 @@ ADMINISTRATION PORTAL
 </div>
 
 <h2>Administrator Login</h2>
-<p class="muted">Sign in using your existing administrator account.</p>
+
+<p class="muted">
+Sign in using your existing administrator account.
+</p>
 
 <form id="loginForm">
 
 <label>Email Address</label>
-<input id="email" type="email" required autocomplete="username"
+<input id="email" type="email" required
+autocomplete="username"
 placeholder="Enter administrator email">
 
 <label>Password</label>
 <input id="password" type="password" required
-autocomplete="current-password" placeholder="Enter password">
+autocomplete="current-password"
+placeholder="Enter password">
 
 <button class="primary" id="loginButton" type="submit">
 SIGN IN
@@ -319,12 +396,15 @@ SIGN IN
 </form>
 
 <div id="loginError" class="error"></div>
+
 </div>
 </section>
 
+<!-- DASHBOARD -->
 <section id="dashboard">
 
 <header class="topbar">
+
 <div class="brand">
 TITI ADMISSIONS
 <small>ADMINISTRATION MANAGEMENT SYSTEM</small>
@@ -334,20 +414,29 @@ TITI ADMISSIONS
 <span id="adminName"></span>
 <button class="logout" id="logoutButton">LOG OUT</button>
 </div>
+
 </header>
 
 <main class="container">
 
 <div class="welcome">
+
 <div>
 <h2>Admissions Dashboard</h2>
-<div class="muted">Manage applications and admission decisions.</div>
+<div class="muted">
+Manage applications, verify documents and make admission decisions.
 </div>
-<button class="refresh" id="refreshButton">↻ Refresh Data</button>
+</div>
+
+<button class="refresh" id="refreshButton">
+↻ Refresh Data
+</button>
+
 </div>
 
 <div id="message"></div>
 
+<!-- STATISTICS -->
 <div class="stats">
 
 <div class="stat">
@@ -372,7 +461,9 @@ TITI ADMISSIONS
 
 </div>
 
+<!-- APPLICATIONS -->
 <div class="panel">
+
 <h3>Applicant Records</h3>
 
 <div class="toolbar">
@@ -381,7 +472,9 @@ placeholder="Search name, reference, phone or email...">
 </div>
 
 <div class="table-wrap">
+
 <table>
+
 <thead>
 <tr>
 <th>Reference</th>
@@ -394,43 +487,70 @@ placeholder="Search name, reference, phone or email...">
 </thead>
 
 <tbody id="applicationsBody">
-<tr><td colspan="6">Loading applications...</td></tr>
+<tr>
+<td colspan="6">Loading applications...</td>
+</tr>
 </tbody>
+
 </table>
+
 </div>
 </div>
 
+<!-- APPLICANT DETAILS -->
 <div class="panel" id="detailPanel">
 
 <h3>Applicant Information</h3>
+
 <div id="applicantDetails"></div>
 
-<h3 style="margin-top:25px">Administrator Review</h3>
+<h3 style="margin-top:25px">
+Administrator Review
+</h3>
 
 <label>Administrator Remarks</label>
+
 <textarea id="remarks" rows="4"
 placeholder="Enter comments about this application..."></textarea>
 
 <div class="actions">
-<button class="approve" id="approveButton">APPROVE APPLICATION</button>
-<button class="reject" id="rejectButton">REJECT APPLICATION</button>
-<button class="secondary" id="closeDetails">CLOSE</button>
+
+<button class="approve" id="approveButton">
+APPROVE APPLICATION
+</button>
+
+<button class="reject" id="rejectButton">
+REJECT APPLICATION
+</button>
+
+<button class="secondary" id="closeDetails">
+CLOSE
+</button>
+
 </div>
 
 <p class="muted" style="margin-top:15px">
-Admission decisions update the application record. Verify applicant
-documents before making a final decision.
+Verify the applicant's documents before making a final decision.
 </p>
 
 </div>
 
-<div class="panel">
-<h3>Document Verification</h3>
+<!-- DOCUMENT VERIFICATION -->
+<div class="panel" id="documentPanel">
+
+<h3>Applicant Document Verification</h3>
+
 <p class="muted">
-Private applicant documents are not displayed in this version of the
-dashboard. Secure document viewing will be configured separately.
-No documents are made public.
+Uploaded applicant documents are retrieved from your existing
+private Supabase storage bucket.
 </p>
+
+<div id="documentsContent">
+<p class="muted">
+Select an applicant to view their uploaded documents.
+</p>
+</div>
+
 </div>
 
 </main>
@@ -445,23 +565,41 @@ TITI Administration Portal
 
 <script>
 
-const SUPABASE_URL = "https://jlmbiauilmajuvrnuaul.supabase.co";
+// ======================================
+// SUPABASE CONFIGURATION
+// ======================================
+
+const SUPABASE_URL =
+"https://jlmbiauilmajuvrnuaul.supabase.co";
 
 const SUPABASE_KEY =
 "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 
+const DOCUMENT_BUCKET =
+"titi-applicant-documents";
+
 const db = window.supabase.createClient(
- SUPABASE_URL,
- SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
+
+// ======================================
+// GLOBAL VARIABLES
+// ======================================
 
 let currentAdmin = null;
 let applications = [];
 let selectedApplication = null;
+let currentDocuments = [];
 
 const $ = id => document.getElementById(id);
 
+// ======================================
+// SECURITY: HTML ESCAPING
+// ======================================
+
 function escapeHTML(value){
+
  return String(value ?? "").replace(/[&<>"']/g,char=>({
   "&":"&amp;",
   "<":"&lt;",
@@ -469,39 +607,87 @@ function escapeHTML(value){
   '"':"&quot;",
   "'":"&#39;"
  })[char]);
+
 }
 
+// ======================================
+// STATUS DISPLAY
+// DATABASE ADMITTED = DASHBOARD APPROVED
+// DATABASE DECLINED = DASHBOARD REJECTED
+// ======================================
+
+function displayStatus(status){
+
+ const map = {
+  ADMITTED:"APPROVED",
+  DECLINED:"REJECTED"
+ };
+
+ return map[status] || status || "SUBMITTED";
+
+}
+
+function statusClass(status){
+
+ return displayStatus(status).replace(/\s+/g,"_");
+
+}
+
+// ======================================
+// MESSAGES
+// ======================================
+
 function showLoginError(message){
+
  $("loginError").textContent = message;
  $("loginError").style.display = "block";
+
 }
 
 function showMessage(message,error=false){
+
  $("message").textContent = message;
  $("message").style.display = "block";
- $("message").style.background = error ? "#fff0ee" : "#e5f5eb";
- $("message").style.color = error ? "#a11919" : "#126536";
+
+ $("message").style.background =
+ error ? "#fff0ee" : "#e5f5eb";
+
+ $("message").style.color =
+ error ? "#a11919" : "#126536";
+
 }
+
+// ======================================
+// ADMINISTRATOR VERIFICATION
+// ======================================
 
 async function verifyAdministrator(user){
 
  const {data,error} = await db
-  .from("administrator_profiles")
-  .select("id,full_name,role")
-  .eq("id",user.id)
-  .maybeSingle();
+ .from("administrator_profiles")
+ .select("id,full_name,role")
+ .eq("id",user.id)
+ .maybeSingle();
 
  if(error) throw error;
 
  if(!data){
+
   throw new Error(
    "This account has no administrator profile. Access denied."
   );
+
  }
 
  currentAdmin = data;
+
  return data;
+
 }
+
+// ======================================
+// SHOW DASHBOARD
+// ======================================
 
 function showDashboard(){
 
@@ -510,7 +696,12 @@ function showDashboard(){
 
  $("adminName").textContent =
  currentAdmin.full_name + " | " + currentAdmin.role;
+
 }
+
+// ======================================
+// SHOW LOGIN
+// ======================================
 
 function showLogin(){
 
@@ -520,11 +711,20 @@ function showLogin(){
  currentAdmin = null;
  applications = [];
  selectedApplication = null;
+ currentDocuments = [];
 
  $("password").value = "";
  $("loginError").style.display = "none";
  $("detailPanel").style.display = "none";
+
+ $("documentsContent").innerHTML =
+ '<p class="muted">Select an applicant to view documents.</p>';
+
 }
+
+// ======================================
+// LOAD APPLICATIONS
+// ======================================
 
 async function loadApplications(){
 
@@ -532,63 +732,83 @@ async function loadApplications(){
  '<tr><td colspan="6">Loading applications...</td></tr>';
 
  const {data,error} = await db
-  .from("applications")
-  .select(`
-   id,
-   reference_number,
-   first_name,
-   middle_name,
-   last_name,
-   gender,
-   date_of_birth,
-   nationality,
-   phone_number,
-   email,
-   residential_address,
-   programme_id,
-   application_status,
-   administrator_remarks,
-   submitted_at,
-   highest_qualification,
-   awarding_institution,
-   year_completed,
-   programmes(
-    programme_name,
-    programme_level
-   )
-  `)
-  .order("submitted_at",{ascending:false});
+ .from("applications")
+ .select(`
+  id,
+  reference_number,
+  first_name,
+  middle_name,
+  last_name,
+  gender,
+  date_of_birth,
+  nationality,
+  phone_number,
+  email,
+  residential_address,
+  programme_id,
+  application_status,
+  administrator_remarks,
+  submitted_at,
+  highest_qualification,
+  awarding_institution,
+  year_completed,
+  programmes(
+   programme_name,
+   programme_level
+  )
+ `)
+ .order("submitted_at",{ascending:false});
 
  if(error){
+
   $("applicationsBody").innerHTML =
   '<tr><td colspan="6">Unable to load applications.</td></tr>';
+
   showMessage(error.message,true);
   return;
+
  }
 
  applications = data || [];
 
  updateStatistics();
  renderApplications();
+
 }
+
+// ======================================
+// STATISTICS
+// ======================================
 
 function updateStatistics(){
 
  $("totalCount").textContent = applications.length;
 
  $("submittedCount").textContent =
- applications.filter(a=>a.application_status==="SUBMITTED").length;
+ applications.filter(a=>
+  a.application_status==="SUBMITTED"
+ ).length;
 
  $("approvedCount").textContent =
- applications.filter(a=>a.application_status==="ADMITTED").length;
+ applications.filter(a=>
+  a.application_status==="ADMITTED"
+ ).length;
 
  $("rejectedCount").textContent =
- applications.filter(a=>a.application_status==="DECLINED").length;
+ applications.filter(a=>
+  a.application_status==="DECLINED"
+ ).length;
+
 }
+
+// ======================================
+// APPLICATION LIST
+// ======================================
 
 function renderApplications(){
 
- const search = $("searchInput").value.toLowerCase().trim();
+ const query =
+ $("searchInput").value.toLowerCase().trim();
 
  const filtered = applications.filter(a=>{
 
@@ -598,21 +818,25 @@ function renderApplications(){
    a.last_name
   ].filter(Boolean).join(" ");
 
-  const programme = a.programmes?.programme_name || "";
-
-  return [
+  const text = [
    name,
    a.reference_number,
    a.phone_number,
    a.email,
-   programme
-  ].join(" ").toLowerCase().includes(search);
+   a.programmes?.programme_name
+  ].join(" ").toLowerCase();
+
+  return text.includes(query);
+
  });
 
  if(!filtered.length){
+
   $("applicationsBody").innerHTML =
-  '<tr><td colspan="6">No applications found.</td></tr>';
+  '<tr><td colspan="6">No matching applications found.</td></tr>';
+
   return;
+
  }
 
  $("applicationsBody").innerHTML = filtered.map(a=>{
@@ -623,44 +847,74 @@ function renderApplications(){
    a.last_name
   ].filter(Boolean).join(" ");
 
-  const programme = a.programmes?.programme_name || "Not available";
-
-  const status = a.application_status || "SUBMITTED";
-
-  const statusClass = status.replace(/\s+/g,"_");
-
   const date = a.submitted_at
    ? new Date(a.submitted_at).toLocaleDateString()
-   : "Not available";
+   : "Not recorded";
+
+  const status = displayStatus(a.application_status);
 
   return `
    <tr>
     <td>${escapeHTML(a.reference_number)}</td>
     <td>${escapeHTML(name)}</td>
-    <td>${escapeHTML(programme)}</td>
+    <td>${escapeHTML(
+     a.programmes?.programme_name || "Not assigned"
+    )}</td>
     <td>${escapeHTML(date)}</td>
-    <td><span class="status ${escapeHTML(statusClass)}">${escapeHTML(status)}</span></td>
     <td>
-     <button class="view-btn" data-id="${escapeHTML(a.id)}">VIEW</button>
+     <span class="status ${escapeHTML(statusClass(a.application_status))}">
+      ${escapeHTML(status)}
+     </span>
+    </td>
+    <td>
+     <button class="view-btn"
+      data-id="${escapeHTML(a.id)}">
+      VIEW
+     </button>
     </td>
    </tr>
   `;
+
  }).join("");
 
- $("applicationsBody").querySelectorAll(".view-btn").forEach(button=>{
+ $("applicationsBody")
+ .querySelectorAll(".view-btn")
+ .forEach(button=>{
+
   button.addEventListener("click",()=>{
    openApplication(button.dataset.id);
   });
+
  });
+
 }
 
-function openApplication(id){
+// ======================================
+// APPLICANT DETAIL ITEM
+// ======================================
 
- selectedApplication = applications.find(a=>a.id===id);
+function detailItem(label,value){
 
- if(!selectedApplication) return;
+ return `
+  <div class="detail-item">
+   <small>${escapeHTML(label)}</small>
+   <strong>${escapeHTML(value || "Not provided")}</strong>
+  </div>
+ `;
 
- const a = selectedApplication;
+}
+
+// ======================================
+// OPEN APPLICANT
+// ======================================
+
+async function openApplication(id){
+
+ const a = applications.find(x=>x.id===id);
+
+ if(!a) return;
+
+ selectedApplication = a;
 
  const name = [
   a.first_name,
@@ -668,35 +922,34 @@ function openApplication(id){
   a.last_name
  ].filter(Boolean).join(" ");
 
- const fields = {
-  "Reference Number":a.reference_number,
-  "Full Name":name,
-  "Gender":a.gender,
-  "Date of Birth":a.date_of_birth,
-  "Nationality":a.nationality,
-  "Phone Number":a.phone_number,
-  "Email Address":a.email,
-  "Residential Address":a.residential_address,
-  "Programme":a.programmes?.programme_name,
-  "Programme Level":a.programmes?.programme_level,
-  "Highest Qualification":a.highest_qualification,
-  "Awarding Institution":a.awarding_institution,
-  "Year Completed":a.year_completed,
-  "Current Status":a.application_status,
-  "Submitted At":a.submitted_at
- };
+ $("applicantDetails").innerHTML = `
+  <div class="detail-grid">
 
- $("applicantDetails").innerHTML =
- '<div class="detail-grid">' +
- Object.entries(fields).map(([label,value])=>`
-  <div class="detail-item">
-   <small>${escapeHTML(label)}</small>
-   <strong>${escapeHTML(value || "Not provided")}</strong>
+   ${detailItem("Reference Number",a.reference_number)}
+   ${detailItem("Full Name",name)}
+   ${detailItem("Gender",a.gender)}
+   ${detailItem("Date of Birth",a.date_of_birth)}
+   ${detailItem("Nationality",a.nationality)}
+   ${detailItem("Phone Number",a.phone_number)}
+   ${detailItem("Email",a.email)}
+   ${detailItem("Residential Address",a.residential_address)}
+   ${detailItem("Programme",a.programmes?.programme_name)}
+   ${detailItem("Programme Level",a.programmes?.programme_level)}
+   ${detailItem("Highest Qualification",a.highest_qualification)}
+   ${detailItem("Awarding Institution",a.awarding_institution)}
+   ${detailItem("Year Completed",a.year_completed)}
+   ${detailItem("Submission Date",
+    a.submitted_at
+     ? new Date(a.submitted_at).toLocaleString()
+     : "Not recorded"
+   )}
+   ${detailItem("Application Status",displayStatus(a.application_status))}
+
   </div>
- `).join("") +
- '</div>';
+ `;
 
- $("remarks").value = a.administrator_remarks || "";
+ $("remarks").value =
+ a.administrator_remarks || "";
 
  $("detailPanel").style.display = "block";
 
@@ -704,40 +957,211 @@ function openApplication(id){
   behavior:"smooth",
   block:"start"
  });
+
+ await loadApplicantDocuments(a.id);
+
 }
+
+// ======================================
+// LOAD APPLICANT DOCUMENTS
+// EXISTING TABLE: application_documents
+// ======================================
+
+async function loadApplicantDocuments(applicationId){
+
+ $("documentsContent").innerHTML =
+ '<p class="muted">Loading applicant documents...</p>';
+
+ currentDocuments = [];
+
+ const {data,error} = await db
+  .from("application_documents")
+  .select(`
+   id,
+   application_id,
+   document_type,
+   storage_path,
+   uploaded_at
+  `)
+  .eq("application_id",applicationId)
+  .order("uploaded_at",{ascending:false});
+
+ if(error){
+
+  $("documentsContent").innerHTML = `
+   <div class="document-error">
+    Unable to retrieve document records.
+    ${escapeHTML(error.message)}
+   </div>
+  `;
+
+  return;
+
+ }
+
+ currentDocuments = data || [];
+
+ if(!currentDocuments.length){
+
+  $("documentsContent").innerHTML =
+   '<p class="muted">No uploaded documents were found for this applicant.</p>';
+
+  return;
+
+ }
+
+ $("documentsContent").innerHTML =
+  '<p class="muted">Generating secure document access links...</p>';
+
+ const results = await Promise.all(
+  currentDocuments.map(async doc=>{
+
+   const {data:signedData,error:signedError} =
+    await db.storage
+     .from(DOCUMENT_BUCKET)
+     .createSignedUrl(doc.storage_path,300);
+
+   return {
+    doc,
+    url:signedData?.signedUrl || null,
+    error:signedError
+   };
+
+  })
+ );
+
+ $("documentsContent").innerHTML = results.map(result=>{
+
+  const doc = result.doc;
+
+  const fileName =
+   String(doc.storage_path || "").split("/").pop();
+
+  const extension =
+   fileName.split(".").pop().toLowerCase();
+
+  const isImage = ["jpg","jpeg","png"].includes(extension);
+  const isPDF = extension === "pdf";
+
+  const uploaded = doc.uploaded_at
+   ? new Date(doc.uploaded_at).toLocaleString()
+   : "Not recorded";
+
+  let preview = "";
+
+  if(result.url && isImage){
+
+   preview = `
+    <img
+     src="${escapeHTML(result.url)}"
+     alt="Applicant uploaded document"
+    >
+   `;
+
+  }else if(result.url && isPDF){
+
+   preview = `
+    <iframe
+     src="${escapeHTML(result.url)}"
+     title="Applicant PDF document"
+     loading="lazy">
+    </iframe>
+   `;
+
+  }
+
+  let links = "";
+
+  if(result.url){
+
+   links = `
+    <div class="document-actions">
+
+     <a href="${escapeHTML(result.url)}"
+      target="_blank"
+      rel="noopener noreferrer">
+      OPEN DOCUMENT
+     </a>
+
+     <a class="download"
+      href="${escapeHTML(result.url)}"
+      download="${escapeHTML(fileName)}">
+      DOWNLOAD
+     </a>
+
+    </div>
+   `;
+
+  }else{
+
+   links = `
+    <div class="document-error">
+     Secure access unavailable:
+     ${escapeHTML(result.error?.message || "Unable to create signed URL")}
+    </div>
+   `;
+
+  }
+
+  return `
+   <div class="document-card">
+
+    <h4>${escapeHTML(doc.document_type)}</h4>
+
+    <p class="muted">
+     Uploaded: ${escapeHTML(uploaded)}
+    </p>
+
+    <p class="muted">
+     File: ${escapeHTML(fileName)}
+    </p>
+
+    ${preview}
+
+    ${links}
+
+   </div>
+  `;
+
+ }).join("");
+
+}
+
+// ======================================
+// UPDATE ADMISSION DECISION
+// DATABASE USES ADMITTED / DECLINED
+// ======================================
 
 async function updateDecision(status){
 
  if(!selectedApplication){
-  showMessage("Please select an application first.",true);
+
+  showMessage("Select an applicant first.",true);
   return;
+
  }
 
  const allowedStatuses = ["ADMITTED","DECLINED"];
 
  if(!allowedStatuses.includes(status)){
-  showMessage("Invalid admission decision.",true);
+
+  showMessage("Invalid application status.",true);
   return;
+
  }
 
- const remarks = $("remarks").value.trim();
-
- const confirmed = confirm(
+ const confirmation = confirm(
   status==="ADMITTED"
-   ? "Confirm that you want to admit this applicant?"
-   : "Confirm that you want to decline this applicant?"
+   ? "Confirm admission of this applicant?"
+   : "Confirm rejection of this applicant?"
  );
 
- if(!confirmed) return;
+ if(!confirmation) return;
 
- const buttons = [
-  $("approveButton"),
-  $("rejectButton")
- ];
+ $("approveButton").disabled = true;
+ $("rejectButton").disabled = true;
 
- buttons.forEach(b=>b.disabled=true);
-
- showMessage("Updating application status...");
+ showMessage("Updating application...");
 
  try{
 
@@ -745,25 +1169,31 @@ async function updateDecision(status){
    .from("applications")
    .update({
     application_status:status,
-    administrator_remarks:remarks
+    administrator_remarks:$("remarks").value.trim()
    })
    .eq("id",selectedApplication.id)
-   .select("id,application_status,administrator_remarks")
-   .single();
+   .select("id,application_status");
 
   if(error) throw error;
 
-  if(!data){
-   throw new Error("No application record was updated.");
+  if(!data || !data.length){
+
+   throw new Error(
+    "No record was updated. Check administrator permissions."
+   );
+
   }
 
   showMessage(
    status==="ADMITTED"
-    ? "Application successfully admitted."
-    : "Application successfully declined."
+    ? "Applicant successfully approved."
+    : "Applicant successfully rejected."
   );
 
   $("detailPanel").style.display = "none";
+  $("documentsContent").innerHTML =
+   '<p class="muted">Select an applicant to view documents.</p>';
+
   selectedApplication = null;
 
   await loadApplications();
@@ -777,29 +1207,33 @@ async function updateDecision(status){
 
  }finally{
 
-  buttons.forEach(b=>b.disabled=false);
+  $("approveButton").disabled = false;
+  $("rejectButton").disabled = false;
 
  }
+
 }
 
-async function handleLogin(event){
+// ======================================
+// LOGIN
+// ======================================
+
+$("loginForm").addEventListener("submit",async event=>{
 
  event.preventDefault();
 
  $("loginError").style.display = "none";
 
- const button = $("loginButton");
- button.disabled = true;
- button.textContent = "SIGNING IN...";
+ $("loginButton").disabled = true;
+ $("loginButton").textContent = "SIGNING IN...";
 
  try{
 
-  const email = $("email").value.trim();
-  const password = $("password").value;
-
   const {data,error} = await db.auth.signInWithPassword({
-   email,
-   password
+
+   email:$("email").value.trim(),
+   password:$("password").value
+
   });
 
   if(error) throw error;
@@ -814,17 +1248,20 @@ async function handleLogin(event){
 
   await db.auth.signOut();
 
-  showLoginError(error.message);
+  showLoginError(error.message || "Login failed.");
 
  }finally{
 
-  button.disabled = false;
-  button.textContent = "SIGN IN";
+  $("loginButton").disabled = false;
+  $("loginButton").textContent = "SIGN IN";
 
  }
-}
 
-$("loginForm").addEventListener("submit",handleLogin);
+});
+
+// ======================================
+// LOGOUT
+// ======================================
 
 $("logoutButton").addEventListener("click",async()=>{
 
@@ -834,7 +1271,21 @@ $("logoutButton").addEventListener("click",async()=>{
 
 });
 
-$("refreshButton").addEventListener("click",loadApplications);
+// ======================================
+// DASHBOARD CONTROLS
+// ======================================
+
+$("refreshButton").addEventListener("click",async()=>{
+
+ await loadApplications();
+
+ if(selectedApplication){
+
+  await loadApplicantDocuments(selectedApplication.id);
+
+ }
+
+});
 
 $("searchInput").addEventListener("input",renderApplications);
 
@@ -847,9 +1298,20 @@ $("rejectButton").addEventListener("click",()=>{
 });
 
 $("closeDetails").addEventListener("click",()=>{
- $("detailPanel").style.display="none";
- selectedApplication=null;
+
+ $("detailPanel").style.display = "none";
+
+ $("documentsContent").innerHTML =
+  '<p class="muted">Select an applicant to view documents.</p>';
+
+ selectedApplication = null;
+ currentDocuments = [];
+
 });
+
+// ======================================
+// RESTORE EXISTING SESSION
+// ======================================
 
 async function restoreSession(){
 
@@ -872,6 +1334,7 @@ async function restoreSession(){
  }catch(error){
 
   await db.auth.signOut();
+
   showLogin();
 
   console.error("Session restoration:",error.message);
