@@ -124,6 +124,20 @@ nav a:hover { color: var(--maroon); }
   border-radius: 4px;
 }
 
+/* CHECK APPLICATION STATUS NAVIGATION LINK */
+.nav-status {
+  background: var(--navy);
+  color: white !important;
+  padding: 10px 13px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.nav-status:hover {
+  background: var(--maroon);
+  color: white !important;
+}
+
 .menu-toggle {
   display: none;
   border: 0;
@@ -598,6 +612,11 @@ section { padding: 62px 0; }
     border-bottom: 1px solid #eee;
   }
 
+  .nav-status {
+    border-radius: 4px;
+    margin: 5px 0;
+  }
+
   .about-grid { grid-template-columns: 1fr; }
   .programme-grid { grid-template-columns: repeat(2, 1fr); }
   .quick-grid { grid-template-columns: repeat(2, 1fr); }
@@ -675,7 +694,7 @@ section { padding: 62px 0; }
       </div>
     </a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 
     <nav id="mainNav">
       <a href="#home">Home</a>
@@ -684,6 +703,7 @@ section { padding: 62px 0; }
       <a href="#admissions">Admissions</a>
       <a href="#gallery">Campus</a>
       <a href="#contact">Contact</a>
+      <a href="application-status.html" class="nav-status">CHECK APPLICATION STATUS</a>
       <a href="apply.html" class="nav-apply">Apply Now</a>
     </nav>
   </div>
@@ -964,7 +984,6 @@ section { padding: 62px 0; }
         All Rights Reserved.
       </p>
 
-      <!-- APPLICATION STATUS: BOTTOM OF FOOTER ONLY -->
       <p>
         <a href="application-status.html" class="footer-status-link">
           Check Application Status
@@ -1018,3 +1037,7 @@ document.getElementById('footer-year').textContent =
 
 </body>
 </html>
+
+
+
+After pasting: Save and commit the file as index.html
