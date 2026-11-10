@@ -7,7 +7,6 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
@@ -80,6 +79,35 @@ input,textarea{
 }
 
 input:focus,textarea:focus{border-color:var(--navy)}
+
+/* PASSWORD SHOW/HIDE */
+.password-wrapper{
+ position:relative;
+ width:100%;
+}
+
+.password-wrapper input{
+ padding-right:48px;
+}
+
+.password-toggle{
+ position:absolute;
+ right:5px;
+ top:50%;
+ transform:translateY(-50%);
+ background:transparent;
+ color:var(--navy);
+ padding:8px;
+ margin:0;
+ width:38px;
+ font-size:18px;
+ border:0;
+ cursor:pointer;
+}
+
+.password-toggle:hover{
+ background:#f3f5f8;
+}
 
 button{
  cursor:pointer;
@@ -385,9 +413,20 @@ autocomplete="username"
 placeholder="Enter administrator email">
 
 <label>Password</label>
+
+<div class="password-wrapper">
 <input id="password" type="password" required
 autocomplete="current-password"
 placeholder="Enter password">
+
+<button type="button"
+id="togglePassword"
+class="password-toggle"
+aria-label="Show password"
+title="Show password">
+👁
+</button>
+</div>
 
 <button class="primary" id="loginButton" type="submit">
 SIGN IN
@@ -436,7 +475,6 @@ Manage applications, verify documents and make admission decisions.
 
 <div id="message"></div>
 
-<!-- STATISTICS -->
 <div class="stats">
 
 <div class="stat">
@@ -461,7 +499,6 @@ Manage applications, verify documents and make admission decisions.
 
 </div>
 
-<!-- APPLICATIONS -->
 <div class="panel">
 
 <h3>Applicant Records</h3>
@@ -472,7 +509,6 @@ placeholder="Search name, reference, phone or email...">
 </div>
 
 <div class="table-wrap">
-
 <table>
 
 <thead>
@@ -493,11 +529,9 @@ placeholder="Search name, reference, phone or email...">
 </tbody>
 
 </table>
-
 </div>
 </div>
 
-<!-- APPLICANT DETAILS -->
 <div class="panel" id="detailPanel">
 
 <h3>Applicant Information</h3>
@@ -535,7 +569,6 @@ Verify the applicant's documents before making a final decision.
 
 </div>
 
-<!-- DOCUMENT VERIFICATION -->
 <div class="panel" id="documentPanel">
 
 <h3>Applicant Document Verification</h3>
@@ -595,6 +628,33 @@ let currentDocuments = [];
 const $ = id => document.getElementById(id);
 
 // ======================================
+// SHOW / HIDE ADMIN PASSWORD
+// ======================================
+
+$("togglePassword").addEventListener("click",()=>{
+
+ const password = $("password");
+ const button = $("togglePassword");
+
+ if(password.type === "password"){
+
+  password.type = "text";
+  button.textContent = "🙈";
+  button.setAttribute("aria-label","Hide password");
+  button.title = "Hide password";
+
+ }else{
+
+  password.type = "password";
+  button.textContent = "👁";
+  button.setAttribute("aria-label","Show password");
+  button.title = "Show password";
+
+ }
+
+});
+
+// ======================================
 // SECURITY: HTML ESCAPING
 // ======================================
 
@@ -612,8 +672,6 @@ function escapeHTML(value){
 
 // ======================================
 // STATUS DISPLAY
-// DATABASE ADMITTED = DASHBOARD APPROVED
-// DATABASE DECLINED = DASHBOARD REJECTED
 // ======================================
 
 function displayStatus(status){
@@ -714,6 +772,10 @@ function showLogin(){
  currentDocuments = [];
 
  $("password").value = "";
+ $("password").type = "password";
+ $("togglePassword").textContent = "👁";
+ $("togglePassword").setAttribute("aria-label","Show password");
+
  $("loginError").style.display = "none";
  $("detailPanel").style.display = "none";
 
@@ -964,7 +1026,6 @@ async function openApplication(id){
 
 // ======================================
 // LOAD APPLICANT DOCUMENTS
-// EXISTING TABLE: application_documents
 // ======================================
 
 async function loadApplicantDocuments(applicationId){
@@ -1129,7 +1190,6 @@ async function loadApplicantDocuments(applicationId){
 
 // ======================================
 // UPDATE ADMISSION DECISION
-// DATABASE USES ADMITTED / DECLINED
 // ======================================
 
 async function updateDecision(status){
