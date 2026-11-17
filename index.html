@@ -49,7 +49,7 @@ z-index:1000;
 .header-inner{
 width:min(1500px,98%);
 max-width:none;
-min-height:104px;
+min-height:130px;
 margin:0 auto;
 display:flex;
 align-items:center;
@@ -58,7 +58,7 @@ gap:clamp(12px,1.5vw,24px);
 flex-wrap:nowrap;
 }
 
-/* BRAND NAME - NO LOGO OR LOGO BOX */
+/* ENLARGED ORIGINAL LOGO */
 .brand{
 display:flex;
 align-items:center;
@@ -66,20 +66,21 @@ flex-shrink:0;
 white-space:nowrap;
 }
 
-.brand-text h1{
-color:white;
-font-size:20px;
-line-height:1.15;
-font-weight:800;
+.brand img{
+width:115px;
+height:115px;
+object-fit:contain;
+object-position:center;
+display:block;
+background:transparent!important;
+border:0!important;
+border-radius:0!important;
+box-shadow:none!important;
+padding:0!important;
+filter:none!important;
 }
 
-.brand-text span{
-color:var(--gold);
-font-size:11px;
-font-weight:800;
-letter-spacing:2px;
-}
-
+/* NAVIGATION */
 nav{
 display:flex;
 align-items:center;
@@ -671,13 +672,20 @@ gap:48px;
 padding-bottom:38px;
 }
 
-/* FOOTER BRAND - NO LOGO */
-.footer-brand h3{
-font-size:18px;
-line-height:1.35;
-font-weight:800;
-color:#FFFFFF;
-margin-bottom:7px;
+/* ENLARGED ORIGINAL FOOTER LOGO */
+.footer-brand img{
+width:105px;
+height:105px;
+object-fit:contain;
+object-position:left center;
+display:block;
+background:transparent!important;
+border:0!important;
+border-radius:0!important;
+box-shadow:none!important;
+padding:0!important;
+filter:none!important;
+margin:0 0 12px 0;
 }
 
 .footer-brand .footer-motto{
@@ -743,13 +751,13 @@ text-align:center;
 .header-inner{
 width:99%;
 gap:9px;
-min-height:96px;
+min-height:100px;
 }
 
-.brand{gap:8px;}
-
-.brand-text h1{font-size:15px;}
-.brand-text span{font-size:9px;letter-spacing:1px;}
+.brand img{
+width:82px;
+height:82px;
+}
 
 nav{gap:7px;}
 
@@ -777,6 +785,11 @@ margin-left:0;
 width:94%;
 min-height:88px;
 gap:12px;
+}
+
+.brand img{
+width:80px;
+height:80px;
 }
 
 .menu-toggle{
@@ -877,13 +890,9 @@ border-bottom:0;
 min-height:78px;
 }
 
-.brand{gap:8px;}
-
-.brand-text h1{font-size:14px;}
-
-.brand-text span{
-font-size:9px;
-letter-spacing:1px;
+.brand img{
+width:70px;
+height:70px;
 }
 
 nav{
@@ -931,6 +940,11 @@ padding:7px;
 grid-template-columns:1fr;
 gap:28px;
 }
+
+.footer-brand img{
+width:85px;
+height:85px;
+}
 }
 </style>
 </head>
@@ -945,10 +959,7 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 <div class="container header-inner">
 
 <a href="#home" class="brand">
-<div class="brand-text">
-<h1>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h1>
-<span>BREAKING THE LIMITS</span>
-</div>
+<img src="FIRE.png" alt="TITI Logo">
 </a>
 
 <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
@@ -1200,7 +1211,7 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="footer-grid">
 
 <div class="footer-brand">
-<h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
+<img src="FIRE.png" alt="TITI Logo">
 <div class="footer-motto">BREAKING THE LIMITS</div>
 <p>Committed to quality education, practical skills and professional training that prepares learners for opportunities in the world of work.</p>
 </div>
