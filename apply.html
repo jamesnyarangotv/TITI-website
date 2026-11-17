@@ -123,7 +123,7 @@ header img {
  color:#64748b;
 }
 
-/* ADMISSIONS INFORMATION */
+/* ADMISSIONS INTRO */
 
 .admissions-intro {
  background:linear-gradient(120deg,#0F2A5E,#183d78);
@@ -146,42 +146,104 @@ header img {
  line-height:1.8;
 }
 
-.admissions-grid {
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:18px;
+/* EXPANDABLE ADMISSIONS SECTIONS */
+
+.admissions-accordion {
+ display:flex;
+ flex-direction:column;
+ gap:12px;
  margin-bottom:25px;
 }
 
-.admission-card {
+.admission-item {
  background:white;
- padding:23px;
- border-radius:8px;
- border-top:3px solid var(--gold);
- box-shadow:0 3px 16px rgba(0,0,0,.045);
+ border:1px solid #e1e5ec;
+ border-radius:7px;
+ overflow:hidden;
+ box-shadow:0 3px 12px rgba(0,0,0,.035);
+ transition:border-color .2s,box-shadow .2s;
 }
 
-.admission-card h3 {
+.admission-item[open] {
+ border-color:var(--gold);
+ box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.admission-item summary {
+ list-style:none;
+ cursor:pointer;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
+ padding:19px 22px;
  color:var(--navy);
- font-size:17px;
- margin:0 0 13px;
+ font-size:16px;
+ font-weight:700;
+ transition:.2s;
 }
 
-.admission-card p,
-.admission-card li {
+.admission-item summary::-webkit-details-marker {
+ display:none;
+}
+
+.admission-item summary:hover {
+ background:#f8f9fc;
+ color:var(--maroon);
+}
+
+.admission-item summary::after {
+ content:"+";
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ width:30px;
+ height:30px;
+ flex-shrink:0;
+ border-radius:50%;
+ background:#f3f5f8;
+ color:var(--maroon);
+ font-size:23px;
+ font-weight:400;
+ transition:.2s;
+}
+
+.admission-item[open] summary::after {
+ content:"−";
+ background:var(--maroon);
+ color:white;
+}
+
+.admission-content {
+ padding:20px 22px 23px;
+ border-top:1px solid #e8ebf0;
+ animation:admissionOpen .2s ease;
+}
+
+@keyframes admissionOpen {
+ from {opacity:0;transform:translateY(-5px);}
+ to {opacity:1;transform:translateY(0);}
+}
+
+.admission-content p,
+.admission-content li {
  font-size:13px;
  line-height:1.8;
  color:#526074;
 }
 
-.admission-card p {margin:7px 0;}
+.admission-content p {
+ margin:7px 0;
+}
 
-.admission-card ul {
- padding-left:19px;
+.admission-content ul {
+ padding-left:20px;
  margin:8px 0;
 }
 
-.admission-card strong {color:var(--navy);}
+.admission-content strong {
+ color:var(--navy);
+}
 
 .intake-list {
  display:grid;
@@ -571,8 +633,7 @@ button:disabled {
   font-size:12px;
  }
 
- .grid,
- .admissions-grid {
+ .grid {
   grid-template-columns:1fr;
  }
 
@@ -580,13 +641,20 @@ button:disabled {
 
  .card {padding:19px;}
 
- .admission-card {padding:19px;}
-
  .admissions-intro {padding:23px 17px;}
 
  .admissions-intro h2 {font-size:21px;}
 
  .heading h1 {font-size:25px;}
+
+ .admission-item summary {
+  padding:16px;
+  font-size:14px;
+ }
+
+ .admission-content {
+  padding:17px;
+ }
 
  .intake-list {gap:6px;}
 
@@ -649,148 +717,167 @@ button:disabled {
  </p>
 </div>
 
-<div class="admissions-grid">
+<!-- EXPANDABLE ADMISSIONS MENU -->
 
-<!-- 01 REQUIREMENTS -->
+<div class="admissions-accordion">
 
-<div class="admission-card">
- <h3>01. ADMISSION REQUIREMENTS</h3>
+ <details class="admission-item">
+  <summary>01. ADMISSION REQUIREMENTS</summary>
 
- <p><strong>Diploma Programmes – Kenyan Applicants</strong></p>
- <ul>
-  <li>KCSE mean grade of at least C- (minus), or an equivalent qualification.</li>
- </ul>
+  <div class="admission-content">
 
- <p><strong>Certificate Programmes – Kenyan Applicants</strong></p>
- <ul>
-  <li>KCSE mean grade of at least D+ (plus).</li>
- </ul>
+   <p><strong>Diploma Programmes – Kenyan Applicants</strong></p>
+   <ul>
+    <li>KCSE mean grade of at least C- (minus), or an equivalent qualification.</li>
+   </ul>
 
- <div class="admissions-note">
- Applicants from Uganda and other countries should present
- their academic qualifications for assessment against the
- relevant programme entry requirements.
- </div>
-</div>
+   <p><strong>Certificate Programmes – Kenyan Applicants</strong></p>
+   <ul>
+    <li>KCSE mean grade of at least D+ (plus).</li>
+   </ul>
 
-<!-- 02 DOCUMENTS -->
+   <div class="admissions-note">
+    Applicants from Uganda and other countries should present
+    their academic qualifications for assessment against the
+    relevant programme entry requirements.
+   </div>
 
-<div class="admission-card">
- <h3>02. REQUIRED DOCUMENTS</h3>
-
- <p>Prepare the following documents when applying:</p>
-
- <ul>
-  <li>Academic certificates.</li>
-  <li>Academic transcripts or result slips.</li>
-  <li>Recent passport-size photograph.</li>
-  <li>National identification card or passport.</li>
- </ul>
-
- <p>
- Upload clear and readable copies through the online
- application form below.
- </p>
-</div>
-
-<!-- 03 INTAKES -->
-
-<div class="admission-card">
- <h3>03. INTAKES & ADMISSION</h3>
-
- <p>Regular Certificate and Diploma programmes have three intakes every year:</p>
-
- <div class="intake-list">
-  <div class="intake-item">
-   <strong>JANUARY</strong>
-   <span>Intake</span>
   </div>
+ </details>
 
-  <div class="intake-item">
-   <strong>MAY</strong>
-   <span>Intake</span>
+ <details class="admission-item">
+  <summary>02. REQUIRED DOCUMENTS</summary>
+
+  <div class="admission-content">
+
+   <p>Prepare the following documents when applying:</p>
+
+   <ul>
+    <li>Academic certificates.</li>
+    <li>Academic transcripts or result slips.</li>
+    <li>Recent passport-size photograph.</li>
+    <li>National identification card or passport.</li>
+   </ul>
+
+   <p>
+    Upload clear and readable copies through the online
+    application form below.
+   </p>
+
   </div>
+ </details>
 
-  <div class="intake-item">
-   <strong>AUGUST</strong>
-   <span>Intake</span>
+ <details class="admission-item">
+  <summary>03. INTAKES & ADMISSION</summary>
+
+  <div class="admission-content">
+
+   <p>Regular Certificate and Diploma programmes have three intakes every year:</p>
+
+   <div class="intake-list">
+
+    <div class="intake-item">
+     <strong>JANUARY</strong>
+     <span>Intake</span>
+    </div>
+
+    <div class="intake-item">
+     <strong>MAY</strong>
+     <span>Intake</span>
+    </div>
+
+    <div class="intake-item">
+     <strong>AUGUST</strong>
+     <span>Intake</span>
+    </div>
+
+   </div>
+
+   <div class="short-course">
+    <strong>SHORT COURSES – ENROL ANY TIME!</strong>
+    <p>
+     Short courses and professional training are available
+     throughout the year. Open to anyone interested in
+     acquiring new skills and knowledge. You do not need
+     to wait for the regular intakes.
+    </p>
+   </div>
+
   </div>
- </div>
+ </details>
 
- <div class="short-course">
-  <strong>SHORT COURSES – ENROL ANY TIME!</strong>
-  <p>
-   Short courses and professional training are available
-   throughout the year. Open to anyone interested in
-   acquiring new skills and knowledge. You do not need
-   to wait for the regular intakes.
-  </p>
- </div>
-</div>
+ <details class="admission-item">
+  <summary>04. FEES & PAYMENT</summary>
 
-<!-- 04 FEES AND PAYMENT -->
+  <div class="admission-content">
 
-<div class="admission-card">
- <h3>04. FEES & PAYMENT</h3>
+   <p>
+    Tuition and other applicable fees depend on the
+    programme of study. Applicants should confirm the
+    current fee structure with the institute.
+   </p>
 
- <p>
- Tuition and other applicable fees depend on the
- programme of study. Applicants should confirm the
- current fee structure with the institute.
- </p>
+   <p><strong>Official Institutional Bank Details</strong></p>
 
- <p><strong>Official Institutional Bank Details</strong></p>
+   <div class="bank-details">
 
- <div class="bank-details">
-  <p><strong>Bank:</strong> CENTENARY BANK</p>
+    <p><strong>Bank:</strong> CENTENARY BANK</p>
 
-  <p><strong>Account Name:</strong><br>
-  TAHIDI INTERNATIONAL TRAINING INSTITUTE - TITICO-SMC LIMITED</p>
+    <p><strong>Account Name:</strong><br>
+    TAHIDI INTERNATIONAL TRAINING INSTITUTE - TITICO-SMC LIMITED</p>
 
-  <p><strong>Account Number:</strong></p>
-  <div class="bank-number">3100128448</div>
+    <p><strong>Account Number:</strong></p>
 
-  <p><strong>Additional Number Supplied:</strong> 0776433303</p>
- </div>
+    <div class="bank-number">3100128448</div>
 
- <div class="admissions-note">
- Always retain your payment receipt for institutional
- verification and follow-up.
- </div>
-</div>
+    <p><strong>Additional Number Supplied:</strong> 0776433303</p>
 
-<!-- 05 ENQUIRIES -->
+   </div>
 
-<div class="admission-card">
- <h3>05. ADMISSION ENQUIRIES</h3>
+   <div class="admissions-note">
+    Always retain your payment receipt for institutional
+    verification and follow-up.
+   </div>
 
- <p>
- Need assistance with admission, programme selection,
- entry qualifications or payment?
- </p>
+  </div>
+ </details>
 
- <p>
- Contact Tahidi International Training Institute
- through its official communication channels.
- </p>
+ <details class="admission-item">
+  <summary>05. ADMISSION ENQUIRIES</summary>
 
- <p><strong>Institute:</strong><br>
- TAHIDI INTERNATIONAL TRAINING INSTITUTE</p>
+  <div class="admission-content">
 
- <p><strong>Telephone number supplied:</strong><br>
- 0776433303</p>
+   <p>
+    Need assistance with admission, programme selection,
+    entry qualifications or payment?
+   </p>
 
- <div class="admissions-note">
- Applicants are encouraged to confirm programme availability,
- admission requirements and current fees before making payment.
- </div>
-</div>
+   <p>
+    Contact Tahidi International Training Institute
+    through its official communication channels.
+   </p>
+
+   <p><strong>Institute:</strong><br>
+    TAHIDI INTERNATIONAL TRAINING INSTITUTE
+   </p>
+
+   <p><strong>Telephone number supplied:</strong><br>
+    0776433303
+   </p>
+
+   <div class="admissions-note">
+    Applicants are encouraged to confirm programme availability,
+    admission requirements and current fees before making payment.
+   </div>
+
+  </div>
+ </details>
 
 </div>
 
 <div class="apply-now-wrap">
  <a href="#online-application" class="apply-now">
- APPLY NOW
+  APPLY NOW
  </a>
 </div>
 
