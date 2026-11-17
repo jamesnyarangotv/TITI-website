@@ -58,27 +58,12 @@ gap:clamp(12px,1.5vw,24px);
 flex-wrap:nowrap;
 }
 
+/* BRAND NAME - NO LOGO OR LOGO BOX */
 .brand{
 display:flex;
 align-items:center;
-gap:12px;
 flex-shrink:0;
 white-space:nowrap;
-}
-
-/* HEADER LOGO - ORIGINAL ARTWORK, NO BOX */
-.brand img{
-width:65px;
-height:65px;
-max-width:none;
-object-fit:contain;
-display:block;
-padding:0;
-margin:0;
-background:transparent;
-border:none;
-border-radius:0;
-box-shadow:none;
 }
 
 .brand-text h1{
@@ -686,21 +671,7 @@ gap:48px;
 padding-bottom:38px;
 }
 
-/* FOOTER LOGO - NATURAL, NO BLACK/GOLD/WHITE BOX */
-.footer-brand img{
-width:65px;
-height:65px;
-max-width:none;
-object-fit:contain;
-display:block;
-padding:0;
-margin:0 0 13px 0;
-background:transparent;
-border:none;
-border-radius:0;
-box-shadow:none;
-}
-
+/* FOOTER BRAND - NO LOGO */
 .footer-brand h3{
 font-size:18px;
 line-height:1.35;
@@ -776,8 +747,6 @@ min-height:96px;
 }
 
 .brand{gap:8px;}
-.brand img{width:58px;height:58px;}
-.footer-brand img{width:58px;height:58px;}
 
 .brand-text h1{font-size:15px;}
 .brand-text span{font-size:9px;letter-spacing:1px;}
@@ -809,18 +778,6 @@ width:94%;
 min-height:88px;
 gap:12px;
 }
-
-.brand img{
-width:58px;
-height:58px;
-}
-
-.footer-brand img{
-width:58px;
-height:58px;
-}
-
-.brand-text h1{font-size:17px;}
 
 .menu-toggle{
 display:block;
@@ -922,16 +879,6 @@ min-height:78px;
 
 .brand{gap:8px;}
 
-.brand img{
-width:50px;
-height:50px;
-}
-
-.footer-brand img{
-width:50px;
-height:50px;
-}
-
 .brand-text h1{font-size:14px;}
 
 .brand-text span{
@@ -998,7 +945,6 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 <div class="container header-inner">
 
 <a href="#home" class="brand">
-<img src="FIRE.png" alt="TITI Logo">
 <div class="brand-text">
 <h1>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h1>
 <span>BREAKING THE LIMITS</span>
@@ -1254,7 +1200,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="footer-grid">
 
 <div class="footer-brand">
-<img src="FIRE.png" alt="Tahidi International Training Institute Logo">
 <h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
 <div class="footer-motto">BREAKING THE LIMITS</div>
 <p>Committed to quality education, practical skills and professional training that prepares learners for opportunities in the world of work.</p>
