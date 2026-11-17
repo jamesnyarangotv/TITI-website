@@ -27,7 +27,6 @@ a{text-decoration:none;color:inherit;}
 img{max-width:100%;display:block;}
 .container{width:min(1120px,92%);margin:auto;}
 
-/* TOP BAR */
 .topbar{
 background:var(--navy);
 color:white;
@@ -37,7 +36,6 @@ text-align:center;
 letter-spacing:.3px;
 }
 
-/* MASTER NAVIGATION HEADER */
 header{
 background:var(--navy);
 box-shadow:0 4px 18px rgba(0,0,0,.18);
@@ -58,7 +56,6 @@ gap:clamp(12px,1.5vw,24px);
 flex-wrap:nowrap;
 }
 
-/* BRAND NAME - NO LOGO OR LOGO BOX */
 .brand{
 display:flex;
 align-items:center;
@@ -130,7 +127,6 @@ transition:transform .25s;
 transform:rotate(180deg);
 }
 
-/* DROPDOWN MENUS */
 .programme-menu,
 .admissions-menu,
 .about-menu{
@@ -222,7 +218,6 @@ cursor:pointer;
 border-radius:4px;
 }
 
-/* HERO */
 .hero{
 background:linear-gradient(120deg,#0F2A5E,#7A1220);
 padding:34px 0 0;
@@ -276,7 +271,6 @@ backface-visibility:hidden;
 
 .slide.active{opacity:1;}
 
-/* GENERAL SECTIONS */
 section{padding:62px 0;}
 
 .section-heading{
@@ -306,7 +300,6 @@ margin:12px auto;
 border-radius:5px;
 }
 
-/* QUICK LINKS */
 .quick-links{
 background:var(--light);
 padding:24px 0;
@@ -334,7 +327,6 @@ transform:translateY(-4px);
 color:var(--maroon);
 }
 
-/* ABOUT */
 .about-grid{
 display:grid;
 grid-template-columns:1.1fr .9fr;
@@ -380,7 +372,6 @@ background:var(--navy);
 transform:translateY(-2px);
 }
 
-/* PROGRAMMES */
 .programmes{background:var(--light);}
 
 .programme-category{
@@ -511,7 +502,6 @@ font-size:13px;
 margin-top:25px;
 }
 
-/* ADMISSIONS */
 .admissions{
 background:var(--navy);
 color:white;
@@ -523,7 +513,6 @@ padding:48px 20px;
 .admissions p{max-width:650px;margin:auto;}
 .admissions .primary-btn{background:var(--gold);color:var(--navy);}
 
-/* APPLICATION IMAGE */
 .application-section{background:var(--light);}
 
 .application-wrap{
@@ -558,7 +547,6 @@ font-weight:700;
 margin-top:15px;
 }
 
-/* CAMPUS GALLERY */
 .gallery-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -586,7 +574,6 @@ padding:12px 5px 4px;
 font-size:17px;
 }
 
-/* POSTER */
 .poster-section{background:var(--light);}
 
 .poster-wrap{
@@ -604,7 +591,6 @@ max-height:680px;
 object-fit:contain;
 }
 
-/* SHORT COURSES */
 .short-course-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -636,7 +622,6 @@ margin-top:7px;
 font-weight:700;
 }
 
-/* CONTACT */
 .contact-section{background:var(--light);}
 
 .contact-grid{
@@ -655,7 +640,6 @@ border-bottom:3px solid var(--gold);
 
 .contact-card h3{color:var(--maroon);margin-bottom:7px;}
 
-/* FOOTER */
 .site-footer{
 background:#091B3D;
 color:#FFFFFF;
@@ -671,7 +655,6 @@ gap:48px;
 padding-bottom:38px;
 }
 
-/* FOOTER BRAND - NO LOGO */
 .footer-brand h3{
 font-size:18px;
 line-height:1.35;
@@ -737,53 +720,41 @@ text-align:center;
 .footer-bottom strong{color:var(--gold);}
 .site-footer,.site-footer *{font-weight:700!important;}
 
-/* COMPACT DESKTOP HEADER */
 @media(min-width:851px) and (max-width:1100px){
-
 .header-inner{
 width:99%;
 gap:9px;
 min-height:96px;
 }
-
 .brand{gap:8px;}
-
 .brand-text h1{font-size:15px;}
 .brand-text span{font-size:9px;letter-spacing:1px;}
-
 nav{gap:7px;}
-
 nav a,
 nav button.nav-link{
 font-size:11px;
 letter-spacing:0;
 }
-
 .nav-apply{
 padding:9px 10px!important;
 font-size:11px!important;
 margin-left:0;
 }
-
 .programme-submenu,
 .admissions-submenu,
 .about-submenu{min-width:210px;}
 }
 
-/* TABLET AND MOBILE NAVIGATION */
 @media(max-width:850px){
-
 .header-inner{
 width:94%;
 min-height:88px;
 gap:12px;
 }
-
 .menu-toggle{
 display:block;
 flex-shrink:0;
 }
-
 nav{
 display:none;
 position:absolute;
@@ -800,9 +771,7 @@ box-shadow:0 8px 18px rgba(0,0,0,.2);
 max-height:calc(100vh - 88px);
 overflow-y:auto;
 }
-
 nav.open{display:flex;}
-
 nav>a,
 nav button.nav-link{
 color:#FFFFFF;
@@ -812,19 +781,15 @@ border-bottom:1px solid rgba(255,255,255,.16);
 width:100%;
 text-align:left;
 }
-
 nav a:hover,
 nav button.nav-link:hover{color:var(--gold);}
-
 .programme-menu,
 .admissions-menu,
 .about-menu{
 display:block;
 width:100%;
 }
-
 nav button.nav-link{justify-content:space-between;}
-
 .programme-submenu,
 .admissions-submenu,
 .about-submenu{
@@ -837,7 +802,6 @@ border-radius:0;
 padding:4px 0;
 background:#16366F;
 }
-
 .programme-submenu a,
 .admissions-submenu a,
 .about-submenu a{
@@ -846,7 +810,6 @@ padding:11px 20px;
 font-size:13px;
 border-bottom:1px solid rgba(255,255,255,.1);
 }
-
 .programme-submenu a:hover,
 .admissions-submenu a:hover,
 .about-submenu a:hover{
@@ -854,79 +817,54 @@ background:#1D437E;
 color:var(--gold);
 padding-left:25px;
 }
-
 .nav-apply{
 padding:11px 14px!important;
 margin-top:10px;
 text-align:center;
 border-bottom:0;
 }
-
 .about-grid{grid-template-columns:1fr;}
 .programme-grid{grid-template-columns:repeat(2,1fr);}
 .quick-grid{grid-template-columns:repeat(2,1fr);}
 .footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
 }
 
-/* MOBILE */
 @media(max-width:560px){
-
 .topbar{font-size:11px;}
-
-.header-inner{
-min-height:78px;
-}
-
+.header-inner{min-height:78px;}
 .brand{gap:8px;}
-
 .brand-text h1{font-size:14px;}
-
 .brand-text span{
 font-size:9px;
 letter-spacing:1px;
 }
-
-nav{
-max-height:calc(100vh - 78px);
-}
-
+nav{max-height:calc(100vh - 78px);}
 .hero{padding:25px 0 0;}
-
 .slideshow{
 width:100%;
 height:245px;
 border:none;
 border-radius:0;
 }
-
 section{padding:45px 0;}
-
 .programme-grid{
 grid-template-columns:1fr 1fr;
 gap:10px;
 }
-
 .programme-card{padding:16px 12px;}
 .programme-card h3{font-size:15px;}
 .programme-category-heading h3{font-size:18px;}
-
 .gallery-grid{grid-template-columns:1fr;}
 .gallery-card img{height:240px;}
-
 .short-course-grid{grid-template-columns:1fr 1fr;}
 .contact-grid{grid-template-columns:1fr;}
-
 .admissions h2{font-size:25px;}
-
 .application-wrap{
 width:96%;
 padding:7px;
 }
-
 .application-note{font-size:12px;}
-
 .site-footer{padding-top:40px;}
-
 .footer-grid{
 grid-template-columns:1fr;
 gap:28px;
@@ -961,7 +899,6 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 <button type="button" class="nav-link" id="aboutToggle" aria-expanded="false" aria-controls="aboutSubmenu">
 ABOUT US <span class="dropdown-arrow">▼</span>
 </button>
-
 <div class="about-submenu" id="aboutSubmenu">
 <a href="about.html#who-we-are">Who We Are</a>
 <a href="about.html#our-vision">Our Vision</a>
@@ -977,7 +914,6 @@ ABOUT US <span class="dropdown-arrow">▼</span>
 <button type="button" class="nav-link" id="programmeToggle" aria-expanded="false" aria-controls="programmeSubmenu">
 PROGRAMMES <span class="dropdown-arrow">▼</span>
 </button>
-
 <div class="programme-submenu" id="programmeSubmenu">
 <a href="#diploma">Diploma Programmes</a>
 <a href="#certificate">Certificate Programmes</a>
@@ -989,7 +925,6 @@ PROGRAMMES <span class="dropdown-arrow">▼</span>
 <button type="button" class="nav-link" id="admissionsToggle" aria-expanded="false" aria-controls="admissionsSubmenu">
 ADMISSIONS <span class="dropdown-arrow">▼</span>
 </button>
-
 <div class="admissions-submenu" id="admissionsSubmenu">
 <a href="apply.html#admissions">Admissions at TITI</a>
 <a href="apply.html#requirements">Entry Requirements</a>
@@ -1015,7 +950,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <h2>Welcome to Tahidi International Training Institute</h2>
 <p class="motto">BREAKING THE LIMITS</p>
 </div>
-
 <div class="slideshow">
 <img class="slide active" src="tahidi%20bulding%201.png" alt="Tahidi Institute campus building">
 <img class="slide" src="tahidi%20bulding%202.png" alt="Tahidi Institute campus">
@@ -1039,7 +973,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="gold-line"></div>
 <p>Building knowledge, practical skills and confidence for a better future.</p>
 </div>
-
 <div class="about-grid">
 <div class="about-text">
 <h3>Welcome to TITI</h3>
@@ -1048,7 +981,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <p>At TITI, we believe in the potential of every learner. Our motto is <strong>BREAKING THE LIMITS.</strong></p>
 <a href="#programmes" class="primary-btn">Explore Programmes</a>
 </div>
-
 <div class="about-photo">
 <img src="tahidi%20bulding%201.png" alt="TITI campus building">
 </div>
@@ -1058,7 +990,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 
 <section class="programmes" id="programmes">
 <div class="container">
-
 <div class="section-heading">
 <h2>Our Academic Programmes</h2>
 <div class="gold-line"></div>
@@ -1104,13 +1035,11 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="gold-line"></div>
 <p>Take the next step towards joining Tahidi International Training Institute.</p>
 </div>
-
 <div class="application-wrap">
 <a href="apply.html#online-application" aria-label="Open TITI online application">
 <img src="apply.jpeg" alt="TITI application information">
 </a>
 </div>
-
 <p class="application-note">Click the application image to proceed to our online application page.</p>
 </div>
 </section>
@@ -1122,13 +1051,11 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="gold-line"></div>
 <p>Discover the Tahidi International Training Institute environment.</p>
 </div>
-
 <div class="gallery-grid">
 <div class="gallery-card">
 <img src="tahidi%20bulding%201.png" alt="TITI campus building one">
 <h3>Our Institute</h3>
 </div>
-
 <div class="gallery-card">
 <img src="tahidi%20bulding%202.png" alt="TITI campus building two">
 <h3>Our Campus Environment</h3>
@@ -1144,7 +1071,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="gold-line"></div>
 <p>Find out more about Tahidi International Training Institute.</p>
 </div>
-
 <div class="poster-wrap">
 <img src="tahidi%20poster.png" alt="Tahidi International Training Institute poster">
 </div>
@@ -1158,7 +1084,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="gold-line"></div>
 <p>Practical skills for personal growth, employment and entrepreneurship.</p>
 </div>
-
 <div class="short-course-grid" id="shortCourseGrid">
 <div class="programme-loading">Loading Short Courses...</div>
 </div>
@@ -1172,18 +1097,15 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="gold-line"></div>
 <p>Contact Tahidi International Training Institute for enquiries and admissions information.</p>
 </div>
-
 <div class="contact-grid">
 <div class="contact-card">
 <h3>Visit Us</h3>
 <p>Contact the institute for campus location and directions.</p>
 </div>
-
 <div class="contact-card">
 <h3>Admissions</h3>
 <p>Speak to our team about available programmes and enrolment.</p>
 </div>
-
 <div class="contact-card">
 <h3>Enquiries</h3>
 <p>Reach out to the institute for more information.</p>
@@ -1196,7 +1118,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 
 <footer class="site-footer">
 <div class="container">
-
 <div class="footer-grid">
 
 <div class="footer-brand">
@@ -1232,103 +1153,187 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <div class="footer-bottom">
 <p>© <span id="footer-year"></span> <strong>Tahidi International Training Institute.</strong> All Rights Reserved.</p>
 </div>
-
 </div>
 </footer>
 
 <script>
+/* SUPABASE CONFIGURATION */
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
-const TITI_SUPABASE_KEY = 'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
+const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
 const TITI_PROGRAMMES_TABLE = 'programmes';
 
+/* HTML SECURITY */
 function titiEscape(value){
 return String(value ?? '').replace(/[&<>"']/g,function(character){
-const entities={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'};
+const entities={
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+};
 return entities[character];
 });
 }
 
+/* DIPLOMA AND CERTIFICATE CARDS */
 function titiProgrammeCard(programme){
 const name=titiEscape(programme.programme_name);
 const description=titiEscape(programme.description || 'Professional training designed to develop knowledge and practical skills.');
-const duration=programme.duration?`<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`:'';
+const duration=programme.duration
+?`<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`
+:'';
+
 const applicationButton=programme.application_open===true
 ?`<a class="programme-action" href="apply.html#online-application">Apply for this Programme</a>`
 :`<span class="programme-closed">Admissions Currently Closed</span>`;
-return `<article class="programme-card"><h3>${name}</h3><p>${description}</p>${duration}${applicationButton}</article>`;
+
+return `<article class="programme-card">
+<h3>${name}</h3>
+<p>${description}</p>
+${duration}
+${applicationButton}
+</article>`;
 }
 
+/* SHORT COURSE CARDS */
 function titiShortCourseCard(programme){
 const name=titiEscape(programme.programme_name);
 const description=titiEscape(programme.description || 'Practical professional skills training.');
-const duration=programme.duration?`<span class="course-duration">Duration: ${titiEscape(programme.duration)}</span>`:'';
-return `<div class="short-course">${name}<span class="course-description">${description}</span>${duration}</div>`;
+const duration=programme.duration
+?`<span class="course-duration">Duration: ${titiEscape(programme.duration)}</span>`
+:'';
+
+return `<div class="short-course">
+${name}
+<span class="course-description">${description}</span>
+${duration}
+</div>`;
 }
 
+/* DATABASE ERROR DISPLAY */
 function titiShowError(message){
-const errorHTML=`<div class="programme-error"><strong>Programme information is temporarily unavailable.</strong><br>${titiEscape(message)}<br>Please contact TITI administration for assistance.</div>`;
+const errorHTML=`
+<div class="programme-error">
+<strong>Programme information is temporarily unavailable.</strong>
+<br>${titiEscape(message)}
+<br>Please contact TITI administration for assistance.
+</div>`;
+
 document.getElementById('diplomaGrid').innerHTML=errorHTML;
 document.getElementById('certificateGrid').innerHTML='';
 document.getElementById('shortCourseGrid').innerHTML=errorHTML;
+
 document.getElementById('diplomaCount').textContent='Unavailable';
 document.getElementById('certificateCount').textContent='Unavailable';
-document.getElementById('programmeSummary').textContent='Unable to retrieve programme information at this time.';
+
+document.getElementById('programmeSummary').textContent=
+'Unable to retrieve programme information at this time.';
 }
 
+/* LOAD PROGRAMMES FROM SUPABASE */
 async function loadTITIProgrammes(){
+
 const diplomaGrid=document.getElementById('diplomaGrid');
 const certificateGrid=document.getElementById('certificateGrid');
 const shortCourseGrid=document.getElementById('shortCourseGrid');
 const summary=document.getElementById('programmeSummary');
 
 try{
-const endpoint=`${TITI_SUPABASE_URL}/rest/v1/${TITI_PROGRAMMES_TABLE}?select=id,programme_name,programme_level,description,duration,application_open&order=programme_level.asc,programme_name.asc`;
+
+const endpoint=
+`${TITI_SUPABASE_URL}/rest/v1/${TITI_PROGRAMMES_TABLE}?select=id,programme_name,programme_level,description,duration,application_open&order=programme_level.asc,programme_name.asc`;
 
 const response=await fetch(endpoint,{
 method:'GET',
 headers:{
 'apikey':TITI_SUPABASE_KEY,
-'Authorization':`Bearer ${TITI_SUPABASE_KEY}`,
 'Accept':'application/json'
 }
 });
 
 if(!response.ok){
+
 let errorMessage='Database request failed.';
+let errorCode='';
+
 try{
 const errorData=await response.json();
-errorMessage=errorData.message||errorData.details||errorMessage;
-}catch(error){}
-throw new Error(errorMessage);
+
+errorMessage=
+errorData.message ||
+errorData.details ||
+errorData.hint ||
+errorMessage;
+
+errorCode=errorData.code || '';
+
+}catch(error){
+console.error('Could not read Supabase error response:',error);
+}
+
+console.error('Supabase HTTP status:',response.status);
+console.error('Supabase error code:',errorCode);
+console.error('Supabase error message:',errorMessage);
+
+throw new Error(
+`HTTP ${response.status}${errorCode?' | '+errorCode:''}: ${errorMessage}`
+);
 }
 
 const programmes=await response.json();
-if(!Array.isArray(programmes))throw new Error('Unexpected programme data received.');
 
-const diplomas=programmes.filter(item=>String(item.programme_level||'').trim().toLowerCase()==='diploma');
-const certificates=programmes.filter(item=>String(item.programme_level||'').trim().toLowerCase()==='certificate');
-const shortCourses=programmes.filter(item=>String(item.programme_level||'').trim().toLowerCase()==='short course');
+if(!Array.isArray(programmes)){
+throw new Error('Unexpected programme data received.');
+}
 
-diplomaGrid.innerHTML=diplomas.length?diplomas.map(titiProgrammeCard).join(''):'<div class="programme-empty">No Diploma programmes are currently available.</div>';
+const diplomas=programmes.filter(item=>
+String(item.programme_level||'').trim().toLowerCase()==='diploma'
+);
 
-certificateGrid.innerHTML=certificates.length?certificates.map(titiProgrammeCard).join(''):'<div class="programme-empty">No Certificate programmes are currently available.</div>';
+const certificates=programmes.filter(item=>
+String(item.programme_level||'').trim().toLowerCase()==='certificate'
+);
 
-shortCourseGrid.innerHTML=shortCourses.length?shortCourses.map(titiShortCourseCard).join(''):'<div class="programme-empty">No Short Courses are currently available.</div>';
+const shortCourses=programmes.filter(item=>
+String(item.programme_level||'').trim().toLowerCase()==='short course'
+);
 
-document.getElementById('diplomaCount').textContent=`${diplomas.length} Programmes`;
-document.getElementById('certificateCount').textContent=`${certificates.length} Programmes`;
+diplomaGrid.innerHTML=diplomas.length
+?diplomas.map(titiProgrammeCard).join('')
+:'<div class="programme-empty">No Diploma programmes are currently available.</div>';
 
-summary.textContent=`Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.`;
+certificateGrid.innerHTML=certificates.length
+?certificates.map(titiProgrammeCard).join('')
+:'<div class="programme-empty">No Certificate programmes are currently available.</div>';
+
+shortCourseGrid.innerHTML=shortCourses.length
+?shortCourses.map(titiShortCourseCard).join('')
+:'<div class="programme-empty">No Short Courses are currently available.</div>';
+
+document.getElementById('diplomaCount').textContent=
+`${diplomas.length} Programmes`;
+
+document.getElementById('certificateCount').textContent=
+`${certificates.length} Programmes`;
+
+summary.textContent=
+`Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.`;
 
 console.log('TITI programmes successfully loaded.',{
+total:programmes.length,
 diplomas:diplomas.length,
 certificates:certificates.length,
 shortCourses:shortCourses.length
 });
 
 }catch(error){
+
 console.error('TITI programme database error:',error);
-titiShowError(error.message||'Please check your database connection.');
+
+titiShowError(
+error.message||'Please check your database connection.'
+);
 }
 }
 
@@ -1350,9 +1355,14 @@ const mainNav=document.getElementById('mainNav');
 
 menuToggle.addEventListener('click',()=>{
 mainNav.classList.toggle('open');
+
 const isOpen=mainNav.classList.contains('open');
+
 menuToggle.setAttribute('aria-expanded',isOpen);
-menuToggle.setAttribute('aria-label',isOpen?'Close navigation':'Open navigation');
+menuToggle.setAttribute(
+'aria-label',
+isOpen?'Close navigation':'Open navigation'
+);
 });
 
 /* ABOUT US DROPDOWN */
@@ -1361,7 +1371,11 @@ const aboutToggle=document.getElementById('aboutToggle');
 
 aboutToggle.addEventListener('click',()=>{
 aboutMenu.classList.toggle('open');
-aboutToggle.setAttribute('aria-expanded',aboutMenu.classList.contains('open'));
+
+aboutToggle.setAttribute(
+'aria-expanded',
+aboutMenu.classList.contains('open')
+);
 });
 
 /* PROGRAMMES DROPDOWN */
@@ -1370,7 +1384,11 @@ const programmeToggle=document.getElementById('programmeToggle');
 
 programmeToggle.addEventListener('click',()=>{
 programmeMenu.classList.toggle('open');
-programmeToggle.setAttribute('aria-expanded',programmeMenu.classList.contains('open'));
+
+programmeToggle.setAttribute(
+'aria-expanded',
+programmeMenu.classList.contains('open')
+);
 });
 
 /* ADMISSIONS DROPDOWN */
@@ -1379,7 +1397,11 @@ const admissionsToggle=document.getElementById('admissionsToggle');
 
 admissionsToggle.addEventListener('click',()=>{
 admissionsMenu.classList.toggle('open');
-admissionsToggle.setAttribute('aria-expanded',admissionsMenu.classList.contains('open'));
+
+admissionsToggle.setAttribute(
+'aria-expanded',
+admissionsMenu.classList.contains('open')
+);
 });
 
 /* CLOSE MENUS AFTER SELECTING A LINK */
@@ -1401,6 +1423,7 @@ aboutToggle.setAttribute('aria-expanded','false');
 
 /* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
 document.addEventListener('click',event=>{
+
 if(!programmeMenu.contains(event.target)){
 programmeMenu.classList.remove('open');
 programmeToggle.setAttribute('aria-expanded','false');
@@ -1415,13 +1438,16 @@ if(!aboutMenu.contains(event.target)){
 aboutMenu.classList.remove('open');
 aboutToggle.setAttribute('aria-expanded','false');
 }
+
 });
 
 /* COPYRIGHT YEAR */
-document.getElementById('footer-year').textContent=new Date().getFullYear();
+document.getElementById('footer-year').textContent=
+new Date().getFullYear();
 
 /* START DATABASE CONNECTION */
 loadTITIProgrammes();
+
 </script>
 
 </body>
