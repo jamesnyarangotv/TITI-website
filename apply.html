@@ -202,6 +202,7 @@ button:disabled {opacity:.6;cursor:not-allowed;}
 
 <header>
  <div class="header-brand">
+  <!-- HEADER LOGO PRESERVED AS REQUESTED -->
   <img src="TITI%20LOGO.png" alt="TITI Logo">
   <div class="brand">
    <h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
@@ -465,7 +466,8 @@ Your documents are stored in private institutional storage.
 <div class="footer-grid">
 
 <div>
-<img src="TITI%20LOGO.png" alt="TITI Logo" class="footer-logo">
+<!-- FOOTER NOW USES THE SAME LOGO AS THE HOMEPAGE -->
+<img src="BYE.png" alt="Tahidi International Training Institute Logo" class="footer-logo">
 <h3 class="footer-brand-name">TAHIDI INTERNATIONAL TRAINING INSTITUTE</h3>
 <p class="footer-motto">BREAKING THE LIMITS</p>
 <p class="footer-description">Empowering learners through professional education, practical skills and quality training for a better future.</p>
@@ -509,8 +511,6 @@ For admissions and general enquiries, visit our official website:
 
 const SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
-
-/* Keep Supabase client for RPC and storage operations */
 
 const db = window.supabase.createClient(
  SUPABASE_URL,
@@ -590,7 +590,6 @@ function showMessage(text,type) {
 
 /* ==========================================
    LOAD PROGRAMMES
-   DIRECT REST API CONNECTION
    ========================================== */
 
 async function loadProgrammes() {
@@ -818,7 +817,6 @@ async function uploadDocuments(reference,groups) {
 
 /* ==========================================
    RETRY DOCUMENT UPLOAD
-   WITHOUT CREATING ANOTHER APPLICATION
    ========================================== */
 
 async function retryDocumentUploads() {
