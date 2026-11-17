@@ -1101,7 +1101,7 @@ const SUPABASE_URL =
 'https://jlmbiauilmajuvrnuaul.supabase.co';
 
 const SUPABASE_KEY =
-'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
+'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
 
 const db = window.supabase.createClient(
  SUPABASE_URL,
@@ -1125,33 +1125,54 @@ new Date().toISOString().split('T')[0];
 document.querySelector('[name="year_completed"]').max =
 new Date().getFullYear();
 
-/* DIRECT ADMISSIONS NAVIGATION */
+/* RELIABLE DIRECT ADMISSIONS NAVIGATION */
 
 function openAdmissionSection() {
- const sectionId = decodeURIComponent(
-  window.location.hash.substring(1)
- );
+
+ let sectionId = window.location.hash.substring(1);
 
  if(!sectionId) return;
+
+ try {
+  sectionId = decodeURIComponent(sectionId);
+ } catch(error) {
+  console.warn('Invalid admissions navigation link:',error);
+  return;
+ }
 
  const target = document.getElementById(sectionId);
 
  if(!target) return;
 
+ /* Automatically expand the selected accordion section */
+
  if(target.matches('details.admission-item')) {
   target.open = true;
  }
 
+ /* Wait for the page layout before scrolling */
+
  requestAnimationFrame(() => {
-  target.scrollIntoView({
-   behavior:'smooth',
-   block:'start'
+  requestAnimationFrame(() => {
+   target.scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+   });
   });
  });
 }
 
-window.addEventListener('load',openAdmissionSection);
+/* Run navigation on initial page opening */
+
+openAdmissionSection();
+
+/* Run navigation when a different admissions link is selected */
+
 window.addEventListener('hashchange',openAdmissionSection);
+
+/* Run navigation when returning to the page */
+
+window.addEventListener('pageshow',openAdmissionSection);
 
 function showMessage(text,type) {
  message.className = 'message ' + type;
