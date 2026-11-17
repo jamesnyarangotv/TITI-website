@@ -61,20 +61,24 @@ flex-wrap:nowrap;
 .brand{
 display:flex;
 align-items:center;
-gap:14px;
+gap:12px;
 flex-shrink:0;
 white-space:nowrap;
 }
 
+/* HEADER LOGO - ORIGINAL ARTWORK, NO BOX */
 .brand img{
-width:80px;
-height:80px;
+width:65px;
+height:65px;
+max-width:none;
 object-fit:contain;
-padding:4px;
-background:white;
-border:2px solid var(--gold);
-border-radius:9px;
-box-shadow:0 3px 12px rgba(0,0,0,.18);
+display:block;
+padding:0;
+margin:0;
+background:transparent;
+border:none;
+border-radius:0;
+box-shadow:none;
 }
 
 .brand-text h1{
@@ -682,11 +686,19 @@ gap:48px;
 padding-bottom:38px;
 }
 
+/* FOOTER LOGO - NATURAL, NO BLACK/GOLD/WHITE BOX */
 .footer-brand img{
-width:80px;
-height:80px;
+width:65px;
+height:65px;
+max-width:none;
 object-fit:contain;
-margin-bottom:13px;
+display:block;
+padding:0;
+margin:0 0 13px 0;
+background:transparent;
+border:none;
+border-radius:0;
+box-shadow:none;
 }
 
 .footer-brand h3{
@@ -764,8 +776,8 @@ min-height:96px;
 }
 
 .brand{gap:8px;}
-.brand img{width:55px;height:55px;}
-.footer-brand img{width:55px;height:55px;}
+.brand img{width:58px;height:58px;}
+.footer-brand img{width:58px;height:58px;}
 
 .brand-text h1{font-size:15px;}
 .brand-text span{font-size:9px;letter-spacing:1px;}
@@ -799,13 +811,13 @@ gap:12px;
 }
 
 .brand img{
-width:62px;
-height:62px;
+width:58px;
+height:58px;
 }
 
 .footer-brand img{
-width:62px;
-height:62px;
+width:58px;
+height:58px;
 }
 
 .brand-text h1{font-size:17px;}
@@ -911,13 +923,13 @@ min-height:78px;
 .brand{gap:8px;}
 
 .brand img{
-width:53px;
-height:53px;
+width:50px;
+height:50px;
 }
 
 .footer-brand img{
-width:53px;
-height:53px;
+width:50px;
+height:50px;
 }
 
 .brand-text h1{font-size:14px;}
