@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Admissions | Tahidi International Training Institute</title>
-
 <meta name="description" content="Explore admission requirements, application procedures, required documents, fees and intakes at Tahidi International Training Institute.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,194 +15,285 @@
 :root{
 --maroon:#7A1220;
 --navy:#0F2A5E;
---dark-navy:#091B3D;
+--navy-dark:#091B3D;
 --gold:#D4AF37;
---white:#fff;
+--white:#FFFFFF;
 --light:#F4F6F9;
 --text:#263247;
---muted:#687386;
+--muted:#697589;
 --border:#E3E7ED;
 --shadow:0 8px 25px rgba(10,30,65,.09);
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 html{
 scroll-behavior:smooth;
-scroll-padding-top:120px;
+scroll-padding-top:115px;
 }
 
 body{
 font-family:'Jost',sans-serif;
 color:var(--text);
-line-height:1.7;
 background:#fff;
+line-height:1.7;
 }
 
-a{
-text-decoration:none;
-color:inherit;
-}
-
-img{
-max-width:100%;
-display:block;
-}
-
-button{
-font-family:inherit;
-}
-
-.container{
-width:min(1120px,92%);
-margin:auto;
-}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;}
+.container{width:min(1180px,92%);margin:auto;}
 
 /* TOP BAR */
 
 .topbar{
-background:var(--navy);
-color:white;
+background:var(--navy-dark);
+color:#fff;
 padding:8px 12px;
+font-size:12px;
 text-align:center;
-font-size:13px;
+letter-spacing:1.1px;
 font-weight:700;
-letter-spacing:1.2px;
 }
 
-/* HEADER */
+/* APPROVED TITI HEADER */
 
 header{
-background:#fff;
-box-shadow:0 3px 18px rgba(0,0,0,.09);
+background:var(--navy);
+box-shadow:0 5px 20px rgba(0,0,0,.16);
 position:sticky;
 top:0;
 z-index:1000;
 }
 
 .header-inner{
-width:min(1360px,96%);
-min-height:105px;
+width:min(1500px,98%);
+min-height:104px;
 margin:auto;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:20px;
-padding:10px 0;
+gap:clamp(12px,1.5vw,24px);
+flex-wrap:nowrap;
 }
 
 .brand{
 display:flex;
 align-items:center;
-gap:15px;
 flex-shrink:0;
+white-space:nowrap;
+margin-left:18px;
 }
 
 .brand img{
 width:180px;
 height:85px;
 object-fit:contain;
-object-position:center;
-display:block;
-background:white;
-border-radius:10px;
+object-position:left center;
 }
-
-.brand-text h1{
-font-size:19px;
-font-weight:800;
-line-height:1.2;
-color:var(--maroon);
-}
-
-.brand-text span{
-display:block;
-font-size:12px;
-letter-spacing:2px;
-font-weight:700;
-color:var(--navy);
-margin-top:4px;
-}
-
-/* NAVIGATION */
 
 nav{
 display:flex;
 align-items:center;
-justify-content:flex-end;
-gap:22px;
-font-size:14px;
-font-weight:800;
-color:var(--navy);
+justify-content:space-between;
+gap:clamp(9px,1.1vw,17px);
+flex:1;
+min-width:0;
+flex-wrap:nowrap;
 white-space:nowrap;
 }
 
-nav a{
-transition:.2s;
-}
-
-nav a:hover{
-color:var(--maroon);
-}
-
-.apply-btn{
-background:var(--maroon);
-color:white!important;
-padding:11px 19px;
-border-radius:5px;
+nav>a,
+nav button.nav-link{
+color:#fff;
+font-size:clamp(12px,1.02vw,14px);
+font-weight:800;
+letter-spacing:.2px;
+white-space:nowrap;
+flex-shrink:0;
+padding:12px 0;
 transition:.25s;
 }
 
-.apply-btn:hover{
-background:var(--navy);
-transform:translateY(-2px);
+nav>a:hover,
+nav button.nav-link:hover,
+nav>a.active{
+color:var(--gold);
+}
+
+nav button.nav-link{
+border:0;
+background:transparent;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:5px;
+font-family:inherit;
+}
+
+.dropdown-arrow{
+font-size:12px;
+transition:transform .25s;
+}
+
+.about-menu.open .dropdown-arrow,
+.programme-menu.open .dropdown-arrow,
+.admissions-menu.open .dropdown-arrow{
+transform:rotate(180deg);
+}
+
+.about-menu,
+.programme-menu,
+.admissions-menu{
+position:relative;
+display:flex;
+align-items:center;
+flex-shrink:0;
+}
+
+.about-submenu,
+.programme-submenu,
+.admissions-submenu{
+display:none;
+position:absolute;
+top:100%;
+left:-15px;
+min-width:235px;
+background:#fff;
+padding:9px 0;
+border-top:4px solid var(--gold);
+border-radius:0 0 7px 7px;
+box-shadow:0 12px 28px rgba(0,0,0,.2);
+z-index:1100;
+white-space:normal;
+}
+
+.about-submenu{min-width:255px;}
+
+.about-menu:hover .about-submenu,
+.about-menu:focus-within .about-submenu,
+.about-menu.open .about-submenu,
+.programme-menu:hover .programme-submenu,
+.programme-menu:focus-within .programme-submenu,
+.programme-menu.open .programme-submenu,
+.admissions-menu:hover .admissions-submenu,
+.admissions-menu:focus-within .admissions-submenu,
+.admissions-menu.open .admissions-submenu{
+display:block;
+}
+
+.about-submenu a,
+.programme-submenu a,
+.admissions-submenu a{
+display:block;
+padding:11px 18px;
+font-size:13px;
+font-weight:700;
+color:var(--navy);
+border-bottom:1px solid #edf0f4;
+}
+
+.about-submenu a:last-child,
+.programme-submenu a:last-child,
+.admissions-submenu a:last-child{
+border-bottom:0;
+}
+
+.about-submenu a:hover,
+.programme-submenu a:hover,
+.admissions-submenu a:hover{
+background:#F1F4F8;
+color:var(--maroon);
+padding-left:23px;
+}
+
+.nav-apply{
+background:var(--maroon);
+color:#fff!important;
+padding:12px 19px!important;
+border-radius:4px;
+font-size:13px!important;
+font-weight:800;
+margin-left:clamp(2px,.4vw,7px);
+}
+
+.nav-apply:hover{
+background:var(--gold);
+color:var(--navy)!important;
 }
 
 .menu-toggle{
 display:none;
+border:1px solid rgba(255,255,255,.3);
 background:var(--maroon);
-color:white;
-border:0;
+color:#fff;
 padding:8px 13px;
-font-size:23px;
-border-radius:4px;
+font-size:22px;
 cursor:pointer;
+border-radius:4px;
 }
 
 /* HERO */
 
 .hero{
-background:linear-gradient(120deg,rgba(9,27,61,.96),rgba(122,18,32,.91));
-color:white;
-text-align:center;
-padding:85px 15px;
 position:relative;
 overflow:hidden;
+background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);
+color:#fff;
+padding:85px 0 90px;
+text-align:center;
 }
 
-.hero .eyebrow{
+.hero::before{
+content:"";
+position:absolute;
+width:430px;
+height:430px;
+border:1px solid rgba(212,175,55,.25);
+border-radius:50%;
+right:-100px;
+top:-180px;
+pointer-events:none;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:300px;
+height:300px;
+border:1px solid rgba(255,255,255,.10);
+border-radius:50%;
+right:50px;
+bottom:-220px;
+pointer-events:none;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:900px;
+margin:auto;
+}
+
+.eyebrow{
 color:var(--gold);
-letter-spacing:3px;
-font-weight:800;
 font-size:13px;
+font-weight:800;
+letter-spacing:3px;
 }
 
-.hero h2{
-font-size:clamp(32px,5vw,49px);
-line-height:1.2;
-margin:12px 0;
+.hero h1{
+font-size:clamp(32px,5vw,51px);
 font-weight:800;
+line-height:1.16;
+margin:14px 0;
 }
 
 .hero p{
-max-width:720px;
+max-width:750px;
 margin:15px auto 25px;
 font-size:17px;
-color:#f0f2f7;
+color:#f0f2f8;
 }
 
 .gold-line{
@@ -219,7 +309,7 @@ display:inline-block;
 background:var(--gold);
 color:var(--navy);
 padding:13px 25px;
-border-radius:5px;
+border-radius:4px;
 font-weight:800;
 transition:.25s;
 }
@@ -231,9 +321,7 @@ transform:translateY(-3px);
 
 /* GENERAL SECTIONS */
 
-section{
-padding:70px 0;
-}
+section{padding:70px 0;}
 
 .section-heading{
 text-align:center;
@@ -241,7 +329,7 @@ margin-bottom:38px;
 }
 
 .section-heading h2{
-font-size:30px;
+font-size:clamp(26px,3vw,35px);
 color:var(--navy);
 font-weight:800;
 line-height:1.3;
@@ -249,7 +337,7 @@ line-height:1.3;
 
 .section-heading p{
 max-width:700px;
-margin:0 auto;
+margin:12px auto 0;
 color:var(--muted);
 }
 
@@ -271,13 +359,14 @@ font-weight:800;
 
 .intro-text p{
 margin-bottom:15px;
+color:#536075;
 }
 
 .intro-image{
 background:var(--light);
 padding:10px;
 border-radius:9px;
-box-shadow:0 8px 25px rgba(0,0,0,.07);
+box-shadow:var(--shadow);
 }
 
 .intro-image img{
@@ -285,14 +374,11 @@ width:100%;
 height:330px;
 object-fit:cover;
 border-radius:6px;
-display:block;
 }
 
 /* QUICK NAVIGATION */
 
-.quick-nav{
-background:var(--light);
-}
+.quick-nav{background:var(--light);}
 
 .quick-grid{
 display:grid;
@@ -315,14 +401,12 @@ transition:.25s;
 .quick-card:hover{
 transform:translateY(-5px);
 color:var(--maroon);
-box-shadow:0 9px 20px rgba(0,0,0,.09);
+box-shadow:var(--shadow);
 }
 
 /* REQUIREMENTS */
 
-.info-section{
-background:white;
-}
+.info-section{background:white;}
 
 .info-grid{
 display:grid;
@@ -344,15 +428,9 @@ margin-bottom:13px;
 font-weight:800;
 }
 
-.info-card ul{
-padding-left:21px;
-}
+.info-card ul{padding-left:21px;}
 
-.info-card li{
-margin-bottom:9px;
-}
-
-/* NOTICE */
+.info-card li{margin-bottom:9px;}
 
 .note{
 background:#fff8df;
@@ -364,9 +442,7 @@ border-radius:4px;
 
 /* DOCUMENTS */
 
-.documents{
-background:var(--light);
-}
+.documents{background:var(--light);}
 
 .document-list{
 display:grid;
@@ -402,7 +478,7 @@ transition:.25s;
 
 .intake-card:hover{
 transform:translateY(-5px);
-box-shadow:0 8px 20px rgba(0,0,0,.07);
+box-shadow:var(--shadow);
 }
 
 .intake-card h3{
@@ -414,9 +490,7 @@ font-weight:800;
 
 /* FEES */
 
-.fees{
-background:var(--light);
-}
+.fees{background:var(--light);}
 
 .fee-box{
 max-width:850px;
@@ -425,7 +499,7 @@ background:white;
 padding:35px;
 border-radius:7px;
 border-top:5px solid var(--gold);
-box-shadow:0 5px 20px rgba(0,0,0,.05);
+box-shadow:var(--shadow);
 }
 
 .fee-box h3{
@@ -481,12 +555,13 @@ background:white;
 transform:translateY(-3px);
 }
 
-/* FOOTER */
+/* EXISTING ADMISSIONS FOOTER */
 
 footer{
-background:var(--dark-navy);
+background:var(--navy-dark);
 color:white;
 padding:48px 0 16px;
+border-top:4px solid var(--gold);
 }
 
 .footer-grid{
@@ -509,9 +584,7 @@ font-size:14px;
 color:#d5dbe5;
 }
 
-footer p{
-margin-bottom:10px;
-}
+footer p{margin-bottom:10px;}
 
 footer a{
 display:block;
@@ -532,55 +605,14 @@ font-size:13px;
 color:#c7ceda;
 }
 
-/* TABLET */
+/* TABLET NAVIGATION */
 
-@media(max-width:1100px){
-
-.header-inner{
-flex-wrap:wrap;
-}
-
-.menu-toggle{
-display:block;
-}
-
-nav{
-display:none;
-width:100%;
-flex-direction:column;
-align-items:stretch;
-gap:0;
-padding:10px 0;
-white-space:normal;
-}
-
-nav.open{
-display:flex;
-}
-
-nav a{
-padding:12px;
-border-bottom:1px solid #eee;
-}
-
-nav .apply-btn{
-text-align:center;
-margin-top:10px;
-}
-
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
+@media(min-width:851px) and (max-width:1100px){
 
 .header-inner{
-min-height:auto;
-padding:10px 0;
-}
-
-.brand{
-gap:10px;
+width:99%;
+gap:9px;
+min-height:96px;
 }
 
 .brand img{
@@ -588,115 +620,263 @@ width:145px;
 height:72px;
 }
 
-.brand-text h1{
-font-size:15px;
+nav{gap:7px;}
+
+nav>a,
+nav button.nav-link{
+font-size:11px;
+letter-spacing:0;
 }
 
-.brand-text span{
-font-size:10px;
-letter-spacing:1.3px;
+.nav-apply{
+padding:9px 10px!important;
+font-size:11px!important;
+margin-left:0;
 }
 
-.intro-grid,
-.info-grid,
-.document-list,
-.footer-grid{
-grid-template-columns:1fr;
+.about-submenu,
+.programme-submenu,
+.admissions-submenu{
+min-width:210px;
+}
 }
 
-.quick-grid,
-.intake-grid{
-grid-template-columns:repeat(2,1fr);
+/* MOBILE NAVIGATION */
+
+@media(max-width:850px){
+
+.header-inner{
+width:94%;
+min-height:88px;
+gap:12px;
 }
 
-.hero{
-padding:60px 15px;
+.brand img{
+width:145px;
+height:72px;
 }
 
-section{
-padding:52px 0;
+.menu-toggle{
+display:block;
+flex-shrink:0;
 }
 
-.intro-image img{
-height:260px;
+nav{
+display:none;
+position:absolute;
+top:100%;
+left:0;
+right:0;
+width:100%;
+background:var(--navy);
+padding:15px 5%;
+flex-direction:column;
+align-items:stretch;
+gap:0;
+box-shadow:0 8px 18px rgba(0,0,0,.2);
+max-height:calc(100vh - 88px);
+overflow-y:auto;
 }
 
+nav.open{display:flex;}
+
+nav>a,
+nav button.nav-link{
+color:#fff;
+font-size:14px;
+padding:12px 8px;
+border-bottom:1px solid rgba(255,255,255,.16);
+width:100%;
+text-align:left;
 }
 
-/* SMALL PHONES */
+nav>a:hover,
+nav button.nav-link:hover{color:var(--gold);}
 
-@media(max-width:430px){
+.about-menu,
+.programme-menu,
+.admissions-menu{
+display:block;
+width:100%;
+}
+
+nav button.nav-link{justify-content:space-between;}
+
+.about-submenu,
+.programme-submenu,
+.admissions-submenu{
+position:static;
+min-width:0;
+width:100%;
+box-shadow:none;
+border-top:2px solid var(--gold);
+border-radius:0;
+padding:4px 0;
+background:#16366F;
+}
+
+.about-submenu a,
+.programme-submenu a,
+.admissions-submenu a{
+color:#fff;
+padding:11px 20px;
+font-size:13px;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.about-submenu a:hover,
+.programme-submenu a:hover,
+.admissions-submenu a:hover{
+background:#1D437E;
+color:var(--gold);
+padding-left:25px;
+}
+
+.nav-apply{
+padding:11px 14px!important;
+margin-top:10px;
+text-align:center;
+border-bottom:0;
+}
+
+.intro-grid{grid-template-columns:1fr;}
+.info-grid{grid-template-columns:1fr;}
+.footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
+}
+
+/* SMALL MOBILE */
+
+@media(max-width:560px){
+
+.topbar{
+font-size:11px;
+letter-spacing:.5px;
+}
+
+.header-inner{min-height:78px;}
 
 .brand img{
 width:125px;
 height:65px;
 }
 
-.brand-text h1{
-font-size:13px;
-}
+nav{max-height:calc(100vh - 78px);}
 
-.brand-text span{
-font-size:9px;
-letter-spacing:1px;
-}
+.hero{padding:55px 0 60px;}
+
+.hero h1{font-size:32px;}
+
+.hero p{font-size:15px;}
+
+section{padding:49px 0;}
+
+.section-heading{margin-bottom:30px;}
+
+.intro-image img{height:260px;}
 
 .quick-grid,
-.intake-grid{
+.intake-grid,
+.document-list{
 grid-template-columns:1fr;
 }
 
-.hero h2{
-font-size:32px;
-}
+.info-card{padding:23px;}
 
-.fee-box{
-padding:23px;
-}
+.fee-box{padding:23px;}
 
+.footer-grid{grid-template-columns:1fr;gap:25px;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- TOP BAR -->
+
 <div class="topbar">
 TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 </div>
 
+<!-- APPROVED MASTER HEADER -->
+
 <header>
-<div class="header-inner">
+<div class="container header-inner">
 
 <a href="index.html" class="brand">
-<img src="BYE.png" alt="Tahidi International Training Institute Official Logo">
-<div class="brand-text">
-<h1>TAHIDI INTERNATIONAL</h1>
-<span>TRAINING INSTITUTE</span>
-</div>
+<img src="BYE.png" alt="Tahidi International Training Institute Logo">
 </a>
 
-<button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+<button class="menu-toggle"
+id="menuToggle"
+aria-label="Open navigation"
+aria-expanded="false"
+aria-controls="mainNav">☰</button>
 
 <nav id="mainNav">
-<a href="index.html">HOME</a>
-<a href="about.html">ABOUT US</a>
-<a href="index.html#programmes">PROGRAMMES</a>
-<a href="admissions.html">ADMISSIONS</a>
-<a href="index.html#contact">CONTACT</a>
-<a href="apply.html" class="apply-btn">APPLY NOW</a>
-</nav>
 
+<a href="index.html">HOME</a>
+
+<div class="about-menu" id="aboutMenu">
+<button type="button" class="nav-link" id="aboutToggle" aria-expanded="false">
+ABOUT US <span class="dropdown-arrow">▼</span>
+</button>
+
+<div class="about-submenu">
+<a href="about.html#who-we-are">Who We Are</a>
+<a href="about.html#our-vision">Our Vision</a>
+<a href="about.html#our-mission">Our Mission</a>
+<a href="about.html#our-core-values">Our Core Values</a>
+<a href="about.html#student-commitment">Our Commitment to Students</a>
+<a href="about.html#our-location">Our Location</a>
+<a href="about.html#contact-information">Contact Information</a>
+</div>
+</div>
+
+<div class="programme-menu" id="programmeMenu">
+<button type="button" class="nav-link" id="programmeToggle" aria-expanded="false">
+PROGRAMMES <span class="dropdown-arrow">▼</span>
+</button>
+
+<div class="programme-submenu">
+<a href="index.html#diploma">Diploma Programmes</a>
+<a href="index.html#certificate">Certificate Programmes</a>
+<a href="index.html#shortCourses">Short Courses</a>
+</div>
+</div>
+
+<div class="admissions-menu" id="admissionsMenu">
+<button type="button" class="nav-link" id="admissionsToggle" aria-expanded="false">
+ADMISSIONS <span class="dropdown-arrow">▼</span>
+</button>
+
+<div class="admissions-submenu">
+<a href="admissions.html#admissions">Admissions at TITI</a>
+<a href="admissions.html#requirements">Entry Requirements</a>
+<a href="admissions.html#documents">Required Documents</a>
+<a href="admissions.html#intakes">Intakes &amp; Admission</a>
+<a href="admissions.html#fees">Fees &amp; Payment</a>
+<a href="admissions.html#enquiries">Admission Enquiries</a>
+</div>
+</div>
+
+<a href="index.html#gallery">CAMPUS</a>
+<a href="index.html#contact">CONTACT</a>
+<a href="apply.html#online-application" class="nav-apply">APPLY NOW</a>
+
+</nav>
 </div>
 </header>
 
+<main>
+
 <!-- ADMISSIONS HERO -->
 
-<section class="hero">
-<div class="container">
+<section class="hero" id="admissions">
+<div class="container hero-content">
 
 <div class="eyebrow">YOUR FUTURE STARTS HERE</div>
 
-<h2>ADMISSIONS AT TITI</h2>
+<h1>ADMISSIONS AT TITI</h1>
 
 <div class="gold-line"></div>
 
@@ -705,7 +885,9 @@ Take the next step towards your academic and professional ambitions.
 Discover our admission procedures, entry requirements and application information.
 </p>
 
-<a href="apply.html" class="primary-btn">START YOUR APPLICATION →</a>
+<a href="apply.html#online-application" class="primary-btn">
+START YOUR APPLICATION →
+</a>
 
 </div>
 </section>
@@ -731,7 +913,7 @@ Our admissions process is designed to guide applicants through programme selecti
 We encourage applicants to review the relevant programme requirements and prepare the necessary documents before submitting an application.
 </p>
 
-<a href="apply.html" class="primary-btn">APPLY NOW</a>
+<a href="apply.html#online-application" class="primary-btn">APPLY NOW</a>
 
 </div>
 
@@ -760,7 +942,7 @@ We encourage applicants to review the relevant programme requirements and prepar
 <a class="quick-card" href="#intakes">Intakes & Admission →</a>
 <a class="quick-card" href="#fees">Fees & Payment →</a>
 <a class="quick-card" href="#enquiries">Admission Enquiries →</a>
-<a class="quick-card" href="apply.html">Apply Online →</a>
+<a class="quick-card" href="apply.html#online-application">Apply Online →</a>
 
 </div>
 </div>
@@ -836,7 +1018,7 @@ We encourage applicants to review the relevant programme requirements and prepar
 <div class="container">
 
 <div class="section-heading">
-<h2>INTAKES & ADMISSION</h2>
+<h2>INTAKES &amp; ADMISSION</h2>
 <div class="gold-line"></div>
 <p>Applicants are encouraged to contact the Institute to confirm available admission periods.</p>
 </div>
@@ -868,7 +1050,7 @@ We encourage applicants to review the relevant programme requirements and prepar
 <div class="container">
 
 <div class="section-heading">
-<h2>FEES & PAYMENT</h2>
+<h2>FEES &amp; PAYMENT</h2>
 <div class="gold-line"></div>
 <p>Understand your financial obligations before commencing your studies.</p>
 </div>
@@ -908,11 +1090,13 @@ Our admissions team is available to guide prospective students on programme sele
 
 <div class="enquiry-links">
 <a href="index.html#contact">CONTACT THE INSTITUTE</a>
-<a href="apply.html">APPLY NOW</a>
+<a href="apply.html#online-application">APPLY NOW</a>
 </div>
 
 </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 
@@ -933,24 +1117,28 @@ Tahidi International Training Institute is committed to providing academic and p
 <h3>QUICK LINKS</h3>
 <a href="index.html">Home</a>
 <a href="about.html">About Us</a>
-<a href="index.html#programmes">Programmes</a>
-<a href="admissions.html">Admissions</a>
-<a href="apply.html">Apply Now</a>
+<a href="index.html#diploma">Diploma Programmes</a>
+<a href="index.html#certificate">Certificate Programmes</a>
+<a href="index.html#shortCourses">Short Courses</a>
+<a href="admissions.html#admissions">Admissions</a>
+<a href="apply.html#online-application">Apply Now</a>
 </div>
 
 <div>
 <h3>ADMISSIONS</h3>
 <a href="#requirements">Admission Requirements</a>
 <a href="#documents">Required Documents</a>
-<a href="#intakes">Intakes & Admission</a>
-<a href="#fees">Fees & Payment</a>
+<a href="#intakes">Intakes &amp; Admission</a>
+<a href="#fees">Fees &amp; Payment</a>
 <a href="#enquiries">Admission Enquiries</a>
 </div>
 
 </div>
 
 <div class="footer-bottom">
-© <span id="year"></span> Tahidi International Training Institute. All Rights Reserved.
+© <span id="footer-year"></span>
+<strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE.</strong>
+All Rights Reserved.
 </div>
 
 </div>
@@ -958,31 +1146,129 @@ Tahidi International Training Institute is committed to providing academic and p
 
 <script>
 
-function toggleMenu(){
+/* COPYRIGHT YEAR */
 
-const nav=document.getElementById("mainNav");
-const button=document.querySelector(".menu-toggle");
+document.getElementById('footer-year').textContent =
+new Date().getFullYear();
 
-nav.classList.toggle("open");
+/* MOBILE NAVIGATION */
 
-button.setAttribute(
-"aria-expanded",
-nav.classList.contains("open")
+const menuToggle=document.getElementById('menuToggle');
+const mainNav=document.getElementById('mainNav');
+
+menuToggle.addEventListener('click',()=>{
+
+mainNav.classList.toggle('open');
+
+const isOpen=mainNav.classList.contains('open');
+
+menuToggle.setAttribute('aria-expanded',isOpen);
+menuToggle.setAttribute(
+'aria-label',
+isOpen?'Close navigation':'Open navigation'
 );
+
+});
+
+/* DROPDOWN MENUS */
+
+const dropdowns=[
+{
+menu:document.getElementById('aboutMenu'),
+button:document.getElementById('aboutToggle')
+},
+{
+menu:document.getElementById('programmeMenu'),
+button:document.getElementById('programmeToggle')
+},
+{
+menu:document.getElementById('admissionsMenu'),
+button:document.getElementById('admissionsToggle')
+}
+];
+
+dropdowns.forEach(item=>{
+
+item.button.addEventListener('click',event=>{
+
+event.stopPropagation();
+
+dropdowns.forEach(other=>{
+
+if(other!==item){
+other.menu.classList.remove('open');
+other.button.setAttribute('aria-expanded','false');
+}
+
+});
+
+item.menu.classList.toggle('open');
+
+item.button.setAttribute(
+'aria-expanded',
+item.menu.classList.contains('open')
+);
+
+});
+
+});
+
+/* CLOSE MENUS AFTER SELECTING A LINK */
+
+document.querySelectorAll('#mainNav a').forEach(link=>{
+
+link.addEventListener('click',()=>{
+
+mainNav.classList.remove('open');
+
+menuToggle.setAttribute('aria-expanded','false');
+menuToggle.setAttribute('aria-label','Open navigation');
+
+dropdowns.forEach(item=>{
+item.menu.classList.remove('open');
+item.button.setAttribute('aria-expanded','false');
+});
+
+});
+
+});
+
+/* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
+
+document.addEventListener('click',event=>{
+
+dropdowns.forEach(item=>{
+
+if(!item.menu.contains(event.target)){
+
+item.menu.classList.remove('open');
+item.button.setAttribute('aria-expanded','false');
 
 }
 
-document.getElementById("year").textContent=new Date().getFullYear();
-
-document.querySelectorAll("#mainNav a").forEach(link=>{
-
-link.addEventListener("click",()=>{
-
-document.getElementById("mainNav").classList.remove("open");
-
-document.querySelector(".menu-toggle").setAttribute("aria-expanded","false");
+});
 
 });
+
+/* CLOSE MOBILE MENU WITH ESCAPE */
+
+document.addEventListener('keydown',event=>{
+
+if(event.key==='Escape'){
+
+mainNav.classList.remove('open');
+
+menuToggle.setAttribute('aria-expanded','false');
+menuToggle.setAttribute('aria-label','Open navigation');
+
+dropdowns.forEach(item=>{
+
+item.menu.classList.remove('open');
+item.button.setAttribute('aria-expanded','false');
+
+});
+
+}
 
 });
 
