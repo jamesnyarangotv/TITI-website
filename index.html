@@ -35,29 +35,36 @@ nav a,nav button.nav-link{color:var(--navy);font-family:inherit;font-size:clamp(
 nav a:hover,nav button.nav-link:hover{color:var(--maroon);}
 nav button.nav-link{border:0;background:transparent;cursor:pointer;display:flex;align-items:center;gap:5px;}
 .dropdown-arrow{font-size:12px;transition:transform .25s;}
-.programme-menu.open .dropdown-arrow,.admissions-menu.open .dropdown-arrow{transform:rotate(180deg);}
+.programme-menu.open .dropdown-arrow,.admissions-menu.open .dropdown-arrow,.about-menu.open .dropdown-arrow{transform:rotate(180deg);}
 
-/* PROGRAMMES AND ADMISSIONS DROPDOWNS */
-.programme-menu,.admissions-menu{position:relative;display:flex;align-items:center;flex-shrink:0;}
-.programme-submenu,.admissions-submenu{
+/* PROGRAMMES, ADMISSIONS AND ABOUT DROPDOWNS */
+.programme-menu,.admissions-menu,.about-menu{position:relative;display:flex;align-items:center;flex-shrink:0;}
+
+.programme-submenu,.admissions-submenu,.about-submenu{
 display:none;position:absolute;top:100%;left:-15px;min-width:225px;
 background:white;padding:9px 0;border-top:3px solid var(--gold);
 border-radius:0 0 6px 6px;box-shadow:0 8px 22px rgba(0,0,0,.15);
 z-index:1100;white-space:normal;
 }
+
 .programme-menu:hover .programme-submenu,
 .programme-menu:focus-within .programme-submenu,
 .programme-menu.open .programme-submenu,
 .admissions-menu:hover .admissions-submenu,
 .admissions-menu:focus-within .admissions-submenu,
-.admissions-menu.open .admissions-submenu{display:block;}
+.admissions-menu.open .admissions-submenu,
+.about-menu:hover .about-submenu,
+.about-menu:focus-within .about-submenu,
+.about-menu.open .about-submenu{display:block;}
 
-.programme-submenu a,.admissions-submenu a{
+.about-submenu{min-width:255px;}
+
+.programme-submenu a,.admissions-submenu a,.about-submenu a{
 display:block;padding:11px 17px;font-size:13px;font-weight:700;
 color:var(--navy);border-bottom:1px solid #f0f0f0;
 }
-.programme-submenu a:last-child,.admissions-submenu a:last-child{border-bottom:0;}
-.programme-submenu a:hover,.admissions-submenu a:hover{
+.programme-submenu a:last-child,.admissions-submenu a:last-child,.about-submenu a:last-child{border-bottom:0;}
+.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{
 background:var(--light);color:var(--maroon);padding-left:22px;
 }
 .nav-apply{background:var(--maroon);color:white!important;padding:11px 19px!important;border-radius:5px;font-size:13px!important;font-weight:800;margin-left:clamp(2px,.4vw,7px);}
@@ -181,7 +188,7 @@ section{padding:62px 0;}
 nav{gap:8px;}
 nav a,nav button.nav-link{font-size:11.5px;}
 .nav-apply{padding:9px 12px!important;font-size:11.5px!important;}
-.programme-submenu,.admissions-submenu{min-width:210px;}
+.programme-submenu,.admissions-submenu,.about-submenu{min-width:210px;}
 }
 
 /* TABLET AND MOBILE NAVIGATION */
@@ -198,14 +205,14 @@ max-height:calc(100vh - 78px);overflow-y:auto;
 }
 nav.open{display:flex;}
 nav>a,nav button.nav-link{font-size:14px;padding:11px 5px;border-bottom:1px solid #eee;width:100%;text-align:left;}
-.programme-menu,.admissions-menu{display:block;width:100%;}
+.programme-menu,.admissions-menu,.about-menu{display:block;width:100%;}
 nav button.nav-link{justify-content:space-between;}
-.programme-submenu,.admissions-submenu{
+.programme-submenu,.admissions-submenu,.about-submenu{
 position:static;min-width:0;width:100%;box-shadow:none;
 border-top:2px solid var(--gold);border-radius:0;padding:4px 0;background:#F7F8FA;
 }
-.programme-submenu a,.admissions-submenu a{padding:11px 20px;font-size:13px;}
-.programme-submenu a:hover,.admissions-submenu a:hover{padding-left:25px;}
+.programme-submenu a,.admissions-submenu a,.about-submenu a{padding:11px 20px;font-size:13px;}
+.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{padding-left:25px;}
 .nav-apply{padding:10px 14px!important;margin-top:5px;text-align:center;}
 .about-grid{grid-template-columns:1fr;}
 .programme-grid{grid-template-columns:repeat(2,1fr);}
@@ -259,7 +266,21 @@ section{padding:45px 0;}
 
 <nav id="mainNav">
 <a href="#home">Home</a>
-<a href="about.html">About Us</a>
+
+<div class="about-menu" id="aboutMenu">
+<button type="button" class="nav-link" id="aboutToggle" aria-expanded="false" aria-controls="aboutSubmenu">
+ABOUT US <span class="dropdown-arrow">▼</span>
+</button>
+<div class="about-submenu" id="aboutSubmenu">
+<a href="about.html#who-we-are">Who We Are</a>
+<a href="about.html#our-vision">Our Vision</a>
+<a href="about.html#our-mission">Our Mission</a>
+<a href="about.html#our-core-values">Our Core Values</a>
+<a href="about.html#student-commitment">Our Commitment to Students</a>
+<a href="about.html#our-location">Our Location</a>
+<a href="about.html#contact-information">Contact Information</a>
+</div>
+</div>
 
 <div class="programme-menu" id="programmeMenu">
 <button type="button" class="nav-link" id="programmeToggle" aria-expanded="false" aria-controls="programmeSubmenu">
@@ -588,6 +609,15 @@ menuToggle.setAttribute('aria-expanded',isOpen);
 menuToggle.setAttribute('aria-label',isOpen?'Close navigation':'Open navigation');
 });
 
+/* ABOUT US DROPDOWN */
+const aboutMenu=document.getElementById('aboutMenu');
+const aboutToggle=document.getElementById('aboutToggle');
+
+aboutToggle.addEventListener('click',()=>{
+aboutMenu.classList.toggle('open');
+aboutToggle.setAttribute('aria-expanded',aboutMenu.classList.contains('open'));
+});
+
 /* PROGRAMMES DROPDOWN */
 const programmeMenu=document.getElementById('programmeMenu');
 const programmeToggle=document.getElementById('programmeToggle');
@@ -610,10 +640,12 @@ link.addEventListener('click',()=>{
 mainNav.classList.remove('open');
 programmeMenu.classList.remove('open');
 admissionsMenu.classList.remove('open');
+aboutMenu.classList.remove('open');
 menuToggle.setAttribute('aria-expanded','false');
 menuToggle.setAttribute('aria-label','Open navigation');
 programmeToggle.setAttribute('aria-expanded','false');
 admissionsToggle.setAttribute('aria-expanded','false');
+aboutToggle.setAttribute('aria-expanded','false');
 });
 });
 
@@ -626,6 +658,10 @@ programmeToggle.setAttribute('aria-expanded','false');
 if(!admissionsMenu.contains(event.target)){
 admissionsMenu.classList.remove('open');
 admissionsToggle.setAttribute('aria-expanded','false');
+}
+if(!aboutMenu.contains(event.target)){
+aboutMenu.classList.remove('open');
+aboutToggle.setAttribute('aria-expanded','false');
 }
 });
 
