@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admissions | Tahidi International Training Institute</title>
+<meta name="description" content="Explore admission requirements, application procedures, required documents, fees and intakes at Tahidi International Training Institute.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--maroon:#7A1220;
+--navy:#0F2A5E;
+--gold:#D4AF37;
+--white:#fff;
+--light:#F5F5F5;
+--text:#263247;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:110px;}
+body{font-family:'Jost',sans-serif;color:var(--text);line-height:1.7;}
+a{text-decoration:none;color:inherit;}
+.container{width:min(1120px,92%);margin:auto;}
+
+.topbar{
+background:var(--navy);
+color:white;
+padding:7px;
+text-align:center;
+font-size:13px;
+}
+
+header{
+background:white;
+box-shadow:0 3px 15px rgba(0,0,0,.08);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.header-inner{
+width:min(1360px,96%);
+min-height:90px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.brand img{
+width:64px;
+height:64px;
+object-fit:contain;
+border:2px solid var(--gold);
+border-radius:8px;
+padding:4px;
+}
+
+.brand h1{
+font-size:20px;
+color:var(--maroon);
+line-height:1.2;
+font-weight:800;
+}
+
+.brand span{
+font-size:12px;
+letter-spacing:2px;
+color:var(--navy);
+font-weight:700;
+}
+
+nav{
+display:flex;
+align-items:center;
+gap:23px;
+font-size:14px;
+font-weight:800;
+color:var(--navy);
+}
+
+nav a:hover{color:var(--maroon);}
+
+.apply-btn{
+background:var(--maroon);
+color:white!important;
+padding:11px 19px;
+border-radius:5px;
+}
+
+.apply-btn:hover{background:var(--navy);}
+
+.menu-toggle{
+display:none;
+background:var(--maroon);
+color:white;
+border:0;
+padding:8px 13px;
+font-size:23px;
+cursor:pointer;
+}
+
+.hero{
+background:linear-gradient(120deg,var(--navy),var(--maroon));
+color:white;
+text-align:center;
+padding:75px 15px;
+}
+
+.hero .eyebrow{
+color:var(--gold);
+letter-spacing:3px;
+font-weight:800;
+font-size:13px;
+}
+
+.hero h2{
+font-size:clamp(32px,5vw,48px);
+line-height:1.2;
+margin:10px 0;
+}
+
+.hero p{
+max-width:700px;
+margin:12px auto 22px;
+font-size:16px;
+}
+
+.gold-line{
+width:65px;
+height:4px;
+background:var(--gold);
+margin:15px auto;
+border-radius:5px;
+}
+
+.primary-btn{
+display:inline-block;
+background:var(--gold);
+color:var(--navy);
+padding:12px 25px;
+border-radius:5px;
+font-weight:800;
+transition:.25s;
+}
+
+.primary-btn:hover{
+background:white;
+transform:translateY(-3px);
+}
+
+section{padding:65px 0;}
+
+.section-heading{
+text-align:center;
+margin-bottom:35px;
+}
+
+.section-heading h2{
+font-size:30px;
+color:var(--navy);
+font-weight:800;
+}
+
+.section-heading p{
+max-width:680px;
+margin:auto;
+color:#687386;
+}
+
+.intro-grid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:35px;
+align-items:center;
+}
+
+.intro-text h3{
+color:var(--maroon);
+font-size:25px;
+margin-bottom:12px;
+}
+
+.intro-text p{margin-bottom:13px;}
+
+.intro-image{
+background:var(--light);
+padding:10px;
+border-radius:8px;
+}
+
+.intro-image img{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:5px;
+}
+
+.quick-nav{background:var(--light);}
+
+.quick-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.quick-card{
+background:white;
+padding:20px;
+border-bottom:3px solid var(--gold);
+border-radius:5px;
+color:var(--navy);
+font-weight:800;
+text-align:center;
+transition:.25s;
+}
+
+.quick-card:hover{
+transform:translateY(-4px);
+color:var(--maroon);
+}
+
+.info-section{background:white;}
+
+.info-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.info-card{
+background:var(--light);
+padding:25px;
+border-left:4px solid var(--gold);
+border-radius:5px;
+}
+
+.info-card h3{
+color:var(--navy);
+font-size:19px;
+margin-bottom:10px;
+}
+
+.info-card ul{padding-left:20px;}
+.info-card li{margin-bottom:7px;}
+
+.documents{background:var(--light);}
+
+.document-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
+
+.document-item{
+background:white;
+padding:16px;
+border-radius:5px;
+border-left:4px solid var(--maroon);
+font-weight:600;
+}
+
+.intake-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:17px;
+}
+
+.intake-card{
+background:var(--light);
+padding:25px;
+text-align:center;
+border-bottom:4px solid var(--gold);
+border-radius:5px;
+}
+
+.intake-card h3{
+color:var(--navy);
+font-size:20px;
+margin-bottom:7px;
+}
+
+.fees{background:var(--light);}
+
+.fee-box{
+max-width:850px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:7px;
+border-top:4px solid var(--gold);
+}
+
+.fee-box h3{
+color:var(--navy);
+margin-bottom:10px;
+font-size:22px;
+}
+
+.fee-box p{margin-bottom:12px;}
+
+.note{
+background:#fff8df;
+border-left:4px solid var(--gold);
+padding:15px;
+margin-top:18px;
+}
+
+.enquiries{
+background:var(--navy);
+color:white;
+text-align:center;
+}
+
+.enquiries h2{
+font-size:30px;
+margin-bottom:10px;
+}
+
+.enquiries p{
+max-width:700px;
+margin:10px auto;
+}
+
+.enquiry-links{
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+margin-top:25px;
+}
+
+.enquiry-links a{
+background:var(--gold);
+color:var(--navy);
+padding:11px 20px;
+border-radius:5px;
+font-weight:800;
+}
+
+footer{
+background:#09172E;
+color:white;
+padding:40px 0 15px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:25px;
+}
+
+footer h3{
+color:var(--gold);
+margin-bottom:12px;
+font-size:17px;
+}
+
+footer p,footer a{
+font-size:14px;
+color:#d5dbe5;
+}
+
+footer a{
+display:block;
+margin-bottom:7px;
+}
+
+footer a:hover{color:var(--gold);}
+
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,.15);
+padding-top:15px;
+text-align:center;
+font-size:13px;
+color:#c7ceda;
+}
+
+@media(max-width:1000px){
+.header-inner{flex-wrap:wrap;padding:10px 0;}
+.menu-toggle{display:block;}
+nav{
+display:none;
+width:100%;
+flex-direction:column;
+align-items:stretch;
+gap:0;
+padding:10px 0;
+}
+nav.open{display:flex;}
+nav a{padding:12px;border-bottom:1px solid #eee;}
+nav .apply-btn{text-align:center;margin-top:10px;}
+}
+
+@media(max-width:700px){
+.intro-grid,.info-grid,.document-list,.footer-grid{
+grid-template-columns:1fr;
+}
+.quick-grid,.intake-grid{grid-template-columns:repeat(2,1fr);}
+.hero{padding:55px 15px;}
+section{padding:48px 0;}
+}
+
+@media(max-width:430px){
+.brand img{width:53px;height:53px;}
+.brand h1{font-size:16px;}
+.brand span{font-size:10px;}
+.quick-grid,.intake-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
+</div>
+
+<header>
+<div class="header-inner">
+
+<a href="index.html" class="brand">
+<img src="JAMO%20LOGO.jpeg" alt="TITI Logo">
+<div>
+<h1>TAHIDI INTERNATIONAL</h1>
+<span>TRAINING INSTITUTE</span>
+</div>
+</a>
+
+<button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
+
+<nav id="mainNav">
+<a href="index.html">HOME</a>
+<a href="index.html#about">ABOUT US</a>
+<a href="index.html#programmes">PROGRAMMES</a>
+<a href="admissions.html">ADMISSIONS</a>
+<a href="index.html#contact">CONTACT</a>
+<a href="apply.html" class="apply-btn">APPLY NOW</a>
+</nav>
+
+</div>
+</header>
+
+<section class="hero">
+<div class="container">
+<div class="eyebrow">YOUR FUTURE STARTS HERE</div>
+<h2>ADMISSIONS AT TITI</h2>
+<div class="gold-line"></div>
+<p>
+Take the next step towards your academic and professional ambitions.
+Discover our admission procedures, entry requirements and application information.
+</p>
+<a href="apply.html" class="primary-btn">START YOUR APPLICATION →</a>
+</div>
+</section>
+
+<section>
+<div class="container intro-grid">
+
+<div class="intro-text">
+<h3>Welcome to TITI Admissions</h3>
+<p>
+Tahidi International Training Institute welcomes prospective students who wish to pursue academic, technical and professional training opportunities.
+</p>
+<p>
+Our admissions process is designed to guide applicants through programme selection, application, documentation and enrolment.
+</p>
+<p>
+We encourage applicants to review the relevant programme requirements and prepare the necessary documents before submitting an application.
+</p>
+<a href="apply.html" class="primary-btn">APPLY NOW</a>
+</div>
+
+<div class="intro-image">
+<img src="apply.jpeg" alt="TITI Admissions">
+</div>
+
+</div>
+</section>
+
+<section class="quick-nav">
+<div class="container">
+<div class="section-heading">
+<h2>EXPLORE ADMISSIONS</h2>
+<div class="gold-line"></div>
+<p>Find the information you need before beginning your application.</p>
+</div>
+
+<div class="quick-grid">
+<a class="quick-card" href="#requirements">Admission Requirements →</a>
+<a class="quick-card" href="#documents">Required Documents →</a>
+<a class="quick-card" href="#intakes">Intakes & Admission →</a>
+<a class="quick-card" href="#fees">Fees & Payment →</a>
+<a class="quick-card" href="#enquiries">Admission Enquiries →</a>
+<a class="quick-card" href="apply.html">Apply Online →</a>
+</div>
+</div>
+</section>
+
+<section id="requirements" class="info-section">
+<div class="container">
+
+<div class="section-heading">
+<h2>ADMISSION REQUIREMENTS</h2>
+<div class="gold-line"></div>
+<p>Applicants should meet the entry requirements applicable to their chosen programme.</p>
+</div>
+
+<div class="info-grid">
+<div class="info-card">
+<h3>Certificate Programmes</h3>
+<ul>
+<li>Relevant academic qualification from a recognised institution.</li>
+<li>Academic documents showing previous studies.</li>
+<li>Any additional requirements specified for the programme.</li>
+</ul>
+</div>
+
+<div class="info-card">
+<h3>Diploma Programmes</h3>
+<ul>
+<li>Relevant certificate or other recognised entry qualification.</li>
+<li>Academic transcripts or certificates.</li>
+<li>Any additional programme-specific requirements.</li>
+</ul>
+</div>
+</div>
+
+<div class="note">
+<strong>Important:</strong> Entry requirements may vary by programme. Applicants should confirm the specific requirements with the Institute before applying.
+</div>
+
+</div>
+</section>
+
+<section id="documents" class="documents">
+<div class="container">
+
+<div class="section-heading">
+<h2>REQUIRED DOCUMENTS</h2>
+<div class="gold-line"></div>
+<p>Prepare the following documents when making your application.</p>
+</div>
+
+<div class="document-list">
+<div class="document-item">Academic certificates and transcripts</div>
+<div class="document-item">National identification document or other valid identification</div>
+<div class="document-item">Recent passport-size photographs</div>
+<div class="document-item">Completed application form</div>
+<div class="document-item">Relevant professional or supporting certificates, where applicable</div>
+<div class="document-item">Any additional documents requested by the Institute</div>
+</div>
+
+</div>
+</section>
+
+<section id="intakes">
+<div class="container">
+
+<div class="section-heading">
+<h2>INTAKES & ADMISSION</h2>
+<div class="gold-line"></div>
+<p>Applicants are encouraged to contact the Institute to confirm available admission periods.</p>
+</div>
+
+<div class="intake-grid">
+<div class="intake-card">
+<h3>Programme Selection</h3>
+<p>Choose a programme that matches your academic background and career ambitions.</p>
+</div>
+
+<div class="intake-card">
+<h3>Application</h3>
+<p>Complete and submit the official application form with the required documents.</p>
+</div>
+
+<div class="intake-card">
+<h3>Admission Confirmation</h3>
+<p>Follow up with the Institute for application assessment and admission guidance.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="fees" class="fees">
+<div class="container">
+
+<div class="section-heading">
+<h2>FEES & PAYMENT</h2>
+<div class="gold-line"></div>
+<p>Understand your financial obligations before commencing your studies.</p>
+</div>
+
+<div class="fee-box">
+<h3>Tuition Fees and Other Charges</h3>
+<p>
+Fees depend on the programme and level of study. Applicants should obtain the current official fee structure from the Institute before making payments.
+</p>
+<p>
+Students should follow the official payment instructions provided by the Institute and retain payment receipts for reference.
+</p>
+<div class="note">
+<strong>Payment Notice:</strong> Always confirm the official payment details with the Institute before transferring any money. Do not rely on unverified payment instructions.
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="enquiries" class="enquiries">
+<div class="container">
+<h2>NEED ADMISSION ASSISTANCE?</h2>
+<div class="gold-line"></div>
+<p>
+Our admissions team is available to guide prospective students on programme selection, entry requirements, documentation and the application process.
+</p>
+
+<div class="enquiry-links">
+<a href="index.html#contact">CONTACT THE INSTITUTE</a>
+<a href="apply.html">APPLY NOW</a>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+<h3>ABOUT TITI</h3>
+<p>
+Tahidi International Training Institute is committed to providing academic and professional training opportunities.
+</p>
+<p><strong>BREAKING THE LIMITS</strong></p>
+</div>
+
+<div>
+<h3>QUICK LINKS</h3>
+<a href="index.html">Home</a>
+<a href="index.html#about">About Us</a>
+<a href="index.html#programmes">Programmes</a>
+<a href="admissions.html">Admissions</a>
+<a href="apply.html">Apply Now</a>
+</div>
+
+<div>
+<h3>ADMISSIONS</h3>
+<a href="#requirements">Admission Requirements</a>
+<a href="#documents">Required Documents</a>
+<a href="#intakes">Intakes & Admission</a>
+<a href="#fees">Fees & Payment</a>
+<a href="#enquiries">Admission Enquiries</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© <span id="year"></span> Tahidi International Training Institute. All Rights Reserved.
+</div>
+
+</div>
+</footer>
+
+<script>
+function toggleMenu(){
+document.getElementById("mainNav").classList.toggle("open");
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+
+document.querySelectorAll("#mainNav a").forEach(link=>{
+link.addEventListener("click",()=>{
+document.getElementById("mainNav").classList.remove("open");
+});
+});
+</script>
+
+</body>
+</html>
