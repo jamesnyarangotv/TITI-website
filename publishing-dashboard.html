@@ -10,17 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --navy:#102b50;
-  --navy2:#183d69;
-  --red:#a51e32;
-  --gold:#c69a42;
-  --bg:#f3f5f8;
-  --white:#fff;
-  --text:#263449;
-  --muted:#718096;
-  --border:#e4e9f0;
-  --green:#15804b;
+:root{
+--navy:#102b50;--navy2:#183d69;--red:#a51e32;
+--gold:#c69a42;--bg:#f3f5f8;--text:#263449;
+--muted:#718096;--border:#e4e9f0;--green:#15804b;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
@@ -29,32 +22,32 @@ button{cursor:pointer}
 .hidden{display:none!important}
 
 .login-page{
- min-height:100vh;display:flex;justify-content:center;
- align-items:center;padding:25px;
- background:linear-gradient(135deg,#102b50,#183d69)
+min-height:100vh;display:flex;justify-content:center;
+align-items:center;padding:25px;
+background:linear-gradient(135deg,#102b50,#183d69)
 }
 .login-card{
- background:white;width:100%;max-width:440px;padding:38px;
- border-radius:15px;box-shadow:0 20px 60px #0003
+background:white;width:100%;max-width:440px;padding:38px;
+border-radius:15px;box-shadow:0 20px 60px #0003
 }
 .login-logo{
- width:76px;height:76px;background:#f5f6f8;border-radius:12px;
- display:flex;align-items:center;justify-content:center;
- margin:0 auto 18px;color:var(--navy);font-size:27px;
- font-weight:800;border:1px solid var(--border)
+width:76px;height:76px;background:#f5f6f8;border-radius:12px;
+display:flex;align-items:center;justify-content:center;
+margin:0 auto 18px;color:var(--navy);font-size:27px;
+font-weight:800;border:1px solid var(--border)
 }
 .login-card h1{text-align:center;color:var(--navy);font-size:23px;margin-bottom:8px}
 .login-sub{text-align:center;font-size:12px;color:var(--muted);margin-bottom:28px;line-height:1.6}
 .field{margin-bottom:17px}
 .field label{display:block;font-size:12px;font-weight:700;margin-bottom:8px;color:#34445b}
 .field input{
- width:100%;padding:13px 14px;border:1px solid #dce2ea;
- border-radius:7px;background:white;outline:none;color:var(--text)
+width:100%;padding:13px 14px;border:1px solid #dce2ea;
+border-radius:7px;background:white;outline:none;color:var(--text)
 }
 .field input:focus{border-color:var(--navy2);box-shadow:0 0 0 3px #183d6912}
 .primary-btn{
- background:var(--navy);color:white;border:0;padding:13px 20px;
- border-radius:7px;font-weight:700;transition:.2s
+background:var(--navy);color:white;border:0;padding:13px 20px;
+border-radius:7px;font-weight:700;transition:.2s
 }
 .primary-btn:hover{background:var(--navy2)}
 .primary-btn:disabled{opacity:.6;cursor:not-allowed}
@@ -62,15 +55,15 @@ button{cursor:pointer}
 .login-footer{text-align:center;font-size:11px;color:var(--muted);margin-top:24px}
 
 .topbar{
- background:var(--navy);color:white;padding:16px 30px;
- display:flex;align-items:center;justify-content:space-between;
- gap:15px;flex-wrap:wrap;border-bottom:4px solid var(--gold)
+background:var(--navy);color:white;padding:16px 30px;
+display:flex;align-items:center;justify-content:space-between;
+gap:15px;flex-wrap:wrap;border-bottom:4px solid var(--gold)
 }
 .brand{display:flex;align-items:center;gap:13px}
 .brand-icon{
- width:47px;height:47px;background:white;color:var(--navy);
- border-radius:8px;display:flex;align-items:center;
- justify-content:center;font-size:17px;font-weight:800
+width:47px;height:47px;background:white;color:var(--navy);
+border-radius:8px;display:flex;align-items:center;
+justify-content:center;font-size:17px;font-weight:800
 }
 .brand h2{font-size:17px;letter-spacing:.3px}
 .brand p{font-size:10px;color:#d6dfeb;margin-top:4px}
@@ -89,8 +82,8 @@ button{cursor:pointer}
 .stat-card small{font-size:11px;color:var(--muted)}
 
 .content-grid{
- display:grid;grid-template-columns:minmax(300px,390px) minmax(0,1fr);
- gap:22px;align-items:start
+display:grid;grid-template-columns:minmax(300px,390px) minmax(0,1fr);
+gap:22px;align-items:start
 }
 .panel{background:white;border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .panel-heading{padding:19px 21px;border-bottom:1px solid var(--border)}
@@ -100,8 +93,8 @@ button{cursor:pointer}
 .form-field{margin-bottom:17px}
 .form-field label{display:block;font-size:11px;font-weight:700;margin-bottom:8px;color:#40516a}
 .form-field input,.form-field textarea,.form-field select{
- width:100%;padding:12px;border:1px solid var(--border);
- border-radius:6px;outline:none;background:white;color:var(--text)
+width:100%;padding:12px;border:1px solid var(--border);
+border-radius:6px;outline:none;background:white;color:var(--text)
 }
 .form-field textarea{min-height:180px;resize:vertical;line-height:1.7}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--navy2)}
@@ -135,26 +128,26 @@ button{cursor:pointer}
 .error{background:#fff0f0;color:#a51e32}
 .success{background:#e7f7ee;color:#126b40}
 .toast{
- position:fixed;bottom:22px;right:22px;padding:14px 20px;
- background:var(--navy);color:white;border-radius:7px;
- box-shadow:0 8px 30px #0002;font-size:12px;z-index:100;max-width:90%
+position:fixed;bottom:22px;right:22px;padding:14px 20px;
+background:var(--navy);color:white;border-radius:7px;
+box-shadow:0 8px 30px #0002;font-size:12px;z-index:100;max-width:90%
 }
 .dashboard-footer{text-align:center;padding:25px;color:var(--muted);font-size:10px}
 .dashboard-footer strong{color:var(--navy)}
 
 @media(max-width:950px){.content-grid{grid-template-columns:1fr}}
 @media(max-width:650px){
- .topbar{padding:14px 17px}
- .layout{padding:20px 14px}
- .stats{grid-template-columns:1fr}
- .stat-card{padding:16px}
- .stat-card h2{font-size:24px}
- .brand h2{font-size:14px}
- .admin-info{width:100%;justify-content:space-between}
- .page-heading h1{font-size:21px}
- .login-card{padding:27px 21px}
- .panel-body{padding:16px}
- .notice-list{padding:5px 15px}
+.topbar{padding:14px 17px}
+.layout{padding:20px 14px}
+.stats{grid-template-columns:1fr}
+.stat-card{padding:16px}
+.stat-card h2{font-size:24px}
+.brand h2{font-size:14px}
+.admin-info{width:100%;justify-content:space-between}
+.page-heading h1{font-size:21px}
+.login-card{padding:27px 21px}
+.panel-body{padding:16px}
+.notice-list{padding:5px 15px}
 }
 </style>
 </head>
@@ -162,217 +155,216 @@ button{cursor:pointer}
 <body>
 
 <section id="loginPage" class="login-page">
- <div class="login-card">
-  <div class="login-logo">TITI</div>
-  <h1>ADMINISTRATOR LOGIN</h1>
-  <p class="login-sub">
-   TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>
-   NOTICE PUBLISHING SYSTEM
-  </p>
+<div class="login-card">
+<div class="login-logo">TITI</div>
+<h1>ADMINISTRATOR LOGIN</h1>
+<p class="login-sub">
+TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>
+NOTICE PUBLISHING SYSTEM
+</p>
 
-  <div id="loginMessage"></div>
+<div id="loginMessage"></div>
 
-  <form id="loginForm">
-   <div class="field">
-    <label>ADMINISTRATOR EMAIL</label>
-    <input type="email" id="email"
-     placeholder="Enter your administrator email"
-     autocomplete="username" required>
-   </div>
+<form id="loginForm">
+<div class="field">
+<label>ADMINISTRATOR EMAIL</label>
+<input type="email" id="email"
+placeholder="Enter your administrator email"
+autocomplete="username" required>
+</div>
 
-   <div class="field">
-    <label>PASSWORD</label>
-    <input type="password" id="password"
-     placeholder="Enter your password"
-     autocomplete="current-password" required>
-   </div>
+<div class="field">
+<label>PASSWORD</label>
+<input type="password" id="password"
+placeholder="Enter your password"
+autocomplete="current-password" required>
+</div>
 
-   <button type="submit" class="primary-btn login-btn" id="loginButton">
-    SIGN IN TO DASHBOARD
-   </button>
-  </form>
+<button type="submit" class="primary-btn login-btn" id="loginButton">
+SIGN IN TO DASHBOARD
+</button>
+</form>
 
-  <div class="login-footer">
-   AUTHORISED ADMINISTRATORS ONLY<br><br>
-   TITI | Breaking the Limits
-  </div>
- </div>
+<div class="login-footer">
+AUTHORISED ADMINISTRATORS ONLY<br><br>
+TITI | Breaking the Limits
+</div>
+</div>
 </section>
 
 <section id="dashboard" class="hidden">
 
 <header class="topbar">
- <div class="brand">
-  <div class="brand-icon">TITI</div>
-  <div>
-   <h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
-   <p>NOTICE PUBLISHING DASHBOARD</p>
-  </div>
- </div>
+<div class="brand">
+<div class="brand-icon">TITI</div>
+<div>
+<h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
+<p>NOTICE PUBLISHING DASHBOARD</p>
+</div>
+</div>
 
- <div class="admin-info">
-  <span id="adminEmail">Administrator</span>
-  <span class="admin-role">SUPER ADMIN</span>
-  <button class="logout-btn" id="logoutButton">LOG OUT</button>
- </div>
+<div class="admin-info">
+<span id="adminEmail">Administrator</span>
+<span class="admin-role">SUPER ADMIN</span>
+<button class="logout-btn" id="logoutButton">LOG OUT</button>
+</div>
 </header>
 
 <main class="layout">
 
- <div class="page-heading">
-  <div>
-   <h1>Notice Management</h1>
-   <p>Create, manage and publish official TITI announcements.</p>
-  </div>
-  <button class="primary-btn" id="newNoticeButton">+ CREATE NEW NOTICE</button>
- </div>
+<div class="page-heading">
+<div>
+<h1>Notice Management</h1>
+<p>Create, manage and publish official TITI announcements.</p>
+</div>
+<button class="primary-btn" id="newNoticeButton">+ CREATE NEW NOTICE</button>
+</div>
 
- <div class="stats">
-  <div class="stat-card">
-   <span>TOTAL NOTICES</span>
-   <h2 id="totalCount">0</h2>
-   <small>All notices in the system</small>
-  </div>
-  <div class="stat-card">
-   <span>PUBLISHED NOTICES</span>
-   <h2 id="publishedCount">0</h2>
-   <small>Visible to website visitors</small>
-  </div>
-  <div class="stat-card">
-   <span>DRAFT NOTICES</span>
-   <h2 id="draftCount">0</h2>
-   <small>Saved but not published</small>
-  </div>
- </div>
+<div class="stats">
+<div class="stat-card">
+<span>TOTAL NOTICES</span>
+<h2 id="totalCount">0</h2>
+<small>All notices in the system</small>
+</div>
+<div class="stat-card">
+<span>PUBLISHED NOTICES</span>
+<h2 id="publishedCount">0</h2>
+<small>Visible to website visitors</small>
+</div>
+<div class="stat-card">
+<span>DRAFT NOTICES</span>
+<h2 id="draftCount">0</h2>
+<small>Saved but not published</small>
+</div>
+</div>
 
- <div class="content-grid">
+<div class="content-grid">
 
-  <section class="panel" id="editorPanel">
-   <div class="panel-heading">
-    <h3 id="formHeading">Create New Notice</h3>
-    <p>Enter the information for your official announcement.</p>
-   </div>
+<section class="panel" id="editorPanel">
+<div class="panel-heading">
+<h3 id="formHeading">Create New Notice</h3>
+<p>Enter the information for your official announcement.</p>
+</div>
 
-   <div class="panel-body">
-    <div id="formMessage"></div>
+<div class="panel-body">
+<div id="formMessage"></div>
 
-    <form id="noticeForm">
-     <input type="hidden" id="noticeId">
+<form id="noticeForm">
+<input type="hidden" id="noticeId">
 
-     <div class="form-field">
-      <label>NOTICE TITLE *</label>
-      <input type="text" id="noticeTitle" maxlength="200"
-       placeholder="Enter notice heading" required>
-     </div>
+<div class="form-field">
+<label>NOTICE TITLE *</label>
+<input type="text" id="noticeTitle" maxlength="200"
+placeholder="Enter notice heading" required>
+</div>
 
-     <div class="form-field">
-      <label>NOTICE CATEGORY *</label>
-      <select id="noticeCategory" required>
-       <option value="GENERAL">General Announcement</option>
-       <option value="ADMISSIONS">Admissions</option>
-       <option value="ACADEMIC">Academic Affairs</option>
-       <option value="EXAMINATIONS">Examinations</option>
-       <option value="EVENTS">Events</option>
-       <option value="FEES">Fees and Payments</option>
-       <option value="IMPORTANT">Important Notice</option>
-      </select>
-     </div>
+<div class="form-field">
+<label>NOTICE CATEGORY *</label>
+<select id="noticeCategory" required>
+<option value="GENERAL">General Announcement</option>
+<option value="ADMISSIONS">Admissions</option>
+<option value="ACADEMIC">Academic Affairs</option>
+<option value="EXAMINATIONS">Examinations</option>
+<option value="EVENTS">Events</option>
+<option value="FEES">Fees and Payments</option>
+<option value="IMPORTANT">Important Notice</option>
+</select>
+</div>
 
-     <div class="form-field">
-      <label>NOTICE CONTENT *</label>
-      <textarea id="noticeContent"
-       placeholder="Write the complete official notice here..."
-       required></textarea>
-     </div>
+<div class="form-field">
+<label>NOTICE CONTENT *</label>
+<textarea id="noticeContent"
+placeholder="Write the complete official notice here..."
+required></textarea>
+</div>
 
-     <div class="form-actions">
-      <button type="button" class="secondary-btn" id="draftButton">SAVE DRAFT</button>
-      <button type="button" class="publish-btn" id="publishButton">PUBLISH NOTICE</button>
-     </div>
+<div class="form-actions">
+<button type="button" class="secondary-btn" id="draftButton">SAVE DRAFT</button>
+<button type="button" class="publish-btn" id="publishButton">PUBLISH NOTICE</button>
+</div>
 
-     <button type="button" class="secondary-btn hidden"
-      id="cancelEditButton" style="width:100%;margin-top:10px">
-      CANCEL EDITING
-     </button>
+<button type="button" class="secondary-btn hidden"
+id="cancelEditButton" style="width:100%;margin-top:10px">
+CANCEL EDITING
+</button>
 
-     <p class="form-note">
-      Published notices become available for display on the public TITI website.
-      Drafts remain unpublished until you publish them.
-     </p>
-    </form>
-   </div>
-  </section>
+<p class="form-note">
+Published notices become available for display on the public TITI website.
+Drafts remain unpublished until you publish them.
+</p>
+</form>
+</div>
+</section>
 
-  <section class="panel">
-   <div class="panel-heading">
-    <h3>Manage Existing Notices</h3>
-    <p>Review, edit, publish or remove announcements.</p>
-   </div>
+<section class="panel">
+<div class="panel-heading">
+<h3>Manage Existing Notices</h3>
+<p>Review, edit, publish or remove announcements.</p>
+</div>
 
-   <div class="notice-toolbar">
-    <input type="search" id="searchNotices" placeholder="Search notices...">
+<div class="notice-toolbar">
+<input type="search" id="searchNotices" placeholder="Search notices...">
 
-    <select id="filterStatus">
-     <option value="ALL">All notices</option>
-     <option value="PUBLISHED">Published</option>
-     <option value="DRAFT">Drafts</option>
-     <option value="ARCHIVED">Archived</option>
-    </select>
+<select id="filterStatus">
+<option value="ALL">All notices</option>
+<option value="PUBLISHED">Published</option>
+<option value="DRAFT">Drafts</option>
+<option value="ARCHIVED">Archived</option>
+</select>
 
-    <button class="secondary-btn" id="refreshButton">REFRESH</button>
-   </div>
+<button class="secondary-btn" id="refreshButton">REFRESH</button>
+</div>
 
-   <div class="notice-list" id="noticeList">
-    <div class="empty">Loading notices...</div>
-   </div>
-  </section>
+<div class="notice-list" id="noticeList">
+<div class="empty">Loading notices...</div>
+</div>
+</section>
 
- </div>
+</div>
 </main>
 
 <footer class="dashboard-footer">
- <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong><br>
- Breaking the Limits | Professional Administration System<br><br>
- Powered by James Nyarang'o
+<strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong><br>
+Breaking the Limits | Professional Administration System<br><br>
+Powered by James Nyarang'o
 </footer>
 
 </section>
 
 <div id="toast" class="toast hidden"></div>
 
-<script type="module">
-
+<script>
 // ======================================
-// CORRECT TITI SUPABASE CONNECTION
+// SUPABASE CONNECTION
 // ======================================
 
 const SUPABASE_URL =
- "https://jlmbiauilmajuvrnuaul.supabase.co";
+"https://jlmbiauilmajuvrnuaul.supabase.co";
 
 const SUPABASE_KEY =
- "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+"sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 
 const supabase = window.supabase.createClient(
- SUPABASE_URL,
- SUPABASE_KEY,
- {
-  auth:{
-   persistSession:true,
-   autoRefreshToken:true,
-   detectSessionInUrl:true
-  }
- }
+SUPABASE_URL,
+SUPABASE_KEY,
+{
+auth:{
+persistSession:true,
+autoRefreshToken:true,
+detectSessionInUrl:true
+}
+}
 );
 
 // ======================================
-// TITI ADMINISTRATOR ACCOUNT
+// AUTHORISED TITI ADMINISTRATOR
 // ======================================
 
 const ADMIN_USER_ID =
- "3147838a-12de-4a04-ad0b-657044d6f5d1";
+"3147838a-12de-4a04-ad0b-657044d6f5d1";
 
 const ADMIN_EMAIL =
- "tahidiinternationaltraininginstitute@gmail.com";
+"tahidiinternationalinstitute@gmail.com";
 
 // ======================================
 // ELEMENTS
@@ -394,130 +386,122 @@ let toastTimer;
 // DISPLAY HELPERS
 // ======================================
 
-function escapeHTML(value) {
- return String(value ?? "").replace(/[&<>"']/g, char => ({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#039;"
- })[char]);
+function escapeHTML(value){
+return String(value ?? "").replace(/[&<>"']/g,char=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+})[char]);
 }
 
-function showMessage(element,message,type) {
- element.innerHTML = `
-  <div class="message ${type}">
-   ${escapeHTML(message)}
-  </div>
- `;
+function showMessage(element,message,type){
+element.innerHTML =
+'<div class="message '+type+'">'+escapeHTML(message)+'</div>';
 }
 
-function clearMessage(element) {
- element.innerHTML = "";
+function clearMessage(element){
+element.innerHTML="";
 }
 
-function toast(message) {
- const box = document.getElementById("toast");
- box.textContent = message;
- box.classList.remove("hidden");
- clearTimeout(toastTimer);
- toastTimer = setTimeout(() => box.classList.add("hidden"),3500);
+function toast(message){
+const box=document.getElementById("toast");
+box.textContent=message;
+box.classList.remove("hidden");
+clearTimeout(toastTimer);
+toastTimer=setTimeout(()=>box.classList.add("hidden"),3500);
 }
 
-function formatDate(value) {
- if (!value) return "";
- return new Date(value).toLocaleString("en-UG",{
-  dateStyle:"medium",
-  timeStyle:"short"
- });
+function formatDate(value){
+if(!value)return "";
+return new Date(value).toLocaleString("en-UG",{
+dateStyle:"medium",
+timeStyle:"short"
+});
 }
 
 // ======================================
-// ADMINISTRATOR VERIFICATION
+// VERIFY ADMINISTRATOR
 // ======================================
 
-async function verifyAdmin(user) {
+async function verifyAdmin(user){
 
- if (!user) return false;
+if(!user)return false;
 
- // Check the exact authorised administrator UID.
- if (user.id !== ADMIN_USER_ID) {
-  return false;
- }
+if(user.id!==ADMIN_USER_ID)return false;
 
- // Confirm administrator access using database function.
- const {data,error} = await supabase.rpc("is_notice_admin");
+if((user.email||"").toLowerCase()!==ADMIN_EMAIL){
+return false;
+}
 
- if (error) {
-  throw new Error(
-   "Administrator verification failed: " + error.message
-  );
- }
+const {data,error}=await supabase.rpc("is_notice_admin");
 
- return data === true;
+if(error){
+throw new Error(
+"Administrator verification failed: "+error.message
+);
+}
+
+return data===true;
 }
 
 // ======================================
 // LOGIN
 // ======================================
 
-loginForm.addEventListener("submit",async event => {
+loginForm.addEventListener("submit",async event=>{
 
- event.preventDefault();
+event.preventDefault();
 
- const button = document.getElementById("loginButton");
+const button=document.getElementById("loginButton");
 
- button.disabled = true;
- button.textContent = "VERIFYING ACCESS...";
+button.disabled=true;
+button.textContent="VERIFYING ACCESS...";
 
- clearMessage(loginMessage);
+clearMessage(loginMessage);
 
- try {
+try{
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+const email=document.getElementById("email").value.trim().toLowerCase();
+const password=document.getElementById("password").value;
 
-  const {data,error} = await supabase.auth.signInWithPassword({
-   email,
-   password
-  });
+if(email!==ADMIN_EMAIL){
+throw new Error("Please enter the registered TITI administrator email.");
+}
 
-  if (error) {
-   throw new Error(
-    "Supabase login failed: " + error.message
-   );
-  }
+const {data,error}=await supabase.auth.signInWithPassword({
+email:email,
+password:password
+});
 
-  if (data.user.email.toLowerCase() !== ADMIN_EMAIL) {
-   await supabase.auth.signOut();
-   throw new Error("This email is not the registered TITI administrator email.");
-  }
+if(error){
+throw new Error("Supabase login failed: "+error.message);
+}
 
-  const authorised = await verifyAdmin(data.user);
+const authorised=await verifyAdmin(data.user);
 
-  if (!authorised) {
+if(!authorised){
+await supabase.auth.signOut();
+throw new Error(
+"Your account is not authorised. Check the administrator registration and notice_admins permissions."
+);
+}
 
-   await supabase.auth.signOut();
+currentUser=data.user;
 
-   throw new Error(
-    "Administrator verification failed. Your account must be registered in notice_admins."
-   );
-  }
+await openDashboard();
 
-  currentUser = data.user;
+}catch(error){
 
-  await openDashboard();
+showMessage(loginMessage,error.message,"error");
 
- } catch(error) {
+}finally{
 
-  showMessage(loginMessage,error.message,"error");
+button.disabled=false;
+button.textContent="SIGN IN TO DASHBOARD";
 
- } finally {
-
-  button.disabled = false;
-  button.textContent = "SIGN IN TO DASHBOARD";
-
- }
+}
 
 });
 
@@ -525,59 +509,56 @@ loginForm.addEventListener("submit",async event => {
 // OPEN DASHBOARD
 // ======================================
 
-async function openDashboard() {
+async function openDashboard(){
 
- loginPage.classList.add("hidden");
- dashboard.classList.remove("hidden");
+loginPage.classList.add("hidden");
+dashboard.classList.remove("hidden");
 
- document.getElementById("adminEmail").textContent =
-  currentUser.email || "Administrator";
+document.getElementById("adminEmail").textContent=currentUser.email||"Administrator";
 
- await loadNotices();
+await loadNotices();
 }
 
 // ======================================
 // CHECK EXISTING SESSION
 // ======================================
 
-async function checkExistingSession() {
+async function checkExistingSession(){
 
- try {
+try{
 
-  const {data,error} = await supabase.auth.getSession();
+const {data,error}=await supabase.auth.getSession();
 
-  if (error) throw error;
+if(error)throw error;
 
-  if (!data.session) return;
+if(!data.session)return;
 
-  const authorised = await verifyAdmin(data.session.user);
+const user=data.session.user;
 
-  if (!authorised) {
+if((user.email||"").toLowerCase()!==ADMIN_EMAIL ||
+user.id!==ADMIN_USER_ID){
 
-   await supabase.auth.signOut();
+await supabase.auth.signOut();
+return;
+}
 
-   showMessage(
-    loginMessage,
-    "This account is not authorised to access the dashboard.",
-    "error"
-   );
+const authorised=await verifyAdmin(user);
 
-   return;
-  }
+if(!authorised){
+await supabase.auth.signOut();
+showMessage(loginMessage,
+"This account is not authorised to access the dashboard.","error");
+return;
+}
 
-  if (data.session.user.email.toLowerCase() !== ADMIN_EMAIL) {
-   await supabase.auth.signOut();
-   return;
-  }
+currentUser=user;
+await openDashboard();
 
-  currentUser = data.session.user;
-  await openDashboard();
+}catch(error){
 
- } catch(error) {
+showMessage(loginMessage,error.message,"error");
 
-  showMessage(loginMessage,error.message,"error");
-
- }
+}
 
 }
 
@@ -587,35 +568,31 @@ checkExistingSession();
 // LOAD NOTICES
 // ======================================
 
-async function loadNotices() {
+async function loadNotices(){
 
- noticeList.innerHTML =
-  '<div class="empty">Loading notices...</div>';
+noticeList.innerHTML='<div class="empty">Loading notices...</div>';
 
- try {
+try{
 
-  const {data,error} = await supabase
-   .from("notices")
-   .select("*")
-   .order("created_at",{ascending:false});
+const {data,error}=await supabase
+.from("notices")
+.select("*")
+.order("created_at",{ascending:false});
 
-  if (error) throw error;
+if(error)throw error;
 
-  notices = data || [];
+notices=data||[];
 
-  updateStatistics();
-  renderNotices();
+updateStatistics();
+renderNotices();
 
- } catch(error) {
+}catch(error){
 
-  noticeList.innerHTML = `
-   <div class="empty">
-    Unable to load notices.<br><br>
-    ${escapeHTML(error.message)}
-   </div>
-  `;
+noticeList.innerHTML=
+'<div class="empty">Unable to load notices.<br><br>'+
+escapeHTML(error.message)+'</div>';
 
- }
+}
 
 }
 
@@ -623,97 +600,84 @@ async function loadNotices() {
 // STATISTICS
 // ======================================
 
-function updateStatistics() {
+function updateStatistics(){
 
- document.getElementById("totalCount").textContent =
-  notices.length;
+document.getElementById("totalCount").textContent=notices.length;
 
- document.getElementById("publishedCount").textContent =
-  notices.filter(n => n.status === "PUBLISHED").length;
+document.getElementById("publishedCount").textContent=
+notices.filter(n=>n.status==="PUBLISHED").length;
 
- document.getElementById("draftCount").textContent =
-  notices.filter(n => n.status === "DRAFT").length;
+document.getElementById("draftCount").textContent=
+notices.filter(n=>n.status==="DRAFT").length;
 
 }
 
 // ======================================
-// DISPLAY NOTICE LIST
+// DISPLAY NOTICES
 // ======================================
 
-function renderNotices() {
+function renderNotices(){
 
- const search = document.getElementById("searchNotices")
-  .value.toLowerCase().trim();
+const search=document.getElementById("searchNotices").value.toLowerCase().trim();
+const status=document.getElementById("filterStatus").value;
 
- const status = document.getElementById("filterStatus").value;
+const filtered=notices.filter(notice=>{
 
- const filtered = notices.filter(notice => {
+const matchesSearch=
+(notice.title||"").toLowerCase().includes(search)||
+(notice.content||"").toLowerCase().includes(search);
 
-  const matchesSearch =
-   (notice.title || "").toLowerCase().includes(search) ||
-   (notice.content || "").toLowerCase().includes(search);
+const matchesStatus=status==="ALL"||notice.status===status;
 
-  const matchesStatus =
-   status === "ALL" || notice.status === status;
+return matchesSearch&&matchesStatus;
 
-  return matchesSearch && matchesStatus;
+});
 
- });
+if(!filtered.length){
 
- if (!filtered.length) {
+noticeList.innerHTML=
+'<div class="empty">No notices found.<br><br>Create your first TITI announcement.</div>';
 
-  noticeList.innerHTML = `
-   <div class="empty">
-    No notices found.<br><br>
-    Create your first TITI announcement.
-   </div>
-  `;
+return;
+}
 
-  return;
- }
+noticeList.innerHTML=filtered.map(notice=>{
 
- noticeList.innerHTML = filtered.map(notice => {
+const preview=(notice.content||"").length>190
+?notice.content.substring(0,190)+"..."
+:notice.content;
 
-  const preview = (notice.content || "").length > 190
-   ? notice.content.substring(0,190) + "..."
-   : notice.content;
+const statusButton=notice.status==="PUBLISHED"
+?'<button class="small-btn" data-action="unpublish" data-id="'+escapeHTML(notice.id)+'">UNPUBLISH</button>'
+:'<button class="small-btn" data-action="publish" data-id="'+escapeHTML(notice.id)+'">PUBLISH</button>';
 
-  const statusButton = notice.status === "PUBLISHED"
-   ? `<button class="small-btn" data-action="unpublish" data-id="${escapeHTML(notice.id)}">UNPUBLISH</button>`
-   : `<button class="small-btn" data-action="publish" data-id="${escapeHTML(notice.id)}">PUBLISH</button>`;
+return `
+<article class="notice-item">
+<div class="notice-top">
+<div>
+<h4>${escapeHTML(notice.title)}</h4>
+<div class="notice-meta">
+${escapeHTML(notice.category||"GENERAL")}
+&nbsp; | &nbsp;
+${escapeHTML(formatDate(notice.created_at))}
+</div>
+</div>
+<span class="status ${escapeHTML(notice.status)}">
+${escapeHTML(notice.status)}
+</span>
+</div>
 
-  return `
-   <article class="notice-item">
+<div class="notice-preview">${escapeHTML(preview)}</div>
 
-    <div class="notice-top">
-     <div>
-      <h4>${escapeHTML(notice.title)}</h4>
-      <div class="notice-meta">
-       ${escapeHTML(notice.category || "GENERAL")}
-       &nbsp; | &nbsp;
-       ${escapeHTML(formatDate(notice.created_at))}
-      </div>
-     </div>
+<div class="notice-actions">
+<button class="small-btn" data-action="edit" data-id="${escapeHTML(notice.id)}">EDIT</button>
+${statusButton}
+<button class="small-btn delete" data-action="delete" data-id="${escapeHTML(notice.id)}">DELETE</button>
+</div>
+</article>
+`;
 
-     <span class="status ${escapeHTML(notice.status)}">
-      ${escapeHTML(notice.status)}
-     </span>
-    </div>
-
-    <div class="notice-preview">
-     ${escapeHTML(preview)}
-    </div>
-
-    <div class="notice-actions">
-     <button class="small-btn" data-action="edit" data-id="${escapeHTML(notice.id)}">EDIT</button>
-     ${statusButton}
-     <button class="small-btn delete" data-action="delete" data-id="${escapeHTML(notice.id)}">DELETE</button>
-    </div>
-
-   </article>
-  `;
-
- }).join("");
+}).join("");
 
 }
 
@@ -721,96 +685,85 @@ function renderNotices() {
 // RESET FORM
 // ======================================
 
-function resetForm() {
+function resetForm(){
 
- noticeForm.reset();
+noticeForm.reset();
 
- document.getElementById("noticeId").value = "";
+document.getElementById("noticeId").value="";
 
- document.getElementById("formHeading").textContent =
-  "Create New Notice";
+document.getElementById("formHeading").textContent="Create New Notice";
 
- document.getElementById("cancelEditButton").classList.add("hidden");
+document.getElementById("cancelEditButton").classList.add("hidden");
 
- clearMessage(formMessage);
+clearMessage(formMessage);
+
 }
 
 // ======================================
 // CREATE / UPDATE NOTICE
 // ======================================
 
-async function saveNotice(status) {
+async function saveNotice(status){
 
- clearMessage(formMessage);
+clearMessage(formMessage);
 
- const id = document.getElementById("noticeId").value;
+if(!noticeForm.reportValidity())return;
 
- const title = document.getElementById("noticeTitle")
-  .value.trim();
+const id=document.getElementById("noticeId").value;
+const title=document.getElementById("noticeTitle").value.trim();
+const category=document.getElementById("noticeCategory").value;
+const content=document.getElementById("noticeContent").value.trim();
 
- const category = document.getElementById("noticeCategory").value;
+if(!title||!content){
+showMessage(formMessage,"Please enter both the notice title and content.","error");
+return;
+}
 
- const content = document.getElementById("noticeContent")
-  .value.trim();
+const payload={
+title,
+category,
+content,
+status,
+updated_at:new Date().toISOString()
+};
 
- if (!title || !content) {
+try{
 
-  showMessage(
-   formMessage,
-   "Please enter both the notice title and content.",
-   "error"
-  );
+if(id){
 
-  return;
- }
+const {error}=await supabase
+.from("notices")
+.update(payload)
+.eq("id",id);
 
- const payload = {
-  title,
-  category,
-  content,
-  status,
-  updated_at:new Date().toISOString()
- };
+if(error)throw error;
 
- try {
+toast("Notice updated successfully.");
 
-  if (id) {
+}else{
 
-   const {error} = await supabase
-    .from("notices")
-    .update(payload)
-    .eq("id",id);
+payload.created_by=currentUser.id;
 
-   if (error) throw error;
+const {error}=await supabase
+.from("notices")
+.insert(payload);
 
-   toast("Notice updated successfully.");
+if(error)throw error;
 
-  } else {
+toast(status==="PUBLISHED"
+?"Notice published successfully."
+:"Notice saved as draft.");
 
-   payload.created_by = currentUser.id;
+}
 
-   const {error} = await supabase
-    .from("notices")
-    .insert(payload);
+resetForm();
+await loadNotices();
 
-   if (error) throw error;
+}catch(error){
 
-   toast(
-    status === "PUBLISHED"
-     ? "Notice published successfully."
-     : "Notice saved as draft."
-   );
+showMessage(formMessage,error.message,"error");
 
-  }
-
-  resetForm();
-  await loadNotices();
-
- } catch(error) {
-
-  showMessage(formMessage,error.message,"error");
-
- }
+}
 
 }
 
@@ -819,80 +772,60 @@ async function saveNotice(status) {
 // ======================================
 
 document.getElementById("draftButton").addEventListener(
- "click",
- () => saveNotice("DRAFT")
+"click",()=>saveNotice("DRAFT")
 );
 
 document.getElementById("publishButton").addEventListener(
- "click",
- () => saveNotice("PUBLISHED")
+"click",()=>saveNotice("PUBLISHED")
 );
 
 document.getElementById("newNoticeButton").addEventListener(
- "click",
- () => {
-
-  resetForm();
-
-  document.getElementById("editorPanel").scrollIntoView({
-   behavior:"smooth",
-   block:"start"
-  });
-
- }
+"click",()=>{
+resetForm();
+document.getElementById("editorPanel").scrollIntoView({
+behavior:"smooth",block:"start"
+});
+}
 );
 
 document.getElementById("cancelEditButton").addEventListener(
- "click",
- resetForm
+"click",resetForm
 );
 
 document.getElementById("refreshButton").addEventListener(
- "click",
- loadNotices
+"click",loadNotices
 );
 
 document.getElementById("searchNotices").addEventListener(
- "input",
- renderNotices
+"input",renderNotices
 );
 
 document.getElementById("filterStatus").addEventListener(
- "change",
- renderNotices
+"change",renderNotices
 );
 
 // ======================================
 // EDIT NOTICE
 // ======================================
 
-function editNotice(id) {
+function editNotice(id){
 
- const notice = notices.find(n => n.id === id);
+const notice=notices.find(n=>String(n.id)===String(id));
 
- if (!notice) return;
+if(!notice)return;
 
- document.getElementById("noticeId").value = notice.id;
+document.getElementById("noticeId").value=notice.id;
+document.getElementById("noticeTitle").value=notice.title||"";
+document.getElementById("noticeCategory").value=notice.category||"GENERAL";
+document.getElementById("noticeContent").value=notice.content||"";
 
- document.getElementById("noticeTitle").value =
-  notice.title || "";
+document.getElementById("formHeading").textContent="Edit Existing Notice";
 
- document.getElementById("noticeCategory").value =
-  notice.category || "GENERAL";
+document.getElementById("cancelEditButton").classList.remove("hidden");
 
- document.getElementById("noticeContent").value =
-  notice.content || "";
-
- document.getElementById("formHeading").textContent =
-  "Edit Existing Notice";
-
- document.getElementById("cancelEditButton")
-  .classList.remove("hidden");
-
- document.getElementById("editorPanel").scrollIntoView({
-  behavior:"smooth",
-  block:"start"
- });
+document.getElementById("editorPanel").scrollIntoView({
+behavior:"smooth",block:"start"
+});
 
 }
 
@@ -900,43 +833,39 @@ function editNotice(id) {
 // CHANGE NOTICE STATUS
 // ======================================
 
-async function changeStatus(id,status) {
+async function changeStatus(id,status){
 
- const notice = notices.find(n => n.id === id);
+const notice=notices.find(n=>String(n.id)===String(id));
 
- if (!notice) return;
+if(!notice)return;
 
- const confirmation = status === "PUBLISHED"
-  ? "Publish this notice now?"
-  : "Remove this notice from public display?";
+const confirmation=status==="PUBLISHED"
+?"Publish this notice now?"
+:"Remove this notice from public display?";
 
- if (!confirm(confirmation)) return;
+if(!confirm(confirmation))return;
 
- try {
+try{
 
-  const {error} = await supabase
-   .from("notices")
-   .update({
-    status,
-    updated_at:new Date().toISOString()
-   })
-   .eq("id",id);
+const {error}=await supabase
+.from("notices")
+.update({
+status,
+updated_at:new Date().toISOString()
+})
+.eq("id",id);
 
-  if (error) throw error;
+if(error)throw error;
 
-  toast(
-   status === "PUBLISHED"
-    ? "Notice published."
-    : "Notice unpublished."
-  );
+toast(status==="PUBLISHED"?"Notice published.":"Notice unpublished.");
 
-  await loadNotices();
+await loadNotices();
 
- } catch(error) {
+}catch(error){
 
-  toast("Error: " + error.message);
+toast("Error: "+error.message);
 
- }
+}
 
 }
 
@@ -944,36 +873,36 @@ async function changeStatus(id,status) {
 // DELETE NOTICE
 // ======================================
 
-async function deleteNotice(id) {
+async function deleteNotice(id){
 
- const confirmed = confirm(
-  "Are you sure you want to permanently delete this notice?"
- );
+const confirmed=confirm(
+"Are you sure you want to permanently delete this notice?"
+);
 
- if (!confirmed) return;
+if(!confirmed)return;
 
- try {
+try{
 
-  const {error} = await supabase
-   .from("notices")
-   .delete()
-   .eq("id",id);
+const {error}=await supabase
+.from("notices")
+.delete()
+.eq("id",id);
 
-  if (error) throw error;
+if(error)throw error;
 
-  toast("Notice deleted successfully.");
+toast("Notice deleted successfully.");
 
-  if (document.getElementById("noticeId").value === id) {
-   resetForm();
-  }
+if(String(document.getElementById("noticeId").value)===String(id)){
+resetForm();
+}
 
-  await loadNotices();
+await loadNotices();
 
- } catch(error) {
+}catch(error){
 
-  toast("Unable to delete: " + error.message);
+toast("Unable to delete: "+error.message);
 
- }
+}
 
 }
 
@@ -981,22 +910,19 @@ async function deleteNotice(id) {
 // NOTICE LIST ACTIONS
 // ======================================
 
-noticeList.addEventListener("click",event => {
+noticeList.addEventListener("click",event=>{
 
- const button = event.target.closest("button[data-action]");
+const button=event.target.closest("button[data-action]");
 
- if (!button) return;
+if(!button)return;
 
- const action = button.dataset.action;
- const id = button.dataset.id;
+const action=button.dataset.action;
+const id=button.dataset.id;
 
- if (action === "edit") editNotice(id);
-
- if (action === "publish") changeStatus(id,"PUBLISHED");
-
- if (action === "unpublish") changeStatus(id,"DRAFT");
-
- if (action === "delete") deleteNotice(id);
+if(action==="edit")editNotice(id);
+if(action==="publish")changeStatus(id,"PUBLISHED");
+if(action==="unpublish")changeStatus(id,"DRAFT");
+if(action==="delete")deleteNotice(id);
 
 });
 
@@ -1005,30 +931,29 @@ noticeList.addEventListener("click",event => {
 // ======================================
 
 document.getElementById("logoutButton").addEventListener(
- "click",
- async () => {
+"click",async()=>{
 
-  if (!confirm("Are you sure you want to log out?")) return;
+if(!confirm("Are you sure you want to log out?"))return;
 
-  const {error} = await supabase.auth.signOut();
+const {error}=await supabase.auth.signOut();
 
-  if (error) {
-   toast("Logout failed: " + error.message);
-   return;
-  }
+if(error){
+toast("Logout failed: "+error.message);
+return;
+}
 
-  currentUser = null;
-  notices = [];
+currentUser=null;
+notices=[];
 
-  dashboard.classList.add("hidden");
-  loginPage.classList.remove("hidden");
+dashboard.classList.add("hidden");
+loginPage.classList.remove("hidden");
 
-  loginForm.reset();
-  resetForm();
+loginForm.reset();
+resetForm();
 
-  toast("You have logged out.");
+toast("You have logged out.");
 
- }
+}
 );
 
 </script>
