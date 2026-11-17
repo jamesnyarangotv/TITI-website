@@ -22,6 +22,8 @@
 --light:#F4F6F9;
 --text:#263247;
 --muted:#687386;
+--border:#E3E7ED;
+--shadow:0 8px 25px rgba(10,30,65,.09);
 }
 
 *{
@@ -45,6 +47,15 @@ background:#fff;
 a{
 text-decoration:none;
 color:inherit;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+button{
+font-family:inherit;
 }
 
 .container{
@@ -96,6 +107,7 @@ flex-shrink:0;
 width:180px;
 height:85px;
 object-fit:contain;
+object-position:center;
 display:block;
 background:white;
 border-radius:10px;
@@ -165,8 +177,7 @@ cursor:pointer;
 /* HERO */
 
 .hero{
-background:
-linear-gradient(120deg,rgba(9,27,61,.96),rgba(122,18,32,.91));
+background:linear-gradient(120deg,rgba(9,27,61,.96),rgba(122,18,32,.91));
 color:white;
 text-align:center;
 padding:85px 15px;
