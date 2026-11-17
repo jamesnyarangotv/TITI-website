@@ -110,7 +110,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: clamp(5px, .75vw, 11px);
+  gap: clamp(8px, 1vw, 14px);
   flex: 1;
   min-width: 0;
   flex-wrap: nowrap;
@@ -119,39 +119,24 @@ nav {
 
 nav a {
   color: var(--navy);
-  font-size: clamp(9.5px, .88vw, 12.5px);
+  font-size: clamp(11px, .95vw, 13px);
   font-weight: 800;
   white-space: nowrap;
   flex-shrink: 0;
   transition: .25s;
 }
 
-nav a:hover { color: var(--maroon); }
-
-/* STATUS LINK */
-.nav-status {
-  background: transparent;
-  color: var(--navy) !important;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  font-size: clamp(8px, .7vw, 10px);
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.nav-status:hover {
-  background: transparent;
-  color: var(--maroon) !important;
+nav a:hover {
+  color: var(--maroon);
 }
 
 /* APPLY NOW */
 .nav-apply {
   background: var(--maroon);
   color: white !important;
-  padding: 9px 13px;
+  padding: 9px 15px;
   border-radius: 4px;
-  font-size: clamp(10px, .82vw, 12px);
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -391,6 +376,47 @@ section { padding: 62px 0; }
   color: var(--navy);
 }
 
+/* APPLICATION IMAGE */
+.application-section {
+  background: var(--light);
+}
+
+.application-wrap {
+  width: min(850px, 96%);
+  margin: auto;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 22px rgba(0,0,0,.08);
+  border-bottom: 4px solid var(--gold);
+}
+
+.application-wrap a {
+  display: block;
+}
+
+.application-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 4px;
+  transition: opacity .25s ease;
+}
+
+.application-wrap a:hover img {
+  opacity: .94;
+}
+
+.application-note {
+  text-align: center;
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
 /* CAMPUS GALLERY */
 .gallery-grid {
   display: grid;
@@ -583,16 +609,6 @@ section { padding: 62px 0; }
   font-size: 12px;
 }
 
-.footer-status-link {
-  display: inline-block;
-  margin-top: 6px;
-  color: var(--gold);
-  font-size: 12px;
-  transition: .25s;
-}
-
-.footer-status-link:hover { color: #FFFFFF; }
-
 .footer-bottom strong { color: var(--gold); }
 
 .site-footer,
@@ -633,13 +649,6 @@ section { padding: 62px 0; }
     font-size: 14px;
     padding: 11px 5px;
     border-bottom: 1px solid #eee;
-  }
-
-  .nav-status {
-    font-size: 12px;
-    padding: 11px 5px;
-    background: transparent;
-    color: var(--navy) !important;
   }
 
   .nav-apply {
@@ -703,6 +712,15 @@ section { padding: 62px 0; }
 
   .admissions h2 { font-size: 25px; }
 
+  .application-wrap {
+    width: 96%;
+    padding: 7px;
+  }
+
+  .application-note {
+    font-size: 12px;
+  }
+
   .site-footer { padding-top: 40px; }
 
   .footer-grid {
@@ -745,7 +763,6 @@ section { padding: 62px 0; }
       <a href="#admissions">Admissions</a>
       <a href="#gallery">Campus</a>
       <a href="#contact">Contact</a>
-      <a href="application-status.html" class="nav-status">CHECK APPLICATION STATUS</a>
       <a href="apply.html" class="nav-apply">Apply Now</a>
     </nav>
 
@@ -883,6 +900,29 @@ section { padding: 62px 0; }
     </div>
   </section>
 
+  <!-- APPLICATION IMAGE -->
+  <section class="application-section">
+    <div class="container">
+
+      <div class="section-heading">
+        <h2>Application Information</h2>
+        <div class="gold-line"></div>
+        <p>Take the next step towards joining Tahidi International Training Institute.</p>
+      </div>
+
+      <div class="application-wrap">
+        <a href="apply.html" aria-label="Open TITI online application">
+          <img src="apply.jpeg" alt="TITI application information">
+        </a>
+      </div>
+
+      <p class="application-note">
+        Click the application image to proceed to our online application page.
+      </p>
+
+    </div>
+  </section>
+
   <!-- CAMPUS GALLERY -->
   <section id="gallery">
     <div class="container">
@@ -1004,6 +1044,7 @@ section { padding: 62px 0; }
           <li><a href="#admissions">Admissions</a></li>
           <li><a href="#gallery">Our Campus</a></li>
           <li><a href="#contact">Contact Us</a></li>
+          <li><a href="application-status.html">Check Application Status</a></li>
         </ul>
       </div>
 
@@ -1038,12 +1079,6 @@ section { padding: 62px 0; }
         © <span id="footer-year"></span>
         <strong>Tahidi International Training Institute.</strong>
         All Rights Reserved.
-      </p>
-
-      <p>
-        <a href="application-status.html" class="footer-status-link">
-          Check Application Status
-        </a>
       </p>
     </div>
 
