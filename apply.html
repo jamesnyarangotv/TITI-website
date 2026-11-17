@@ -174,6 +174,7 @@ header img {
  overflow:hidden;
  box-shadow:none;
  transition:background .2s;
+ scroll-margin-top:25px;
 }
 
 .admission-item:last-child {
@@ -713,8 +714,6 @@ button:disabled {
 
 <main class="container">
 
-<!-- ADMISSIONS INFORMATION -->
-
 <div class="heading" id="admissions">
  <h1>ADMISSIONS AT TITI</h1>
  <p>Your journey towards professional knowledge, practical skills and a brighter future starts here.</p>
@@ -730,15 +729,12 @@ button:disabled {
  </p>
 </div>
 
-<!-- EXPANDABLE ADMISSIONS MENU -->
-
 <div class="admissions-accordion">
 
- <details class="admission-item">
+ <details class="admission-item" id="requirements">
   <summary>01. ADMISSION REQUIREMENTS</summary>
 
   <div class="admission-content">
-
    <p><strong>Diploma Programmes – Kenyan Applicants</strong></p>
    <ul>
     <li>KCSE mean grade of at least C- (minus), or an equivalent qualification.</li>
@@ -754,56 +750,46 @@ button:disabled {
     their academic qualifications for assessment against the
     relevant programme entry requirements.
    </div>
-
   </div>
  </details>
 
- <details class="admission-item">
+ <details class="admission-item" id="documents">
   <summary>02. REQUIRED DOCUMENTS</summary>
 
   <div class="admission-content">
-
    <p>Prepare the following documents when applying:</p>
-
    <ul>
     <li>Academic certificates.</li>
     <li>Academic transcripts or result slips.</li>
     <li>Recent passport-size photograph.</li>
     <li>National identification card or passport.</li>
    </ul>
-
    <p>
     Upload clear and readable copies through the online
     application form below.
    </p>
-
   </div>
  </details>
 
- <details class="admission-item">
+ <details class="admission-item" id="intakes">
   <summary>03. INTAKES & ADMISSION</summary>
 
   <div class="admission-content">
-
    <p>Regular Certificate and Diploma programmes have three intakes every year:</p>
 
    <div class="intake-list">
-
     <div class="intake-item">
      <strong>JANUARY</strong>
      <span>Intake</span>
     </div>
-
     <div class="intake-item">
      <strong>MAY</strong>
      <span>Intake</span>
     </div>
-
     <div class="intake-item">
      <strong>AUGUST</strong>
      <span>Intake</span>
     </div>
-
    </div>
 
    <div class="short-course">
@@ -815,15 +801,13 @@ button:disabled {
      to wait for the regular intakes.
     </p>
    </div>
-
   </div>
  </details>
 
- <details class="admission-item">
+ <details class="admission-item" id="fees">
   <summary>04. FEES & PAYMENT</summary>
 
   <div class="admission-content">
-
    <p>
     Tuition and other applicable fees depend on the
     programme of study. Applicants should confirm the
@@ -833,33 +817,25 @@ button:disabled {
    <p><strong>Official Institutional Bank Details</strong></p>
 
    <div class="bank-details">
-
     <p><strong>Bank:</strong> CENTENARY BANK</p>
-
     <p><strong>Account Name:</strong><br>
     TAHIDI INTERNATIONAL TRAINING INSTITUTE - TITICO-SMC LIMITED</p>
-
     <p><strong>Account Number:</strong></p>
-
     <div class="bank-number">3100128448</div>
-
     <p><strong>Additional Number Supplied:</strong> 0776433303</p>
-
    </div>
 
    <div class="admissions-note">
     Always retain your payment receipt for institutional
     verification and follow-up.
    </div>
-
   </div>
  </details>
 
- <details class="admission-item">
+ <details class="admission-item" id="enquiries">
   <summary>05. ADMISSION ENQUIRIES</summary>
 
   <div class="admission-content">
-
    <p>
     Need assistance with admission, programme selection,
     entry qualifications or payment?
@@ -882,19 +858,14 @@ button:disabled {
     Applicants are encouraged to confirm programme availability,
     admission requirements and current fees before making payment.
    </div>
-
   </div>
  </details>
 
 </div>
 
 <div class="apply-now-wrap">
- <a href="#online-application" class="apply-now">
-  APPLY NOW
- </a>
+ <a href="#online-application" class="apply-now">APPLY NOW</a>
 </div>
-
-<!-- END OF ADMISSIONS INFORMATION -->
 
 <div class="heading" id="online-application">
  <h1>ONLINE APPLICATION FORM</h1>
@@ -1003,8 +974,7 @@ button:disabled {
 
 <div class="field">
 <label>Year Completed *</label>
-<input type="number" name="year_completed"
-min="1950" required>
+<input type="number" name="year_completed" min="1950" required>
 </div>
 
 </div>
@@ -1029,15 +999,13 @@ Your documents are stored in private institutional storage.
 
 <div class="field full">
 <label>National ID / Identification Document *</label>
-<input type="file" id="identity"
-accept=".pdf,.jpg,.jpeg,.png" required>
+<input type="file" id="identity" accept=".pdf,.jpg,.jpeg,.png" required>
 <small>Upload your National ID or another accepted identification document.</small>
 </div>
 
 <div class="field full">
 <label>Academic Certificates and Transcripts *</label>
-<input type="file" id="academic"
-accept=".pdf,.jpg,.jpeg,.png" multiple required>
+<input type="file" id="academic" accept=".pdf,.jpg,.jpeg,.png" multiple required>
 <small>You may select multiple academic certificates and transcripts.</small>
 </div>
 
@@ -1056,9 +1024,7 @@ I understand that false information may result in rejection of my application.</
 </label>
 
 <div style="margin-top:23px">
-<button type="submit" id="submitBtn">
-SUBMIT APPLICATION
-</button>
+<button type="submit" id="submitBtn">SUBMIT APPLICATION</button>
 </div>
 
 </div>
@@ -1115,9 +1081,7 @@ SUBMIT APPLICATION
 
     <br>
 
-    <a href="apply.html#admissions" class="footer-apply">
-     Apply Now
-    </a>
+    <a href="apply.html#admissions" class="footer-apply">Apply Now</a>
    </div>
   </div>
 
@@ -1161,7 +1125,35 @@ new Date().toISOString().split('T')[0];
 document.querySelector('[name="year_completed"]').max =
 new Date().getFullYear();
 
-function showMessage(text, type) {
+/* DIRECT ADMISSIONS NAVIGATION */
+
+function openAdmissionSection() {
+ const sectionId = decodeURIComponent(
+  window.location.hash.substring(1)
+ );
+
+ if(!sectionId) return;
+
+ const target = document.getElementById(sectionId);
+
+ if(!target) return;
+
+ if(target.matches('details.admission-item')) {
+  target.open = true;
+ }
+
+ requestAnimationFrame(() => {
+  target.scrollIntoView({
+   behavior:'smooth',
+   block:'start'
+  });
+ });
+}
+
+window.addEventListener('load',openAdmissionSection);
+window.addEventListener('hashchange',openAdmissionSection);
+
+function showMessage(text,type) {
  message.className = 'message ' + type;
  message.textContent = text;
 
@@ -1267,7 +1259,7 @@ function validateFiles(groups) {
  return null;
 }
 
-async function uploadDocuments(reference, groups) {
+async function uploadDocuments(reference,groups) {
  const bucket = 'titi-applicant-documents';
 
  for(const group of groups) {
