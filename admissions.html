@@ -555,7 +555,7 @@ background:white;
 transform:translateY(-3px);
 }
 
-/* EXISTING ADMISSIONS FOOTER */
+/* FOOTER */
 
 footer{
 background:var(--navy-dark);
@@ -566,9 +566,28 @@ border-top:4px solid var(--gold);
 
 .footer-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:1.3fr 1fr 1fr 1fr;
 gap:35px;
 margin-bottom:30px;
+}
+
+.footer-logo{
+width:160px;
+height:75px;
+object-fit:contain;
+object-position:left center;
+margin-bottom:17px;
+}
+
+.footer-about p{
+max-width:290px;
+}
+
+.footer-motto{
+color:var(--gold)!important;
+font-weight:800;
+letter-spacing:1px;
+margin-top:14px;
 }
 
 footer h3{
@@ -638,6 +657,11 @@ margin-left:0;
 .programme-submenu,
 .admissions-submenu{
 min-width:210px;
+}
+
+.footer-grid{
+grid-template-columns:1.2fr 1fr 1fr 1fr;
+gap:20px;
 }
 }
 
@@ -785,6 +809,11 @@ grid-template-columns:1fr;
 .fee-box{padding:23px;}
 
 .footer-grid{grid-template-columns:1fr;gap:25px;}
+
+.footer-logo{
+width:150px;
+height:70px;
+}
 }
 </style>
 </head>
@@ -939,8 +968,8 @@ We encourage applicants to review the relevant programme requirements and prepar
 
 <a class="quick-card" href="#requirements">Admission Requirements →</a>
 <a class="quick-card" href="#documents">Required Documents →</a>
-<a class="quick-card" href="#intakes">Intakes & Admission →</a>
-<a class="quick-card" href="#fees">Fees & Payment →</a>
+<a class="quick-card" href="#intakes">Intakes &amp; Admission →</a>
+<a class="quick-card" href="#fees">Fees &amp; Payment →</a>
 <a class="quick-card" href="#enquiries">Admission Enquiries →</a>
 <a class="quick-card" href="apply.html#online-application">Apply Online →</a>
 
@@ -1098,39 +1127,56 @@ Our admissions team is available to guide prospective students on programme sele
 
 </main>
 
-<!-- FOOTER -->
+<!-- FOUR-COLUMN TITI FOOTER -->
 
 <footer>
 <div class="container">
 
 <div class="footer-grid">
 
+<div class="footer-about">
+
+<img src="BYE.png"
+alt="Tahidi International Training Institute Logo"
+class="footer-logo">
+
+<p>
+Tahidi International Training Institute is committed to providing academic, technical and professional training opportunities that prepare learners for personal growth and the world of work.
+</p>
+
+<p class="footer-motto">BREAKING THE LIMITS</p>
+
+</div>
+
 <div>
 <h3>ABOUT TITI</h3>
-<p>
-Tahidi International Training Institute is committed to providing academic and professional training opportunities.
-</p>
-<p><strong>BREAKING THE LIMITS</strong></p>
+<a href="about.html#who-we-are">Who We Are</a>
+<a href="about.html#our-vision">Our Vision</a>
+<a href="about.html#our-mission">Our Mission</a>
+<a href="about.html#our-core-values">Our Core Values</a>
+<a href="about.html#student-commitment">Student Commitment</a>
+<a href="about.html#our-location">Our Location</a>
 </div>
 
 <div>
 <h3>QUICK LINKS</h3>
 <a href="index.html">Home</a>
-<a href="about.html">About Us</a>
 <a href="index.html#diploma">Diploma Programmes</a>
 <a href="index.html#certificate">Certificate Programmes</a>
 <a href="index.html#shortCourses">Short Courses</a>
-<a href="admissions.html#admissions">Admissions</a>
-<a href="apply.html#online-application">Apply Now</a>
+<a href="index.html#gallery">Campus</a>
+<a href="index.html#contact">Contact Us</a>
 </div>
 
 <div>
 <h3>ADMISSIONS</h3>
-<a href="#requirements">Admission Requirements</a>
-<a href="#documents">Required Documents</a>
-<a href="#intakes">Intakes &amp; Admission</a>
-<a href="#fees">Fees &amp; Payment</a>
-<a href="#enquiries">Admission Enquiries</a>
+<a href="admissions.html#admissions">Admissions at TITI</a>
+<a href="admissions.html#requirements">Entry Requirements</a>
+<a href="admissions.html#documents">Required Documents</a>
+<a href="admissions.html#intakes">Intakes &amp; Admission</a>
+<a href="admissions.html#fees">Fees &amp; Payment</a>
+<a href="admissions.html#enquiries">Admission Enquiries</a>
+<a href="apply.html#online-application">Apply Online</a>
 </div>
 
 </div>
@@ -1167,6 +1213,8 @@ menuToggle.setAttribute(
 'aria-label',
 isOpen?'Close navigation':'Open navigation'
 );
+
+menuToggle.textContent=isOpen?'✕':'☰';
 
 });
 
@@ -1223,6 +1271,7 @@ mainNav.classList.remove('open');
 
 menuToggle.setAttribute('aria-expanded','false');
 menuToggle.setAttribute('aria-label','Open navigation');
+menuToggle.textContent='☰';
 
 dropdowns.forEach(item=>{
 item.menu.classList.remove('open');
@@ -1260,6 +1309,7 @@ mainNav.classList.remove('open');
 
 menuToggle.setAttribute('aria-expanded','false');
 menuToggle.setAttribute('aria-label','Open navigation');
+menuToggle.textContent='☰';
 
 dropdowns.forEach(item=>{
 
