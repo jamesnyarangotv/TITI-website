@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Admissions | Tahidi International Training Institute</title>
+
 <meta name="description" content="Explore admission requirements, application procedures, required documents, fees and intakes at Tahidi International Training Institute.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,92 +16,140 @@
 :root{
 --maroon:#7A1220;
 --navy:#0F2A5E;
+--dark-navy:#091B3D;
 --gold:#D4AF37;
 --white:#fff;
---light:#F5F5F5;
+--light:#F4F6F9;
 --text:#263247;
+--muted:#687386;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;scroll-padding-top:110px;}
-body{font-family:'Jost',sans-serif;color:var(--text);line-height:1.7;}
-a{text-decoration:none;color:inherit;}
-.container{width:min(1120px,92%);margin:auto;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+scroll-padding-top:120px;
+}
+
+body{
+font-family:'Jost',sans-serif;
+color:var(--text);
+line-height:1.7;
+background:#fff;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+width:min(1120px,92%);
+margin:auto;
+}
+
+/* TOP BAR */
 
 .topbar{
 background:var(--navy);
 color:white;
-padding:7px;
+padding:8px 12px;
 text-align:center;
 font-size:13px;
+font-weight:700;
+letter-spacing:1.2px;
 }
 
+/* HEADER */
+
 header{
-background:white;
-box-shadow:0 3px 15px rgba(0,0,0,.08);
+background:#fff;
+box-shadow:0 3px 18px rgba(0,0,0,.09);
 position:sticky;
 top:0;
-z-index:100;
+z-index:1000;
 }
 
 .header-inner{
 width:min(1360px,96%);
-min-height:90px;
+min-height:105px;
 margin:auto;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:15px;
+gap:20px;
+padding:10px 0;
 }
 
 .brand{
 display:flex;
 align-items:center;
-gap:12px;
+gap:15px;
+flex-shrink:0;
 }
 
 .brand img{
-width:64px;
-height:64px;
+width:180px;
+height:85px;
 object-fit:contain;
-border:2px solid var(--gold);
-border-radius:8px;
-padding:4px;
+display:block;
+background:white;
+border-radius:10px;
 }
 
-.brand h1{
-font-size:20px;
-color:var(--maroon);
-line-height:1.2;
+.brand-text h1{
+font-size:19px;
 font-weight:800;
+line-height:1.2;
+color:var(--maroon);
 }
 
-.brand span{
+.brand-text span{
+display:block;
 font-size:12px;
 letter-spacing:2px;
-color:var(--navy);
 font-weight:700;
+color:var(--navy);
+margin-top:4px;
 }
+
+/* NAVIGATION */
 
 nav{
 display:flex;
 align-items:center;
-gap:23px;
+justify-content:flex-end;
+gap:22px;
 font-size:14px;
 font-weight:800;
 color:var(--navy);
+white-space:nowrap;
 }
 
-nav a:hover{color:var(--maroon);}
+nav a{
+transition:.2s;
+}
+
+nav a:hover{
+color:var(--maroon);
+}
 
 .apply-btn{
 background:var(--maroon);
 color:white!important;
 padding:11px 19px;
 border-radius:5px;
+transition:.25s;
 }
 
-.apply-btn:hover{background:var(--navy);}
+.apply-btn:hover{
+background:var(--navy);
+transform:translateY(-2px);
+}
 
 .menu-toggle{
 display:none;
@@ -108,14 +158,20 @@ color:white;
 border:0;
 padding:8px 13px;
 font-size:23px;
+border-radius:4px;
 cursor:pointer;
 }
 
+/* HERO */
+
 .hero{
-background:linear-gradient(120deg,var(--navy),var(--maroon));
+background:
+linear-gradient(120deg,rgba(9,27,61,.96),rgba(122,18,32,.91));
 color:white;
 text-align:center;
-padding:75px 15px;
+padding:85px 15px;
+position:relative;
+overflow:hidden;
 }
 
 .hero .eyebrow{
@@ -126,22 +182,24 @@ font-size:13px;
 }
 
 .hero h2{
-font-size:clamp(32px,5vw,48px);
+font-size:clamp(32px,5vw,49px);
 line-height:1.2;
-margin:10px 0;
+margin:12px 0;
+font-weight:800;
 }
 
 .hero p{
-max-width:700px;
-margin:12px auto 22px;
-font-size:16px;
+max-width:720px;
+margin:15px auto 25px;
+font-size:17px;
+color:#f0f2f7;
 }
 
 .gold-line{
 width:65px;
 height:4px;
 background:var(--gold);
-margin:15px auto;
+margin:16px auto;
 border-radius:5px;
 }
 
@@ -149,7 +207,7 @@ border-radius:5px;
 display:inline-block;
 background:var(--gold);
 color:var(--navy);
-padding:12px 25px;
+padding:13px 25px;
 border-radius:5px;
 font-weight:800;
 transition:.25s;
@@ -160,162 +218,217 @@ background:white;
 transform:translateY(-3px);
 }
 
-section{padding:65px 0;}
+/* GENERAL SECTIONS */
+
+section{
+padding:70px 0;
+}
 
 .section-heading{
 text-align:center;
-margin-bottom:35px;
+margin-bottom:38px;
 }
 
 .section-heading h2{
 font-size:30px;
 color:var(--navy);
 font-weight:800;
+line-height:1.3;
 }
 
 .section-heading p{
-max-width:680px;
-margin:auto;
-color:#687386;
+max-width:700px;
+margin:0 auto;
+color:var(--muted);
 }
+
+/* INTRODUCTION */
 
 .intro-grid{
 display:grid;
 grid-template-columns:1.1fr .9fr;
-gap:35px;
+gap:40px;
 align-items:center;
 }
 
 .intro-text h3{
 color:var(--maroon);
-font-size:25px;
-margin-bottom:12px;
+font-size:27px;
+margin-bottom:15px;
+font-weight:800;
 }
 
-.intro-text p{margin-bottom:13px;}
+.intro-text p{
+margin-bottom:15px;
+}
 
 .intro-image{
 background:var(--light);
 padding:10px;
-border-radius:8px;
+border-radius:9px;
+box-shadow:0 8px 25px rgba(0,0,0,.07);
 }
 
 .intro-image img{
 width:100%;
-height:300px;
+height:330px;
 object-fit:cover;
-border-radius:5px;
+border-radius:6px;
+display:block;
 }
 
-.quick-nav{background:var(--light);}
+/* QUICK NAVIGATION */
+
+.quick-nav{
+background:var(--light);
+}
 
 .quick-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:15px;
+gap:18px;
 }
 
 .quick-card{
 background:white;
-padding:20px;
-border-bottom:3px solid var(--gold);
-border-radius:5px;
+padding:23px 15px;
+border-bottom:4px solid var(--gold);
+border-radius:6px;
 color:var(--navy);
 font-weight:800;
 text-align:center;
+box-shadow:0 4px 15px rgba(0,0,0,.04);
 transition:.25s;
 }
 
 .quick-card:hover{
-transform:translateY(-4px);
+transform:translateY(-5px);
 color:var(--maroon);
+box-shadow:0 9px 20px rgba(0,0,0,.09);
 }
 
-.info-section{background:white;}
+/* REQUIREMENTS */
+
+.info-section{
+background:white;
+}
 
 .info-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:20px;
+gap:22px;
 }
 
 .info-card{
 background:var(--light);
-padding:25px;
-border-left:4px solid var(--gold);
-border-radius:5px;
+padding:28px;
+border-left:5px solid var(--gold);
+border-radius:6px;
 }
 
 .info-card h3{
 color:var(--navy);
-font-size:19px;
-margin-bottom:10px;
+font-size:21px;
+margin-bottom:13px;
+font-weight:800;
 }
 
-.info-card ul{padding-left:20px;}
-.info-card li{margin-bottom:7px;}
+.info-card ul{
+padding-left:21px;
+}
 
-.documents{background:var(--light);}
+.info-card li{
+margin-bottom:9px;
+}
+
+/* NOTICE */
+
+.note{
+background:#fff8df;
+border-left:4px solid var(--gold);
+padding:17px 20px;
+margin-top:22px;
+border-radius:4px;
+}
+
+/* DOCUMENTS */
+
+.documents{
+background:var(--light);
+}
 
 .document-list{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:14px;
+gap:15px;
 }
 
 .document-item{
 background:white;
-padding:16px;
-border-radius:5px;
+padding:19px;
+border-radius:6px;
 border-left:4px solid var(--maroon);
 font-weight:600;
+box-shadow:0 3px 12px rgba(0,0,0,.035);
 }
+
+/* ADMISSION PROCESS */
 
 .intake-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:17px;
+gap:20px;
 }
 
 .intake-card{
 background:var(--light);
-padding:25px;
+padding:28px 22px;
 text-align:center;
 border-bottom:4px solid var(--gold);
-border-radius:5px;
+border-radius:6px;
+transition:.25s;
+}
+
+.intake-card:hover{
+transform:translateY(-5px);
+box-shadow:0 8px 20px rgba(0,0,0,.07);
 }
 
 .intake-card h3{
 color:var(--navy);
-font-size:20px;
-margin-bottom:7px;
+font-size:21px;
+margin-bottom:10px;
+font-weight:800;
 }
 
-.fees{background:var(--light);}
+/* FEES */
+
+.fees{
+background:var(--light);
+}
 
 .fee-box{
 max-width:850px;
 margin:auto;
 background:white;
-padding:30px;
+padding:35px;
 border-radius:7px;
-border-top:4px solid var(--gold);
+border-top:5px solid var(--gold);
+box-shadow:0 5px 20px rgba(0,0,0,.05);
 }
 
 .fee-box h3{
 color:var(--navy);
-margin-bottom:10px;
-font-size:22px;
+margin-bottom:13px;
+font-size:23px;
+font-weight:800;
 }
 
-.fee-box p{margin-bottom:12px;}
-
-.note{
-background:#fff8df;
-border-left:4px solid var(--gold);
-padding:15px;
-margin-top:18px;
+.fee-box p{
+margin-bottom:13px;
 }
+
+/* ENQUIRIES */
 
 .enquiries{
 background:var(--navy);
@@ -324,73 +437,102 @@ text-align:center;
 }
 
 .enquiries h2{
-font-size:30px;
+font-size:clamp(25px,4vw,32px);
 margin-bottom:10px;
+font-weight:800;
 }
 
 .enquiries p{
-max-width:700px;
-margin:10px auto;
+max-width:720px;
+margin:12px auto;
+color:#e4eaf3;
 }
 
 .enquiry-links{
 display:flex;
 justify-content:center;
-gap:14px;
+gap:15px;
 flex-wrap:wrap;
-margin-top:25px;
+margin-top:27px;
 }
 
 .enquiry-links a{
 background:var(--gold);
 color:var(--navy);
-padding:11px 20px;
+padding:12px 22px;
 border-radius:5px;
 font-weight:800;
+transition:.25s;
 }
 
+.enquiry-links a:hover{
+background:white;
+transform:translateY(-3px);
+}
+
+/* FOOTER */
+
 footer{
-background:#09172E;
+background:var(--dark-navy);
 color:white;
-padding:40px 0 15px;
+padding:48px 0 16px;
 }
 
 .footer-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:30px;
-margin-bottom:25px;
+gap:35px;
+margin-bottom:30px;
 }
 
 footer h3{
 color:var(--gold);
-margin-bottom:12px;
+margin-bottom:15px;
 font-size:17px;
+font-weight:800;
 }
 
-footer p,footer a{
+footer p,
+footer a{
 font-size:14px;
 color:#d5dbe5;
 }
 
-footer a{
-display:block;
-margin-bottom:7px;
+footer p{
+margin-bottom:10px;
 }
 
-footer a:hover{color:var(--gold);}
+footer a{
+display:block;
+margin-bottom:8px;
+transition:.2s;
+}
+
+footer a:hover{
+color:var(--gold);
+padding-left:3px;
+}
 
 .footer-bottom{
 border-top:1px solid rgba(255,255,255,.15);
-padding-top:15px;
+padding-top:17px;
 text-align:center;
 font-size:13px;
 color:#c7ceda;
 }
 
-@media(max-width:1000px){
-.header-inner{flex-wrap:wrap;padding:10px 0;}
-.menu-toggle{display:block;}
+/* TABLET */
+
+@media(max-width:1100px){
+
+.header-inner{
+flex-wrap:wrap;
+}
+
+.menu-toggle{
+display:block;
+}
+
 nav{
 display:none;
 width:100%;
@@ -398,26 +540,109 @@ flex-direction:column;
 align-items:stretch;
 gap:0;
 padding:10px 0;
+white-space:normal;
 }
-nav.open{display:flex;}
-nav a{padding:12px;border-bottom:1px solid #eee;}
-nav .apply-btn{text-align:center;margin-top:10px;}
+
+nav.open{
+display:flex;
 }
+
+nav a{
+padding:12px;
+border-bottom:1px solid #eee;
+}
+
+nav .apply-btn{
+text-align:center;
+margin-top:10px;
+}
+
+}
+
+/* MOBILE */
 
 @media(max-width:700px){
-.intro-grid,.info-grid,.document-list,.footer-grid{
-grid-template-columns:1fr;
-}
-.quick-grid,.intake-grid{grid-template-columns:repeat(2,1fr);}
-.hero{padding:55px 15px;}
-section{padding:48px 0;}
+
+.header-inner{
+min-height:auto;
+padding:10px 0;
 }
 
+.brand{
+gap:10px;
+}
+
+.brand img{
+width:145px;
+height:72px;
+}
+
+.brand-text h1{
+font-size:15px;
+}
+
+.brand-text span{
+font-size:10px;
+letter-spacing:1.3px;
+}
+
+.intro-grid,
+.info-grid,
+.document-list,
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+.quick-grid,
+.intake-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.hero{
+padding:60px 15px;
+}
+
+section{
+padding:52px 0;
+}
+
+.intro-image img{
+height:260px;
+}
+
+}
+
+/* SMALL PHONES */
+
 @media(max-width:430px){
-.brand img{width:53px;height:53px;}
-.brand h1{font-size:16px;}
-.brand span{font-size:10px;}
-.quick-grid,.intake-grid{grid-template-columns:1fr;}
+
+.brand img{
+width:125px;
+height:65px;
+}
+
+.brand-text h1{
+font-size:13px;
+}
+
+.brand-text span{
+font-size:9px;
+letter-spacing:1px;
+}
+
+.quick-grid,
+.intake-grid{
+grid-template-columns:1fr;
+}
+
+.hero h2{
+font-size:32px;
+}
+
+.fee-box{
+padding:23px;
+}
+
 }
 </style>
 </head>
@@ -432,18 +657,18 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 <div class="header-inner">
 
 <a href="index.html" class="brand">
-<img src="JAMO%20LOGO.jpeg" alt="TITI Logo">
-<div>
+<img src="BYE.png" alt="Tahidi International Training Institute Official Logo">
+<div class="brand-text">
 <h1>TAHIDI INTERNATIONAL</h1>
 <span>TRAINING INSTITUTE</span>
 </div>
 </a>
 
-<button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
+<button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 
 <nav id="mainNav">
 <a href="index.html">HOME</a>
-<a href="index.html#about">ABOUT US</a>
+<a href="about.html">ABOUT US</a>
 <a href="index.html#programmes">PROGRAMMES</a>
 <a href="admissions.html">ADMISSIONS</a>
 <a href="index.html#contact">CONTACT</a>
@@ -453,34 +678,50 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 </div>
 </header>
 
+<!-- ADMISSIONS HERO -->
+
 <section class="hero">
 <div class="container">
+
 <div class="eyebrow">YOUR FUTURE STARTS HERE</div>
+
 <h2>ADMISSIONS AT TITI</h2>
+
 <div class="gold-line"></div>
+
 <p>
 Take the next step towards your academic and professional ambitions.
 Discover our admission procedures, entry requirements and application information.
 </p>
+
 <a href="apply.html" class="primary-btn">START YOUR APPLICATION →</a>
+
 </div>
 </section>
+
+<!-- INTRODUCTION -->
 
 <section>
 <div class="container intro-grid">
 
 <div class="intro-text">
+
 <h3>Welcome to TITI Admissions</h3>
+
 <p>
 Tahidi International Training Institute welcomes prospective students who wish to pursue academic, technical and professional training opportunities.
 </p>
+
 <p>
 Our admissions process is designed to guide applicants through programme selection, application, documentation and enrolment.
 </p>
+
 <p>
 We encourage applicants to review the relevant programme requirements and prepare the necessary documents before submitting an application.
 </p>
+
 <a href="apply.html" class="primary-btn">APPLY NOW</a>
+
 </div>
 
 <div class="intro-image">
@@ -490,8 +731,11 @@ We encourage applicants to review the relevant programme requirements and prepar
 </div>
 </section>
 
+<!-- QUICK LINKS -->
+
 <section class="quick-nav">
 <div class="container">
+
 <div class="section-heading">
 <h2>EXPLORE ADMISSIONS</h2>
 <div class="gold-line"></div>
@@ -499,15 +743,19 @@ We encourage applicants to review the relevant programme requirements and prepar
 </div>
 
 <div class="quick-grid">
+
 <a class="quick-card" href="#requirements">Admission Requirements →</a>
 <a class="quick-card" href="#documents">Required Documents →</a>
 <a class="quick-card" href="#intakes">Intakes & Admission →</a>
 <a class="quick-card" href="#fees">Fees & Payment →</a>
 <a class="quick-card" href="#enquiries">Admission Enquiries →</a>
 <a class="quick-card" href="apply.html">Apply Online →</a>
+
 </div>
 </div>
 </section>
+
+<!-- REQUIREMENTS -->
 
 <section id="requirements" class="info-section">
 <div class="container">
@@ -519,6 +767,7 @@ We encourage applicants to review the relevant programme requirements and prepar
 </div>
 
 <div class="info-grid">
+
 <div class="info-card">
 <h3>Certificate Programmes</h3>
 <ul>
@@ -536,6 +785,7 @@ We encourage applicants to review the relevant programme requirements and prepar
 <li>Any additional programme-specific requirements.</li>
 </ul>
 </div>
+
 </div>
 
 <div class="note">
@@ -544,6 +794,8 @@ We encourage applicants to review the relevant programme requirements and prepar
 
 </div>
 </section>
+
+<!-- REQUIRED DOCUMENTS -->
 
 <section id="documents" class="documents">
 <div class="container">
@@ -555,16 +807,19 @@ We encourage applicants to review the relevant programme requirements and prepar
 </div>
 
 <div class="document-list">
+
 <div class="document-item">Academic certificates and transcripts</div>
 <div class="document-item">National identification document or other valid identification</div>
 <div class="document-item">Recent passport-size photographs</div>
 <div class="document-item">Completed application form</div>
 <div class="document-item">Relevant professional or supporting certificates, where applicable</div>
 <div class="document-item">Any additional documents requested by the Institute</div>
-</div>
 
 </div>
+</div>
 </section>
+
+<!-- INTAKES -->
 
 <section id="intakes">
 <div class="container">
@@ -576,6 +831,7 @@ We encourage applicants to review the relevant programme requirements and prepar
 </div>
 
 <div class="intake-grid">
+
 <div class="intake-card">
 <h3>Programme Selection</h3>
 <p>Choose a programme that matches your academic background and career ambitions.</p>
@@ -590,10 +846,12 @@ We encourage applicants to review the relevant programme requirements and prepar
 <h3>Admission Confirmation</h3>
 <p>Follow up with the Institute for application assessment and admission guidance.</p>
 </div>
-</div>
 
 </div>
+</div>
 </section>
+
+<!-- FEES -->
 
 <section id="fees" class="fees">
 <div class="container">
@@ -605,25 +863,34 @@ We encourage applicants to review the relevant programme requirements and prepar
 </div>
 
 <div class="fee-box">
+
 <h3>Tuition Fees and Other Charges</h3>
+
 <p>
 Fees depend on the programme and level of study. Applicants should obtain the current official fee structure from the Institute before making payments.
 </p>
+
 <p>
 Students should follow the official payment instructions provided by the Institute and retain payment receipts for reference.
 </p>
+
 <div class="note">
 <strong>Payment Notice:</strong> Always confirm the official payment details with the Institute before transferring any money. Do not rely on unverified payment instructions.
 </div>
-</div>
 
+</div>
 </div>
 </section>
 
+<!-- ENQUIRIES -->
+
 <section id="enquiries" class="enquiries">
 <div class="container">
+
 <h2>NEED ADMISSION ASSISTANCE?</h2>
+
 <div class="gold-line"></div>
+
 <p>
 Our admissions team is available to guide prospective students on programme selection, entry requirements, documentation and the application process.
 </p>
@@ -632,8 +899,11 @@ Our admissions team is available to guide prospective students on programme sele
 <a href="index.html#contact">CONTACT THE INSTITUTE</a>
 <a href="apply.html">APPLY NOW</a>
 </div>
+
 </div>
 </section>
+
+<!-- FOOTER -->
 
 <footer>
 <div class="container">
@@ -651,7 +921,7 @@ Tahidi International Training Institute is committed to providing academic and p
 <div>
 <h3>QUICK LINKS</h3>
 <a href="index.html">Home</a>
-<a href="index.html#about">About Us</a>
+<a href="about.html">About Us</a>
 <a href="index.html#programmes">Programmes</a>
 <a href="admissions.html">Admissions</a>
 <a href="apply.html">Apply Now</a>
@@ -676,17 +946,35 @@ Tahidi International Training Institute is committed to providing academic and p
 </footer>
 
 <script>
+
 function toggleMenu(){
-document.getElementById("mainNav").classList.toggle("open");
+
+const nav=document.getElementById("mainNav");
+const button=document.querySelector(".menu-toggle");
+
+nav.classList.toggle("open");
+
+button.setAttribute(
+"aria-expanded",
+nav.classList.contains("open")
+);
+
 }
 
 document.getElementById("year").textContent=new Date().getFullYear();
 
 document.querySelectorAll("#mainNav a").forEach(link=>{
+
 link.addEventListener("click",()=>{
+
 document.getElementById("mainNav").classList.remove("open");
+
+document.querySelector(".menu-toggle").setAttribute("aria-expanded","false");
+
 });
+
 });
+
 </script>
 
 </body>
