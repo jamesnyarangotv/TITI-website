@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Application | TITI</title>
-<meta name="description" content="Apply online to Tahidi International Training Institute.">
+<title>Admissions & Online Application | TITI</title>
+<meta name="description" content="Tahidi International Training Institute admissions, entry requirements, intakes, fees and online application.">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -22,9 +22,7 @@
  --text:#263247;
 }
 
-* {
- box-sizing:border-box;
-}
+* {box-sizing:border-box;}
 
 body {
  margin:0;
@@ -32,8 +30,6 @@ body {
  background:var(--grey);
  color:var(--text);
 }
-
-/* HEADER */
 
 header {
  background:var(--white);
@@ -59,7 +55,6 @@ header img {
 }
 
 .brand h2 {
- font-family:'Jost',sans-serif;
  color:var(--maroon);
  margin:0;
  font-size:21px;
@@ -96,23 +91,17 @@ header img {
  border:1px solid #dce2eb;
 }
 
-.home-link:hover {
- background:#f1f4f9;
-}
+.home-link:hover {background:#f1f4f9;}
 
 .courses-link {
  background:var(--maroon);
  color:white;
 }
 
-.courses-link:hover {
- background:#590b17;
-}
-
-/* MAIN CONTENT */
+.courses-link:hover {background:#590b17;}
 
 .container {
- max-width:900px;
+ max-width:1000px;
  margin:35px auto;
  padding:0 16px;
 }
@@ -123,7 +112,6 @@ header img {
 }
 
 .heading h1 {
- font-family:'Jost',sans-serif;
  color:var(--maroon);
  font-size:30px;
  font-weight:700;
@@ -134,6 +122,156 @@ header img {
  font-size:14px;
  color:#64748b;
 }
+
+/* ADMISSIONS INFORMATION */
+
+.admissions-intro {
+ background:linear-gradient(120deg,#0F2A5E,#183d78);
+ color:white;
+ padding:30px;
+ border-radius:9px;
+ margin-bottom:24px;
+ text-align:center;
+}
+
+.admissions-intro h2 {
+ margin:0 0 10px;
+ font-size:25px;
+}
+
+.admissions-intro p {
+ margin:0;
+ color:#e4eaf5;
+ font-size:14px;
+ line-height:1.8;
+}
+
+.admissions-grid {
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:18px;
+ margin-bottom:25px;
+}
+
+.admission-card {
+ background:white;
+ padding:23px;
+ border-radius:8px;
+ border-top:3px solid var(--gold);
+ box-shadow:0 3px 16px rgba(0,0,0,.045);
+}
+
+.admission-card h3 {
+ color:var(--navy);
+ font-size:17px;
+ margin:0 0 13px;
+}
+
+.admission-card p,
+.admission-card li {
+ font-size:13px;
+ line-height:1.8;
+ color:#526074;
+}
+
+.admission-card p {margin:7px 0;}
+
+.admission-card ul {
+ padding-left:19px;
+ margin:8px 0;
+}
+
+.admission-card strong {color:var(--navy);}
+
+.intake-list {
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:9px;
+ margin-top:15px;
+}
+
+.intake-item {
+ background:#f5f7fb;
+ border:1px solid #e3e8f0;
+ padding:13px 5px;
+ text-align:center;
+ border-radius:5px;
+}
+
+.intake-item strong {
+ display:block;
+ color:var(--maroon);
+ font-size:15px;
+}
+
+.intake-item span {
+ color:#64748b;
+ font-size:11px;
+}
+
+.short-course {
+ background:#fff8e7;
+ border-left:4px solid var(--gold);
+ padding:13px;
+ border-radius:4px;
+ margin-top:13px;
+}
+
+.short-course strong {
+ color:var(--maroon);
+}
+
+.bank-details {
+ background:#f5f7fb;
+ border:1px solid #e2e8f0;
+ padding:15px;
+ border-radius:5px;
+ margin-top:12px;
+}
+
+.bank-details p {
+ margin:7px 0;
+ overflow-wrap:anywhere;
+}
+
+.bank-number {
+ font-size:21px;
+ font-weight:800;
+ color:var(--maroon);
+ letter-spacing:1px;
+}
+
+.admissions-note {
+ background:#eef4ff;
+ border-left:4px solid var(--navy);
+ padding:13px;
+ border-radius:4px;
+ font-size:12px;
+ line-height:1.8;
+ color:var(--navy);
+ margin-top:13px;
+}
+
+.apply-now-wrap {
+ text-align:center;
+ margin:25px 0;
+}
+
+.apply-now {
+ display:inline-block;
+ background:var(--maroon);
+ color:white;
+ text-decoration:none;
+ padding:13px 35px;
+ border-radius:5px;
+ font-size:14px;
+ font-weight:700;
+ transition:.2s;
+}
+
+.apply-now:hover {background:#590b17;}
+
+/* APPLICATION FORM */
 
 .card {
  background:white;
@@ -164,9 +302,7 @@ header img {
  gap:7px;
 }
 
-.full {
- grid-column:1/-1;
-}
+.full {grid-column:1/-1;}
 
 label {
  font-size:13px;
@@ -226,9 +362,7 @@ button {
  font-size:14px;
 }
 
-button:hover {
- background:#590b17;
-}
+button:hover {background:#590b17;}
 
 button:disabled {
  opacity:.6;
@@ -266,8 +400,6 @@ button:disabled {
  color:var(--navy);
 }
 
-/* SUCCESS NAVIGATION */
-
 .success-actions {
  display:none;
  gap:12px;
@@ -295,11 +427,9 @@ button:disabled {
  color:#172033;
 }
 
-.success-actions a:hover {
- opacity:.88;
-}
+.success-actions a:hover {opacity:.88;}
 
-/* HOMEPAGE-STYLE FOOTER */
+/* FOOTER */
 
 .site-footer {
  background:#091B3D;
@@ -363,9 +493,7 @@ button:disabled {
  margin:0;
 }
 
-.footer-links li {
- margin-bottom:9px;
-}
+.footer-links li {margin-bottom:9px;}
 
 .footer-links a {
  color:#d4dbea;
@@ -374,9 +502,7 @@ button:disabled {
  transition:.2s;
 }
 
-.footer-links a:hover {
- color:var(--gold);
-}
+.footer-links a:hover {color:var(--gold);}
 
 .footer-contact {
  color:#d4dbea;
@@ -389,9 +515,7 @@ button:disabled {
  text-decoration:none;
 }
 
-.footer-contact a:hover {
- color:var(--gold);
-}
+.footer-contact a:hover {color:var(--gold);}
 
 .footer-apply {
  display:inline-block;
@@ -411,11 +535,7 @@ button:disabled {
  font-size:12px;
 }
 
-.footer-bottom p {
- margin:0;
-}
-
-/* RESPONSIVE DESIGN */
+.footer-bottom p {margin:0;}
 
 @media(max-width:850px) {
  .footer-grid {
@@ -425,7 +545,6 @@ button:disabled {
 }
 
 @media(max-width:600px) {
-
  header {
   padding:12px 4%;
   flex-wrap:wrap;
@@ -436,13 +555,8 @@ button:disabled {
   height:55px;
  }
 
- .brand h2 {
-  font-size:16px;
- }
-
- .brand p {
-  font-size:10px;
- }
+ .brand h2 {font-size:16px;}
+ .brand p {font-size:10px;}
 
  .header-nav {
   width:100%;
@@ -457,38 +571,41 @@ button:disabled {
   font-size:12px;
  }
 
- .grid {
+ .grid,
+ .admissions-grid {
   grid-template-columns:1fr;
  }
 
- .full {
-  grid-column:auto;
- }
+ .full {grid-column:auto;}
 
- .card {
-  padding:19px;
- }
+ .card {padding:19px;}
 
- .heading h1 {
-  font-size:25px;
- }
+ .admission-card {padding:19px;}
+
+ .admissions-intro {padding:23px 17px;}
+
+ .admissions-intro h2 {font-size:21px;}
+
+ .heading h1 {font-size:25px;}
+
+ .intake-list {gap:6px;}
+
+ .intake-item {padding:11px 3px;}
+
+ .intake-item strong {font-size:13px;}
 
  .footer-grid {
   grid-template-columns:1fr;
   gap:28px;
  }
 
- .site-footer {
-  padding:38px 6% 0;
- }
+ .site-footer {padding:38px 6% 0;}
 
- .success-actions {
-  flex-direction:column;
- }
+ .success-actions {flex-direction:column;}
 
- .success-actions a {
-  width:100%;
- }
+ .success-actions a {width:100%;}
+
+ .apply-now {width:100%;}
 }
 </style>
 </head>
@@ -515,9 +632,173 @@ button:disabled {
 
 <main class="container">
 
+<!-- ADMISSIONS INFORMATION -->
+
 <div class="heading">
+ <h1>ADMISSIONS AT TITI</h1>
+ <p>Your journey towards professional knowledge, practical skills and a brighter future starts here.</p>
+</div>
+
+<div class="admissions-intro">
+ <h2>WELCOME TO TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
+ <p>
+ We welcome prospective students seeking quality education,
+ professional training and practical skills. Explore our
+ admission requirements, intakes and payment information
+ before completing your online application.
+ </p>
+</div>
+
+<div class="admissions-grid">
+
+<!-- 01 REQUIREMENTS -->
+
+<div class="admission-card">
+ <h3>01. ADMISSION REQUIREMENTS</h3>
+
+ <p><strong>Diploma Programmes – Kenyan Applicants</strong></p>
+ <ul>
+  <li>KCSE mean grade of at least C- (minus), or an equivalent qualification.</li>
+ </ul>
+
+ <p><strong>Certificate Programmes – Kenyan Applicants</strong></p>
+ <ul>
+  <li>KCSE mean grade of at least D+ (plus).</li>
+ </ul>
+
+ <div class="admissions-note">
+ Applicants from Uganda and other countries should present
+ their academic qualifications for assessment against the
+ relevant programme entry requirements.
+ </div>
+</div>
+
+<!-- 02 DOCUMENTS -->
+
+<div class="admission-card">
+ <h3>02. REQUIRED DOCUMENTS</h3>
+
+ <p>Prepare the following documents when applying:</p>
+
+ <ul>
+  <li>Academic certificates.</li>
+  <li>Academic transcripts or result slips.</li>
+  <li>Recent passport-size photograph.</li>
+  <li>National identification card or passport.</li>
+ </ul>
+
+ <p>
+ Upload clear and readable copies through the online
+ application form below.
+ </p>
+</div>
+
+<!-- 03 INTAKES -->
+
+<div class="admission-card">
+ <h3>03. INTAKES & ADMISSION</h3>
+
+ <p>Regular Certificate and Diploma programmes have three intakes every year:</p>
+
+ <div class="intake-list">
+  <div class="intake-item">
+   <strong>JANUARY</strong>
+   <span>Intake</span>
+  </div>
+
+  <div class="intake-item">
+   <strong>MAY</strong>
+   <span>Intake</span>
+  </div>
+
+  <div class="intake-item">
+   <strong>AUGUST</strong>
+   <span>Intake</span>
+  </div>
+ </div>
+
+ <div class="short-course">
+  <strong>SHORT COURSES – ENROL ANY TIME!</strong>
+  <p>
+   Short courses and professional training are available
+   throughout the year. Open to anyone interested in
+   acquiring new skills and knowledge. You do not need
+   to wait for the regular intakes.
+  </p>
+ </div>
+</div>
+
+<!-- 04 FEES AND PAYMENT -->
+
+<div class="admission-card">
+ <h3>04. FEES & PAYMENT</h3>
+
+ <p>
+ Tuition and other applicable fees depend on the
+ programme of study. Applicants should confirm the
+ current fee structure with the institute.
+ </p>
+
+ <p><strong>Official Institutional Bank Details</strong></p>
+
+ <div class="bank-details">
+  <p><strong>Bank:</strong> CENTENARY BANK</p>
+
+  <p><strong>Account Name:</strong><br>
+  TAHIDI INTERNATIONAL TRAINING INSTITUTE - TITICO-SMC LIMITED</p>
+
+  <p><strong>Account Number:</strong></p>
+  <div class="bank-number">3100128448</div>
+
+  <p><strong>Additional Number Supplied:</strong> 0776433303</p>
+ </div>
+
+ <div class="admissions-note">
+ Always retain your payment receipt for institutional
+ verification and follow-up.
+ </div>
+</div>
+
+<!-- 05 ENQUIRIES -->
+
+<div class="admission-card">
+ <h3>05. ADMISSION ENQUIRIES</h3>
+
+ <p>
+ Need assistance with admission, programme selection,
+ entry qualifications or payment?
+ </p>
+
+ <p>
+ Contact Tahidi International Training Institute
+ through its official communication channels.
+ </p>
+
+ <p><strong>Institute:</strong><br>
+ TAHIDI INTERNATIONAL TRAINING INSTITUTE</p>
+
+ <p><strong>Telephone number supplied:</strong><br>
+ 0776433303</p>
+
+ <div class="admissions-note">
+ Applicants are encouraged to confirm programme availability,
+ admission requirements and current fees before making payment.
+ </div>
+</div>
+
+</div>
+
+<div class="apply-now-wrap">
+ <a href="#online-application" class="apply-now">
+ APPLY NOW
+ </a>
+</div>
+
+<!-- END OF ADMISSIONS INFORMATION -->
+
+<div class="heading" id="online-application">
  <h1>ONLINE APPLICATION FORM</h1>
- <p>Apply for admission to Tahidi International Training Institute.</p>
+ <p>Complete the form below to apply for admission to Tahidi International Training Institute.</p>
 </div>
 
 <div id="message" class="message"></div>
@@ -769,7 +1050,6 @@ const submitBtn = document.getElementById('submitBtn');
 const programmeSelect = document.getElementById('programme');
 const successActions = document.getElementById('successActions');
 
-/* Tracks whether the application record has already been created. */
 let applicationReference = null;
 
 document.getElementById('footer-year').textContent =
@@ -936,7 +1216,6 @@ async function uploadDocuments(reference, groups) {
 form.addEventListener('submit',async function(e) {
  e.preventDefault();
 
- /* Prevent another application after a reference has been issued. */
  if(applicationReference) {
   showMessage(
    'Your application has already been received. Your reference number is ' +
@@ -1019,11 +1298,6 @@ form.addEventListener('submit',async function(e) {
    );
   }
 
-  /*
-   * IMPORTANT:
-   * The application record now exists.
-   * Never allow this form to create another application.
-   */
   applicationReference = reference;
 
   showMessage(
@@ -1053,10 +1327,6 @@ form.addEventListener('submit',async function(e) {
 
   console.error('TITI application error:',error);
 
-  /*
-   * If an application reference exists, the application was created.
-   * Do not enable another submission when document uploading fails.
-   */
   if(applicationReference) {
 
    showMessage(
