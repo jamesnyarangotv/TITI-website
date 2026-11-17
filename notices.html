@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Notice Board | Tahidi International Training Institute</title>
-<meta name="description" content="Access official notices, examination and class timetables, and official documents from Tahidi International Training Institute.">
+<meta name="description" content="Official notices, examination timetables, class schedules and institutional documents from Tahidi International Training Institute.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,7 @@
 --light:#F4F6F9;
 --text:#263247;
 --muted:#697589;
+--border:#E3E7ED;
 --shadow:0 8px 25px rgba(10,30,65,.09);
 }
 
@@ -27,23 +28,19 @@
 
 html{
 scroll-behavior:smooth;
-scroll-padding-top:110px;
+scroll-padding-top:115px;
 }
 
 body{
 font-family:'Jost',sans-serif;
 color:var(--text);
-background:#fff;
+background:white;
 line-height:1.7;
 }
 
 a{text-decoration:none;color:inherit;}
-img{max-width:100%;display:block;}
-
-.container{
-width:min(1180px,92%);
-margin:auto;
-}
+button{font-family:inherit;}
+.container{width:min(1180px,92%);margin:auto;}
 
 /* TOP BAR */
 
@@ -75,14 +72,12 @@ display:flex;
 align-items:center;
 justify-content:flex-start;
 gap:12px;
-flex-wrap:nowrap;
 }
 
 .brand{
 display:flex;
 align-items:center;
 flex-shrink:0;
-white-space:nowrap;
 margin-left:8px;
 }
 
@@ -98,10 +93,8 @@ display:flex;
 align-items:center;
 justify-content:flex-end;
 gap:clamp(8px,.85vw,13px);
-flex:0 1 auto;
-min-width:0;
 margin-left:auto;
-flex-wrap:nowrap;
+flex:0 1 auto;
 white-space:nowrap;
 }
 
@@ -110,38 +103,18 @@ nav button.nav-link{
 color:white;
 font-size:clamp(11px,.91vw,13px);
 font-weight:800;
-white-space:nowrap;
-flex-shrink:0;
 padding:12px 0;
+white-space:nowrap;
+border:0;
+background:none;
+cursor:pointer;
+font-family:inherit;
 transition:.25s;
 }
 
 nav>a:hover,
 nav button.nav-link:hover,
-nav>a.active{
-color:var(--gold);
-}
-
-nav button.nav-link{
-border:0;
-background:transparent;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:4px;
-font-family:inherit;
-}
-
-.dropdown-arrow{
-font-size:10px;
-transition:transform .25s;
-}
-
-.about-menu.open .dropdown-arrow,
-.programme-menu.open .dropdown-arrow,
-.admissions-menu.open .dropdown-arrow{
-transform:rotate(180deg);
-}
+nav>a.active{color:var(--gold);}
 
 .about-menu,
 .programme-menu,
@@ -150,6 +123,23 @@ position:relative;
 display:flex;
 align-items:center;
 flex-shrink:0;
+}
+
+nav button.nav-link{
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+.dropdown-arrow{
+font-size:10px;
+transition:.25s;
+}
+
+.about-menu.open .dropdown-arrow,
+.programme-menu.open .dropdown-arrow,
+.admissions-menu.open .dropdown-arrow{
+transform:rotate(180deg);
 }
 
 .about-submenu,
@@ -166,7 +156,6 @@ border-top:4px solid var(--gold);
 border-radius:0 0 7px 7px;
 box-shadow:0 12px 28px rgba(0,0,0,.2);
 z-index:1100;
-white-space:normal;
 }
 
 .about-submenu{min-width:255px;}
@@ -194,12 +183,6 @@ color:var(--navy);
 border-bottom:1px solid #edf0f4;
 }
 
-.about-submenu a:last-child,
-.programme-submenu a:last-child,
-.admissions-submenu a:last-child{
-border-bottom:0;
-}
-
 .about-submenu a:hover,
 .programme-submenu a:hover,
 .admissions-submenu a:hover{
@@ -214,8 +197,6 @@ color:white!important;
 padding:10px 15px!important;
 border-radius:4px;
 font-size:12px!important;
-font-weight:800;
-margin-left:2px;
 }
 
 .nav-apply:hover{
@@ -237,7 +218,7 @@ border-radius:4px;
 /* HERO */
 
 .hero{
-background:linear-gradient(115deg,#0B2452 0%,#12366F 60%,#7A1220 100%);
+background:linear-gradient(115deg,#0B2452,#12366F 60%,#7A1220);
 color:white;
 padding:65px 0 70px;
 text-align:center;
@@ -245,7 +226,7 @@ position:relative;
 overflow:hidden;
 }
 
-.hero::before{
+.hero:before{
 content:"";
 position:absolute;
 width:400px;
@@ -292,9 +273,14 @@ color:#edf1f8;
 font-size:17px;
 }
 
-/* NOTICE INTRO */
+/* INTRODUCTION */
 
-section{padding:65px 0;}
+section{padding:60px 0;}
+
+.intro{
+text-align:center;
+padding-bottom:40px;
+}
 
 .section-heading{
 text-align:center;
@@ -314,12 +300,6 @@ margin:10px auto 0;
 color:var(--muted);
 }
 
-.intro{
-background:white;
-text-align:center;
-padding-bottom:35px;
-}
-
 .intro-text{
 max-width:850px;
 margin:auto;
@@ -327,11 +307,13 @@ color:#536075;
 font-size:16px;
 }
 
+.intro-text p{margin-bottom:10px;}
+
 /* CATEGORY CARDS */
 
 .categories{
 background:var(--light);
-padding-top:45px;
+padding:48px 0;
 }
 
 .category-grid{
@@ -365,7 +347,7 @@ margin:0 auto 17px;
 border-radius:50%;
 background:#edf1f8;
 color:var(--navy);
-font-size:27px;
+font-size:24px;
 font-weight:800;
 }
 
@@ -393,9 +375,7 @@ font-weight:800;
 transition:.2s;
 }
 
-.category-card a:hover{
-background:var(--maroon);
-}
+.category-card a:hover{background:var(--maroon);}
 
 /* DOCUMENT SECTIONS */
 
@@ -404,15 +384,13 @@ background:white;
 scroll-margin-top:115px;
 }
 
-.document-section.alternate{
-background:var(--light);
-}
+.document-section.alternate{background:var(--light);}
 
 .section-title{
 display:flex;
 align-items:center;
 gap:13px;
-margin-bottom:23px;
+margin-bottom:15px;
 padding-bottom:14px;
 border-bottom:2px solid #e8ebf0;
 }
@@ -439,15 +417,119 @@ font-weight:800;
 
 .section-description{
 color:var(--muted);
-margin-bottom:22px;
+margin-bottom:25px;
 }
+
+/* DOCUMENT CARDS */
+
+.document-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+}
+
+.document-card{
+background:white;
+border:1px solid var(--border);
+border-left:4px solid var(--gold);
+border-radius:6px;
+padding:20px;
+display:flex;
+flex-direction:column;
+box-shadow:0 3px 12px rgba(0,0,0,.035);
+transition:.2s;
+}
+
+.document-card:hover{
+transform:translateY(-3px);
+box-shadow:var(--shadow);
+}
+
+.document-top{
+display:flex;
+align-items:flex-start;
+gap:13px;
+}
+
+.document-icon{
+width:45px;
+height:45px;
+background:#edf1f8;
+color:var(--navy);
+border-radius:5px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:21px;
+font-weight:800;
+flex-shrink:0;
+}
+
+.document-info{flex:1;min-width:0;}
+
+.document-info h3{
+font-size:17px;
+color:var(--navy);
+font-weight:800;
+line-height:1.4;
+margin-bottom:5px;
+}
+
+.document-date{
+font-size:12px;
+font-weight:700;
+color:var(--maroon);
+}
+
+.document-description{
+font-size:13px;
+color:var(--muted);
+margin-top:10px;
+}
+
+.document-actions{
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+margin-top:18px;
+}
+
+.document-actions a{
+display:inline-block;
+padding:8px 15px;
+border-radius:4px;
+font-size:12px;
+font-weight:800;
+text-align:center;
+transition:.2s;
+}
+
+.view-document{
+background:var(--navy);
+color:white;
+}
+
+.view-document:hover{background:var(--maroon);}
+
+.download-document{
+background:#edf1f8;
+color:var(--navy);
+}
+
+.download-document:hover{
+background:var(--gold);
+color:var(--navy);
+}
+
+/* EMPTY STATES */
 
 .empty-board{
 background:white;
 border:1px dashed #c8d0dc;
 border-radius:7px;
-padding:35px 20px;
+padding:38px 20px;
 text-align:center;
+grid-column:1/-1;
 }
 
 .empty-icon{
@@ -465,6 +547,13 @@ margin-bottom:5px;
 .empty-board p{
 color:var(--muted);
 font-size:14px;
+}
+
+.document-count{
+font-size:12px;
+font-weight:800;
+color:var(--muted);
+margin-bottom:15px;
 }
 
 /* HOW TO USE */
@@ -546,8 +635,7 @@ font-size:17px;
 font-weight:800;
 }
 
-footer p,
-footer a{
+footer p,footer a{
 font-size:14px;
 color:#d5dbe5;
 }
@@ -576,55 +664,21 @@ color:#c7ceda;
 /* TABLET */
 
 @media(min-width:851px) and (max-width:1100px){
-
-.header-inner{
-width:99%;
-gap:7px;
-min-height:88px;
-}
-
+.header-inner{width:99%;gap:7px;min-height:88px;}
 .brand{margin-left:5px;}
-
-.brand img{
-width:125px;
-height:65px;
-}
-
+.brand img{width:125px;height:65px;}
 nav{gap:7px;}
-
-nav>a,
-nav button.nav-link{
-font-size:10.5px;
-}
-
-.nav-apply{
-padding:9px 9px!important;
-font-size:10.5px!important;
-margin-left:0;
-}
-
-.footer-grid{
-grid-template-columns:1.2fr 1fr 1fr 1fr;
-gap:20px;
-}
+nav>a,nav button.nav-link{font-size:10.5px;}
+.nav-apply{padding:9px!important;font-size:10.5px!important;}
+.footer-grid{gap:20px;}
 }
 
 /* MOBILE */
 
 @media(max-width:850px){
-
-.header-inner{
-width:94%;
-min-height:88px;
-gap:12px;
-}
-
+.header-inner{width:94%;min-height:88px;gap:12px;}
 .brand{margin-left:0;}
-
-.brand img{
-width:145px;
-height:72px;
-}
+.brand img{width:145px;height:72px;}
 
 .menu-toggle{
 display:block;
@@ -652,8 +706,7 @@ overflow-y:auto;
 
 nav.open{display:flex;}
 
-nav>a,
-nav button.nav-link{
+nav>a,nav button.nav-link{
 color:white;
 font-size:14px;
 padding:12px 8px;
@@ -662,18 +715,14 @@ width:100%;
 text-align:left;
 }
 
-.about-menu,
-.programme-menu,
-.admissions-menu{
+.about-menu,.programme-menu,.admissions-menu{
 display:block;
 width:100%;
 }
 
 nav button.nav-link{justify-content:space-between;}
 
-.about-submenu,
-.programme-submenu,
-.admissions-submenu{
+.about-submenu,.programme-submenu,.admissions-submenu{
 position:static;
 min-width:0;
 width:100%;
@@ -684,9 +733,7 @@ padding:4px 0;
 background:#16366F;
 }
 
-.about-submenu a,
-.programme-submenu a,
-.admissions-submenu a{
+.about-submenu a,.programme-submenu a,.admissions-submenu a{
 color:white;
 padding:11px 20px;
 font-size:13px;
@@ -698,60 +745,35 @@ border-bottom:1px solid rgba(255,255,255,.1);
 .admissions-submenu a:hover{
 background:#1D437E;
 color:var(--gold);
-padding-left:25px;
 }
 
 .nav-apply{
 padding:11px 14px!important;
 margin-top:10px;
 text-align:center;
-border-bottom:0;
 }
 
 .category-grid{grid-template-columns:1fr;}
 .instruction-grid{grid-template-columns:1fr;}
 .footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
-
 }
 
 /* SMALL MOBILE */
 
 @media(max-width:560px){
-
-.topbar{
-font-size:11px;
-letter-spacing:.5px;
-}
-
+.topbar{font-size:11px;letter-spacing:.5px;}
 .header-inner{min-height:78px;}
-
-.brand img{
-width:125px;
-height:65px;
-}
-
+.brand img{width:125px;height:65px;}
 nav{max-height:calc(100vh - 78px);}
-
 .hero{padding:48px 0 55px;}
 .hero h1{font-size:33px;}
 .hero p{font-size:15px;}
-
 section{padding:48px 0;}
-
 .intro{padding-bottom:30px;}
-
 .section-title h2{font-size:20px;}
-
-.footer-grid{
-grid-template-columns:1fr;
-gap:25px;
-}
-
-.footer-logo{
-width:150px;
-height:70px;
-}
-
+.document-list{grid-template-columns:1fr;}
+.footer-grid{grid-template-columns:1fr;gap:25px;}
+.footer-logo{width:150px;height:70px;}
 }
 </style>
 </head>
@@ -829,22 +851,17 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 
 <main>
 
-<!-- NOTICE BOARD HERO -->
+<!-- HERO -->
 
 <section class="hero">
 <div class="container hero-content">
-
 <div class="eyebrow">OFFICIAL INSTITUTE COMMUNICATIONS</div>
-
 <h1>TITI NOTICE BOARD</h1>
-
 <div class="gold-line"></div>
-
 <p>
 Your central information point for official Institute announcements,
 academic timetables and important student documents.
 </p>
-
 </div>
 </section>
 
@@ -852,7 +869,6 @@ academic timetables and important student documents.
 
 <section class="intro">
 <div class="container">
-
 <div class="section-heading">
 <h2>WELCOME TO THE NOTICE BOARD</h2>
 <div class="gold-line"></div>
@@ -869,7 +885,6 @@ Check this page regularly for new announcements, examination schedules,
 class timetables and official documents.
 </p>
 </div>
-
 </div>
 </section>
 
@@ -889,30 +904,21 @@ class timetables and official documents.
 <div class="category-card">
 <div class="category-icon">01</div>
 <h3>OFFICIAL NOTICES</h3>
-<p>
-Institute announcements, registration information,
-reporting dates, deadlines and important updates.
-</p>
+<p>Institute announcements, registration information, reporting dates, deadlines and important updates.</p>
 <a href="#official-notices">VIEW NOTICES →</a>
 </div>
 
 <div class="category-card">
 <div class="category-icon">02</div>
 <h3>TIMETABLES</h3>
-<p>
-Examination schedules, class timetables,
-academic calendars and programme schedules.
-</p>
+<p>Examination schedules, class timetables, academic calendars and programme schedules.</p>
 <a href="#timetables">VIEW TIMETABLES →</a>
 </div>
 
 <div class="category-card">
 <div class="category-icon">03</div>
 <h3>OFFICIAL DOCUMENTS</h3>
-<p>
-Official Institute letters, circulars,
-student communications and downloadable documents.
-</p>
+<p>Official Institute letters, circulars, student communications and downloadable documents.</p>
 <a href="#official-documents">VIEW DOCUMENTS →</a>
 </div>
 
@@ -931,15 +937,11 @@ student communications and downloadable documents.
 </div>
 
 <p class="section-description">
-Read official announcements and important communications
-issued by Tahidi International Training Institute.
+Read official announcements and important communications issued by Tahidi International Training Institute.
 </p>
 
-<div class="empty-board">
-<div class="empty-icon">▤</div>
-<h3>OFFICIAL NOTICES</h3>
-<p>New official notices will appear here when published by the Institute.</p>
-</div>
+<div class="document-count" id="noticeCount"></div>
+<div class="document-list" id="noticeList"></div>
 
 </div>
 </section>
@@ -958,11 +960,8 @@ issued by Tahidi International Training Institute.
 Access examination timetables, class schedules and academic calendars.
 </p>
 
-<div class="empty-board">
-<div class="empty-icon">▦</div>
-<h3>ACADEMIC TIMETABLES</h3>
-<p>Examination and class timetables will appear here when published.</p>
-</div>
+<div class="document-count" id="timetableCount"></div>
+<div class="document-list" id="timetableList"></div>
 
 </div>
 </section>
@@ -978,15 +977,11 @@ Access examination timetables, class schedules and academic calendars.
 </div>
 
 <p class="section-description">
-Find official letters, circulars and other documents released
-for students and the Institute community.
+Find official letters, circulars and other documents released for students and the Institute community.
 </p>
 
-<div class="empty-board">
-<div class="empty-icon">▧</div>
-<h3>INSTITUTE DOCUMENTS</h3>
-<p>Official letters and downloadable documents will appear here when published.</p>
-</div>
+<div class="document-count" id="documentCount"></div>
+<div class="document-list" id="documentList"></div>
 
 </div>
 </section>
@@ -1000,8 +995,7 @@ for students and the Institute community.
 <div class="gold-line"></div>
 
 <p>
-Published documents will be available for students to open,
-download and print whenever required.
+Published documents will be available for students to open, download and print whenever required.
 </p>
 
 <div class="instruction-grid">
@@ -1018,11 +1012,10 @@ download and print whenever required.
 
 <div class="instruction-item">
 <strong>PRINT</strong>
-<p>Print official notices, letters and timetables.</p>
+<p>Open the document and use the print option on your device.</p>
 </div>
 
 </div>
-
 </div>
 </section>
 
@@ -1093,10 +1086,199 @@ All Rights Reserved.
 
 <script>
 
+/* =====================================================
+   TITI NOTICE BOARD DOCUMENT MANAGEMENT
+
+   To publish a document:
+   1. Upload its PDF into the GitHub documents folder.
+   2. Add its details to the correct list below.
+   3. Commit your changes.
+
+   Example:
+   {
+     title: "Semester Examination Timetable",
+     date: "17 November 2026",
+     description: "Official examination timetable.",
+     file: "documents/examination-timetable.pdf"
+   }
+===================================================== */
+
+/* OFFICIAL NOTICES */
+
+const officialNotices = [
+
+];
+
+/* TIMETABLES */
+
+const academicTimetables = [
+
+];
+
+/* OFFICIAL DOCUMENTS */
+
+const officialDocuments = [
+
+];
+
+
+/* ESCAPE TEXT FOR SAFE DISPLAY */
+
+function escapeHTML(value){
+return String(value ?? '').replace(/[&<>"']/g,function(character){
+const entities={
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+};
+return entities[character];
+});
+}
+
+
+/* VALIDATE DOCUMENT PATH */
+
+function validDocumentPath(path){
+if(typeof path!=='string') return false;
+
+const cleanPath=path.trim();
+
+return cleanPath.length>0 &&
+!cleanPath.startsWith('/') &&
+!cleanPath.startsWith('http://') &&
+!cleanPath.startsWith('https://') &&
+!cleanPath.includes('..') &&
+!cleanPath.includes('\\');
+}
+
+
+/* CREATE DOCUMENT CARDS */
+
+function createDocumentCard(item,icon){
+
+if(!item.title || !item.file || !validDocumentPath(item.file)){
+return '';
+}
+
+const title=escapeHTML(item.title);
+const date=escapeHTML(item.date || 'Date not specified');
+const description=escapeHTML(item.description || 'Official Institute document.');
+const file=escapeHTML(item.file);
+
+return `
+<article class="document-card">
+
+<div class="document-top">
+
+<div class="document-icon">${icon}</div>
+
+<div class="document-info">
+<h3>${title}</h3>
+<div class="document-date">Published: ${date}</div>
+</div>
+
+</div>
+
+<p class="document-description">${description}</p>
+
+<div class="document-actions">
+
+<a class="view-document"
+href="${file}"
+target="_blank"
+rel="noopener">
+OPEN / PRINT
+</a>
+
+<a class="download-document"
+href="${file}"
+download>
+DOWNLOAD PDF
+</a>
+
+</div>
+
+</article>
+`;
+}
+
+
+/* DISPLAY DOCUMENT COLLECTIONS */
+
+function displayDocuments(items,listId,countId,icon,label){
+
+const list=document.getElementById(listId);
+const count=document.getElementById(countId);
+
+const validItems=items.filter(item=>
+item &&
+item.title &&
+validDocumentPath(item.file)
+);
+
+count.textContent=
+validItems.length + (validItems.length===1
+?' published item'
+:' published items');
+
+if(validItems.length===0){
+
+list.innerHTML=`
+<div class="empty-board">
+<div class="empty-icon">${icon}</div>
+<h3>${label}</h3>
+<p>No documents have been published in this section yet. Please check again later.</p>
+</div>
+`;
+
+return;
+}
+
+list.innerHTML=validItems.map(item=>
+createDocumentCard(item,icon)
+).join('');
+
+}
+
+
+/* LOAD ALL THREE SECTIONS */
+
+function loadNoticeBoard(){
+
+displayDocuments(
+officialNotices,
+'noticeList',
+'noticeCount',
+'▤',
+'NO OFFICIAL NOTICES YET'
+);
+
+displayDocuments(
+academicTimetables,
+'timetableList',
+'timetableCount',
+'▦',
+'NO TIMETABLES PUBLISHED YET'
+);
+
+displayDocuments(
+officialDocuments,
+'documentList',
+'documentCount',
+'▧',
+'NO OFFICIAL DOCUMENTS YET'
+);
+
+}
+
+
 /* COPYRIGHT YEAR */
 
-document.getElementById('footer-year').textContent =
+document.getElementById('footer-year').textContent=
 new Date().getFullYear();
+
 
 /* MOBILE NAVIGATION */
 
@@ -1104,6 +1286,7 @@ const menuToggle=document.getElementById('menuToggle');
 const mainNav=document.getElementById('mainNav');
 
 menuToggle.addEventListener('click',()=>{
+
 mainNav.classList.toggle('open');
 
 const isOpen=mainNav.classList.contains('open');
@@ -1113,8 +1296,11 @@ menuToggle.setAttribute(
 'aria-label',
 isOpen?'Close navigation':'Open navigation'
 );
+
 menuToggle.textContent=isOpen?'✕':'☰';
+
 });
+
 
 /* DROPDOWN MENUS */
 
@@ -1134,14 +1320,18 @@ button:document.getElementById('admissionsToggle')
 ];
 
 dropdowns.forEach(item=>{
+
 item.button.addEventListener('click',event=>{
+
 event.stopPropagation();
 
 dropdowns.forEach(other=>{
+
 if(other!==item){
 other.menu.classList.remove('open');
 other.button.setAttribute('aria-expanded','false');
 }
+
 });
 
 item.menu.classList.toggle('open');
@@ -1150,13 +1340,18 @@ item.button.setAttribute(
 'aria-expanded',
 item.menu.classList.contains('open')
 );
+
 });
+
 });
+
 
 /* CLOSE MENUS AFTER SELECTING A LINK */
 
 document.querySelectorAll('#mainNav a').forEach(link=>{
+
 link.addEventListener('click',()=>{
+
 mainNav.classList.remove('open');
 
 menuToggle.setAttribute('aria-expanded','false');
@@ -1167,24 +1362,34 @@ dropdowns.forEach(item=>{
 item.menu.classList.remove('open');
 item.button.setAttribute('aria-expanded','false');
 });
+
 });
+
 });
+
 
 /* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
 
 document.addEventListener('click',event=>{
+
 dropdowns.forEach(item=>{
+
 if(!item.menu.contains(event.target)){
 item.menu.classList.remove('open');
 item.button.setAttribute('aria-expanded','false');
 }
+
 });
+
 });
+
 
 /* CLOSE MOBILE MENU WITH ESCAPE */
 
 document.addEventListener('keydown',event=>{
+
 if(event.key==='Escape'){
+
 mainNav.classList.remove('open');
 
 menuToggle.setAttribute('aria-expanded','false');
@@ -1195,8 +1400,15 @@ dropdowns.forEach(item=>{
 item.menu.classList.remove('open');
 item.button.setAttribute('aria-expanded','false');
 });
+
 }
+
 });
+
+
+/* START NOTICE BOARD */
+
+loadNoticeBoard();
 
 </script>
 
