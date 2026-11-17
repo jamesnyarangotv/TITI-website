@@ -36,7 +36,6 @@ body {
 }
 
 a { text-decoration: none; color: inherit; }
-
 img { max-width: 100%; display: block; }
 
 .container {
@@ -195,7 +194,7 @@ nav a:hover { color: var(--maroon); }
   margin-bottom: 20px;
 }
 
-/* FULL-WIDTH EDGE-TO-EDGE SLIDESHOW */
+/* FULL-WIDTH SLIDESHOW */
 .slideshow {
   width: 100%;
   height: clamp(300px, 45vw, 600px);
@@ -208,6 +207,7 @@ nav a:hover { color: var(--maroon); }
   box-shadow: none;
 }
 
+/* CLEARER SLIDESHOW PHOTOGRAPHS */
 .slide {
   position: absolute;
   inset: 0;
@@ -220,6 +220,9 @@ nav a:hover { color: var(--maroon); }
   opacity: 0;
   transform: scale(1);
   transition: opacity 1s ease;
+  filter: brightness(1.08) contrast(1.08) saturate(1.08);
+  image-rendering: auto;
+  backface-visibility: hidden;
 }
 
 .slide.active {
@@ -472,7 +475,7 @@ section { padding: 62px 0; }
   margin-bottom: 7px;
 }
 
-/* THREE-COLUMN FOOTER */
+/* FOOTER */
 .site-footer {
   background: #091B3D;
   color: #FFFFFF;
@@ -597,7 +600,7 @@ section { padding: 62px 0; }
   font-weight: 700 !important;
 }
 
-/* RESPONSIVE NAVIGATION */
+/* TABLET */
 @media (max-width: 850px) {
   .header-inner { min-height: 78px; }
 
@@ -646,9 +649,7 @@ section { padding: 62px 0; }
   }
 
   .about-grid { grid-template-columns: 1fr; }
-
   .programme-grid { grid-template-columns: repeat(2, 1fr); }
-
   .quick-grid { grid-template-columns: repeat(2, 1fr); }
 
   .footer-grid {
@@ -692,15 +693,12 @@ section { padding: 62px 0; }
   }
 
   .programme-card { padding: 16px 12px; }
-
   .programme-card h3 { font-size: 15px; }
 
   .gallery-grid { grid-template-columns: 1fr; }
-
   .gallery-card img { height: 240px; }
 
   .short-course-grid { grid-template-columns: 1fr 1fr; }
-
   .contact-grid { grid-template-columns: 1fr; }
 
   .admissions h2 { font-size: 25px; }
@@ -764,7 +762,6 @@ section { padding: 62px 0; }
       <p class="motto">BREAKING THE LIMITS</p>
     </div>
 
-    <!-- SLIDESHOW OUTSIDE CONTAINER FOR FULL SCREEN WIDTH -->
     <div class="slideshow">
       <img class="slide active" src="tahidi%20bulding%201.png" alt="Tahidi Institute campus building">
       <img class="slide" src="tahidi%20bulding%202.png" alt="Tahidi Institute campus">
@@ -978,7 +975,7 @@ section { padding: 62px 0; }
 
 </main>
 
-<!-- PROFESSIONAL THREE-COLUMN FOOTER -->
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
 
