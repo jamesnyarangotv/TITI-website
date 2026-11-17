@@ -503,13 +503,19 @@ For admissions and general enquiries, visit our official website:
 </footer>
 
 <script>
-/* SUPABASE CONNECTION — EXISTING PROJECT */
+/* ==========================================
+   TITI SUPABASE CONNECTION
+   ========================================== */
 
 const SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
 
-const SUPABASE_KEY = 'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
+/* Keep Supabase client for RPC and storage operations */
 
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const db = window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_KEY
+);
 
 const form = document.getElementById('applicationForm');
 const message = document.getElementById('message');
@@ -521,7 +527,8 @@ let applicationReference = null;
 let documentsUploaded = false;
 let pendingDocumentGroups = [];
 
-document.getElementById('footer-year').textContent = new Date().getFullYear();
+document.getElementById('footer-year').textContent =
+ new Date().getFullYear();
 
 document.getElementById('dob').max =
  new Date().toISOString().split('T')[0];
@@ -529,7 +536,9 @@ document.getElementById('dob').max =
 document.querySelector('[name="year_completed"]').max =
  new Date().getFullYear();
 
-/* ADMISSIONS NAVIGATION */
+/* ==========================================
+   ADMISSIONS NAVIGATION
+   ========================================== */
 
 function openAdmissionSection() {
  let sectionId = window.location.hash.substring(1);
@@ -550,7 +559,10 @@ function openAdmissionSection() {
 
  requestAnimationFrame(() => {
   requestAnimationFrame(() => {
-   target.scrollIntoView({behavior:'smooth',block:'start'});
+   target.scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+   });
   });
  });
 }
@@ -559,7 +571,9 @@ openAdmissionSection();
 window.addEventListener('hashchange',openAdmissionSection);
 window.addEventListener('pageshow',openAdmissionSection);
 
-/* MESSAGE DISPLAY */
+/* ==========================================
+   MESSAGE DISPLAY
+   ========================================== */
 
 function showMessage(text,type) {
  message.className = 'message ' + type;
@@ -568,29 +582,68 @@ function showMessage(text,type) {
  successActions.style.display =
   type === 'success' ? 'flex' : 'none';
 
- message.scrollIntoView({behavior:'smooth',block:'center'});
+ message.scrollIntoView({
+  behavior:'smooth',
+  block:'center'
+ });
 }
 
-/* LOAD OPEN PROGRAMMES */
+/* ==========================================
+   LOAD PROGRAMMES
+   DIRECT REST API CONNECTION
+   SAME METHOD AS HOMEPAGE
+   ========================================== */
 
 async function loadProgrammes() {
+
  programmeSelect.innerHTML =
   '<option value="">Loading available programmes...</option>';
 
  try {
-  const {data,error} = await db
-   .from('programmes')
-   .select('id, programme_name, programme_level')
-   .eq('application_open',true)
-   .order('programme_name');
 
-  if(error) throw error;
+  const endpoint =
+   `${SUPABASE_URL}/rest/v1/programmes?select=id,programme_name,programme_level&application_open=eq.true&order=programme_name.asc`;
 
-  if(!data || data.length === 0) {
+  const response = await fetch(endpoint,{
+   method:'GET',
+   headers:{
+    'apikey':SUPABASE_KEY,
+    'Authorization':`Bearer ${SUPABASE_KEY}`,
+    'Accept':'application/json'
+   }
+  });
+
+  if(!response.ok) {
+
+   let errorMessage = 'Database request failed.';
+
+   try {
+    const errorData = await response.json();
+    errorMessage =
+     errorData.message ||
+     errorData.details ||
+     errorMessage;
+   } catch(error) {}
+
+   throw new Error(errorMessage);
+  }
+
+  const data = await response.json();
+
+  if(!Array.isArray(data)) {
+   throw new Error('Unexpected programme data received.');
+  }
+
+  if(data.length === 0) {
+
    programmeSelect.innerHTML =
     '<option value="">No programmes currently open</option>';
 
-   showMessage('There are currently no programmes open for online applications. Please contact TITI admissions.','info');
+   showMessage(
+    'There are currently no programmes open for online applications. Please contact TITI admissions.',
+    'info'
+   );
+
    return;
   }
 
@@ -598,30 +651,45 @@ async function loadProgrammes() {
    '<option value="">Select your programme</option>';
 
   data.forEach(p => {
+
    const option = document.createElement('option');
+
    option.value = p.id;
+
    option.textContent =
     p.programme_name + ' — ' + p.programme_level;
 
    programmeSelect.appendChild(option);
+
   });
 
+  console.log(
+   'TITI programmes successfully loaded:',
+   data.length,
+   data
+  );
+
  } catch(error) {
+
   console.error('Programme loading error:',error);
 
   programmeSelect.innerHTML =
    '<option value="">Unable to load programmes</option>';
 
   showMessage(
-   'Unable to load programmes. Please check the Supabase connection, table permissions and programme settings. Details: ' + error.message,
+   'Unable to load programmes. Please check the Supabase connection, table permissions and programme settings. Details: ' +
+   error.message,
    'error'
   );
  }
 }
 
-/* DOCUMENT SELECTION */
+/* ==========================================
+   DOCUMENT SELECTION
+   ========================================== */
 
 function selectedFiles() {
+
  const items = [];
 
  const photo = document.getElementById('photo').files[0];
@@ -652,11 +720,18 @@ function selectedFiles() {
  return items;
 }
 
+/* ==========================================
+   VALIDATE DOCUMENTS
+   ========================================== */
+
 function validateFiles(groups) {
+
  let total = 0;
 
  for(const group of groups) {
+
   for(const file of group.files) {
+
    if(file.size > 10 * 1024 * 1024) {
     return file.name + ' exceeds the 10 MB limit.';
    }
@@ -682,12 +757,16 @@ function validateFiles(groups) {
  return null;
 }
 
-/* UPLOAD DOCUMENTS TO PRIVATE STORAGE */
+/* ==========================================
+   UPLOAD DOCUMENTS TO PRIVATE STORAGE
+   ========================================== */
 
 async function uploadDocuments(reference,groups) {
+
  const bucket = 'titi-applicant-documents';
 
  for(const group of groups) {
+
   for(const file of group.files) {
 
    const safeName = file.name
@@ -698,7 +777,8 @@ async function uploadDocuments(reference,groups) {
    const uniqueName =
     typeof crypto.randomUUID === 'function'
      ? crypto.randomUUID()
-     : Date.now() + '-' + Math.random().toString(36).slice(2);
+     : Date.now() + '-' +
+       Math.random().toString(36).slice(2);
 
    const path =
     reference + '/' + uniqueName + '-' + safeName;
@@ -712,7 +792,8 @@ async function uploadDocuments(reference,groups) {
 
    if(uploadError) {
     throw new Error(
-     'Could not upload ' + file.name + ': ' + uploadError.message
+     'Could not upload ' + file.name + ': ' +
+     uploadError.message
     );
    }
 
@@ -735,16 +816,26 @@ async function uploadDocuments(reference,groups) {
  }
 }
 
-/* RETRY DOCUMENT UPLOAD WITHOUT CREATING A SECOND APPLICATION */
+/* ==========================================
+   RETRY DOCUMENT UPLOAD
+   WITHOUT CREATING ANOTHER APPLICATION
+   ========================================== */
 
 async function retryDocumentUploads() {
- if(!applicationReference || !pendingDocumentGroups.length) return;
+
+ if(!applicationReference || !pendingDocumentGroups.length) {
+  return;
+ }
 
  submitBtn.disabled = true;
  submitBtn.textContent = 'RETRYING DOCUMENT UPLOAD...';
 
  try {
-  await uploadDocuments(applicationReference,pendingDocumentGroups);
+
+  await uploadDocuments(
+   applicationReference,
+   pendingDocumentGroups
+  );
 
   pendingDocumentGroups = [];
   documentsUploaded = true;
@@ -759,6 +850,7 @@ async function retryDocumentUploads() {
   submitBtn.textContent = 'APPLICATION SUBMITTED';
 
  } catch(error) {
+
   console.error(error);
 
   showMessage(
@@ -774,12 +866,16 @@ async function retryDocumentUploads() {
  }
 }
 
-/* MAIN APPLICATION SUBMISSION */
+/* ==========================================
+   MAIN APPLICATION SUBMISSION
+   ========================================== */
 
 form.addEventListener('submit',async function(e) {
+
  e.preventDefault();
 
  if(applicationReference) {
+
   if(!documentsUploaded) {
    await retryDocumentUploads();
   } else {
@@ -790,6 +886,7 @@ form.addEventListener('submit',async function(e) {
     'info'
    );
   }
+
   return;
  }
 
@@ -799,10 +896,12 @@ form.addEventListener('submit',async function(e) {
 
  if(!document.getElementById('identity').files.length ||
     !document.getElementById('academic').files.length) {
+
   showMessage(
    'Please upload your identification document and at least one academic document.',
    'error'
   );
+
   return;
  }
 
@@ -827,6 +926,7 @@ form.addEventListener('submit',async function(e) {
  );
 
  try {
+
   const f = new FormData(form);
 
   const year = Number(f.get('year_completed'));
@@ -856,18 +956,21 @@ form.addEventListener('submit',async function(e) {
 
   if(error) throw error;
 
-  /* Support text, object and single-row array responses */
-
   let reference = null;
 
   if(typeof data === 'string') {
+
    reference = data;
+
   } else if(Array.isArray(data) && data.length) {
+
    reference =
     data[0].reference_number ||
     data[0].submit_titi_application ||
     null;
+
   } else if(data && typeof data === 'object') {
+
    reference =
     data.reference_number ||
     data.submit_titi_application ||
@@ -890,7 +993,10 @@ form.addEventListener('submit',async function(e) {
    'info'
   );
 
-  await uploadDocuments(applicationReference,pendingDocumentGroups);
+  await uploadDocuments(
+   applicationReference,
+   pendingDocumentGroups
+  );
 
   pendingDocumentGroups = [];
   documentsUploaded = true;
@@ -941,9 +1047,12 @@ form.addEventListener('submit',async function(e) {
  }
 });
 
-/* START */
+/* ==========================================
+   START APPLICATION PAGE
+   ========================================== */
 
 loadProgrammes();
+
 </script>
 
 </body>
