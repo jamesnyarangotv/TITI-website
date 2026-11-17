@@ -5,1084 +5,485 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tahidi International Training Institute | TITI</title>
 <meta name="description" content="Tahidi International Training Institute – Breaking the Limits. Explore our academic programmes, admissions and professional training.">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --maroon: #7A1220;
-  --navy: #0F2A5E;
-  --gold: #D4AF37;
-  --white: #FFFFFF;
-  --light: #F5F5F5;
-  --text: #263247;
-}
+:root{--maroon:#7A1220;--navy:#0F2A5E;--gold:#D4AF37;--white:#FFFFFF;--light:#F5F5F5;--text:#263247;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;color:var(--text);background:var(--white);line-height:1.65;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+.container{width:min(1120px,92%);margin:auto;}
+.topbar{background:var(--navy);color:white;padding:7px 0;font-size:13px;text-align:center;letter-spacing:.3px;}
+header{background:white;box-shadow:0 3px 15px rgba(0,0,0,.07);position:sticky;top:0;z-index:1000;}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Jost', sans-serif;
-  color: var(--text);
-  background: var(--white);
-  line-height: 1.65;
-}
-
-a { text-decoration: none; color: inherit; }
-img { max-width: 100%; display: block; }
-
-.container {
-  width: min(1120px, 92%);
-  margin: auto;
-}
-
-/* TOP BAR */
-.topbar {
-  background: var(--navy);
-  color: white;
-  padding: 7px 0;
-  font-size: 13px;
-  text-align: center;
-  letter-spacing: .3px;
-}
-
-/* HEADER */
-header {
-  background: white;
-  box-shadow: 0 3px 15px rgba(0,0,0,.07);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.header-inner {
-  min-height: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  flex-wrap: nowrap;
-}
-
-/* LOGO */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.brand img {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-  padding: 4px;
-  background: #FFFFFF;
-  border: 2px solid var(--gold);
-  border-radius: 8px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.18);
-}
-
-.brand-text h1 {
-  color: var(--maroon);
-  font-size: 21px;
-  line-height: 1.15;
-  font-weight: 800;
-}
-
-.brand-text span {
-  color: var(--navy);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
+/* HEADER AND LOGO */
+.header-inner{width:min(1360px,96%);min-height:92px;display:flex;align-items:center;justify-content:space-between;gap:clamp(12px,1.5vw,22px);flex-wrap:nowrap;}
+.brand{display:flex;align-items:center;gap:13px;flex-shrink:0;white-space:nowrap;}
+.brand img{width:64px;height:64px;object-fit:contain;padding:4px;background:#FFFFFF;border:2px solid var(--gold);border-radius:8px;box-shadow:0 3px 12px rgba(0,0,0,.18);}
+.brand-text h1{color:var(--maroon);font-size:21px;line-height:1.15;font-weight:800;}
+.brand-text span{color:var(--navy);font-size:12px;font-weight:700;letter-spacing:2px;}
 
 /* DESKTOP NAVIGATION */
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: clamp(8px, 1vw, 14px);
-  flex: 1;
-  min-width: 0;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
-
-nav a {
-  color: var(--navy);
-  font-size: clamp(11px, .95vw, 13px);
-  font-weight: 800;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: .25s;
-}
-
-nav a:hover {
-  color: var(--maroon);
-}
-
-/* APPLY NOW */
-.nav-apply {
-  background: var(--maroon);
-  color: white !important;
-  padding: 9px 15px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.nav-apply:hover {
-  background: var(--navy);
-  color: white !important;
-}
-
-/* MOBILE MENU */
-.menu-toggle {
-  display: none;
-  border: 0;
-  background: var(--maroon);
-  color: white;
-  padding: 8px 13px;
-  font-size: 22px;
-  cursor: pointer;
-}
+nav{display:flex;align-items:center;justify-content:space-between;gap:clamp(9px,1.15vw,17px);flex:1;min-width:0;flex-wrap:nowrap;white-space:nowrap;}
+nav a{color:var(--navy);font-size:clamp(11.5px,1.03vw,14px);font-weight:800;letter-spacing:.15px;white-space:nowrap;flex-shrink:0;padding:10px 0;transition:.25s;}
+nav a:hover{color:var(--maroon);}
+.nav-apply{background:var(--maroon);color:white !important;padding:11px 19px;border-radius:5px;font-size:13px;font-weight:800;margin-left:clamp(2px,.4vw,7px);}
+.nav-apply:hover{background:var(--navy);color:white !important;}
+.menu-toggle{display:none;border:0;background:var(--maroon);color:white;padding:8px 13px;font-size:22px;cursor:pointer;}
 
 /* HERO */
-.hero {
-  background: linear-gradient(120deg, #0F2A5E, #7A1220);
-  padding: 34px 0 0;
-  color: white;
-  text-align: center;
-}
-
-.hero h2 {
-  font-size: clamp(25px, 4vw, 39px);
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 7px;
-}
-
-.hero .motto {
-  color: var(--gold);
-  font-weight: 700;
-  letter-spacing: 3px;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-/* FULL-WIDTH SLIDESHOW */
-.slideshow {
-  width: 100%;
-  height: clamp(300px, 45vw, 600px);
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  border: none;
-  border-radius: 0;
-  background: #eee;
-  box-shadow: none;
-}
-
-/* CLEARER SLIDESHOW PHOTOGRAPHS */
-.slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  opacity: 0;
-  transform: scale(1);
-  transition: opacity 1s ease;
-  filter: brightness(1.08) contrast(1.08) saturate(1.08);
-  image-rendering: auto;
-  backface-visibility: hidden;
-}
-
-.slide.active {
-  opacity: 1;
-}
+.hero{background:linear-gradient(120deg,#0F2A5E,#7A1220);padding:34px 0 0;color:white;text-align:center;}
+.hero h2{font-size:clamp(25px,4vw,39px);font-weight:800;line-height:1.2;margin-bottom:7px;}
+.hero .motto{color:var(--gold);font-weight:700;letter-spacing:3px;font-size:14px;margin-bottom:20px;}
+.slideshow{width:100%;height:clamp(300px,45vw,600px);margin:0;position:relative;overflow:hidden;border:none;border-radius:0;background:#eee;box-shadow:none;}
+.slide{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;display:block;opacity:0;transform:scale(1);transition:opacity 1s ease;filter:brightness(1.08) contrast(1.08) saturate(1.08);image-rendering:auto;backface-visibility:hidden;}
+.slide.active{opacity:1;}
 
 /* GENERAL SECTIONS */
-section { padding: 62px 0; }
-
-.section-heading {
-  text-align: center;
-  margin-bottom: 34px;
-}
-
-.section-heading h2 {
-  color: var(--navy);
-  font-size: clamp(25px, 3vw, 32px);
-  font-weight: 800;
-  margin-bottom: 7px;
-}
-
-.section-heading p {
-  max-width: 650px;
-  margin: auto;
-  color: #657084;
-  font-size: 15px;
-}
-
-.gold-line {
-  width: 65px;
-  height: 4px;
-  background: var(--gold);
-  margin: 12px auto;
-  border-radius: 5px;
-}
+section{padding:62px 0;}
+.section-heading{text-align:center;margin-bottom:34px;}
+.section-heading h2{color:var(--navy);font-size:clamp(25px,3vw,32px);font-weight:800;margin-bottom:7px;}
+.section-heading p{max-width:650px;margin:auto;color:#657084;font-size:15px;}
+.gold-line{width:65px;height:4px;background:var(--gold);margin:12px auto;border-radius:5px;}
 
 /* QUICK LINKS */
-.quick-links {
-  background: var(--light);
-  padding: 24px 0;
-}
-
-.quick-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-.quick-card {
-  background: white;
-  padding: 17px 12px;
-  text-align: center;
-  border-bottom: 3px solid var(--gold);
-  border-radius: 5px;
-  color: var(--navy);
-  font-weight: 700;
-  transition: .25s;
-}
-
-.quick-card:hover {
-  transform: translateY(-4px);
-  color: var(--maroon);
-}
+.quick-links{background:var(--light);padding:24px 0;}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.quick-card{background:white;padding:17px 12px;text-align:center;border-bottom:3px solid var(--gold);border-radius:5px;color:var(--navy);font-weight:700;transition:.25s;}
+.quick-card:hover{transform:translateY(-4px);color:var(--maroon);}
 
 /* ABOUT */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  align-items: center;
-  gap: 38px;
-}
-
-.about-text h3 {
-  color: var(--maroon);
-  font-size: 25px;
-  margin-bottom: 12px;
-}
-
-.about-text p { margin-bottom: 13px; }
-
-.about-photo {
-  background: var(--light);
-  padding: 9px;
-  border-radius: 7px;
-}
-
-.about-photo img {
-  width: 100%;
-  height: 310px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 4px;
-}
-
-.primary-btn {
-  display: inline-block;
-  background: var(--maroon);
-  color: white;
-  padding: 11px 23px;
-  border-radius: 4px;
-  font-weight: 700;
-  margin-top: 10px;
-  transition: .25s;
-}
-
-.primary-btn:hover {
-  background: var(--navy);
-  transform: translateY(-2px);
-}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:38px;}
+.about-text h3{color:var(--maroon);font-size:25px;margin-bottom:12px;}
+.about-text p{margin-bottom:13px;}
+.about-photo{background:var(--light);padding:9px;border-radius:7px;}
+.about-photo img{width:100%;height:310px;object-fit:cover;object-position:center;border-radius:4px;}
+.primary-btn{display:inline-block;background:var(--maroon);color:white;padding:11px 23px;border-radius:4px;font-weight:700;margin-top:10px;transition:.25s;}
+.primary-btn:hover{background:var(--navy);transform:translateY(-2px);}
 
 /* PROGRAMMES */
-.programmes { background: var(--light); }
-
-.programme-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 17px;
-}
-
-.programme-card {
-  background: white;
-  padding: 22px 16px;
-  border-radius: 6px;
-  border-top: 4px solid var(--maroon);
-  box-shadow: 0 4px 15px rgba(0,0,0,.045);
-  transition: .25s;
-}
-
-.programme-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 9px 22px rgba(0,0,0,.09);
-}
-
-.programme-card h3 {
-  color: var(--navy);
-  font-size: 17px;
-  line-height: 1.35;
-  margin-bottom: 7px;
-}
-
-.programme-card p {
-  font-size: 13px;
-  color: #687386;
-}
+.programmes{background:var(--light);}
+.programme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px;}
+.programme-card{background:white;padding:22px 16px;border-radius:6px;border-top:4px solid var(--maroon);box-shadow:0 4px 15px rgba(0,0,0,.045);transition:.25s;}
+.programme-card:hover{transform:translateY(-5px);box-shadow:0 9px 22px rgba(0,0,0,.09);}
+.programme-card h3{color:var(--navy);font-size:17px;line-height:1.35;margin-bottom:7px;}
+.programme-card p{font-size:13px;color:#687386;}
 
 /* ADMISSIONS */
-.admissions {
-  background: var(--navy);
-  color: white;
-  text-align: center;
-  padding: 48px 20px;
-}
-
-.admissions h2 {
-  font-size: 30px;
-  margin-bottom: 8px;
-}
-
-.admissions p {
-  max-width: 650px;
-  margin: auto;
-}
-
-.admissions .primary-btn {
-  background: var(--gold);
-  color: var(--navy);
-}
+.admissions{background:var(--navy);color:white;text-align:center;padding:48px 20px;}
+.admissions h2{font-size:30px;margin-bottom:8px;}
+.admissions p{max-width:650px;margin:auto;}
+.admissions .primary-btn{background:var(--gold);color:var(--navy);}
 
 /* APPLICATION IMAGE */
-.application-section {
-  background: var(--light);
-}
-
-.application-wrap {
-  width: min(850px, 96%);
-  margin: auto;
-  padding: 12px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 5px 22px rgba(0,0,0,.08);
-  border-bottom: 4px solid var(--gold);
-}
-
-.application-wrap a {
-  display: block;
-}
-
-.application-wrap img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-  border-radius: 4px;
-  transition: opacity .25s ease;
-}
-
-.application-wrap a:hover img {
-  opacity: .94;
-}
-
-.application-note {
-  text-align: center;
-  color: var(--navy);
-  font-size: 14px;
-  font-weight: 700;
-  margin-top: 15px;
-}
+.application-section{background:var(--light);}
+.application-wrap{width:min(850px,96%);margin:auto;padding:12px;background:white;border-radius:8px;box-shadow:0 5px 22px rgba(0,0,0,.08);border-bottom:4px solid var(--gold);}
+.application-wrap a{display:block;}
+.application-wrap img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;border-radius:4px;transition:opacity .25s ease;}
+.application-wrap a:hover img{opacity:.94;}
+.application-note{text-align:center;color:var(--navy);font-size:14px;font-weight:700;margin-top:15px;}
 
 /* CAMPUS GALLERY */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-
-.gallery-card {
-  background: var(--light);
-  padding: 10px;
-  border-radius: 7px;
-}
-
-.gallery-card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 4px;
-}
-
-.gallery-card h3 {
-  text-align: center;
-  color: var(--navy);
-  padding: 12px 5px 4px;
-  font-size: 17px;
-}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.gallery-card{background:var(--light);padding:10px;border-radius:7px;}
+.gallery-card img{width:100%;height:300px;object-fit:cover;object-position:center;border-radius:4px;}
+.gallery-card h3{text-align:center;color:var(--navy);padding:12px 5px 4px;font-size:17px;}
 
 /* POSTER */
-.poster-section { background: var(--light); }
-
-.poster-wrap {
-  width: min(650px, 95%);
-  margin: auto;
-  background: white;
-  padding: 12px;
-  border-radius: 7px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.07);
-}
-
-.poster-wrap img {
-  width: 100%;
-  max-height: 680px;
-  object-fit: contain;
-}
+.poster-section{background:var(--light);}
+.poster-wrap{width:min(650px,95%);margin:auto;background:white;padding:12px;border-radius:7px;box-shadow:0 5px 20px rgba(0,0,0,.07);}
+.poster-wrap img{width:100%;max-height:680px;object-fit:contain;}
 
 /* SHORT COURSES */
-.short-course-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 13px;
-}
-
-.short-course {
-  padding: 15px;
-  background: var(--light);
-  border-left: 4px solid var(--gold);
-  color: var(--navy);
-  font-weight: 600;
-  border-radius: 3px;
-}
+.short-course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
+.short-course{padding:15px;background:var(--light);border-left:4px solid var(--gold);color:var(--navy);font-weight:600;border-radius:3px;}
 
 /* CONTACT */
-.contact-section { background: var(--light); }
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 17px;
-}
-
-.contact-card {
-  background: white;
-  padding: 22px;
-  border-radius: 6px;
-  text-align: center;
-  border-bottom: 3px solid var(--gold);
-}
-
-.contact-card h3 {
-  color: var(--maroon);
-  margin-bottom: 7px;
-}
+.contact-section{background:var(--light);}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;}
+.contact-card{background:white;padding:22px;border-radius:6px;text-align:center;border-bottom:3px solid var(--gold);}
+.contact-card h3{color:var(--maroon);margin-bottom:7px;}
 
 /* FOOTER */
-.site-footer {
-  background: #091B3D;
-  color: #FFFFFF;
-  padding: 55px 0 0;
-  border-top: 4px solid var(--gold);
-  text-align: left;
-}
+.site-footer{background:#091B3D;color:#FFFFFF;padding:55px 0 0;border-top:4px solid var(--gold);text-align:left;}
+.footer-grid{display:grid;grid-template-columns:1.1fr .9fr 1.35fr;gap:48px;padding-bottom:38px;}
+.footer-brand img{width:90px;height:90px;object-fit:contain;margin-bottom:13px;}
+.footer-brand h3{font-size:18px;line-height:1.35;font-weight:800;color:#FFFFFF;margin-bottom:7px;}
+.footer-brand .footer-motto{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:13px;}
+.footer-brand p{color:#CBD3E0;font-size:13px;line-height:1.8;max-width:310px;}
+.footer-column h3{color:#FFFFFF;font-size:16px;font-weight:800;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--gold);display:inline-block;}
+.footer-column ul{list-style:none;}
+.footer-column li{margin-bottom:11px;font-size:13px;color:#CBD3E0;}
+.footer-column a{color:#CBD3E0;transition:.25s;}
+.footer-column a:hover{color:var(--gold);padding-left:4px;}
+.footer-column p{color:#CBD3E0;font-size:13px;line-height:1.8;margin-bottom:12px;}
+.footer-apply{display:inline-block;background:var(--gold);color:var(--navy) !important;padding:9px 17px;border-radius:4px;font-weight:700;margin-top:7px;}
+.footer-apply:hover{background:white;color:var(--maroon) !important;padding-left:17px !important;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding:17px 0;text-align:center;}
+.footer-bottom p{color:#CBD3E0;font-size:12px;}
+.footer-bottom strong{color:var(--gold);}
+.site-footer,.site-footer *{font-weight:700 !important;}
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr 1.35fr;
-  gap: 48px;
-  padding-bottom: 38px;
-}
-
-.footer-brand img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  margin-bottom: 13px;
-}
-
-.footer-brand h3 {
-  font-size: 18px;
-  line-height: 1.35;
-  font-weight: 800;
-  color: #FFFFFF;
-  margin-bottom: 7px;
-}
-
-.footer-brand .footer-motto {
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 13px;
-}
-
-.footer-brand p {
-  color: #CBD3E0;
-  font-size: 13px;
-  line-height: 1.8;
-  max-width: 310px;
-}
-
-.footer-column h3 {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 800;
-  margin-bottom: 18px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--gold);
-  display: inline-block;
-}
-
-.footer-column ul { list-style: none; }
-
-.footer-column li {
-  margin-bottom: 11px;
-  font-size: 13px;
-  color: #CBD3E0;
-}
-
-.footer-column a {
-  color: #CBD3E0;
-  transition: .25s;
-}
-
-.footer-column a:hover {
-  color: var(--gold);
-  padding-left: 4px;
-}
-
-.footer-column p {
-  color: #CBD3E0;
-  font-size: 13px;
-  line-height: 1.8;
-  margin-bottom: 12px;
-}
-
-.footer-apply {
-  display: inline-block;
-  background: var(--gold);
-  color: var(--navy) !important;
-  padding: 9px 17px;
-  border-radius: 4px;
-  font-weight: 700;
-  margin-top: 7px;
-}
-
-.footer-apply:hover {
-  background: white;
-  color: var(--maroon) !important;
-  padding-left: 17px !important;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.15);
-  padding: 17px 0;
-  text-align: center;
-}
-
-.footer-bottom p {
-  color: #CBD3E0;
-  font-size: 12px;
-}
-
-.footer-bottom strong { color: var(--gold); }
-
-.site-footer,
-.site-footer * {
-  font-weight: 700 !important;
+/* BALANCED DESKTOP HEADER AT MEDIUM SCREEN WIDTHS */
+@media (min-width:851px) and (max-width:1100px){
+.brand{gap:9px;}
+.brand img{width:56px;height:56px;}
+.brand-text h1{font-size:17px;}
+.brand-text span{font-size:10px;letter-spacing:1.5px;}
+nav{gap:8px;}
+nav a{font-size:11.5px;}
+.nav-apply{padding:9px 12px;font-size:11.5px;}
 }
 
 /* TABLET */
-@media (max-width: 850px) {
-  .header-inner { min-height: 78px; }
-
-  .brand img {
-    width: 58px;
-    height: 58px;
-  }
-
-  .brand-text h1 { font-size: 17px; }
-
-  .menu-toggle { display: block; }
-
-  nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    padding: 18px 5%;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    box-shadow: 0 8px 15px rgba(0,0,0,.1);
-  }
-
-  nav.open { display: flex; }
-
-  nav a {
-    font-size: 14px;
-    padding: 11px 5px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .nav-apply {
-    padding: 10px 14px;
-    margin-top: 5px;
-    text-align: center;
-  }
-
-  .about-grid { grid-template-columns: 1fr; }
-  .programme-grid { grid-template-columns: repeat(2, 1fr); }
-  .quick-grid { grid-template-columns: repeat(2, 1fr); }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
+@media (max-width:850px){
+.header-inner{min-height:78px;}
+.brand img{width:58px;height:58px;}
+.brand-text h1{font-size:17px;}
+.menu-toggle{display:block;}
+nav{display:none;position:absolute;top:100%;left:0;right:0;background:white;padding:18px 5%;flex-direction:column;align-items:stretch;gap:0;box-shadow:0 8px 15px rgba(0,0,0,.1);}
+nav.open{display:flex;}
+nav a{font-size:14px;padding:11px 5px;border-bottom:1px solid #eee;}
+.nav-apply{padding:10px 14px;margin-top:5px;text-align:center;}
+.about-grid{grid-template-columns:1fr;}
+.programme-grid{grid-template-columns:repeat(2,1fr);}
+.quick-grid{grid-template-columns:repeat(2,1fr);}
+.footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
 }
 
 /* MOBILE */
-@media (max-width: 560px) {
-  .topbar { font-size: 11px; }
-
-  .brand { gap: 8px; }
-
-  .brand img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .brand-text h1 { font-size: 14px; }
-
-  .brand-text span {
-    font-size: 10px;
-    letter-spacing: 1px;
-  }
-
-  .hero { padding: 25px 0 0; }
-
-  .slideshow {
-    width: 100%;
-    height: 245px;
-    border: none;
-    border-radius: 0;
-  }
-
-  section { padding: 45px 0; }
-
-  .programme-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .programme-card { padding: 16px 12px; }
-  .programme-card h3 { font-size: 15px; }
-
-  .gallery-grid { grid-template-columns: 1fr; }
-  .gallery-card img { height: 240px; }
-
-  .short-course-grid { grid-template-columns: 1fr 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-
-  .admissions h2 { font-size: 25px; }
-
-  .application-wrap {
-    width: 96%;
-    padding: 7px;
-  }
-
-  .application-note {
-    font-size: 12px;
-  }
-
-  .site-footer { padding-top: 40px; }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .footer-brand img {
-    width: 75px;
-    height: 75px;
-  }
+@media (max-width:560px){
+.topbar{font-size:11px;}
+.brand{gap:8px;}
+.brand img{width:50px;height:50px;}
+.brand-text h1{font-size:14px;}
+.brand-text span{font-size:10px;letter-spacing:1px;}
+.hero{padding:25px 0 0;}
+.slideshow{width:100%;height:245px;border:none;border-radius:0;}
+section{padding:45px 0;}
+.programme-grid{grid-template-columns:1fr 1fr;gap:10px;}
+.programme-card{padding:16px 12px;}
+.programme-card h3{font-size:15px;}
+.gallery-grid{grid-template-columns:1fr;}
+.gallery-card img{height:240px;}
+.short-course-grid{grid-template-columns:1fr 1fr;}
+.contact-grid{grid-template-columns:1fr;}
+.admissions h2{font-size:25px;}
+.application-wrap{width:96%;padding:7px;}
+.application-note{font-size:12px;}
+.site-footer{padding-top:40px;}
+.footer-grid{grid-template-columns:1fr;gap:28px;}
+.footer-brand img{width:75px;height:75px;}
 }
 </style>
 </head>
-
 <body>
 
 <div class="topbar">
-  TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
+TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 </div>
 
 <header>
-  <div class="container header-inner">
+<div class="container header-inner">
+<a href="#home" class="brand">
+<img src="TITI%20LOGO.png" alt="TITI Logo">
+<div class="brand-text">
+<h1>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h1>
+<span>BREAKING THE LIMITS</span>
+</div>
+</a>
 
-    <a href="#home" class="brand">
-      <img src="TITI%20LOGO.png" alt="TITI Logo">
-      <div class="brand-text">
-        <h1>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h1>
-        <span>BREAKING THE LIMITS</span>
-      </div>
-    </a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 
-    <button class="menu-toggle" id="menuToggle"
-      aria-label="Open navigation" aria-expanded="false">☰</button>
-
-    <nav id="mainNav">
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#programmes">Programmes</a>
-      <a href="#admissions">Admissions</a>
-      <a href="#gallery">Campus</a>
-      <a href="#contact">Contact</a>
-      <a href="apply.html" class="nav-apply">Apply Now</a>
-    </nav>
-
-  </div>
+<nav id="mainNav">
+<a href="#home">Home</a>
+<a href="#about">About Us</a>
+<a href="#programmes">Programmes</a>
+<a href="#admissions">Admissions</a>
+<a href="#gallery">Campus</a>
+<a href="#contact">Contact</a>
+<a href="apply.html" class="nav-apply">Apply Now</a>
+</nav>
+</div>
 </header>
 
 <main>
 
-  <!-- FULL-WIDTH HOMEPAGE HERO -->
-  <section class="hero" id="home">
+<!-- HOMEPAGE HERO -->
+<section class="hero" id="home">
+<div class="container">
+<h2>Welcome to Tahidi International Training Institute</h2>
+<p class="motto">BREAKING THE LIMITS</p>
+</div>
+<div class="slideshow">
+<img class="slide active" src="tahidi%20bulding%201.png" alt="Tahidi Institute campus building">
+<img class="slide" src="tahidi%20bulding%202.png" alt="Tahidi Institute campus">
+<img class="slide" src="tahidi%20poster.png" alt="Tahidi Institute information poster">
+</div>
+</section>
 
-    <div class="container">
-      <h2>Welcome to Tahidi International Training Institute</h2>
-      <p class="motto">BREAKING THE LIMITS</p>
-    </div>
+<!-- QUICK LINKS -->
+<div class="quick-links">
+<div class="container quick-grid">
+<a class="quick-card" href="#about">About TITI</a>
+<a class="quick-card" href="#programmes">Our Programmes</a>
+<a class="quick-card" href="#admissions">Admissions</a>
+<a class="quick-card" href="#contact">Contact Us</a>
+</div>
+</div>
 
-    <div class="slideshow">
-      <img class="slide active" src="tahidi%20bulding%201.png" alt="Tahidi Institute campus building">
-      <img class="slide" src="tahidi%20bulding%202.png" alt="Tahidi Institute campus">
-      <img class="slide" src="tahidi%20poster.png" alt="Tahidi Institute information poster">
-    </div>
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+<div class="section-heading">
+<h2>About Our Institute</h2>
+<div class="gold-line"></div>
+<p>Building knowledge, practical skills and confidence for a better future.</p>
+</div>
+<div class="about-grid">
+<div class="about-text">
+<h3>Welcome to TITI</h3>
+<p>
+Tahidi International Training Institute is committed to providing
+quality education and practical training that prepares learners
+for opportunities in the world of work and further education.
+</p>
+<p>
+Our focus is on developing knowledge, professional skills,
+creativity and responsible individuals who can make a positive
+contribution to society.
+</p>
+<p>
+At TITI, we believe in the potential of every learner.
+Our motto is <strong>BREAKING THE LIMITS.</strong>
+</p>
+<a href="#programmes" class="primary-btn">Explore Programmes</a>
+</div>
+<div class="about-photo">
+<img src="tahidi%20bulding%201.png" alt="TITI campus building">
+</div>
+</div>
+</div>
+</section>
 
-  </section>
+<!-- PROGRAMMES -->
+<section class="programmes" id="programmes">
+<div class="container">
+<div class="section-heading">
+<h2>Our Academic Programmes</h2>
+<div class="gold-line"></div>
+<p>Explore learning opportunities designed to develop practical and professional skills.</p>
+</div>
+<div class="programme-grid">
+<article class="programme-card">
+<h3>Business Administration</h3>
+<p>Develop management, entrepreneurship and business skills.</p>
+</article>
+<article class="programme-card">
+<h3>Accounting and Finance</h3>
+<p>Build skills in accounting, financial management and reporting.</p>
+</article>
+<article class="programme-card">
+<h3>Information Technology</h3>
+<p>Develop practical computer and digital technology skills.</p>
+</article>
+<article class="programme-card">
+<h3>Journalism and Media</h3>
+<p>Explore media production, communication and journalism.</p>
+</article>
+<article class="programme-card">
+<h3>Human Resource Management</h3>
+<p>Learn people management and organisational development.</p>
+</article>
+<article class="programme-card">
+<h3>Public Administration</h3>
+<p>Develop public sector administration and management skills.</p>
+</article>
+<article class="programme-card">
+<h3>Social Work</h3>
+<p>Gain skills in community support and social development.</p>
+</article>
+<article class="programme-card">
+<h3>Records Management</h3>
+<p>Learn professional information and records management.</p>
+</article>
+</div>
+</div>
+</section>
 
-  <!-- QUICK LINKS -->
-  <div class="quick-links">
-    <div class="container quick-grid">
-      <a class="quick-card" href="#about">About TITI</a>
-      <a class="quick-card" href="#programmes">Our Programmes</a>
-      <a class="quick-card" href="#admissions">Admissions</a>
-      <a class="quick-card" href="#contact">Contact Us</a>
-    </div>
-  </div>
+<!-- ADMISSIONS -->
+<section class="admissions" id="admissions">
+<div class="container">
+<h2>Admissions Are Welcome</h2>
+<p>
+Take the next step towards your future. Join Tahidi International
+Training Institute and develop skills that open opportunities.
+</p>
+<a href="apply.html" class="primary-btn">Enquire About Admission</a>
+</div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="section-heading">
-        <h2>About Our Institute</h2>
-        <div class="gold-line"></div>
-        <p>Building knowledge, practical skills and confidence for a better future.</p>
-      </div>
+<!-- APPLICATION IMAGE -->
+<section class="application-section">
+<div class="container">
+<div class="section-heading">
+<h2>Application Information</h2>
+<div class="gold-line"></div>
+<p>Take the next step towards joining Tahidi International Training Institute.</p>
+</div>
+<div class="application-wrap">
+<a href="apply.html" aria-label="Open TITI online application">
+<img src="apply.jpeg" alt="TITI application information">
+</a>
+</div>
+<p class="application-note">
+Click the application image to proceed to our online application page.
+</p>
+</div>
+</section>
 
-      <div class="about-grid">
-        <div class="about-text">
-          <h3>Welcome to TITI</h3>
-          <p>
-            Tahidi International Training Institute is committed to providing
-            quality education and practical training that prepares learners
-            for opportunities in the world of work and further education.
-          </p>
-          <p>
-            Our focus is on developing knowledge, professional skills,
-            creativity and responsible individuals who can make a positive
-            contribution to society.
-          </p>
-          <p>
-            At TITI, we believe in the potential of every learner.
-            Our motto is <strong>BREAKING THE LIMITS.</strong>
-          </p>
-          <a href="#programmes" class="primary-btn">Explore Programmes</a>
-        </div>
+<!-- CAMPUS GALLERY -->
+<section id="gallery">
+<div class="container">
+<div class="section-heading">
+<h2>Our Campus</h2>
+<div class="gold-line"></div>
+<p>Discover the Tahidi International Training Institute environment.</p>
+</div>
+<div class="gallery-grid">
+<div class="gallery-card">
+<img src="tahidi%20bulding%201.png" alt="TITI campus building one">
+<h3>Our Institute</h3>
+</div>
+<div class="gallery-card">
+<img src="tahidi%20bulding%202.png" alt="TITI campus building two">
+<h3>Our Campus Environment</h3>
+</div>
+</div>
+</div>
+</section>
 
-        <div class="about-photo">
-          <img src="tahidi%20bulding%201.png" alt="TITI campus building">
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- INSTITUTE POSTER -->
+<section class="poster-section">
+<div class="container">
+<div class="section-heading">
+<h2>Institute Information</h2>
+<div class="gold-line"></div>
+<p>Find out more about Tahidi International Training Institute.</p>
+</div>
+<div class="poster-wrap">
+<img src="tahidi%20poster.png" alt="Tahidi International Training Institute poster">
+</div>
+</div>
+</section>
 
-  <!-- PROGRAMMES -->
-  <section class="programmes" id="programmes">
-    <div class="container">
-      <div class="section-heading">
-        <h2>Our Academic Programmes</h2>
-        <div class="gold-line"></div>
-        <p>Explore learning opportunities designed to develop practical and professional skills.</p>
-      </div>
+<!-- SHORT COURSES -->
+<section>
+<div class="container">
+<div class="section-heading">
+<h2>Professional Short Courses</h2>
+<div class="gold-line"></div>
+<p>Practical skills for personal growth, employment and entrepreneurship.</p>
+</div>
+<div class="short-course-grid">
+<div class="short-course">Computer Applications</div>
+<div class="short-course">Computerized Accounting</div>
+<div class="short-course">Website Design</div>
+<div class="short-course">Graphic Design</div>
+<div class="short-course">Photography and Videography</div>
+<div class="short-course">Public Speaking</div>
+</div>
+</div>
+</section>
 
-      <div class="programme-grid">
-
-        <article class="programme-card">
-          <h3>Business Administration</h3>
-          <p>Develop management, entrepreneurship and business skills.</p>
-        </article>
-
-        <article class="programme-card">
-          <h3>Accounting and Finance</h3>
-          <p>Build skills in accounting, financial management and reporting.</p>
-        </article>
-
-        <article class="programme-card">
-          <h3>Information Technology</h3>
-          <p>Develop practical computer and digital technology skills.</p>
-        </article>
-
-        <article class="programme-card">
-          <h3>Journalism and Media</h3>
-          <p>Explore media production, communication and journalism.</p>
-        </article>
-
-        <article class="programme-card">
-          <h3>Human Resource Management</h3>
-          <p>Learn people management and organisational development.</p>
-        </article>
-
-        <article class="programme-card">
-          <h3>Public Administration</h3>
-          <p>Develop public sector administration and management skills.</p>
-        </article>
-
-        <article class="programme-card">
-          <h3>Social Work</h3>
-          <p>Gain skills in community support and social development.</p>
-        </article>
-
-        <article class="programme-card">
-          <h3>Records Management</h3>
-          <p>Learn professional information and records management.</p>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ADMISSIONS -->
-  <section class="admissions" id="admissions">
-    <div class="container">
-      <h2>Admissions Are Welcome</h2>
-      <p>
-        Take the next step towards your future. Join Tahidi International
-        Training Institute and develop skills that open opportunities.
-      </p>
-      <a href="apply.html" class="primary-btn">Enquire About Admission</a>
-    </div>
-  </section>
-
-  <!-- APPLICATION IMAGE -->
-  <section class="application-section">
-    <div class="container">
-
-      <div class="section-heading">
-        <h2>Application Information</h2>
-        <div class="gold-line"></div>
-        <p>Take the next step towards joining Tahidi International Training Institute.</p>
-      </div>
-
-      <div class="application-wrap">
-        <a href="apply.html" aria-label="Open TITI online application">
-          <img src="apply.jpeg" alt="TITI application information">
-        </a>
-      </div>
-
-      <p class="application-note">
-        Click the application image to proceed to our online application page.
-      </p>
-
-    </div>
-  </section>
-
-  <!-- CAMPUS GALLERY -->
-  <section id="gallery">
-    <div class="container">
-      <div class="section-heading">
-        <h2>Our Campus</h2>
-        <div class="gold-line"></div>
-        <p>Discover the Tahidi International Training Institute environment.</p>
-      </div>
-
-      <div class="gallery-grid">
-
-        <div class="gallery-card">
-          <img src="tahidi%20bulding%201.png" alt="TITI campus building one">
-          <h3>Our Institute</h3>
-        </div>
-
-        <div class="gallery-card">
-          <img src="tahidi%20bulding%202.png" alt="TITI campus building two">
-          <h3>Our Campus Environment</h3>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- INSTITUTE POSTER -->
-  <section class="poster-section">
-    <div class="container">
-      <div class="section-heading">
-        <h2>Institute Information</h2>
-        <div class="gold-line"></div>
-        <p>Find out more about Tahidi International Training Institute.</p>
-      </div>
-
-      <div class="poster-wrap">
-        <img src="tahidi%20poster.png" alt="Tahidi International Training Institute poster">
-      </div>
-    </div>
-  </section>
-
-  <!-- SHORT COURSES -->
-  <section>
-    <div class="container">
-      <div class="section-heading">
-        <h2>Professional Short Courses</h2>
-        <div class="gold-line"></div>
-        <p>Practical skills for personal growth, employment and entrepreneurship.</p>
-      </div>
-
-      <div class="short-course-grid">
-        <div class="short-course">Computer Applications</div>
-        <div class="short-course">Computerized Accounting</div>
-        <div class="short-course">Website Design</div>
-        <div class="short-course">Graphic Design</div>
-        <div class="short-course">Photography and Videography</div>
-        <div class="short-course">Public Speaking</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <div class="section-heading">
-        <h2>Get in Touch</h2>
-        <div class="gold-line"></div>
-        <p>Contact Tahidi International Training Institute for enquiries and admissions information.</p>
-      </div>
-
-      <div class="contact-grid">
-
-        <div class="contact-card">
-          <h3>Visit Us</h3>
-          <p>Contact the institute for campus location and directions.</p>
-        </div>
-
-        <div class="contact-card">
-          <h3>Admissions</h3>
-          <p>Speak to our team about available programmes and enrolment.</p>
-        </div>
-
-        <div class="contact-card">
-          <h3>Enquiries</h3>
-          <p>Reach out to the institute for more information.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+<div class="container">
+<div class="section-heading">
+<h2>Get in Touch</h2>
+<div class="gold-line"></div>
+<p>Contact Tahidi International Training Institute for enquiries and admissions information.</p>
+</div>
+<div class="contact-grid">
+<div class="contact-card">
+<h3>Visit Us</h3>
+<p>Contact the institute for campus location and directions.</p>
+</div>
+<div class="contact-card">
+<h3>Admissions</h3>
+<p>Speak to our team about available programmes and enrolment.</p>
+</div>
+<div class="contact-card">
+<h3>Enquiries</h3>
+<p>Reach out to the institute for more information.</p>
+</div>
+</div>
+</div>
+</section>
 
 </main>
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <div class="container">
+<div class="container">
+<div class="footer-grid">
 
-    <div class="footer-grid">
+<div class="footer-brand">
+<img src="TITI%20LOGO.png" alt="Tahidi International Training Institute Logo">
+<h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
+<div class="footer-motto">BREAKING THE LIMITS</div>
+<p>
+Committed to quality education, practical skills and professional
+training that prepares learners for opportunities in the world of work.
+</p>
+</div>
 
-      <div class="footer-brand">
-        <img src="TITI%20LOGO.png" alt="Tahidi International Training Institute Logo">
+<div class="footer-column">
+<h3>Explore TITI</h3>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About Our Institute</a></li>
+<li><a href="#programmes">Academic Programmes</a></li>
+<li><a href="#admissions">Admissions</a></li>
+<li><a href="#gallery">Our Campus</a></li>
+<li><a href="#contact">Contact Us</a></li>
+<li><a href="application-status.html">Check Application Status</a></li>
+</ul>
+</div>
 
-        <h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
+<div class="footer-column">
+<h3>Contact Information</h3>
+<p>
+<strong>Institution:</strong><br>
+Tahidi International Training Institute
+</p>
+<p>
+<strong>Enquiries:</strong><br>
+Contact the institute administration for programme,
+admission and campus information.
+</p>
+<p>
+<strong>Website:</strong><br>
+<a href="https://jamesnyarangotv.github.io/TITI-website/">
+TITI Official Website
+</a>
+</p>
+<a href="apply.html" class="footer-apply">Apply Now</a>
+</div>
 
-        <div class="footer-motto">BREAKING THE LIMITS</div>
+</div>
 
-        <p>
-          Committed to quality education, practical skills and professional
-          training that prepares learners for opportunities in the world of work.
-        </p>
-      </div>
-
-      <div class="footer-column">
-        <h3>Explore TITI</h3>
-
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Our Institute</a></li>
-          <li><a href="#programmes">Academic Programmes</a></li>
-          <li><a href="#admissions">Admissions</a></li>
-          <li><a href="#gallery">Our Campus</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-          <li><a href="application-status.html">Check Application Status</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h3>Contact Information</h3>
-
-        <p>
-          <strong>Institution:</strong><br>
-          Tahidi International Training Institute
-        </p>
-
-        <p>
-          <strong>Enquiries:</strong><br>
-          Contact the institute administration for programme,
-          admission and campus information.
-        </p>
-
-        <p>
-          <strong>Website:</strong><br>
-          <a href="https://jamesnyarangotv.github.io/TITI-website/">
-            TITI Official Website
-          </a>
-        </p>
-
-        <a href="apply.html" class="footer-apply">Apply Now</a>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p>
-        © <span id="footer-year"></span>
-        <strong>Tahidi International Training Institute.</strong>
-        All Rights Reserved.
-      </p>
-    </div>
-
-  </div>
+<div class="footer-bottom">
+<p>
+© <span id="footer-year"></span>
+<strong>Tahidi International Training Institute.</strong>
+All Rights Reserved.
+</p>
+</div>
+</div>
 </footer>
 
 <script>
