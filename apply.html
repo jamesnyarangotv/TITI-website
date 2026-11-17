@@ -21,672 +21,178 @@
  --grey:#F5F5F5;
  --text:#263247;
 }
-
 * {box-sizing:border-box;}
-
-html {
- scroll-behavior:smooth;
- scroll-padding-top:25px;
-}
-
-body {
- margin:0;
- font-family:'Jost',sans-serif;
- background:var(--grey);
- color:var(--text);
-}
+html {scroll-behavior:smooth;scroll-padding-top:25px;}
+body {margin:0;font-family:'Jost',sans-serif;background:var(--grey);color:var(--text);}
 
 header {
- background:var(--white);
- border-bottom:4px solid var(--gold);
- padding:14px 5%;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:20px;
+ background:white;border-bottom:4px solid var(--gold);
+ padding:14px 5%;display:flex;align-items:center;
+ justify-content:space-between;gap:20px;
 }
+.header-brand {display:flex;align-items:center;gap:15px;min-width:0;}
+header img {width:65px;height:65px;object-fit:contain;}
+.brand h2 {color:var(--maroon);margin:0;font-size:21px;font-weight:700;line-height:1.3;}
+.brand p {margin:4px 0 0;color:var(--navy);font-size:11px;font-weight:700;letter-spacing:1px;}
 
-.header-brand {
- display:flex;
- align-items:center;
- gap:15px;
- min-width:0;
-}
-
-header img {
- width:65px;
- height:65px;
- object-fit:contain;
-}
-
-.brand h2 {
- color:var(--maroon);
- margin:0;
- font-size:21px;
- font-weight:700;
- line-height:1.3;
-}
-
-.brand p {
- margin:4px 0 0;
- color:var(--navy);
- font-size:11px;
- font-weight:700;
- letter-spacing:1px;
-}
-
-.header-nav {
- display:flex;
- align-items:center;
- gap:10px;
- flex-shrink:0;
-}
-
+.header-nav {display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .header-nav a {
- text-decoration:none;
- padding:10px 17px;
- border-radius:4px;
- font-size:13px;
- font-weight:600;
- transition:.2s;
+ text-decoration:none;padding:10px 17px;border-radius:4px;
+ font-size:13px;font-weight:600;transition:.2s;
 }
-
-.home-link {
- color:var(--navy);
- border:1px solid #dce2eb;
-}
-
+.home-link {color:var(--navy);border:1px solid #dce2eb;}
 .home-link:hover {background:#f1f4f9;}
-
-.courses-link {
- background:var(--maroon);
- color:white;
-}
-
+.courses-link {background:var(--maroon);color:white;}
 .courses-link:hover {background:#590b17;}
 
-.container {
- max-width:1000px;
- margin:35px auto;
- padding:0 16px;
-}
-
-.heading {
- text-align:center;
- margin-bottom:25px;
-}
-
-.heading h1 {
- color:var(--maroon);
- font-size:30px;
- font-weight:700;
- margin:0 0 8px;
-}
-
-.heading p {
- font-size:14px;
- color:#64748b;
-}
-
-/* ADMISSIONS INTRO */
+.container {max-width:1000px;margin:35px auto;padding:0 16px;}
+.heading {text-align:center;margin-bottom:25px;}
+.heading h1 {color:var(--maroon);font-size:30px;font-weight:700;margin:0 0 8px;}
+.heading p {font-size:14px;color:#64748b;}
 
 .admissions-intro {
  background:linear-gradient(120deg,#0F2A5E,#183d78);
- color:white;
- padding:30px;
- border-radius:9px;
- margin-bottom:24px;
- text-align:center;
+ color:white;padding:30px;border-radius:9px;
+ margin-bottom:24px;text-align:center;
 }
-
-.admissions-intro h2 {
- margin:0 0 10px;
- font-size:25px;
-}
-
-.admissions-intro p {
- margin:0;
- color:#e4eaf5;
- font-size:14px;
- line-height:1.8;
-}
-
-/* EXPANDABLE ADMISSIONS MENU */
+.admissions-intro h2 {margin:0 0 10px;font-size:25px;}
+.admissions-intro p {margin:0;color:#e4eaf5;font-size:14px;line-height:1.8;}
 
 .admissions-accordion {
- display:flex;
- flex-direction:column;
- gap:0;
- margin-bottom:25px;
- background:white;
- border-top:3px solid var(--gold);
- border-radius:0 0 6px 6px;
- box-shadow:0 8px 22px rgba(0,0,0,.10);
- overflow:hidden;
- scroll-margin-top:25px;
+ display:flex;flex-direction:column;gap:0;margin-bottom:25px;
+ background:white;border-top:3px solid var(--gold);
+ border-radius:0 0 6px 6px;box-shadow:0 8px 22px rgba(0,0,0,.10);
+ overflow:hidden;scroll-margin-top:25px;
 }
-
 .admission-item {
- background:white;
- border:0;
- border-bottom:1px solid #f0f0f0;
- border-radius:0;
- overflow:hidden;
- box-shadow:none;
- transition:background .2s;
+ background:white;border:0;border-bottom:1px solid #f0f0f0;
+ border-radius:0;overflow:hidden;box-shadow:none;transition:background .2s;
  scroll-margin-top:25px;
 }
-
-.admission-item:last-child {
- border-bottom:0;
-}
-
-.admission-item[open] {
- background:#fff;
- box-shadow:none;
-}
-
+.admission-item:last-child {border-bottom:0;}
 .admission-item summary {
- list-style:none;
- cursor:pointer;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:15px;
- padding:15px 19px;
- color:var(--navy);
- font-size:14px;
- font-weight:700;
- transition:.2s;
+ list-style:none;cursor:pointer;display:flex;align-items:center;
+ justify-content:space-between;gap:15px;padding:15px 19px;
+ color:var(--navy);font-size:14px;font-weight:700;transition:.2s;
 }
-
-.admission-item summary::-webkit-details-marker {
- display:none;
-}
-
-.admission-item summary:hover {
- background:var(--grey);
- color:var(--maroon);
-}
-
+.admission-item summary::-webkit-details-marker {display:none;}
+.admission-item summary:hover {background:var(--grey);color:var(--maroon);}
 .admission-item summary::after {
- content:"▼";
- display:flex;
- align-items:center;
- justify-content:center;
- width:25px;
- height:25px;
- flex-shrink:0;
- color:var(--maroon);
- font-size:12px;
- transition:transform .25s;
+ content:"▼";display:flex;align-items:center;justify-content:center;
+ width:25px;height:25px;flex-shrink:0;color:var(--maroon);
+ font-size:12px;transition:transform .25s;
 }
+.admission-item[open] summary::after {transform:rotate(180deg);}
+.admission-content {padding:20px 22px 23px;border-top:1px solid #e8ebf0;background:#f8f9fc;}
+.admission-content p,.admission-content li {font-size:13px;line-height:1.8;color:#526074;}
+.admission-content p {margin:7px 0;}
+.admission-content ul {padding-left:20px;margin:8px 0;}
+.admission-content strong {color:var(--navy);}
 
-.admission-item[open] summary::after {
- transform:rotate(180deg);
- color:var(--maroon);
-}
+.intake-list {display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px;}
+.intake-item {background:#f5f7fb;border:1px solid #e3e8f0;padding:13px 5px;text-align:center;border-radius:5px;}
+.intake-item strong {display:block;color:var(--maroon);font-size:15px;}
+.intake-item span {color:#64748b;font-size:11px;}
 
-.admission-content {
- padding:20px 22px 23px;
- border-top:1px solid #e8ebf0;
- background:#f8f9fc;
- animation:admissionOpen .2s ease;
-}
+.short-course {background:#fff8e7;border-left:4px solid var(--gold);padding:13px;border-radius:4px;margin-top:13px;}
+.short-course strong {color:var(--maroon);}
+.bank-details {background:#f5f7fb;border:1px solid #e2e8f0;padding:15px;border-radius:5px;margin-top:12px;}
+.bank-details p {margin:7px 0;overflow-wrap:anywhere;}
+.bank-number {font-size:21px;font-weight:800;color:var(--maroon);letter-spacing:1px;}
+.admissions-note {background:#eef4ff;border-left:4px solid var(--navy);padding:13px;border-radius:4px;font-size:12px;line-height:1.8;color:var(--navy);margin-top:13px;}
 
-@keyframes admissionOpen {
- from {opacity:0;transform:translateY(-5px);}
- to {opacity:1;transform:translateY(0);}
-}
-
-.admission-content p,
-.admission-content li {
- font-size:13px;
- line-height:1.8;
- color:#526074;
-}
-
-.admission-content p {
- margin:7px 0;
-}
-
-.admission-content ul {
- padding-left:20px;
- margin:8px 0;
-}
-
-.admission-content strong {
- color:var(--navy);
-}
-
-.intake-list {
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:9px;
- margin-top:15px;
-}
-
-.intake-item {
- background:#f5f7fb;
- border:1px solid #e3e8f0;
- padding:13px 5px;
- text-align:center;
- border-radius:5px;
-}
-
-.intake-item strong {
- display:block;
- color:var(--maroon);
- font-size:15px;
-}
-
-.intake-item span {
- color:#64748b;
- font-size:11px;
-}
-
-.short-course {
- background:#fff8e7;
- border-left:4px solid var(--gold);
- padding:13px;
- border-radius:4px;
- margin-top:13px;
-}
-
-.short-course strong {
- color:var(--maroon);
-}
-
-.bank-details {
- background:#f5f7fb;
- border:1px solid #e2e8f0;
- padding:15px;
- border-radius:5px;
- margin-top:12px;
-}
-
-.bank-details p {
- margin:7px 0;
- overflow-wrap:anywhere;
-}
-
-.bank-number {
- font-size:21px;
- font-weight:800;
- color:var(--maroon);
- letter-spacing:1px;
-}
-
-.admissions-note {
- background:#eef4ff;
- border-left:4px solid var(--navy);
- padding:13px;
- border-radius:4px;
- font-size:12px;
- line-height:1.8;
- color:var(--navy);
- margin-top:13px;
-}
-
-.apply-now-wrap {
- text-align:center;
- margin:25px 0;
-}
-
-.apply-now {
- display:inline-block;
- background:var(--maroon);
- color:white;
- text-decoration:none;
- padding:13px 35px;
- border-radius:5px;
- font-size:14px;
- font-weight:700;
- transition:.2s;
-}
-
+.apply-now-wrap {text-align:center;margin:25px 0;}
+.apply-now {display:inline-block;background:var(--maroon);color:white;text-decoration:none;padding:13px 35px;border-radius:5px;font-size:14px;font-weight:700;transition:.2s;}
 .apply-now:hover {background:#590b17;}
 
-/* APPLICATION FORM */
-
-.card {
- background:white;
- padding:28px;
- border-radius:9px;
- margin-bottom:20px;
- box-shadow:0 3px 16px rgba(0,0,0,.045);
-}
-
-.section-title {
- color:var(--navy);
- font-size:16px;
- font-weight:700;
- border-bottom:1px solid #e5e7eb;
- padding-bottom:12px;
- margin:0 0 20px;
-}
-
-.grid {
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:17px;
-}
-
-.field {
- display:flex;
- flex-direction:column;
- gap:7px;
-}
-
+.card {background:white;padding:28px;border-radius:9px;margin-bottom:20px;box-shadow:0 3px 16px rgba(0,0,0,.045);}
+.section-title {color:var(--navy);font-size:16px;font-weight:700;border-bottom:1px solid #e5e7eb;padding-bottom:12px;margin:0 0 20px;}
+.grid {display:grid;grid-template-columns:1fr 1fr;gap:17px;}
+.field {display:flex;flex-direction:column;gap:7px;}
 .full {grid-column:1/-1;}
-
-label {
- font-size:13px;
- font-weight:600;
- color:var(--navy);
-}
-
-input,select,textarea,button {
- font-family:'Jost',sans-serif;
-}
-
+label {font-size:13px;font-weight:600;color:var(--navy);}
+input,select,textarea,button {font-family:'Jost',sans-serif;}
 input,select,textarea {
- width:100%;
- padding:12px;
- border:1px solid #d8dee8;
- border-radius:5px;
- font-size:14px;
- background:white;
- outline:none;
- color:var(--text);
+ width:100%;padding:12px;border:1px solid #d8dee8;
+ border-radius:5px;font-size:14px;background:white;
+ outline:none;color:var(--text);
 }
-
-input:focus,select:focus,textarea:focus {
- border-color:var(--maroon);
- box-shadow:0 0 0 2px rgba(122,18,32,.08);
-}
-
-input[type=file] {
- background:#fafafa;
- padding:10px;
-}
-
-small {
- color:#64748b;
- font-size:11px;
- line-height:1.6;
-}
-
-.notice {
- background:#fff8e7;
- border-left:4px solid var(--gold);
- padding:13px;
- font-size:13px;
- line-height:1.7;
- margin-bottom:18px;
-}
+input:focus,select:focus,textarea:focus {border-color:var(--maroon);box-shadow:0 0 0 2px rgba(122,18,32,.08);}
+input[type=file] {background:#fafafa;padding:10px;}
+small {color:#64748b;font-size:11px;line-height:1.6;}
+.notice {background:#fff8e7;border-left:4px solid var(--gold);padding:13px;font-size:13px;line-height:1.7;margin-bottom:18px;}
 
 button {
- border:0;
- background:var(--maroon);
- color:white;
- padding:15px 24px;
- border-radius:5px;
- font-weight:700;
- cursor:pointer;
- width:100%;
- font-size:14px;
+ border:0;background:var(--maroon);color:white;padding:15px 24px;
+ border-radius:5px;font-weight:700;cursor:pointer;width:100%;font-size:14px;
 }
-
 button:hover {background:#590b17;}
-
-button:disabled {
- opacity:.6;
- cursor:not-allowed;
-}
-
-/* APPLICATION MESSAGES */
+button:disabled {opacity:.6;cursor:not-allowed;}
 
 .message {
- display:none;
- padding:15px;
- margin:15px 0;
- border-radius:5px;
- font-size:13px;
- line-height:1.8;
- overflow-wrap:anywhere;
- white-space:pre-line;
+ display:none;padding:15px;margin:15px 0;border-radius:5px;
+ font-size:13px;line-height:1.8;overflow-wrap:anywhere;white-space:pre-line;
 }
+.success {display:block;background:#e9f8ef;color:#17643a;}
+.error {display:block;background:#fff0f0;color:#a31515;}
+.info {display:block;background:#eef4ff;color:var(--navy);}
 
-.success {
- display:block;
- background:#e9f8ef;
- color:#17643a;
-}
-
-.error {
- display:block;
- background:#fff0f0;
- color:#a31515;
-}
-
-.info {
- display:block;
- background:#eef4ff;
- color:var(--navy);
-}
-
-.success-actions {
- display:none;
- gap:12px;
- flex-wrap:wrap;
- margin:15px 0 25px;
-}
-
-.success-actions a {
- display:inline-block;
- text-decoration:none;
- padding:11px 22px;
- border-radius:5px;
- font-size:13px;
- font-weight:600;
- text-align:center;
-}
-
-.success-home {
- background:var(--navy);
- color:white;
-}
-
-.success-courses {
- background:var(--gold);
- color:#172033;
-}
-
+.success-actions {display:none;gap:12px;flex-wrap:wrap;margin:15px 0 25px;}
+.success-actions a {display:inline-block;text-decoration:none;padding:11px 22px;border-radius:5px;font-size:13px;font-weight:600;text-align:center;}
+.success-home {background:var(--navy);color:white;}
+.success-courses {background:var(--gold);color:#172033;}
 .success-actions a:hover {opacity:.88;}
 
-/* FOOTER */
-
 .site-footer {
- background:#091B3D;
- border-top:4px solid var(--gold);
- color:white;
- padding:55px 5% 0;
- text-align:left;
- font-size:14px;
- line-height:1.7;
+ background:#091B3D;border-top:4px solid var(--gold);color:white;
+ padding:55px 5% 0;text-align:left;font-size:14px;line-height:1.7;
 }
-
 .footer-grid {
- max-width:1200px;
- margin:0 auto;
- display:grid;
+ max-width:1200px;margin:0 auto;display:grid;
  grid-template-columns:1.1fr .9fr 1.35fr;
- gap:48px;
- padding-bottom:38px;
+ gap:48px;padding-bottom:38px;
 }
-
-.footer-logo {
- width:90px;
- height:90px;
- object-fit:contain;
- margin-bottom:13px;
-}
-
-.footer-title {
- color:white;
- font-size:17px;
- font-weight:600;
- margin:0 0 15px;
-}
-
-.footer-brand-name {
- color:white;
- font-size:16px;
- font-weight:600;
- margin:0 0 5px;
- line-height:1.5;
-}
-
-.footer-motto {
- color:var(--gold);
- font-size:12px;
- letter-spacing:1px;
- font-weight:500;
- margin:0 0 12px;
-}
-
-.footer-description {
- color:#d4dbea;
- font-size:13px;
- line-height:1.8;
- margin:0;
-}
-
-.footer-links {
- list-style:none;
- padding:0;
- margin:0;
-}
-
+.footer-logo {width:90px;height:90px;object-fit:contain;margin-bottom:13px;}
+.footer-title {color:white;font-size:17px;font-weight:600;margin:0 0 15px;}
+.footer-brand-name {color:white;font-size:16px;font-weight:600;margin:0 0 5px;line-height:1.5;}
+.footer-motto {color:var(--gold);font-size:12px;letter-spacing:1px;font-weight:500;margin:0 0 12px;}
+.footer-description {color:#d4dbea;font-size:13px;line-height:1.8;margin:0;}
+.footer-links {list-style:none;padding:0;margin:0;}
 .footer-links li {margin-bottom:9px;}
-
-.footer-links a {
- color:#d4dbea;
- text-decoration:none;
- font-size:13px;
- transition:.2s;
-}
-
+.footer-links a {color:#d4dbea;text-decoration:none;font-size:13px;transition:.2s;}
 .footer-links a:hover {color:var(--gold);}
-
-.footer-contact {
- color:#d4dbea;
- font-size:13px;
- line-height:1.9;
-}
-
-.footer-contact a {
- color:#d4dbea;
- text-decoration:none;
-}
-
+.footer-contact {color:#d4dbea;font-size:13px;line-height:1.9;}
+.footer-contact a {color:#d4dbea;text-decoration:none;}
 .footer-contact a:hover {color:var(--gold);}
-
-.footer-apply {
- display:inline-block;
- margin-top:13px;
- padding:9px 18px;
- background:var(--gold);
- color:#091B3D !important;
- border-radius:3px;
- font-weight:600;
-}
-
-.footer-bottom {
- border-top:1px solid rgba(255,255,255,.15);
- padding:17px 0;
- text-align:center;
- color:#cbd5e1;
- font-size:12px;
-}
-
+.footer-apply {display:inline-block;margin-top:13px;padding:9px 18px;background:var(--gold);color:#091B3D!important;border-radius:3px;font-weight:600;}
+.footer-bottom {border-top:1px solid rgba(255,255,255,.15);padding:17px 0;text-align:center;color:#cbd5e1;font-size:12px;}
 .footer-bottom p {margin:0;}
 
 @media(max-width:850px) {
- .footer-grid {
-  grid-template-columns:1fr 1fr;
-  gap:35px;
- }
+ .footer-grid {grid-template-columns:1fr 1fr;gap:35px;}
 }
-
 @media(max-width:600px) {
- header {
-  padding:12px 4%;
-  flex-wrap:wrap;
- }
-
- header img {
-  width:55px;
-  height:55px;
- }
-
+ header {padding:12px 4%;flex-wrap:wrap;}
+ header img {width:55px;height:55px;}
  .brand h2 {font-size:16px;}
  .brand p {font-size:10px;}
-
- .header-nav {
-  width:100%;
-  justify-content:center;
-  padding-bottom:5px;
- }
-
- .header-nav a {
-  flex:1;
-  text-align:center;
-  padding:10px 8px;
-  font-size:12px;
- }
-
- .grid {
-  grid-template-columns:1fr;
- }
-
+ .header-nav {width:100%;justify-content:center;padding-bottom:5px;}
+ .header-nav a {flex:1;text-align:center;padding:10px 8px;font-size:12px;}
+ .grid {grid-template-columns:1fr;}
  .full {grid-column:auto;}
-
  .card {padding:19px;}
-
  .admissions-intro {padding:23px 17px;}
-
  .admissions-intro h2 {font-size:21px;}
-
  .heading h1 {font-size:25px;}
-
- .admission-item summary {
-  padding:14px 15px;
-  font-size:13px;
- }
-
- .admission-content {
-  padding:17px;
- }
-
+ .admission-item summary {padding:14px 15px;font-size:13px;}
+ .admission-content {padding:17px;}
  .intake-list {gap:6px;}
-
  .intake-item {padding:11px 3px;}
-
  .intake-item strong {font-size:13px;}
-
- .footer-grid {
-  grid-template-columns:1fr;
-  gap:28px;
- }
-
+ .footer-grid {grid-template-columns:1fr;gap:28px;}
  .site-footer {padding:38px 6% 0;}
-
  .success-actions {flex-direction:column;}
-
  .success-actions a {width:100%;}
-
  .apply-now {width:100%;}
 }
 </style>
@@ -695,10 +201,8 @@ button:disabled {
 <body>
 
 <header>
-
  <div class="header-brand">
   <img src="TITI%20LOGO.png" alt="TITI Logo">
-
   <div class="brand">
    <h2>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
    <p>BREAKING THE LIMITS</p>
@@ -709,7 +213,6 @@ button:disabled {
   <a href="index.html" class="home-link">HOME</a>
   <a href="index.html#programmes" class="courses-link">EXPLORE COURSES</a>
  </nav>
-
 </header>
 
 <main class="container">
@@ -721,41 +224,24 @@ button:disabled {
 
 <div class="admissions-intro">
  <h2>WELCOME TO TAHIDI INTERNATIONAL TRAINING INSTITUTE</h2>
- <p>
- We welcome prospective students seeking quality education,
- professional training and practical skills. Explore our
- admission requirements, intakes and payment information
- before completing your online application.
- </p>
+ <p>We welcome prospective students seeking quality education, professional training and practical skills. Explore our admission requirements, intakes and payment information before completing your online application.</p>
 </div>
 
 <div class="admissions-accordion">
 
  <details class="admission-item" id="requirements">
   <summary>01. ADMISSION REQUIREMENTS</summary>
-
   <div class="admission-content">
    <p><strong>Diploma Programmes – Kenyan Applicants</strong></p>
-   <ul>
-    <li>KCSE mean grade of at least C- (minus), or an equivalent qualification.</li>
-   </ul>
-
+   <ul><li>KCSE mean grade of at least C- (minus), or an equivalent qualification.</li></ul>
    <p><strong>Certificate Programmes – Kenyan Applicants</strong></p>
-   <ul>
-    <li>KCSE mean grade of at least D+ (plus).</li>
-   </ul>
-
-   <div class="admissions-note">
-    Applicants from Uganda and other countries should present
-    their academic qualifications for assessment against the
-    relevant programme entry requirements.
-   </div>
+   <ul><li>KCSE mean grade of at least D+ (plus).</li></ul>
+   <div class="admissions-note">Applicants from Uganda and other countries should present their academic qualifications for assessment against the relevant programme entry requirements.</div>
   </div>
  </details>
 
  <details class="admission-item" id="documents">
   <summary>02. REQUIRED DOCUMENTS</summary>
-
   <div class="admission-content">
    <p>Prepare the following documents when applying:</p>
    <ul>
@@ -764,100 +250,50 @@ button:disabled {
     <li>Recent passport-size photograph.</li>
     <li>National identification card or passport.</li>
    </ul>
-   <p>
-    Upload clear and readable copies through the online
-    application form below.
-   </p>
+   <p>Upload clear and readable copies through the online application form below.</p>
   </div>
  </details>
 
  <details class="admission-item" id="intakes">
   <summary>03. INTAKES & ADMISSION</summary>
-
   <div class="admission-content">
    <p>Regular Certificate and Diploma programmes have three intakes every year:</p>
-
    <div class="intake-list">
-    <div class="intake-item">
-     <strong>JANUARY</strong>
-     <span>Intake</span>
-    </div>
-    <div class="intake-item">
-     <strong>MAY</strong>
-     <span>Intake</span>
-    </div>
-    <div class="intake-item">
-     <strong>AUGUST</strong>
-     <span>Intake</span>
-    </div>
+    <div class="intake-item"><strong>JANUARY</strong><span>Intake</span></div>
+    <div class="intake-item"><strong>MAY</strong><span>Intake</span></div>
+    <div class="intake-item"><strong>AUGUST</strong><span>Intake</span></div>
    </div>
-
    <div class="short-course">
     <strong>SHORT COURSES – ENROL ANY TIME!</strong>
-    <p>
-     Short courses and professional training are available
-     throughout the year. Open to anyone interested in
-     acquiring new skills and knowledge. You do not need
-     to wait for the regular intakes.
-    </p>
+    <p>Short courses and professional training are available throughout the year. Open to anyone interested in acquiring new skills and knowledge. You do not need to wait for the regular intakes.</p>
    </div>
   </div>
  </details>
 
  <details class="admission-item" id="fees">
   <summary>04. FEES & PAYMENT</summary>
-
   <div class="admission-content">
-   <p>
-    Tuition and other applicable fees depend on the
-    programme of study. Applicants should confirm the
-    current fee structure with the institute.
-   </p>
-
+   <p>Tuition and other applicable fees depend on the programme of study. Applicants should confirm the current fee structure with the institute.</p>
    <p><strong>Official Institutional Bank Details</strong></p>
-
    <div class="bank-details">
     <p><strong>Bank:</strong> CENTENARY BANK</p>
-    <p><strong>Account Name:</strong><br>
-    TAHIDI INTERNATIONAL TRAINING INSTITUTE - TITICO-SMC LIMITED</p>
+    <p><strong>Account Name:</strong><br>TAHIDI INTERNATIONAL TRAINING INSTITUTE - TITICO-SMC LIMITED</p>
     <p><strong>Account Number:</strong></p>
     <div class="bank-number">3100128448</div>
     <p><strong>Additional Number Supplied:</strong> 0776433303</p>
    </div>
-
-   <div class="admissions-note">
-    Always retain your payment receipt for institutional
-    verification and follow-up.
-   </div>
+   <div class="admissions-note">Always retain your payment receipt for institutional verification and follow-up.</div>
   </div>
  </details>
 
  <details class="admission-item" id="enquiries">
   <summary>05. ADMISSION ENQUIRIES</summary>
-
   <div class="admission-content">
-   <p>
-    Need assistance with admission, programme selection,
-    entry qualifications or payment?
-   </p>
-
-   <p>
-    Contact Tahidi International Training Institute
-    through its official communication channels.
-   </p>
-
-   <p><strong>Institute:</strong><br>
-    TAHIDI INTERNATIONAL TRAINING INSTITUTE
-   </p>
-
-   <p><strong>Telephone number supplied:</strong><br>
-    0776433303
-   </p>
-
-   <div class="admissions-note">
-    Applicants are encouraged to confirm programme availability,
-    admission requirements and current fees before making payment.
-   </div>
+   <p>Need assistance with admission, programme selection, entry qualifications or payment?</p>
+   <p>Contact Tahidi International Training Institute through its official communication channels.</p>
+   <p><strong>Institute:</strong><br>TAHIDI INTERNATIONAL TRAINING INSTITUTE</p>
+   <p><strong>Telephone number supplied:</strong><br>0776433303</p>
+   <div class="admissions-note">Applicants are encouraged to confirm programme availability, admission requirements and current fees before making payment.</div>
   </div>
  </details>
 
@@ -872,7 +308,7 @@ button:disabled {
  <p>Complete the form below to apply for admission to Tahidi International Training Institute.</p>
 </div>
 
-<div id="message" class="message"></div>
+<div id="message" class="message" role="status" aria-live="polite"></div>
 
 <div id="successActions" class="success-actions">
  <a href="index.html" class="success-home">GO TO HOME</a>
@@ -883,22 +319,21 @@ button:disabled {
 
 <div class="card">
 <h3 class="section-title">01. PERSONAL INFORMATION</h3>
-
 <div class="grid">
 
 <div class="field">
 <label>First Name *</label>
-<input name="first_name" required>
+<input name="first_name" required maxlength="100">
 </div>
 
 <div class="field">
 <label>Middle Name</label>
-<input name="middle_name">
+<input name="middle_name" maxlength="100">
 </div>
 
 <div class="field">
 <label>Last Name *</label>
-<input name="last_name" required>
+<input name="last_name" required maxlength="100">
 </div>
 
 <div class="field">
@@ -941,7 +376,6 @@ button:disabled {
 
 <div class="card">
 <h3 class="section-title">02. ACADEMIC INFORMATION</h3>
-
 <div class="grid">
 
 <div class="field full">
@@ -1000,7 +434,6 @@ Your documents are stored in private institutional storage.
 <div class="field full">
 <label>National ID / Identification Document *</label>
 <input type="file" id="identity" accept=".pdf,.jpg,.jpeg,.png" required>
-<small>Upload your National ID or another accepted identification document.</small>
 </div>
 
 <div class="field full">
@@ -1013,100 +446,70 @@ Your documents are stored in private institutional storage.
 </div>
 
 <div class="card">
-
 <h3 class="section-title">04. DECLARATION</h3>
 
 <label style="display:flex;gap:10px;align-items:flex-start;line-height:1.7">
-<input type="checkbox" id="declaration" required
-style="width:17px;height:17px;flex-shrink:0;margin-top:2px">
-<span>I declare that the information provided is true and accurate.
-I understand that false information may result in rejection of my application.</span>
+<input type="checkbox" id="declaration" required style="width:17px;height:17px;flex-shrink:0;margin-top:2px">
+<span>I declare that the information provided is true and accurate. I understand that false information may result in rejection of my application.</span>
 </label>
 
 <div style="margin-top:23px">
 <button type="submit" id="submitBtn">SUBMIT APPLICATION</button>
 </div>
-
 </div>
 
 </form>
-
 </main>
 
 <footer class="site-footer">
+<div class="footer-grid">
 
- <div class="footer-grid">
+<div>
+<img src="TITI%20LOGO.png" alt="TITI Logo" class="footer-logo">
+<h3 class="footer-brand-name">TAHIDI INTERNATIONAL TRAINING INSTITUTE</h3>
+<p class="footer-motto">BREAKING THE LIMITS</p>
+<p class="footer-description">Empowering learners through professional education, practical skills and quality training for a better future.</p>
+</div>
 
-  <div>
-   <img src="TITI%20LOGO.png" alt="TITI Logo" class="footer-logo">
+<div>
+<h3 class="footer-title">Explore TITI</h3>
+<ul class="footer-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="index.html#about">About Our Institute</a></li>
+<li><a href="index.html#programmes">Academic Programmes</a></li>
+<li><a href="apply.html#admissions">Admissions</a></li>
+<li><a href="index.html#gallery">Our Campus</a></li>
+<li><a href="index.html#contact">Contact Us</a></li>
+</ul>
+</div>
 
-   <h3 class="footer-brand-name">
-    TAHIDI INTERNATIONAL TRAINING INSTITUTE
-   </h3>
+<div>
+<h3 class="footer-title">Contact Information</h3>
+<div class="footer-contact">
+<strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong><br>
+For admissions and general enquiries, visit our official website:
+<br>
+<a href="https://jamesnyarangotv.github.io/TITI-website/">jamesnyarangotv.github.io/TITI-website/</a>
+<br>
+<a href="apply.html#admissions" class="footer-apply">Apply Now</a>
+</div>
+</div>
 
-   <p class="footer-motto">BREAKING THE LIMITS</p>
+</div>
 
-   <p class="footer-description">
-    Empowering learners through professional education,
-    practical skills and quality training for a better future.
-   </p>
-  </div>
-
-  <div>
-   <h3 class="footer-title">Explore TITI</h3>
-
-   <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#about">About Our Institute</a></li>
-    <li><a href="index.html#programmes">Academic Programmes</a></li>
-    <li><a href="apply.html#admissions">Admissions</a></li>
-    <li><a href="index.html#gallery">Our Campus</a></li>
-    <li><a href="index.html#contact">Contact Us</a></li>
-   </ul>
-  </div>
-
-  <div>
-   <h3 class="footer-title">Contact Information</h3>
-
-   <div class="footer-contact">
-    <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong><br>
-
-    For admissions and general enquiries, visit our official website:
-
-    <br>
-
-    <a href="https://jamesnyarangotv.github.io/TITI-website/">
-     jamesnyarangotv.github.io/TITI-website/
-    </a>
-
-    <br>
-
-    <a href="apply.html#admissions" class="footer-apply">Apply Now</a>
-   </div>
-  </div>
-
- </div>
-
- <div class="footer-bottom">
-  <p>
-   &copy; <span id="footer-year"></span>
-   Tahidi International Training Institute. All Rights Reserved.
-  </p>
- </div>
-
+<div class="footer-bottom">
+<p>&copy; <span id="footer-year"></span> Tahidi International Training Institute. All Rights Reserved.</p>
+</div>
 </footer>
 
 <script>
-const SUPABASE_URL =
-'https://jlmbiauilmajuvrnuaul.supabase.co';
+/* SUPABASE CONNECTION — EXISTING PROJECT */
 
-const SUPABASE_KEY =
-'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
+const SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
 
-const db = window.supabase.createClient(
- SUPABASE_URL,
- SUPABASE_KEY
-);
+const SUPABASE_KEY = 'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
+
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const form = document.getElementById('applicationForm');
 const message = document.getElementById('message');
@@ -1115,64 +518,48 @@ const programmeSelect = document.getElementById('programme');
 const successActions = document.getElementById('successActions');
 
 let applicationReference = null;
+let documentsUploaded = false;
+let pendingDocumentGroups = [];
 
-document.getElementById('footer-year').textContent =
-new Date().getFullYear();
+document.getElementById('footer-year').textContent = new Date().getFullYear();
 
 document.getElementById('dob').max =
-new Date().toISOString().split('T')[0];
+ new Date().toISOString().split('T')[0];
 
 document.querySelector('[name="year_completed"]').max =
-new Date().getFullYear();
+ new Date().getFullYear();
 
-/* RELIABLE DIRECT ADMISSIONS NAVIGATION */
+/* ADMISSIONS NAVIGATION */
 
 function openAdmissionSection() {
-
  let sectionId = window.location.hash.substring(1);
-
  if(!sectionId) return;
 
  try {
   sectionId = decodeURIComponent(sectionId);
  } catch(error) {
-  console.warn('Invalid admissions navigation link:',error);
   return;
  }
 
  const target = document.getElementById(sectionId);
-
  if(!target) return;
-
- /* Automatically expand the selected accordion section */
 
  if(target.matches('details.admission-item')) {
   target.open = true;
  }
 
- /* Wait for the page layout before scrolling */
-
  requestAnimationFrame(() => {
   requestAnimationFrame(() => {
-   target.scrollIntoView({
-    behavior:'smooth',
-    block:'start'
-   });
+   target.scrollIntoView({behavior:'smooth',block:'start'});
   });
  });
 }
 
-/* Run navigation on initial page opening */
-
 openAdmissionSection();
-
-/* Run navigation when a different admissions link is selected */
-
 window.addEventListener('hashchange',openAdmissionSection);
-
-/* Run navigation when returning to the page */
-
 window.addEventListener('pageshow',openAdmissionSection);
+
+/* MESSAGE DISPLAY */
 
 function showMessage(text,type) {
  message.className = 'message ' + type;
@@ -1181,69 +568,84 @@ function showMessage(text,type) {
  successActions.style.display =
   type === 'success' ? 'flex' : 'none';
 
- message.scrollIntoView({
-  behavior:'smooth',
-  block:'center'
- });
+ message.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-async function loadProgrammes() {
- const {data,error} = await db
-  .from('programmes')
-  .select('id, programme_name, programme_level')
-  .eq('application_open',true)
-  .order('programme_name');
+/* LOAD OPEN PROGRAMMES */
 
- if(error) {
+async function loadProgrammes() {
+ programmeSelect.innerHTML =
+  '<option value="">Loading available programmes...</option>';
+
+ try {
+  const {data,error} = await db
+   .from('programmes')
+   .select('id, programme_name, programme_level')
+   .eq('application_open',true)
+   .order('programme_name');
+
+  if(error) throw error;
+
+  if(!data || data.length === 0) {
+   programmeSelect.innerHTML =
+    '<option value="">No programmes currently open</option>';
+
+   showMessage('There are currently no programmes open for online applications. Please contact TITI admissions.','info');
+   return;
+  }
+
+  programmeSelect.innerHTML =
+   '<option value="">Select your programme</option>';
+
+  data.forEach(p => {
+   const option = document.createElement('option');
+   option.value = p.id;
+   option.textContent =
+    p.programme_name + ' — ' + p.programme_level;
+
+   programmeSelect.appendChild(option);
+  });
+
+ } catch(error) {
+  console.error('Programme loading error:',error);
+
   programmeSelect.innerHTML =
    '<option value="">Unable to load programmes</option>';
 
   showMessage(
-   'Unable to load programmes. Please check the database permissions.',
+   'Unable to load programmes. Please check the Supabase connection, table permissions and programme settings. Details: ' + error.message,
    'error'
   );
-  return;
  }
-
- if(!data || data.length === 0) {
-  programmeSelect.innerHTML =
-   '<option value="">No programmes currently open</option>';
-  return;
- }
-
- programmeSelect.innerHTML =
-  '<option value="">Select your programme</option>';
-
- data.forEach(p => {
-  const option = document.createElement('option');
-  option.value = p.id;
-  option.textContent =
-   p.programme_name + ' — ' + p.programme_level;
-  programmeSelect.appendChild(option);
- });
 }
+
+/* DOCUMENT SELECTION */
 
 function selectedFiles() {
  const items = [];
 
- if(document.getElementById('photo').files[0]) {
+ const photo = document.getElementById('photo').files[0];
+ const identity = document.getElementById('identity').files[0];
+ const academic = document.getElementById('academic').files;
+
+ if(photo) {
   items.push({
    type:'Passport Photograph',
-   files:[document.getElementById('photo').files[0]]
+   files:[photo]
   });
  }
 
- if(document.getElementById('identity').files[0]) {
+ if(identity) {
   items.push({
    type:'Identification Document',
-   files:[document.getElementById('identity').files[0]]
+   files:[identity]
   });
  }
 
- if(document.getElementById('academic').files.length) {
+ if(academic.length) {
   items.push({
    type:'Academic Certificate or Transcript',
-   files:Array.from(document.getElementById('academic').files)
+   files:Array.from(academic)
   });
  }
 
@@ -1280,6 +682,8 @@ function validateFiles(groups) {
  return null;
 }
 
+/* UPLOAD DOCUMENTS TO PRIVATE STORAGE */
+
 async function uploadDocuments(reference,groups) {
  const bucket = 'titi-applicant-documents';
 
@@ -1291,8 +695,13 @@ async function uploadDocuments(reference,groups) {
     .replace(/[^\w.-]+/g,'_')
     .slice(0,100);
 
+   const uniqueName =
+    typeof crypto.randomUUID === 'function'
+     ? crypto.randomUUID()
+     : Date.now() + '-' + Math.random().toString(36).slice(2);
+
    const path =
-    reference + '/' + crypto.randomUUID() + '-' + safeName;
+    reference + '/' + uniqueName + '-' + safeName;
 
    const {error:uploadError} = await db.storage
     .from(bucket)
@@ -1326,16 +735,61 @@ async function uploadDocuments(reference,groups) {
  }
 }
 
+/* RETRY DOCUMENT UPLOAD WITHOUT CREATING A SECOND APPLICATION */
+
+async function retryDocumentUploads() {
+ if(!applicationReference || !pendingDocumentGroups.length) return;
+
+ submitBtn.disabled = true;
+ submitBtn.textContent = 'RETRYING DOCUMENT UPLOAD...';
+
+ try {
+  await uploadDocuments(applicationReference,pendingDocumentGroups);
+
+  pendingDocumentGroups = [];
+  documentsUploaded = true;
+
+  showMessage(
+   'APPLICATION SUCCESSFULLY COMPLETED!\n\nApplication reference number: ' +
+   applicationReference +
+   '\n\nYour documents have been uploaded and registered successfully.',
+   'success'
+  );
+
+  submitBtn.textContent = 'APPLICATION SUBMITTED';
+
+ } catch(error) {
+  console.error(error);
+
+  showMessage(
+   'Your application is saved, but document upload is still incomplete.\n\nReference number: ' +
+   applicationReference +
+   '\n\nTechnical details: ' + error.message +
+   '\n\nPlease contact TITI admissions. Do not submit another application.',
+   'error'
+  );
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'RETRY DOCUMENT UPLOAD';
+ }
+}
+
+/* MAIN APPLICATION SUBMISSION */
+
 form.addEventListener('submit',async function(e) {
  e.preventDefault();
 
  if(applicationReference) {
-  showMessage(
-   'Your application has already been received. Your reference number is ' +
-   applicationReference +
-   '. Do not submit another application. Contact TITI admissions if you need assistance with your documents.',
-   'info'
-  );
+  if(!documentsUploaded) {
+   await retryDocumentUploads();
+  } else {
+   showMessage(
+    'Your application has already been received. Reference number: ' +
+    applicationReference +
+    '. Do not submit another application.',
+    'info'
+   );
+  }
   return;
  }
 
@@ -1402,8 +856,23 @@ form.addEventListener('submit',async function(e) {
 
   if(error) throw error;
 
-  const reference =
-   typeof data === 'string' ? data : data?.reference_number;
+  /* Support text, object and single-row array responses */
+
+  let reference = null;
+
+  if(typeof data === 'string') {
+   reference = data;
+  } else if(Array.isArray(data) && data.length) {
+   reference =
+    data[0].reference_number ||
+    data[0].submit_titi_application ||
+    null;
+  } else if(data && typeof data === 'object') {
+   reference =
+    data.reference_number ||
+    data.submit_titi_application ||
+    null;
+  }
 
   if(!reference) {
    throw new Error(
@@ -1411,24 +880,28 @@ form.addEventListener('submit',async function(e) {
    );
   }
 
-  applicationReference = reference;
+  applicationReference = String(reference);
+  pendingDocumentGroups = groups;
 
   showMessage(
-   'Your application has been received. Your reference number is ' +
-   reference +
-   '. Your documents are now being uploaded...',
+   'Your application has been received. Reference number: ' +
+   applicationReference +
+   '. Uploading your documents...',
    'info'
   );
 
-  await uploadDocuments(reference,groups);
+  await uploadDocuments(applicationReference,pendingDocumentGroups);
+
+  pendingDocumentGroups = [];
+  documentsUploaded = true;
 
   form.reset();
-
   programmeSelect.value = '';
 
   showMessage(
    'APPLICATION SUCCESSFULLY SUBMITTED!\n\n' +
-   'Your application reference number is: ' + reference +
+   'Your application reference number is: ' +
+   applicationReference +
    '\n\nYour documents have also been uploaded successfully to private TITI storage. Keep this reference number for future enquiries.',
    'success'
   );
@@ -1445,15 +918,13 @@ form.addEventListener('submit',async function(e) {
    showMessage(
     'YOUR APPLICATION HAS BEEN RECEIVED.\n\n' +
     'Application reference number: ' + applicationReference +
-    '\n\nHowever, one or more documents could not be uploaded or registered.\n\n' +
-    'DO NOT SUBMIT ANOTHER APPLICATION.\n' +
-    'Please contact TITI admissions and provide your reference number.\n\n' +
-    'Technical details: ' + (error.message || 'Document processing error.'),
+    '\n\nHowever, document upload or registration was not completed successfully.\n\nDO NOT SUBMIT ANOTHER APPLICATION.\n\nTechnical details: ' +
+    (error.message || 'Document processing error.'),
     'error'
    );
 
-   submitBtn.disabled = true;
-   submitBtn.textContent = 'APPLICATION RECEIVED — CONTACT ADMISSIONS';
+   submitBtn.disabled = false;
+   submitBtn.textContent = 'RETRY DOCUMENT UPLOAD';
 
   } else {
 
@@ -1465,10 +936,12 @@ form.addEventListener('submit',async function(e) {
    );
 
    submitBtn.disabled = false;
-   submitBtn.textContent = 'RETRY / CONTACT ADMISSIONS';
+   submitBtn.textContent = 'RETRY APPLICATION';
   }
  }
 });
+
+/* START */
 
 loadProgrammes();
 </script>
