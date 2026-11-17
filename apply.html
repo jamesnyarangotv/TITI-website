@@ -591,7 +591,6 @@ function showMessage(text,type) {
 /* ==========================================
    LOAD PROGRAMMES
    DIRECT REST API CONNECTION
-   SAME METHOD AS HOMEPAGE
    ========================================== */
 
 async function loadProgrammes() {
@@ -608,7 +607,6 @@ async function loadProgrammes() {
    method:'GET',
    headers:{
     'apikey':SUPABASE_KEY,
-    'Authorization':`Bearer ${SUPABASE_KEY}`,
     'Accept':'application/json'
    }
   });
@@ -622,6 +620,8 @@ async function loadProgrammes() {
     errorMessage =
      errorData.message ||
      errorData.details ||
+     errorData.hint ||
+     errorData.code ||
      errorMessage;
    } catch(error) {}
 
