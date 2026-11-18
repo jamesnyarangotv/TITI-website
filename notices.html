@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0F2A5E">
+
 <title>Notice Board | Tahidi International Training Institute</title>
+
 <meta name="description" content="Official notices, announcements and examination timetables from Tahidi International Training Institute.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +26,19 @@
 --white:#fff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Jost',sans-serif;color:var(--text);background:var(--light);line-height:1.7}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box
+}
+
+body{
+font-family:'Jost',sans-serif;
+color:var(--text);
+background:var(--light);
+line-height:1.7
+}
+
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
 .container{width:min(1120px,92%);margin:auto}
@@ -73,7 +86,10 @@ font-weight:800;
 transition:.2s
 }
 
-nav a:hover,nav a.active{color:var(--gold)}
+nav a:hover,
+nav a.active{
+color:var(--gold)
+}
 
 .hero{
 background:linear-gradient(115deg,#0B2452,#153A76 65%,#7A1220);
@@ -90,7 +106,11 @@ line-height:1.2;
 margin-bottom:10px
 }
 
-.hero p{color:#e4eaf4;font-size:15px}
+.hero p{
+color:#e4eaf4;
+font-size:15px
+}
+
 .hero .motto{
 color:var(--gold);
 font-size:12px;
@@ -99,12 +119,33 @@ letter-spacing:3px;
 margin-top:10px
 }
 
-main{min-height:55vh;padding:48px 0 75px}
+main{
+min-height:55vh;
+padding:48px 0 75px
+}
 
-.page-heading{text-align:center;margin-bottom:30px}
-.page-heading h2{color:var(--navy);font-size:29px;font-weight:800}
-.gold-line{width:65px;height:4px;background:var(--gold);margin:12px auto}
-.page-heading p{color:var(--muted);font-size:14px}
+.page-heading{
+text-align:center;
+margin-bottom:30px
+}
+
+.page-heading h2{
+color:var(--navy);
+font-size:29px;
+font-weight:800
+}
+
+.gold-line{
+width:65px;
+height:4px;
+background:var(--gold);
+margin:12px auto
+}
+
+.page-heading p{
+color:var(--muted);
+font-size:14px
+}
 
 .notice-tools{
 display:flex;
@@ -115,7 +156,11 @@ margin-bottom:22px;
 flex-wrap:wrap
 }
 
-.notice-count{color:var(--muted);font-size:13px;font-weight:700}
+.notice-count{
+color:var(--muted);
+font-size:13px;
+font-weight:700
+}
 
 .search-box{
 width:min(340px,100%);
@@ -127,9 +172,15 @@ outline:none;
 background:#fff
 }
 
-.search-box:focus{border-color:var(--navy)}
+.search-box:focus{
+border-color:var(--navy);
+box-shadow:0 0 0 3px rgba(15,42,94,.08)
+}
 
-.notice-list{display:grid;gap:20px}
+.notice-list{
+display:grid;
+gap:20px
+}
 
 .notice-card{
 background:#fff;
@@ -169,7 +220,10 @@ font-weight:800;
 text-transform:uppercase
 }
 
-.notice-date{color:var(--muted);font-size:12px}
+.notice-date{
+color:var(--muted);
+font-size:12px
+}
 
 .notice-title{
 color:var(--navy);
@@ -226,9 +280,16 @@ color:var(--navy);
 overflow-wrap:anywhere
 }
 
-.file-label{font-size:11px;color:var(--muted)}
+.file-label{
+font-size:11px;
+color:var(--muted)
+}
 
-.attachment-actions{display:flex;gap:9px;flex-wrap:wrap}
+.attachment-actions{
+display:flex;
+gap:9px;
+flex-wrap:wrap
+}
 
 .action-btn{
 display:inline-block;
@@ -240,10 +301,23 @@ text-align:center;
 border:0
 }
 
-.download-btn{background:var(--maroon);color:#fff}
-.download-btn:hover{background:var(--navy)}
-.open-btn{background:var(--navy);color:#fff}
-.open-btn:hover{background:#193d76}
+.download-btn{
+background:var(--maroon);
+color:#fff
+}
+
+.download-btn:hover{
+background:var(--navy)
+}
+
+.open-btn{
+background:var(--navy);
+color:#fff
+}
+
+.open-btn:hover{
+background:#193d76
+}
 
 .loading,.empty,.error{
 background:#fff;
@@ -256,7 +330,10 @@ color:var(--muted)
 
 .loading{border-top:4px solid var(--gold)}
 .empty{border-top:4px solid var(--gold)}
-.error{border-top:4px solid var(--maroon);color:var(--maroon)}
+.error{
+border-top:4px solid var(--maroon);
+color:var(--maroon)
+}
 
 .retry-btn{
 margin-top:15px;
@@ -267,6 +344,8 @@ border:0;
 border-radius:4px;
 font-weight:800
 }
+
+.retry-btn:hover{background:var(--maroon)}
 
 footer{
 background:var(--navy-dark);
@@ -280,20 +359,64 @@ font-size:12px
 footer strong{color:var(--gold)}
 
 @media(max-width:700px){
-.header-inner{padding:12px 0;min-height:auto;flex-direction:column}
-.brand img{width:135px;height:65px}
-nav{justify-content:center;gap:13px}
+
+.header-inner{
+padding:12px 0;
+min-height:auto;
+flex-direction:column
+}
+
+.brand img{
+width:135px;
+height:65px
+}
+
+nav{
+justify-content:center;
+gap:13px
+}
+
 nav a{font-size:12px}
+
 .hero{padding:42px 0}
+
 main{padding:35px 0 55px}
+
 .notice-top{padding:18px}
+
 .notice-title{font-size:20px}
+
 .notice-content{padding:15px 18px}
+
 .attachment-area{margin:0 18px 18px}
+
 .notice-tools{align-items:stretch}
+
 .search-box{width:100%}
+
 .attachment-actions{width:100%}
+
 .attachment-actions a{flex:1}
+}
+
+@media print{
+
+.topbar,header,.notice-tools,footer,
+.attachment-actions,.hero{
+display:none!important
+}
+
+body{background:#fff}
+
+main{padding:10px 0}
+
+.notice-card{
+box-shadow:none;
+break-inside:avoid;
+margin-bottom:15px
+}
+
+.attachment-area{background:#fff}
 }
 </style>
 </head>
@@ -306,6 +429,7 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 
 <header>
 <div class="container header-inner">
+
 <a href="index.html" class="brand">
 <img src="BYE.png" alt="Tahidi International Training Institute">
 </a>
@@ -318,6 +442,7 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 <a href="notices.html" class="active">NOTICES</a>
 <a href="index.html#contact">CONTACT</a>
 </nav>
+
 </div>
 </header>
 
@@ -339,13 +464,18 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 </div>
 
 <div class="notice-tools">
-<div class="notice-count" id="noticeCount">Loading published notices...</div>
+
+<div class="notice-count" id="noticeCount">
+Loading published notices...
+</div>
+
 <input
 type="search"
 class="search-box"
 id="noticeSearch"
 placeholder="Search notices..."
 aria-label="Search published notices">
+
 </div>
 
 <div class="notice-list" id="noticeList">
@@ -361,19 +491,40 @@ aria-label="Search published notices">
 </footer>
 
 <script>
-/* TITI SUPABASE CONNECTION */
+
+/* =====================================
+   TITI SUPABASE CONNECTION
+===================================== */
+
 const SUPABASE_URL='https://jlmbiauilmajuvrnuaul.supabase.co';
-const SUPABASE_KEY='sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
+
+/* Use the exact active publishable key
+   from your Supabase project API settings. */
+
+const SUPABASE_KEY='sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
+
 const NOTICES_TABLE='notices';
+
+/* =====================================
+   PAGE ELEMENTS
+===================================== */
 
 const noticeList=document.getElementById('noticeList');
 const noticeCount=document.getElementById('noticeCount');
 const noticeSearch=document.getElementById('noticeSearch');
 
+document.getElementById('year').textContent=new Date().getFullYear();
+
 let allNotices=[];
 
+/* =====================================
+   SECURITY: HTML ESCAPING
+===================================== */
+
 function escapeHTML(value){
+
 return String(value??'').replace(/[&<>"']/g,function(char){
+
 return {
 '&':'&amp;',
 '<':'&lt;',
@@ -381,22 +532,47 @@ return {
 '"':'&quot;',
 "'":'&#039;'
 }[char];
+
 });
+
 }
+
+/* =====================================
+   GET AVAILABLE DATABASE FIELDS
+===================================== */
 
 function getFirstValue(object,keys){
+
 for(const key of keys){
-if(object[key]!==undefined && object[key]!==null && object[key]!==''){
+
+if(
+object[key]!==undefined &&
+object[key]!==null &&
+object[key]!==''
+){
+
 return object[key];
-}
-}
-return '';
+
 }
 
+}
+
+return '';
+
+}
+
+/* =====================================
+   FORMAT NOTICE DATE
+===================================== */
+
 function formatNoticeDate(value){
+
 if(!value)return '';
+
 const date=new Date(value);
+
 if(Number.isNaN(date.getTime()))return String(value);
+
 return date.toLocaleString('en-GB',{
 day:'2-digit',
 month:'short',
@@ -404,156 +580,393 @@ year:'numeric',
 hour:'2-digit',
 minute:'2-digit'
 });
+
 }
+
+/* =====================================
+   DETECT IMAGE ATTACHMENTS
+===================================== */
 
 function isImage(url,type,name){
+
 const value=(String(type)+' '+String(name)+' '+String(url)).toLowerCase();
+
 return /\.(jpg|jpeg|png|webp)(\?|$)/i.test(value) ||
 value.includes('image/');
+
 }
 
+/* =====================================
+   BUILD NOTICE CARD
+===================================== */
+
 function renderNotice(notice){
-const title=getFirstValue(notice,['title','notice_title','headline']);
-const category=getFirstValue(notice,['category','notice_category'])||'GENERAL NOTICE';
-const content=getFirstValue(notice,['content','message','body','description','notice']);
-const date=getFirstValue(notice,['created_at','published_at','date','updated_at']);
+
+const title=getFirstValue(notice,[
+'title',
+'notice_title',
+'headline'
+]);
+
+const category=getFirstValue(notice,[
+'category',
+'notice_category'
+])||'GENERAL NOTICE';
+
+const content=getFirstValue(notice,[
+'content',
+'message',
+'body',
+'description',
+'notice'
+]);
+
+const date=getFirstValue(notice,[
+'created_at',
+'published_at',
+'date',
+'updated_at'
+]);
 
 const attachmentURL=getFirstValue(notice,[
-'attachment_url','file_url','document_url','image_url','attachment'
+'attachment_url',
+'file_url',
+'document_url',
+'image_url',
+'attachment'
 ]);
 
 const attachmentName=getFirstValue(notice,[
-'attachment_name','file_name','document_name'
-]) || (attachmentURL ? 'Notice attachment' : '');
+'attachment_name',
+'file_name',
+'document_name'
+])||(attachmentURL?'Notice attachment':'');
 
 const attachmentType=getFirstValue(notice,[
-'attachment_type','file_type','mime_type'
+'attachment_type',
+'file_type',
+'mime_type'
 ]);
 
 let attachmentHTML='';
 
 if(attachmentURL){
-const safeURL=escapeHTML(attachmentURL);
+
+let safeURL='';
+
+try{
+
+const parsedURL=new URL(attachmentURL,SUPABASE_URL);
+
+if(parsedURL.protocol==='https:'){
+safeURL=escapeHTML(parsedURL.href);
+}
+
+}catch(error){
+
+safeURL='';
+
+}
+
+if(safeURL){
+
 const safeName=escapeHTML(attachmentName);
-const image=isImage(attachmentURL,attachmentType,attachmentName);
+
+const image=isImage(
+attachmentURL,
+attachmentType,
+attachmentName
+);
+
 const icon=image?'🖼️':'📄';
+
 const label=image?'IMAGE ATTACHMENT':'DOCUMENT ATTACHMENT';
 
 attachmentHTML=`
+
 <div class="attachment-area">
+
 <div class="attachment-info">
+
 <div class="file-icon">${icon}</div>
+
 <div>
+
 <div class="file-name">${safeName}</div>
+
 <div class="file-label">${label}</div>
+
 </div>
+
 </div>
+
 <div class="attachment-actions">
-<a class="action-btn open-btn" href="${safeURL}" target="_blank" rel="noopener">OPEN / PRINT</a>
-<a class="action-btn download-btn" href="${safeURL}" download="${safeName}" target="_blank" rel="noopener">DOWNLOAD</a>
+
+<a
+class="action-btn open-btn"
+href="${safeURL}"
+target="_blank"
+rel="noopener noreferrer"
+>OPEN / PRINT</a>
+
+<a
+class="action-btn download-btn"
+href="${safeURL}"
+download="${safeName}"
+target="_blank"
+rel="noopener noreferrer"
+>DOWNLOAD</a>
+
 </div>
-</div>`;
+
+</div>
+
+`;
+
+}
+
 }
 
 return `
+
 <article class="notice-card">
+
 <div class="notice-top">
+
 <div class="notice-meta">
+
 <span class="category">${escapeHTML(category)}</span>
+
 <span class="published">● PUBLISHED</span>
+
 <span class="notice-date">${escapeHTML(formatNoticeDate(date))}</span>
+
 </div>
+
 <h3 class="notice-title">${escapeHTML(title||'Institute Notice')}</h3>
+
 </div>
-${content?`<div class="notice-content">${escapeHTML(content)}</div>`:''}
+
+${content?`
+<div class="notice-content">${escapeHTML(content)}</div>
+`:''}
+
 ${attachmentHTML}
-</article>`;
+
+</article>
+
+`;
+
 }
 
-function displayNotices(notices){
-if(!notices.length){
-noticeList.innerHTML='<div class="empty"><strong>No published notices found.</strong><br>Please check again later.</div>';
-noticeCount.textContent='0 published notices';
+/* =====================================
+   FILTER PUBLISHED NOTICES
+===================================== */
+
+function isPublished(notice){
+
+const status=String(
+getFirstValue(notice,['status','publication_status'])
+).toLowerCase().trim();
+
+if(status){
+
+return ['published','active','public'].includes(status);
+
+}
+
+if(notice.is_published!==undefined){
+
+return notice.is_published===true;
+
+}
+
+if(notice.published!==undefined){
+
+return notice.published===true;
+
+}
+
+/* If the table does not use a publication
+   status field, display its returned records. */
+
+return true;
+
+}
+
+/* =====================================
+   DISPLAY NOTICES
+===================================== */
+
+function displayNotices(){
+
+const searchTerm=noticeSearch.value.toLowerCase().trim();
+
+const filtered=allNotices.filter(notice=>{
+
+const searchable=[
+
+getFirstValue(notice,['title','notice_title','headline']),
+
+getFirstValue(notice,['category','notice_category']),
+
+getFirstValue(notice,['content','message','body','description','notice']),
+
+getFirstValue(notice,['attachment_name','file_name','document_name'])
+
+].join(' ').toLowerCase();
+
+return searchable.includes(searchTerm);
+
+});
+
+noticeCount.textContent=
+filtered.length===1
+?'1 published notice'
+:filtered.length+' published notices';
+
+if(filtered.length===0){
+
+noticeList.innerHTML=`
+
+<div class="empty">
+
+<h3>No Notices Found</h3>
+
+<p>There are currently no notices matching your search.</p>
+
+</div>
+
+`;
+
 return;
+
 }
 
-noticeList.innerHTML=notices.map(renderNotice).join('');
-noticeCount.textContent=`${notices.length} published notice${notices.length===1?'':'s'}`;
+noticeList.innerHTML=filtered.map(renderNotice).join('');
+
 }
+
+/* =====================================
+   LOAD NOTICES FROM SUPABASE
+===================================== */
 
 async function loadNotices(){
-noticeList.innerHTML='<div class="loading">Loading official TITI notices...</div>';
+
+noticeList.innerHTML=`
+<div class="loading">Loading official TITI notices...</div>
+`;
+
 noticeCount.textContent='Connecting to notice database...';
 
 try{
+
 const endpoint=
-`${SUPABASE_URL}/rest/v1/${NOTICES_TABLE}?select=*&status=eq.PUBLISHED&order=created_at.desc`;
+SUPABASE_URL+
+'/rest/v1/'+
+encodeURIComponent(NOTICES_TABLE)+
+'?select=*&order=created_at.desc';
 
 const response=await fetch(endpoint,{
+
 method:'GET',
+
 headers:{
+
 'apikey':SUPABASE_KEY,
+
+'Authorization':'Bearer '+SUPABASE_KEY,
+
 'Accept':'application/json'
+
 }
+
 });
 
 if(!response.ok){
-let message='Unable to retrieve notices.';
+
+let errorMessage='Unable to load notices.';
+
 try{
-const data=await response.json();
-message=data.message||data.details||data.hint||message;
+
+const errorData=await response.json();
+
+errorMessage=
+errorData.message||
+errorData.error||
+errorData.details||
+errorMessage;
+
 }catch(error){}
-throw new Error(`Database error (${response.status}): ${message}`);
+
+throw new Error(
+'Database error ('+response.status+'): '+errorMessage
+);
+
 }
 
 const data=await response.json();
 
 if(!Array.isArray(data)){
+
 throw new Error('The database returned an unexpected response.');
+
 }
 
-allNotices=data;
-displayNotices(allNotices);
+/* Show only published records when a
+   publication status field is available. */
+
+allNotices=data.filter(isPublished);
+
+displayNotices();
 
 }catch(error){
-console.error('TITI notice board error:',error);
-noticeCount.textContent='Notice board unavailable';
+
+console.error('TITI Notice Board:',error);
+
+noticeCount.textContent='Notice loading failed';
+
 noticeList.innerHTML=`
+
 <div class="error">
-<strong>We could not load the published notices.</strong>
-<br>${escapeHTML(error.message)}
-<br>Please contact TITI administration if the problem continues.
-<br><button class="retry-btn" onclick="loadNotices()">TRY AGAIN</button>
-</div>`;
+
+<h3>Unable to Load Official Notices</h3>
+
+<p>${escapeHTML(error.message)}</p>
+
+<p style="margin-top:10px;font-size:13px">
+
+Please check your internet connection and Supabase
+database permissions.
+
+</p>
+
+<button class="retry-btn" onclick="loadNotices()">
+
+TRY AGAIN
+
+</button>
+
+</div>
+
+`;
+
 }
+
 }
 
-noticeSearch.addEventListener('input',function(){
-const term=this.value.trim().toLowerCase();
+/* =====================================
+   NOTICE SEARCH
+===================================== */
 
-const filtered=allNotices.filter(notice=>{
-const searchable=[
-notice.title,
-notice.notice_title,
-notice.headline,
-notice.category,
-notice.content,
-notice.message,
-notice.body,
-notice.description,
-notice.attachment_name,
-notice.file_name
-].join(' ').toLowerCase();
+noticeSearch.addEventListener('input',displayNotices);
 
-return searchable.includes(term);
-});
-
-displayNotices(filtered);
-});
-
-document.getElementById('year').textContent=new Date().getFullYear();
+/* =====================================
+   START PAGE
+===================================== */
 
 loadNotices();
+
 </script>
 
 </body>
