@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -25,20 +25,8 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-
-html{
-scroll-behavior:smooth;
-scroll-padding-top:115px;
-}
-
-body{
-font-family:'Jost',sans-serif;
-color:var(--text);
-background:#fff;
-line-height:1.75;
-font-size:17px;
-}
-
+html{scroll-behavior:smooth;scroll-padding-top:115px;}
+body{font-family:'Jost',sans-serif;color:var(--text);background:#fff;line-height:1.7;}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;display:block;}
 button{font-family:inherit;}
@@ -48,11 +36,11 @@ button{font-family:inherit;}
 .topbar{
 background:var(--navy-dark);
 color:#fff;
-padding:10px 12px;
-font-size:15px;
+padding:8px 12px;
+font-size:12px;
 text-align:center;
 letter-spacing:1.1px;
-font-weight:800;
+font-weight:700;
 }
 
 /* HEADER */
@@ -106,7 +94,7 @@ nav a,
 nav button.nav-link{
 color:#fff;
 font-family:inherit;
-font-size:15px;
+font-size:clamp(12px,1.02vw,14px);
 font-weight:800;
 letter-spacing:.2px;
 white-space:nowrap;
@@ -129,7 +117,7 @@ gap:5px;
 }
 
 .dropdown-arrow{
-font-size:14px;
+font-size:12px;
 transition:transform .25s;
 }
 
@@ -179,8 +167,8 @@ white-space:normal;
 .admissions-submenu a,
 .about-submenu a{
 display:block;
-padding:13px 18px;
-font-size:15px;
+padding:11px 18px;
+font-size:13px;
 font-weight:700;
 color:var(--navy);
 border-bottom:1px solid #edf0f4;
@@ -201,9 +189,9 @@ padding-left:23px;
 .nav-apply{
 background:var(--maroon);
 color:#fff!important;
-padding:13px 19px!important;
+padding:12px 19px!important;
 border-radius:4px;
-font-size:15px!important;
+font-size:13px!important;
 font-weight:800;
 margin-left:clamp(2px,.4vw,7px);
 }
@@ -219,7 +207,7 @@ border:1px solid rgba(255,255,255,.3);
 background:var(--maroon);
 color:#fff;
 padding:8px 13px;
-font-size:23px;
+font-size:22px;
 cursor:pointer;
 border-radius:4px;
 }
@@ -235,9 +223,9 @@ text-align:center;
 .hero .container{padding-bottom:26px;}
 
 .hero h2{
-font-size:clamp(32px,3.7vw,48px);
+font-size:clamp(26px,4vw,43px);
 font-weight:800;
-line-height:1.25;
+line-height:1.2;
 margin-bottom:9px;
 letter-spacing:.2px;
 }
@@ -246,7 +234,7 @@ letter-spacing:.2px;
 color:var(--gold);
 font-weight:800;
 letter-spacing:4px;
-font-size:17px;
+font-size:14px;
 margin-bottom:0;
 }
 
@@ -288,18 +276,17 @@ margin-bottom:40px;
 
 .section-heading h2{
 color:var(--navy);
-font-size:clamp(32px,3.2vw,41px);
+font-size:clamp(26px,3vw,35px);
 font-weight:800;
-line-height:1.3;
+line-height:1.25;
 margin-bottom:9px;
 }
 
 .section-heading p{
-max-width:720px;
+max-width:680px;
 margin:auto;
 color:var(--muted);
-font-size:18px;
-line-height:1.8;
+font-size:15px;
 }
 
 .gold-line{
@@ -325,14 +312,14 @@ gap:16px;
 
 .quick-card{
 background:#fff;
-padding:20px 12px;
+padding:19px 12px;
 text-align:center;
 border:1px solid var(--border);
 border-bottom:4px solid var(--gold);
 border-radius:5px;
 color:var(--navy);
 font-weight:800;
-font-size:18px;
+font-size:15px;
 box-shadow:0 3px 12px rgba(0,0,0,.035);
 transition:.25s;
 }
@@ -353,15 +340,14 @@ gap:45px;
 
 .about-text h3{
 color:var(--maroon);
-font-size:32px;
+font-size:27px;
 margin-bottom:14px;
 font-weight:800;
 }
 
 .about-text p{
 margin-bottom:15px;
-font-size:18px;
-line-height:1.85;
+font-size:15px;
 color:#46536A;
 }
 
@@ -385,10 +371,9 @@ border-radius:4px;
 display:inline-block;
 background:var(--maroon);
 color:#fff;
-padding:14px 28px;
+padding:12px 25px;
 border-radius:4px;
 font-weight:800;
-font-size:17px;
 margin-top:12px;
 transition:.25s;
 }
@@ -424,16 +409,16 @@ margin-bottom:22px;
 
 .programme-category-heading h3{
 color:var(--navy);
-font-size:29px;
+font-size:23px;
 font-weight:800;
 }
 
 .programme-count{
 background:var(--navy);
 color:#fff;
-padding:7px 15px;
+padding:6px 14px;
 border-radius:30px;
-font-size:15px;
+font-size:12px;
 font-weight:800;
 white-space:nowrap;
 }
@@ -441,12 +426,12 @@ white-space:nowrap;
 .programme-grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:20px;
+gap:18px;
 }
 
 .programme-card{
 background:#fff;
-padding:25px 20px;
+padding:23px 18px;
 border-radius:6px;
 border:1px solid #E7EAF0;
 border-top:4px solid var(--maroon);
@@ -454,7 +439,6 @@ box-shadow:0 4px 15px rgba(0,0,0,.045);
 transition:.25s;
 display:flex;
 flex-direction:column;
-min-height:235px;
 }
 
 .programme-card:hover{
@@ -464,21 +448,20 @@ box-shadow:var(--shadow);
 
 .programme-card h3{
 color:var(--navy);
-font-size:20px;
-line-height:1.5;
-margin-bottom:11px;
+font-size:17px;
+line-height:1.4;
+margin-bottom:9px;
 font-weight:800;
 }
 
 .programme-card p{
-font-size:16px;
-line-height:1.75;
+font-size:13px;
 color:var(--muted);
-margin-bottom:14px;
+margin-bottom:12px;
 }
 
 .programme-duration{
-font-size:15px;
+font-size:12px;
 color:var(--muted);
 font-weight:700;
 margin-top:auto;
@@ -490,9 +473,9 @@ display:inline-block;
 text-align:center;
 background:var(--maroon);
 color:#fff;
-padding:11px 12px;
+padding:9px 12px;
 border-radius:4px;
-font-size:15px;
+font-size:12px;
 font-weight:800;
 margin-top:8px;
 transition:.2s;
@@ -504,9 +487,9 @@ transition:.2s;
 display:inline-block;
 background:#F0F2F5;
 color:#687386;
-padding:10px;
+padding:8px 10px;
 border-radius:4px;
-font-size:14px;
+font-size:11px;
 font-weight:800;
 margin-top:8px;
 text-align:center;
@@ -522,7 +505,6 @@ text-align:center;
 color:var(--navy);
 grid-column:1/-1;
 border:1px solid var(--border);
-font-size:17px;
 }
 
 .programme-error{
@@ -535,7 +517,7 @@ color:var(--maroon);
 .programme-summary{
 text-align:center;
 color:var(--muted);
-font-size:17px;
+font-size:13px;
 margin-top:27px;
 }
 
@@ -550,17 +532,15 @@ border-bottom:4px solid var(--gold);
 }
 
 .admissions h2{
-font-size:clamp(32px,3.2vw,41px);
+font-size:clamp(27px,3vw,35px);
 margin-bottom:10px;
 font-weight:800;
 }
 
 .admissions p{
-max-width:720px;
+max-width:680px;
 margin:auto;
 color:#E2E9F4;
-font-size:18px;
-line-height:1.8;
 }
 
 .admissions .primary-btn{
@@ -604,7 +584,7 @@ transition:opacity .25s ease;
 .application-note{
 text-align:center;
 color:var(--navy);
-font-size:17px;
+font-size:14px;
 font-weight:700;
 margin-top:17px;
 }
@@ -636,7 +616,7 @@ border-radius:4px;
 text-align:center;
 color:var(--navy);
 padding:14px 5px 5px;
-font-size:23px;
+font-size:18px;
 font-weight:800;
 }
 
@@ -663,40 +643,32 @@ object-fit:contain;
 .short-course-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:18px;
+gap:15px;
 }
 
 .short-course{
-padding:21px;
+padding:18px;
 background:#F4F6F9;
 border:1px solid var(--border);
-border-left:5px solid var(--gold);
+border-left:4px solid var(--gold);
 color:var(--navy);
-font-weight:800;
-font-size:18px;
-line-height:1.7;
-border-radius:5px;
-transition:.2s;
-}
-
-.short-course:hover{
-transform:translateY(-3px);
-box-shadow:var(--shadow);
+font-weight:700;
+border-radius:4px;
 }
 
 .short-course .course-description{
 display:block;
-font-size:16px;
+font-size:12px;
 font-weight:400;
 color:var(--muted);
-margin-top:7px;
+margin-top:6px;
 }
 
 .short-course .course-duration{
 display:block;
-font-size:15px;
+font-size:11px;
 color:var(--muted);
-margin-top:9px;
+margin-top:8px;
 font-weight:700;
 }
 
@@ -714,7 +686,7 @@ gap:18px;
 
 .contact-card{
 background:#fff;
-padding:29px 20px;
+padding:27px 20px;
 border:1px solid var(--border);
 border-bottom:4px solid var(--gold);
 border-radius:6px;
@@ -725,14 +697,13 @@ box-shadow:0 3px 12px rgba(0,0,0,.035);
 .contact-card h3{
 color:var(--maroon);
 margin-bottom:9px;
-font-size:23px;
+font-size:19px;
 font-weight:800;
 }
 
 .contact-card p{
 color:var(--muted);
-font-size:17px;
-line-height:1.8;
+font-size:14px;
 }
 
 /* FOOTER */
@@ -752,8 +723,8 @@ padding-bottom:40px;
 }
 
 .footer-brand h3{
-font-size:23px;
-line-height:1.5;
+font-size:19px;
+line-height:1.4;
 font-weight:800;
 color:#fff;
 margin-bottom:8px;
@@ -761,7 +732,7 @@ margin-bottom:8px;
 
 .footer-brand .footer-motto{
 color:var(--gold);
-font-size:16px;
+font-size:12px;
 font-weight:800;
 letter-spacing:2px;
 margin-bottom:15px;
@@ -769,14 +740,14 @@ margin-bottom:15px;
 
 .footer-brand p{
 color:#CBD3E0;
-font-size:17px;
+font-size:13px;
 line-height:1.9;
 max-width:310px;
 }
 
 .footer-column h3{
 color:#fff;
-font-size:21px;
+font-size:16px;
 font-weight:800;
 margin-bottom:19px;
 padding-bottom:10px;
@@ -785,31 +756,17 @@ display:inline-block;
 }
 
 .footer-column ul{list-style:none;}
-
-.footer-column li{
-margin-bottom:11px;
-font-size:17px;
-line-height:1.8;
-color:#CBD3E0;
-}
-
+.footer-column li{margin-bottom:11px;font-size:13px;color:#CBD3E0;}
 .footer-column a{color:#CBD3E0;transition:.25s;}
 .footer-column a:hover{color:var(--gold);padding-left:4px;}
-
-.footer-column p{
-color:#CBD3E0;
-font-size:17px;
-line-height:1.9;
-margin-bottom:13px;
-}
+.footer-column p{color:#CBD3E0;font-size:13px;line-height:1.9;margin-bottom:13px;}
 
 .footer-apply{
 display:inline-block;
 background:var(--gold);
 color:var(--navy)!important;
-padding:12px 20px;
+padding:10px 18px;
 border-radius:4px;
-font-size:16px;
 font-weight:800;
 margin-top:8px;
 }
@@ -817,27 +774,21 @@ margin-top:8px;
 .footer-apply:hover{
 background:#fff;
 color:var(--maroon)!important;
-padding-left:20px!important;
+padding-left:18px!important;
 }
 
 .footer-bottom{
 border-top:1px solid rgba(255,255,255,.15);
-padding:20px 0;
+padding:18px 0;
 text-align:center;
 }
 
-.footer-bottom p{
-color:#CBD3E0;
-font-size:16px;
-}
-
+.footer-bottom p{color:#CBD3E0;font-size:12px;}
 .footer-bottom strong{color:var(--gold);}
-
 .site-footer,.site-footer *{font-weight:700!important;}
 
 /* TABLET AND SMALL DESKTOP */
 @media(min-width:851px) and (max-width:1100px){
-
 .header-inner{
 width:99%;
 gap:9px;
@@ -853,13 +804,13 @@ nav{gap:7px;}
 
 nav a,
 nav button.nav-link{
-font-size:13px;
+font-size:11px;
 letter-spacing:0;
 }
 
 .nav-apply{
 padding:9px 10px!important;
-font-size:13px!important;
+font-size:11px!important;
 margin-left:0;
 }
 
@@ -872,7 +823,6 @@ margin-left:0;
 
 /* MOBILE NAVIGATION */
 @media(max-width:850px){
-
 .header-inner{
 width:94%;
 min-height:88px;
@@ -911,8 +861,8 @@ nav.open{display:flex;}
 nav>a,
 nav button.nav-link{
 color:#fff;
-font-size:17px;
-padding:14px 8px;
+font-size:14px;
+padding:12px 8px;
 border-bottom:1px solid rgba(255,255,255,.16);
 width:100%;
 text-align:left;
@@ -947,8 +897,8 @@ background:#16366F;
 .admissions-submenu a,
 .about-submenu a{
 color:#fff;
-padding:12px 20px;
-font-size:16px;
+padding:11px 20px;
+font-size:13px;
 border-bottom:1px solid rgba(255,255,255,.1);
 }
 
@@ -961,7 +911,7 @@ padding-left:25px;
 }
 
 .nav-apply{
-padding:12px 14px!important;
+padding:11px 14px!important;
 margin-top:10px;
 text-align:center;
 border-bottom:0;
@@ -976,14 +926,7 @@ border-bottom:0;
 
 /* SMALL MOBILE SCREENS */
 @media(max-width:560px){
-
-body{font-size:16px;}
-
-.topbar{
-font-size:13px;
-letter-spacing:.5px;
-}
-
+.topbar{font-size:11px;letter-spacing:.5px;}
 .header-inner{min-height:78px;}
 
 .brand img{
@@ -995,16 +938,7 @@ nav{max-height:calc(100vh - 78px);}
 
 .hero{padding:28px 0 0;}
 .hero .container{padding-bottom:21px;}
-
-.hero h2{
-font-size:29px;
-line-height:1.3;
-}
-
-.hero .motto{
-font-size:14px;
-letter-spacing:3px;
-}
+.hero .motto{font-size:12px;letter-spacing:3px;}
 
 .slideshow{
 width:100%;
@@ -1016,71 +950,30 @@ section{padding:49px 0;}
 
 .section-heading{margin-bottom:30px;}
 
-.section-heading h2{font-size:29px;}
-
-.section-heading p{font-size:16px;}
-
-.quick-card{font-size:16px;}
-
-.about-text h3{font-size:27px;}
-
-.about-text p{font-size:16.5px;}
-
 .programme-grid{
 grid-template-columns:1fr 1fr;
 gap:10px;
 }
 
-.programme-card{
-padding:17px 12px;
-min-height:220px;
-}
-
-.programme-card h3{font-size:17px;}
-
-.programme-card p{font-size:15px;}
-
-.programme-category-heading h3{font-size:21px;}
-
-.programme-count{font-size:13px;}
-
-.programme-action{font-size:13px;}
-
-.programme-duration{font-size:14px;}
+.programme-card{padding:16px 12px;}
+.programme-card h3{font-size:15px;}
+.programme-category-heading h3{font-size:18px;}
 
 .gallery-grid{grid-template-columns:1fr;}
-
 .gallery-card img{height:240px;}
 
-.gallery-card h3{font-size:21px;}
-
 .short-course-grid{grid-template-columns:1fr 1fr;}
-
-.short-course{
-font-size:15px;
-padding:16px 12px;
-}
-
-.short-course .course-description{font-size:14px;}
-
-.short-course .course-duration{font-size:13px;}
-
 .contact-grid{grid-template-columns:1fr;}
 
-.contact-card p{font-size:16px;}
-
 .admissions{padding:45px 18px;}
-
-.admissions h2{font-size:28px;}
-
-.admissions p{font-size:16px;}
+.admissions h2{font-size:25px;}
 
 .application-wrap{
 width:96%;
 padding:7px;
 }
 
-.application-note{font-size:15px;}
+.application-note{font-size:12px;}
 
 .site-footer{padding-top:42px;}
 
@@ -1088,20 +981,6 @@ padding:7px;
 grid-template-columns:1fr;
 gap:29px;
 }
-
-.footer-brand h3{font-size:22px;}
-
-.footer-brand .footer-motto{font-size:15px;}
-
-.footer-brand p,
-.footer-column li,
-.footer-column p{
-font-size:16px;
-}
-
-.footer-column h3{font-size:20px;}
-
-.footer-bottom p{font-size:14px;}
 }
 </style>
 </head>
@@ -1165,6 +1044,7 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 </div>
 
+<!-- NEW NOTICE BOARD LINK -->
 <a href="notices.html">NOTICES</a>
 
 <a href="#gallery">Campus</a>
@@ -1366,6 +1246,7 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <li><a href="#programmes">Academic Programmes</a></li>
 <li><a href="#shortCourses">Short Courses</a></li>
 <li><a href="apply.html#admissions">Admissions</a></li>
+<!-- NEW NOTICE BOARD FOOTER LINK -->
 <li><a href="notices.html">Notice Board</a></li>
 <li><a href="#gallery">Our Campus</a></li>
 <li><a href="#contact">Contact Us</a></li>
@@ -1392,7 +1273,7 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <script>
 /* SUPABASE CONFIGURATION - PRESERVED */
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
-const TITI_SUPABASE_KEY = 'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
+const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
 const TITI_PROGRAMMES_TABLE = 'programmes';
 
 /* HTML SECURITY */
@@ -1414,12 +1295,12 @@ function titiProgrammeCard(programme){
 const name=titiEscape(programme.programme_name);
 const description=titiEscape(programme.description || 'Professional training designed to develop knowledge and practical skills.');
 const duration=programme.duration
-?`<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`
+?<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>
 :'';
 
 const applicationButton=programme.application_open===true
-?`<a class="programme-action" href="apply.html#online-application">Apply for this Programme</a>`
-:`<span class="programme-closed">Admissions Currently Closed</span>`;
+?<a class="programme-action" href="apply.html#online-application">Apply for this Programme</a>
+:<span class="programme-closed">Admissions Currently Closed</span>;
 
 return `<article class="programme-card">
 <h3>${name}</h3>
@@ -1434,7 +1315,7 @@ function titiShortCourseCard(programme){
 const name=titiEscape(programme.programme_name);
 const description=titiEscape(programme.description || 'Practical professional skills training.');
 const duration=programme.duration
-?`<span class="course-duration">Duration: ${titiEscape(programme.duration)}</span>`
+?<span class="course-duration">Duration: ${titiEscape(programme.duration)}</span>
 :'';
 
 return `<div class="short-course">
@@ -1475,7 +1356,7 @@ const summary=document.getElementById('programmeSummary');
 try{
 
 const endpoint=
-`${TITI_SUPABASE_URL}/rest/v1/${TITI_PROGRAMMES_TABLE}?select=id,programme_name,programme_level,description,duration,application_open&order=programme_level.asc,programme_name.asc`;
+${TITI_SUPABASE_URL}/rest/v1/${TITI_PROGRAMMES_TABLE}?select=id,programme_name,programme_level,description,duration,application_open&order=programme_level.asc,programme_name.asc;
 
 const response=await fetch(endpoint,{
 method:'GET',
@@ -1510,7 +1391,7 @@ console.error('Supabase error code:',errorCode);
 console.error('Supabase error message:',errorMessage);
 
 throw new Error(
-`HTTP ${response.status}${errorCode?' | '+errorCode:''}: ${errorMessage}`
+HTTP ${response.status}${errorCode?' | '+errorCode:''}: ${errorMessage}
 );
 }
 
@@ -1545,13 +1426,13 @@ shortCourseGrid.innerHTML=shortCourses.length
 :'<div class="programme-empty">No Short Courses are currently available.</div>';
 
 document.getElementById('diplomaCount').textContent=
-`${diplomas.length} Programmes`;
+${diplomas.length} Programmes;
 
 document.getElementById('certificateCount').textContent=
-`${certificates.length} Programmes`;
+${certificates.length} Programmes;
 
 summary.textContent=
-`Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.`;
+Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.;
 
 console.log('TITI programmes successfully loaded.',{
 total:programmes.length,
