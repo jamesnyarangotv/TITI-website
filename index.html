@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,27 +34,136 @@ button{font-family:'Jost',sans-serif}
 
 .topbar{background:var(--navy-dark);color:#fff;padding:8px 12px;font-size:12px;text-align:center;letter-spacing:1.1px;font-weight:700}
 
-/* NAVY BLUE HEADER */
+/* NAVY BLUE HEADER - REFINED HORIZONTAL ALIGNMENT */
 header{background:var(--navy);box-shadow:0 5px 20px rgba(0,0,0,.16);position:sticky;top:0;z-index:1000;border-bottom:3px solid var(--gold)}
-.header-inner{width:min(1500px,98%);min-height:104px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:clamp(12px,1.5vw,24px);flex-wrap:nowrap}
-.brand{display:flex;align-items:center;flex-shrink:0;white-space:nowrap;margin-left:18px}
-.brand img{width:180px;height:85px;object-fit:contain;object-position:left center}
-nav{display:flex;align-items:center;justify-content:space-between;gap:clamp(9px,1.1vw,17px);flex:1;min-width:0;flex-wrap:nowrap;white-space:nowrap}
-nav a,nav button.nav-link{color:#fff;font-size:clamp(12px,1.02vw,14px);font-weight:800;letter-spacing:.2px;white-space:nowrap;flex-shrink:0;padding:12px 0;transition:.25s}
+
+.container.header-inner{
+width:min(1500px,98%);
+min-height:104px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:flex-start;
+gap:clamp(12px,1.5vw,24px);
+flex-wrap:nowrap;
+}
+
+.brand{
+display:flex;
+align-items:center;
+flex-shrink:0;
+white-space:nowrap;
+margin-left:0;
+}
+
+.brand img{
+width:180px;
+height:85px;
+object-fit:contain;
+object-position:left center;
+}
+
+nav{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:clamp(10px,1.1vw,18px);
+flex:1;
+min-width:0;
+flex-wrap:nowrap;
+white-space:nowrap;
+}
+
+nav a,nav button.nav-link{
+color:#fff;
+font-size:clamp(14px,1.05vw,16px);
+font-weight:800;
+letter-spacing:.15px;
+white-space:nowrap;
+flex-shrink:0;
+padding:12px 0;
+transition:.25s;
+}
+
 nav a:hover,nav button.nav-link:hover,nav a.active{color:var(--gold)}
-nav button.nav-link{border:0;background:transparent;cursor:pointer;display:flex;align-items:center;gap:5px}
+
+nav button.nav-link{
+border:0;
+background:transparent;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:5px;
+}
+
 .dropdown-arrow{font-size:12px;transition:transform .25s}
 .programme-menu.open .dropdown-arrow,.admissions-menu.open .dropdown-arrow,.about-menu.open .dropdown-arrow{transform:rotate(180deg)}
-.programme-menu,.admissions-menu,.about-menu{position:relative;display:flex;align-items:center;flex-shrink:0}
-.programme-submenu,.admissions-submenu,.about-submenu{display:none;position:absolute;top:100%;left:-15px;min-width:235px;background:#fff;padding:9px 0;border-top:4px solid var(--gold);border-radius:0 0 7px 7px;box-shadow:0 12px 28px rgba(0,0,0,.2);z-index:1100;white-space:normal}
+
+.programme-menu,.admissions-menu,.about-menu{
+position:relative;
+display:flex;
+align-items:center;
+flex-shrink:0;
+}
+
+.programme-submenu,.admissions-submenu,.about-submenu{
+display:none;
+position:absolute;
+top:100%;
+left:-15px;
+min-width:235px;
+background:#fff;
+padding:9px 0;
+border-top:4px solid var(--gold);
+border-radius:0 0 7px 7px;
+box-shadow:0 12px 28px rgba(0,0,0,.2);
+z-index:1100;
+white-space:normal;
+}
+
 .programme-menu:hover .programme-submenu,.programme-menu:focus-within .programme-submenu,.programme-menu.open .programme-submenu,.admissions-menu:hover .admissions-submenu,.admissions-menu:focus-within .admissions-submenu,.admissions-menu.open .admissions-submenu,.about-menu:hover .about-submenu,.about-menu:focus-within .about-submenu,.about-menu.open .about-submenu{display:block}
+
 .about-submenu{min-width:255px}
-.programme-submenu a,.admissions-submenu a,.about-submenu a{display:block;padding:11px 18px;font-size:13px;font-weight:700;color:var(--navy);border-bottom:1px solid #edf0f4}
+
+.programme-submenu a,.admissions-submenu a,.about-submenu a{
+display:block;
+padding:11px 18px;
+font-size:13px;
+font-weight:700;
+color:var(--navy);
+border-bottom:1px solid #edf0f4;
+}
+
 .programme-submenu a:last-child,.admissions-submenu a:last-child,.about-submenu a:last-child{border-bottom:0}
-.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{background:#F1F4F8;color:var(--maroon);padding-left:23px}
-.nav-apply{background:var(--maroon);color:#fff!important;padding:12px 19px!important;border-radius:4px;font-size:13px!important;font-weight:800;margin-left:clamp(2px,.4vw,7px)}
+
+.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{
+background:#F1F4F8;
+color:var(--maroon);
+padding-left:23px;
+}
+
+.nav-apply{
+background:var(--maroon);
+color:#fff!important;
+padding:12px 17px!important;
+border-radius:4px;
+font-size:15px!important;
+font-weight:800;
+margin-left:5px;
+}
+
 .nav-apply:hover{background:var(--gold);color:var(--navy)!important}
-.menu-toggle{display:none;border:1px solid rgba(255,255,255,.3);background:var(--maroon);color:#fff;padding:8px 13px;font-size:22px;cursor:pointer;border-radius:4px}
+
+.menu-toggle{
+display:none;
+border:1px solid rgba(255,255,255,.3);
+background:var(--maroon);
+color:#fff;
+padding:8px 13px;
+font-size:22px;
+cursor:pointer;
+border-radius:4px;
+}
 
 /* HERO */
 .hero{background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);padding:42px 0 0;color:#fff;text-align:center}
@@ -172,11 +282,15 @@ section{padding:76px 0}
 
 /* TABLET */
 @media(min-width:851px) and (max-width:1100px){
-.header-inner{width:99%;gap:9px;min-height:96px}
+.container.header-inner{
+width:99%;
+gap:9px;
+min-height:96px;
+}
 .brand img{width:145px;height:72px}
 nav{gap:7px}
-nav a,nav button.nav-link{font-size:11px;letter-spacing:0}
-.nav-apply{padding:9px 10px!important;font-size:11px!important;margin-left:0}
+nav a,nav button.nav-link{font-size:12px;letter-spacing:0}
+.nav-apply{padding:9px 10px!important;font-size:12px!important;margin-left:0}
 .programme-submenu,.admissions-submenu,.about-submenu{min-width:210px}
 .programme-columns{gap:11px}
 .programme-column-header{padding:14px 10px}
@@ -187,17 +301,58 @@ nav a,nav button.nav-link{font-size:11px;letter-spacing:0}
 
 /* MOBILE */
 @media(max-width:850px){
-.header-inner{width:94%;min-height:88px;gap:12px}
+.container.header-inner{
+width:94%;
+min-height:88px;
+gap:12px;
+justify-content:space-between;
+}
 .brand img{width:145px;height:72px}
 .menu-toggle{display:block;flex-shrink:0}
-nav{display:none;position:absolute;top:100%;left:0;right:0;width:100%;background:var(--navy);padding:15px 5%;flex-direction:column;align-items:stretch;gap:0;box-shadow:0 8px 18px rgba(0,0,0,.2);max-height:calc(100vh - 88px);overflow-y:auto}
+nav{
+display:none;
+position:absolute;
+top:100%;
+left:0;
+right:0;
+width:100%;
+background:var(--navy);
+padding:15px 5%;
+flex-direction:column;
+align-items:stretch;
+gap:0;
+box-shadow:0 8px 18px rgba(0,0,0,.2);
+max-height:calc(100vh - 88px);
+overflow-y:auto;
+}
 nav.open{display:flex}
-nav>a,nav button.nav-link{color:#fff;font-size:14px;padding:12px 8px;border-bottom:1px solid rgba(255,255,255,.16);width:100%;text-align:left}
+nav>a,nav button.nav-link{
+color:#fff;
+font-size:15px;
+padding:12px 8px;
+border-bottom:1px solid rgba(255,255,255,.16);
+width:100%;
+text-align:left;
+}
 nav a:hover,nav button.nav-link:hover{color:var(--gold)}
 .programme-menu,.admissions-menu,.about-menu{display:block;width:100%}
 nav button.nav-link{justify-content:space-between}
-.programme-submenu,.admissions-submenu,.about-submenu{position:static;min-width:0;width:100%;box-shadow:none;border-top:2px solid var(--gold);border-radius:0;padding:4px 0;background:var(--navy-dark)}
-.programme-submenu a,.admissions-submenu a,.about-submenu a{color:#fff;padding:11px 20px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.1)}
+.programme-submenu,.admissions-submenu,.about-submenu{
+position:static;
+min-width:0;
+width:100%;
+box-shadow:none;
+border-top:2px solid var(--gold);
+border-radius:0;
+padding:4px 0;
+background:var(--navy-dark);
+}
+.programme-submenu a,.admissions-submenu a,.about-submenu a{
+color:#fff;
+padding:11px 20px;
+font-size:13px;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
 .programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{background:#12366F;color:var(--gold);padding-left:25px}
 .nav-apply{padding:11px 14px!important;margin-top:10px;text-align:center;border-bottom:0}
 .about-grid{grid-template-columns:1fr}
@@ -565,7 +720,7 @@ section{padding:49px 0}
 <script>
 /* TITI SUPABASE CONFIGURATION */
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
-const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
+const TITI_SUPABASE_KEY = 'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
 const TITI_PROGRAMMES_TABLE = 'programmes';
 
 /* HTML SECURITY */
