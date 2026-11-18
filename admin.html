@@ -27,6 +27,7 @@ body{
 
 input,textarea,button{font-family:inherit}
 
+/* LOGIN BACKGROUND */
 #loginScreen{
  min-height:100vh;
  display:flex;
@@ -36,20 +37,20 @@ input,textarea,button{font-family:inherit}
  background:linear-gradient(135deg,#0F2A5E,#18243c);
 }
 
-/* SMALLER ADMIN LOGIN CARD */
+/* COMPACT LOGIN CARD */
 .login-card{
  background:#fff;
  width:100%;
- max-width:320px;
- padding:21px 23px;
- border-radius:10px;
+ max-width:450px;
+ padding:25px 27px;
+ border-radius:12px;
  box-shadow:0 15px 45px #0004;
 }
 
 .logo{
  text-align:center;
  color:var(--maroon);
- font-size:25px;
+ font-size:34px;
  font-weight:800;
  letter-spacing:1px;
 }
@@ -57,8 +58,8 @@ input,textarea,button{font-family:inherit}
 .subtitle{
  text-align:center;
  color:#687386;
- margin:3px 0 15px;
- font-size:11px;
+ margin:3px 0 17px;
+ font-size:12px;
  line-height:1.5;
 }
 
@@ -66,29 +67,31 @@ h2{color:var(--navy)}
 
 .login-card h2{
  color:var(--navy);
- font-size:19px;
- margin:0 0 4px;
+ font-size:23px;
+ text-align:center;
+ margin:10px 0 4px;
 }
 
 .login-card .muted{
- font-size:12px;
+ font-size:13px;
  line-height:1.5;
- margin:5px 0 12px;
+ margin:5px 0 15px;
+ text-align:center;
 }
 
 .login-card label{
  display:block;
  font-weight:600;
- margin:11px 0 5px;
- font-size:12px;
+ margin:12px 0 5px;
+ font-size:13px;
 }
 
 .login-card input{
  width:100%;
- padding:10px 12px;
+ padding:12px;
  border:1px solid #d8dee8;
- border-radius:5px;
- font-size:13px;
+ border-radius:6px;
+ font-size:14px;
  outline:none;
 }
 
@@ -97,38 +100,39 @@ h2{color:var(--navy)}
  box-shadow:0 0 0 2px #0F2A5E12;
 }
 
-/* PASSWORD SHOW/HIDE */
+/* PASSWORD FIELD AND SHOW/HIDE */
 .password-wrapper{
- position:relative;
+ display:flex;
+ align-items:center;
+ gap:9px;
  width:100%;
 }
 
 .password-wrapper input{
- padding-right:65px;
+ flex:1;
+ min-width:0;
+ width:auto;
+ padding:12px;
 }
 
 .password-toggle{
- position:absolute;
- right:5px;
- top:50%;
- transform:translateY(-50%);
- width:auto;
- min-width:48px;
- height:30px;
- padding:0 7px;
+ position:static;
+ transform:none;
+ min-width:90px;
+ height:44px;
+ padding:0 12px;
  margin:0;
- border:0;
- border-radius:4px;
+ border:1px solid #d8dee8;
+ border-radius:6px;
  background:#edf1f7;
  color:var(--navy);
- font-size:11px;
+ font-size:12px;
  font-weight:800;
  letter-spacing:.4px;
  cursor:pointer;
  display:flex;
  align-items:center;
  justify-content:center;
- z-index:5;
 }
 
 .password-toggle:hover{
@@ -143,7 +147,10 @@ button{
  font-weight:700;
 }
 
-button:disabled{opacity:.6;cursor:wait}
+button:disabled{
+ opacity:.6;
+ cursor:wait;
+}
 
 .primary{
  background:var(--maroon);
@@ -156,10 +163,10 @@ button:disabled{opacity:.6;cursor:wait}
  background:var(--maroon);
  color:white;
  width:100%;
- margin-top:15px;
- padding:10px;
- font-size:13px;
- border-radius:5px;
+ margin-top:18px;
+ padding:12px;
+ font-size:14px;
+ border-radius:6px;
 }
 
 .login-card .primary:hover{background:#5c0c18}
@@ -175,6 +182,7 @@ button:disabled{opacity:.6;cursor:wait}
  display:none;
 }
 
+/* ADMIN DASHBOARD */
 #dashboard{display:none}
 
 .topbar{
@@ -188,7 +196,10 @@ button:disabled{opacity:.6;cursor:wait}
  flex-wrap:wrap;
 }
 
-.brand{font-size:20px;font-weight:800}
+.brand{
+ font-size:20px;
+ font-weight:800;
+}
 
 .brand small{
  display:block;
@@ -197,7 +208,10 @@ button:disabled{opacity:.6;cursor:wait}
  margin-top:5px;
 }
 
-.logout{background:white;color:var(--navy)}
+.logout{
+ background:white;
+ color:var(--navy);
+}
 
 .container{
  max-width:1250px;
@@ -216,8 +230,12 @@ button:disabled{opacity:.6;cursor:wait}
 
 .welcome h2{margin:0 0 7px}
 
-.muted{color:#687386;font-size:13px}
+.muted{
+ color:#687386;
+ font-size:13px;
+}
 
+/* STATISTICS */
 .stats{
  display:grid;
  grid-template-columns:repeat(4,1fr);
@@ -239,6 +257,7 @@ button:disabled{opacity:.6;cursor:wait}
  margin-top:9px;
 }
 
+/* PANELS */
 .panel{
  background:white;
  padding:22px;
@@ -247,7 +266,10 @@ button:disabled{opacity:.6;cursor:wait}
  margin-bottom:22px;
 }
 
-.panel h3{color:var(--navy);margin-top:0}
+.panel h3{
+ color:var(--navy);
+ margin-top:0;
+}
 
 .toolbar{
  display:flex;
@@ -264,6 +286,7 @@ button:disabled{opacity:.6;cursor:wait}
  font-family:inherit;
 }
 
+/* APPLICATION TABLE */
 table{
  width:100%;
  border-collapse:collapse;
@@ -276,7 +299,10 @@ th,td{
  border-bottom:1px solid #e9edf2;
 }
 
-th{background:#f5f6f9;color:var(--navy)}
+th{
+ background:#f5f6f9;
+ color:var(--navy);
+}
 
 .table-wrap{overflow-x:auto}
 
@@ -286,6 +312,7 @@ th{background:#f5f6f9;color:var(--navy)}
  padding:8px 12px;
 }
 
+/* APPLICATION STATUS */
 .status{
  display:inline-block;
  padding:6px 9px;
@@ -297,11 +324,27 @@ th{background:#f5f6f9;color:var(--navy)}
  white-space:nowrap;
 }
 
-.status.APPROVED{background:#e1f5e9;color:#126536}
-.status.REJECTED{background:#fde7e7;color:#a11919}
-.status.VERIFIED{background:#e5edff;color:#17428b}
-.status.UNDER_REVIEW{background:#fff3d8;color:#805500}
+.status.APPROVED{
+ background:#e1f5e9;
+ color:#126536;
+}
 
+.status.REJECTED{
+ background:#fde7e7;
+ color:#a11919;
+}
+
+.status.VERIFIED{
+ background:#e5edff;
+ color:#17428b;
+}
+
+.status.UNDER_REVIEW{
+ background:#fff3d8;
+ color:#805500;
+}
+
+/* APPLICANT DETAILS */
 .detail-grid{
  display:grid;
  grid-template-columns:repeat(2,1fr);
@@ -330,10 +373,25 @@ th{background:#f5f6f9;color:var(--navy)}
  margin-top:18px;
 }
 
-.approve{background:#167744;color:white}
-.reject{background:#a51d2d;color:white}
-.refresh{background:var(--navy);color:white}
-.secondary{background:#e8edf4;color:var(--navy)}
+.approve{
+ background:#167744;
+ color:white;
+}
+
+.reject{
+ background:#a51d2d;
+ color:white;
+}
+
+.refresh{
+ background:var(--navy);
+ color:white;
+}
+
+.secondary{
+ background:#e8edf4;
+ color:var(--navy);
+}
 
 #detailPanel{display:none}
 
@@ -345,6 +403,7 @@ th{background:#f5f6f9;color:var(--navy)}
  font-size:13px;
 }
 
+/* DOCUMENT VERIFICATION */
 .document-list{
  display:grid;
  grid-template-columns:repeat(2,minmax(0,1fr));
@@ -399,7 +458,9 @@ th{background:#f5f6f9;color:var(--navy)}
  font-weight:600;
 }
 
-.document-actions a.download{background:#167744}
+.document-actions a.download{
+ background:#167744;
+}
 
 .document-error{
  background:#fff0ee;
@@ -416,26 +477,49 @@ footer{
  font-size:12px;
 }
 
+/* RESPONSIVE DESIGN */
 @media(max-width:750px){
- .stats{grid-template-columns:repeat(2,1fr)}
- .detail-grid,.document-list{grid-template-columns:1fr}
+ .stats{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .detail-grid,
+ .document-list{
+  grid-template-columns:1fr;
+ }
 }
 
 @media(max-width:450px){
  .login-card{
-  max-width:310px;
-  padding:20px;
+  max-width:360px;
+  padding:22px 20px;
  }
+
+ .login-card h2{
+  font-size:21px;
+ }
+
+ .password-toggle{
+  min-width:75px;
+ }
+
  .stats{gap:9px}
+
  .stat{padding:14px}
+
+ .topbar{
+  padding:16px 20px;
+ }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- ADMINISTRATOR LOGIN -->
 <section id="loginScreen">
+
 <div class="login-card">
 
 <div class="logo">TITI</div>
@@ -454,25 +538,44 @@ Sign in using your existing administrator account.
 <form id="loginForm">
 
 <label for="email">Email Address</label>
-<input id="email" type="email" required
-autocomplete="username"
-placeholder="Enter administrator email">
+
+<input
+ id="email"
+ type="email"
+ required
+ autocomplete="username"
+ placeholder="Enter administrator email"
+>
 
 <label for="password">Password</label>
 
 <div class="password-wrapper">
-<input id="password" type="password" required
-autocomplete="current-password"
-placeholder="Enter password">
 
-<button type="button"
-id="togglePassword"
-class="password-toggle"
-aria-label="Show password"
-title="Show password">SHOW</button>
+<input
+ id="password"
+ type="password"
+ required
+ autocomplete="current-password"
+ placeholder="Enter password"
+>
+
+<button
+ type="button"
+ id="togglePassword"
+ class="password-toggle"
+ aria-label="Show password"
+ title="Show password"
+>
+SHOW
+</button>
+
 </div>
 
-<button class="primary" id="loginButton" type="submit">
+<button
+ class="primary"
+ id="loginButton"
+ type="submit"
+>
 SIGN IN
 </button>
 
@@ -483,7 +586,7 @@ SIGN IN
 </div>
 </section>
 
-<!-- DASHBOARD -->
+<!-- ADMINISTRATOR DASHBOARD -->
 <section id="dashboard">
 
 <header class="topbar">
@@ -506,6 +609,7 @@ TITI ADMISSIONS
 
 <div>
 <h2>Admissions Dashboard</h2>
+
 <div class="muted">
 Manage applications, verify documents and make admission decisions.
 </div>
@@ -548,11 +652,17 @@ Manage applications, verify documents and make admission decisions.
 <h3>Applicant Records</h3>
 
 <div class="toolbar">
-<input id="searchInput" type="search"
-placeholder="Search name, reference, phone or email...">
+
+<input
+ id="searchInput"
+ type="search"
+ placeholder="Search name, reference, phone or email..."
+>
+
 </div>
 
 <div class="table-wrap">
+
 <table>
 
 <thead>
@@ -567,12 +677,15 @@ placeholder="Search name, reference, phone or email...">
 </thead>
 
 <tbody id="applicationsBody">
+
 <tr>
 <td colspan="6">Loading applications...</td>
 </tr>
+
 </tbody>
 
 </table>
+
 </div>
 </div>
 
@@ -588,9 +701,12 @@ Administrator Review
 
 <label for="remarks">Administrator Remarks</label>
 
-<textarea id="remarks" rows="4"
-style="width:100%;padding:12px;border:1px solid #d8dee8;border-radius:5px;font-family:inherit"
-placeholder="Enter comments about this application..."></textarea>
+<textarea
+ id="remarks"
+ rows="4"
+ style="width:100%;padding:12px;border:1px solid #d8dee8;border-radius:5px;font-family:inherit"
+ placeholder="Enter comments about this application..."
+></textarea>
 
 <div class="actions">
 
@@ -624,9 +740,11 @@ private Supabase storage bucket.
 </p>
 
 <div id="documentsContent">
+
 <p class="muted">
 Select an applicant to view their uploaded documents.
 </p>
+
 </div>
 
 </div>
@@ -1320,7 +1438,7 @@ async function updateDecision(status){
 }
 
 // ======================================
-// LOGIN
+// ADMINISTRATOR LOGIN
 // ======================================
 
 $("loginForm").addEventListener("submit",async event=>{
