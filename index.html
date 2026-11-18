@@ -31,11 +31,10 @@ img{max-width:100%;display:block}
 button{font-family:'Jost',sans-serif}
 .container{width:min(1180px,92%);margin:auto}
 
-/* TOP BAR */
 .topbar{background:var(--navy-dark);color:#fff;padding:8px 12px;font-size:12px;text-align:center;letter-spacing:1.1px;font-weight:700}
 
-/* MAROON HEADER */
-header{background:var(--maroon);box-shadow:0 5px 20px rgba(0,0,0,.16);position:sticky;top:0;z-index:1000;border-bottom:3px solid var(--gold)}
+/* NAVY BLUE HEADER */
+header{background:var(--navy);box-shadow:0 5px 20px rgba(0,0,0,.16);position:sticky;top:0;z-index:1000;border-bottom:3px solid var(--gold)}
 .header-inner{width:min(1500px,98%);min-height:104px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:clamp(12px,1.5vw,24px);flex-wrap:nowrap}
 .brand{display:flex;align-items:center;flex-shrink:0;white-space:nowrap;margin-left:18px}
 .brand img{width:180px;height:85px;object-fit:contain;object-position:left center}
@@ -52,9 +51,9 @@ nav button.nav-link{border:0;background:transparent;cursor:pointer;display:flex;
 .programme-submenu a,.admissions-submenu a,.about-submenu a{display:block;padding:11px 18px;font-size:13px;font-weight:700;color:var(--navy);border-bottom:1px solid #edf0f4}
 .programme-submenu a:last-child,.admissions-submenu a:last-child,.about-submenu a:last-child{border-bottom:0}
 .programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{background:#F1F4F8;color:var(--maroon);padding-left:23px}
-.nav-apply{background:var(--navy);color:#fff!important;padding:12px 19px!important;border-radius:4px;font-size:13px!important;font-weight:800;margin-left:clamp(2px,.4vw,7px)}
+.nav-apply{background:var(--maroon);color:#fff!important;padding:12px 19px!important;border-radius:4px;font-size:13px!important;font-weight:800;margin-left:clamp(2px,.4vw,7px)}
 .nav-apply:hover{background:var(--gold);color:var(--navy)!important}
-.menu-toggle{display:none;border:1px solid rgba(255,255,255,.3);background:var(--navy);color:#fff;padding:8px 13px;font-size:22px;cursor:pointer;border-radius:4px}
+.menu-toggle{display:none;border:1px solid rgba(255,255,255,.3);background:var(--maroon);color:#fff;padding:8px 13px;font-size:22px;cursor:pointer;border-radius:4px}
 
 /* HERO */
 .hero{background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);padding:42px 0 0;color:#fff;text-align:center}
@@ -191,15 +190,15 @@ nav a,nav button.nav-link{font-size:11px;letter-spacing:0}
 .header-inner{width:94%;min-height:88px;gap:12px}
 .brand img{width:145px;height:72px}
 .menu-toggle{display:block;flex-shrink:0}
-nav{display:none;position:absolute;top:100%;left:0;right:0;width:100%;background:var(--maroon);padding:15px 5%;flex-direction:column;align-items:stretch;gap:0;box-shadow:0 8px 18px rgba(0,0,0,.2);max-height:calc(100vh - 88px);overflow-y:auto}
+nav{display:none;position:absolute;top:100%;left:0;right:0;width:100%;background:var(--navy);padding:15px 5%;flex-direction:column;align-items:stretch;gap:0;box-shadow:0 8px 18px rgba(0,0,0,.2);max-height:calc(100vh - 88px);overflow-y:auto}
 nav.open{display:flex}
 nav>a,nav button.nav-link{color:#fff;font-size:14px;padding:12px 8px;border-bottom:1px solid rgba(255,255,255,.16);width:100%;text-align:left}
 nav a:hover,nav button.nav-link:hover{color:var(--gold)}
 .programme-menu,.admissions-menu,.about-menu{display:block;width:100%}
 nav button.nav-link{justify-content:space-between}
-.programme-submenu,.admissions-submenu,.about-submenu{position:static;min-width:0;width:100%;box-shadow:none;border-top:2px solid var(--gold);border-radius:0;padding:4px 0;background:#64101B}
+.programme-submenu,.admissions-submenu,.about-submenu{position:static;min-width:0;width:100%;box-shadow:none;border-top:2px solid var(--gold);border-radius:0;padding:4px 0;background:var(--navy-dark)}
 .programme-submenu a,.admissions-submenu a,.about-submenu a{color:#fff;padding:11px 20px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.1)}
-.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{background:#861C2B;color:var(--gold);padding-left:25px}
+.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{background:#12366F;color:var(--gold);padding-left:25px}
 .nav-apply{padding:11px 14px!important;margin-top:10px;text-align:center;border-bottom:0}
 .about-grid{grid-template-columns:1fr}
 .programme-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
@@ -566,7 +565,7 @@ section{padding:49px 0}
 <script>
 /* TITI SUPABASE CONFIGURATION */
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
-const TITI_SUPABASE_KEY = 'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
+const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
 const TITI_PROGRAMMES_TABLE = 'programmes';
 
 /* HTML SECURITY */
@@ -686,15 +685,15 @@ async function loadTITIProgrammes(){
         if(!response.ok){
             let errorMessage='Database request failed.';
             let errorCode='';
+            let errorDetails='';
+            let errorHint='';
 
             try{
                 const errorData=await response.json();
-                errorMessage=
-                    errorData.message ||
-                    errorData.details ||
-                    errorData.hint ||
-                    errorMessage;
+                errorMessage=errorData.message || errorData.error || errorMessage;
                 errorCode=errorData.code || '';
+                errorDetails=errorData.details || '';
+                errorHint=errorData.hint || '';
             }catch(error){
                 console.error('Could not read Supabase error response:',error);
             }
@@ -702,17 +701,23 @@ async function loadTITIProgrammes(){
             console.error('Supabase HTTP status:',response.status);
             console.error('Supabase error code:',errorCode);
             console.error('Supabase error message:',errorMessage);
+            console.error('Supabase error details:',errorDetails);
+            console.error('Supabase error hint:',errorHint);
 
             if(response.status===401){
-                throw new Error('HTTP 401: Supabase rejected the API key. Confirm that the complete Publishable key belongs to this exact project.');
+                throw new Error(
+                    `HTTP 401: ${errorMessage}. Check that this Publishable key belongs to project jlmbiauilmajuvrnuaul. ${errorDetails} ${errorHint}`
+                );
             }
 
             if(response.status===403){
-                throw new Error('HTTP 403: Database access denied. Check the programmes table SELECT permissions and Row Level Security policies.');
+                throw new Error(
+                    `HTTP 403: ${errorMessage}. Check the programmes table SELECT permission and Row Level Security policies. ${errorDetails} ${errorHint}`
+                );
             }
 
             throw new Error(
-                `HTTP ${response.status}${errorCode ? ' | '+errorCode : ''}: ${errorMessage}`
+                `HTTP ${response.status}${errorCode ? ' | '+errorCode : ''}: ${errorMessage} ${errorDetails} ${errorHint}`
             );
         }
 
