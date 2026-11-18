@@ -321,9 +321,7 @@ transform:translateY(-3px);
 
 section{padding:65px 0;}
 
-.intro-section{
-background:#fff;
-}
+.intro-section{background:#fff;}
 
 .intro-grid{
 display:grid;
@@ -358,9 +356,7 @@ object-fit:cover;
 border-radius:6px;
 }
 
-.explore-section{
-background:var(--light);
-}
+.explore-section{background:var(--light);}
 
 .section-heading{
 text-align:center;
@@ -423,9 +419,7 @@ font-weight:800;
 font-size:15px;
 }
 
-.card-content{
-flex:1;
-}
+.card-content{flex:1;}
 
 .card-content h3{
 color:var(--navy);
@@ -474,9 +468,7 @@ min-height:480px;
 padding:55px 0 75px;
 }
 
-.detail-view.active{
-display:block;
-}
+.detail-view.active{display:block;}
 
 .detail-container{
 max-width:950px;
@@ -512,9 +504,7 @@ border-radius:5px;
 margin-bottom:30px;
 }
 
-.detail-heading .eyebrow{
-font-size:12px;
-}
+.detail-heading .eyebrow{font-size:12px;}
 
 .detail-heading h1{
 font-size:clamp(27px,4vw,37px);
@@ -528,9 +518,7 @@ color:#e4eaf3;
 margin-top:9px;
 }
 
-.detail-content{
-padding:5px 4px;
-}
+.detail-content{padding:5px 4px;}
 
 .detail-content h2{
 color:var(--navy);
@@ -562,9 +550,7 @@ margin-bottom:10px;
 color:#536075;
 }
 
-.detail-content strong{
-color:var(--navy);
-}
+.detail-content strong{color:var(--navy);}
 
 .information-box{
 background:var(--light);
@@ -574,9 +560,7 @@ border-radius:5px;
 margin:22px 0;
 }
 
-.information-box h3{
-margin-top:0;
-}
+.information-box h3{margin-top:0;}
 
 .intake-display{
 display:grid;
@@ -610,43 +594,6 @@ border-left:5px solid var(--gold);
 padding:23px;
 margin-top:22px;
 border-radius:5px;
-}
-
-.bank-box{
-background:var(--light);
-border-top:5px solid var(--gold);
-border-radius:6px;
-padding:28px;
-margin:25px 0;
-}
-
-.bank-box h3{
-color:var(--navy);
-font-size:22px;
-margin:0 0 18px;
-}
-
-.bank-row{
-padding:12px 0;
-border-bottom:1px solid var(--border);
-display:grid;
-grid-template-columns:180px 1fr;
-gap:15px;
-}
-
-.bank-row:last-child{
-border-bottom:0;
-}
-
-.bank-row strong{
-color:var(--navy);
-}
-
-.account-number{
-font-size:23px;
-font-weight:800;
-letter-spacing:1px;
-color:var(--maroon);
 }
 
 .detail-apply{
@@ -705,8 +652,7 @@ font-size:17px;
 font-weight:800;
 }
 
-footer p,
-footer a{
+footer p,footer a{
 font-size:14px;
 color:#d5dbe5;
 }
@@ -907,9 +853,7 @@ section{padding:49px 0;}
 
 .intro-image img{height:260px;}
 
-.admission-grid{
-grid-template-columns:1fr;
-}
+.admission-grid{grid-template-columns:1fr;}
 
 .admission-card{padding:19px;}
 
@@ -923,16 +867,10 @@ grid-template-columns:1fr;
 
 .intake-display{grid-template-columns:1fr;}
 
-.bank-box{padding:20px;}
-
-.bank-row{
+.footer-grid{
 grid-template-columns:1fr;
-gap:3px;
+gap:25px;
 }
-
-.account-number{font-size:21px;}
-
-.footer-grid{grid-template-columns:1fr;gap:25px;}
 
 .footer-logo{
 width:150px;
@@ -1003,7 +941,7 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <a href="admissions.html#requirements">Entry Requirements</a>
 <a href="admissions.html#documents">Required Documents</a>
 <a href="admissions.html#intakes">Intakes &amp; Admission</a>
-<a href="admissions.html#fees">Fees &amp; Payment</a>
+<a href="fees.html">Fees &amp; Payment</a>
 <a href="admissions.html#enquiries">Admission Enquiries</a>
 </div>
 </div>
@@ -1101,14 +1039,16 @@ Each section opens independently.
 <span class="card-arrow">→</span>
 </button>
 
-<button class="admission-card" data-view="fees">
+<!-- FEES NOW OPENS ITS OWN PAGE -->
+
+<a href="fees.html" class="admission-card">
 <span class="card-number">04</span>
 <span class="card-content">
 <h3>Fees &amp; Payment</h3>
 <p>Tuition information and official bank details</p>
 </span>
 <span class="card-arrow">→</span>
-</button>
+</a>
 
 <button class="admission-card" data-view="enquiries">
 <span class="card-number">05</span>
@@ -1284,71 +1224,6 @@ Applicants should confirm programme availability and the applicable admission pe
 </div>
 </section>
 
-<!-- 04 FEES AND PAYMENT -->
-
-<section class="detail-view" id="fees">
-<div class="container detail-container">
-
-<button class="back-button" type="button" data-back>
-← BACK TO ADMISSIONS
-</button>
-
-<div class="detail-heading">
-<div class="eyebrow">ADMISSIONS INFORMATION | 04</div>
-<h1>FEES &amp; PAYMENT</h1>
-<p>Official tuition and institutional payment information.</p>
-</div>
-
-<div class="detail-content">
-
-<h2>Tuition Fees and Other Charges</h2>
-
-<p>
-Tuition and other applicable fees depend on the programme of study. Applicants should confirm the current fee structure with the Institute.
-</p>
-
-<h2>Official Institutional Bank Details</h2>
-
-<div class="bank-box">
-
-<h3>CENTENARY BANK</h3>
-
-<div class="bank-row">
-<strong>Bank</strong>
-<span>CENTENARY BANK</span>
-</div>
-
-<div class="bank-row">
-<strong>Account Name</strong>
-<span>TAHIDI INTERNATIONAL TRAINING INSTITUTE - TITICO-SMC LIMITED</span>
-</div>
-
-<div class="bank-row">
-<strong>Account Number</strong>
-<span class="account-number">3100128448</span>
-</div>
-
-<div class="bank-row">
-<strong>Additional Number Supplied</strong>
-<span>0776433303</span>
-</div>
-
-</div>
-
-<div class="information-box">
-<h3>Important Payment Information</h3>
-<p>
-Always retain your payment receipt for institutional verification and follow-up.
-</p>
-<p>
-Applicants are encouraged to confirm current fees and payment instructions with the Institute before making payment.
-</p>
-</div>
-
-</div>
-</div>
-</section>
-
 <!-- 05 ADMISSION ENQUIRIES -->
 
 <section class="detail-view" id="enquiries">
@@ -1444,7 +1319,7 @@ Tahidi International Training Institute is committed to providing academic, tech
 <a href="admissions.html#requirements">Entry Requirements</a>
 <a href="admissions.html#documents">Required Documents</a>
 <a href="admissions.html#intakes">Intakes &amp; Admission</a>
-<a href="admissions.html#fees">Fees &amp; Payment</a>
+<a href="fees.html">Fees &amp; Payment</a>
 <a href="admissions.html#enquiries">Admission Enquiries</a>
 <a href="apply.html#online-application">Apply Online</a>
 </div>
@@ -1634,7 +1509,6 @@ const hash=window.location.hash.replace('#','');
 if(hash==='requirements' ||
 hash==='documents' ||
 hash==='intakes' ||
-hash==='fees' ||
 hash==='enquiries'){
 
 openAdmissionView(hash,false);
