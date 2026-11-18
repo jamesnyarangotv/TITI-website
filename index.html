@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +51,7 @@ box-shadow:0 5px 20px rgba(0,0,0,.16);
 position:sticky;
 top:0;
 z-index:1000;
+border-bottom:3px solid var(--gold);
 }
 
 .header-inner{
@@ -383,10 +385,7 @@ background:var(--navy);
 transform:translateY(-2px);
 }
 
-/* ===================================
-   ACADEMIC PROGRAMMES - THREE COLUMNS
-=================================== */
-
+/* ACADEMIC PROGRAMMES */
 .programmes{
 background:var(--light);
 border-top:1px solid var(--border);
@@ -394,19 +393,10 @@ border-bottom:1px solid var(--border);
 padding:55px 0;
 }
 
-.programmes .section-heading{
-margin-bottom:27px;
-}
+.programmes .section-heading{margin-bottom:27px;}
+.programmes .section-heading h2{font-size:clamp(25px,3vw,32px);}
+.programmes .section-heading p{font-size:14px;}
 
-.programmes .section-heading h2{
-font-size:clamp(25px,3vw,32px);
-}
-
-.programmes .section-heading p{
-font-size:14px;
-}
-
-/* THREE MAIN CATEGORY COLUMNS */
 .programme-columns{
 display:grid;
 grid-template-columns:repeat(3,minmax(0,1fr));
@@ -467,10 +457,9 @@ flex-direction:column;
 gap:9px;
 }
 
-/* INDIVIDUAL PROGRAMME CARDS */
 .programme-card{
 background:#fff;
-padding:13px 13px;
+padding:13px;
 border-radius:5px;
 border:1px solid #E6EAF0;
 border-left:3px solid var(--gold);
@@ -1017,7 +1006,6 @@ section{padding:49px 0;}
 
 .programmes .section-heading p{font-size:12px;}
 
-/* THREE COLUMNS ALSO ON MOBILE */
 .programme-columns{
 grid-template-columns:repeat(3,minmax(0,1fr));
 gap:6px;
@@ -1071,9 +1059,7 @@ font-size:10px;
 line-height:1.4;
 }
 
-.programme-duration{
-font-size:9px;
-}
+.programme-duration{font-size:9px;}
 
 .programme-action{
 font-size:9px;
@@ -1241,7 +1227,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 </section>
 
-<!-- ACADEMIC PROGRAMMES -->
 <section class="programmes" id="programmes">
 <div class="container">
 
@@ -1253,9 +1238,7 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 
 <div class="programme-columns">
 
-<!-- DIPLOMA COLUMN -->
 <div class="programme-column" id="diploma">
-
 <div class="programme-column-header">
 <div class="programme-column-header-top">
 <h3>Diploma Programmes</h3>
@@ -1263,16 +1246,12 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 <p>Professional academic qualifications</p>
 </div>
-
 <div class="programme-list" id="diplomaGrid">
 <div class="programme-loading">Loading Diploma programmes...</div>
 </div>
-
 </div>
 
-<!-- CERTIFICATE COLUMN -->
 <div class="programme-column" id="certificate">
-
 <div class="programme-column-header">
 <div class="programme-column-header-top">
 <h3>Certificate Programmes</h3>
@@ -1280,16 +1259,12 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 <p>Practical professional training</p>
 </div>
-
 <div class="programme-list" id="certificateGrid">
 <div class="programme-loading">Loading Certificate programmes...</div>
 </div>
-
 </div>
 
-<!-- SHORT COURSES COLUMN -->
 <div class="programme-column" id="shortCourses">
-
 <div class="programme-column-header">
 <div class="programme-column-header-top">
 <h3>Short Courses</h3>
@@ -1297,11 +1272,9 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 <p>Skills and professional development</p>
 </div>
-
 <div class="programme-list" id="shortCourseGrid">
 <div class="programme-loading">Loading Short Courses...</div>
 </div>
-
 </div>
 
 </div>
@@ -1370,7 +1343,6 @@ Connecting to the TITI admissions database...
 </div>
 </section>
 
-<!-- EXISTING SHORT COURSE SECTION PRESERVED -->
 <section id="shortCourseInformation">
 <div class="container">
 <div class="section-heading">
@@ -1634,27 +1606,22 @@ async function loadTITIProgrammes(){
             String(item.programme_level||'').trim().toLowerCase()==='short course'
         );
 
-        /* DIPLOMA COLUMN */
         diplomaGrid.innerHTML=diplomas.length
             ? diplomas.map(titiProgrammeCard).join('')
             : '<div class="programme-empty">No Diploma programmes are currently available.</div>';
 
-        /* CERTIFICATE COLUMN */
         certificateGrid.innerHTML=certificates.length
             ? certificates.map(titiProgrammeCard).join('')
             : '<div class="programme-empty">No Certificate programmes are currently available.</div>';
 
-        /* SHORT COURSE COLUMN */
         shortCourseGrid.innerHTML=shortCourses.length
             ? shortCourses.map(titiShortCourseCard).join('')
             : '<div class="programme-empty">No Short Courses are currently available.</div>';
 
-        /* EXISTING SHORT COURSE SECTION */
         shortCourseInformationGrid.innerHTML=shortCourses.length
             ? shortCourses.map(titiShortCourseInformationCard).join('')
             : '<div class="programme-empty">No Short Courses are currently available.</div>';
 
-        /* CATEGORY COUNTS */
         document.getElementById('diplomaCount').textContent =
             `${diplomas.length} Programmes`;
 
@@ -1664,7 +1631,6 @@ async function loadTITIProgrammes(){
         document.getElementById('shortCourseCount').textContent =
             `${shortCourses.length} Courses`;
 
-        /* DATABASE SUMMARY */
         summary.textContent =
             `Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.`;
 
