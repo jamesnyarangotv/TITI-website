@@ -1044,9 +1044,7 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 </div>
 
-<!-- NEW NOTICE BOARD LINK -->
 <a href="notices.html">NOTICES</a>
-
 <a href="#gallery">Campus</a>
 <a href="#contact">Contact</a>
 <a href="apply.html#online-application" class="nav-apply">Apply Now</a>
@@ -1246,7 +1244,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <li><a href="#programmes">Academic Programmes</a></li>
 <li><a href="#shortCourses">Short Courses</a></li>
 <li><a href="apply.html#admissions">Admissions</a></li>
-<!-- NEW NOTICE BOARD FOOTER LINK -->
 <li><a href="notices.html">Notice Board</a></li>
 <li><a href="#gallery">Our Campus</a></li>
 <li><a href="#contact">Contact Us</a></li>
@@ -1271,184 +1268,195 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </footer>
 
 <script>
-/* SUPABASE CONFIGURATION - PRESERVED */
+/* SUPABASE CONFIGURATION */
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
 const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
 const TITI_PROGRAMMES_TABLE = 'programmes';
 
 /* HTML SECURITY */
 function titiEscape(value){
-return String(value ?? '').replace(/[&<>"']/g,function(character){
-const entities={
-'&':'&amp;',
-'<':'&lt;',
-'>':'&gt;',
-'"':'&quot;',
-"'":'&#039;'
-};
-return entities[character];
-});
+    return String(value ?? '').replace(/[&<>"']/g,function(character){
+        const entities={
+            '&':'&amp;',
+            '<':'&lt;',
+            '>':'&gt;',
+            '"':'&quot;',
+            "'":'&#039;'
+        };
+        return entities[character];
+    });
 }
 
 /* DIPLOMA AND CERTIFICATE CARDS */
 function titiProgrammeCard(programme){
-const name=titiEscape(programme.programme_name);
-const description=titiEscape(programme.description || 'Professional training designed to develop knowledge and practical skills.');
-const duration=programme.duration
-?<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>
-:'';
+    const name=titiEscape(programme.programme_name);
+    const description=titiEscape(
+        programme.description || 'Professional training designed to develop knowledge and practical skills.'
+    );
 
-const applicationButton=programme.application_open===true
-?<a class="programme-action" href="apply.html#online-application">Apply for this Programme</a>
-:<span class="programme-closed">Admissions Currently Closed</span>;
+    const duration=programme.duration
+        ? `<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`
+        : '';
 
-return `<article class="programme-card">
-<h3>${name}</h3>
-<p>${description}</p>
-${duration}
-${applicationButton}
-</article>`;
+    const applicationButton=programme.application_open===true
+        ? `<a class="programme-action" href="apply.html#online-application">Apply for this Programme</a>`
+        : `<span class="programme-closed">Admissions Currently Closed</span>`;
+
+    return `
+        <article class="programme-card">
+            <h3>${name}</h3>
+            <p>${description}</p>
+            ${duration}
+            ${applicationButton}
+        </article>
+    `;
 }
 
 /* SHORT COURSE CARDS */
 function titiShortCourseCard(programme){
-const name=titiEscape(programme.programme_name);
-const description=titiEscape(programme.description || 'Practical professional skills training.');
-const duration=programme.duration
-?<span class="course-duration">Duration: ${titiEscape(programme.duration)}</span>
-:'';
+    const name=titiEscape(programme.programme_name);
+    const description=titiEscape(
+        programme.description || 'Practical professional skills training.'
+    );
 
-return `<div class="short-course">
-${name}
-<span class="course-description">${description}</span>
-${duration}
-</div>`;
+    const duration=programme.duration
+        ? `<span class="course-duration">Duration: ${titiEscape(programme.duration)}</span>`
+        : '';
+
+    return `
+        <div class="short-course">
+            ${name}
+            <span class="course-description">${description}</span>
+            ${duration}
+        </div>
+    `;
 }
 
 /* DATABASE ERROR DISPLAY */
 function titiShowError(message){
-const errorHTML=`
-<div class="programme-error">
-<strong>Programme information is temporarily unavailable.</strong>
-<br>${titiEscape(message)}
-<br>Please contact TITI administration for assistance.
-</div>`;
+    const errorHTML=`
+        <div class="programme-error">
+            <strong>Programme information is temporarily unavailable.</strong>
+            <br>${titiEscape(message)}
+            <br>Please contact TITI administration for assistance.
+        </div>
+    `;
 
-document.getElementById('diplomaGrid').innerHTML=errorHTML;
-document.getElementById('certificateGrid').innerHTML='';
-document.getElementById('shortCourseGrid').innerHTML=errorHTML;
+    document.getElementById('diplomaGrid').innerHTML=errorHTML;
+    document.getElementById('certificateGrid').innerHTML=errorHTML;
+    document.getElementById('shortCourseGrid').innerHTML=errorHTML;
 
-document.getElementById('diplomaCount').textContent='Unavailable';
-document.getElementById('certificateCount').textContent='Unavailable';
+    document.getElementById('diplomaCount').textContent='Unavailable';
+    document.getElementById('certificateCount').textContent='Unavailable';
 
-document.getElementById('programmeSummary').textContent=
-'Unable to retrieve programme information at this time.';
+    document.getElementById('programmeSummary').textContent=
+        'Unable to retrieve programme information at this time.';
 }
 
 /* LOAD PROGRAMMES FROM SUPABASE */
 async function loadTITIProgrammes(){
 
-const diplomaGrid=document.getElementById('diplomaGrid');
-const certificateGrid=document.getElementById('certificateGrid');
-const shortCourseGrid=document.getElementById('shortCourseGrid');
-const summary=document.getElementById('programmeSummary');
+    const diplomaGrid=document.getElementById('diplomaGrid');
+    const certificateGrid=document.getElementById('certificateGrid');
+    const shortCourseGrid=document.getElementById('shortCourseGrid');
+    const summary=document.getElementById('programmeSummary');
 
-try{
+    try{
 
-const endpoint=
-${TITI_SUPABASE_URL}/rest/v1/${TITI_PROGRAMMES_TABLE}?select=id,programme_name,programme_level,description,duration,application_open&order=programme_level.asc,programme_name.asc;
+        const endpoint =
+            `${TITI_SUPABASE_URL}/rest/v1/${TITI_PROGRAMMES_TABLE}?select=id,programme_name,programme_level,description,duration,application_open&order=programme_level.asc,programme_name.asc`;
 
-const response=await fetch(endpoint,{
-method:'GET',
-headers:{
-'apikey':TITI_SUPABASE_KEY,
-'Accept':'application/json'
-}
-});
+        const response=await fetch(endpoint,{
+            method:'GET',
+            headers:{
+                'apikey':TITI_SUPABASE_KEY,
+                'Accept':'application/json'
+            }
+        });
 
-if(!response.ok){
+        if(!response.ok){
 
-let errorMessage='Database request failed.';
-let errorCode='';
+            let errorMessage='Database request failed.';
+            let errorCode='';
 
-try{
-const errorData=await response.json();
+            try{
+                const errorData=await response.json();
 
-errorMessage=
-errorData.message ||
-errorData.details ||
-errorData.hint ||
-errorMessage;
+                errorMessage=
+                    errorData.message ||
+                    errorData.details ||
+                    errorData.hint ||
+                    errorMessage;
 
-errorCode=errorData.code || '';
+                errorCode=errorData.code || '';
 
-}catch(error){
-console.error('Could not read Supabase error response:',error);
-}
+            }catch(error){
+                console.error('Could not read Supabase error response:',error);
+            }
 
-console.error('Supabase HTTP status:',response.status);
-console.error('Supabase error code:',errorCode);
-console.error('Supabase error message:',errorMessage);
+            console.error('Supabase HTTP status:',response.status);
+            console.error('Supabase error code:',errorCode);
+            console.error('Supabase error message:',errorMessage);
 
-throw new Error(
-HTTP ${response.status}${errorCode?' | '+errorCode:''}: ${errorMessage}
-);
-}
+            throw new Error(
+                `HTTP ${response.status}${errorCode ? ' | ' + errorCode : ''}: ${errorMessage}`
+            );
+        }
 
-const programmes=await response.json();
+        const programmes=await response.json();
 
-if(!Array.isArray(programmes)){
-throw new Error('Unexpected programme data received.');
-}
+        if(!Array.isArray(programmes)){
+            throw new Error('Unexpected programme data received.');
+        }
 
-const diplomas=programmes.filter(item=>
-String(item.programme_level||'').trim().toLowerCase()==='diploma'
-);
+        const diplomas=programmes.filter(item=>
+            String(item.programme_level||'').trim().toLowerCase()==='diploma'
+        );
 
-const certificates=programmes.filter(item=>
-String(item.programme_level||'').trim().toLowerCase()==='certificate'
-);
+        const certificates=programmes.filter(item=>
+            String(item.programme_level||'').trim().toLowerCase()==='certificate'
+        );
 
-const shortCourses=programmes.filter(item=>
-String(item.programme_level||'').trim().toLowerCase()==='short course'
-);
+        const shortCourses=programmes.filter(item=>
+            String(item.programme_level||'').trim().toLowerCase()==='short course'
+        );
 
-diplomaGrid.innerHTML=diplomas.length
-?diplomas.map(titiProgrammeCard).join('')
-:'<div class="programme-empty">No Diploma programmes are currently available.</div>';
+        diplomaGrid.innerHTML=diplomas.length
+            ? diplomas.map(titiProgrammeCard).join('')
+            : '<div class="programme-empty">No Diploma programmes are currently available.</div>';
 
-certificateGrid.innerHTML=certificates.length
-?certificates.map(titiProgrammeCard).join('')
-:'<div class="programme-empty">No Certificate programmes are currently available.</div>';
+        certificateGrid.innerHTML=certificates.length
+            ? certificates.map(titiProgrammeCard).join('')
+            : '<div class="programme-empty">No Certificate programmes are currently available.</div>';
 
-shortCourseGrid.innerHTML=shortCourses.length
-?shortCourses.map(titiShortCourseCard).join('')
-:'<div class="programme-empty">No Short Courses are currently available.</div>';
+        shortCourseGrid.innerHTML=shortCourses.length
+            ? shortCourses.map(titiShortCourseCard).join('')
+            : '<div class="programme-empty">No Short Courses are currently available.</div>';
 
-document.getElementById('diplomaCount').textContent=
-${diplomas.length} Programmes;
+        document.getElementById('diplomaCount').textContent =
+            `${diplomas.length} Programmes`;
 
-document.getElementById('certificateCount').textContent=
-${certificates.length} Programmes;
+        document.getElementById('certificateCount').textContent =
+            `${certificates.length} Programmes`;
 
-summary.textContent=
-Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.;
+        summary.textContent =
+            `Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.`;
 
-console.log('TITI programmes successfully loaded.',{
-total:programmes.length,
-diplomas:diplomas.length,
-certificates:certificates.length,
-shortCourses:shortCourses.length
-});
+        console.log('TITI programmes successfully loaded.',{
+            total:programmes.length,
+            diplomas:diplomas.length,
+            certificates:certificates.length,
+            shortCourses:shortCourses.length
+        });
 
-}catch(error){
+    }catch(error){
 
-console.error('TITI programme database error:',error);
+        console.error('TITI programme database error:',error);
 
-titiShowError(
-error.message||'Please check your database connection.'
-);
-}
+        titiShowError(
+            error.message||'Please check your database connection.'
+        );
+    }
 }
 
 /* HOMEPAGE SLIDESHOW */
@@ -1456,11 +1464,11 @@ const slides=document.querySelectorAll('.slide');
 let currentSlide=0;
 
 if(slides.length>1){
-setInterval(()=>{
-slides[currentSlide].classList.remove('active');
-currentSlide=(currentSlide+1)%slides.length;
-slides[currentSlide].classList.add('active');
-},5000);
+    setInterval(()=>{
+        slides[currentSlide].classList.remove('active');
+        currentSlide=(currentSlide+1)%slides.length;
+        slides[currentSlide].classList.add('active');
+    },5000);
 }
 
 /* MOBILE MAIN NAVIGATION */
@@ -1468,15 +1476,15 @@ const menuToggle=document.getElementById('menuToggle');
 const mainNav=document.getElementById('mainNav');
 
 menuToggle.addEventListener('click',()=>{
-mainNav.classList.toggle('open');
+    mainNav.classList.toggle('open');
 
-const isOpen=mainNav.classList.contains('open');
+    const isOpen=mainNav.classList.contains('open');
 
-menuToggle.setAttribute('aria-expanded',isOpen);
-menuToggle.setAttribute(
-'aria-label',
-isOpen?'Close navigation':'Open navigation'
-);
+    menuToggle.setAttribute('aria-expanded',isOpen);
+    menuToggle.setAttribute(
+        'aria-label',
+        isOpen?'Close navigation':'Open navigation'
+    );
 });
 
 /* ABOUT US DROPDOWN */
@@ -1484,12 +1492,12 @@ const aboutMenu=document.getElementById('aboutMenu');
 const aboutToggle=document.getElementById('aboutToggle');
 
 aboutToggle.addEventListener('click',()=>{
-aboutMenu.classList.toggle('open');
+    aboutMenu.classList.toggle('open');
 
-aboutToggle.setAttribute(
-'aria-expanded',
-aboutMenu.classList.contains('open')
-);
+    aboutToggle.setAttribute(
+        'aria-expanded',
+        aboutMenu.classList.contains('open')
+    );
 });
 
 /* PROGRAMMES DROPDOWN */
@@ -1497,12 +1505,12 @@ const programmeMenu=document.getElementById('programmeMenu');
 const programmeToggle=document.getElementById('programmeToggle');
 
 programmeToggle.addEventListener('click',()=>{
-programmeMenu.classList.toggle('open');
+    programmeMenu.classList.toggle('open');
 
-programmeToggle.setAttribute(
-'aria-expanded',
-programmeMenu.classList.contains('open')
-);
+    programmeToggle.setAttribute(
+        'aria-expanded',
+        programmeMenu.classList.contains('open')
+    );
 });
 
 /* ADMISSIONS DROPDOWN */
@@ -1510,54 +1518,54 @@ const admissionsMenu=document.getElementById('admissionsMenu');
 const admissionsToggle=document.getElementById('admissionsToggle');
 
 admissionsToggle.addEventListener('click',()=>{
-admissionsMenu.classList.toggle('open');
+    admissionsMenu.classList.toggle('open');
 
-admissionsToggle.setAttribute(
-'aria-expanded',
-admissionsMenu.classList.contains('open')
-);
+    admissionsToggle.setAttribute(
+        'aria-expanded',
+        admissionsMenu.classList.contains('open')
+    );
 });
 
 /* CLOSE MENUS AFTER SELECTING A LINK */
 document.querySelectorAll('#mainNav a').forEach(link=>{
-link.addEventListener('click',()=>{
-mainNav.classList.remove('open');
-programmeMenu.classList.remove('open');
-admissionsMenu.classList.remove('open');
-aboutMenu.classList.remove('open');
+    link.addEventListener('click',()=>{
+        mainNav.classList.remove('open');
+        programmeMenu.classList.remove('open');
+        admissionsMenu.classList.remove('open');
+        aboutMenu.classList.remove('open');
 
-menuToggle.setAttribute('aria-expanded','false');
-menuToggle.setAttribute('aria-label','Open navigation');
+        menuToggle.setAttribute('aria-expanded','false');
+        menuToggle.setAttribute('aria-label','Open navigation');
 
-programmeToggle.setAttribute('aria-expanded','false');
-admissionsToggle.setAttribute('aria-expanded','false');
-aboutToggle.setAttribute('aria-expanded','false');
-});
+        programmeToggle.setAttribute('aria-expanded','false');
+        admissionsToggle.setAttribute('aria-expanded','false');
+        aboutToggle.setAttribute('aria-expanded','false');
+    });
 });
 
 /* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
 document.addEventListener('click',event=>{
 
-if(!programmeMenu.contains(event.target)){
-programmeMenu.classList.remove('open');
-programmeToggle.setAttribute('aria-expanded','false');
-}
+    if(!programmeMenu.contains(event.target)){
+        programmeMenu.classList.remove('open');
+        programmeToggle.setAttribute('aria-expanded','false');
+    }
 
-if(!admissionsMenu.contains(event.target)){
-admissionsMenu.classList.remove('open');
-admissionsToggle.setAttribute('aria-expanded','false');
-}
+    if(!admissionsMenu.contains(event.target)){
+        admissionsMenu.classList.remove('open');
+        admissionsToggle.setAttribute('aria-expanded','false');
+    }
 
-if(!aboutMenu.contains(event.target)){
-aboutMenu.classList.remove('open');
-aboutToggle.setAttribute('aria-expanded','false');
-}
+    if(!aboutMenu.contains(event.target)){
+        aboutMenu.classList.remove('open');
+        aboutToggle.setAttribute('aria-expanded','false');
+    }
 
 });
 
 /* COPYRIGHT YEAR */
 document.getElementById('footer-year').textContent=
-new Date().getFullYear();
+    new Date().getFullYear();
 
 /* START DATABASE CONNECTION */
 loadTITIProgrammes();
