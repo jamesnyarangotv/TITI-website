@@ -36,19 +36,20 @@ input,textarea,button{font-family:inherit}
  background:linear-gradient(135deg,#0F2A5E,#18243c);
 }
 
+/* COMPACT ADMIN LOGIN */
 .login-card{
  background:white;
  width:100%;
- max-width:420px;
- padding:38px;
- border-radius:12px;
+ max-width:360px;
+ padding:27px 30px;
+ border-radius:10px;
  box-shadow:0 15px 45px #0004;
 }
 
 .logo{
  text-align:center;
  color:var(--maroon);
- font-size:27px;
+ font-size:26px;
  font-weight:800;
  letter-spacing:1px;
 }
@@ -56,29 +57,38 @@ input,textarea,button{font-family:inherit}
 .subtitle{
  text-align:center;
  color:#687386;
- margin:9px 0 30px;
- font-size:13px;
+ margin:5px 0 19px;
+ font-size:12px;
+ line-height:1.6;
 }
 
 h2{color:var(--navy)}
 
-label{
+.login-card h2{
+ color:var(--navy);
+ font-size:21px;
+ margin:0 0 5px;
+}
+
+.login-card label{
  display:block;
  font-weight:600;
- margin:17px 0 7px;
+ margin:13px 0 5px;
  font-size:13px;
 }
 
-input,textarea{
+.login-card input{
  width:100%;
- padding:13px;
+ padding:11px 13px;
  border:1px solid #d8dee8;
- border-radius:6px;
+ border-radius:5px;
  font-size:14px;
  outline:none;
 }
 
-input:focus,textarea:focus{border-color:var(--navy)}
+.login-card input:focus{
+ border-color:var(--navy);
+}
 
 /* PASSWORD SHOW/HIDE */
 .password-wrapper{
@@ -87,7 +97,7 @@ input:focus,textarea:focus{border-color:var(--navy)}
 }
 
 .password-wrapper input{
- padding-right:48px;
+ padding-right:45px;
 }
 
 .password-toggle{
@@ -97,10 +107,10 @@ input:focus,textarea:focus{border-color:var(--navy)}
  transform:translateY(-50%);
  background:transparent;
  color:var(--navy);
- padding:8px;
+ padding:6px;
  margin:0;
- width:38px;
- font-size:18px;
+ width:36px;
+ font-size:17px;
  border:0;
  cursor:pointer;
 }
@@ -124,6 +134,20 @@ button:disabled{opacity:.6;cursor:wait}
  color:white;
  width:100%;
  margin-top:22px;
+}
+
+.login-card .primary{
+ background:var(--maroon);
+ color:white;
+ width:100%;
+ margin-top:17px;
+ padding:11px;
+ font-size:13px;
+ border-radius:5px;
+}
+
+.login-card .primary:hover{
+ background:#5c0c18;
 }
 
 .primary:hover{background:#5c0c18}
@@ -379,7 +403,10 @@ footer{
 }
 
 @media(max-width:450px){
- .login-card{padding:25px}
+ .login-card{
+  max-width:350px;
+  padding:24px;
+ }
  .stats{gap:9px}
  .stat{padding:14px}
 }
