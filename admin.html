@@ -41,8 +41,8 @@ input,textarea,button{font-family:inherit}
 .login-card{
  background:#fff;
  width:100%;
- max-width:450px;
- padding:25px 27px;
+ max-width:390px;
+ padding:20px 23px;
  border-radius:12px;
  box-shadow:0 15px 45px #0004;
 }
@@ -50,7 +50,7 @@ input,textarea,button{font-family:inherit}
 .logo{
  text-align:center;
  color:var(--maroon);
- font-size:34px;
+ font-size:30px;
  font-weight:800;
  letter-spacing:1px;
 }
@@ -58,8 +58,8 @@ input,textarea,button{font-family:inherit}
 .subtitle{
  text-align:center;
  color:#687386;
- margin:3px 0 17px;
- font-size:12px;
+ margin:2px 0 12px;
+ font-size:11px;
  line-height:1.5;
 }
 
@@ -67,28 +67,28 @@ h2{color:var(--navy)}
 
 .login-card h2{
  color:var(--navy);
- font-size:23px;
+ font-size:21px;
  text-align:center;
- margin:10px 0 4px;
+ margin:8px 0 3px;
 }
 
 .login-card .muted{
- font-size:13px;
+ font-size:12px;
  line-height:1.5;
- margin:5px 0 15px;
+ margin:4px 0 12px;
  text-align:center;
 }
 
 .login-card label{
  display:block;
  font-weight:600;
- margin:12px 0 5px;
+ margin:10px 0 5px;
  font-size:13px;
 }
 
 .login-card input{
  width:100%;
- padding:12px;
+ padding:10px 11px;
  border:1px solid #d8dee8;
  border-radius:6px;
  font-size:14px;
@@ -100,43 +100,48 @@ h2{color:var(--navy)}
  box-shadow:0 0 0 2px #0F2A5E12;
 }
 
-/* PASSWORD FIELD AND SHOW/HIDE */
+/* VISIBLE SHOW/HIDE PASSWORD */
 .password-wrapper{
- display:flex;
- align-items:center;
- gap:9px;
+ display:flex !important;
+ align-items:stretch !important;
+ gap:7px;
  width:100%;
 }
 
 .password-wrapper input{
- flex:1;
+ flex:1 1 auto;
  min-width:0;
- width:auto;
- padding:12px;
+ width:0;
+ height:42px;
 }
 
 .password-toggle{
- position:static;
- transform:none;
- min-width:90px;
- height:44px;
- padding:0 12px;
- margin:0;
- border:1px solid #d8dee8;
+ display:inline-flex !important;
+ visibility:visible !important;
+ opacity:1 !important;
+ position:static !important;
+ transform:none !important;
+ flex:0 0 76px;
+ width:76px;
+ min-width:76px;
+ height:42px;
+ padding:0 8px !important;
+ margin:0 !important;
+ border:1px solid #d8dee8 !important;
  border-radius:6px;
- background:#edf1f7;
- color:var(--navy);
+ background:#edf1f7 !important;
+ color:var(--navy) !important;
  font-size:12px;
  font-weight:800;
  letter-spacing:.4px;
  cursor:pointer;
- display:flex;
- align-items:center;
- justify-content:center;
+ align-items:center !important;
+ justify-content:center !important;
+ z-index:5;
 }
 
 .password-toggle:hover{
- background:#dce5f2;
+ background:#dce5f2 !important;
 }
 
 button{
@@ -163,8 +168,8 @@ button:disabled{
  background:var(--maroon);
  color:white;
  width:100%;
- margin-top:18px;
- padding:12px;
+ margin-top:15px;
+ padding:11px;
  font-size:14px;
  border-radius:6px;
 }
@@ -491,27 +496,23 @@ footer{
 
 @media(max-width:450px){
  .login-card{
-  max-width:360px;
-  padding:22px 20px;
+  max-width:340px;
+  padding:19px 18px;
  }
 
- .login-card h2{
-  font-size:21px;
- }
+ .login-card h2{font-size:20px}
 
  .password-toggle{
-  min-width:75px;
+  flex-basis:72px;
+  width:72px;
+  min-width:72px;
  }
 
  .stats{gap:9px}
-
  .stat{padding:14px}
 
- .topbar{
-  padding:16px 20px;
- }
+ .topbar{padding:16px 20px}
 }
-
 </style>
 </head>
 
@@ -519,7 +520,6 @@ footer{
 
 <!-- ADMINISTRATOR LOGIN -->
 <section id="loginScreen">
-
 <div class="login-card">
 
 <div class="logo">TITI</div>
@@ -538,7 +538,6 @@ Sign in using your existing administrator account.
 <form id="loginForm">
 
 <label for="email">Email Address</label>
-
 <input
  id="email"
  type="email"
@@ -563,6 +562,7 @@ Sign in using your existing administrator account.
  type="button"
  id="togglePassword"
  class="password-toggle"
+ onclick="togglePasswordVisibility()"
  aria-label="Show password"
  title="Show password"
 >
@@ -571,11 +571,7 @@ SHOW
 
 </div>
 
-<button
- class="primary"
- id="loginButton"
- type="submit"
->
+<button class="primary" id="loginButton" type="submit">
 SIGN IN
 </button>
 
@@ -606,10 +602,8 @@ TITI ADMISSIONS
 <main class="container">
 
 <div class="welcome">
-
 <div>
 <h2>Admissions Dashboard</h2>
-
 <div class="muted">
 Manage applications, verify documents and make admission decisions.
 </div>
@@ -618,7 +612,6 @@ Manage applications, verify documents and make admission decisions.
 <button class="refresh" id="refreshButton">
 ↻ Refresh Data
 </button>
-
 </div>
 
 <div id="message"></div>
@@ -652,17 +645,14 @@ Manage applications, verify documents and make admission decisions.
 <h3>Applicant Records</h3>
 
 <div class="toolbar">
-
 <input
  id="searchInput"
  type="search"
  placeholder="Search name, reference, phone or email..."
 >
-
 </div>
 
 <div class="table-wrap">
-
 <table>
 
 <thead>
@@ -677,15 +667,12 @@ Manage applications, verify documents and make admission decisions.
 </thead>
 
 <tbody id="applicationsBody">
-
 <tr>
 <td colspan="6">Loading applications...</td>
 </tr>
-
 </tbody>
 
 </table>
-
 </div>
 </div>
 
@@ -695,9 +682,7 @@ Manage applications, verify documents and make admission decisions.
 
 <div id="applicantDetails"></div>
 
-<h3 style="margin-top:25px">
-Administrator Review
-</h3>
+<h3 style="margin-top:25px">Administrator Review</h3>
 
 <label for="remarks">Administrator Remarks</label>
 
@@ -740,11 +725,9 @@ private Supabase storage bucket.
 </p>
 
 <div id="documentsContent">
-
 <p class="muted">
 Select an applicant to view their uploaded documents.
 </p>
-
 </div>
 
 </div>
@@ -794,10 +777,12 @@ const $ = id => document.getElementById(id);
 // SHOW / HIDE PASSWORD
 // ======================================
 
-$("togglePassword").addEventListener("click",()=>{
+function togglePasswordVisibility(){
 
  const password = $("password");
  const button = $("togglePassword");
+
+ if(!password || !button) return;
 
  if(password.type === "password"){
 
@@ -815,7 +800,7 @@ $("togglePassword").addEventListener("click",()=>{
 
  }
 
-});
+}
 
 // ======================================
 // SECURITY: HTML ESCAPING
