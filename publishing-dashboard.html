@@ -10,7 +10,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -33,23 +33,22 @@
 *{box-sizing:border-box;margin:0;padding:0}
 
 body{
-font-family:Inter,Arial,sans-serif;
+font-family:'Jost',Arial,sans-serif;
 background:var(--bg);
 color:var(--text);
 min-height:100vh;
-line-height:1.5;
+line-height:1.6;
+font-size:16px;
 }
 
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
 
-/* ================================
-   LOGO
-================================ */
+/* LOGO - ORIGINAL IMAGE AND PROPORTIONS PRESERVED */
 
 .logo-frame{
-width:76px;
+width:90px;
 height:76px;
 background:#fff;
 border-radius:12px;
@@ -60,25 +59,30 @@ justify-content:center;
 border:1px solid #e9edf2;
 box-shadow:0 4px 14px #0000000c;
 flex-shrink:0;
+overflow:hidden;
 }
 
 .logo-frame img{
-width:100%;
-height:100%;
+display:block;
+width:auto;
+height:auto;
+max-width:100%;
+max-height:100%;
 object-fit:contain;
-border-radius:7px;
+object-position:center;
+border:0;
+border-radius:0;
+filter:none;
 }
 
 .logo-frame.small{
-width:65px;
+width:75px;
 height:65px;
 border-radius:10px;
 padding:4px;
 }
 
-/* ================================
-   LOGIN
-================================ */
+/* LOGIN */
 
 .login-page{
 min-height:100vh;
@@ -113,9 +117,9 @@ position:relative;
 z-index:2;
 background:white;
 width:100%;
-max-width:465px;
-padding:38px 40px;
-border-radius:17px;
+max-width:490px;
+padding:42px 42px;
+border-radius:18px;
 box-shadow:0 25px 80px #0004;
 border-top:5px solid var(--gold);
 }
@@ -123,60 +127,62 @@ border-top:5px solid var(--gold);
 .login-brand{
 display:flex;
 justify-content:center;
-margin-bottom:20px;
+margin-bottom:23px;
 }
 
 .login-brand .logo-frame{
-width:105px;
-height:105px;
+width:145px;
+height:115px;
 border-radius:15px;
 padding:7px;
 }
 
 .login-card h1{
 text-align:center;
-font-size:23px;
+font-size:27px;
 font-weight:800;
 color:var(--navy);
-letter-spacing:.4px;
+letter-spacing:.5px;
 }
 
 .login-sub{
 text-align:center;
-font-size:11px;
+font-size:14px;
+font-weight:500;
 color:var(--muted);
 line-height:1.9;
-margin:9px 0 26px;
+margin:10px 0 28px;
 }
 
 .login-divider{
-width:48px;
-height:3px;
+width:55px;
+height:4px;
 background:var(--gold);
-margin:14px auto 22px;
+margin:15px auto 24px;
 border-radius:5px;
 }
 
-.field{margin-bottom:19px}
+.field{margin-bottom:21px}
 
 .field label,
 .form-field label{
 display:block;
-font-size:11px;
+font-size:14px;
 font-weight:800;
-letter-spacing:.45px;
-margin-bottom:8px;
+letter-spacing:.4px;
+margin-bottom:9px;
 color:#34465e;
 }
 
 .field input{
 width:100%;
-padding:14px;
+padding:15px 16px;
 border:1px solid #dce3ec;
 border-radius:8px;
 outline:none;
 background:#fbfcfe;
 color:var(--text);
+font-size:16px;
 transition:.2s;
 }
 
@@ -193,11 +199,11 @@ background:#fff;
 background:var(--navy);
 color:white;
 border:0;
-padding:13px 19px;
+padding:14px 20px;
 border-radius:8px;
-font-size:11px;
+font-size:14px;
 font-weight:800;
-letter-spacing:.5px;
+letter-spacing:.4px;
 transition:.2s;
 }
 
@@ -206,30 +212,29 @@ transition:.2s;
 
 .login-btn{
 width:100%;
-margin-top:5px;
-padding:15px;
+margin-top:7px;
+padding:16px;
+font-size:15px;
 }
 
 .login-footer{
 border-top:1px solid var(--border);
-margin-top:25px;
-padding-top:20px;
+margin-top:27px;
+padding-top:21px;
 text-align:center;
-font-size:10px;
+font-size:13px;
 color:var(--muted);
 line-height:2;
 }
 
 .login-footer strong{color:var(--navy)}
 
-/* ================================
-   HEADER
-================================ */
+/* HEADER */
 
 .topbar{
 background:linear-gradient(110deg,#0b203c,#183e69);
 color:white;
-padding:17px 4%;
+padding:18px 4%;
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -242,29 +247,30 @@ box-shadow:0 4px 18px #00000015;
 .brand{
 display:flex;
 align-items:center;
-gap:15px;
+gap:17px;
 }
 
 .brand h2{
-font-size:15px;
+font-size:19px;
 font-weight:800;
-letter-spacing:.45px;
-line-height:1.5;
+letter-spacing:.4px;
+line-height:1.45;
 }
 
 .brand p{
-font-size:10px;
+font-size:13px;
+font-weight:500;
 color:#d5dfeb;
-letter-spacing:1.3px;
-margin-top:4px;
+letter-spacing:1.2px;
+margin-top:5px;
 }
 
 .admin-info{
 display:flex;
 align-items:center;
-gap:12px;
+gap:13px;
 flex-wrap:wrap;
-font-size:11px;
+font-size:14px;
 }
 
 .admin-email{
@@ -275,11 +281,11 @@ font-weight:600;
 .admin-role{
 background:#ffffff17;
 border:1px solid #ffffff2c;
-padding:8px 12px;
+padding:9px 14px;
 border-radius:6px;
-font-size:10px;
+font-size:13px;
 font-weight:800;
-letter-spacing:.6px;
+letter-spacing:.5px;
 color:#f5dda5;
 }
 
@@ -287,9 +293,9 @@ color:#f5dda5;
 background:#ffffff12;
 color:white;
 border:1px solid #ffffff45;
-padding:9px 15px;
+padding:10px 16px;
 border-radius:7px;
-font-size:10px;
+font-size:13px;
 font-weight:800;
 transition:.2s;
 }
@@ -299,14 +305,12 @@ background:#a51e32;
 border-color:#a51e32;
 }
 
-/* ================================
-   MAIN LAYOUT
-================================ */
+/* MAIN LAYOUT */
 
 .layout{
 max-width:1500px;
 margin:auto;
-padding:32px 35px;
+padding:36px 35px;
 }
 
 .page-heading{
@@ -314,53 +318,52 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 flex-wrap:wrap;
-gap:17px;
-margin-bottom:26px;
+gap:18px;
+margin-bottom:29px;
 }
 
 .heading-label{
-font-size:10px;
+font-size:13px;
 font-weight:800;
-letter-spacing:1.6px;
+letter-spacing:1.5px;
 color:var(--gold);
-margin-bottom:6px;
+margin-bottom:7px;
 }
 
 .page-heading h1{
-font-size:25px;
+font-size:32px;
 font-weight:800;
 color:var(--navy);
-letter-spacing:-.6px;
+letter-spacing:-.5px;
+line-height:1.25;
 }
 
 .page-heading p{
-font-size:12px;
+font-size:16px;
 color:var(--muted);
-margin-top:6px;
+margin-top:7px;
 }
 
 .heading-action{
 display:flex;
 align-items:center;
-gap:9px;
+gap:10px;
 }
 
-/* ================================
-   STATISTICS
-================================ */
+/* STATISTICS */
 
 .stats{
 display:grid;
 grid-template-columns:repeat(3,minmax(0,1fr));
-gap:18px;
-margin-bottom:27px;
+gap:19px;
+margin-bottom:29px;
 }
 
 .stat-card{
 background:white;
 border:1px solid var(--border);
 border-radius:12px;
-padding:21px;
+padding:24px;
 box-shadow:var(--shadow);
 position:relative;
 overflow:hidden;
@@ -391,20 +394,20 @@ gap:10px;
 }
 
 .stat-label{
-font-size:10px;
+font-size:14px;
 font-weight:800;
 color:var(--muted);
-letter-spacing:.7px;
+letter-spacing:.6px;
 }
 
 .stat-icon{
-width:39px;
-height:39px;
+width:43px;
+height:43px;
 border-radius:10px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:18px;
+font-size:21px;
 }
 
 .stat-icon.blue{background:#eaf0f9;color:#193d67}
@@ -412,28 +415,26 @@ font-size:18px;
 .stat-icon.gold{background:#fbf3df;color:#a17b2d}
 
 .stat-card h2{
-font-size:31px;
+font-size:37px;
 font-weight:800;
 color:var(--navy);
-margin-top:14px;
+margin-top:15px;
 line-height:1.2;
 }
 
 .stat-card small{
-font-size:10px;
+font-size:13px;
 color:var(--muted);
 display:block;
-margin-top:7px;
+margin-top:8px;
 }
 
-/* ================================
-   CONTENT GRID
-================================ */
+/* CONTENT GRID */
 
 .content-grid{
 display:grid;
-grid-template-columns:minmax(300px,400px) minmax(0,1fr);
-gap:22px;
+grid-template-columns:minmax(300px,410px) minmax(0,1fr);
+gap:23px;
 align-items:start;
 }
 
@@ -446,52 +447,50 @@ box-shadow:var(--shadow);
 }
 
 .panel-heading{
-padding:19px 22px;
+padding:21px 23px;
 border-bottom:1px solid var(--border);
 background:linear-gradient(110deg,#fff,#fafbfd);
 }
 
 .panel-heading h3{
-font-size:14px;
+font-size:19px;
 font-weight:800;
 color:var(--navy);
 }
 
 .panel-heading p{
-font-size:10px;
+font-size:14px;
 color:var(--muted);
 margin-top:5px;
 }
 
-.panel-body{padding:22px}
+.panel-body{padding:23px}
 
 .panel-accent{
-height:3px;
+height:4px;
 background:linear-gradient(90deg,var(--navy),var(--gold));
 }
 
-/* ================================
-   NOTICE FORM
-================================ */
+/* NOTICE FORM */
 
-.form-field{margin-bottom:18px}
+.form-field{margin-bottom:20px}
 
 .form-field input,
 .form-field textarea,
 .form-field select{
 width:100%;
-padding:12px 13px;
+padding:14px 15px;
 border:1px solid var(--border);
 border-radius:7px;
 outline:none;
 background:#fbfcfe;
 color:var(--text);
-font-size:12px;
+font-size:15px;
 transition:.2s;
 }
 
 .form-field textarea{
-min-height:190px;
+min-height:210px;
 resize:vertical;
 line-height:1.8;
 }
@@ -503,20 +502,20 @@ color:#a1adbb;
 
 .form-actions{
 display:flex;
-gap:9px;
+gap:10px;
 flex-wrap:wrap;
 }
 
 .form-actions button{
 flex:1;
-min-width:110px;
+min-width:115px;
 }
 
 .secondary-btn,
 .publish-btn{
-padding:12px 14px;
+padding:13px 15px;
 border-radius:7px;
-font-size:10px;
+font-size:13px;
 font-weight:800;
 letter-spacing:.3px;
 transition:.2s;
@@ -542,24 +541,22 @@ border-color:#831729;
 }
 
 .form-note{
-font-size:10px;
+font-size:13px;
 color:var(--muted);
 line-height:1.8;
-margin-top:16px;
-padding:12px;
+margin-top:17px;
+padding:14px;
 background:#f5f7fa;
 border-radius:7px;
 border-left:3px solid var(--gold);
 }
 
-/* ================================
-   NOTICE MANAGEMENT
-================================ */
+/* NOTICE MANAGEMENT */
 
 .notice-toolbar{
-padding:16px 19px;
+padding:17px 20px;
 display:flex;
-gap:9px;
+gap:10px;
 flex-wrap:wrap;
 border-bottom:1px solid var(--border);
 background:#fbfcfe;
@@ -567,10 +564,10 @@ background:#fbfcfe;
 
 .notice-toolbar input,
 .notice-toolbar select{
-padding:10px 11px;
+padding:12px 13px;
 border:1px solid var(--border);
 border-radius:7px;
-font-size:11px;
+font-size:14px;
 outline:none;
 background:white;
 color:var(--text);
@@ -578,10 +575,10 @@ color:var(--text);
 
 .notice-toolbar input{flex:1;min-width:145px}
 
-.notice-list{padding:5px 21px 15px}
+.notice-list{padding:6px 22px 17px}
 
 .notice-item{
-padding:19px 0;
+padding:21px 0;
 border-bottom:1px solid var(--border);
 }
 
@@ -596,33 +593,33 @@ align-items:flex-start;
 
 .notice-item h4{
 color:var(--navy);
-font-size:13px;
+font-size:18px;
 font-weight:800;
-line-height:1.6;
+line-height:1.5;
 }
 
 .notice-meta{
 color:var(--muted);
-font-size:10px;
+font-size:13px;
 margin-top:7px;
 }
 
 .notice-preview{
-font-size:11px;
+font-size:14px;
 color:#68778a;
 line-height:1.8;
-margin-top:10px;
+margin-top:11px;
 white-space:pre-wrap;
 overflow-wrap:anywhere;
 }
 
 .status{
-font-size:9px;
+font-size:12px;
 font-weight:800;
-padding:6px 10px;
+padding:7px 11px;
 border-radius:20px;
 white-space:nowrap;
-letter-spacing:.4px;
+letter-spacing:.3px;
 }
 
 .status.PUBLISHED{background:#e5f5ec;color:#16804c}
@@ -631,8 +628,8 @@ letter-spacing:.4px;
 
 .notice-actions{
 display:flex;
-gap:7px;
-margin-top:13px;
+gap:8px;
+margin-top:14px;
 flex-wrap:wrap;
 }
 
@@ -640,9 +637,9 @@ flex-wrap:wrap;
 border:1px solid var(--border);
 background:white;
 color:var(--navy);
-padding:8px 11px;
+padding:9px 13px;
 border-radius:6px;
-font-size:9px;
+font-size:12px;
 font-weight:800;
 transition:.2s;
 }
@@ -652,28 +649,26 @@ transition:.2s;
 .small-btn.delete:hover{background:#fff0f0}
 
 .empty{
-padding:45px 15px;
+padding:48px 15px;
 text-align:center;
 color:var(--muted);
-font-size:11px;
+font-size:15px;
 line-height:1.9;
 }
 
 .empty-icon{
 display:block;
-font-size:28px;
+font-size:32px;
 margin-bottom:10px;
 }
 
-/* ================================
-   MESSAGES
-================================ */
+/* MESSAGES */
 
 .message{
-padding:12px 14px;
+padding:13px 15px;
 border-radius:7px;
-font-size:11px;
-margin-bottom:15px;
+font-size:14px;
+margin-bottom:16px;
 line-height:1.7;
 overflow-wrap:anywhere;
 }
@@ -685,22 +680,20 @@ overflow-wrap:anywhere;
 position:fixed;
 bottom:22px;
 right:22px;
-padding:15px 20px;
+padding:16px 21px;
 background:var(--navy);
 color:white;
 border-radius:8px;
 box-shadow:0 8px 30px #0003;
-font-size:11px;
+font-size:14px;
 z-index:100;
 max-width:90%;
 }
 
-/* ================================
-   FOOTER
-================================ */
+/* FOOTER */
 
 .dashboard-footer{
-margin-top:25px;
+margin-top:27px;
 background:linear-gradient(115deg,#0b203c,#183d67);
 color:white;
 border-top:4px solid var(--gold);
@@ -709,48 +702,48 @@ border-top:4px solid var(--gold);
 .footer-main{
 max-width:1450px;
 margin:auto;
-padding:38px 35px 30px;
+padding:40px 35px 32px;
 display:grid;
 grid-template-columns:1.5fr 1fr 1fr;
-gap:35px;
+gap:36px;
 }
 
 .footer-brand{
 display:flex;
 align-items:flex-start;
-gap:15px;
+gap:16px;
 }
 
 .footer-brand .logo-frame{
-width:75px;
-height:75px;
+width:90px;
+height:76px;
 }
 
 .footer-brand h3{
-font-size:13px;
+font-size:17px;
 font-weight:800;
-line-height:1.7;
+line-height:1.6;
 }
 
 .footer-brand p{
-font-size:10px;
+font-size:14px;
 color:#d4dfeb;
 margin-top:8px;
 line-height:1.8;
 }
 
 .footer-column h4{
-font-size:10px;
-letter-spacing:1px;
+font-size:14px;
+letter-spacing:.9px;
 font-weight:800;
 color:#e4c77f;
-margin-bottom:14px;
+margin-bottom:15px;
 }
 
 .footer-column p,
 .footer-column a{
 display:block;
-font-size:10px;
+font-size:14px;
 color:#d4dfeb;
 line-height:2.1;
 text-decoration:none;
@@ -758,7 +751,7 @@ text-decoration:none;
 
 .footer-bottom{
 border-top:1px solid #ffffff20;
-padding:17px 25px;
+padding:19px 25px;
 display:flex;
 justify-content:space-between;
 gap:12px;
@@ -768,7 +761,7 @@ max-width:100%;
 }
 
 .footer-bottom p{
-font-size:9px;
+font-size:13px;
 color:#cbd6e4;
 }
 
@@ -780,9 +773,7 @@ font-weight:700;
 letter-spacing:.6px;
 }
 
-/* ================================
-   RESPONSIVE
-================================ */
+/* RESPONSIVE */
 
 @media(max-width:1050px){
 .content-grid{grid-template-columns:1fr}
@@ -790,51 +781,76 @@ letter-spacing:.6px;
 }
 
 @media(max-width:700px){
-.topbar{padding:15px 17px}
-.brand{gap:10px}
-.brand .logo-frame{width:53px;height:53px}
-.brand h2{font-size:11px}
-.brand p{font-size:8px}
-.admin-info{width:100%;justify-content:space-between;gap:7px}
-.admin-email{font-size:9px}
-.admin-role{font-size:8px;padding:7px}
-.logout-btn{font-size:9px;padding:8px 10px}
-.layout{padding:23px 14px}
-.stats{grid-template-columns:1fr;gap:12px}
-.stat-card{padding:17px}
-.stat-card h2{font-size:26px}
-.page-heading h1{font-size:21px}
-.page-heading p{font-size:11px}
+
+.topbar{padding:16px 17px}
+.brand{gap:11px}
+.brand .logo-frame{width:67px;height:57px}
+.brand h2{font-size:14px}
+.brand p{font-size:10px;letter-spacing:.8px}
+
+.admin-info{
+width:100%;
+justify-content:space-between;
+gap:8px;
+}
+
+.admin-email{font-size:12px}
+.admin-role{font-size:11px;padding:7px 9px}
+.logout-btn{font-size:11px;padding:8px 11px}
+
+.layout{padding:25px 14px}
+
+.stats{grid-template-columns:1fr;gap:13px}
+.stat-card{padding:19px}
+.stat-card h2{font-size:30px}
+
+.page-heading h1{font-size:26px}
+.page-heading p{font-size:14px}
 .page-heading .primary-btn{width:100%}
 .heading-action{width:100%}
-.panel-body{padding:16px}
-.panel-heading{padding:17px}
+
+.panel-body{padding:17px}
+.panel-heading{padding:18px}
+.panel-heading h3{font-size:17px}
 .notice-list{padding:5px 15px}
-.notice-toolbar{padding:13px}
+.notice-toolbar{padding:14px}
 .notice-toolbar input{min-width:100%}
 .notice-toolbar select{flex:1}
 .notice-toolbar button{width:100%}
-.login-card{padding:29px 22px}
-.login-card h1{font-size:20px}
-.footer-main{grid-template-columns:1fr;padding:30px 21px;gap:26px}
-.footer-bottom{padding:17px 21px;flex-direction:column;align-items:flex-start}
+
+.login-card{padding:31px 22px}
+.login-card h1{font-size:23px}
+
+.footer-main{
+grid-template-columns:1fr;
+padding:31px 21px;
+gap:27px;
+}
+
+.footer-bottom{
+padding:18px 21px;
+flex-direction:column;
+align-items:flex-start;
+}
+
 }
 
 @media(max-width:380px){
-.brand h2{font-size:10px}
-.admin-email{font-size:8px}
+
+.brand h2{font-size:12px}
+.admin-email{font-size:10px}
 .admin-role{padding:6px}
 .form-actions{flex-direction:column}
 .form-actions button{width:100%}
+.notice-top{flex-wrap:wrap}
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================================
-     ADMINISTRATOR LOGIN
-================================ -->
+<!-- ADMINISTRATOR LOGIN -->
 
 <section id="loginPage" class="login-page">
 
@@ -888,9 +904,7 @@ Breaking the Limits
 </div>
 </section>
 
-<!-- ================================
-     ADMIN DASHBOARD
-================================ -->
+<!-- ADMIN DASHBOARD -->
 
 <section id="dashboard" class="hidden">
 
@@ -918,8 +932,6 @@ Breaking the Limits
 </header>
 
 <main class="layout">
-
-<!-- PAGE HEADING -->
 
 <div class="page-heading">
 
@@ -1086,9 +1098,7 @@ Loading notices...
 
 </main>
 
-<!-- ================================
-     PROFESSIONAL FOOTER
-================================ -->
+<!-- FOOTER -->
 
 <footer class="dashboard-footer">
 
