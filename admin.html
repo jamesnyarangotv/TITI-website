@@ -32,16 +32,16 @@ input,textarea,button{font-family:inherit}
  display:flex;
  justify-content:center;
  align-items:center;
- padding:20px;
+ padding:15px;
  background:linear-gradient(135deg,#0F2A5E,#18243c);
 }
 
-/* COMPACT ADMIN LOGIN */
+/* SMALLER ADMIN LOGIN CARD */
 .login-card{
- background:white;
+ background:#fff;
  width:100%;
- max-width:360px;
- padding:27px 30px;
+ max-width:320px;
+ padding:21px 23px;
  border-radius:10px;
  box-shadow:0 15px 45px #0004;
 }
@@ -49,7 +49,7 @@ input,textarea,button{font-family:inherit}
 .logo{
  text-align:center;
  color:var(--maroon);
- font-size:26px;
+ font-size:25px;
  font-weight:800;
  letter-spacing:1px;
 }
@@ -57,37 +57,44 @@ input,textarea,button{font-family:inherit}
 .subtitle{
  text-align:center;
  color:#687386;
- margin:5px 0 19px;
- font-size:12px;
- line-height:1.6;
+ margin:3px 0 15px;
+ font-size:11px;
+ line-height:1.5;
 }
 
 h2{color:var(--navy)}
 
 .login-card h2{
  color:var(--navy);
- font-size:21px;
- margin:0 0 5px;
+ font-size:19px;
+ margin:0 0 4px;
+}
+
+.login-card .muted{
+ font-size:12px;
+ line-height:1.5;
+ margin:5px 0 12px;
 }
 
 .login-card label{
  display:block;
  font-weight:600;
- margin:13px 0 5px;
- font-size:13px;
+ margin:11px 0 5px;
+ font-size:12px;
 }
 
 .login-card input{
  width:100%;
- padding:11px 13px;
+ padding:10px 12px;
  border:1px solid #d8dee8;
  border-radius:5px;
- font-size:14px;
+ font-size:13px;
  outline:none;
 }
 
 .login-card input:focus{
  border-color:var(--navy);
+ box-shadow:0 0 0 2px #0F2A5E12;
 }
 
 /* PASSWORD SHOW/HIDE */
@@ -97,7 +104,7 @@ h2{color:var(--navy)}
 }
 
 .password-wrapper input{
- padding-right:45px;
+ padding-right:65px;
 }
 
 .password-toggle{
@@ -105,18 +112,27 @@ h2{color:var(--navy)}
  right:5px;
  top:50%;
  transform:translateY(-50%);
- background:transparent;
- color:var(--navy);
- padding:6px;
+ width:auto;
+ min-width:48px;
+ height:30px;
+ padding:0 7px;
  margin:0;
- width:36px;
- font-size:17px;
  border:0;
+ border-radius:4px;
+ background:#edf1f7;
+ color:var(--navy);
+ font-size:11px;
+ font-weight:800;
+ letter-spacing:.4px;
  cursor:pointer;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ z-index:5;
 }
 
 .password-toggle:hover{
- background:#f3f5f8;
+ background:#dce5f2;
 }
 
 button{
@@ -140,16 +156,13 @@ button:disabled{opacity:.6;cursor:wait}
  background:var(--maroon);
  color:white;
  width:100%;
- margin-top:17px;
- padding:11px;
+ margin-top:15px;
+ padding:10px;
  font-size:13px;
  border-radius:5px;
 }
 
-.login-card .primary:hover{
- background:#5c0c18;
-}
-
+.login-card .primary:hover{background:#5c0c18}
 .primary:hover{background:#5c0c18}
 
 .error{
@@ -243,7 +256,13 @@ button:disabled{opacity:.6;cursor:wait}
  flex-wrap:wrap;
 }
 
-.toolbar input{max-width:450px}
+.toolbar input{
+ max-width:450px;
+ padding:11px;
+ border:1px solid #d8dee8;
+ border-radius:5px;
+ font-family:inherit;
+}
 
 table{
  width:100%;
@@ -404,8 +423,8 @@ footer{
 
 @media(max-width:450px){
  .login-card{
-  max-width:350px;
-  padding:24px;
+  max-width:310px;
+  padding:20px;
  }
  .stats{gap:9px}
  .stat{padding:14px}
@@ -434,12 +453,12 @@ Sign in using your existing administrator account.
 
 <form id="loginForm">
 
-<label>Email Address</label>
+<label for="email">Email Address</label>
 <input id="email" type="email" required
 autocomplete="username"
 placeholder="Enter administrator email">
 
-<label>Password</label>
+<label for="password">Password</label>
 
 <div class="password-wrapper">
 <input id="password" type="password" required
@@ -450,9 +469,7 @@ placeholder="Enter password">
 id="togglePassword"
 class="password-toggle"
 aria-label="Show password"
-title="Show password">
-👁
-</button>
+title="Show password">SHOW</button>
 </div>
 
 <button class="primary" id="loginButton" type="submit">
@@ -569,9 +586,10 @@ placeholder="Search name, reference, phone or email...">
 Administrator Review
 </h3>
 
-<label>Administrator Remarks</label>
+<label for="remarks">Administrator Remarks</label>
 
 <textarea id="remarks" rows="4"
+style="width:100%;padding:12px;border:1px solid #d8dee8;border-radius:5px;font-family:inherit"
 placeholder="Enter comments about this application..."></textarea>
 
 <div class="actions">
@@ -655,7 +673,7 @@ let currentDocuments = [];
 const $ = id => document.getElementById(id);
 
 // ======================================
-// SHOW / HIDE ADMIN PASSWORD
+// SHOW / HIDE PASSWORD
 // ======================================
 
 $("togglePassword").addEventListener("click",()=>{
@@ -666,14 +684,14 @@ $("togglePassword").addEventListener("click",()=>{
  if(password.type === "password"){
 
   password.type = "text";
-  button.textContent = "🙈";
+  button.textContent = "HIDE";
   button.setAttribute("aria-label","Hide password");
   button.title = "Hide password";
 
  }else{
 
   password.type = "password";
-  button.textContent = "👁";
+  button.textContent = "SHOW";
   button.setAttribute("aria-label","Show password");
   button.title = "Show password";
 
@@ -800,7 +818,7 @@ function showLogin(){
 
  $("password").value = "";
  $("password").type = "password";
- $("togglePassword").textContent = "👁";
+ $("togglePassword").textContent = "SHOW";
  $("togglePassword").setAttribute("aria-label","Show password");
 
  $("loginError").style.display = "none";
