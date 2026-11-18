@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,1112 +16,267 @@
 --navy:#0F2A5E;
 --navy-dark:#091B3D;
 --gold:#D4AF37;
---white:#FFFFFF;
+--white:#fff;
 --light:#F4F6F9;
 --text:#263247;
 --muted:#697589;
 --border:#E3E7ED;
 --shadow:0 8px 25px rgba(10,30,65,.09);
 }
-
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;scroll-padding-top:115px;}
-body{font-family:'Jost',sans-serif;color:var(--text);background:#fff;line-height:1.7;}
-a{text-decoration:none;color:inherit;}
-img{max-width:100%;display:block;}
-button{font-family:'Jost',sans-serif;}
-.container{width:min(1180px,92%);margin:auto;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:115px}
+body{font-family:'Jost',sans-serif;color:var(--text);background:#fff;line-height:1.7}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:'Jost',sans-serif}
+.container{width:min(1180px,92%);margin:auto}
 
 /* TOP BAR */
-.topbar{
-background:var(--navy-dark);
-color:#fff;
-padding:8px 12px;
-font-size:12px;
-text-align:center;
-letter-spacing:1.1px;
-font-weight:700;
-}
+.topbar{background:var(--navy-dark);color:#fff;padding:8px 12px;font-size:12px;text-align:center;letter-spacing:1.1px;font-weight:700}
 
-/* HEADER */
-header{
-background:var(--navy);
-box-shadow:0 5px 20px rgba(0,0,0,.16);
-position:sticky;
-top:0;
-z-index:1000;
-border-bottom:3px solid var(--gold);
-}
-
-.header-inner{
-width:min(1500px,98%);
-min-height:104px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:clamp(12px,1.5vw,24px);
-flex-wrap:nowrap;
-}
-
-.brand{
-display:flex;
-align-items:center;
-flex-shrink:0;
-white-space:nowrap;
-margin-left:18px;
-}
-
-.brand img{
-width:180px;
-height:85px;
-object-fit:contain;
-object-position:left center;
-display:block;
-}
-
-nav{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:clamp(9px,1.1vw,17px);
-flex:1;
-min-width:0;
-flex-wrap:nowrap;
-white-space:nowrap;
-}
-
-nav a,
-nav button.nav-link{
-color:#fff;
-font-family:'Jost',sans-serif;
-font-size:clamp(12px,1.02vw,14px);
-font-weight:800;
-letter-spacing:.2px;
-white-space:nowrap;
-flex-shrink:0;
-padding:12px 0;
-transition:.25s;
-}
-
-nav a:hover,
-nav button.nav-link:hover,
-nav a.active{color:var(--gold);}
-
-nav button.nav-link{
-border:0;
-background:transparent;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:5px;
-}
-
-.dropdown-arrow{
-font-size:12px;
-transition:transform .25s;
-}
-
-.programme-menu.open .dropdown-arrow,
-.admissions-menu.open .dropdown-arrow,
-.about-menu.open .dropdown-arrow{transform:rotate(180deg);}
-
-.programme-menu,
-.admissions-menu,
-.about-menu{
-position:relative;
-display:flex;
-align-items:center;
-flex-shrink:0;
-}
-
-.programme-submenu,
-.admissions-submenu,
-.about-submenu{
-display:none;
-position:absolute;
-top:100%;
-left:-15px;
-min-width:235px;
-background:#fff;
-padding:9px 0;
-border-top:4px solid var(--gold);
-border-radius:0 0 7px 7px;
-box-shadow:0 12px 28px rgba(0,0,0,.2);
-z-index:1100;
-white-space:normal;
-}
-
-.programme-menu:hover .programme-submenu,
-.programme-menu:focus-within .programme-submenu,
-.programme-menu.open .programme-submenu,
-.admissions-menu:hover .admissions-submenu,
-.admissions-menu:focus-within .admissions-submenu,
-.admissions-menu.open .admissions-submenu,
-.about-menu:hover .about-submenu,
-.about-menu:focus-within .about-submenu,
-.about-menu.open .about-submenu{display:block;}
-
-.about-submenu{min-width:255px;}
-
-.programme-submenu a,
-.admissions-submenu a,
-.about-submenu a{
-display:block;
-padding:11px 18px;
-font-size:13px;
-font-weight:700;
-color:var(--navy);
-border-bottom:1px solid #edf0f4;
-}
-
-.programme-submenu a:last-child,
-.admissions-submenu a:last-child,
-.about-submenu a:last-child{border-bottom:0;}
-
-.programme-submenu a:hover,
-.admissions-submenu a:hover,
-.about-submenu a:hover{
-background:#F1F4F8;
-color:var(--maroon);
-padding-left:23px;
-}
-
-.nav-apply{
-background:var(--maroon);
-color:#fff!important;
-padding:12px 19px!important;
-border-radius:4px;
-font-size:13px!important;
-font-weight:800;
-margin-left:clamp(2px,.4vw,7px);
-}
-
-.nav-apply:hover{
-background:var(--gold);
-color:var(--navy)!important;
-}
-
-.menu-toggle{
-display:none;
-border:1px solid rgba(255,255,255,.3);
-background:var(--maroon);
-color:#fff;
-padding:8px 13px;
-font-size:22px;
-cursor:pointer;
-border-radius:4px;
-}
+/* MAROON HEADER */
+header{background:var(--maroon);box-shadow:0 5px 20px rgba(0,0,0,.16);position:sticky;top:0;z-index:1000;border-bottom:3px solid var(--gold)}
+.header-inner{width:min(1500px,98%);min-height:104px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:clamp(12px,1.5vw,24px);flex-wrap:nowrap}
+.brand{display:flex;align-items:center;flex-shrink:0;white-space:nowrap;margin-left:18px}
+.brand img{width:180px;height:85px;object-fit:contain;object-position:left center}
+nav{display:flex;align-items:center;justify-content:space-between;gap:clamp(9px,1.1vw,17px);flex:1;min-width:0;flex-wrap:nowrap;white-space:nowrap}
+nav a,nav button.nav-link{color:#fff;font-size:clamp(12px,1.02vw,14px);font-weight:800;letter-spacing:.2px;white-space:nowrap;flex-shrink:0;padding:12px 0;transition:.25s}
+nav a:hover,nav button.nav-link:hover,nav a.active{color:var(--gold)}
+nav button.nav-link{border:0;background:transparent;cursor:pointer;display:flex;align-items:center;gap:5px}
+.dropdown-arrow{font-size:12px;transition:transform .25s}
+.programme-menu.open .dropdown-arrow,.admissions-menu.open .dropdown-arrow,.about-menu.open .dropdown-arrow{transform:rotate(180deg)}
+.programme-menu,.admissions-menu,.about-menu{position:relative;display:flex;align-items:center;flex-shrink:0}
+.programme-submenu,.admissions-submenu,.about-submenu{display:none;position:absolute;top:100%;left:-15px;min-width:235px;background:#fff;padding:9px 0;border-top:4px solid var(--gold);border-radius:0 0 7px 7px;box-shadow:0 12px 28px rgba(0,0,0,.2);z-index:1100;white-space:normal}
+.programme-menu:hover .programme-submenu,.programme-menu:focus-within .programme-submenu,.programme-menu.open .programme-submenu,.admissions-menu:hover .admissions-submenu,.admissions-menu:focus-within .admissions-submenu,.admissions-menu.open .admissions-submenu,.about-menu:hover .about-submenu,.about-menu:focus-within .about-submenu,.about-menu.open .about-submenu{display:block}
+.about-submenu{min-width:255px}
+.programme-submenu a,.admissions-submenu a,.about-submenu a{display:block;padding:11px 18px;font-size:13px;font-weight:700;color:var(--navy);border-bottom:1px solid #edf0f4}
+.programme-submenu a:last-child,.admissions-submenu a:last-child,.about-submenu a:last-child{border-bottom:0}
+.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{background:#F1F4F8;color:var(--maroon);padding-left:23px}
+.nav-apply{background:var(--navy);color:#fff!important;padding:12px 19px!important;border-radius:4px;font-size:13px!important;font-weight:800;margin-left:clamp(2px,.4vw,7px)}
+.nav-apply:hover{background:var(--gold);color:var(--navy)!important}
+.menu-toggle{display:none;border:1px solid rgba(255,255,255,.3);background:var(--navy);color:#fff;padding:8px 13px;font-size:22px;cursor:pointer;border-radius:4px}
 
 /* HERO */
-.hero{
-background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);
-padding:42px 0 0;
-color:#fff;
-text-align:center;
-}
-
-.hero .container{padding-bottom:26px;}
-
-.hero h2{
-font-size:clamp(26px,4vw,43px);
-font-weight:800;
-line-height:1.2;
-margin-bottom:9px;
-letter-spacing:.2px;
-}
-
-.hero .motto{
-color:var(--gold);
-font-weight:800;
-letter-spacing:4px;
-font-size:14px;
-margin-bottom:0;
-}
-
-.slideshow{
-width:100%;
-height:clamp(300px,45vw,600px);
-margin:0;
-position:relative;
-overflow:hidden;
-border:none;
-background:#eee;
-}
-
-.slide{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-max-width:none;
-object-fit:cover;
-object-position:center;
-display:block;
-opacity:0;
-transform:scale(1);
-transition:opacity 1s ease;
-filter:brightness(1.06) contrast(1.05) saturate(1.05);
-backface-visibility:hidden;
-}
-
-.slide.active{opacity:1;}
+.hero{background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);padding:42px 0 0;color:#fff;text-align:center}
+.hero .container{padding-bottom:26px}
+.hero h2{font-size:clamp(26px,4vw,43px);font-weight:800;line-height:1.2;margin-bottom:9px}
+.hero .motto{color:var(--gold);font-weight:800;letter-spacing:4px;font-size:14px}
+.slideshow{width:100%;height:clamp(300px,45vw,600px);position:relative;overflow:hidden;background:#eee}
+.slide{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;opacity:0;transition:opacity 1s ease;filter:brightness(1.06) contrast(1.05) saturate(1.05)}
+.slide.active{opacity:1}
 
 /* GENERAL SECTIONS */
-section{padding:76px 0;}
-
-.section-heading{
-text-align:center;
-margin-bottom:40px;
-}
-
-.section-heading h2{
-color:var(--navy);
-font-size:clamp(26px,3vw,35px);
-font-weight:800;
-line-height:1.25;
-margin-bottom:9px;
-}
-
-.section-heading p{
-max-width:680px;
-margin:auto;
-color:var(--muted);
-font-size:15px;
-}
-
-.gold-line{
-width:65px;
-height:4px;
-background:var(--gold);
-margin:14px auto;
-border-radius:5px;
-}
+section{padding:76px 0}
+.section-heading{text-align:center;margin-bottom:40px}
+.section-heading h2{color:var(--navy);font-size:clamp(26px,3vw,35px);font-weight:800;line-height:1.25;margin-bottom:9px}
+.section-heading p{max-width:680px;margin:auto;color:var(--muted);font-size:15px}
+.gold-line{width:65px;height:4px;background:var(--gold);margin:14px auto;border-radius:5px}
 
 /* QUICK LINKS */
-.quick-links{
-background:#F1F4F8;
-padding:27px 0;
-border-bottom:1px solid var(--border);
-}
-
-.quick-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:16px;
-}
-
-.quick-card{
-background:#fff;
-padding:19px 12px;
-text-align:center;
-border:1px solid var(--border);
-border-bottom:4px solid var(--gold);
-border-radius:5px;
-color:var(--navy);
-font-weight:800;
-font-size:15px;
-box-shadow:0 3px 12px rgba(0,0,0,.035);
-transition:.25s;
-}
-
-.quick-card:hover{
-transform:translateY(-4px);
-color:var(--maroon);
-box-shadow:var(--shadow);
-}
+.quick-links{background:#F1F4F8;padding:27px 0;border-bottom:1px solid var(--border)}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.quick-card{background:#fff;padding:19px 12px;text-align:center;border:1px solid var(--border);border-bottom:4px solid var(--gold);border-radius:5px;color:var(--navy);font-weight:800;font-size:15px;box-shadow:0 3px 12px rgba(0,0,0,.035);transition:.25s}
+.quick-card:hover{transform:translateY(-4px);color:var(--maroon);box-shadow:var(--shadow)}
 
 /* ABOUT */
-.about-grid{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-align-items:center;
-gap:45px;
-}
-
-.about-text h3{
-color:var(--maroon);
-font-size:27px;
-margin-bottom:14px;
-font-weight:800;
-}
-
-.about-text p{
-margin-bottom:15px;
-font-size:15px;
-color:#46536A;
-}
-
-.about-photo{
-background:#fff;
-padding:10px;
-border:1px solid var(--border);
-border-radius:7px;
-box-shadow:var(--shadow);
-}
-
-.about-photo img{
-width:100%;
-height:340px;
-object-fit:cover;
-object-position:center;
-border-radius:4px;
-}
-
-.primary-btn{
-display:inline-block;
-background:var(--maroon);
-color:#fff;
-padding:12px 25px;
-border-radius:4px;
-font-weight:800;
-margin-top:12px;
-transition:.25s;
-}
-
-.primary-btn:hover{
-background:var(--navy);
-transform:translateY(-2px);
-}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px}
+.about-text h3{color:var(--maroon);font-size:27px;margin-bottom:14px;font-weight:800}
+.about-text p{margin-bottom:15px;font-size:15px;color:#46536A}
+.about-photo{background:#fff;padding:10px;border:1px solid var(--border);border-radius:7px;box-shadow:var(--shadow)}
+.about-photo img{width:100%;height:340px;object-fit:cover;border-radius:4px}
+.primary-btn{display:inline-block;background:var(--maroon);color:#fff;padding:12px 25px;border-radius:4px;font-weight:800;margin-top:12px;transition:.25s}
+.primary-btn:hover{background:var(--navy);transform:translateY(-2px)}
 
 /* ACADEMIC PROGRAMMES */
-.programmes{
-background:var(--light);
-border-top:1px solid var(--border);
-border-bottom:1px solid var(--border);
-padding:55px 0;
-}
+.programmes{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:55px 0}
+.programmes .section-heading{margin-bottom:27px}
+.programmes .section-heading h2{font-size:clamp(25px,3vw,32px)}
+.programmes .section-heading p{font-size:14px}
+.programme-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;align-items:start}
+.programme-column{background:#fff;border:1px solid #E0E5ED;border-radius:6px;overflow:hidden;box-shadow:0 4px 15px rgba(10,30,65,.045);min-width:0}
+.programme-column-header{background:var(--navy);color:#fff;padding:17px 15px;border-bottom:3px solid var(--gold)}
+.programme-column-header-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.programme-column-header h3{font-size:19px;font-weight:800;line-height:1.3}
+.programme-column-header p{font-size:11px;color:#DCE5F3;margin-top:4px}
+.programme-count{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#fff;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800;white-space:nowrap}
+.programme-list{padding:10px;display:flex;flex-direction:column;gap:9px}
+.programme-card{background:#fff;padding:13px;border-radius:5px;border:1px solid #E6EAF0;border-left:3px solid var(--gold);box-shadow:0 2px 8px rgba(10,30,65,.035);transition:.22s;display:flex;flex-direction:column}
+.programme-card:hover{border-left-color:var(--maroon);background:#FCFCFD;transform:translateY(-2px);box-shadow:0 5px 13px rgba(10,30,65,.08)}
+.programme-card h3{color:var(--navy);font-size:15px;line-height:1.4;margin-bottom:5px;font-weight:800}
+.programme-card p{font-size:12px;line-height:1.55;color:var(--muted);margin-bottom:7px}
+.programme-duration{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px;margin-bottom:5px}
+.programme-action{display:inline-block;text-align:center;background:var(--navy);color:#fff;padding:7px 10px;border-radius:3px;font-size:11px;font-weight:800;margin-top:5px;transition:.2s}
+.programme-action:hover{background:var(--gold);color:var(--navy)}
+.programme-closed{display:inline-block;background:#F0F2F5;color:#687386;padding:6px 9px;border-radius:3px;font-size:10px;font-weight:800;margin-top:5px;text-align:center}
+.programme-loading,.programme-error,.programme-empty{background:#fff;padding:20px 12px;border-radius:5px;text-align:center;color:var(--navy);font-size:12px;border:1px solid var(--border)}
+.programme-error{border-left:4px solid var(--maroon);color:var(--maroon)}
+.programme-loading{border-left:4px solid var(--gold)}
+.programme-summary{text-align:center;color:var(--muted);font-size:12px;margin-top:17px}
 
-.programmes .section-heading{margin-bottom:27px;}
-.programmes .section-heading h2{font-size:clamp(25px,3vw,32px);}
-.programmes .section-heading p{font-size:14px;}
-
-.programme-columns{
-display:grid;
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:17px;
-align-items:start;
-}
-
-.programme-column{
-background:#fff;
-border:1px solid #E0E5ED;
-border-radius:6px;
-overflow:hidden;
-box-shadow:0 4px 15px rgba(10,30,65,.045);
-min-width:0;
-}
-
-.programme-column-header{
-background:var(--navy);
-color:#fff;
-padding:17px 15px;
-border-bottom:3px solid var(--gold);
-}
-
-.programme-column-header-top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:8px;
-}
-
-.programme-column-header h3{
-font-size:19px;
-font-weight:800;
-line-height:1.3;
-}
-
-.programme-column-header p{
-font-size:11px;
-color:#DCE5F3;
-margin-top:4px;
-}
-
-.programme-count{
-background:rgba(255,255,255,.14);
-border:1px solid rgba(255,255,255,.25);
-color:#fff;
-padding:5px 9px;
-border-radius:20px;
-font-size:11px;
-font-weight:800;
-white-space:nowrap;
-}
-
-.programme-list{
-padding:10px;
-display:flex;
-flex-direction:column;
-gap:9px;
-}
-
-.programme-card{
-background:#fff;
-padding:13px;
-border-radius:5px;
-border:1px solid #E6EAF0;
-border-left:3px solid var(--gold);
-box-shadow:0 2px 8px rgba(10,30,65,.035);
-transition:.22s;
-display:flex;
-flex-direction:column;
-}
-
-.programme-card:hover{
-border-left-color:var(--maroon);
-background:#FCFCFD;
-transform:translateY(-2px);
-box-shadow:0 5px 13px rgba(10,30,65,.08);
-}
-
-.programme-card h3{
-color:var(--navy);
-font-size:15px;
-line-height:1.4;
-margin-bottom:5px;
-font-weight:800;
-}
-
-.programme-card p{
-font-size:12px;
-line-height:1.55;
-color:var(--muted);
-margin-bottom:7px;
-}
-
-.programme-duration{
-font-size:11px;
-color:var(--muted);
-font-weight:700;
-margin-top:2px;
-margin-bottom:5px;
-}
-
-.programme-action{
-display:inline-block;
-text-align:center;
-background:var(--navy);
-color:#fff;
-padding:7px 10px;
-border-radius:3px;
-font-size:11px;
-font-weight:800;
-margin-top:5px;
-transition:.2s;
-}
-
-.programme-action:hover{
-background:var(--gold);
-color:var(--navy);
-}
-
-.programme-closed{
-display:inline-block;
-background:#F0F2F5;
-color:#687386;
-padding:6px 9px;
-border-radius:3px;
-font-size:10px;
-font-weight:800;
-margin-top:5px;
-text-align:center;
-}
-
-.programme-loading,
-.programme-error,
-.programme-empty{
-background:#fff;
-padding:20px 12px;
-border-radius:5px;
-text-align:center;
-color:var(--navy);
-font-size:12px;
-border:1px solid var(--border);
-}
-
-.programme-error{
-border-left:4px solid var(--maroon);
-color:var(--maroon);
-}
-
-.programme-loading{border-left:4px solid var(--gold);}
-
-.programme-summary{
-text-align:center;
-color:var(--muted);
-font-size:12px;
-margin-top:17px;
-}
-
-/* ADMISSIONS BANNER */
-.admissions{
-background:linear-gradient(110deg,#0B2452,#153A76);
-color:#fff;
-text-align:center;
-padding:62px 20px;
-border-top:4px solid var(--gold);
-border-bottom:4px solid var(--gold);
-}
-
-.admissions h2{
-font-size:clamp(27px,3vw,35px);
-margin-bottom:10px;
-font-weight:800;
-}
-
-.admissions p{
-max-width:680px;
-margin:auto;
-color:#E2E9F4;
-}
-
-.admissions .primary-btn{
-background:var(--gold);
-color:var(--navy);
-}
-
-.admissions .primary-btn:hover{
-background:#fff;
-color:var(--maroon);
-}
+/* ADMISSIONS */
+.admissions{background:linear-gradient(110deg,#0B2452,#153A76);color:#fff;text-align:center;padding:62px 20px;border-top:4px solid var(--gold);border-bottom:4px solid var(--gold)}
+.admissions h2{font-size:clamp(27px,3vw,35px);margin-bottom:10px;font-weight:800}
+.admissions p{max-width:680px;margin:auto;color:#E2E9F4}
+.admissions .primary-btn{background:var(--gold);color:var(--navy)}
+.admissions .primary-btn:hover{background:#fff;color:var(--maroon)}
 
 /* APPLICATION */
-.application-section{background:#fff;}
+.application-section{background:#fff}
+.application-wrap{width:min(850px,96%);margin:auto;padding:12px;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow);border-bottom:4px solid var(--gold)}
+.application-wrap a{display:block}
+.application-wrap img{width:100%;height:auto;object-fit:contain;border-radius:4px;transition:opacity .25s}
+.application-wrap a:hover img{opacity:.94}
+.application-note{text-align:center;color:var(--navy);font-size:14px;font-weight:700;margin-top:17px}
 
-.application-wrap{
-width:min(850px,96%);
-margin:auto;
-padding:12px;
-background:#fff;
-border:1px solid var(--border);
-border-radius:8px;
-box-shadow:var(--shadow);
-border-bottom:4px solid var(--gold);
-}
-
-.application-wrap a{display:block;}
-
-.application-wrap img{
-display:block;
-width:100%;
-height:auto;
-max-height:none;
-object-fit:contain;
-border-radius:4px;
-transition:opacity .25s ease;
-}
-
-.application-wrap a:hover img{opacity:.94;}
-
-.application-note{
-text-align:center;
-color:var(--navy);
-font-size:14px;
-font-weight:700;
-margin-top:17px;
-}
-
-/* CAMPUS GALLERY */
-.gallery-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:24px;
-}
-
-.gallery-card{
-background:#fff;
-padding:11px;
-border:1px solid var(--border);
-border-radius:7px;
-box-shadow:var(--shadow);
-}
-
-.gallery-card img{
-width:100%;
-height:320px;
-object-fit:cover;
-object-position:center;
-border-radius:4px;
-}
-
-.gallery-card h3{
-text-align:center;
-color:var(--navy);
-padding:14px 5px 5px;
-font-size:18px;
-font-weight:800;
-}
+/* CAMPUS */
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gallery-card{background:#fff;padding:11px;border:1px solid var(--border);border-radius:7px;box-shadow:var(--shadow)}
+.gallery-card img{width:100%;height:320px;object-fit:cover;border-radius:4px}
+.gallery-card h3{text-align:center;color:var(--navy);padding:14px 5px 5px;font-size:18px;font-weight:800}
 
 /* POSTER */
-.poster-section{background:var(--light);}
-
-.poster-wrap{
-width:min(650px,95%);
-margin:auto;
-background:#fff;
-padding:13px;
-border:1px solid var(--border);
-border-radius:7px;
-box-shadow:var(--shadow);
-}
-
-.poster-wrap img{
-width:100%;
-max-height:680px;
-object-fit:contain;
-}
+.poster-section{background:var(--light)}
+.poster-wrap{width:min(650px,95%);margin:auto;background:#fff;padding:13px;border:1px solid var(--border);border-radius:7px;box-shadow:var(--shadow)}
+.poster-wrap img{width:100%;max-height:680px;object-fit:contain}
 
 /* SHORT COURSES */
-.short-course-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-}
-
-.short-course{
-padding:18px;
-background:#F4F6F9;
-border:1px solid var(--border);
-border-left:4px solid var(--gold);
-color:var(--navy);
-font-weight:700;
-border-radius:4px;
-}
-
-.short-course .course-description{
-display:block;
-font-size:12px;
-font-weight:400;
-color:var(--muted);
-margin-top:6px;
-}
-
-.short-course .course-duration{
-display:block;
-font-size:11px;
-color:var(--muted);
-margin-top:8px;
-font-weight:700;
-}
+.short-course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.short-course{padding:18px;background:#F4F6F9;border:1px solid var(--border);border-left:4px solid var(--gold);color:var(--navy);font-weight:700;border-radius:4px}
+.short-course .course-description{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:6px}
+.short-course .course-duration{display:block;font-size:11px;color:var(--muted);margin-top:8px;font-weight:700}
 
 /* CONTACT */
-.contact-section{
-background:var(--light);
-border-top:1px solid var(--border);
-}
-
-.contact-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
-}
-
-.contact-card{
-background:#fff;
-padding:27px 20px;
-border:1px solid var(--border);
-border-bottom:4px solid var(--gold);
-border-radius:6px;
-text-align:center;
-box-shadow:0 3px 12px rgba(0,0,0,.035);
-}
-
-.contact-card h3{
-color:var(--maroon);
-margin-bottom:9px;
-font-size:19px;
-font-weight:800;
-}
-
-.contact-card p{
-color:var(--muted);
-font-size:14px;
-}
+.contact-section{background:var(--light);border-top:1px solid var(--border)}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.contact-card{background:#fff;padding:27px 20px;border:1px solid var(--border);border-bottom:4px solid var(--gold);border-radius:6px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.035)}
+.contact-card h3{color:var(--maroon);margin-bottom:9px;font-size:19px;font-weight:800}
+.contact-card p{color:var(--muted);font-size:14px}
 
 /* FOOTER */
-.site-footer{
-background:#091B3D;
-color:#fff;
-padding:58px 0 0;
-border-top:4px solid var(--gold);
-text-align:left;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:1.1fr .9fr 1.35fr;
-gap:48px;
-padding-bottom:40px;
-}
-
-.footer-brand h3{
-font-size:19px;
-line-height:1.4;
-font-weight:800;
-color:#fff;
-margin-bottom:8px;
-}
-
-.footer-brand .footer-motto{
-color:var(--gold);
-font-size:12px;
-font-weight:800;
-letter-spacing:2px;
-margin-bottom:15px;
-}
-
-.footer-brand p{
-color:#CBD3E0;
-font-size:13px;
-line-height:1.9;
-max-width:310px;
-}
-
-.footer-column h3{
-color:#fff;
-font-size:16px;
-font-weight:800;
-margin-bottom:19px;
-padding-bottom:10px;
-border-bottom:2px solid var(--gold);
-display:inline-block;
-}
-
-.footer-column ul{list-style:none;}
-.footer-column li{margin-bottom:11px;font-size:13px;color:#CBD3E0;}
-.footer-column a{color:#CBD3E0;transition:.25s;}
-.footer-column a:hover{color:var(--gold);padding-left:4px;}
-.footer-column p{color:#CBD3E0;font-size:13px;line-height:1.9;margin-bottom:13px;}
-
-.footer-apply{
-display:inline-block;
-background:var(--gold);
-color:var(--navy)!important;
-padding:10px 18px;
-border-radius:4px;
-font-weight:800;
-margin-top:8px;
-}
-
-.footer-apply:hover{
-background:#fff;
-color:var(--maroon)!important;
-padding-left:18px!important;
-}
-
-.footer-bottom{
-border-top:1px solid rgba(255,255,255,.15);
-padding:18px 0;
-text-align:center;
-}
-
-.footer-bottom p{color:#CBD3E0;font-size:12px;}
-.footer-bottom strong{color:var(--gold);}
-.site-footer,.site-footer *{font-weight:700!important;}
+.site-footer{background:#091B3D;color:#fff;padding:58px 0 0;border-top:4px solid var(--gold);text-align:left}
+.footer-grid{display:grid;grid-template-columns:1.1fr .9fr 1.35fr;gap:48px;padding-bottom:40px}
+.footer-brand h3{font-size:19px;line-height:1.4;font-weight:800;color:#fff;margin-bottom:8px}
+.footer-brand .footer-motto{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:15px}
+.footer-brand p{color:#CBD3E0;font-size:13px;line-height:1.9;max-width:310px}
+.footer-column h3{color:#fff;font-size:16px;font-weight:800;margin-bottom:19px;padding-bottom:10px;border-bottom:2px solid var(--gold);display:inline-block}
+.footer-column ul{list-style:none}
+.footer-column li{margin-bottom:11px;font-size:13px;color:#CBD3E0}
+.footer-column a{color:#CBD3E0;transition:.25s}
+.footer-column a:hover{color:var(--gold);padding-left:4px}
+.footer-column p{color:#CBD3E0;font-size:13px;line-height:1.9;margin-bottom:13px}
+.footer-apply{display:inline-block;background:var(--gold);color:var(--navy)!important;padding:10px 18px;border-radius:4px;font-weight:800;margin-top:8px}
+.footer-apply:hover{background:#fff;color:var(--maroon)!important;padding-left:18px!important}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding:18px 0;text-align:center}
+.footer-bottom p{color:#CBD3E0;font-size:12px}
+.footer-bottom strong{color:var(--gold)}
+.site-footer,.site-footer *{font-weight:700!important}
 
 /* TABLET */
 @media(min-width:851px) and (max-width:1100px){
-.header-inner{
-width:99%;
-gap:9px;
-min-height:96px;
+.header-inner{width:99%;gap:9px;min-height:96px}
+.brand img{width:145px;height:72px}
+nav{gap:7px}
+nav a,nav button.nav-link{font-size:11px;letter-spacing:0}
+.nav-apply{padding:9px 10px!important;font-size:11px!important;margin-left:0}
+.programme-submenu,.admissions-submenu,.about-submenu{min-width:210px}
+.programme-columns{gap:11px}
+.programme-column-header{padding:14px 10px}
+.programme-column-header h3{font-size:16px}
+.programme-card{padding:11px 9px}
+.programme-card h3{font-size:14px}
 }
 
-.brand img{
-width:145px;
-height:72px;
-}
-
-nav{gap:7px;}
-
-nav a,
-nav button.nav-link{
-font-size:11px;
-letter-spacing:0;
-}
-
-.nav-apply{
-padding:9px 10px!important;
-font-size:11px!important;
-margin-left:0;
-}
-
-.programme-submenu,
-.admissions-submenu,
-.about-submenu{min-width:210px;}
-
-.programme-columns{gap:11px;}
-.programme-column-header{padding:14px 10px;}
-.programme-column-header h3{font-size:16px;}
-.programme-card{padding:11px 9px;}
-.programme-card h3{font-size:14px;}
-}
-
-/* MOBILE NAVIGATION */
+/* MOBILE */
 @media(max-width:850px){
-.header-inner{
-width:94%;
-min-height:88px;
-gap:12px;
-}
-
-.brand img{
-width:145px;
-height:72px;
-}
-
-.menu-toggle{
-display:block;
-flex-shrink:0;
-}
-
-nav{
-display:none;
-position:absolute;
-top:100%;
-left:0;
-right:0;
-width:100%;
-background:var(--navy);
-padding:15px 5%;
-flex-direction:column;
-align-items:stretch;
-gap:0;
-box-shadow:0 8px 18px rgba(0,0,0,.2);
-max-height:calc(100vh - 88px);
-overflow-y:auto;
-}
-
-nav.open{display:flex;}
-
-nav>a,
-nav button.nav-link{
-color:#fff;
-font-size:14px;
-padding:12px 8px;
-border-bottom:1px solid rgba(255,255,255,.16);
-width:100%;
-text-align:left;
-}
-
-nav a:hover,
-nav button.nav-link:hover{color:var(--gold);}
-
-.programme-menu,
-.admissions-menu,
-.about-menu{
-display:block;
-width:100%;
-}
-
-nav button.nav-link{justify-content:space-between;}
-
-.programme-submenu,
-.admissions-submenu,
-.about-submenu{
-position:static;
-min-width:0;
-width:100%;
-box-shadow:none;
-border-top:2px solid var(--gold);
-border-radius:0;
-padding:4px 0;
-background:#16366F;
-}
-
-.programme-submenu a,
-.admissions-submenu a,
-.about-submenu a{
-color:#fff;
-padding:11px 20px;
-font-size:13px;
-border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-.programme-submenu a:hover,
-.admissions-submenu a:hover,
-.about-submenu a:hover{
-background:#1D437E;
-color:var(--gold);
-padding-left:25px;
-}
-
-.nav-apply{
-padding:11px 14px!important;
-margin-top:10px;
-text-align:center;
-border-bottom:0;
-}
-
-.about-grid{grid-template-columns:1fr;}
-
-.programme-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;}
-.programme-column-header{padding:12px 9px;}
-.programme-column-header h3{font-size:15px;}
-.programme-column-header p{font-size:10px;}
-.programme-count{font-size:10px;padding:4px 6px;}
-.programme-list{padding:7px;gap:7px;}
-.programme-card{padding:10px 8px;}
-.programme-card h3{font-size:13px;}
-.programme-card p{font-size:11px;}
-
-.quick-grid{grid-template-columns:repeat(2,1fr);}
-.footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
-.short-course-grid{grid-template-columns:repeat(2,1fr);}
+.header-inner{width:94%;min-height:88px;gap:12px}
+.brand img{width:145px;height:72px}
+.menu-toggle{display:block;flex-shrink:0}
+nav{display:none;position:absolute;top:100%;left:0;right:0;width:100%;background:var(--maroon);padding:15px 5%;flex-direction:column;align-items:stretch;gap:0;box-shadow:0 8px 18px rgba(0,0,0,.2);max-height:calc(100vh - 88px);overflow-y:auto}
+nav.open{display:flex}
+nav>a,nav button.nav-link{color:#fff;font-size:14px;padding:12px 8px;border-bottom:1px solid rgba(255,255,255,.16);width:100%;text-align:left}
+nav a:hover,nav button.nav-link:hover{color:var(--gold)}
+.programme-menu,.admissions-menu,.about-menu{display:block;width:100%}
+nav button.nav-link{justify-content:space-between}
+.programme-submenu,.admissions-submenu,.about-submenu{position:static;min-width:0;width:100%;box-shadow:none;border-top:2px solid var(--gold);border-radius:0;padding:4px 0;background:#64101B}
+.programme-submenu a,.admissions-submenu a,.about-submenu a{color:#fff;padding:11px 20px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.1)}
+.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{background:#861C2B;color:var(--gold);padding-left:25px}
+.nav-apply{padding:11px 14px!important;margin-top:10px;text-align:center;border-bottom:0}
+.about-grid{grid-template-columns:1fr}
+.programme-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.programme-column-header{padding:12px 9px}
+.programme-column-header h3{font-size:15px}
+.programme-column-header p{font-size:10px}
+.programme-count{font-size:10px;padding:4px 6px}
+.programme-list{padding:7px;gap:7px}
+.programme-card{padding:10px 8px}
+.programme-card h3{font-size:13px}
+.programme-card p{font-size:11px}
+.quick-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:1fr 1fr;gap:30px}
+.short-course-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 /* SMALL MOBILE */
 @media(max-width:560px){
-.topbar{font-size:11px;letter-spacing:.5px;}
-.header-inner{min-height:78px;}
-
-.brand img{
-width:125px;
-height:65px;
+.topbar{font-size:11px;letter-spacing:.5px}
+.header-inner{min-height:78px}
+.brand img{width:125px;height:65px}
+nav{max-height:calc(100vh - 78px)}
+.hero{padding:28px 0 0}
+.hero .container{padding-bottom:21px}
+.hero .motto{font-size:12px;letter-spacing:3px}
+.slideshow{width:100%;height:245px}
+section{padding:49px 0}
+.section-heading{margin-bottom:30px}
+.programmes{padding:40px 0}
+.programmes .section-heading{margin-bottom:22px}
+.programmes .section-heading h2{font-size:25px}
+.programmes .section-heading p{font-size:12px}
+.programme-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.programme-column{border-radius:4px}
+.programme-column-header{padding:10px 5px;min-height:83px}
+.programme-column-header-top{flex-direction:column;align-items:flex-start;gap:4px}
+.programme-column-header h3{font-size:12px;line-height:1.25}
+.programme-column-header p{font-size:9px;line-height:1.3}
+.programme-count{font-size:9px;padding:3px 6px}
+.programme-list{padding:5px;gap:6px}
+.programme-card{padding:8px 6px;border-left-width:2px}
+.programme-card h3{font-size:11px;line-height:1.35}
+.programme-card p{font-size:10px;line-height:1.4}
+.programme-duration{font-size:9px}
+.programme-action{font-size:9px;padding:6px 4px}
+.programme-closed{font-size:8px;padding:5px 3px}
+.programme-summary{font-size:10px;line-height:1.5}
+.gallery-grid{grid-template-columns:1fr}
+.gallery-card img{height:240px}
+.short-course-grid{grid-template-columns:1fr 1fr}
+.contact-grid{grid-template-columns:1fr}
+.admissions{padding:45px 18px}
+.admissions h2{font-size:25px}
+.application-wrap{width:96%;padding:7px}
+.application-note{font-size:12px}
+.site-footer{padding-top:42px}
+.footer-grid{grid-template-columns:1fr;gap:29px}
 }
-
-nav{max-height:calc(100vh - 78px);}
-
-.hero{padding:28px 0 0;}
-.hero .container{padding-bottom:21px;}
-.hero .motto{font-size:12px;letter-spacing:3px;}
-
-.slideshow{
-width:100%;
-height:245px;
-border:none;
-}
-
-section{padding:49px 0;}
-
-.section-heading{margin-bottom:30px;}
-
-.programmes{padding:40px 0;}
-
-.programmes .section-heading{margin-bottom:22px;}
-
-.programmes .section-heading h2{font-size:25px;}
-
-.programmes .section-heading p{font-size:12px;}
-
-.programme-columns{
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:6px;
-}
-
-.programme-column{border-radius:4px;}
-
-.programme-column-header{
-padding:10px 5px;
-min-height:83px;
-}
-
-.programme-column-header-top{
-flex-direction:column;
-align-items:flex-start;
-gap:4px;
-}
-
-.programme-column-header h3{
-font-size:12px;
-line-height:1.25;
-}
-
-.programme-column-header p{
-font-size:9px;
-line-height:1.3;
-}
-
-.programme-count{
-font-size:9px;
-padding:3px 6px;
-}
-
-.programme-list{
-padding:5px;
-gap:6px;
-}
-
-.programme-card{
-padding:8px 6px;
-border-left-width:2px;
-}
-
-.programme-card h3{
-font-size:11px;
-line-height:1.35;
-}
-
-.programme-card p{
-font-size:10px;
-line-height:1.4;
-}
-
-.programme-duration{font-size:9px;}
-
-.programme-action{
-font-size:9px;
-padding:6px 4px;
-}
-
-.programme-closed{
-font-size:8px;
-padding:5px 3px;
-}
-
-.programme-summary{
-font-size:10px;
-line-height:1.5;
-}
-
-.gallery-grid{grid-template-columns:1fr;}
-.gallery-card img{height:240px;}
-
-.short-course-grid{grid-template-columns:1fr 1fr;}
-.contact-grid{grid-template-columns:1fr;}
-
-.admissions{padding:45px 18px;}
-.admissions h2{font-size:25px;}
-
-.application-wrap{
-width:96%;
-padding:7px;
-}
-
-.application-note{font-size:12px;}
-
-.site-footer{padding-top:42px;}
-
-.footer-grid{
-grid-template-columns:1fr;
-gap:29px;
-}
-}
-
-/* VERY SMALL PHONES */
 @media(max-width:360px){
-.programme-columns{gap:4px;}
-.programme-column-header{padding:8px 4px;}
-.programme-column-header h3{font-size:10px;}
-.programme-count{font-size:8px;}
-.programme-list{padding:4px;}
-.programme-card{padding:7px 5px;}
-.programme-card h3{font-size:10px;}
-.programme-card p{font-size:9px;}
+.programme-columns{gap:4px}
+.programme-column-header{padding:8px 4px}
+.programme-column-header h3{font-size:10px}
+.programme-count{font-size:8px}
+.programme-list{padding:4px}
+.programme-card{padding:7px 5px}
+.programme-card h3{font-size:10px}
+.programme-card p{font-size:9px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
-TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
-</div>
+<div class="topbar">TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS</div>
 
 <header>
 <div class="container header-inner">
-
 <a href="#home" class="brand">
 <img src="BYE.png" alt="Tahidi International Training Institute Logo">
 </a>
@@ -1130,13 +284,10 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 
 <nav id="mainNav">
-
 <a href="#home">Home</a>
 
 <div class="about-menu" id="aboutMenu">
-<button type="button" class="nav-link" id="aboutToggle" aria-expanded="false" aria-controls="aboutSubmenu">
-ABOUT US <span class="dropdown-arrow">▼</span>
-</button>
+<button type="button" class="nav-link" id="aboutToggle" aria-expanded="false" aria-controls="aboutSubmenu">ABOUT US <span class="dropdown-arrow">▼</span></button>
 <div class="about-submenu" id="aboutSubmenu">
 <a href="about.html#who-we-are">Who We Are</a>
 <a href="about.html#our-vision">Our Vision</a>
@@ -1149,9 +300,7 @@ ABOUT US <span class="dropdown-arrow">▼</span>
 </div>
 
 <div class="programme-menu" id="programmeMenu">
-<button type="button" class="nav-link" id="programmeToggle" aria-expanded="false" aria-controls="programmeSubmenu">
-PROGRAMMES <span class="dropdown-arrow">▼</span>
-</button>
+<button type="button" class="nav-link" id="programmeToggle" aria-expanded="false" aria-controls="programmeSubmenu">PROGRAMMES <span class="dropdown-arrow">▼</span></button>
 <div class="programme-submenu" id="programmeSubmenu">
 <a href="#diploma">Diploma Programmes</a>
 <a href="#certificate">Certificate Programmes</a>
@@ -1160,9 +309,7 @@ PROGRAMMES <span class="dropdown-arrow">▼</span>
 </div>
 
 <div class="admissions-menu" id="admissionsMenu">
-<button type="button" class="nav-link" id="admissionsToggle" aria-expanded="false" aria-controls="admissionsSubmenu">
-ADMISSIONS <span class="dropdown-arrow">▼</span>
-</button>
+<button type="button" class="nav-link" id="admissionsToggle" aria-expanded="false" aria-controls="admissionsSubmenu">ADMISSIONS <span class="dropdown-arrow">▼</span></button>
 <div class="admissions-submenu" id="admissionsSubmenu">
 <a href="apply.html#admissions">Admissions at TITI</a>
 <a href="apply.html#requirements">Entry Requirements</a>
@@ -1177,7 +324,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 <a href="#gallery">Campus</a>
 <a href="#contact">Contact</a>
 <a href="apply.html#online-application" class="nav-apply">Apply Now</a>
-
 </nav>
 </div>
 </header>
@@ -1229,7 +375,6 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 
 <section class="programmes" id="programmes">
 <div class="container">
-
 <div class="section-heading">
 <h2>Our Academic Programmes</h2>
 <div class="gold-line"></div>
@@ -1278,11 +423,7 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 
 </div>
-
-<p class="programme-summary" id="programmeSummary">
-Connecting to the TITI admissions database...
-</p>
-
+<p class="programme-summary" id="programmeSummary">Connecting to the TITI admissions database...</p>
 </div>
 </section>
 
@@ -1416,7 +557,6 @@ Connecting to the TITI admissions database...
 </div>
 
 </div>
-
 <div class="footer-bottom">
 <p>© <span id="footer-year"></span> <strong>Tahidi International Training Institute.</strong> All Rights Reserved.</p>
 </div>
@@ -1424,8 +564,7 @@ Connecting to the TITI admissions database...
 </footer>
 
 <script>
-
-/* SUPABASE CONFIGURATION - PRESERVED */
+/* TITI SUPABASE CONFIGURATION */
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
 const TITI_SUPABASE_KEY = 'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
 const TITI_PROGRAMMES_TABLE = 'programmes';
@@ -1444,18 +583,15 @@ function titiEscape(value){
     });
 }
 
-/* DIPLOMA AND CERTIFICATE CARDS */
+/* PROGRAMME CARDS */
 function titiProgrammeCard(programme){
     const name=titiEscape(programme.programme_name);
-
     const description=titiEscape(
         programme.description || 'Professional training designed to develop knowledge and practical skills.'
     );
-
     const duration=programme.duration
         ? `<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`
         : '';
-
     const applicationButton=programme.application_open===true
         ? `<a class="programme-action" href="apply.html#online-application">Apply for this Programme</a>`
         : `<span class="programme-closed">Admissions Currently Closed</span>`;
@@ -1466,18 +602,14 @@ function titiProgrammeCard(programme){
             <p>${description}</p>
             ${duration}
             ${applicationButton}
-        </article>
-    `;
+        </article>`;
 }
 
-/* SHORT COURSE CARDS */
 function titiShortCourseCard(programme){
     const name=titiEscape(programme.programme_name);
-
     const description=titiEscape(
         programme.description || 'Practical professional skills training.'
     );
-
     const duration=programme.duration
         ? `<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`
         : '';
@@ -1488,18 +620,14 @@ function titiShortCourseCard(programme){
             <p>${description}</p>
             ${duration}
             <a class="programme-action" href="apply.html#online-application">Enquire / Apply</a>
-        </article>
-    `;
+        </article>`;
 }
 
-/* EXISTING SHORT COURSE INFORMATION CARDS */
 function titiShortCourseInformationCard(programme){
     const name=titiEscape(programme.programme_name);
-
     const description=titiEscape(
         programme.description || 'Practical professional skills training.'
     );
-
     const duration=programme.duration
         ? `<span class="course-duration">Duration: ${titiEscape(programme.duration)}</span>`
         : '';
@@ -1509,20 +637,17 @@ function titiShortCourseInformationCard(programme){
             ${name}
             <span class="course-description">${description}</span>
             ${duration}
-        </div>
-    `;
+        </div>`;
 }
 
 /* DATABASE ERROR DISPLAY */
 function titiShowError(message){
-
     const errorHTML=`
         <div class="programme-error">
             <strong>Programme information is temporarily unavailable.</strong>
             <br>${titiEscape(message)}
             <br>Please contact TITI administration for assistance.
-        </div>
-    `;
+        </div>`;
 
     document.getElementById('diplomaGrid').innerHTML=errorHTML;
     document.getElementById('certificateGrid').innerHTML=errorHTML;
@@ -1547,7 +672,6 @@ async function loadTITIProgrammes(){
     const summary=document.getElementById('programmeSummary');
 
     try{
-
         const endpoint =
             `${TITI_SUPABASE_URL}/rest/v1/${TITI_PROGRAMMES_TABLE}?select=id,programme_name,programme_level,description,duration,application_open&order=programme_level.asc,programme_name.asc`;
 
@@ -1560,21 +684,17 @@ async function loadTITIProgrammes(){
         });
 
         if(!response.ok){
-
             let errorMessage='Database request failed.';
             let errorCode='';
 
             try{
                 const errorData=await response.json();
-
                 errorMessage=
                     errorData.message ||
                     errorData.details ||
                     errorData.hint ||
                     errorMessage;
-
                 errorCode=errorData.code || '';
-
             }catch(error){
                 console.error('Could not read Supabase error response:',error);
             }
@@ -1583,8 +703,16 @@ async function loadTITIProgrammes(){
             console.error('Supabase error code:',errorCode);
             console.error('Supabase error message:',errorMessage);
 
+            if(response.status===401){
+                throw new Error('HTTP 401: Supabase rejected the API key. Confirm that the complete Publishable key belongs to this exact project.');
+            }
+
+            if(response.status===403){
+                throw new Error('HTTP 403: Database access denied. Check the programmes table SELECT permissions and Row Level Security policies.');
+            }
+
             throw new Error(
-                `HTTP ${response.status}${errorCode ? ' | ' + errorCode : ''}: ${errorMessage}`
+                `HTTP ${response.status}${errorCode ? ' | '+errorCode : ''}: ${errorMessage}`
             );
         }
 
@@ -1603,7 +731,9 @@ async function loadTITIProgrammes(){
         );
 
         const shortCourses=programmes.filter(item=>
-            String(item.programme_level||'').trim().toLowerCase()==='short course'
+            ['short course','short courses','short-course','short courses programme'].includes(
+                String(item.programme_level||'').trim().toLowerCase()
+            )
         );
 
         diplomaGrid.innerHTML=diplomas.length
@@ -1622,16 +752,11 @@ async function loadTITIProgrammes(){
             ? shortCourses.map(titiShortCourseInformationCard).join('')
             : '<div class="programme-empty">No Short Courses are currently available.</div>';
 
-        document.getElementById('diplomaCount').textContent =
-            `${diplomas.length} Programmes`;
+        document.getElementById('diplomaCount').textContent=`${diplomas.length} Programmes`;
+        document.getElementById('certificateCount').textContent=`${certificates.length} Programmes`;
+        document.getElementById('shortCourseCount').textContent=`${shortCourses.length} Courses`;
 
-        document.getElementById('certificateCount').textContent =
-            `${certificates.length} Programmes`;
-
-        document.getElementById('shortCourseCount').textContent =
-            `${shortCourses.length} Courses`;
-
-        summary.textContent =
+        summary.textContent=
             `Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.`;
 
         console.log('TITI programmes successfully loaded.',{
@@ -1642,12 +767,8 @@ async function loadTITIProgrammes(){
         });
 
     }catch(error){
-
         console.error('TITI programme database error:',error);
-
-        titiShowError(
-            error.message||'Please check your database connection.'
-        );
+        titiShowError(error.message||'Please check your database connection.');
     }
 }
 
@@ -1663,62 +784,41 @@ if(slides.length>1){
     },5000);
 }
 
-/* MOBILE MAIN NAVIGATION */
+/* MOBILE NAVIGATION */
 const menuToggle=document.getElementById('menuToggle');
 const mainNav=document.getElementById('mainNav');
 
 menuToggle.addEventListener('click',()=>{
     mainNav.classList.toggle('open');
-
     const isOpen=mainNav.classList.contains('open');
-
     menuToggle.setAttribute('aria-expanded',isOpen);
-    menuToggle.setAttribute(
-        'aria-label',
-        isOpen?'Close navigation':'Open navigation'
-    );
+    menuToggle.setAttribute('aria-label',isOpen?'Close navigation':'Open navigation');
 });
 
-/* ABOUT US DROPDOWN */
+/* DROPDOWN MENUS */
 const aboutMenu=document.getElementById('aboutMenu');
 const aboutToggle=document.getElementById('aboutToggle');
-
-aboutToggle.addEventListener('click',()=>{
-    aboutMenu.classList.toggle('open');
-
-    aboutToggle.setAttribute(
-        'aria-expanded',
-        aboutMenu.classList.contains('open')
-    );
-});
-
-/* PROGRAMMES DROPDOWN */
 const programmeMenu=document.getElementById('programmeMenu');
 const programmeToggle=document.getElementById('programmeToggle');
-
-programmeToggle.addEventListener('click',()=>{
-    programmeMenu.classList.toggle('open');
-
-    programmeToggle.setAttribute(
-        'aria-expanded',
-        programmeMenu.classList.contains('open')
-    );
-});
-
-/* ADMISSIONS DROPDOWN */
 const admissionsMenu=document.getElementById('admissionsMenu');
 const admissionsToggle=document.getElementById('admissionsToggle');
 
-admissionsToggle.addEventListener('click',()=>{
-    admissionsMenu.classList.toggle('open');
-
-    admissionsToggle.setAttribute(
-        'aria-expanded',
-        admissionsMenu.classList.contains('open')
-    );
+aboutToggle.addEventListener('click',()=>{
+    aboutMenu.classList.toggle('open');
+    aboutToggle.setAttribute('aria-expanded',aboutMenu.classList.contains('open'));
 });
 
-/* CLOSE MENUS AFTER SELECTING A LINK */
+programmeToggle.addEventListener('click',()=>{
+    programmeMenu.classList.toggle('open');
+    programmeToggle.setAttribute('aria-expanded',programmeMenu.classList.contains('open'));
+});
+
+admissionsToggle.addEventListener('click',()=>{
+    admissionsMenu.classList.toggle('open');
+    admissionsToggle.setAttribute('aria-expanded',admissionsMenu.classList.contains('open'));
+});
+
+/* CLOSE MENUS AFTER LINK SELECTION */
 document.querySelectorAll('#mainNav a').forEach(link=>{
     link.addEventListener('click',()=>{
         mainNav.classList.remove('open');
@@ -1728,7 +828,6 @@ document.querySelectorAll('#mainNav a').forEach(link=>{
 
         menuToggle.setAttribute('aria-expanded','false');
         menuToggle.setAttribute('aria-label','Open navigation');
-
         programmeToggle.setAttribute('aria-expanded','false');
         admissionsToggle.setAttribute('aria-expanded','false');
         aboutToggle.setAttribute('aria-expanded','false');
@@ -1737,32 +836,26 @@ document.querySelectorAll('#mainNav a').forEach(link=>{
 
 /* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
 document.addEventListener('click',event=>{
-
     if(!programmeMenu.contains(event.target)){
         programmeMenu.classList.remove('open');
         programmeToggle.setAttribute('aria-expanded','false');
     }
-
     if(!admissionsMenu.contains(event.target)){
         admissionsMenu.classList.remove('open');
         admissionsToggle.setAttribute('aria-expanded','false');
     }
-
     if(!aboutMenu.contains(event.target)){
         aboutMenu.classList.remove('open');
         aboutToggle.setAttribute('aria-expanded','false');
     }
-
 });
 
-/* COPYRIGHT YEAR */
-document.getElementById('footer-year').textContent=
-    new Date().getFullYear();
+/* COPYRIGHT */
+document.getElementById('footer-year').textContent=new Date().getFullYear();
 
 /* START DATABASE CONNECTION */
 loadTITIProgrammes();
 
 </script>
-
 </body>
 </html>
