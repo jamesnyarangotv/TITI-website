@@ -29,7 +29,7 @@ html{scroll-behavior:smooth;scroll-padding-top:115px;}
 body{font-family:'Jost',sans-serif;color:var(--text);background:#fff;line-height:1.7;}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;display:block;}
-button{font-family:inherit;}
+button{font-family:'Jost',sans-serif;}
 .container{width:min(1180px,92%);margin:auto;}
 
 /* TOP BAR */
@@ -93,7 +93,7 @@ white-space:nowrap;
 nav a,
 nav button.nav-link{
 color:#fff;
-font-family:inherit;
+font-family:'Jost',sans-serif;
 font-size:clamp(12px,1.02vw,14px);
 font-weight:800;
 letter-spacing:.2px;
@@ -383,115 +383,160 @@ background:var(--navy);
 transform:translateY(-2px);
 }
 
-/* PROGRAMMES */
+/* ===================================
+   ACADEMIC PROGRAMMES - THREE COLUMNS
+=================================== */
+
 .programmes{
 background:var(--light);
 border-top:1px solid var(--border);
 border-bottom:1px solid var(--border);
+padding:55px 0;
 }
 
-.programme-category{
-margin-bottom:45px;
-scroll-margin-top:115px;
+.programmes .section-heading{
+margin-bottom:27px;
 }
 
-.programme-category:last-child{margin-bottom:0;}
+.programmes .section-heading h2{
+font-size:clamp(25px,3vw,32px);
+}
 
-.programme-category-heading{
+.programmes .section-heading p{
+font-size:14px;
+}
+
+/* THREE MAIN CATEGORY COLUMNS */
+.programme-columns{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:17px;
+align-items:start;
+}
+
+.programme-column{
+background:#fff;
+border:1px solid #E0E5ED;
+border-radius:6px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(10,30,65,.045);
+min-width:0;
+}
+
+.programme-column-header{
+background:var(--navy);
+color:#fff;
+padding:17px 15px;
+border-bottom:3px solid var(--gold);
+}
+
+.programme-column-header-top{
 display:flex;
-align-items:center;
 justify-content:space-between;
-gap:15px;
-border-bottom:2px solid #DCE2EA;
-padding-bottom:13px;
-margin-bottom:22px;
+align-items:center;
+gap:8px;
 }
 
-.programme-category-heading h3{
-color:var(--navy);
-font-size:23px;
+.programme-column-header h3{
+font-size:19px;
 font-weight:800;
+line-height:1.3;
+}
+
+.programme-column-header p{
+font-size:11px;
+color:#DCE5F3;
+margin-top:4px;
 }
 
 .programme-count{
-background:var(--navy);
+background:rgba(255,255,255,.14);
+border:1px solid rgba(255,255,255,.25);
 color:#fff;
-padding:6px 14px;
-border-radius:30px;
-font-size:12px;
+padding:5px 9px;
+border-radius:20px;
+font-size:11px;
 font-weight:800;
 white-space:nowrap;
 }
 
-.programme-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:18px;
+.programme-list{
+padding:10px;
+display:flex;
+flex-direction:column;
+gap:9px;
 }
 
+/* INDIVIDUAL PROGRAMME CARDS */
 .programme-card{
 background:#fff;
-padding:23px 18px;
-border-radius:6px;
-border:1px solid #E7EAF0;
-border-top:4px solid var(--maroon);
-box-shadow:0 4px 15px rgba(0,0,0,.045);
-transition:.25s;
+padding:13px 13px;
+border-radius:5px;
+border:1px solid #E6EAF0;
+border-left:3px solid var(--gold);
+box-shadow:0 2px 8px rgba(10,30,65,.035);
+transition:.22s;
 display:flex;
 flex-direction:column;
 }
 
 .programme-card:hover{
-transform:translateY(-5px);
-box-shadow:var(--shadow);
+border-left-color:var(--maroon);
+background:#FCFCFD;
+transform:translateY(-2px);
+box-shadow:0 5px 13px rgba(10,30,65,.08);
 }
 
 .programme-card h3{
 color:var(--navy);
-font-size:17px;
+font-size:15px;
 line-height:1.4;
-margin-bottom:9px;
+margin-bottom:5px;
 font-weight:800;
 }
 
 .programme-card p{
-font-size:13px;
+font-size:12px;
+line-height:1.55;
 color:var(--muted);
-margin-bottom:12px;
+margin-bottom:7px;
 }
 
 .programme-duration{
-font-size:12px;
+font-size:11px;
 color:var(--muted);
 font-weight:700;
-margin-top:auto;
-margin-bottom:10px;
+margin-top:2px;
+margin-bottom:5px;
 }
 
 .programme-action{
 display:inline-block;
 text-align:center;
-background:var(--maroon);
+background:var(--navy);
 color:#fff;
-padding:9px 12px;
-border-radius:4px;
-font-size:12px;
+padding:7px 10px;
+border-radius:3px;
+font-size:11px;
 font-weight:800;
-margin-top:8px;
+margin-top:5px;
 transition:.2s;
 }
 
-.programme-action:hover{background:var(--navy);}
+.programme-action:hover{
+background:var(--gold);
+color:var(--navy);
+}
 
 .programme-closed{
 display:inline-block;
 background:#F0F2F5;
 color:#687386;
-padding:8px 10px;
-border-radius:4px;
-font-size:11px;
+padding:6px 9px;
+border-radius:3px;
+font-size:10px;
 font-weight:800;
-margin-top:8px;
+margin-top:5px;
 text-align:center;
 }
 
@@ -499,11 +544,11 @@ text-align:center;
 .programme-error,
 .programme-empty{
 background:#fff;
-padding:25px;
-border-radius:6px;
+padding:20px 12px;
+border-radius:5px;
 text-align:center;
 color:var(--navy);
-grid-column:1/-1;
+font-size:12px;
 border:1px solid var(--border);
 }
 
@@ -517,8 +562,8 @@ color:var(--maroon);
 .programme-summary{
 text-align:center;
 color:var(--muted);
-font-size:13px;
-margin-top:27px;
+font-size:12px;
+margin-top:17px;
 }
 
 /* ADMISSIONS BANNER */
@@ -787,7 +832,7 @@ text-align:center;
 .footer-bottom strong{color:var(--gold);}
 .site-footer,.site-footer *{font-weight:700!important;}
 
-/* TABLET AND SMALL DESKTOP */
+/* TABLET */
 @media(min-width:851px) and (max-width:1100px){
 .header-inner{
 width:99%;
@@ -818,7 +863,11 @@ margin-left:0;
 .admissions-submenu,
 .about-submenu{min-width:210px;}
 
-.programme-grid{grid-template-columns:repeat(3,1fr);}
+.programme-columns{gap:11px;}
+.programme-column-header{padding:14px 10px;}
+.programme-column-header h3{font-size:16px;}
+.programme-card{padding:11px 9px;}
+.programme-card h3{font-size:14px;}
 }
 
 /* MOBILE NAVIGATION */
@@ -918,13 +967,23 @@ border-bottom:0;
 }
 
 .about-grid{grid-template-columns:1fr;}
-.programme-grid{grid-template-columns:repeat(2,1fr);}
+
+.programme-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;}
+.programme-column-header{padding:12px 9px;}
+.programme-column-header h3{font-size:15px;}
+.programme-column-header p{font-size:10px;}
+.programme-count{font-size:10px;padding:4px 6px;}
+.programme-list{padding:7px;gap:7px;}
+.programme-card{padding:10px 8px;}
+.programme-card h3{font-size:13px;}
+.programme-card p{font-size:11px;}
+
 .quick-grid{grid-template-columns:repeat(2,1fr);}
 .footer-grid{grid-template-columns:1fr 1fr;gap:30px;}
 .short-course-grid{grid-template-columns:repeat(2,1fr);}
 }
 
-/* SMALL MOBILE SCREENS */
+/* SMALL MOBILE */
 @media(max-width:560px){
 .topbar{font-size:11px;letter-spacing:.5px;}
 .header-inner{min-height:78px;}
@@ -950,14 +1009,86 @@ section{padding:49px 0;}
 
 .section-heading{margin-bottom:30px;}
 
-.programme-grid{
-grid-template-columns:1fr 1fr;
-gap:10px;
+.programmes{padding:40px 0;}
+
+.programmes .section-heading{margin-bottom:22px;}
+
+.programmes .section-heading h2{font-size:25px;}
+
+.programmes .section-heading p{font-size:12px;}
+
+/* THREE COLUMNS ALSO ON MOBILE */
+.programme-columns{
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:6px;
 }
 
-.programme-card{padding:16px 12px;}
-.programme-card h3{font-size:15px;}
-.programme-category-heading h3{font-size:18px;}
+.programme-column{border-radius:4px;}
+
+.programme-column-header{
+padding:10px 5px;
+min-height:83px;
+}
+
+.programme-column-header-top{
+flex-direction:column;
+align-items:flex-start;
+gap:4px;
+}
+
+.programme-column-header h3{
+font-size:12px;
+line-height:1.25;
+}
+
+.programme-column-header p{
+font-size:9px;
+line-height:1.3;
+}
+
+.programme-count{
+font-size:9px;
+padding:3px 6px;
+}
+
+.programme-list{
+padding:5px;
+gap:6px;
+}
+
+.programme-card{
+padding:8px 6px;
+border-left-width:2px;
+}
+
+.programme-card h3{
+font-size:11px;
+line-height:1.35;
+}
+
+.programme-card p{
+font-size:10px;
+line-height:1.4;
+}
+
+.programme-duration{
+font-size:9px;
+}
+
+.programme-action{
+font-size:9px;
+padding:6px 4px;
+}
+
+.programme-closed{
+font-size:8px;
+padding:5px 3px;
+}
+
+.programme-summary{
+font-size:10px;
+line-height:1.5;
+}
 
 .gallery-grid{grid-template-columns:1fr;}
 .gallery-card img{height:240px;}
@@ -981,6 +1112,18 @@ padding:7px;
 grid-template-columns:1fr;
 gap:29px;
 }
+}
+
+/* VERY SMALL PHONES */
+@media(max-width:360px){
+.programme-columns{gap:4px;}
+.programme-column-header{padding:8px 4px;}
+.programme-column-header h3{font-size:10px;}
+.programme-count{font-size:8px;}
+.programme-list{padding:4px;}
+.programme-card{padding:7px 5px;}
+.programme-card h3{font-size:10px;}
+.programme-card p{font-size:9px;}
 }
 </style>
 </head>
@@ -1098,35 +1241,75 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 </section>
 
+<!-- ACADEMIC PROGRAMMES -->
 <section class="programmes" id="programmes">
 <div class="container">
+
 <div class="section-heading">
 <h2>Our Academic Programmes</h2>
 <div class="gold-line"></div>
-<p>Explore our Diploma and Certificate programmes. All programme information is retrieved directly from the TITI admissions database.</p>
+<p>Explore our Diploma, Certificate and Short Course programmes. Find the right programme for your future.</p>
 </div>
 
-<div class="programme-category" id="diploma">
-<div class="programme-category-heading">
+<div class="programme-columns">
+
+<!-- DIPLOMA COLUMN -->
+<div class="programme-column" id="diploma">
+
+<div class="programme-column-header">
+<div class="programme-column-header-top">
 <h3>Diploma Programmes</h3>
 <span class="programme-count" id="diplomaCount">Loading...</span>
 </div>
-<div class="programme-grid" id="diplomaGrid">
-<div class="programme-loading">Loading Diploma programmes...</div>
-</div>
+<p>Professional academic qualifications</p>
 </div>
 
-<div class="programme-category" id="certificate">
-<div class="programme-category-heading">
+<div class="programme-list" id="diplomaGrid">
+<div class="programme-loading">Loading Diploma programmes...</div>
+</div>
+
+</div>
+
+<!-- CERTIFICATE COLUMN -->
+<div class="programme-column" id="certificate">
+
+<div class="programme-column-header">
+<div class="programme-column-header-top">
 <h3>Certificate Programmes</h3>
 <span class="programme-count" id="certificateCount">Loading...</span>
 </div>
-<div class="programme-grid" id="certificateGrid">
-<div class="programme-loading">Loading Certificate programmes...</div>
-</div>
+<p>Practical professional training</p>
 </div>
 
-<p class="programme-summary" id="programmeSummary">Connecting to the TITI admissions database...</p>
+<div class="programme-list" id="certificateGrid">
+<div class="programme-loading">Loading Certificate programmes...</div>
+</div>
+
+</div>
+
+<!-- SHORT COURSES COLUMN -->
+<div class="programme-column" id="shortCourses">
+
+<div class="programme-column-header">
+<div class="programme-column-header-top">
+<h3>Short Courses</h3>
+<span class="programme-count" id="shortCourseCount">Loading...</span>
+</div>
+<p>Skills and professional development</p>
+</div>
+
+<div class="programme-list" id="shortCourseGrid">
+<div class="programme-loading">Loading Short Courses...</div>
+</div>
+
+</div>
+
+</div>
+
+<p class="programme-summary" id="programmeSummary">
+Connecting to the TITI admissions database...
+</p>
+
 </div>
 </section>
 
@@ -1187,14 +1370,15 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </div>
 </section>
 
-<section id="shortCourses">
+<!-- EXISTING SHORT COURSE SECTION PRESERVED -->
+<section id="shortCourseInformation">
 <div class="container">
 <div class="section-heading">
 <h2>Professional Short Courses</h2>
 <div class="gold-line"></div>
 <p>Practical skills for personal growth, employment and entrepreneurship.</p>
 </div>
-<div class="short-course-grid" id="shortCourseGrid">
+<div class="short-course-grid" id="shortCourseInformationGrid">
 <div class="programme-loading">Loading Short Courses...</div>
 </div>
 </div>
@@ -1268,9 +1452,10 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 </footer>
 
 <script>
-/* SUPABASE CONFIGURATION */
+
+/* SUPABASE CONFIGURATION - PRESERVED */
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
-const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
+const TITI_SUPABASE_KEY = 'sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W';
 const TITI_PROGRAMMES_TABLE = 'programmes';
 
 /* HTML SECURITY */
@@ -1290,6 +1475,7 @@ function titiEscape(value){
 /* DIPLOMA AND CERTIFICATE CARDS */
 function titiProgrammeCard(programme){
     const name=titiEscape(programme.programme_name);
+
     const description=titiEscape(
         programme.description || 'Professional training designed to develop knowledge and practical skills.'
     );
@@ -1315,6 +1501,29 @@ function titiProgrammeCard(programme){
 /* SHORT COURSE CARDS */
 function titiShortCourseCard(programme){
     const name=titiEscape(programme.programme_name);
+
+    const description=titiEscape(
+        programme.description || 'Practical professional skills training.'
+    );
+
+    const duration=programme.duration
+        ? `<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`
+        : '';
+
+    return `
+        <article class="programme-card">
+            <h3>${name}</h3>
+            <p>${description}</p>
+            ${duration}
+            <a class="programme-action" href="apply.html#online-application">Enquire / Apply</a>
+        </article>
+    `;
+}
+
+/* EXISTING SHORT COURSE INFORMATION CARDS */
+function titiShortCourseInformationCard(programme){
+    const name=titiEscape(programme.programme_name);
+
     const description=titiEscape(
         programme.description || 'Practical professional skills training.'
     );
@@ -1334,6 +1543,7 @@ function titiShortCourseCard(programme){
 
 /* DATABASE ERROR DISPLAY */
 function titiShowError(message){
+
     const errorHTML=`
         <div class="programme-error">
             <strong>Programme information is temporarily unavailable.</strong>
@@ -1345,9 +1555,11 @@ function titiShowError(message){
     document.getElementById('diplomaGrid').innerHTML=errorHTML;
     document.getElementById('certificateGrid').innerHTML=errorHTML;
     document.getElementById('shortCourseGrid').innerHTML=errorHTML;
+    document.getElementById('shortCourseInformationGrid').innerHTML=errorHTML;
 
     document.getElementById('diplomaCount').textContent='Unavailable';
     document.getElementById('certificateCount').textContent='Unavailable';
+    document.getElementById('shortCourseCount').textContent='Unavailable';
 
     document.getElementById('programmeSummary').textContent=
         'Unable to retrieve programme information at this time.';
@@ -1359,6 +1571,7 @@ async function loadTITIProgrammes(){
     const diplomaGrid=document.getElementById('diplomaGrid');
     const certificateGrid=document.getElementById('certificateGrid');
     const shortCourseGrid=document.getElementById('shortCourseGrid');
+    const shortCourseInformationGrid=document.getElementById('shortCourseInformationGrid');
     const summary=document.getElementById('programmeSummary');
 
     try{
@@ -1421,24 +1634,37 @@ async function loadTITIProgrammes(){
             String(item.programme_level||'').trim().toLowerCase()==='short course'
         );
 
+        /* DIPLOMA COLUMN */
         diplomaGrid.innerHTML=diplomas.length
             ? diplomas.map(titiProgrammeCard).join('')
             : '<div class="programme-empty">No Diploma programmes are currently available.</div>';
 
+        /* CERTIFICATE COLUMN */
         certificateGrid.innerHTML=certificates.length
             ? certificates.map(titiProgrammeCard).join('')
             : '<div class="programme-empty">No Certificate programmes are currently available.</div>';
 
+        /* SHORT COURSE COLUMN */
         shortCourseGrid.innerHTML=shortCourses.length
             ? shortCourses.map(titiShortCourseCard).join('')
             : '<div class="programme-empty">No Short Courses are currently available.</div>';
 
+        /* EXISTING SHORT COURSE SECTION */
+        shortCourseInformationGrid.innerHTML=shortCourses.length
+            ? shortCourses.map(titiShortCourseInformationCard).join('')
+            : '<div class="programme-empty">No Short Courses are currently available.</div>';
+
+        /* CATEGORY COUNTS */
         document.getElementById('diplomaCount').textContent =
             `${diplomas.length} Programmes`;
 
         document.getElementById('certificateCount').textContent =
             `${certificates.length} Programmes`;
 
+        document.getElementById('shortCourseCount').textContent =
+            `${shortCourses.length} Courses`;
+
+        /* DATABASE SUMMARY */
         summary.textContent =
             `Database connected successfully. ${programmes.length} programmes retrieved: ${diplomas.length} Diplomas, ${certificates.length} Certificates and ${shortCourses.length} Short Courses.`;
 
