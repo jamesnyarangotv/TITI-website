@@ -154,7 +154,6 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 <button class="module-btn" data-module="documents">DOCUMENTS</button>
 </nav>
 
-<!-- ADMISSIONS -->
 <section id="admissionsArea">
 <div class="stats" id="admissionsStats">
 <div class="stat"><span class="muted">Total Applications</span><strong id="totalCount">0</strong></div>
@@ -195,7 +194,6 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 </div>
 </section>
 
-<!-- PROGRAMMES -->
 <section id="programmePanel">
 <div class="panel">
 <h3>Programme Management</h3>
@@ -237,7 +235,6 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 </div>
 </section>
 
-<!-- HOMEPAGE SLIDES -->
 <section id="cmsPanel">
 <div class="panel">
 <h3>Homepage Slideshow Management</h3>
@@ -252,7 +249,7 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 <div class="form-group"><label for="slideButtonText">Button Text</label><input id="slideButtonText" placeholder="e.g. APPLY NOW"></div>
 <div class="form-group"><label for="slideButtonLink">Button Link</label><input id="slideButtonLink" placeholder="e.g. apply.html"></div>
 <div class="form-group"><label for="slideOrder">Display Order</label><input id="slideOrder" type="number" value="0"></div>
-<div class="form-group"><label for="slideImage">Slideshow Photograph</label><input id="slideImage" type="file" accept="image/jpeg,image/png,image/webp" ></div>
+<div class="form-group"><label for="slideImage">Slideshow Photograph</label><input id="slideImage" type="file" accept="image/jpeg,image/png,image/webp"></div>
 </div>
 <div class="upload-note">Recommended: landscape photographs. Maximum upload size: 10 MB. Choose a new image when replacing an existing slide photograph.</div>
 <img id="slidePreview" class="media-preview hidden" alt="Selected slide preview">
@@ -265,7 +262,6 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 </div>
 </section>
 
-<!-- GALLERY -->
 <section id="galleryPanel" class="hidden">
 <div class="panel">
 <h3>Campus Gallery Management</h3>
@@ -288,7 +284,6 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 <div class="panel"><h3>Existing Gallery Photographs</h3><div id="galleryList" class="media-grid">Loading gallery...</div></div>
 </section>
 
-<!-- WEBSITE CONTENT -->
 <section id="contentPanel" class="hidden">
 <div class="panel">
 <h3>Website Content Management</h3>
@@ -320,7 +315,6 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 </div>
 </section>
 
-<!-- NEWS -->
 <section id="newsPanel" class="hidden">
 <div class="panel">
 <h3>Website News Management</h3>
@@ -345,7 +339,6 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 <div class="panel"><h3>Existing Website News</h3><div class="table-wrap"><table><thead><tr><th>Headline</th><th>Category</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="newsList"><tr><td colspan="5">Loading news...</td></tr></tbody></table></div></div>
 </section>
 
-<!-- STAFF -->
 <section id="staffPanel" class="hidden">
 <div class="panel">
 <h3>Staff and Management Profiles</h3>
@@ -368,7 +361,6 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 <div class="panel"><h3>Existing Staff Profiles</h3><div id="staffList" class="media-grid">Loading staff...</div></div>
 </section>
 
-<!-- DOCUMENTS -->
 <section id="documentsPanel" class="hidden">
 <div class="panel">
 <h3>Website Documents and Downloads</h3>
@@ -395,36 +387,27 @@ footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
 </section>
 
 <script>
-// =====================================================
-// SUPABASE CONFIGURATION
-// =====================================================
-
 const SUPABASE_URL = "https://jlmbiauilmajuvrnuaul.supabase.co";
 const SUPABASE_KEY = "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 const DOCUMENT_BUCKET = "titi-applicant-documents";
 const MEDIA_BUCKET = "titi-website-media";
 
 const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-
 const $ = id => document.getElementById(id);
 
-let currentAdmin = null;
-let applications = [];
-let selectedApplication = null;
-let programmes = [];
-let slides = [];
-let galleryImages = [];
-let websiteNews = [];
-let staffProfiles = [];
-let websiteDocuments = [];
-let currentModule = "admissions";
-
-// =====================================================
-// GENERAL HELPERS
-// =====================================================
+let currentAdmin=null;
+let applications=[];
+let selectedApplication=null;
+let programmes=[];
+let slides=[];
+let galleryImages=[];
+let websiteNews=[];
+let staffProfiles=[];
+let websiteDocuments=[];
+let currentModule="admissions";
 
 function escapeHTML(value){
- return String(value ?? "").replace(/[&<>"']/g,char=>({
+ return String(value??"").replace(/[&<>"']/g,char=>({
   "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
  })[char]);
 }
@@ -445,7 +428,7 @@ function cmsMessage(id,message,error=false){
 
 function statusText(status){
  const map={ADMITTED:"APPROVED",DECLINED:"REJECTED"};
- return map[status] || status || "SUBMITTED";
+ return map[status]||status||"SUBMITTED";
 }
 
 function statusClass(status){
@@ -453,7 +436,7 @@ function statusClass(status){
 }
 
 function detailItem(label,value){
- return `<div class="detail-item"><small>${escapeHTML(label)}</small><strong>${escapeHTML(value || "Not provided")}</strong></div>`;
+ return `<div class="detail-item"><small>${escapeHTML(label)}</small><strong>${escapeHTML(value||"Not provided")}</strong></div>`;
 }
 
 function fileIsValid(file){
@@ -493,15 +476,15 @@ function setPreview(inputId,previewId){
   const file=$(inputId).files[0];
   const preview=$(previewId);
   if(!file){preview.classList.add("hidden");return;}
-  if(!fileIsValid(file)){ $(inputId).value="";preview.classList.add("hidden");return; }
+  if(!fileIsValid(file)){
+   $(inputId).value="";
+   preview.classList.add("hidden");
+   return;
+  }
   preview.src=URL.createObjectURL(file);
   preview.classList.remove("hidden");
  });
 }
-
-// =====================================================
-// PASSWORD VISIBILITY
-// =====================================================
 
 $("togglePassword").addEventListener("click",()=>{
  const input=$("password");
@@ -509,27 +492,21 @@ $("togglePassword").addEventListener("click",()=>{
  $("togglePassword").textContent=input.type==="password"?"SHOW":"HIDE";
 });
 
-// =====================================================
-// ADMINISTRATOR AUTHENTICATION
-// =====================================================
-
 async function verifyAdministrator(user){
- const {data,error}=await db
-  .from("titi_site_admins")
+ const {data,error}=await db.from("titi_site_admins")
   .select("id,user_id,full_name,email,role")
   .eq("user_id",user.id)
   .maybeSingle();
 
  if(error)throw error;
  if(!data)throw new Error("This account is not registered as a TITI website administrator. Access denied.");
-
  currentAdmin=data;
 }
 
 function showDashboard(){
  $("loginScreen").style.display="none";
  $("dashboard").style.display="block";
- $("adminName").textContent=(currentAdmin.full_name || currentAdmin.email || "Administrator")+" | "+currentAdmin.role;
+ $("adminName").textContent=(currentAdmin.full_name||currentAdmin.email||"Administrator")+" | "+currentAdmin.role;
 }
 
 function showLogin(){
@@ -571,10 +548,6 @@ $("logoutButton").addEventListener("click",async()=>{
  showLogin();
 });
 
-// =====================================================
-// MODULE NAVIGATION
-// =====================================================
-
 const modulePanels={
  admissions:"admissionsArea",
  programmes:"programmePanel",
@@ -590,7 +563,7 @@ async function showModule(module){
  currentModule=module;
  Object.entries(modulePanels).forEach(([key,id])=>{
   $(id).classList.toggle("hidden",key!==module);
-  if(key==="admissions" || key==="programmes" || key==="homepage"){
+  if(key==="admissions"||key==="programmes"||key==="homepage"){
    $(id).style.display=key===module?"block":"none";
   }
  });
@@ -616,9 +589,7 @@ document.querySelectorAll(".module-btn").forEach(button=>{
  button.addEventListener("click",()=>showModule(button.dataset.module));
 });
 
-// =====================================================
-// ADMISSIONS MANAGEMENT
-// =====================================================
+/* ADMISSIONS */
 
 async function loadApplications(){
  $("applicationsBody").innerHTML='<tr><td colspan="6">Loading applications...</td></tr>';
@@ -780,11 +751,36 @@ $("closeDetails").addEventListener("click",()=>{
  $("documentsContent").innerHTML='<p class="muted">Select an applicant to view documents.</p>';
 });
 
-// =====================================================
-// PROGRAMME MANAGEMENT
-// =====================================================
+/* PROGRAMME MANAGEMENT */
 
+/* These are the exact values allowed by the Supabase database constraint. */
 const allowedProgrammeLevels=["Certificate","Diploma","Short Course"];
+
+/* Rebuild the dropdown explicitly so all three choices are present. */
+function ensureProgrammeLevelOptions(){
+ const select=$("programmeLevel");
+ const currentValue=select.value;
+
+ select.replaceChildren();
+
+ const placeholder=document.createElement("option");
+ placeholder.value="";
+ placeholder.textContent="Select programme level";
+ select.appendChild(placeholder);
+
+ allowedProgrammeLevels.forEach(level=>{
+  const option=document.createElement("option");
+  option.value=level;
+  option.textContent=level;
+  select.appendChild(option);
+ });
+
+ if(allowedProgrammeLevels.includes(currentValue)){
+  select.value=currentValue;
+ }
+}
+
+ensureProgrammeLevelOptions();
 
 async function loadProgrammes(){
  $("programmesBody").innerHTML='<tr><td colspan="5">Loading programmes...</td></tr>';
@@ -835,11 +831,15 @@ function clearProgrammeForm(){
  $("applicationOpen").checked=true;
  $("programmeFormTitle").textContent="Add New Programme";
  $("saveProgrammeButton").textContent="SAVE PROGRAMME";
+ ensureProgrammeLevelOptions();
 }
 
 function editProgramme(id){
  const p=programmes.find(item=>String(item.id)===String(id));
  if(!p)return;
+
+ ensureProgrammeLevelOptions();
+
  $("programmeId").value=p.id;
  $("programmeName").value=p.programme_name||"";
  $("programmeLevel").value=p.programme_level||"";
@@ -853,10 +853,13 @@ function editProgramme(id){
 
 $("programmeForm").addEventListener("submit",async event=>{
  event.preventDefault();
+
  const id=$("programmeId").value.trim();
+ const selectedLevel=$("programmeLevel").value.trim();
+
  const payload={
   programme_name:$("programmeName").value.trim(),
-  programme_level:$("programmeLevel").value,
+  programme_level:selectedLevel,
   description:$("programmeDescription").value.trim()||null,
   duration:$("programmeDuration").value.trim()||null,
   application_open:$("applicationOpen").checked
@@ -868,28 +871,34 @@ $("programmeForm").addEventListener("submit",async event=>{
  }
 
  if(!allowedProgrammeLevels.includes(payload.programme_level)){
-  cmsMessage("programmeMessage","Please select a valid programme level: Certificate, Diploma or Short Course.",true);
+  cmsMessage("programmeMessage","Please select Certificate, Diploma or Short Course.",true);
   return;
  }
 
  $("saveProgrammeButton").disabled=true;
+
  try{
   const result=id
    ?await db.from("programmes").update(payload).eq("id",id).select("id")
    :await db.from("programmes").insert([payload]).select("id");
+
   if(result.error)throw result.error;
   if(!result.data?.length)throw new Error("No programme was saved. Check database permissions.");
+
   cmsMessage("programmeMessage",id?"Programme updated successfully.":"New programme added successfully.");
   clearProgrammeForm();
   await loadProgrammes();
  }catch(error){
-  cmsMessage("programmeMessage",error.message,true);
- }finally{$("saveProgrammeButton").disabled=false;}
+  cmsMessage("programmeMessage","Unable to save programme: "+error.message,true);
+ }finally{
+  $("saveProgrammeButton").disabled=false;
+ }
 });
 
 async function deleteProgramme(id){
  const p=programmes.find(item=>String(item.id)===String(id));
  if(!p||!confirm("Delete this programme?\n\n"+p.programme_name+"\n\nThis cannot be undone."))return;
+
  try{
   const {data,error}=await db.from("programmes").delete().eq("id",id).select("id");
   if(error)throw error;
@@ -897,16 +906,16 @@ async function deleteProgramme(id){
   cmsMessage("programmeMessage","Programme deleted successfully.");
   if(String($("programmeId").value)===String(id))clearProgrammeForm();
   await loadProgrammes();
- }catch(error){cmsMessage("programmeMessage",error.message,true);}
+ }catch(error){
+  cmsMessage("programmeMessage",error.message,true);
+ }
 }
 
 $("cancelProgrammeEdit").addEventListener("click",clearProgrammeForm);
 $("refreshProgrammesButton").addEventListener("click",loadProgrammes);
 $("programmeSearch").addEventListener("input",renderProgrammes);
 
-// =====================================================
-// HOMEPAGE SLIDESHOW
-// =====================================================
+/* HOMEPAGE SLIDESHOW */
 
 setPreview("slideImage","slidePreview");
 
@@ -915,7 +924,10 @@ async function loadSlides(){
  const {data,error}=await db.from("titi_homepage_slides").select("*").order("display_order",{ascending:true});
  if(error)throw error;
  slides=data||[];
- if(!slides.length){$("slidesList").innerHTML='<p class="muted">No homepage slides have been added yet.</p>';return;}
+ if(!slides.length){
+  $("slidesList").innerHTML='<p class="muted">No homepage slides have been added yet.</p>';
+  return;
+ }
 
  $("slidesList").innerHTML=slides.map(slide=>`
   <div class="media-card">
@@ -936,18 +948,26 @@ async function loadSlides(){
 }
 
 function clearSlideForm(){
- $("slideForm").reset();$("slideId").value="";$("slideOldPath").value="";
- $("slideOrder").value="0";$("slidePreview").classList.add("hidden");
+ $("slideForm").reset();
+ $("slideId").value="";
+ $("slideOldPath").value="";
+ $("slideOrder").value="0";
+ $("slidePreview").classList.add("hidden");
  $("saveSlideButton").textContent="SAVE SLIDE";
 }
 
 function editSlide(id){
- const s=slides.find(x=>String(x.id)===String(id));if(!s)return;
- $("slideId").value=s.id;$("slideOldPath").value=s.image_path||"";
- $("slideTitle").value=s.title||"";$("slideDescription").value=s.description||"";
- $("slideButtonText").value=s.button_text||"";$("slideButtonLink").value=s.button_link||"";
+ const s=slides.find(x=>String(x.id)===String(id));
+ if(!s)return;
+ $("slideId").value=s.id;
+ $("slideOldPath").value=s.image_path||"";
+ $("slideTitle").value=s.title||"";
+ $("slideDescription").value=s.description||"";
+ $("slideButtonText").value=s.button_text||"";
+ $("slideButtonLink").value=s.button_link||"";
  $("slideOrder").value=s.display_order??0;
- $("slidePreview").src=s.image_url;$("slidePreview").classList.remove("hidden");
+ $("slidePreview").src=s.image_url;
+ $("slidePreview").classList.remove("hidden");
  $("saveSlideButton").textContent="UPDATE SLIDE";
  $("slideForm").scrollIntoView({behavior:"smooth"});
 }
@@ -957,7 +977,10 @@ $("slideForm").addEventListener("submit",async event=>{
  const id=$("slideId").value;
  const oldPath=$("slideOldPath").value;
  const file=$("slideImage").files[0];
- if(!id&&!file){cmsMessage("cmsMessage","Please choose a slideshow photograph.",true);return;}
+ if(!id&&!file){
+  cmsMessage("cmsMessage","Please choose a slideshow photograph.",true);
+  return;
+ }
  $("saveSlideButton").disabled=true;
  try{
   let uploaded=null;
@@ -978,16 +1001,18 @@ $("slideForm").addEventListener("submit",async event=>{
   if(result.error)throw result.error;
   if(uploaded&&oldPath)await deleteMedia(oldPath);
   cmsMessage("cmsMessage",id?"Homepage slide updated.":"Homepage slide added.");
-  clearSlideForm();await loadSlides();
- }catch(error){cmsMessage("cmsMessage","Unable to save slide: "+error.message,true);}
- finally{$("saveSlideButton").disabled=false;}
+  clearSlideForm();
+  await loadSlides();
+ }catch(error){
+  cmsMessage("cmsMessage","Unable to save slide: "+error.message,true);
+ }finally{
+  $("saveSlideButton").disabled=false;
+ }
 });
 
 $("clearSlideForm").addEventListener("click",clearSlideForm);
 
-// =====================================================
-// GALLERY MANAGEMENT
-// =====================================================
+/* GALLERY MANAGEMENT */
 
 setPreview("galleryImage","galleryPreview");
 
@@ -996,7 +1021,10 @@ async function loadGallery(){
  const {data,error}=await db.from("titi_gallery_images").select("*").order("display_order",{ascending:true});
  if(error)throw error;
  galleryImages=data||[];
- if(!galleryImages.length){$("galleryList").innerHTML='<p class="muted">No gallery photographs have been added.</p>';return;}
+ if(!galleryImages.length){
+  $("galleryList").innerHTML='<p class="muted">No gallery photographs have been added.</p>';
+  return;
+ }
  $("galleryList").innerHTML=galleryImages.map(item=>`
   <div class="media-card">
    <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title||"Gallery photo")}">
@@ -1015,25 +1043,37 @@ async function loadGallery(){
 }
 
 function clearGalleryForm(){
- $("galleryForm").reset();$("galleryId").value="";$("galleryOldPath").value="";
- $("galleryOrder").value="0";$("galleryPreview").classList.add("hidden");
+ $("galleryForm").reset();
+ $("galleryId").value="";
+ $("galleryOldPath").value="";
+ $("galleryOrder").value="0";
+ $("galleryPreview").classList.add("hidden");
  $("saveGalleryButton").textContent="SAVE PHOTO";
 }
 
 function editGallery(id){
- const item=galleryImages.find(x=>String(x.id)===String(id));if(!item)return;
- $("galleryId").value=item.id;$("galleryOldPath").value=item.image_path||"";
- $("galleryTitle").value=item.title||"";$("galleryCaption").value=item.caption||"";
+ const item=galleryImages.find(x=>String(x.id)===String(id));
+ if(!item)return;
+ $("galleryId").value=item.id;
+ $("galleryOldPath").value=item.image_path||"";
+ $("galleryTitle").value=item.title||"";
+ $("galleryCaption").value=item.caption||"";
  $("galleryOrder").value=item.display_order??0;
- $("galleryPreview").src=item.image_url;$("galleryPreview").classList.remove("hidden");
+ $("galleryPreview").src=item.image_url;
+ $("galleryPreview").classList.remove("hidden");
  $("saveGalleryButton").textContent="UPDATE PHOTO";
  $("galleryForm").scrollIntoView({behavior:"smooth"});
 }
 
 $("galleryForm").addEventListener("submit",async event=>{
  event.preventDefault();
- const id=$("galleryId").value,oldPath=$("galleryOldPath").value,file=$("galleryImage").files[0];
- if(!id&&!file){cmsMessage("galleryMessage","Please choose a photograph.",true);return;}
+ const id=$("galleryId").value;
+ const oldPath=$("galleryOldPath").value;
+ const file=$("galleryImage").files[0];
+ if(!id&&!file){
+  cmsMessage("galleryMessage","Please choose a photograph.",true);
+  return;
+ }
  $("saveGalleryButton").disabled=true;
  try{
   const uploaded=file?await uploadMedia(file,"gallery"):null;
@@ -1051,28 +1091,34 @@ $("galleryForm").addEventListener("submit",async event=>{
   if(result.error)throw result.error;
   if(uploaded&&oldPath)await deleteMedia(oldPath);
   cmsMessage("galleryMessage",id?"Gallery photograph updated.":"Gallery photograph uploaded.");
-  clearGalleryForm();await loadGallery();
- }catch(error){cmsMessage("galleryMessage",error.message,true);}
- finally{$("saveGalleryButton").disabled=false;}
+  clearGalleryForm();
+  await loadGallery();
+ }catch(error){
+  cmsMessage("galleryMessage",error.message,true);
+ }finally{
+  $("saveGalleryButton").disabled=false;
+ }
 });
 
 $("clearGalleryForm").addEventListener("click",clearGalleryForm);
 
-// =====================================================
-// SHARED RECORD ACTIVATION AND DELETION
-// =====================================================
+/* SHARED RECORD ACTIVATION AND DELETION */
 
 async function toggleRecord(table,id,records,column,reload){
- const record=records.find(x=>String(x.id)===String(id));if(!record)return;
+ const record=records.find(x=>String(x.id)===String(id));
+ if(!record)return;
  try{
   const {error}=await db.from(table).update({[column]:!record[column]}).eq("id",id);
   if(error)throw error;
   await reload();
- }catch(error){alert("Unable to update record: "+error.message);}
+ }catch(error){
+  alert("Unable to update record: "+error.message);
+ }
 }
 
 async function deleteRecord(table,id,records,reload){
- const record=records.find(x=>String(x.id)===String(id));if(!record)return;
+ const record=records.find(x=>String(x.id)===String(id));
+ if(!record)return;
  if(!confirm("Are you sure you want to delete this record? This action cannot be undone."))return;
  try{
   const {error}=await db.from(table).delete().eq("id",id);
@@ -1080,17 +1126,18 @@ async function deleteRecord(table,id,records,reload){
   if(record.image_path)await deleteMedia(record.image_path);
   if(record.file_path)await deleteMedia(record.file_path);
   await reload();
- }catch(error){alert("Unable to delete record: "+error.message);}
+ }catch(error){
+  alert("Unable to delete record: "+error.message);
+ }
 }
 
-// =====================================================
-// WEBSITE CONTENT
-// =====================================================
+/* WEBSITE CONTENT */
 
 async function loadWebsiteContent(){
  const {data,error}=await db.from("titi_site_content").select("*").eq("content_key","main").maybeSingle();
  if(error)throw error;
  if(!data)return;
+
  const fields={
   siteInstitution:"institution_name",siteSlogan:"slogan",
   siteHeroHeading:"hero_heading",siteHeroSubheading:"hero_subheading",
@@ -1104,8 +1151,12 @@ async function loadWebsiteContent(){
 }
 
 $("reloadContentButton").addEventListener("click",async()=>{
- try{await loadWebsiteContent();cmsMessage("contentMessage","Website content reloaded.");}
- catch(error){cmsMessage("contentMessage",error.message,true);}
+ try{
+  await loadWebsiteContent();
+  cmsMessage("contentMessage","Website content reloaded.");
+ }catch(error){
+  cmsMessage("contentMessage",error.message,true);
+ }
 });
 
 $("contentForm").addEventListener("submit",async event=>{
@@ -1136,13 +1187,14 @@ $("contentForm").addEventListener("submit",async event=>{
   const {error}=await db.from("titi_site_content").upsert(payload,{onConflict:"content_key"});
   if(error)throw error;
   cmsMessage("contentMessage","Website content saved successfully.");
- }catch(error){cmsMessage("contentMessage","Unable to save content: "+error.message,true);}
- finally{$("saveContentButton").disabled=false;}
+ }catch(error){
+  cmsMessage("contentMessage","Unable to save content: "+error.message,true);
+ }finally{
+  $("saveContentButton").disabled=false;
+ }
 });
 
-// =====================================================
-// WEBSITE NEWS
-// =====================================================
+/* WEBSITE NEWS */
 
 setPreview("newsImage","newsPreview");
 
@@ -1151,7 +1203,10 @@ async function loadNews(){
  const {data,error}=await db.from("titi_website_news").select("*").order("created_at",{ascending:false});
  if(error)throw error;
  websiteNews=data||[];
- if(!websiteNews.length){$("newsList").innerHTML='<tr><td colspan="5">No news articles have been added.</td></tr>';return;}
+ if(!websiteNews.length){
+  $("newsList").innerHTML='<tr><td colspan="5">No news articles have been added.</td></tr>';
+  return;
+ }
  $("newsList").innerHTML=websiteNews.map(item=>`
   <tr>
    <td><strong>${escapeHTML(item.title)}</strong></td>
@@ -1170,29 +1225,45 @@ async function loadNews(){
 }
 
 function clearNewsForm(){
- $("newsForm").reset();$("newsId").value="";$("newsOldPath").value="";
- $("newsPreview").classList.add("hidden");$("newsPublish").value="false";
+ $("newsForm").reset();
+ $("newsId").value="";
+ $("newsOldPath").value="";
+ $("newsPreview").classList.add("hidden");
+ $("newsPublish").value="false";
  $("saveNewsButton").textContent="SAVE NEWS";
 }
 
 function editNews(id){
- const n=websiteNews.find(x=>String(x.id)===String(id));if(!n)return;
- $("newsId").value=n.id;$("newsOldPath").value=n.image_path||"";
- $("newsTitle").value=n.title||"";$("newsCategory").value=n.category||"";
- $("newsAuthor").value=n.author||"";$("newsSummary").value=n.summary||"";
+ const n=websiteNews.find(x=>String(x.id)===String(id));
+ if(!n)return;
+ $("newsId").value=n.id;
+ $("newsOldPath").value=n.image_path||"";
+ $("newsTitle").value=n.title||"";
+ $("newsCategory").value=n.category||"";
+ $("newsAuthor").value=n.author||"";
+ $("newsSummary").value=n.summary||"";
  $("newsContent").value=n.article_content||"";
  $("newsPublish").value=String(n.is_published);
- if(n.image_url){$("newsPreview").src=n.image_url;$("newsPreview").classList.remove("hidden");}
- else $("newsPreview").classList.add("hidden");
+ if(n.image_url){
+  $("newsPreview").src=n.image_url;
+  $("newsPreview").classList.remove("hidden");
+ }else{
+  $("newsPreview").classList.add("hidden");
+ }
  $("saveNewsButton").textContent="UPDATE NEWS";
  $("newsForm").scrollIntoView({behavior:"smooth"});
 }
 
 $("newsForm").addEventListener("submit",async event=>{
  event.preventDefault();
- const id=$("newsId").value,oldPath=$("newsOldPath").value,file=$("newsImage").files[0];
+ const id=$("newsId").value;
+ const oldPath=$("newsOldPath").value;
+ const file=$("newsImage").files[0];
  const existing=websiteNews.find(x=>String(x.id)===String(id));
- if(!$("newsTitle").value.trim()){cmsMessage("newsMessage","A news headline is required.",true);return;}
+ if(!$("newsTitle").value.trim()){
+  cmsMessage("newsMessage","A news headline is required.",true);
+  return;
+ }
  $("saveNewsButton").disabled=true;
  try{
   const uploaded=file?await uploadMedia(file,"news"):null;
@@ -1214,13 +1285,18 @@ $("newsForm").addEventListener("submit",async event=>{
   if(result.error)throw result.error;
   if(uploaded&&oldPath)await deleteMedia(oldPath);
   cmsMessage("newsMessage",published?"News saved and published.":"News saved as draft.");
-  clearNewsForm();await loadNews();
- }catch(error){cmsMessage("newsMessage","Unable to save news: "+error.message,true);}
- finally{$("saveNewsButton").disabled=false;}
+  clearNewsForm();
+  await loadNews();
+ }catch(error){
+  cmsMessage("newsMessage","Unable to save news: "+error.message,true);
+ }finally{
+  $("saveNewsButton").disabled=false;
+ }
 });
 
 async function toggleNews(id){
- const item=websiteNews.find(x=>String(x.id)===String(id));if(!item)return;
+ const item=websiteNews.find(x=>String(x.id)===String(id));
+ if(!item)return;
  const publish=!item.is_published;
  try{
   const {error}=await db.from("titi_website_news").update({
@@ -1229,14 +1305,14 @@ async function toggleNews(id){
   }).eq("id",id);
   if(error)throw error;
   await loadNews();
- }catch(error){alert("Unable to change publication status: "+error.message);}
+ }catch(error){
+  alert("Unable to change publication status: "+error.message);
+ }
 }
 
 $("clearNewsForm").addEventListener("click",clearNewsForm);
 
-// =====================================================
-// STAFF PROFILES
-// =====================================================
+/* STAFF PROFILES */
 
 setPreview("staffPhoto","staffPreview");
 
@@ -1245,7 +1321,10 @@ async function loadStaff(){
  const {data,error}=await db.from("titi_staff_profiles").select("*").order("display_order",{ascending:true});
  if(error)throw error;
  staffProfiles=data||[];
- if(!staffProfiles.length){$("staffList").innerHTML='<p class="muted">No staff profiles have been added.</p>';return;}
+ if(!staffProfiles.length){
+  $("staffList").innerHTML='<p class="muted">No staff profiles have been added.</p>';
+  return;
+ }
  $("staffList").innerHTML=staffProfiles.map(item=>`
   <div class="media-card">
    ${item.photo_url?`<img src="${escapeHTML(item.photo_url)}" alt="${escapeHTML(item.full_name)}">`:""}
@@ -1265,26 +1344,41 @@ async function loadStaff(){
 }
 
 function clearStaffForm(){
- $("staffForm").reset();$("staffId").value="";$("staffOldPath").value="";
- $("staffOrder").value="0";$("staffPreview").classList.add("hidden");
+ $("staffForm").reset();
+ $("staffId").value="";
+ $("staffOldPath").value="";
+ $("staffOrder").value="0";
+ $("staffPreview").classList.add("hidden");
  $("saveStaffButton").textContent="SAVE STAFF PROFILE";
 }
 
 function editStaff(id){
- const s=staffProfiles.find(x=>String(x.id)===String(id));if(!s)return;
- $("staffId").value=s.id;$("staffOldPath").value=s.photo_path||"";
- $("staffName").value=s.full_name||"";$("staffPosition").value=s.position||"";
- $("staffBio").value=s.biography||"";$("staffOrder").value=s.display_order??0;
- if(s.photo_url){$("staffPreview").src=s.photo_url;$("staffPreview").classList.remove("hidden");}
+ const s=staffProfiles.find(x=>String(x.id)===String(id));
+ if(!s)return;
+ $("staffId").value=s.id;
+ $("staffOldPath").value=s.photo_path||"";
+ $("staffName").value=s.full_name||"";
+ $("staffPosition").value=s.position||"";
+ $("staffBio").value=s.biography||"";
+ $("staffOrder").value=s.display_order??0;
+ if(s.photo_url){
+  $("staffPreview").src=s.photo_url;
+  $("staffPreview").classList.remove("hidden");
+ }
  $("saveStaffButton").textContent="UPDATE STAFF PROFILE";
  $("staffForm").scrollIntoView({behavior:"smooth"});
 }
 
 $("staffForm").addEventListener("submit",async event=>{
  event.preventDefault();
- const id=$("staffId").value,oldPath=$("staffOldPath").value,file=$("staffPhoto").files[0];
+ const id=$("staffId").value;
+ const oldPath=$("staffOldPath").value;
+ const file=$("staffPhoto").files[0];
  const existing=staffProfiles.find(x=>String(x.id)===String(id));
- if(!$("staffName").value.trim()){cmsMessage("staffMessage","Staff name is required.",true);return;}
+ if(!$("staffName").value.trim()){
+  cmsMessage("staffMessage","Staff name is required.",true);
+  return;
+ }
  $("saveStaffButton").disabled=true;
  try{
   const uploaded=file?await uploadMedia(file,"staff"):null;
@@ -1302,23 +1396,28 @@ $("staffForm").addEventListener("submit",async event=>{
   if(result.error)throw result.error;
   if(uploaded&&oldPath)await deleteMedia(oldPath);
   cmsMessage("staffMessage",id?"Staff profile updated.":"Staff profile added.");
-  clearStaffForm();await loadStaff();
- }catch(error){cmsMessage("staffMessage",error.message,true);}
- finally{$("saveStaffButton").disabled=false;}
+  clearStaffForm();
+  await loadStaff();
+ }catch(error){
+  cmsMessage("staffMessage",error.message,true);
+ }finally{
+  $("saveStaffButton").disabled=false;
+ }
 });
 
 $("clearStaffForm").addEventListener("click",clearStaffForm);
 
-// =====================================================
-// WEBSITE DOCUMENTS
-// =====================================================
+/* WEBSITE DOCUMENTS */
 
 async function loadWebsiteDocuments(){
  $("websiteDocumentsList").innerHTML='<tr><td colspan="4">Loading documents...</td></tr>';
  const {data,error}=await db.from("titi_website_documents").select("*").order("created_at",{ascending:false});
  if(error)throw error;
  websiteDocuments=data||[];
- if(!websiteDocuments.length){$("websiteDocumentsList").innerHTML='<tr><td colspan="4">No website documents uploaded.</td></tr>';return;}
+ if(!websiteDocuments.length){
+  $("websiteDocumentsList").innerHTML='<tr><td colspan="4">No website documents uploaded.</td></tr>';
+  return;
+ }
  $("websiteDocumentsList").innerHTML=websiteDocuments.map(item=>`
   <tr>
    <td><strong>${escapeHTML(item.title)}</strong><br><span class="muted">${escapeHTML(item.description||"")}</span></td>
@@ -1343,7 +1442,8 @@ function clearWebsiteDocumentForm(){
 }
 
 function editWebsiteDocument(id){
- const d=websiteDocuments.find(x=>String(x.id)===String(id));if(!d)return;
+ const d=websiteDocuments.find(x=>String(x.id)===String(id));
+ if(!d)return;
  $("websiteDocumentId").value=d.id;
  $("websiteDocumentOldPath").value=d.file_path||"";
  $("websiteDocumentTitle").value=d.title||"";
@@ -1355,10 +1455,20 @@ function editWebsiteDocument(id){
 
 $("websiteDocumentForm").addEventListener("submit",async event=>{
  event.preventDefault();
- const id=$("websiteDocumentId").value,oldPath=$("websiteDocumentOldPath").value,file=$("websiteDocumentFile").files[0];
+ const id=$("websiteDocumentId").value;
+ const oldPath=$("websiteDocumentOldPath").value;
+ const file=$("websiteDocumentFile").files[0];
  const existing=websiteDocuments.find(x=>String(x.id)===String(id));
- if(!id&&!file){cmsMessage("documentsMessage","Please choose a document to upload.",true);return;}
- if(!$("websiteDocumentTitle").value.trim()){cmsMessage("documentsMessage","Document title is required.",true);return;}
+
+ if(!id&&!file){
+  cmsMessage("documentsMessage","Please choose a document to upload.",true);
+  return;
+ }
+ if(!$("websiteDocumentTitle").value.trim()){
+  cmsMessage("documentsMessage","Document title is required.",true);
+  return;
+ }
+
  $("saveWebsiteDocumentButton").disabled=true;
  try{
   const uploaded=file?await uploadMedia(file,"documents"):null;
@@ -1375,16 +1485,18 @@ $("websiteDocumentForm").addEventListener("submit",async event=>{
   if(result.error)throw result.error;
   if(uploaded&&oldPath)await deleteMedia(oldPath);
   cmsMessage("documentsMessage",id?"Document updated.":"Document uploaded successfully.");
-  clearWebsiteDocumentForm();await loadWebsiteDocuments();
- }catch(error){cmsMessage("documentsMessage","Unable to save document: "+error.message,true);}
- finally{$("saveWebsiteDocumentButton").disabled=false;}
+  clearWebsiteDocumentForm();
+  await loadWebsiteDocuments();
+ }catch(error){
+  cmsMessage("documentsMessage","Unable to save document: "+error.message,true);
+ }finally{
+  $("saveWebsiteDocumentButton").disabled=false;
+ }
 });
 
 $("clearWebsiteDocumentForm").addEventListener("click",clearWebsiteDocumentForm);
 
-// =====================================================
-// REFRESH AND SESSION RESTORATION
-// =====================================================
+/* REFRESH AND SESSION RESTORATION */
 
 $("refreshButton").addEventListener("click",async()=>{
  try{
@@ -1397,7 +1509,9 @@ $("refreshButton").addEventListener("click",async()=>{
   if(currentModule==="staff")await loadStaff();
   if(currentModule==="documents")await loadWebsiteDocuments();
   showMessage("Current section refreshed successfully.");
- }catch(error){showMessage("Refresh failed: "+error.message,true);}
+ }catch(error){
+  showMessage("Refresh failed: "+error.message,true);
+ }
 });
 
 async function restoreSession(){
