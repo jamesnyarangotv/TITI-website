@@ -249,9 +249,13 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
 "use strict";
 
 const SUPABASE_URL="https://jlmbiauilmajuvrnuaul.supabase.co";
-const SUPABASE_KEY="sb_publishable_b3g7wGtSGVtI5lCyCR5LxA_KjFXh08W";
+
+/* CORRECTED SUPABASE PUBLISHABLE API KEY */
+const SUPABASE_KEY="sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+
 const ADMIN_USER_ID="3147838a-12de-4a04-ad0b-657044d6f5d1";
 const ADMIN_EMAIL="tahidiinternationalinstitute@gmail.com";
+
 const STORAGE_BUCKET="notice-attachments";
 const MAX_FILE_SIZE=20*1024*1024;
 
@@ -472,7 +476,6 @@ function validateNoticeFile(file){
 async function uploadNoticeFile(file){
  validateNoticeFile(file);
 
- const ext=(file.name.match(/\.[a-z0-9]+$/i)||[""])[0].toLowerCase();
  const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,"_").slice(-100);
  const path="notices/"+crypto.randomUUID()+"-"+safe;
 
@@ -494,7 +497,7 @@ async function uploadNoticeFile(file){
   attachment_url:publicData.publicUrl,
   attachment_name:file.name,
   attachment_path:data.path,
-  attachment_type:file.type||ext
+  attachment_type:file.type||""
  };
 }
 
