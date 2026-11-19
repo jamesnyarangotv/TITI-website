@@ -123,7 +123,7 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
   <div class="stat-card"><div class="stat-label">DRAFT NOTICES</div><h2 id="draftCount">0</h2></div>
  </div>
  <div class="panel"><div class="panel-accent"></div><div class="panel-heading"><h3>Administration Modules</h3><p>Select a module from the navigation menu to manage its records.</p></div><div class="panel-body"><div class="stats">
-  <div class="stat-card"><div class="stat-label">NOTICE MANAGEMENT</div><p>Publish, edit, unpublish and delete official notices.</p></div>
+  <div class="stat-card"><div class="stat-label">NOTICE MANAGEMENT</div><p>Publish, edit, unpublish, archive and delete official notices.</p></div>
   <div class="stat-card"><div class="stat-label">ACADEMIC PROGRAMMES</div><p>Manage programme details and application availability.</p></div>
   <div class="stat-card"><div class="stat-label">WEBSITE MANAGEMENT</div><p>Manage homepage slides and institutional information.</p></div>
  </div><p class="note">Some existing database modules are initially available for record viewing. Their editing controls will be enabled after their exact database fields and permissions are confirmed.</p></div></div>
@@ -144,7 +144,7 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
     <p class="note">Published notices become available for display on the public TITI website.</p>
    </form>
   </div></section>
-  <section class="panel"><div class="panel-accent"></div><div class="panel-heading"><h3>Manage Existing Notices</h3><p>Review, edit, publish or remove announcements.</p></div>
+  <section class="panel"><div class="panel-accent"></div><div class="panel-heading"><h3>Manage Existing Notices</h3><p>Review, edit, publish, archive or remove announcements.</p></div>
    <div class="toolbar"><input type="search" id="searchNotices" placeholder="Search notices..."><select id="filterStatus"><option value="ALL">All notices</option><option value="PUBLISHED">Published</option><option value="DRAFT">Drafts</option><option value="ARCHIVED">Archived</option></select><button class="secondary-btn" id="refreshButton">↻ REFRESH</button></div>
    <div class="notice-list" id="noticeList"><div class="empty">Loading notices...</div></div>
   </section>
@@ -215,20 +215,24 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
 
 <section class="page-section hidden" id="page-applications">
  <div class="page-heading"><div><div class="heading-label">STUDENT ADMISSIONS</div><h1>Admissions & Applications</h1><p>Review submitted application records.</p></div></div>
- <div class="panel"><div class="panel-heading"><h3>Application Records</h3><p>Existing records from the applications table.</p></div><div class="toolbar"><input id="applicationsSearch" placeholder="Search application records..."><button class="secondary-btn" onclick="loadGeneric('applications')">↻ REFRESH</button></div><div class="record-list" id="applicationsList"></div></div>
+ <div class="panel"><div class="panel-heading"><h3>Application Records</h3><p>Existing records from the applications table.</p></div><div class="toolbar"><input id="applicationsSearch" placeholder="Search application records..."><button class="secondary-btn" id="refreshApplications">↻ REFRESH</button></div><div class="record-list" id="applicationsList"></div></div>
 </section>
+
 <section class="page-section hidden" id="page-gallery">
  <div class="page-heading"><div><div class="heading-label">MEDIA MANAGEMENT</div><h1>Gallery Management</h1><p>View existing institute gallery records.</p></div></div>
  <div class="panel"><div class="panel-heading"><h3>Gallery Images</h3></div><div class="record-list" id="galleryList"></div></div>
 </section>
+
 <section class="page-section hidden" id="page-news">
  <div class="page-heading"><div><div class="heading-label">PUBLICATIONS</div><h1>News & Events</h1><p>View existing website news records.</p></div></div>
  <div class="panel"><div class="panel-heading"><h3>Website News</h3></div><div class="record-list" id="newsList"></div></div>
 </section>
+
 <section class="page-section hidden" id="page-staff">
  <div class="page-heading"><div><div class="heading-label">PEOPLE & INSTITUTION</div><h1>Staff Profiles</h1><p>View existing staff profile records.</p></div></div>
  <div class="panel"><div class="panel-heading"><h3>Staff Profiles</h3></div><div class="record-list" id="staffList"></div></div>
 </section>
+
 <section class="page-section hidden" id="page-documents">
  <div class="page-heading"><div><div class="heading-label">INSTITUTIONAL RESOURCES</div><h1>Website Documents</h1><p>View existing website document records.</p></div></div>
  <div class="panel"><div class="panel-heading"><h3>Documents</h3></div><div class="record-list" id="documentsList"></div></div>
@@ -238,6 +242,7 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
 
 <footer class="dashboard-footer"><div class="footer-bottom"><span>© 2026 TAHIDI INTERNATIONAL TRAINING INSTITUTE. All Rights Reserved.</span><span>Designed & Developed by <strong>James Nyarang'o</strong></span></div></footer>
 </section>
+
 <div id="toast" class="toast hidden" aria-live="polite"></div>
 
 <script>
@@ -268,6 +273,7 @@ function initialiseSupabase(){
   return true;
  }catch(e){message($("loginMessage"),errorText(e));return false}
 }
+
 async function verifyAdmin(user){
  if(!user||user.id!==ADMIN_USER_ID||(user.email||"").toLowerCase()!==ADMIN_EMAIL)return false;
  const {data,error}=await supabaseClient.rpc("is_notice_admin");
@@ -276,290 +282,830 @@ async function verifyAdmin(user){
 }
 
 $("loginForm").addEventListener("submit",async e=>{
- e.preventDefault();clearMessage($("loginMessage"));
- const email=$("email").value.trim().toLowerCase(),password=$("password").value;
- if(email!==ADMIN_EMAIL){message($("loginMessage"),"Please use the registered TITI administrator email: "+ADMIN_EMAIL);return}
+ e.preventDefault();
+ clearMessage($("loginMessage"));
+
+ const email=$("email").value.trim().toLowerCase();
+ const password=$("password").value;
+
+ if(email!==ADMIN_EMAIL){
+  message($("loginMessage"),"Please use the registered TITI administrator email: "+ADMIN_EMAIL);
+  return;
+ }
+
  if(!supabaseClient&&!initialiseSupabase())return;
- $("loginButton").disabled=true;$("loginButton").textContent="VERIFYING ACCESS...";
+
+ $("loginButton").disabled=true;
+ $("loginButton").textContent="VERIFYING ACCESS...";
+
  try{
   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
   if(error)throw error;
-  if(!await verifyAdmin(data.user)){await supabaseClient.auth.signOut();throw new Error("Your account does not have the required TITI administrator permission.")}
-  currentUser=data.user;await openDashboard();
- }catch(err){message($("loginMessage"),"Login failed: "+errorText(err))}
- finally{$("loginButton").disabled=false;$("loginButton").textContent="SIGN IN TO DASHBOARD →"}
+
+  if(!await verifyAdmin(data.user)){
+   await supabaseClient.auth.signOut();
+   throw new Error("Your account does not have the required TITI administrator permission.");
+  }
+
+  currentUser=data.user;
+  await openDashboard();
+ }catch(err){
+  message($("loginMessage"),"Login failed: "+errorText(err));
+ }finally{
+  $("loginButton").disabled=false;
+  $("loginButton").textContent="SIGN IN TO DASHBOARD →";
+ }
 });
 
 async function openDashboard(){
- $("loginPage").classList.add("hidden");$("dashboard").classList.remove("hidden");
+ $("loginPage").classList.add("hidden");
+ $("dashboard").classList.remove("hidden");
  $("adminEmail").textContent=currentUser.email||"Administrator";
  await loadNotices();
  showPage("overview");
 }
+
 async function checkExistingSession(){
  if(!supabaseClient)return;
+
  try{
-  const {data,error}=await supabaseClient.auth.getSession();if(error)throw error;
+  const {data,error}=await supabaseClient.auth.getSession();
+  if(error)throw error;
   if(!data.session)return;
+
   const user=data.session.user;
-  if(user.id!==ADMIN_USER_ID||(user.email||"").toLowerCase()!==ADMIN_EMAIL){await supabaseClient.auth.signOut();return}
-  if(!await verifyAdmin(user)){await supabaseClient.auth.signOut();return}
-  currentUser=user;await openDashboard();
- }catch(e){message($("loginMessage"),"Session verification failed: "+errorText(e))}
+
+  if(user.id!==ADMIN_USER_ID||(user.email||"").toLowerCase()!==ADMIN_EMAIL){
+   await supabaseClient.auth.signOut();
+   return;
+  }
+
+  if(!await verifyAdmin(user)){
+   await supabaseClient.auth.signOut();
+   return;
+  }
+
+  currentUser=user;
+  await openDashboard();
+ }catch(e){
+  message($("loginMessage"),"Session verification failed: "+errorText(e));
+ }
 }
 
 function showPage(name){
  document.querySelectorAll(".page-section").forEach(s=>s.classList.add("hidden"));
  $("page-"+name)?.classList.remove("hidden");
- document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+
+ document.querySelectorAll(".nav-btn").forEach(b=>{
+  b.classList.toggle("active",b.dataset.page===name);
+ });
+
  if(name==="programmes")loadProgrammes();
  if(name==="content")loadSiteContent();
  if(name==="slides")loadSlides();
  if(name==="applications")loadGeneric("applications");
- if(name==="gallery")loadGeneric("titi_gallery_images");
- if(name==="news")loadGeneric("titi_website_news");
- if(name==="staff")loadGeneric("titi_staff_profiles");
- if(name==="documents")loadGeneric("titi_website_documents");
+ if(name==="gallery")loadGeneric("gallery");
+ if(name==="news")loadGeneric("news");
+ if(name==="staff")loadGeneric("staff");
+ if(name==="documents")loadGeneric("documents");
 }
-document.querySelectorAll(".nav-btn").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+
+document.querySelectorAll(".nav-btn").forEach(b=>{
+ b.addEventListener("click",()=>showPage(b.dataset.page));
+});
 
 function updateStatistics(){
  $("totalCount").textContent=notices.length;
  $("publishedCount").textContent=notices.filter(n=>n.status==="PUBLISHED").length;
  $("draftCount").textContent=notices.filter(n=>n.status==="DRAFT").length;
 }
+
 async function loadNotices(){
  $("noticeList").innerHTML='<div class="empty">Loading notices...</div>';
+
  try{
-  const {data,error}=await supabaseClient.from("notices").select("*").order("created_at",{ascending:false});
-  if(error)throw error;notices=data||[];updateStatistics();renderNotices();
- }catch(e){$("noticeList").innerHTML='<div class="empty">Unable to load notices: '+escapeHTML(errorText(e))+'</div>'}
+  const {data,error}=await supabaseClient
+   .from("notices")
+   .select("*")
+   .order("created_at",{ascending:false});
+
+  if(error)throw error;
+
+  notices=data||[];
+  updateStatistics();
+  renderNotices();
+ }catch(e){
+  $("noticeList").innerHTML='<div class="empty">Unable to load notices: '+escapeHTML(errorText(e))+'</div>';
+ }
 }
+
 function renderNotices(){
- const search=$("searchNotices").value.toLowerCase().trim(),status=$("filterStatus").value;
- const rows=notices.filter(n=>(n.title||"").toLowerCase().includes(search)||(n.content||"").toLowerCase().includes(search))
- .filter(n=>status==="ALL"||n.status===status);
- if(!rows.length){$("noticeList").innerHTML='<div class="empty">No notices found.</div>';return}
+ const search=$("searchNotices").value.toLowerCase().trim();
+ const status=$("filterStatus").value;
+
+ const rows=notices
+  .filter(n=>(n.title||"").toLowerCase().includes(search)||(n.content||"").toLowerCase().includes(search))
+  .filter(n=>status==="ALL"||n.status===status);
+
+ if(!rows.length){
+  $("noticeList").innerHTML='<div class="empty">No notices found.</div>';
+  return;
+ }
+
  $("noticeList").innerHTML=rows.map(n=>{
   const preview=(n.content||"").length>190?n.content.slice(0,190)+"...":n.content;
-  const attachment=n.attachment_url?'<p class="notice-meta">📎 <a href="'+escapeHTML(n.attachment_url)+'" target="_blank" rel="noopener">'+escapeHTML(n.attachment_name||"View attachment")+'</a></p>':"";
-  return '<article class="notice-item"><div class="notice-top"><div><h4>'+escapeHTML(n.title)+'</h4><div class="notice-meta">'+escapeHTML(n.category||"GENERAL")+' | '+escapeHTML(dateText(n.created_at))+'</div></div><span class="status '+escapeHTML(n.status)+'">'+escapeHTML(n.status)+'</span></div><div class="notice-preview">'+escapeHTML(preview)+'</div>'+attachment+'<div class="notice-actions"><button class="small-btn" data-action="edit" data-id="'+escapeHTML(n.id)+'">EDIT</button><button class="small-btn" data-action="'+(n.status==="PUBLISHED"?"unpublish":"publish")+'" data-id="'+escapeHTML(n.id)+'">'+(n.status==="PUBLISHED"?"UNPUBLISH":"PUBLISH")+'</button><button class="small-btn delete" data-action="delete" data-id="'+escapeHTML(n.id)+'">DELETE</button></div></article>';
+
+  const attachment=n.attachment_url
+   ?'<p class="notice-meta">📎 <a href="'+escapeHTML(n.attachment_url)+'" target="_blank" rel="noopener">'+escapeHTML(n.attachment_name||"View attachment")+'</a></p>'
+   :"";
+
+  const archiveButton=n.status==="ARCHIVED"
+   ?'<button class="small-btn" data-action="restore" data-id="'+escapeHTML(n.id)+'">RESTORE TO DRAFT</button>'
+   :'<button class="small-btn" data-action="archive" data-id="'+escapeHTML(n.id)+'">ARCHIVE</button>';
+
+  const publicationButton=n.status==="PUBLISHED"
+   ?'<button class="small-btn" data-action="unpublish" data-id="'+escapeHTML(n.id)+'">UNPUBLISH</button>'
+   :'<button class="small-btn" data-action="publish" data-id="'+escapeHTML(n.id)+'">PUBLISH</button>';
+
+  return '<article class="notice-item">'+
+   '<div class="notice-top"><div><h4>'+escapeHTML(n.title)+'</h4>'+
+   '<div class="notice-meta">'+escapeHTML(n.category||"GENERAL")+' | '+escapeHTML(dateText(n.created_at))+'</div></div>'+
+   '<span class="status '+escapeHTML(n.status)+'">'+escapeHTML(n.status)+'</span></div>'+
+   '<div class="notice-preview">'+escapeHTML(preview)+'</div>'+
+   attachment+
+   '<div class="notice-actions">'+
+   '<button class="small-btn" data-action="edit" data-id="'+escapeHTML(n.id)+'">EDIT</button>'+
+   publicationButton+
+   archiveButton+
+   '<button class="small-btn delete" data-action="delete" data-id="'+escapeHTML(n.id)+'">DELETE</button>'+
+   '</div></article>';
  }).join("");
 }
-function currentNotice(id){return notices.find(n=>String(n.id)===String(id))}
-function resetNoticeForm(){
- $("noticeForm").reset();$("noticeId").value="";$("formHeading").textContent="＋ Create New Notice";
- $("cancelEditButton").classList.add("hidden");$("currentAttachment").classList.add("hidden");clearMessage($("formMessage"));
+
+function currentNotice(id){
+ return notices.find(n=>String(n.id)===String(id));
 }
+
+function resetNoticeForm(){
+ $("noticeForm").reset();
+ $("noticeId").value="";
+ $("formHeading").textContent="＋ Create New Notice";
+ $("cancelEditButton").classList.add("hidden");
+ $("currentAttachment").classList.add("hidden");
+ clearMessage($("formMessage"));
+}
+
 function validateNoticeFile(file){
  if(!file)return;
+
  const ext=(file.name.match(/\.[a-z0-9]+$/i)||[""])[0].toLowerCase();
- if(file.size>MAX_FILE_SIZE)throw new Error("The selected file is larger than 20 MB.");
- if(![".pdf",".jpg",".jpeg",".png",".webp"].includes(ext))throw new Error("Unsupported attachment. Select PDF, JPG, JPEG, PNG or WEBP.");
+
+ if(file.size>MAX_FILE_SIZE){
+  throw new Error("The selected file is larger than 20 MB.");
+ }
+
+ if(![".pdf",".jpg",".jpeg",".png",".webp"].includes(ext)){
+  throw new Error("Unsupported attachment. Select PDF, JPG, JPEG, PNG or WEBP.");
+ }
 }
+
 async function uploadNoticeFile(file){
  validateNoticeFile(file);
+
+ const ext=(file.name.match(/\.[a-z0-9]+$/i)||[""])[0].toLowerCase();
  const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,"_").slice(-100);
  const path="notices/"+crypto.randomUUID()+"-"+safe;
- const {data,error}=await supabaseClient.storage.from(STORAGE_BUCKET).upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type||undefined});
+
+ const {data,error}=await supabaseClient.storage
+  .from(STORAGE_BUCKET)
+  .upload(path,file,{
+   cacheControl:"3600",
+   upsert:false,
+   contentType:file.type||undefined
+  });
+
  if(error)throw error;
- const {data:publicData}=supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(data.path);
- return {attachment_url:publicData.publicUrl,attachment_name:file.name,attachment_path:data.path,attachment_type:file.type||ext};
+
+ const {data:publicData}=supabaseClient.storage
+  .from(STORAGE_BUCKET)
+  .getPublicUrl(data.path);
+
+ return {
+  attachment_url:publicData.publicUrl,
+  attachment_name:file.name,
+  attachment_path:data.path,
+  attachment_type:file.type||ext
+ };
 }
+
 async function removeNoticeFile(path){
  if(!path)return;
- const {error}=await supabaseClient.storage.from(STORAGE_BUCKET).remove([path]);
- if(error)toast("Record saved, but attachment cleanup failed: "+error.message);
+
+ const {error}=await supabaseClient.storage
+  .from(STORAGE_BUCKET)
+  .remove([path]);
+
+ if(error){
+  toast("Record saved, but attachment cleanup failed: "+error.message);
+ }
 }
+
 function editNotice(id){
- const n=currentNotice(id);if(!n)return;
- $("noticeId").value=n.id;$("noticeTitle").value=n.title||"";
- $("noticeCategory").value=n.category||"GENERAL";$("noticeContent").value=n.content||"";
+ const n=currentNotice(id);
+ if(!n)return;
+
+ $("noticeId").value=n.id;
+ $("noticeTitle").value=n.title||"";
+ $("noticeCategory").value=n.category||"GENERAL";
+ $("noticeContent").value=n.content||"";
  $("noticeAttachment").value="";
- if(n.attachment_url){$("currentAttachment").innerHTML='Current attachment: <a href="'+escapeHTML(n.attachment_url)+'" target="_blank" rel="noopener">'+escapeHTML(n.attachment_name||"View attachment")+'</a><br>Choose another file to replace it.';$("currentAttachment").classList.remove("hidden")}else $("currentAttachment").classList.add("hidden");
- $("formHeading").textContent="Edit Existing Notice";$("cancelEditButton").classList.remove("hidden");
+
+ if(n.attachment_url){
+  $("currentAttachment").innerHTML='Current attachment: <a href="'+escapeHTML(n.attachment_url)+'" target="_blank" rel="noopener">'+escapeHTML(n.attachment_name||"View attachment")+'</a><br>Choose another file to replace it.';
+  $("currentAttachment").classList.remove("hidden");
+ }else{
+  $("currentAttachment").classList.add("hidden");
+ }
+
+ $("formHeading").textContent="Edit Existing Notice";
+ $("cancelEditButton").classList.remove("hidden");
  $("editorPanel").scrollIntoView({behavior:"smooth",block:"start"});
 }
+
 async function saveNotice(status){
- clearMessage($("formMessage"));if(!$("noticeForm").reportValidity())return;
- const id=$("noticeId").value,title=$("noticeTitle").value.trim(),category=$("noticeCategory").value,content=$("noticeContent").value.trim(),file=$("noticeAttachment").files[0]||null;
- if(!title||!content){message($("formMessage"),"Enter the notice title and content.");return}
- try{validateNoticeFile(file)}catch(e){message($("formMessage"),errorText(e));return}
- const old=id?currentNotice(id):null;let uploaded=null;
- const payload={title,category,content,status,updated_at:new Date().toISOString()};
- const buttons=[$("draftButton"),$("publishButton")];buttons.forEach(b=>b.disabled=true);
+ clearMessage($("formMessage"));
+
+ if(!$("noticeForm").reportValidity())return;
+
+ const id=$("noticeId").value;
+ const title=$("noticeTitle").value.trim();
+ const category=$("noticeCategory").value;
+ const content=$("noticeContent").value.trim();
+ const file=$("noticeAttachment").files[0]||null;
+
+ if(!title||!content){
+  message($("formMessage"),"Enter the notice title and content.");
+  return;
+ }
+
  try{
-  if(file){message($("formMessage"),"Uploading attachment...","success");uploaded=await uploadNoticeFile(file);Object.assign(payload,uploaded)}
+  validateNoticeFile(file);
+ }catch(e){
+  message($("formMessage"),errorText(e));
+  return;
+ }
+
+ const old=id?currentNotice(id):null;
+ let uploaded=null;
+
+ const payload={
+  title,
+  category,
+  content,
+  status,
+  updated_at:new Date().toISOString()
+ };
+
+ const buttons=[$("draftButton"),$("publishButton")];
+ buttons.forEach(b=>b.disabled=true);
+
+ try{
+  if(file){
+   message($("formMessage"),"Uploading attachment...","success");
+   uploaded=await uploadNoticeFile(file);
+   Object.assign(payload,uploaded);
+  }
+
   if(id){
-   const {error}=await supabaseClient.from("notices").update(payload).eq("id",id);if(error)throw error;
-   if(uploaded&&old?.attachment_path)await removeNoticeFile(old.attachment_path);
+   const {error}=await supabaseClient
+    .from("notices")
+    .update(payload)
+    .eq("id",id);
+
+   if(error)throw error;
+
+   if(uploaded&&old?.attachment_path){
+    await removeNoticeFile(old.attachment_path);
+   }
   }else{
    payload.created_by=currentUser.id;
-   const {error}=await supabaseClient.from("notices").insert(payload);if(error)throw error;
+
+   const {error}=await supabaseClient
+    .from("notices")
+    .insert(payload);
+
+   if(error)throw error;
   }
+
   toast(status==="PUBLISHED"?"Notice published successfully.":"Notice saved successfully.");
-  resetNoticeForm();await loadNotices();
+  resetNoticeForm();
+  await loadNotices();
+
  }catch(e){
-  if(uploaded?.attachment_path)await removeNoticeFile(uploaded.attachment_path);
+  if(uploaded?.attachment_path){
+   await removeNoticeFile(uploaded.attachment_path);
+  }
+
   message($("formMessage"),errorText(e));
- }finally{buttons.forEach(b=>b.disabled=false)}
+ }finally{
+  buttons.forEach(b=>b.disabled=false);
+ }
 }
+
 $("draftButton").addEventListener("click",()=>saveNotice("DRAFT"));
 $("publishButton").addEventListener("click",()=>saveNotice("PUBLISHED"));
-$("newNoticeButton").addEventListener("click",()=>{resetNoticeForm();$("editorPanel").scrollIntoView({behavior:"smooth"})});
+
+$("newNoticeButton").addEventListener("click",()=>{
+ resetNoticeForm();
+ $("editorPanel").scrollIntoView({behavior:"smooth"});
+});
+
 $("cancelEditButton").addEventListener("click",resetNoticeForm);
 $("refreshButton").addEventListener("click",loadNotices);
 $("searchNotices").addEventListener("input",renderNotices);
 $("filterStatus").addEventListener("change",renderNotices);
+
 $("noticeList").addEventListener("click",async e=>{
- const b=e.target.closest("button[data-action]");if(!b)return;
- const id=b.dataset.id,action=b.dataset.action,n=currentNotice(id);if(!n)return;
- if(action==="edit"){editNotice(id);return}
- if(action==="delete"){
-  if(!confirm("Permanently delete this notice and its attachment?"))return;
-  try{
-   const {error}=await supabaseClient.from("notices").delete().eq("id",id);if(error)throw error;
-   if(n.attachment_path)await removeNoticeFile(n.attachment_path);
-   if($("noticeId").value===String(id))resetNoticeForm();
-   toast("Notice deleted.");await loadNotices();
-  }catch(err){toast("Unable to delete: "+errorText(err))}
+ const b=e.target.closest("button[data-action]");
+ if(!b)return;
+
+ const id=b.dataset.id;
+ const action=b.dataset.action;
+ const n=currentNotice(id);
+
+ if(!n)return;
+
+ if(action==="edit"){
+  editNotice(id);
   return;
  }
+
+ if(action==="delete"){
+  if(!confirm("Permanently delete this notice and its attachment?"))return;
+
+  try{
+   const {error}=await supabaseClient
+    .from("notices")
+    .delete()
+    .eq("id",id);
+
+   if(error)throw error;
+
+   if(n.attachment_path){
+    await removeNoticeFile(n.attachment_path);
+   }
+
+   if($("noticeId").value===String(id)){
+    resetNoticeForm();
+   }
+
+   toast("Notice deleted.");
+   await loadNotices();
+  }catch(err){
+   toast("Unable to delete: "+errorText(err));
+  }
+
+  return;
+ }
+
+ if(action==="archive"||action==="restore"){
+  const newStatus=action==="archive"?"ARCHIVED":"DRAFT";
+
+  if(!confirm(action==="archive"?"Archive this notice?":"Restore this notice to drafts?"))return;
+
+  try{
+   const {error}=await supabaseClient
+    .from("notices")
+    .update({
+     status:newStatus,
+     updated_at:new Date().toISOString()
+    })
+    .eq("id",id);
+
+   if(error)throw error;
+
+   toast(action==="archive"?"Notice archived.":"Notice restored to drafts.");
+   await loadNotices();
+  }catch(err){
+   toast("Unable to update notice: "+errorText(err));
+  }
+
+  return;
+ }
+
  const status=action==="publish"?"PUBLISHED":"DRAFT";
+
  if(!confirm(status==="PUBLISHED"?"Publish this notice now?":"Unpublish this notice?"))return;
+
  try{
-  const {error}=await supabaseClient.from("notices").update({status,updated_at:new Date().toISOString()}).eq("id",id);
-  if(error)throw error;toast(status==="PUBLISHED"?"Notice published.":"Notice unpublished.");await loadNotices();
- }catch(err){toast("Unable to update notice: "+errorText(err))}
+  const {error}=await supabaseClient
+   .from("notices")
+   .update({
+    status,
+    updated_at:new Date().toISOString()
+   })
+   .eq("id",id);
+
+  if(error)throw error;
+
+  toast(status==="PUBLISHED"?"Notice published.":"Notice unpublished.");
+  await loadNotices();
+ }catch(err){
+  toast("Unable to update notice: "+errorText(err));
+ }
 });
 
-/* PROGRAMME MANAGEMENT
-   Uses the programme fields previously confirmed for this project. */
+/* PROGRAMME MANAGEMENT */
 async function loadProgrammes(){
  $("programmeList").innerHTML='<div class="empty">Loading programmes...</div>';
+
  try{
-  const {data,error}=await supabaseClient.from("programmes").select("*").order("created_at",{ascending:false});
-  if(error)throw error;programmes=data||[];renderProgrammes();
- }catch(e){$("programmeList").innerHTML='<div class="empty">Unable to load programmes: '+escapeHTML(errorText(e))+'</div>'}
+  const {data,error}=await supabaseClient
+   .from("programmes")
+   .select("*")
+   .order("created_at",{ascending:false});
+
+  if(error)throw error;
+
+  programmes=data||[];
+  renderProgrammes();
+ }catch(e){
+  $("programmeList").innerHTML='<div class="empty">Unable to load programmes: '+escapeHTML(errorText(e))+'</div>';
+ }
 }
+
 function renderProgrammes(){
  const q=$("programmeSearch").value.toLowerCase().trim();
- const rows=programmes.filter(p=>[p.programme_name,p.programme_level,p.description].some(v=>String(v||"").toLowerCase().includes(q)));
- if(!rows.length){$("programmeList").innerHTML='<div class="empty">No programme records found.</div>';return}
- $("programmeList").innerHTML=rows.map(p=>'<article class="record-item"><div class="notice-top"><div><h4>'+escapeHTML(p.programme_name)+'</h4><div class="notice-meta">'+escapeHTML(p.programme_level)+' | '+escapeHTML(p.duration||"Duration not specified")+'</div></div><span class="status '+(p.application_open?"PUBLISHED":"DRAFT")+'">'+(p.application_open?"APPLICATION OPEN":"CLOSED")+'</span></div><p class="notice-preview">'+escapeHTML(p.description||"")+'</p><div class="notice-actions"><button class="small-btn" data-programme-edit="'+escapeHTML(p.id)+'">EDIT</button><button class="small-btn" data-programme-toggle="'+escapeHTML(p.id)+'">'+(p.application_open?"CLOSE APPLICATIONS":"OPEN APPLICATIONS")+'</button><button class="small-btn delete" data-programme-delete="'+escapeHTML(p.id)+'">DELETE</button></div></article>').join("");
+
+ const rows=programmes.filter(p=>[
+  p.programme_name,
+  p.programme_level,
+  p.description
+ ].some(v=>String(v||"").toLowerCase().includes(q)));
+
+ if(!rows.length){
+  $("programmeList").innerHTML='<div class="empty">No programme records found.</div>';
+  return;
+ }
+
+ $("programmeList").innerHTML=rows.map(p=>
+  '<article class="record-item">'+
+  '<div class="notice-top"><div><h4>'+escapeHTML(p.programme_name)+'</h4>'+
+  '<div class="notice-meta">'+escapeHTML(p.programme_level)+' | '+escapeHTML(p.duration||"Duration not specified")+'</div></div>'+
+  '<span class="status '+(p.application_open?"PUBLISHED":"DRAFT")+'">'+(p.application_open?"APPLICATION OPEN":"CLOSED")+'</span></div>'+
+  '<p class="notice-preview">'+escapeHTML(p.description||"")+'</p>'+
+  '<div class="notice-actions">'+
+  '<button class="small-btn" data-programme-edit="'+escapeHTML(p.id)+'">EDIT</button>'+
+  '<button class="small-btn" data-programme-toggle="'+escapeHTML(p.id)+'">'+(p.application_open?"CLOSE APPLICATIONS":"OPEN APPLICATIONS")+'</button>'+
+  '<button class="small-btn delete" data-programme-delete="'+escapeHTML(p.id)+'">DELETE</button>'+
+  '</div></article>'
+ ).join("");
 }
-function resetProgrammeForm(){$("programmeForm").reset();$("programmeId").value="";$("programmeOpen").checked=true;clearMessage($("programmeMessage"))}
+
+function resetProgrammeForm(){
+ $("programmeForm").reset();
+ $("programmeId").value="";
+ $("programmeOpen").checked=true;
+ $("programmeHeading").textContent="Add or Edit Programme";
+ clearMessage($("programmeMessage"));
+}
+
 $("programmeForm").addEventListener("submit",async e=>{
- e.preventDefault();const id=$("programmeId").value;
- const payload={programme_name:$("programmeName").value.trim(),programme_level:$("programmeLevel").value.trim(),duration:$("programmeDuration").value.trim(),description:$("programmeDescription").value.trim(),application_open:$("programmeOpen").checked};
- if(!payload.programme_name||!payload.programme_level){message($("programmeMessage"),"Programme name and level are required.");return}
+ e.preventDefault();
+
+ const id=$("programmeId").value;
+
+ const payload={
+  programme_name:$("programmeName").value.trim(),
+  programme_level:$("programmeLevel").value.trim(),
+  duration:$("programmeDuration").value.trim(),
+  description:$("programmeDescription").value.trim(),
+  application_open:$("programmeOpen").checked
+ };
+
+ if(!payload.programme_name||!payload.programme_level){
+  message($("programmeMessage"),"Programme name and level are required.");
+  return;
+ }
+
  $("saveProgrammeButton").disabled=true;
+
  try{
   let result;
-  if(id)result=await supabaseClient.from("programmes").update(payload).eq("id",id);
-  else result=await supabaseClient.from("programmes").insert(payload);
+
+  if(id){
+   result=await supabaseClient.from("programmes").update(payload).eq("id",id);
+  }else{
+   result=await supabaseClient.from("programmes").insert(payload);
+  }
+
   if(result.error)throw result.error;
-  toast(id?"Programme updated.":"Programme added.");resetProgrammeForm();await loadProgrammes();
- }catch(err){message($("programmeMessage"),"Unable to save programme: "+errorText(err)+". Check the existing table permissions and required fields.")}
- finally{$("saveProgrammeButton").disabled=false}
+
+  toast(id?"Programme updated.":"Programme added.");
+  resetProgrammeForm();
+  await loadProgrammes();
+ }catch(err){
+  message($("programmeMessage"),"Unable to save programme: "+errorText(err)+". Check the existing table permissions and required fields.");
+ }finally{
+  $("saveProgrammeButton").disabled=false;
+ }
 });
+
 $("programmeList").addEventListener("click",async e=>{
- const edit=e.target.closest("[data-programme-edit]"),toggle=e.target.closest("[data-programme-toggle]"),del=e.target.closest("[data-programme-delete]");
+ const edit=e.target.closest("[data-programme-edit]");
+ const toggle=e.target.closest("[data-programme-toggle]");
+ const del=e.target.closest("[data-programme-delete]");
+
  if(edit){
-  const p=programmes.find(x=>String(x.id)===edit.dataset.programmeEdit);if(!p)return;
-  $("programmeId").value=p.id;$("programmeName").value=p.programme_name||"";$("programmeLevel").value=p.programme_level||"";
-  $("programmeDuration").value=p.duration||"";$("programmeDescription").value=p.description||"";$("programmeOpen").checked=!!p.application_open;
-  $("programmeHeading").textContent="Edit Programme";$("programmeForm").scrollIntoView({behavior:"smooth"});return;
+  const p=programmes.find(x=>String(x.id)===edit.dataset.programmeEdit);
+  if(!p)return;
+
+  $("programmeId").value=p.id;
+  $("programmeName").value=p.programme_name||"";
+  $("programmeLevel").value=p.programme_level||"";
+  $("programmeDuration").value=p.duration||"";
+  $("programmeDescription").value=p.description||"";
+  $("programmeOpen").checked=!!p.application_open;
+  $("programmeHeading").textContent="Edit Programme";
+  $("programmeForm").scrollIntoView({behavior:"smooth"});
+  return;
  }
+
  if(toggle){
-  const p=programmes.find(x=>String(x.id)===toggle.dataset.programmeToggle);if(!p)return;
-  try{const {error}=await supabaseClient.from("programmes").update({application_open:!p.application_open}).eq("id",p.id);if(error)throw error;toast("Programme application status updated.");await loadProgrammes()}catch(err){toast("Unable to update programme: "+errorText(err))}return;
+  const p=programmes.find(x=>String(x.id)===toggle.dataset.programmeToggle);
+  if(!p)return;
+
+  try{
+   const {error}=await supabaseClient
+    .from("programmes")
+    .update({application_open:!p.application_open})
+    .eq("id",p.id);
+
+   if(error)throw error;
+
+   toast("Programme application status updated.");
+   await loadProgrammes();
+  }catch(err){
+   toast("Unable to update programme: "+errorText(err));
+  }
+
+  return;
  }
+
  if(del){
-  const p=programmes.find(x=>String(x.id)===del.dataset.programmeDelete);if(!p||!confirm("Permanently delete this programme?"))return;
-  try{const {error}=await supabaseClient.from("programmes").delete().eq("id",p.id);if(error)throw error;toast("Programme deleted.");await loadProgrammes()}catch(err){toast("Unable to delete programme: "+errorText(err))}
+  const p=programmes.find(x=>String(x.id)===del.dataset.programmeDelete);
+  if(!p||!confirm("Permanently delete this programme?"))return;
+
+  try{
+   const {error}=await supabaseClient
+    .from("programmes")
+    .delete()
+    .eq("id",p.id);
+
+   if(error)throw error;
+
+   toast("Programme deleted.");
+   await loadProgrammes();
+  }catch(err){
+   toast("Unable to delete programme: "+errorText(err));
+  }
  }
 });
+
 $("programmeSearch").addEventListener("input",renderProgrammes);
 $("refreshProgrammes").addEventListener("click",loadProgrammes);
 $("cancelProgrammeButton").addEventListener("click",resetProgrammeForm);
 
-/* WEBSITE CONTENT MANAGEMENT
-   Column names below match the previously supplied titi_site_content structure. */
+/* WEBSITE CONTENT MANAGEMENT */
 const contentFields={
- cInstitution:"institution_name",cSlogan:"slogan",cHeroHeading:"hero_heading",cHeroSubheading:"hero_subheading",
- cAboutHeading:"about_heading",cAboutContent:"about_content",cMission:"mission",cVision:"vision",
- cAdmissionsHeading:"admissions_heading",cAdmissionsContent:"admissions_content",cPhone:"phone",
- cEmail:"email",cAddress:"address",cLocation:"location",cFacebook:"facebook_url",
- cInstagram:"instagram_url",cTiktok:"tiktok_url",cYoutube:"youtube_url"
+ cInstitution:"institution_name",
+ cSlogan:"slogan",
+ cHeroHeading:"hero_heading",
+ cHeroSubheading:"hero_subheading",
+ cAboutHeading:"about_heading",
+ cAboutContent:"about_content",
+ cMission:"mission",
+ cVision:"vision",
+ cAdmissionsHeading:"admissions_heading",
+ cAdmissionsContent:"admissions_content",
+ cPhone:"phone",
+ cEmail:"email",
+ cAddress:"address",
+ cLocation:"location",
+ cFacebook:"facebook_url",
+ cInstagram:"instagram_url",
+ cTiktok:"tiktok_url",
+ cYoutube:"youtube_url"
 };
+
 async function loadSiteContent(){
  clearMessage($("contentMessage"));
+
  try{
-  const {data,error}=await supabaseClient.from("titi_site_content").select("*").limit(1);
+  const {data,error}=await supabaseClient
+   .from("titi_site_content")
+   .select("*")
+   .eq("content_key","main")
+   .maybeSingle();
+
   if(error)throw error;
-  siteContent=data?.[0]||null;
+
+  siteContent=data||null;
   $("contentId").value=siteContent?.id||"";
-  Object.entries(contentFields).forEach(([element,field])=>$(element).value=siteContent?.[field]||"");
-  if(!siteContent)message($("contentMessage"),"No website content record was found. The form is ready, but a new record cannot be created safely until the table's required fields are confirmed.","error");
- }catch(e){message($("contentMessage"),"Unable to load website content: "+errorText(e))}
+
+  Object.entries(contentFields).forEach(([element,field])=>{
+   $(element).value=siteContent?.[field]||"";
+  });
+
+  if(!siteContent){
+   message($("contentMessage"),"No main website content record was found. No new record has been created.","error");
+  }
+ }catch(e){
+  message($("contentMessage"),"Unable to load website content: "+errorText(e));
+ }
 }
+
 $("contentForm").addEventListener("submit",async e=>{
  e.preventDefault();
- if(!siteContent?.id){message($("contentMessage"),"No existing content record is loaded. Please check the titi_site_content table.");return}
+
+ if(!siteContent?.id){
+  message($("contentMessage"),"No existing main content record is loaded. No record has been created.");
+  return;
+ }
+
  const payload={};
- Object.entries(contentFields).forEach(([element,field])=>payload[field]=$(element).value.trim());
+
+ Object.entries(contentFields).forEach(([element,field])=>{
+  payload[field]=$(element).value.trim();
+ });
+
  payload.updated_at=new Date().toISOString();
+
  try{
-  const {error}=await supabaseClient.from("titi_site_content").update(payload).eq("id",siteContent.id);
-  if(error)throw error;toast("Website content updated successfully.");await loadSiteContent();
- }catch(err){message($("contentMessage"),"Unable to update website content: "+errorText(err))}
+  const {error}=await supabaseClient
+   .from("titi_site_content")
+   .update(payload)
+   .eq("id",siteContent.id)
+   .eq("content_key","main");
+
+  if(error)throw error;
+
+  toast("Website content updated successfully.");
+  await loadSiteContent();
+ }catch(err){
+  message($("contentMessage"),"Unable to update website content: "+errorText(err));
+ }
 });
 
-/* HOMEPAGE SLIDESHOW
-   Existing columns are used. Images are referenced by URL; no unknown storage bucket is assumed. */
+/* HOMEPAGE SLIDESHOW */
 async function loadSlides(){
  $("slideList").innerHTML='<div class="empty">Loading slides...</div>';
+
  try{
-  const {data,error}=await supabaseClient.from("titi_homepage_slides").select("*").order("display_order",{ascending:true});
-  if(error)throw error;slides=data||[];renderSlides();
- }catch(e){$("slideList").innerHTML='<div class="empty">Unable to load slides: '+escapeHTML(errorText(e))+'</div>'}
+  const {data,error}=await supabaseClient
+   .from("titi_homepage_slides")
+   .select("*")
+   .order("display_order",{ascending:true});
+
+  if(error)throw error;
+
+  slides=data||[];
+  renderSlides();
+ }catch(e){
+  $("slideList").innerHTML='<div class="empty">Unable to load slides: '+escapeHTML(errorText(e))+'</div>';
+ }
 }
+
 function renderSlides(){
- if(!slides.length){$("slideList").innerHTML='<div class="empty">No homepage slides found.</div>';return}
- $("slideList").innerHTML=slides.map(s=>'<article class="record-item"><div class="notice-top"><div><h4>'+escapeHTML(s.title)+'</h4><div class="notice-meta">Display order: '+escapeHTML(s.display_order)+' | '+(s.is_active?"Active":"Inactive")+'</div></div><span class="status '+(s.is_active?"PUBLISHED":"DRAFT")+'">'+(s.is_active?"ACTIVE":"INACTIVE")+'</span></div><p class="notice-preview">'+escapeHTML(s.description||"")+'</p>'+(s.image_url?'<p class="notice-meta"><a href="'+escapeHTML(s.image_url)+'" target="_blank" rel="noopener">View slide image</a></p>':"")+'<div class="notice-actions"><button class="small-btn" data-slide-edit="'+escapeHTML(s.id)+'">EDIT</button><button class="small-btn" data-slide-toggle="'+escapeHTML(s.id)+'">'+(s.is_active?"DEACTIVATE":"ACTIVATE")+'</button><button class="small-btn delete" data-slide-delete="'+escapeHTML(s.id)+'">DELETE</button></div></article>').join("");
+ if(!slides.length){
+  $("slideList").innerHTML='<div class="empty">No homepage slides found.</div>';
+  return;
+ }
+
+ $("slideList").innerHTML=slides.map(s=>
+  '<article class="record-item">'+
+  '<div class="notice-top"><div><h4>'+escapeHTML(s.title)+'</h4>'+
+  '<div class="notice-meta">Display order: '+escapeHTML(s.display_order)+' | '+(s.is_active?"Active":"Inactive")+'</div></div>'+
+  '<span class="status '+(s.is_active?"PUBLISHED":"DRAFT")+'">'+(s.is_active?"ACTIVE":"INACTIVE")+'</span></div>'+
+  '<p class="notice-preview">'+escapeHTML(s.description||"")+'</p>'+
+  (s.image_url?'<p class="notice-meta"><a href="'+escapeHTML(s.image_url)+'" target="_blank" rel="noopener">View slide image</a></p>':"")+
+  '<div class="notice-actions">'+
+  '<button class="small-btn" data-slide-edit="'+escapeHTML(s.id)+'">EDIT</button>'+
+  '<button class="small-btn" data-slide-toggle="'+escapeHTML(s.id)+'">'+(s.is_active?"DEACTIVATE":"ACTIVATE")+'</button>'+
+  '<button class="small-btn delete" data-slide-delete="'+escapeHTML(s.id)+'">DELETE</button>'+
+  '</div></article>'
+ ).join("");
 }
-function clearSlideForm(){$("slideForm").reset();$("slideId").value="";$("slideOrder").value=1;$("slideActive").checked=true;clearMessage($("slideMessage"))}
+
+function clearSlideForm(){
+ $("slideForm").reset();
+ $("slideId").value="";
+ $("slideOrder").value=1;
+ $("slideActive").checked=true;
+ clearMessage($("slideMessage"));
+}
+
 $("clearSlide").addEventListener("click",clearSlideForm);
+
 $("slideForm").addEventListener("submit",async e=>{
- e.preventDefault();const id=$("slideId").value;
- const payload={title:$("slideTitle").value.trim(),description:$("slideDescription").value.trim(),image_url:$("slideImage").value.trim(),button_text:$("slideButtonText").value.trim(),button_link:$("slideButtonLink").value.trim(),display_order:Number($("slideOrder").value)||1,is_active:$("slideActive").checked};
- if(!payload.title||!payload.image_url){message($("slideMessage"),"Slide title and image URL are required.");return}
+ e.preventDefault();
+
+ const id=$("slideId").value;
+
+ const payload={
+  title:$("slideTitle").value.trim(),
+  description:$("slideDescription").value.trim(),
+  image_url:$("slideImage").value.trim(),
+  button_text:$("slideButtonText").value.trim(),
+  button_link:$("slideButtonLink").value.trim(),
+  display_order:Number($("slideOrder").value)||1,
+  is_active:$("slideActive").checked
+ };
+
+ if(!payload.title||!payload.image_url){
+  message($("slideMessage"),"Slide title and image URL are required.");
+  return;
+ }
+
  try{
-  const result=id?await supabaseClient.from("titi_homepage_slides").update(payload).eq("id",id):await supabaseClient.from("titi_homepage_slides").insert(payload);
-  if(result.error)throw result.error;toast(id?"Homepage slide updated.":"Homepage slide added.");clearSlideForm();await loadSlides();
- }catch(err){message($("slideMessage"),"Unable to save slide: "+errorText(err))}
-});
-$("slideList").addEventListener("click",async e=>{
- const edit=e.target.closest("[data-slide-edit]"),toggle=e.target.closest("[data-slide-toggle]"),del=e.target.closest("[data-slide-delete]");
- if(edit){
-  const s=slides.find(x=>String(x.id)===edit.dataset.slideEdit);if(!s)return;
-  $("slideId").value=s.id;$("slideTitle").value=s.title||"";$("slideDescription").value=s.description||"";$("slideImage").value=s.image_url||"";
-  $("slideButtonText").value=s.button_text||"";$("slideButtonLink").value=s.button_link||"";$("slideOrder").value=s.display_order??1;$("slideActive").checked=!!s.is_active;
-  $("slideForm").scrollIntoView({behavior:"smooth"});return;
- }
- if(toggle){
-  const s=slides.find(x=>String(x.id)===toggle.dataset.slideToggle);if(!s)return;
-  try{const {error}=await supabaseClient.from("titi_homepage_slides").update({is_active:!s.is_active}).eq("id",s.id);if(error)throw error;toast("Slide status updated.");await loadSlides()}catch(err){toast("Unable to update slide: "+errorText(err))}return;
- }
- if(del){
-  const s=slides.find(x=>String(x.id)===del.dataset.slideDelete);if(!s||!confirm("Permanently delete this homepage slide?"))return;
-  try{const {error}=await supabaseClient.from("titi_homepage_slides").delete().eq("id",s.id);if(error)throw error;toast("Slide deleted.");await loadSlides()}catch(err){toast("Unable to delete slide: "+errorText(err))}
+  const result=id
+   ?await supabaseClient.from("titi_homepage_slides").update(payload).eq("id",id)
+   :await supabaseClient.from("titi_homepage_slides").insert(payload);
+
+  if(result.error)throw result.error;
+
+  toast(id?"Homepage slide updated.":"Homepage slide added.");
+  clearSlideForm();
+  await loadSlides();
+ }catch(err){
+  message($("slideMessage"),"Unable to save slide: "+errorText(err));
  }
 });
 
-/* SAFE RECORD VIEWER FOR EXISTING TABLES WITH UNCONFIRMED COLUMN STRUCTURES.
-   This does not alter or delete records. */
+$("slideList").addEventListener("click",async e=>{
+ const edit=e.target.closest("[data-slide-edit]");
+ const toggle=e.target.closest("[data-slide-toggle]");
+ const del=e.target.closest("[data-slide-delete]");
+
+ if(edit){
+  const s=slides.find(x=>String(x.id)===edit.dataset.slideEdit);
+  if(!s)return;
+
+  $("slideId").value=s.id;
+  $("slideTitle").value=s.title||"";
+  $("slideDescription").value=s.description||"";
+  $("slideImage").value=s.image_url||"";
+  $("slideButtonText").value=s.button_text||"";
+  $("slideButtonLink").value=s.button_link||"";
+  $("slideOrder").value=s.display_order??1;
+  $("slideActive").checked=!!s.is_active;
+
+  $("slideForm").scrollIntoView({behavior:"smooth"});
+  return;
+ }
+
+ if(toggle){
+  const s=slides.find(x=>String(x.id)===toggle.dataset.slideToggle);
+  if(!s)return;
+
+  try{
+   const {error}=await supabaseClient
+    .from("titi_homepage_slides")
+    .update({is_active:!s.is_active})
+    .eq("id",s.id);
+
+   if(error)throw error;
+
+   toast("Slide status updated.");
+   await loadSlides();
+  }catch(err){
+   toast("Unable to update slide: "+errorText(err));
+  }
+
+  return;
+ }
+
+ if(del){
+  const s=slides.find(x=>String(x.id)===del.dataset.slideDelete);
+  if(!s||!confirm("Permanently delete this homepage slide?"))return;
+
+  try{
+   const {error}=await supabaseClient
+    .from("titi_homepage_slides")
+    .delete()
+    .eq("id",s.id);
+
+   if(error)throw error;
+
+   toast("Slide deleted.");
+   await loadSlides();
+  }catch(err){
+   toast("Unable to delete slide: "+errorText(err));
+  }
+ }
+});
+
+/* SAFE RECORD VIEWER FOR TABLES WITH UNCONFIRMED COLUMN STRUCTURES */
 const genericConfig={
  applications:{table:"applications",target:"applicationsList",title:"Applications"},
  gallery:{table:"titi_gallery_images",target:"galleryList",title:"Gallery images"},
@@ -567,33 +1113,78 @@ const genericConfig={
  staff:{table:"titi_staff_profiles",target:"staffList",title:"Staff profiles"},
  documents:{table:"titi_website_documents",target:"documentsList",title:"Website documents"}
 };
+
 async function loadGeneric(key){
  const cfg=genericConfig[key]||Object.values(genericConfig).find(x=>x.table===key);
  if(!cfg)return;
- const target=$(cfg.target);target.innerHTML='<div class="empty">Loading records...</div>';
+
+ const target=$(cfg.target);
+ target.innerHTML='<div class="empty">Loading records...</div>';
+
  try{
-  const {data,error}=await supabaseClient.from(cfg.table).select("*").limit(100);
+  const {data,error}=await supabaseClient
+   .from(cfg.table)
+   .select("*")
+   .limit(100);
+
   if(error)throw error;
-  if(!data?.length){target.innerHTML='<div class="empty">No records found in '+escapeHTML(cfg.table)+'.</div>';return}
+
+  if(!data?.length){
+   target.innerHTML='<div class="empty">No records found in '+escapeHTML(cfg.table)+'.</div>';
+   return;
+  }
+
   const cols=Object.keys(data[0]);
-  target.innerHTML='<div class="table-wrap"><table class="data-table"><thead><tr>'+cols.map(c=>'<th>'+escapeHTML(c)+'</th>').join("")+'</tr></thead><tbody>'+data.map(row=>'<tr>'+cols.map(c=>{
-   const v=row[c];let value=typeof v==="object"&&v!==null?JSON.stringify(v):String(v??"");
-   if(value.length>180)value=value.slice(0,180)+"…";
-   return '<td>'+escapeHTML(value)+'</td>';
-  }).join("")+'</tr>').join("")+'</tbody></table></div><p class="note">Showing up to 100 records. This view is read-only to protect your existing database records until the exact editing fields and workflows are confirmed.</p>';
- }catch(e){target.innerHTML='<div class="empty">Unable to read '+escapeHTML(cfg.table)+': '+escapeHTML(errorText(e))+'</div>'}
+
+  target.innerHTML=
+   '<div class="table-wrap"><table class="data-table"><thead><tr>'+
+   cols.map(c=>'<th>'+escapeHTML(c)+'</th>').join("")+
+   '</tr></thead><tbody>'+
+   data.map(row=>'<tr>'+cols.map(c=>{
+    const v=row[c];
+    let value=typeof v==="object"&&v!==null?JSON.stringify(v):String(v??"");
+    if(value.length>180)value=value.slice(0,180)+"…";
+    return '<td>'+escapeHTML(value)+'</td>';
+   }).join("")+'</tr>').join("")+
+   '</tbody></table></div>'+
+   '<p class="note">Showing up to 100 records. This view is read-only to protect your existing database records until the exact editing fields and workflows are confirmed.</p>';
+
+ }catch(e){
+  target.innerHTML='<div class="empty">Unable to read '+escapeHTML(cfg.table)+': '+escapeHTML(errorText(e))+'</div>';
+ }
 }
+
+$("refreshApplications").addEventListener("click",()=>loadGeneric("applications"));
 
 $("logoutButton").addEventListener("click",async()=>{
  if(!confirm("Are you sure you want to log out?"))return;
+
  try{
-  const {error}=await supabaseClient.auth.signOut();if(error)throw error;
-  currentUser=null;notices=[];$("dashboard").classList.add("hidden");$("loginPage").classList.remove("hidden");$("loginForm").reset();resetNoticeForm();toast("You have logged out.");
- }catch(e){toast("Logout failed: "+errorText(e))}
+  const {error}=await supabaseClient.auth.signOut();
+  if(error)throw error;
+
+  currentUser=null;
+  notices=[];
+
+  $("dashboard").classList.add("hidden");
+  $("loginPage").classList.remove("hidden");
+  $("loginForm").reset();
+
+  resetNoticeForm();
+  resetProgrammeForm();
+  clearSlideForm();
+
+  toast("You have logged out.");
+ }catch(e){
+  toast("Logout failed: "+errorText(e));
+ }
 });
 
 initialiseSupabase();
-if(supabaseClient)checkExistingSession();
+
+if(supabaseClient){
+ checkExistingSession();
+}
 </script>
 </body>
 </html>
