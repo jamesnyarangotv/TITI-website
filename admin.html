@@ -11,2128 +11,1394 @@
 
 <style>
 *{box-sizing:border-box}
-
-:root{
- --maroon:#7A1220;
- --navy:#0F2A5E;
- --gold:#D4AF37;
-}
-
-body{
- margin:0;
- font-family:'Jost',sans-serif;
- background:#f3f5f8;
- color:#172033;
-}
-
+:root{--maroon:#7A1220;--navy:#0F2A5E;--gold:#D4AF37}
+body{margin:0;font-family:'Jost',sans-serif;background:#f3f5f8;color:#172033}
 input,textarea,button,select{font-family:inherit}
-
-#loginScreen{
- min-height:100vh;
- display:flex;
- justify-content:center;
- align-items:center;
- padding:15px;
- background:linear-gradient(135deg,#0F2A5E,#18243c);
-}
-
-.login-card{
- background:#fff;
- width:100%;
- max-width:390px;
- padding:20px 23px;
- border-radius:12px;
- box-shadow:0 15px 45px #0004;
-}
-
-.logo{
- text-align:center;
- color:var(--maroon);
- font-size:30px;
- font-weight:800;
- letter-spacing:1px;
-}
-
-.subtitle{
- text-align:center;
- color:#687386;
- margin:2px 0 12px;
- font-size:11px;
- line-height:1.5;
-}
-
-h2{color:var(--navy)}
-
-.login-card h2{
- color:var(--navy);
- font-size:21px;
- text-align:center;
- margin:8px 0 3px;
-}
-
-.login-card .muted{
- font-size:12px;
- line-height:1.5;
- margin:4px 0 12px;
- text-align:center;
-}
-
-.login-card label{
- display:block;
- font-weight:600;
- margin:10px 0 5px;
- font-size:13px;
-}
-
-.login-card input{
- width:100%;
- padding:10px 11px;
- border:1px solid #d8dee8;
- border-radius:6px;
- font-size:14px;
- outline:none;
-}
-
-.login-card input:focus{
- border-color:var(--navy);
- box-shadow:0 0 0 2px #0F2A5E12;
-}
-
-.password-wrapper{
- display:flex !important;
- align-items:stretch !important;
- gap:7px;
- width:100%;
-}
-
-.password-wrapper input{
- flex:1 1 auto;
- min-width:0;
- width:0;
- height:42px;
-}
-
-.password-toggle{
- display:inline-flex !important;
- visibility:visible !important;
- opacity:1 !important;
- position:static !important;
- transform:none !important;
- flex:0 0 76px;
- width:76px;
- min-width:76px;
- height:42px;
- padding:0 8px !important;
- margin:0 !important;
- border:1px solid #d8dee8 !important;
- border-radius:6px;
- background:#edf1f7 !important;
- color:var(--navy) !important;
- font-size:12px;
- font-weight:800;
- letter-spacing:.4px;
- cursor:pointer;
- align-items:center !important;
- justify-content:center !important;
- z-index:5;
-}
-
-.password-toggle:hover{background:#dce5f2 !important}
-
-button{
- cursor:pointer;
- border:0;
- border-radius:6px;
- padding:12px 17px;
- font-weight:700;
-}
-
-button:disabled{
- opacity:.6;
- cursor:wait;
-}
-
-.primary{
- background:var(--maroon);
- color:white;
- width:100%;
- margin-top:22px;
-}
-
-.login-card .primary{
- background:var(--maroon);
- color:white;
- width:100%;
- margin-top:15px;
- padding:11px;
- font-size:14px;
- border-radius:6px;
-}
-
-.login-card .primary:hover,.primary:hover{background:#5c0c18}
-
-.error{
- color:#b42318;
- background:#fff0ee;
- padding:11px;
- border-radius:5px;
- margin-top:15px;
- font-size:13px;
- display:none;
-}
-
-/* DASHBOARD */
-
+button{cursor:pointer;border:0;border-radius:6px;padding:11px 15px;font-weight:700}
+button:disabled{opacity:.6;cursor:wait}
+#loginScreen{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px;background:linear-gradient(135deg,#0F2A5E,#18243c)}
+.login-card{background:#fff;width:100%;max-width:390px;padding:22px 24px;border-radius:12px;box-shadow:0 15px 45px #0004}
+.logo{text-align:center;color:var(--maroon);font-size:30px;font-weight:800;letter-spacing:1px}
+.subtitle{text-align:center;color:#687386;margin:2px 0 12px;font-size:11px;line-height:1.5}
+.login-card h2{text-align:center;color:var(--navy);font-size:21px;margin:8px 0 3px}
+.muted{color:#687386;font-size:13px;line-height:1.5}
+.login-card .muted{text-align:center}
+.login-card label{display:block;font-weight:600;margin:10px 0 5px;font-size:13px}
+.login-card input{width:100%;padding:11px;border:1px solid #d8dee8;border-radius:6px;font-size:14px}
+.password-wrapper{display:flex;gap:7px}
+.password-wrapper input{flex:1;min-width:0}
+.password-toggle{width:76px;background:#edf1f7;color:var(--navy)}
+.primary{background:var(--maroon);color:white;width:100%;margin-top:16px}
+.error{color:#b42318;background:#fff0ee;padding:11px;border-radius:5px;margin-top:15px;font-size:13px;display:none}
 #dashboard{display:none}
-
-.topbar{
- background:var(--navy);
- color:white;
- padding:18px 5%;
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:15px;
- flex-wrap:wrap;
- border-bottom:4px solid var(--gold);
-}
-
-.brand{
- font-size:20px;
- font-weight:800;
-}
-
-.brand small{
- display:block;
- color:#d8dfeb;
- font-size:11px;
- margin-top:5px;
-}
-
-.logout{
- background:white;
- color:var(--navy);
-}
-
-.container{
- max-width:1250px;
- margin:30px auto;
- padding:0 20px;
-}
-
-.welcome{
- display:flex;
- justify-content:space-between;
- align-items:center;
- flex-wrap:wrap;
- gap:10px;
- margin-bottom:25px;
-}
-
-.welcome h2{margin:0 0 7px}
-
-.muted{
- color:#687386;
- font-size:13px;
-}
-
-/* DASHBOARD NAVIGATION */
-
-.module-nav{
- display:flex;
- flex-wrap:wrap;
- gap:9px;
- margin-bottom:23px;
- padding:12px;
- background:white;
- border:1px solid #e7eaf0;
- border-radius:9px;
-}
-
-.module-btn{
- background:#edf1f7;
- color:var(--navy);
- padding:11px 18px;
- font-size:13px;
-}
-
-.module-btn.active{
- background:var(--maroon);
- color:white;
-}
-
+.topbar{background:var(--navy);color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;border-bottom:4px solid var(--gold)}
+.brand{font-size:20px;font-weight:800}
+.brand small{display:block;color:#d8dfeb;font-size:11px;margin-top:5px}
+.logout{background:white;color:var(--navy)}
+.container{max-width:1350px;margin:30px auto;padding:0 20px}
+.welcome{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:25px}
+.welcome h2{color:var(--navy);margin:0 0 7px}
+.module-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:23px;padding:12px;background:white;border:1px solid #e7eaf0;border-radius:9px}
+.module-btn{background:#edf1f7;color:var(--navy);padding:11px 15px;font-size:12px}
+.module-btn.active{background:var(--maroon);color:white}
 .module-btn:hover{background:var(--gold);color:#172033}
-
-/* STATISTICS */
-
-.stats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:16px;
- margin-bottom:25px;
-}
-
-.stat{
- background:white;
- border-radius:9px;
- padding:20px;
- border:1px solid #e7eaf0;
-}
-
-.stat strong{
- display:block;
- font-size:29px;
- color:var(--navy);
- margin-top:9px;
-}
-
-/* PANELS */
-
-.panel{
- background:white;
- padding:22px;
- border-radius:9px;
- border:1px solid #e7eaf0;
- margin-bottom:22px;
-}
-
-.panel h3{
- color:var(--navy);
- margin-top:0;
-}
-
-.toolbar{
- display:flex;
- gap:10px;
- margin-bottom:18px;
- flex-wrap:wrap;
-}
-
-.toolbar input{
- max-width:450px;
- padding:11px;
- border:1px solid #d8dee8;
- border-radius:5px;
- font-family:inherit;
-}
-
-table{
- width:100%;
- border-collapse:collapse;
- font-size:13px;
-}
-
-th,td{
- text-align:left;
- padding:13px 10px;
- border-bottom:1px solid #e9edf2;
-}
-
-th{
- background:#f5f6f9;
- color:var(--navy);
-}
-
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:25px}
+.stat,.panel{background:white;border-radius:9px;border:1px solid #e7eaf0}
+.stat{padding:20px}
+.stat strong{display:block;font-size:29px;color:var(--navy);margin-top:9px}
+.panel{padding:22px;margin-bottom:22px}
+.panel h3{color:var(--navy);margin-top:0}
+.toolbar{display:flex;gap:10px;margin:16px 0;flex-wrap:wrap}
+.toolbar input{max-width:450px;width:100%;padding:11px;border:1px solid #d8dee8;border-radius:5px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #e9edf2;vertical-align:middle}
+th{background:#f5f6f9;color:var(--navy)}
 .table-wrap{overflow-x:auto}
-
-.view-btn{
- background:var(--navy);
- color:white;
- padding:8px 12px;
-}
-
-.status{
- display:inline-block;
- padding:6px 9px;
- border-radius:20px;
- background:#fff3d8;
- color:#805500;
- font-size:11px;
- font-weight:bold;
- white-space:nowrap;
-}
-
-.status.APPROVED{
- background:#e1f5e9;
- color:#126536;
-}
-
-.status.REJECTED{
- background:#fde7e7;
- color:#a11919;
-}
-
-.status.VERIFIED{
- background:#e5edff;
- color:#17428b;
-}
-
-.status.UNDER_REVIEW{
- background:#fff3d8;
- color:#805500;
-}
-
-.status.OPEN{
- background:#e1f5e9;
- color:#126536;
-}
-
-.status.CLOSED{
- background:#fde7e7;
- color:#a11919;
-}
-
-/* APPLICANT DETAILS */
-
-.detail-grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:15px;
-}
-
-.detail-item{
- padding:12px;
- background:#f6f7fa;
- border-radius:6px;
- overflow-wrap:anywhere;
-}
-
-.detail-item small{
- display:block;
- color:#687386;
- margin-bottom:6px;
-}
-
+.view-btn,.refresh{background:var(--navy);color:white}
+.status{display:inline-block;padding:6px 9px;border-radius:20px;background:#fff3d8;color:#805500;font-size:11px;font-weight:bold;white-space:nowrap}
+.status.APPROVED,.status.OPEN,.status.PUBLISHED{background:#e1f5e9;color:#126536}
+.status.REJECTED,.status.CLOSED,.status.DRAFT{background:#fde7e7;color:#a11919}
+.status.VERIFIED{background:#e5edff;color:#17428b}
+.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.detail-item{padding:12px;background:#f6f7fa;border-radius:6px;overflow-wrap:anywhere}
+.detail-item small{display:block;color:#687386;margin-bottom:6px}
 .detail-item strong{font-size:14px}
-
-.actions{
- display:flex;
- gap:10px;
- flex-wrap:wrap;
- margin-top:18px;
-}
-
-.approve{
- background:#167744;
- color:white;
-}
-
-.reject{
- background:#a51d2d;
- color:white;
-}
-
-.refresh{
- background:var(--navy);
- color:white;
-}
-
-.secondary{
- background:#e8edf4;
- color:var(--navy);
-}
-
-#detailPanel{display:none}
-
-#message{
- padding:12px;
- margin-bottom:15px;
- border-radius:6px;
- display:none;
- font-size:13px;
-}
-
-/* DOCUMENT VERIFICATION */
-
-.document-list{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:15px;
-}
-
-.document-card{
- border:1px solid #e5e9f0;
- padding:16px;
- border-radius:8px;
- background:#fff;
- min-width:0;
-}
-
-.document-card h4{
- color:var(--navy);
- margin:0 0 8px;
- font-size:15px;
-}
-
-.document-card img{
- width:100%;
- max-height:300px;
- object-fit:contain;
- background:#f3f5f8;
- border-radius:6px;
- margin-top:12px;
-}
-
-.document-card iframe{
- width:100%;
- height:350px;
- border:1px solid #e5e9f0;
- border-radius:6px;
- margin-top:12px;
-}
-
-.document-actions{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin-top:12px;
-}
-
-.document-actions a{
- text-decoration:none;
- background:var(--navy);
- color:white;
- padding:9px 12px;
- border-radius:5px;
- font-size:12px;
- font-weight:600;
-}
-
+.actions,.programme-actions,.document-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.approve{background:#167744;color:white}
+.reject,.delete-btn{background:#fde7e7;color:#a11919}
+.secondary,.edit-btn{background:#e8edf4;color:var(--navy)}
+.save-btn{background:var(--maroon);color:white}
+#detailPanel,#programmePanel,#cmsPanel{display:none}
+#message,#programmeMessage,#cmsMessage{padding:12px;margin-bottom:15px;border-radius:6px;display:none;font-size:13px}
+.document-list,.media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.document-card,.media-card{border:1px solid #e5e9f0;padding:16px;border-radius:8px;background:#fff;min-width:0}
+.document-card h4,.media-card h4{color:var(--navy);margin:0 0 8px}
+.document-card img,.media-card img{width:100%;max-height:260px;object-fit:contain;background:#f3f5f8;border-radius:6px;margin-top:12px}
+.document-card iframe{width:100%;height:350px;border:1px solid #e5e9f0;border-radius:6px;margin-top:12px}
+.document-actions a{background:var(--navy);color:white;padding:9px 12px;border-radius:5px;font-size:12px;font-weight:600;text-decoration:none}
 .document-actions a.download{background:#167744}
-
-.document-error{
- background:#fff0ee;
- color:#a11919;
- padding:12px;
- border-radius:6px;
- font-size:13px;
-}
-
-/* PROGRAMME MANAGEMENT */
-
-#programmePanel{display:none}
-
-.programme-form{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:16px;
-}
-
-.form-group{
- min-width:0;
-}
-
+.document-error{background:#fff0ee;color:#a11919;padding:12px;border-radius:6px;font-size:13px}
+.programme-form,.cms-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.form-group{min-width:0}
 .form-group.full{grid-column:1/-1}
-
-.form-group label{
- display:block;
- font-weight:600;
- color:var(--navy);
- font-size:13px;
- margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
- width:100%;
- padding:11px 12px;
- border:1px solid #d8dee8;
- border-radius:6px;
- outline:none;
- font-size:14px;
- background:white;
- color:#172033;
-}
-
-.form-group textarea{
- resize:vertical;
- min-height:100px;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
- border-color:var(--navy);
- box-shadow:0 0 0 2px #0F2A5E12;
-}
-
-.checkbox-group{
- display:flex;
- align-items:center;
- gap:10px;
- background:#f6f7fa;
- padding:13px;
- border-radius:6px;
-}
-
-.checkbox-group input{
- width:18px;
- height:18px;
- accent-color:var(--maroon);
-}
-
-.checkbox-group label{
- margin:0;
- font-weight:600;
- color:var(--navy);
- font-size:13px;
-}
-
-.programme-actions{
- display:flex;
- gap:10px;
- flex-wrap:wrap;
- margin-top:20px;
-}
-
-.save-btn{
- background:var(--maroon);
- color:white;
-}
-
-.save-btn:hover{background:#5c0c18}
-
-.edit-btn{
- background:#e9effa;
- color:var(--navy);
- padding:8px 12px;
-}
-
-.delete-btn{
- background:#fde7e7;
- color:#a11919;
- padding:8px 12px;
-}
-
-.programme-action-buttons{
- display:flex;
- gap:7px;
- flex-wrap:wrap;
-}
-
-.programme-count{
- color:var(--navy);
- font-size:13px;
- font-weight:700;
- margin-bottom:12px;
-}
-
-#programmeMessage{
- display:none;
- padding:12px;
- margin:15px 0;
- border-radius:6px;
- font-size:13px;
-}
-
-.programme-empty{
- text-align:center;
- padding:25px;
- color:#687386;
-}
-
-footer{
- text-align:center;
- padding:25px;
- color:#7a8495;
- font-size:12px;
-}
-
-@media(max-width:750px){
- .stats{grid-template-columns:repeat(2,1fr)}
- .detail-grid,.document-list,.programme-form{
-  grid-template-columns:1fr;
- }
- .form-group.full{grid-column:auto}
-}
-
-@media(max-width:450px){
- .login-card{
-  max-width:340px;
-  padding:19px 18px;
- }
-
- .login-card h2{font-size:20px}
-
- .password-toggle{
-  flex-basis:72px;
-  width:72px;
-  min-width:72px;
- }
-
- .stats{gap:9px}
- .stat{padding:14px}
- .topbar{padding:16px 20px}
- .module-nav{gap:6px}
- .module-btn{padding:10px 12px;font-size:12px}
- .panel{padding:16px}
-}
+.form-group label{display:block;font-weight:600;color:var(--navy);font-size:13px;margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:11px 12px;border:1px solid #d8dee8;border-radius:6px;outline:none;font-size:14px;background:white;color:#172033}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--navy);box-shadow:0 0 0 2px #0F2A5E12}
+.checkbox-group{display:flex;align-items:center;gap:10px;background:#f6f7fa;padding:13px;border-radius:6px}
+.checkbox-group input{width:18px;height:18px;accent-color:var(--maroon)}
+.checkbox-group label{margin:0}
+.programme-action-buttons{display:flex;gap:7px;flex-wrap:wrap}
+.programme-count{color:var(--navy);font-size:13px;font-weight:700;margin-bottom:12px}
+.programme-empty{text-align:center;padding:25px;color:#687386}
+.media-card .media-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.media-card .media-actions button{font-size:11px;padding:8px 10px}
+.media-preview{max-width:100%;max-height:200px;display:block;margin-top:10px;border-radius:6px}
+.upload-note{background:#f5f7fb;border-left:3px solid var(--gold);padding:12px;margin:12px 0;color:#536078;font-size:12px}
+footer{text-align:center;padding:25px;color:#7a8495;font-size:12px}
+.hidden{display:none!important}
+@media(max-width:750px){.stats{grid-template-columns:repeat(2,1fr)}.detail-grid,.document-list,.programme-form,.cms-form,.media-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}}
+@media(max-width:450px){.login-card{max-width:340px;padding:19px 18px}.stats{gap:9px}.stat{padding:14px}.topbar{padding:16px 20px}.module-nav{gap:6px}.module-btn{padding:10px 11px;font-size:11px}.panel{padding:16px}}
 </style>
 </head>
 
 <body>
 
-<!-- ADMINISTRATOR LOGIN -->
-
 <section id="loginScreen">
 <div class="login-card">
-
 <div class="logo">TITI</div>
-
-<div class="subtitle">
-TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>
-ADMINISTRATION PORTAL
-</div>
-
+<div class="subtitle">TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>ADMINISTRATION PORTAL</div>
 <h2>Administrator Login</h2>
-
-<p class="muted">
-Sign in using your existing administrator account.
-</p>
-
+<p class="muted">Sign in using your administrator account.</p>
 <form id="loginForm">
-
 <label for="email">Email Address</label>
-<input id="email" type="email" required autocomplete="username"
-placeholder="Enter administrator email">
-
+<input id="email" type="email" required autocomplete="username" placeholder="Enter administrator email">
 <label for="password">Password</label>
-
 <div class="password-wrapper">
-<input id="password" type="password" required
-autocomplete="current-password" placeholder="Enter password">
-
-<button type="button" id="togglePassword"
-class="password-toggle" onclick="togglePasswordVisibility()"
-aria-label="Show password" title="Show password">SHOW</button>
+<input id="password" type="password" required autocomplete="current-password" placeholder="Enter password">
+<button type="button" id="togglePassword" class="password-toggle">SHOW</button>
 </div>
-
 <button class="primary" id="loginButton" type="submit">SIGN IN</button>
-
 </form>
-
 <div id="loginError" class="error"></div>
 </div>
 </section>
 
-<!-- ADMINISTRATOR DASHBOARD -->
-
 <section id="dashboard">
-
 <header class="topbar">
-
-<div class="brand">
-TITI CENTRAL
+<div class="brand">TITI CENTRAL
 <small>TAHIDI INTERNATIONAL TRAINING INSTITUTE | ADMINISTRATION SYSTEM</small>
 </div>
-
-<div>
-<span id="adminName"></span>
-<button class="logout" id="logoutButton">LOG OUT</button>
-</div>
-
+<div><span id="adminName"></span> <button class="logout" id="logoutButton">LOG OUT</button></div>
 </header>
 
 <main class="container">
-
 <div class="welcome">
 <div>
 <h2>Central Administration Dashboard</h2>
-<div class="muted">Manage institute programmes and student admissions.</div>
+<div class="muted">Manage admissions, programmes and the institute website.</div>
 </div>
 <button class="refresh" id="refreshButton">↻ Refresh Data</button>
 </div>
 
 <div id="message"></div>
 
-<div class="module-nav">
-<button class="module-btn active" id="admissionsTab">ADMISSIONS</button>
-<button class="module-btn" id="programmesTab">PROGRAMMES</button>
-</div>
+<nav class="module-nav">
+<button class="module-btn active" data-module="admissions">ADMISSIONS</button>
+<button class="module-btn" data-module="programmes">PROGRAMMES</button>
+<button class="module-btn" data-module="homepage">HOMEPAGE</button>
+<button class="module-btn" data-module="gallery">GALLERY</button>
+<button class="module-btn" data-module="content">WEBSITE CONTENT</button>
+<button class="module-btn" data-module="news">NEWS</button>
+<button class="module-btn" data-module="staff">STAFF</button>
+<button class="module-btn" data-module="documents">DOCUMENTS</button>
+</nav>
 
-<!-- STATISTICS -->
-
+<!-- ADMISSIONS -->
+<section id="admissionsArea">
 <div class="stats" id="admissionsStats">
-
-<div class="stat">
-<span class="muted">Total Applications</span>
-<strong id="totalCount">0</strong>
-</div>
-
-<div class="stat">
-<span class="muted">Submitted</span>
-<strong id="submittedCount">0</strong>
-</div>
-
-<div class="stat">
-<span class="muted">Approved</span>
-<strong id="approvedCount">0</strong>
-</div>
-
-<div class="stat">
-<span class="muted">Rejected</span>
-<strong id="rejectedCount">0</strong>
-</div>
-
-</div>
-
-<!-- PROGRAMME MANAGEMENT -->
-
-<section id="programmePanel">
-
-<div class="panel">
-
-<h3>Programme Management</h3>
-
-<p class="muted">
-Manage the programmes displayed on the TITI website.
-Add new programmes, edit existing information or remove programmes.
-</p>
-
-<div id="programmeMessage"></div>
-
-<h3 id="programmeFormTitle" style="margin-top:25px">
-Add New Programme
-</h3>
-
-<form id="programmeForm">
-
-<input type="hidden" id="programmeId">
-
-<div class="programme-form">
-
-<div class="form-group">
-<label for="programmeName">Programme Name *</label>
-<input id="programmeName" type="text" required
-placeholder="e.g. Diploma in Accounting and Finance">
-</div>
-
-<div class="form-group">
-<label for="programmeLevel">Programme Level *</label>
-<input id="programmeLevel" type="text" required
-placeholder="e.g. Diploma, Certificate, Short Course">
-</div>
-
-<div class="form-group">
-<label for="programmeDuration">Duration</label>
-<input id="programmeDuration" type="text"
-placeholder="e.g. Two Years">
-</div>
-
-<div class="form-group">
-<label>Application Status</label>
-<div class="checkbox-group">
-<input id="applicationOpen" type="checkbox" checked>
-<label for="applicationOpen">Applications are open</label>
-</div>
-</div>
-
-<div class="form-group full">
-<label for="programmeDescription">Programme Description</label>
-<textarea id="programmeDescription"
-placeholder="Enter a description of this programme..."></textarea>
-</div>
-
-</div>
-
-<div class="programme-actions">
-
-<button type="submit" class="save-btn" id="saveProgrammeButton">
-SAVE PROGRAMME
-</button>
-
-<button type="button" class="secondary" id="cancelProgrammeEdit">
-CLEAR FORM
-</button>
-
-</div>
-
-</form>
-
+<div class="stat"><span class="muted">Total Applications</span><strong id="totalCount">0</strong></div>
+<div class="stat"><span class="muted">Submitted</span><strong id="submittedCount">0</strong></div>
+<div class="stat"><span class="muted">Approved</span><strong id="approvedCount">0</strong></div>
+<div class="stat"><span class="muted">Rejected</span><strong id="rejectedCount">0</strong></div>
 </div>
 
 <div class="panel">
-
-<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-
-<h3 style="margin:0">Existing Programmes</h3>
-
-<button class="refresh" id="refreshProgrammesButton">
-↻ Refresh Programmes
-</button>
-
-</div>
-
-<div class="toolbar" style="margin-top:18px">
-<input id="programmeSearch" type="search"
-placeholder="Search programme name or level...">
-</div>
-
-<div class="programme-count" id="programmeCount">
-Loading programmes...
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>Programme Name</th>
-<th>Level</th>
-<th>Duration</th>
-<th>Applications</th>
-<th>Actions</th>
-</tr>
-</thead>
-
-<tbody id="programmesBody">
-<tr><td colspan="5">Loading programmes...</td></tr>
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ADMISSIONS MANAGEMENT -->
-
-<div id="admissionsArea">
-
-<div class="panel">
-
 <h3>Applicant Records</h3>
-
-<div class="toolbar">
-<input id="searchInput" type="search"
-placeholder="Search name, reference, phone or email...">
-</div>
-
+<div class="toolbar"><input id="searchInput" type="search" placeholder="Search name, reference, phone or email..."></div>
 <div class="table-wrap">
-
 <table>
-
-<thead>
-<tr>
-<th>Reference</th>
-<th>Applicant</th>
-<th>Programme</th>
-<th>Submission Date</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody id="applicationsBody">
-<tr><td colspan="6">Loading applications...</td></tr>
-</tbody>
-
+<thead><tr><th>Reference</th><th>Applicant</th><th>Programme</th><th>Submission Date</th><th>Status</th><th>Action</th></tr></thead>
+<tbody id="applicationsBody"><tr><td colspan="6">Loading applications...</td></tr></tbody>
 </table>
-
 </div>
 </div>
 
 <div class="panel" id="detailPanel">
-
 <h3>Applicant Information</h3>
-
 <div id="applicantDetails"></div>
-
 <h3 style="margin-top:25px">Administrator Review</h3>
-
 <label for="remarks">Administrator Remarks</label>
-
-<textarea id="remarks" rows="4"
-style="width:100%;padding:12px;border:1px solid #d8dee8;border-radius:5px;font-family:inherit"
-placeholder="Enter comments about this application..."></textarea>
-
+<textarea id="remarks" rows="4" style="width:100%;padding:12px;border:1px solid #d8dee8;border-radius:5px;font-family:inherit" placeholder="Enter comments about this application..."></textarea>
 <div class="actions">
-
 <button class="approve" id="approveButton">APPROVE APPLICATION</button>
 <button class="reject" id="rejectButton">REJECT APPLICATION</button>
 <button class="secondary" id="closeDetails">CLOSE</button>
-
 </div>
-
-<p class="muted" style="margin-top:15px">
-Verify the applicant's documents before making a final decision.
-</p>
-
+<p class="muted">Verify the applicant's documents before making a final decision.</p>
 </div>
 
 <div class="panel" id="documentPanel">
-
 <h3>Applicant Document Verification</h3>
+<p class="muted">Applicant documents are retrieved from the existing private storage bucket.</p>
+<div id="documentsContent"><p class="muted">Select an applicant to view documents.</p></div>
+</div>
+</section>
 
-<p class="muted">
-Uploaded applicant documents are retrieved from your existing private Supabase storage bucket.
-</p>
-
-<div id="documentsContent">
-<p class="muted">Select an applicant to view their uploaded documents.</p>
+<!-- PROGRAMMES -->
+<section id="programmePanel">
+<div class="panel">
+<h3>Programme Management</h3>
+<p class="muted">Manage the programmes displayed on the TITI website.</p>
+<div id="programmeMessage"></div>
+<h3 id="programmeFormTitle" style="margin-top:25px">Add New Programme</h3>
+<form id="programmeForm">
+<input type="hidden" id="programmeId">
+<div class="programme-form">
+<div class="form-group"><label for="programmeName">Programme Name *</label><input id="programmeName" required placeholder="e.g. Diploma in Accounting and Finance"></div>
+<div class="form-group"><label for="programmeLevel">Programme Level *</label><input id="programmeLevel" required placeholder="e.g. Diploma, Certificate, Short Course"></div>
+<div class="form-group"><label for="programmeDuration">Duration</label><input id="programmeDuration" placeholder="e.g. Two Years"></div>
+<div class="form-group"><label>Application Status</label><div class="checkbox-group"><input id="applicationOpen" type="checkbox" checked><label for="applicationOpen">Applications are open</label></div></div>
+<div class="form-group full"><label for="programmeDescription">Programme Description</label><textarea id="programmeDescription" placeholder="Enter programme description..."></textarea></div>
+</div>
+<div class="programme-actions"><button type="submit" class="save-btn" id="saveProgrammeButton">SAVE PROGRAMME</button><button type="button" class="secondary" id="cancelProgrammeEdit">CLEAR FORM</button></div>
+</form>
 </div>
 
+<div class="panel">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+<h3 style="margin:0">Existing Programmes</h3>
+<button class="refresh" id="refreshProgrammesButton">↻ Refresh Programmes</button>
 </div>
+<div class="toolbar"><input id="programmeSearch" type="search" placeholder="Search programme name or level..."></div>
+<div class="programme-count" id="programmeCount">Loading programmes...</div>
+<div class="table-wrap">
+<table><thead><tr><th>Programme Name</th><th>Level</th><th>Duration</th><th>Applications</th><th>Actions</th></tr></thead>
+<tbody id="programmesBody"><tr><td colspan="5">Loading programmes...</td></tr></tbody></table>
+</div>
+</div>
+</section>
 
+<!-- HOMEPAGE SLIDES -->
+<section id="cmsPanel">
+<div class="panel">
+<h3>Homepage Slideshow Management</h3>
+<p class="muted">Upload photographs to appear in the homepage slideshow. You can add, edit, activate, deactivate or delete slides.</p>
+<div id="cmsMessage"></div>
+<form id="slideForm">
+<input type="hidden" id="slideId">
+<input type="hidden" id="slideOldPath">
+<div class="cms-form">
+<div class="form-group"><label for="slideTitle">Slide Heading</label><input id="slideTitle" placeholder="Enter slide heading"></div>
+<div class="form-group"><label for="slideDescription">Short Description</label><input id="slideDescription" placeholder="Enter supporting text"></div>
+<div class="form-group"><label for="slideButtonText">Button Text</label><input id="slideButtonText" placeholder="e.g. APPLY NOW"></div>
+<div class="form-group"><label for="slideButtonLink">Button Link</label><input id="slideButtonLink" placeholder="e.g. apply.html"></div>
+<div class="form-group"><label for="slideOrder">Display Order</label><input id="slideOrder" type="number" value="0"></div>
+<div class="form-group"><label for="slideImage">Slideshow Photograph</label><input id="slideImage" type="file" accept="image/jpeg,image/png,image/webp" ></div>
 </div>
+<div class="upload-note">Recommended: landscape photographs. Maximum upload size: 10 MB. Choose a new image when replacing an existing slide photograph.</div>
+<img id="slidePreview" class="media-preview hidden" alt="Selected slide preview">
+<div class="programme-actions"><button class="save-btn" type="submit" id="saveSlideButton">SAVE SLIDE</button><button class="secondary" type="button" id="clearSlideForm">CLEAR FORM</button></div>
+</form>
+</div>
+<div class="panel">
+<h3>Existing Homepage Slides</h3>
+<div id="slidesList" class="media-grid">Loading slideshow...</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="galleryPanel" class="hidden">
+<div class="panel">
+<h3>Campus Gallery Management</h3>
+<p class="muted">Upload photographs of the institute, classrooms, activities and campus events.</p>
+<div id="galleryMessage"></div>
+<form id="galleryForm">
+<input type="hidden" id="galleryId">
+<input type="hidden" id="galleryOldPath">
+<div class="cms-form">
+<div class="form-group"><label for="galleryTitle">Photo Title</label><input id="galleryTitle" placeholder="Enter photo title"></div>
+<div class="form-group"><label for="galleryCaption">Caption</label><input id="galleryCaption" placeholder="Enter photo caption"></div>
+<div class="form-group"><label for="galleryOrder">Display Order</label><input id="galleryOrder" type="number" value="0"></div>
+<div class="form-group"><label for="galleryImage">Choose Photograph</label><input id="galleryImage" type="file" accept="image/jpeg,image/png,image/webp"></div>
+</div>
+<div class="upload-note">Maximum image size: 10 MB. Upload a new image when replacing an existing photograph.</div>
+<img id="galleryPreview" class="media-preview hidden" alt="Selected gallery preview">
+<div class="programme-actions"><button class="save-btn" type="submit" id="saveGalleryButton">SAVE PHOTO</button><button class="secondary" type="button" id="clearGalleryForm">CLEAR FORM</button></div>
+</form>
+</div>
+<div class="panel"><h3>Existing Gallery Photographs</h3><div id="galleryList" class="media-grid">Loading gallery...</div></div>
+</section>
+
+<!-- WEBSITE CONTENT -->
+<section id="contentPanel" class="hidden">
+<div class="panel">
+<h3>Website Content Management</h3>
+<p class="muted">Edit the text displayed on the TITI homepage and institutional information sections.</p>
+<div id="contentMessage"></div>
+<form id="contentForm">
+<div class="cms-form">
+<div class="form-group full"><label for="siteInstitution">Institution Name</label><input id="siteInstitution"></div>
+<div class="form-group full"><label for="siteSlogan">Institution Slogan</label><input id="siteSlogan"></div>
+<div class="form-group"><label for="siteHeroHeading">Homepage Main Heading</label><input id="siteHeroHeading"></div>
+<div class="form-group"><label for="siteHeroSubheading">Homepage Supporting Text</label><input id="siteHeroSubheading"></div>
+<div class="form-group full"><label for="siteAboutHeading">About Us Heading</label><input id="siteAboutHeading"></div>
+<div class="form-group full"><label for="siteAboutContent">About Us Content</label><textarea id="siteAboutContent"></textarea></div>
+<div class="form-group full"><label for="siteMission">Mission</label><textarea id="siteMission"></textarea></div>
+<div class="form-group full"><label for="siteVision">Vision</label><textarea id="siteVision"></textarea></div>
+<div class="form-group"><label for="siteAdmissionsHeading">Admissions Heading</label><input id="siteAdmissionsHeading"></div>
+<div class="form-group"><label for="siteAdmissionsContent">Admissions Text</label><textarea id="siteAdmissionsContent"></textarea></div>
+<div class="form-group"><label for="sitePhone">Telephone</label><input id="sitePhone"></div>
+<div class="form-group"><label for="siteEmail">Email Address</label><input id="siteEmail" type="email"></div>
+<div class="form-group"><label for="siteAddress">Postal / Physical Address</label><input id="siteAddress"></div>
+<div class="form-group"><label for="siteLocation">Location</label><input id="siteLocation"></div>
+<div class="form-group"><label for="siteFacebook">Facebook URL</label><input id="siteFacebook"></div>
+<div class="form-group"><label for="siteInstagram">Instagram URL</label><input id="siteInstagram"></div>
+<div class="form-group"><label for="siteTikTok">TikTok URL</label><input id="siteTikTok"></div>
+<div class="form-group"><label for="siteYoutube">YouTube URL</label><input id="siteYoutube"></div>
+</div>
+<div class="programme-actions"><button class="save-btn" type="submit" id="saveContentButton">SAVE WEBSITE CONTENT</button><button class="refresh" type="button" id="reloadContentButton">RELOAD CONTENT</button></div>
+</form>
+</div>
+</section>
+
+<!-- NEWS -->
+<section id="newsPanel" class="hidden">
+<div class="panel">
+<h3>Website News Management</h3>
+<p class="muted">Create and publish news articles for the TITI website.</p>
+<div id="newsMessage"></div>
+<form id="newsForm">
+<input type="hidden" id="newsId">
+<input type="hidden" id="newsOldPath">
+<div class="cms-form">
+<div class="form-group full"><label for="newsTitle">News Headline *</label><input id="newsTitle" required></div>
+<div class="form-group"><label for="newsCategory">Category</label><input id="newsCategory" placeholder="e.g. Institute News, Events"></div>
+<div class="form-group"><label for="newsAuthor">Author</label><input id="newsAuthor" placeholder="Author name"></div>
+<div class="form-group full"><label for="newsSummary">Short Summary</label><textarea id="newsSummary"></textarea></div>
+<div class="form-group full"><label for="newsContent">Full Article</label><textarea id="newsContent" style="min-height:180px"></textarea></div>
+<div class="form-group"><label for="newsImage">Featured Photograph</label><input id="newsImage" type="file" accept="image/jpeg,image/png,image/webp"></div>
+<div class="form-group"><label for="newsPublish">Publication Status</label><select id="newsPublish"><option value="false">Save as Draft</option><option value="true">Publish Now</option></select></div>
+</div>
+<img id="newsPreview" class="media-preview hidden" alt="News image preview">
+<div class="programme-actions"><button class="save-btn" type="submit" id="saveNewsButton">SAVE NEWS</button><button class="secondary" type="button" id="clearNewsForm">CLEAR FORM</button></div>
+</form>
+</div>
+<div class="panel"><h3>Existing Website News</h3><div class="table-wrap"><table><thead><tr><th>Headline</th><th>Category</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="newsList"><tr><td colspan="5">Loading news...</td></tr></tbody></table></div></div>
+</section>
+
+<!-- STAFF -->
+<section id="staffPanel" class="hidden">
+<div class="panel">
+<h3>Staff and Management Profiles</h3>
+<p class="muted">Add and manage staff profiles and photographs displayed on the website.</p>
+<div id="staffMessage"></div>
+<form id="staffForm">
+<input type="hidden" id="staffId">
+<input type="hidden" id="staffOldPath">
+<div class="cms-form">
+<div class="form-group"><label for="staffName">Full Name *</label><input id="staffName" required></div>
+<div class="form-group"><label for="staffPosition">Position</label><input id="staffPosition"></div>
+<div class="form-group full"><label for="staffBio">Biography</label><textarea id="staffBio"></textarea></div>
+<div class="form-group"><label for="staffPhoto">Profile Photograph</label><input id="staffPhoto" type="file" accept="image/jpeg,image/png,image/webp"></div>
+<div class="form-group"><label for="staffOrder">Display Order</label><input id="staffOrder" type="number" value="0"></div>
+</div>
+<img id="staffPreview" class="media-preview hidden" alt="Staff photo preview">
+<div class="programme-actions"><button class="save-btn" type="submit" id="saveStaffButton">SAVE STAFF PROFILE</button><button class="secondary" type="button" id="clearStaffForm">CLEAR FORM</button></div>
+</form>
+</div>
+<div class="panel"><h3>Existing Staff Profiles</h3><div id="staffList" class="media-grid">Loading staff...</div></div>
+</section>
+
+<!-- DOCUMENTS -->
+<section id="documentsPanel" class="hidden">
+<div class="panel">
+<h3>Website Documents and Downloads</h3>
+<p class="muted">Upload public documents such as prospectuses, admission guidelines, brochures and institutional publications.</p>
+<div id="documentsMessage"></div>
+<form id="websiteDocumentForm">
+<input type="hidden" id="websiteDocumentId">
+<input type="hidden" id="websiteDocumentOldPath">
+<div class="cms-form">
+<div class="form-group"><label for="websiteDocumentTitle">Document Title *</label><input id="websiteDocumentTitle" required></div>
+<div class="form-group"><label for="websiteDocumentType">Document Category</label><input id="websiteDocumentType" placeholder="e.g. Prospectus, Application Form"></div>
+<div class="form-group full"><label for="websiteDocumentDescription">Description</label><textarea id="websiteDocumentDescription"></textarea></div>
+<div class="form-group full"><label for="websiteDocumentFile">Choose File (PDF or image)</label><input id="websiteDocumentFile" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>
+</div>
+<div class="upload-note">Maximum file size: 10 MB. The uploaded file will be publicly accessible on your website.</div>
+<div class="programme-actions"><button class="save-btn" type="submit" id="saveWebsiteDocumentButton">UPLOAD DOCUMENT</button><button class="secondary" type="button" id="clearWebsiteDocumentForm">CLEAR FORM</button></div>
+</form>
+</div>
+<div class="panel"><h3>Existing Website Documents</h3><div class="table-wrap"><table><thead><tr><th>Title</th><th>Category</th><th>File</th><th>Actions</th></tr></thead><tbody id="websiteDocumentsList"><tr><td colspan="4">Loading documents...</td></tr></tbody></table></div></div>
+</section>
 
 </main>
-
-<footer>
-TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>
-BREAKING THE LIMITS<br><br>
-TITI Administration Portal
-</footer>
-
+<footer>TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>BREAKING THE LIMITS<br><br>TITI Administration Portal</footer>
 </section>
 
 <script>
-
-// ======================================
+// =====================================================
 // SUPABASE CONFIGURATION
-// ======================================
+// =====================================================
 
-const SUPABASE_URL =
-"https://jlmbiauilmajuvrnuaul.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
-
+const SUPABASE_URL = "https://jlmbiauilmajuvrnuaul.supabase.co";
+const SUPABASE_KEY = "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 const DOCUMENT_BUCKET = "titi-applicant-documents";
+const MEDIA_BUCKET = "titi-website-media";
 
-const db = window.supabase.createClient(
- SUPABASE_URL,
- SUPABASE_KEY
-);
+const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-// ======================================
-// GLOBAL VARIABLES
-// ======================================
+const $ = id => document.getElementById(id);
 
 let currentAdmin = null;
 let applications = [];
 let selectedApplication = null;
-let currentDocuments = [];
 let programmes = [];
+let slides = [];
+let galleryImages = [];
+let websiteNews = [];
+let staffProfiles = [];
+let websiteDocuments = [];
+let currentModule = "admissions";
 
-const $ = id => document.getElementById(id);
-
-// ======================================
-// SHOW / HIDE PASSWORD
-// ======================================
-
-function togglePasswordVisibility(){
-
- const password = $("password");
- const button = $("togglePassword");
-
- if(!password || !button) return;
-
- if(password.type === "password"){
-  password.type = "text";
-  button.textContent = "HIDE";
-  button.setAttribute("aria-label","Hide password");
-  button.title = "Hide password";
- }else{
-  password.type = "password";
-  button.textContent = "SHOW";
-  button.setAttribute("aria-label","Show password");
-  button.title = "Show password";
- }
-
-}
-
-// ======================================
-// HTML ESCAPING
-// ======================================
+// =====================================================
+// GENERAL HELPERS
+// =====================================================
 
 function escapeHTML(value){
-
  return String(value ?? "").replace(/[&<>"']/g,char=>({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#39;"
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
  })[char]);
-
-}
-
-// ======================================
-// STATUS DISPLAY
-// ======================================
-
-function displayStatus(status){
-
- const map = {
-  ADMITTED:"APPROVED",
-  DECLINED:"REJECTED"
- };
-
- return map[status] || status || "SUBMITTED";
-
-}
-
-function statusClass(status){
- return displayStatus(status).replace(/\s+/g,"_");
-}
-
-// ======================================
-// MESSAGES
-// ======================================
-
-function showLoginError(message){
- $("loginError").textContent = message;
- $("loginError").style.display = "block";
 }
 
 function showMessage(message,error=false){
-
- $("message").textContent = message;
- $("message").style.display = "block";
-
- $("message").style.background =
- error ? "#fff0ee" : "#e5f5eb";
-
- $("message").style.color =
- error ? "#a11919" : "#126536";
-
+ $("message").textContent=message;
+ $("message").style.display="block";
+ $("message").style.background=error?"#fff0ee":"#e5f5eb";
+ $("message").style.color=error?"#a11919":"#126536";
 }
 
-function showProgrammeMessage(message,error=false){
-
- $("programmeMessage").textContent = message;
- $("programmeMessage").style.display = "block";
-
- $("programmeMessage").style.background =
- error ? "#fff0ee" : "#e5f5eb";
-
- $("programmeMessage").style.color =
- error ? "#a11919" : "#126536";
-
+function cmsMessage(id,message,error=false){
+ $(id).textContent=message;
+ $(id).style.display="block";
+ $(id).style.background=error?"#fff0ee":"#e5f5eb";
+ $(id).style.color=error?"#a11919":"#126536";
 }
 
-// ======================================
-// ADMINISTRATOR VERIFICATION
-// ======================================
-
-async function verifyAdministrator(user){
-
- const {data,error} = await db
-  .from("administrator_profiles")
-  .select("id,full_name,role")
-  .eq("id",user.id)
-  .maybeSingle();
-
- if(error) throw error;
-
- if(!data){
-  throw new Error(
-   "This account has no administrator profile. Access denied."
-  );
- }
-
- currentAdmin = data;
- return data;
-
+function statusText(status){
+ const map={ADMITTED:"APPROVED",DECLINED:"REJECTED"};
+ return map[status] || status || "SUBMITTED";
 }
 
-// ======================================
-// SHOW DASHBOARD
-// ======================================
-
-function showDashboard(){
-
- $("loginScreen").style.display = "none";
- $("dashboard").style.display = "block";
-
- $("adminName").textContent =
- currentAdmin.full_name + " | " + currentAdmin.role;
-
+function statusClass(status){
+ return statusText(status).replace(/\s+/g,"_");
 }
-
-// ======================================
-// SHOW LOGIN
-// ======================================
-
-function showLogin(){
-
- $("dashboard").style.display = "none";
- $("loginScreen").style.display = "flex";
-
- currentAdmin = null;
- applications = [];
- selectedApplication = null;
- currentDocuments = [];
- programmes = [];
-
- $("password").value = "";
- $("password").type = "password";
- $("togglePassword").textContent = "SHOW";
- $("togglePassword").setAttribute("aria-label","Show password");
-
- $("loginError").style.display = "none";
- $("detailPanel").style.display = "none";
-
- $("documentsContent").innerHTML =
- '<p class="muted">Select an applicant to view documents.</p>';
-
-}
-
-// ======================================
-// MODULE NAVIGATION
-// ======================================
-
-function showModule(module){
-
- const programmesMode = module === "programmes";
-
- $("programmePanel").style.display =
- programmesMode ? "block" : "none";
-
- $("admissionsArea").style.display =
- programmesMode ? "none" : "block";
-
- $("admissionsStats").style.display =
- programmesMode ? "none" : "grid";
-
- $("programmesTab").classList.toggle("active",programmesMode);
- $("admissionsTab").classList.toggle("active",!programmesMode);
-
- if(programmesMode){
-  loadProgrammes();
- }
-
-}
-
-$("programmesTab").addEventListener("click",()=>{
- showModule("programmes");
-});
-
-$("admissionsTab").addEventListener("click",()=>{
- showModule("admissions");
-});
-
-// ======================================
-// LOAD APPLICATIONS
-// ======================================
-
-async function loadApplications(){
-
- $("applicationsBody").innerHTML =
- '<tr><td colspan="6">Loading applications...</td></tr>';
-
- const {data,error} = await db
- .from("applications")
- .select(`
-  id,
-  reference_number,
-  first_name,
-  middle_name,
-  last_name,
-  gender,
-  date_of_birth,
-  nationality,
-  phone_number,
-  email,
-  residential_address,
-  programme_id,
-  application_status,
-  administrator_remarks,
-  submitted_at,
-  highest_qualification,
-  awarding_institution,
-  year_completed,
-  programmes(
-   programme_name,
-   programme_level
-  )
- `)
- .order("submitted_at",{ascending:false});
-
- if(error){
-
-  $("applicationsBody").innerHTML =
-   '<tr><td colspan="6">Unable to load applications.</td></tr>';
-
-  showMessage(error.message,true);
-  return;
-
- }
-
- applications = data || [];
-
- updateStatistics();
- renderApplications();
-
-}
-
-// ======================================
-// STATISTICS
-// ======================================
-
-function updateStatistics(){
-
- $("totalCount").textContent = applications.length;
-
- $("submittedCount").textContent =
- applications.filter(a=>
-  a.application_status==="SUBMITTED"
- ).length;
-
- $("approvedCount").textContent =
- applications.filter(a=>
-  a.application_status==="ADMITTED"
- ).length;
-
- $("rejectedCount").textContent =
- applications.filter(a=>
-  a.application_status==="DECLINED"
- ).length;
-
-}
-
-// ======================================
-// APPLICATION LIST
-// ======================================
-
-function renderApplications(){
-
- const query =
- $("searchInput").value.toLowerCase().trim();
-
- const filtered = applications.filter(a=>{
-
-  const name = [
-   a.first_name,
-   a.middle_name,
-   a.last_name
-  ].filter(Boolean).join(" ");
-
-  const text = [
-   name,
-   a.reference_number,
-   a.phone_number,
-   a.email,
-   a.programmes?.programme_name
-  ].join(" ").toLowerCase();
-
-  return text.includes(query);
-
- });
-
- if(!filtered.length){
-
-  $("applicationsBody").innerHTML =
-   '<tr><td colspan="6">No matching applications found.</td></tr>';
-
-  return;
-
- }
-
- $("applicationsBody").innerHTML = filtered.map(a=>{
-
-  const name = [
-   a.first_name,
-   a.middle_name,
-   a.last_name
-  ].filter(Boolean).join(" ");
-
-  const date = a.submitted_at
-   ? new Date(a.submitted_at).toLocaleDateString()
-   : "Not recorded";
-
-  const status = displayStatus(a.application_status);
-
-  return `
-   <tr>
-    <td>${escapeHTML(a.reference_number)}</td>
-    <td>${escapeHTML(name)}</td>
-    <td>${escapeHTML(a.programmes?.programme_name || "Not assigned")}</td>
-    <td>${escapeHTML(date)}</td>
-    <td>
-     <span class="status ${escapeHTML(statusClass(a.application_status))}">
-      ${escapeHTML(status)}
-     </span>
-    </td>
-    <td>
-     <button class="view-btn" data-id="${escapeHTML(a.id)}">VIEW</button>
-    </td>
-   </tr>
-  `;
-
- }).join("");
-
- $("applicationsBody")
- .querySelectorAll(".view-btn")
- .forEach(button=>{
-  button.addEventListener("click",()=>{
-   openApplication(button.dataset.id);
-  });
- });
-
-}
-
-// ======================================
-// APPLICANT DETAIL ITEM
-// ======================================
 
 function detailItem(label,value){
-
- return `
-  <div class="detail-item">
-   <small>${escapeHTML(label)}</small>
-   <strong>${escapeHTML(value || "Not provided")}</strong>
-  </div>
- `;
-
+ return `<div class="detail-item"><small>${escapeHTML(label)}</small><strong>${escapeHTML(value || "Not provided")}</strong></div>`;
 }
 
-// ======================================
-// OPEN APPLICANT
-// ======================================
+function fileIsValid(file){
+ if(!file)return true;
+ if(file.size>10*1024*1024){
+  alert("The selected file is larger than 10 MB. Please choose a smaller file.");
+  return false;
+ }
+ return true;
+}
 
-async function openApplication(id){
+function makeFilePath(folder,file){
+ const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+ return `${folder}/${crypto.randomUUID()}-${safeName}`;
+}
 
- const a = applications.find(x=>x.id===id);
- if(!a) return;
-
- selectedApplication = a;
-
- const name = [
-  a.first_name,
-  a.middle_name,
-  a.last_name
- ].filter(Boolean).join(" ");
-
- $("applicantDetails").innerHTML = `
-  <div class="detail-grid">
-   ${detailItem("Reference Number",a.reference_number)}
-   ${detailItem("Full Name",name)}
-   ${detailItem("Gender",a.gender)}
-   ${detailItem("Date of Birth",a.date_of_birth)}
-   ${detailItem("Nationality",a.nationality)}
-   ${detailItem("Phone Number",a.phone_number)}
-   ${detailItem("Email",a.email)}
-   ${detailItem("Residential Address",a.residential_address)}
-   ${detailItem("Programme",a.programmes?.programme_name)}
-   ${detailItem("Programme Level",a.programmes?.programme_level)}
-   ${detailItem("Highest Qualification",a.highest_qualification)}
-   ${detailItem("Awarding Institution",a.awarding_institution)}
-   ${detailItem("Year Completed",a.year_completed)}
-   ${detailItem("Submission Date",
-    a.submitted_at ? new Date(a.submitted_at).toLocaleString() : "Not recorded"
-   )}
-   ${detailItem("Application Status",displayStatus(a.application_status))}
-  </div>
- `;
-
- $("remarks").value = a.administrator_remarks || "";
-
- $("detailPanel").style.display = "block";
-
- $("detailPanel").scrollIntoView({
-  behavior:"smooth",
-  block:"start"
+async function uploadMedia(file,folder){
+ if(!file)return null;
+ if(!fileIsValid(file))throw new Error("File exceeds the 10 MB upload limit.");
+ const path=makeFilePath(folder,file);
+ const {error}=await db.storage.from(MEDIA_BUCKET).upload(path,file,{
+  cacheControl:"3600",upsert:false,contentType:file.type
  });
-
- await loadApplicantDocuments(a.id);
-
+ if(error)throw error;
+ const {data}=db.storage.from(MEDIA_BUCKET).getPublicUrl(path);
+ return {path,url:data.publicUrl};
 }
 
-// ======================================
-// LOAD APPLICANT DOCUMENTS
-// ======================================
-
-async function loadApplicantDocuments(applicationId){
-
- $("documentsContent").innerHTML =
-  '<p class="muted">Loading applicant documents...</p>';
-
- currentDocuments = [];
-
- const {data,error} = await db
- .from("application_documents")
- .select(`
-  id,
-  application_id,
-  document_type,
-  storage_path,
-  uploaded_at
- `)
- .eq("application_id",applicationId)
- .order("uploaded_at",{ascending:false});
-
- if(error){
-
-  $("documentsContent").innerHTML = `
-   <div class="document-error">
-    Unable to retrieve document records.
-    ${escapeHTML(error.message)}
-   </div>
-  `;
-
-  return;
-
- }
-
- currentDocuments = data || [];
-
- if(!currentDocuments.length){
-
-  $("documentsContent").innerHTML =
-   '<p class="muted">No uploaded documents were found for this applicant.</p>';
-
-  return;
-
- }
-
- $("documentsContent").innerHTML =
-  '<p class="muted">Generating secure document access links...</p>';
-
- const results = await Promise.all(
-  currentDocuments.map(async doc=>{
-
-   const {data:signedData,error:signedError} =
-    await db.storage
-     .from(DOCUMENT_BUCKET)
-     .createSignedUrl(doc.storage_path,300);
-
-   return {
-    doc,
-    url:signedData?.signedUrl || null,
-    error:signedError
-   };
-
-  })
- );
-
- $("documentsContent").innerHTML = results.map(result=>{
-
-  const doc = result.doc;
-
-  const fileName =
-   String(doc.storage_path || "").split("/").pop();
-
-  const extension =
-   fileName.split(".").pop().toLowerCase();
-
-  const isImage = ["jpg","jpeg","png"].includes(extension);
-  const isPDF = extension === "pdf";
-
-  const uploaded = doc.uploaded_at
-   ? new Date(doc.uploaded_at).toLocaleString()
-   : "Not recorded";
-
-  let preview = "";
-
-  if(result.url && isImage){
-
-   preview = `
-    <img src="${escapeHTML(result.url)}"
-     alt="Applicant uploaded document">
-   `;
-
-  }else if(result.url && isPDF){
-
-   preview = `
-    <iframe src="${escapeHTML(result.url)}"
-     title="Applicant PDF document" loading="lazy"></iframe>
-   `;
-
-  }
-
-  let links = "";
-
-  if(result.url){
-
-   links = `
-    <div class="document-actions">
-     <a href="${escapeHTML(result.url)}"
-      target="_blank" rel="noopener noreferrer">OPEN DOCUMENT</a>
-
-     <a class="download" href="${escapeHTML(result.url)}"
-      download="${escapeHTML(fileName)}">DOWNLOAD</a>
-    </div>
-   `;
-
-  }else{
-
-   links = `
-    <div class="document-error">
-     Secure access unavailable:
-     ${escapeHTML(result.error?.message || "Unable to create signed URL")}
-    </div>
-   `;
-
-  }
-
-  return `
-   <div class="document-card">
-    <h4>${escapeHTML(doc.document_type)}</h4>
-    <p class="muted">Uploaded: ${escapeHTML(uploaded)}</p>
-    <p class="muted">File: ${escapeHTML(fileName)}</p>
-    ${preview}
-    ${links}
-   </div>
-  `;
-
- }).join("");
-
+async function deleteMedia(path){
+ if(!path)return;
+ const {error}=await db.storage.from(MEDIA_BUCKET).remove([path]);
+ if(error)console.warn("Storage file could not be deleted:",error.message);
 }
 
-// ======================================
-// UPDATE ADMISSION DECISION
-// ======================================
-
-async function updateDecision(status){
-
- if(!selectedApplication){
-  showMessage("Select an applicant first.",true);
-  return;
- }
-
- const allowedStatuses = ["ADMITTED","DECLINED"];
-
- if(!allowedStatuses.includes(status)){
-  showMessage("Invalid application status.",true);
-  return;
- }
-
- const confirmation = confirm(
-  status==="ADMITTED"
-   ? "Confirm admission of this applicant?"
-   : "Confirm rejection of this applicant?"
- );
-
- if(!confirmation) return;
-
- $("approveButton").disabled = true;
- $("rejectButton").disabled = true;
-
- showMessage("Updating application...");
-
- try{
-
-  const {data,error} = await db
-   .from("applications")
-   .update({
-    application_status:status,
-    administrator_remarks:$("remarks").value.trim()
-   })
-   .eq("id",selectedApplication.id)
-   .select("id,application_status");
-
-  if(error) throw error;
-
-  if(!data || !data.length){
-   throw new Error(
-    "No record was updated. Check administrator permissions."
-   );
-  }
-
-  showMessage(
-   status==="ADMITTED"
-    ? "Applicant successfully approved."
-    : "Applicant successfully rejected."
-  );
-
-  $("detailPanel").style.display = "none";
-
-  $("documentsContent").innerHTML =
-   '<p class="muted">Select an applicant to view documents.</p>';
-
-  selectedApplication = null;
-
-  await loadApplications();
-
- }catch(error){
-
-  showMessage("Unable to update application: "+error.message,true);
-
- }finally{
-
-  $("approveButton").disabled = false;
-  $("rejectButton").disabled = false;
-
- }
-
-}
-
-// ======================================
-// PROGRAMME MANAGEMENT
-// ======================================
-
-// Load programmes from existing Supabase table.
-
-async function loadProgrammes(){
-
- $("programmesBody").innerHTML =
-  '<tr><td colspan="5">Loading programmes...</td></tr>';
-
- $("programmeCount").textContent = "Loading programmes...";
-
- const {data,error} = await db
-  .from("programmes")
-  .select(`
-   id,
-   programme_name,
-   programme_level,
-   description,
-   duration,
-   application_open
-  `)
-  .order("programme_name",{ascending:true});
-
- if(error){
-
-  $("programmesBody").innerHTML =
-   '<tr><td colspan="5">Unable to load programmes.</td></tr>';
-
-  $("programmeCount").textContent = "Programme loading failed.";
-
-  showProgrammeMessage(
-   "Unable to load programmes: "+error.message,
-   true
-  );
-
-  return;
-
- }
-
- programmes = data || [];
-
- renderProgrammes();
-
-}
-
-// Render programme records.
-
-function renderProgrammes(){
-
- const query =
-  $("programmeSearch").value.toLowerCase().trim();
-
- const filtered = programmes.filter(p=>{
-
-  const text = [
-   p.programme_name,
-   p.programme_level,
-   p.description
-  ].join(" ").toLowerCase();
-
-  return text.includes(query);
-
+function setPreview(inputId,previewId){
+ $(inputId).addEventListener("change",()=>{
+  const file=$(inputId).files[0];
+  const preview=$(previewId);
+  if(!file){preview.classList.add("hidden");return;}
+  if(!fileIsValid(file)){ $(inputId).value="";preview.classList.add("hidden");return; }
+  preview.src=URL.createObjectURL(file);
+  preview.classList.remove("hidden");
  });
-
- $("programmeCount").textContent =
-  filtered.length+" programme(s) displayed";
-
- if(!filtered.length){
-
-  $("programmesBody").innerHTML =
-   '<tr><td colspan="5" class="programme-empty">No programmes found.</td></tr>';
-
-  return;
-
- }
-
- $("programmesBody").innerHTML = filtered.map(p=>{
-
-  const open = p.application_open === true;
-
-  return `
-   <tr>
-    <td><strong>${escapeHTML(p.programme_name)}</strong></td>
-    <td>${escapeHTML(p.programme_level)}</td>
-    <td>${escapeHTML(p.duration || "Not specified")}</td>
-    <td>
-     <span class="status ${open ? "OPEN" : "CLOSED"}">
-      ${open ? "OPEN" : "CLOSED"}
-     </span>
-    </td>
-    <td>
-     <div class="programme-action-buttons">
-      <button class="edit-btn"
-       data-edit-id="${escapeHTML(p.id)}">EDIT</button>
-
-      <button class="delete-btn"
-       data-delete-id="${escapeHTML(p.id)}">DELETE</button>
-     </div>
-    </td>
-   </tr>
-  `;
-
- }).join("");
-
- $("programmesBody")
- .querySelectorAll("[data-edit-id]")
- .forEach(button=>{
-  button.addEventListener("click",()=>{
-   editProgramme(button.dataset.editId);
-  });
- });
-
- $("programmesBody")
- .querySelectorAll("[data-delete-id]")
- .forEach(button=>{
-  button.addEventListener("click",()=>{
-   deleteProgramme(button.dataset.deleteId);
-  });
- });
-
 }
 
-// Clear programme form.
-
-function clearProgrammeForm(){
-
- $("programmeForm").reset();
-
- $("programmeId").value = "";
- $("applicationOpen").checked = true;
-
- $("programmeFormTitle").textContent = "Add New Programme";
-
- $("saveProgrammeButton").textContent = "SAVE PROGRAMME";
-
-}
-
-// Edit existing programme.
-
-function editProgramme(id){
-
- const p = programmes.find(item=>String(item.id)===String(id));
-
- if(!p){
-  showProgrammeMessage("Programme record not found.",true);
-  return;
- }
-
- $("programmeId").value = p.id;
- $("programmeName").value = p.programme_name || "";
- $("programmeLevel").value = p.programme_level || "";
- $("programmeDuration").value = p.duration || "";
- $("programmeDescription").value = p.description || "";
-
- $("applicationOpen").checked = p.application_open === true;
-
- $("programmeFormTitle").textContent = "Edit Programme";
-
- $("saveProgrammeButton").textContent = "UPDATE PROGRAMME";
-
- $("programmeForm").scrollIntoView({
-  behavior:"smooth",
-  block:"start"
- });
-
- $("programmeName").focus();
-
-}
-
-// Save new programme or update an existing one.
-
-async function saveProgramme(event){
-
- event.preventDefault();
-
- const id = $("programmeId").value.trim();
-
- const programmeName = $("programmeName").value.trim();
- const programmeLevel = $("programmeLevel").value.trim();
- const description = $("programmeDescription").value.trim();
- const duration = $("programmeDuration").value.trim();
- const applicationOpen = $("applicationOpen").checked;
-
- if(!programmeName || !programmeLevel){
-
-  showProgrammeMessage(
-   "Programme Name and Programme Level are required.",
-   true
-  );
-
-  return;
-
- }
-
- const payload = {
-  programme_name:programmeName,
-  programme_level:programmeLevel,
-  description:description || null,
-  duration:duration || null,
-  application_open:applicationOpen
- };
-
- $("saveProgrammeButton").disabled = true;
- $("saveProgrammeButton").textContent = "SAVING...";
-
- try{
-
-  let result;
-
-  if(id){
-
-   result = await db
-    .from("programmes")
-    .update(payload)
-    .eq("id",id)
-    .select("id");
-
-  }else{
-
-   result = await db
-    .from("programmes")
-    .insert([payload])
-    .select("id");
-
-  }
-
-  if(result.error) throw result.error;
-
-  if(!result.data || !result.data.length){
-
-   throw new Error(
-    "No programme record was saved. Check administrator permissions."
-   );
-
-  }
-
-  showProgrammeMessage(
-   id
-    ? "Programme successfully updated."
-    : "New programme successfully added."
-  );
-
-  clearProgrammeForm();
-
-  await loadProgrammes();
-
- }catch(error){
-
-  showProgrammeMessage(
-   "Unable to save programme: "+error.message,
-   true
-  );
-
- }finally{
-
-  $("saveProgrammeButton").disabled = false;
-
-  if($("programmeId").value){
-   $("saveProgrammeButton").textContent = "UPDATE PROGRAMME";
-  }else{
-   $("saveProgrammeButton").textContent = "SAVE PROGRAMME";
-  }
-
- }
-
-}
-
-// Delete programme.
-
-async function deleteProgramme(id){
-
- const p = programmes.find(item=>String(item.id)===String(id));
-
- if(!p) return;
-
- const confirmation = confirm(
-  "Are you sure you want to delete this programme?\n\n"+
-  p.programme_name+
-  "\n\nThis action cannot be undone."
- );
-
- if(!confirmation) return;
-
- try{
-
-  const {data,error} = await db
-   .from("programmes")
-   .delete()
-   .eq("id",id)
-   .select("id");
-
-  if(error) throw error;
-
-  if(!data || !data.length){
-
-   throw new Error(
-    "No programme was deleted. Check administrator permissions."
-   );
-
-  }
-
-  showProgrammeMessage("Programme successfully deleted.");
-
-  if(String($("programmeId").value)===String(id)){
-   clearProgrammeForm();
-  }
-
-  await loadProgrammes();
-
- }catch(error){
-
-  showProgrammeMessage(
-   "Unable to delete programme: "+error.message+
-   ". It may be linked to existing applications.",
-   true
-  );
-
- }
-
-}
-
-// Programme controls.
-
-$("programmeForm").addEventListener("submit",saveProgramme);
-
-$("cancelProgrammeEdit").addEventListener("click",()=>{
- clearProgrammeForm();
- $("programmeMessage").style.display = "none";
+// =====================================================
+// PASSWORD VISIBILITY
+// =====================================================
+
+$("togglePassword").addEventListener("click",()=>{
+ const input=$("password");
+ input.type=input.type==="password"?"text":"password";
+ $("togglePassword").textContent=input.type==="password"?"SHOW":"HIDE";
 });
 
-$("refreshProgrammesButton").addEventListener("click",loadProgrammes);
+// =====================================================
+// ADMINISTRATOR AUTHENTICATION
+// =====================================================
 
-$("programmeSearch").addEventListener("input",renderProgrammes);
+async function verifyAdministrator(user){
+ const {data,error}=await db
+  .from("titi_site_admins")
+  .select("id,user_id,full_name,email,role")
+  .eq("user_id",user.id)
+  .maybeSingle();
 
-// ======================================
-// ADMINISTRATOR LOGIN
-// ======================================
+ if(error)throw error;
+ if(!data)throw new Error("This account is not registered as a TITI website administrator. Access denied.");
+
+ currentAdmin=data;
+}
+
+function showDashboard(){
+ $("loginScreen").style.display="none";
+ $("dashboard").style.display="block";
+ $("adminName").textContent=(currentAdmin.full_name || currentAdmin.email || "Administrator")+" | "+currentAdmin.role;
+}
+
+function showLogin(){
+ $("dashboard").style.display="none";
+ $("loginScreen").style.display="flex";
+ currentAdmin=null;
+ $("password").value="";
+ $("password").type="password";
+ $("togglePassword").textContent="SHOW";
+ $("loginError").style.display="none";
+}
 
 $("loginForm").addEventListener("submit",async event=>{
-
  event.preventDefault();
-
- $("loginError").style.display = "none";
-
- $("loginButton").disabled = true;
- $("loginButton").textContent = "SIGNING IN...";
-
+ $("loginError").style.display="none";
+ $("loginButton").disabled=true;
+ $("loginButton").textContent="SIGNING IN...";
  try{
-
-  const {data,error} = await db.auth.signInWithPassword({
-
+  const {data,error}=await db.auth.signInWithPassword({
    email:$("email").value.trim(),
    password:$("password").value
-
   });
-
-  if(error) throw error;
-
+  if(error)throw error;
   await verifyAdministrator(data.user);
-
   showDashboard();
-
   await loadApplications();
-
  }catch(error){
-
   await db.auth.signOut();
-
-  showLoginError(error.message || "Login failed.");
-
+  $("loginError").textContent=error.message;
+  $("loginError").style.display="block";
  }finally{
-
-  $("loginButton").disabled = false;
-  $("loginButton").textContent = "SIGN IN";
-
+  $("loginButton").disabled=false;
+  $("loginButton").textContent="SIGN IN";
  }
-
 });
-
-// ======================================
-// LOGOUT
-// ======================================
 
 $("logoutButton").addEventListener("click",async()=>{
-
  await db.auth.signOut();
-
  showLogin();
-
 });
 
-// ======================================
-// DASHBOARD CONTROLS
-// ======================================
+// =====================================================
+// MODULE NAVIGATION
+// =====================================================
 
-$("refreshButton").addEventListener("click",async()=>{
+const modulePanels={
+ admissions:"admissionsArea",
+ programmes:"programmePanel",
+ homepage:"cmsPanel",
+ gallery:"galleryPanel",
+ content:"contentPanel",
+ news:"newsPanel",
+ staff:"staffPanel",
+ documents:"documentsPanel"
+};
 
- await loadApplications();
+async function showModule(module){
+ currentModule=module;
+ Object.entries(modulePanels).forEach(([key,id])=>{
+  $(id).classList.toggle("hidden",key!==module);
+  if(key==="admissions" || key==="programmes" || key==="homepage"){
+   $(id).style.display=key===module?"block":"none";
+  }
+ });
+ document.querySelectorAll(".module-btn").forEach(button=>{
+  button.classList.toggle("active",button.dataset.module===module);
+ });
 
- if(selectedApplication){
-  await loadApplicantDocuments(selectedApplication.id);
+ try{
+  if(module==="admissions")await loadApplications();
+  if(module==="programmes")await loadProgrammes();
+  if(module==="homepage")await loadSlides();
+  if(module==="gallery")await loadGallery();
+  if(module==="content")await loadWebsiteContent();
+  if(module==="news")await loadNews();
+  if(module==="staff")await loadStaff();
+  if(module==="documents")await loadWebsiteDocuments();
+ }catch(error){
+  showMessage("Unable to load this section: "+error.message,true);
  }
+}
 
- if($("programmePanel").style.display==="block"){
-  await loadProgrammes();
- }
-
+document.querySelectorAll(".module-btn").forEach(button=>{
+ button.addEventListener("click",()=>showModule(button.dataset.module));
 });
+
+// =====================================================
+// ADMISSIONS MANAGEMENT
+// =====================================================
+
+async function loadApplications(){
+ $("applicationsBody").innerHTML='<tr><td colspan="6">Loading applications...</td></tr>';
+ const {data,error}=await db.from("applications").select(`
+  id,reference_number,first_name,middle_name,last_name,gender,date_of_birth,
+  nationality,phone_number,email,residential_address,programme_id,
+  application_status,administrator_remarks,submitted_at,highest_qualification,
+  awarding_institution,year_completed,programmes(programme_name,programme_level)
+ `).order("submitted_at",{ascending:false});
+
+ if(error){
+  $("applicationsBody").innerHTML='<tr><td colspan="6">Unable to load applications.</td></tr>';
+  showMessage(error.message,true);
+  return;
+ }
+ applications=data||[];
+ updateStatistics();
+ renderApplications();
+}
+
+function updateStatistics(){
+ $("totalCount").textContent=applications.length;
+ $("submittedCount").textContent=applications.filter(a=>a.application_status==="SUBMITTED").length;
+ $("approvedCount").textContent=applications.filter(a=>a.application_status==="ADMITTED").length;
+ $("rejectedCount").textContent=applications.filter(a=>a.application_status==="DECLINED").length;
+}
+
+function renderApplications(){
+ const query=$("searchInput").value.toLowerCase().trim();
+ const filtered=applications.filter(a=>{
+  const name=[a.first_name,a.middle_name,a.last_name].filter(Boolean).join(" ");
+  return [name,a.reference_number,a.phone_number,a.email,a.programmes?.programme_name].join(" ").toLowerCase().includes(query);
+ });
+
+ if(!filtered.length){
+  $("applicationsBody").innerHTML='<tr><td colspan="6">No matching applications found.</td></tr>';
+  return;
+ }
+
+ $("applicationsBody").innerHTML=filtered.map(a=>{
+  const name=[a.first_name,a.middle_name,a.last_name].filter(Boolean).join(" ");
+  const date=a.submitted_at?new Date(a.submitted_at).toLocaleDateString():"Not recorded";
+  return `<tr>
+   <td>${escapeHTML(a.reference_number)}</td>
+   <td>${escapeHTML(name)}</td>
+   <td>${escapeHTML(a.programmes?.programme_name||"Not assigned")}</td>
+   <td>${escapeHTML(date)}</td>
+   <td><span class="status ${escapeHTML(statusClass(a.application_status))}">${escapeHTML(statusText(a.application_status))}</span></td>
+   <td><button class="view-btn" data-app-id="${escapeHTML(a.id)}">VIEW</button></td>
+  </tr>`;
+ }).join("");
+
+ $("applicationsBody").querySelectorAll("[data-app-id]").forEach(button=>{
+  button.addEventListener("click",()=>openApplication(button.dataset.appId));
+ });
+}
 
 $("searchInput").addEventListener("input",renderApplications);
 
-$("approveButton").addEventListener("click",()=>{
- updateDecision("ADMITTED");
-});
+async function openApplication(id){
+ const a=applications.find(item=>String(item.id)===String(id));
+ if(!a)return;
+ selectedApplication=a;
+ const name=[a.first_name,a.middle_name,a.last_name].filter(Boolean).join(" ");
+ $("applicantDetails").innerHTML=`<div class="detail-grid">
+ ${detailItem("Reference Number",a.reference_number)}
+ ${detailItem("Full Name",name)}
+ ${detailItem("Gender",a.gender)}
+ ${detailItem("Date of Birth",a.date_of_birth)}
+ ${detailItem("Nationality",a.nationality)}
+ ${detailItem("Phone Number",a.phone_number)}
+ ${detailItem("Email",a.email)}
+ ${detailItem("Residential Address",a.residential_address)}
+ ${detailItem("Programme",a.programmes?.programme_name)}
+ ${detailItem("Programme Level",a.programmes?.programme_level)}
+ ${detailItem("Highest Qualification",a.highest_qualification)}
+ ${detailItem("Awarding Institution",a.awarding_institution)}
+ ${detailItem("Year Completed",a.year_completed)}
+ ${detailItem("Submission Date",a.submitted_at?new Date(a.submitted_at).toLocaleString():"Not recorded")}
+ ${detailItem("Application Status",statusText(a.application_status))}
+ </div>`;
+ $("remarks").value=a.administrator_remarks||"";
+ $("detailPanel").style.display="block";
+ $("detailPanel").scrollIntoView({behavior:"smooth",block:"start"});
+ await loadApplicantDocuments(a.id);
+}
 
-$("rejectButton").addEventListener("click",()=>{
- updateDecision("DECLINED");
-});
+async function loadApplicantDocuments(applicationId){
+ $("documentsContent").innerHTML='<p class="muted">Loading applicant documents...</p>';
+ const {data,error}=await db.from("application_documents")
+  .select("id,application_id,document_type,storage_path,uploaded_at")
+  .eq("application_id",applicationId)
+  .order("uploaded_at",{ascending:false});
 
-$("closeDetails").addEventListener("click",()=>{
-
- $("detailPanel").style.display = "none";
-
- $("documentsContent").innerHTML =
-  '<p class="muted">Select an applicant to view documents.</p>';
-
- selectedApplication = null;
- currentDocuments = [];
-
-});
-
-// ======================================
-// RESTORE EXISTING SESSION
-// ======================================
-
-async function restoreSession(){
-
- try{
-
-  const {data,error} = await db.auth.getSession();
-
-  if(error) throw error;
-
-  if(data.session){
-
-   await verifyAdministrator(data.session.user);
-
-   showDashboard();
-
-   await loadApplications();
-
-  }
-
- }catch(error){
-
-  await db.auth.signOut();
-
-  showLogin();
-
-  console.error("Session restoration:",error.message);
-
+ if(error){
+  $("documentsContent").innerHTML=`<div class="document-error">${escapeHTML(error.message)}</div>`;
+  return;
+ }
+ if(!data?.length){
+  $("documentsContent").innerHTML='<p class="muted">No uploaded documents were found for this applicant.</p>';
+  return;
  }
 
+ const results=await Promise.all(data.map(async doc=>{
+  const {data:signedData,error:signedError}=await db.storage.from(DOCUMENT_BUCKET).createSignedUrl(doc.storage_path,300);
+  return {doc,url:signedData?.signedUrl,error:signedError};
+ }));
+
+ $("documentsContent").innerHTML=results.map(result=>{
+  const doc=result.doc;
+  const fileName=String(doc.storage_path||"").split("/").pop();
+  const extension=fileName.split(".").pop().toLowerCase();
+  const isImage=["jpg","jpeg","png","webp"].includes(extension);
+  const isPDF=extension==="pdf";
+  const uploaded=doc.uploaded_at?new Date(doc.uploaded_at).toLocaleString():"Not recorded";
+  let preview="";
+  if(result.url&&isImage)preview=`<img src="${escapeHTML(result.url)}" alt="Applicant document">`;
+  if(result.url&&isPDF)preview=`<iframe src="${escapeHTML(result.url)}" title="Applicant PDF"></iframe>`;
+  const links=result.url?`<div class="document-actions"><a href="${escapeHTML(result.url)}" target="_blank" rel="noopener">OPEN DOCUMENT</a><a class="download" href="${escapeHTML(result.url)}" download="${escapeHTML(fileName)}">DOWNLOAD</a></div>`:`<div class="document-error">${escapeHTML(result.error?.message||"Unable to create secure link")}</div>`;
+  return `<div class="document-card"><h4>${escapeHTML(doc.document_type)}</h4><p class="muted">Uploaded: ${escapeHTML(uploaded)}</p><p class="muted">File: ${escapeHTML(fileName)}</p>${preview}${links}</div>`;
+ }).join("");
+}
+
+async function updateDecision(status){
+ if(!selectedApplication){showMessage("Select an applicant first.",true);return;}
+ if(!["ADMITTED","DECLINED"].includes(status))return;
+ if(!confirm(status==="ADMITTED"?"Confirm admission of this applicant?":"Confirm rejection of this applicant?"))return;
+
+ $("approveButton").disabled=true;
+ $("rejectButton").disabled=true;
+
+ try{
+  const {data,error}=await db.from("applications").update({
+   application_status:status,
+   administrator_remarks:$("remarks").value.trim()
+  }).eq("id",selectedApplication.id).select("id");
+
+  if(error)throw error;
+  if(!data?.length)throw new Error("No record was updated. Check administrator permissions.");
+
+  showMessage(status==="ADMITTED"?"Applicant successfully approved.":"Applicant successfully rejected.");
+  $("detailPanel").style.display="none";
+  selectedApplication=null;
+  $("documentsContent").innerHTML='<p class="muted">Select an applicant to view documents.</p>';
+  await loadApplications();
+ }catch(error){
+  showMessage("Unable to update application: "+error.message,true);
+ }finally{
+  $("approveButton").disabled=false;
+  $("rejectButton").disabled=false;
+ }
+}
+
+$("approveButton").addEventListener("click",()=>updateDecision("ADMITTED"));
+$("rejectButton").addEventListener("click",()=>updateDecision("DECLINED"));
+$("closeDetails").addEventListener("click",()=>{
+ $("detailPanel").style.display="none";
+ selectedApplication=null;
+ $("documentsContent").innerHTML='<p class="muted">Select an applicant to view documents.</p>';
+});
+
+// =====================================================
+// PROGRAMME MANAGEMENT
+// =====================================================
+
+async function loadProgrammes(){
+ $("programmesBody").innerHTML='<tr><td colspan="5">Loading programmes...</td></tr>';
+ const {data,error}=await db.from("programmes")
+  .select("id,programme_name,programme_level,description,duration,application_open")
+  .order("programme_name",{ascending:true});
+
+ if(error){
+  $("programmesBody").innerHTML='<tr><td colspan="5">Unable to load programmes.</td></tr>';
+  cmsMessage("programmeMessage",error.message,true);
+  return;
+ }
+ programmes=data||[];
+ renderProgrammes();
+}
+
+function renderProgrammes(){
+ const query=$("programmeSearch").value.toLowerCase().trim();
+ const filtered=programmes.filter(p=>[p.programme_name,p.programme_level,p.description].join(" ").toLowerCase().includes(query));
+ $("programmeCount").textContent=filtered.length+" programme(s) displayed";
+
+ if(!filtered.length){
+  $("programmesBody").innerHTML='<tr><td colspan="5" class="programme-empty">No programmes found.</td></tr>';
+  return;
+ }
+
+ $("programmesBody").innerHTML=filtered.map(p=>{
+  const open=p.application_open===true;
+  return `<tr>
+   <td><strong>${escapeHTML(p.programme_name)}</strong></td>
+   <td>${escapeHTML(p.programme_level)}</td>
+   <td>${escapeHTML(p.duration||"Not specified")}</td>
+   <td><span class="status ${open?"OPEN":"CLOSED"}">${open?"OPEN":"CLOSED"}</span></td>
+   <td><div class="programme-action-buttons">
+    <button class="edit-btn" data-edit-programme="${escapeHTML(p.id)}">EDIT</button>
+    <button class="delete-btn" data-delete-programme="${escapeHTML(p.id)}">DELETE</button>
+   </div></td>
+  </tr>`;
+ }).join("");
+
+ $("programmesBody").querySelectorAll("[data-edit-programme]").forEach(button=>button.addEventListener("click",()=>editProgramme(button.dataset.editProgramme)));
+ $("programmesBody").querySelectorAll("[data-delete-programme]").forEach(button=>button.addEventListener("click",()=>deleteProgramme(button.dataset.deleteProgramme)));
+}
+
+function clearProgrammeForm(){
+ $("programmeForm").reset();
+ $("programmeId").value="";
+ $("applicationOpen").checked=true;
+ $("programmeFormTitle").textContent="Add New Programme";
+ $("saveProgrammeButton").textContent="SAVE PROGRAMME";
+}
+
+function editProgramme(id){
+ const p=programmes.find(item=>String(item.id)===String(id));
+ if(!p)return;
+ $("programmeId").value=p.id;
+ $("programmeName").value=p.programme_name||"";
+ $("programmeLevel").value=p.programme_level||"";
+ $("programmeDuration").value=p.duration||"";
+ $("programmeDescription").value=p.description||"";
+ $("applicationOpen").checked=p.application_open===true;
+ $("programmeFormTitle").textContent="Edit Programme";
+ $("saveProgrammeButton").textContent="UPDATE PROGRAMME";
+ $("programmeForm").scrollIntoView({behavior:"smooth"});
+}
+
+$("programmeForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const id=$("programmeId").value.trim();
+ const payload={
+  programme_name:$("programmeName").value.trim(),
+  programme_level:$("programmeLevel").value.trim(),
+  description:$("programmeDescription").value.trim()||null,
+  duration:$("programmeDuration").value.trim()||null,
+  application_open:$("applicationOpen").checked
+ };
+ if(!payload.programme_name||!payload.programme_level){
+  cmsMessage("programmeMessage","Programme name and level are required.",true);return;
+ }
+ $("saveProgrammeButton").disabled=true;
+ try{
+  const result=id
+   ?await db.from("programmes").update(payload).eq("id",id).select("id")
+   :await db.from("programmes").insert([payload]).select("id");
+  if(result.error)throw result.error;
+  if(!result.data?.length)throw new Error("No programme was saved. Check database permissions.");
+  cmsMessage("programmeMessage",id?"Programme updated successfully.":"New programme added successfully.");
+  clearProgrammeForm();
+  await loadProgrammes();
+ }catch(error){
+  cmsMessage("programmeMessage",error.message,true);
+ }finally{$("saveProgrammeButton").disabled=false;}
+});
+
+async function deleteProgramme(id){
+ const p=programmes.find(item=>String(item.id)===String(id));
+ if(!p||!confirm("Delete this programme?\n\n"+p.programme_name+"\n\nThis cannot be undone."))return;
+ try{
+  const {data,error}=await db.from("programmes").delete().eq("id",id).select("id");
+  if(error)throw error;
+  if(!data?.length)throw new Error("No programme was deleted. It may be linked to applications or restricted by database permissions.");
+  cmsMessage("programmeMessage","Programme deleted successfully.");
+  if(String($("programmeId").value)===String(id))clearProgrammeForm();
+  await loadProgrammes();
+ }catch(error){cmsMessage("programmeMessage",error.message,true);}
+}
+
+$("cancelProgrammeEdit").addEventListener("click",clearProgrammeForm);
+$("refreshProgrammesButton").addEventListener("click",loadProgrammes);
+$("programmeSearch").addEventListener("input",renderProgrammes);
+
+// =====================================================
+// HOMEPAGE SLIDESHOW
+// =====================================================
+
+setPreview("slideImage","slidePreview");
+
+async function loadSlides(){
+ $("slidesList").textContent="Loading slideshow...";
+ const {data,error}=await db.from("titi_homepage_slides").select("*").order("display_order",{ascending:true});
+ if(error)throw error;
+ slides=data||[];
+ if(!slides.length){$("slidesList").innerHTML='<p class="muted">No homepage slides have been added yet.</p>';return;}
+
+ $("slidesList").innerHTML=slides.map(slide=>`
+  <div class="media-card">
+   <img src="${escapeHTML(slide.image_url)}" alt="${escapeHTML(slide.title||"Homepage slide")}">
+   <h4>${escapeHTML(slide.title||"Untitled slide")}</h4>
+   <p class="muted">${escapeHTML(slide.description||"No description")}</p>
+   <p><span class="status ${slide.is_active?"OPEN":"CLOSED"}">${slide.is_active?"ACTIVE":"INACTIVE"}</span> <span class="muted">Order: ${escapeHTML(slide.display_order)}</span></p>
+   <div class="media-actions">
+    <button class="edit-btn" data-edit-slide="${escapeHTML(slide.id)}">EDIT</button>
+    <button class="secondary" data-toggle-slide="${escapeHTML(slide.id)}">${slide.is_active?"DEACTIVATE":"ACTIVATE"}</button>
+    <button class="delete-btn" data-delete-slide="${escapeHTML(slide.id)}">DELETE</button>
+   </div>
+  </div>`).join("");
+
+ $("slidesList").querySelectorAll("[data-edit-slide]").forEach(b=>b.addEventListener("click",()=>editSlide(b.dataset.editSlide)));
+ $("slidesList").querySelectorAll("[data-toggle-slide]").forEach(b=>b.addEventListener("click",()=>toggleRecord("titi_homepage_slides",b.dataset.toggleSlide,slides,"is_active",loadSlides)));
+ $("slidesList").querySelectorAll("[data-delete-slide]").forEach(b=>b.addEventListener("click",()=>deleteRecord("titi_homepage_slides",b.dataset.deleteSlide,slides,loadSlides)));
+}
+
+function clearSlideForm(){
+ $("slideForm").reset();$("slideId").value="";$("slideOldPath").value="";
+ $("slideOrder").value="0";$("slidePreview").classList.add("hidden");
+ $("saveSlideButton").textContent="SAVE SLIDE";
+}
+
+function editSlide(id){
+ const s=slides.find(x=>String(x.id)===String(id));if(!s)return;
+ $("slideId").value=s.id;$("slideOldPath").value=s.image_path||"";
+ $("slideTitle").value=s.title||"";$("slideDescription").value=s.description||"";
+ $("slideButtonText").value=s.button_text||"";$("slideButtonLink").value=s.button_link||"";
+ $("slideOrder").value=s.display_order??0;
+ $("slidePreview").src=s.image_url;$("slidePreview").classList.remove("hidden");
+ $("saveSlideButton").textContent="UPDATE SLIDE";
+ $("slideForm").scrollIntoView({behavior:"smooth"});
+}
+
+$("slideForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const id=$("slideId").value;
+ const oldPath=$("slideOldPath").value;
+ const file=$("slideImage").files[0];
+ if(!id&&!file){cmsMessage("cmsMessage","Please choose a slideshow photograph.",true);return;}
+ $("saveSlideButton").disabled=true;
+ try{
+  let uploaded=null;
+  if(file)uploaded=await uploadMedia(file,"homepage-slides");
+  const existing=slides.find(x=>String(x.id)===String(id));
+  const payload={
+   title:$("slideTitle").value.trim()||null,
+   description:$("slideDescription").value.trim()||null,
+   button_text:$("slideButtonText").value.trim()||null,
+   button_link:$("slideButtonLink").value.trim()||null,
+   display_order:Number($("slideOrder").value)||0,
+   image_url:uploaded?.url||existing?.image_url,
+   image_path:uploaded?.path||existing?.image_path
+  };
+  const result=id
+   ?await db.from("titi_homepage_slides").update(payload).eq("id",id).select("id")
+   :await db.from("titi_homepage_slides").insert([payload]).select("id");
+  if(result.error)throw result.error;
+  if(uploaded&&oldPath)await deleteMedia(oldPath);
+  cmsMessage("cmsMessage",id?"Homepage slide updated.":"Homepage slide added.");
+  clearSlideForm();await loadSlides();
+ }catch(error){cmsMessage("cmsMessage","Unable to save slide: "+error.message,true);}
+ finally{$("saveSlideButton").disabled=false;}
+});
+
+$("clearSlideForm").addEventListener("click",clearSlideForm);
+
+// =====================================================
+// GALLERY MANAGEMENT
+// =====================================================
+
+setPreview("galleryImage","galleryPreview");
+
+async function loadGallery(){
+ $("galleryList").textContent="Loading gallery...";
+ const {data,error}=await db.from("titi_gallery_images").select("*").order("display_order",{ascending:true});
+ if(error)throw error;
+ galleryImages=data||[];
+ if(!galleryImages.length){$("galleryList").innerHTML='<p class="muted">No gallery photographs have been added.</p>';return;}
+ $("galleryList").innerHTML=galleryImages.map(item=>`
+  <div class="media-card">
+   <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title||"Gallery photo")}">
+   <h4>${escapeHTML(item.title||"Untitled photograph")}</h4>
+   <p class="muted">${escapeHTML(item.caption||"")}</p>
+   <p><span class="status ${item.is_active?"OPEN":"CLOSED"}">${item.is_active?"ACTIVE":"INACTIVE"}</span></p>
+   <div class="media-actions">
+    <button class="edit-btn" data-edit-gallery="${escapeHTML(item.id)}">EDIT</button>
+    <button class="secondary" data-toggle-gallery="${escapeHTML(item.id)}">${item.is_active?"DEACTIVATE":"ACTIVATE"}</button>
+    <button class="delete-btn" data-delete-gallery="${escapeHTML(item.id)}">DELETE</button>
+   </div>
+  </div>`).join("");
+ $("galleryList").querySelectorAll("[data-edit-gallery]").forEach(b=>b.addEventListener("click",()=>editGallery(b.dataset.editGallery)));
+ $("galleryList").querySelectorAll("[data-toggle-gallery]").forEach(b=>b.addEventListener("click",()=>toggleRecord("titi_gallery_images",b.dataset.toggleGallery,galleryImages,"is_active",loadGallery)));
+ $("galleryList").querySelectorAll("[data-delete-gallery]").forEach(b=>b.addEventListener("click",()=>deleteRecord("titi_gallery_images",b.dataset.deleteGallery,galleryImages,loadGallery)));
+}
+
+function clearGalleryForm(){
+ $("galleryForm").reset();$("galleryId").value="";$("galleryOldPath").value="";
+ $("galleryOrder").value="0";$("galleryPreview").classList.add("hidden");
+ $("saveGalleryButton").textContent="SAVE PHOTO";
+}
+
+function editGallery(id){
+ const item=galleryImages.find(x=>String(x.id)===String(id));if(!item)return;
+ $("galleryId").value=item.id;$("galleryOldPath").value=item.image_path||"";
+ $("galleryTitle").value=item.title||"";$("galleryCaption").value=item.caption||"";
+ $("galleryOrder").value=item.display_order??0;
+ $("galleryPreview").src=item.image_url;$("galleryPreview").classList.remove("hidden");
+ $("saveGalleryButton").textContent="UPDATE PHOTO";
+ $("galleryForm").scrollIntoView({behavior:"smooth"});
+}
+
+$("galleryForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const id=$("galleryId").value,oldPath=$("galleryOldPath").value,file=$("galleryImage").files[0];
+ if(!id&&!file){cmsMessage("galleryMessage","Please choose a photograph.",true);return;}
+ $("saveGalleryButton").disabled=true;
+ try{
+  const uploaded=file?await uploadMedia(file,"gallery"):null;
+  const existing=galleryImages.find(x=>String(x.id)===String(id));
+  const payload={
+   title:$("galleryTitle").value.trim()||null,
+   caption:$("galleryCaption").value.trim()||null,
+   display_order:Number($("galleryOrder").value)||0,
+   image_url:uploaded?.url||existing?.image_url,
+   image_path:uploaded?.path||existing?.image_path
+  };
+  const result=id
+   ?await db.from("titi_gallery_images").update(payload).eq("id",id).select("id")
+   :await db.from("titi_gallery_images").insert([payload]).select("id");
+  if(result.error)throw result.error;
+  if(uploaded&&oldPath)await deleteMedia(oldPath);
+  cmsMessage("galleryMessage",id?"Gallery photograph updated.":"Gallery photograph uploaded.");
+  clearGalleryForm();await loadGallery();
+ }catch(error){cmsMessage("galleryMessage",error.message,true);}
+ finally{$("saveGalleryButton").disabled=false;}
+});
+
+$("clearGalleryForm").addEventListener("click",clearGalleryForm);
+
+// =====================================================
+// SHARED RECORD ACTIVATION AND DELETION
+// =====================================================
+
+async function toggleRecord(table,id,records,column,reload){
+ const record=records.find(x=>String(x.id)===String(id));if(!record)return;
+ try{
+  const {error}=await db.from(table).update({[column]:!record[column]}).eq("id",id);
+  if(error)throw error;
+  await reload();
+ }catch(error){alert("Unable to update record: "+error.message);}
+}
+
+async function deleteRecord(table,id,records,reload){
+ const record=records.find(x=>String(x.id)===String(id));if(!record)return;
+ if(!confirm("Are you sure you want to delete this record? This action cannot be undone."))return;
+ try{
+  const {error}=await db.from(table).delete().eq("id",id);
+  if(error)throw error;
+  if(record.image_path)await deleteMedia(record.image_path);
+  if(record.file_path)await deleteMedia(record.file_path);
+  await reload();
+ }catch(error){alert("Unable to delete record: "+error.message);}
+}
+
+// =====================================================
+// WEBSITE CONTENT
+// =====================================================
+
+async function loadWebsiteContent(){
+ const {data,error}=await db.from("titi_site_content").select("*").eq("content_key","main").maybeSingle();
+ if(error)throw error;
+ if(!data)return;
+ const fields={
+  siteInstitution:"institution_name",siteSlogan:"slogan",
+  siteHeroHeading:"hero_heading",siteHeroSubheading:"hero_subheading",
+  siteAboutHeading:"about_heading",siteAboutContent:"about_content",
+  siteMission:"mission",siteVision:"vision",
+  siteAdmissionsHeading:"admissions_heading",siteAdmissionsContent:"admissions_content",
+  sitePhone:"phone",siteEmail:"email",siteAddress:"address",siteLocation:"location",
+  siteFacebook:"facebook_url",siteInstagram:"instagram_url",siteTikTok:"tiktok_url",siteYoutube:"youtube_url"
+ };
+ Object.entries(fields).forEach(([input,column])=>$(input).value=data[column]||"");
+}
+
+$("reloadContentButton").addEventListener("click",async()=>{
+ try{await loadWebsiteContent();cmsMessage("contentMessage","Website content reloaded.");}
+ catch(error){cmsMessage("contentMessage",error.message,true);}
+});
+
+$("contentForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const payload={
+  content_key:"main",
+  institution_name:$("siteInstitution").value.trim(),
+  slogan:$("siteSlogan").value.trim(),
+  hero_heading:$("siteHeroHeading").value.trim(),
+  hero_subheading:$("siteHeroSubheading").value.trim(),
+  about_heading:$("siteAboutHeading").value.trim(),
+  about_content:$("siteAboutContent").value.trim(),
+  mission:$("siteMission").value.trim(),
+  vision:$("siteVision").value.trim(),
+  admissions_heading:$("siteAdmissionsHeading").value.trim(),
+  admissions_content:$("siteAdmissionsContent").value.trim(),
+  phone:$("sitePhone").value.trim(),
+  email:$("siteEmail").value.trim(),
+  address:$("siteAddress").value.trim(),
+  location:$("siteLocation").value.trim(),
+  facebook_url:$("siteFacebook").value.trim(),
+  instagram_url:$("siteInstagram").value.trim(),
+  tiktok_url:$("siteTikTok").value.trim(),
+  youtube_url:$("siteYoutube").value.trim()
+ };
+ $("saveContentButton").disabled=true;
+ try{
+  const {error}=await db.from("titi_site_content").upsert(payload,{onConflict:"content_key"});
+  if(error)throw error;
+  cmsMessage("contentMessage","Website content saved successfully.");
+ }catch(error){cmsMessage("contentMessage","Unable to save content: "+error.message,true);}
+ finally{$("saveContentButton").disabled=false;}
+});
+
+// =====================================================
+// WEBSITE NEWS
+// =====================================================
+
+setPreview("newsImage","newsPreview");
+
+async function loadNews(){
+ $("newsList").innerHTML='<tr><td colspan="5">Loading news...</td></tr>';
+ const {data,error}=await db.from("titi_website_news").select("*").order("created_at",{ascending:false});
+ if(error)throw error;
+ websiteNews=data||[];
+ if(!websiteNews.length){$("newsList").innerHTML='<tr><td colspan="5">No news articles have been added.</td></tr>';return;}
+ $("newsList").innerHTML=websiteNews.map(item=>`
+  <tr>
+   <td><strong>${escapeHTML(item.title)}</strong></td>
+   <td>${escapeHTML(item.category||"News")}</td>
+   <td><span class="status ${item.is_published?"PUBLISHED":"DRAFT"}">${item.is_published?"PUBLISHED":"DRAFT"}</span></td>
+   <td>${escapeHTML(item.published_at?new Date(item.published_at).toLocaleDateString():"Not published")}</td>
+   <td><div class="programme-action-buttons">
+    <button class="edit-btn" data-edit-news="${escapeHTML(item.id)}">EDIT</button>
+    <button class="secondary" data-toggle-news="${escapeHTML(item.id)}">${item.is_published?"UNPUBLISH":"PUBLISH"}</button>
+    <button class="delete-btn" data-delete-news="${escapeHTML(item.id)}">DELETE</button>
+   </div></td>
+  </tr>`).join("");
+ $("newsList").querySelectorAll("[data-edit-news]").forEach(b=>b.addEventListener("click",()=>editNews(b.dataset.editNews)));
+ $("newsList").querySelectorAll("[data-toggle-news]").forEach(b=>b.addEventListener("click",()=>toggleNews(b.dataset.toggleNews)));
+ $("newsList").querySelectorAll("[data-delete-news]").forEach(b=>b.addEventListener("click",()=>deleteRecord("titi_website_news",b.dataset.deleteNews,websiteNews,loadNews)));
+}
+
+function clearNewsForm(){
+ $("newsForm").reset();$("newsId").value="";$("newsOldPath").value="";
+ $("newsPreview").classList.add("hidden");$("newsPublish").value="false";
+ $("saveNewsButton").textContent="SAVE NEWS";
+}
+
+function editNews(id){
+ const n=websiteNews.find(x=>String(x.id)===String(id));if(!n)return;
+ $("newsId").value=n.id;$("newsOldPath").value=n.image_path||"";
+ $("newsTitle").value=n.title||"";$("newsCategory").value=n.category||"";
+ $("newsAuthor").value=n.author||"";$("newsSummary").value=n.summary||"";
+ $("newsContent").value=n.article_content||"";
+ $("newsPublish").value=String(n.is_published);
+ if(n.image_url){$("newsPreview").src=n.image_url;$("newsPreview").classList.remove("hidden");}
+ else $("newsPreview").classList.add("hidden");
+ $("saveNewsButton").textContent="UPDATE NEWS";
+ $("newsForm").scrollIntoView({behavior:"smooth"});
+}
+
+$("newsForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const id=$("newsId").value,oldPath=$("newsOldPath").value,file=$("newsImage").files[0];
+ const existing=websiteNews.find(x=>String(x.id)===String(id));
+ if(!$("newsTitle").value.trim()){cmsMessage("newsMessage","A news headline is required.",true);return;}
+ $("saveNewsButton").disabled=true;
+ try{
+  const uploaded=file?await uploadMedia(file,"news"):null;
+  const published=$("newsPublish").value==="true";
+  const payload={
+   title:$("newsTitle").value.trim(),
+   category:$("newsCategory").value.trim()||"News",
+   author:$("newsAuthor").value.trim()||null,
+   summary:$("newsSummary").value.trim()||null,
+   article_content:$("newsContent").value.trim()||null,
+   image_url:uploaded?.url||existing?.image_url||null,
+   image_path:uploaded?.path||existing?.image_path||null,
+   is_published:published,
+   published_at:published?(existing?.published_at||new Date().toISOString()):null
+  };
+  const result=id
+   ?await db.from("titi_website_news").update(payload).eq("id",id).select("id")
+   :await db.from("titi_website_news").insert([payload]).select("id");
+  if(result.error)throw result.error;
+  if(uploaded&&oldPath)await deleteMedia(oldPath);
+  cmsMessage("newsMessage",published?"News saved and published.":"News saved as draft.");
+  clearNewsForm();await loadNews();
+ }catch(error){cmsMessage("newsMessage","Unable to save news: "+error.message,true);}
+ finally{$("saveNewsButton").disabled=false;}
+});
+
+async function toggleNews(id){
+ const item=websiteNews.find(x=>String(x.id)===String(id));if(!item)return;
+ const publish=!item.is_published;
+ try{
+  const {error}=await db.from("titi_website_news").update({
+   is_published:publish,
+   published_at:publish?(item.published_at||new Date().toISOString()):null
+  }).eq("id",id);
+  if(error)throw error;
+  await loadNews();
+ }catch(error){alert("Unable to change publication status: "+error.message);}
+}
+
+$("clearNewsForm").addEventListener("click",clearNewsForm);
+
+// =====================================================
+// STAFF PROFILES
+// =====================================================
+
+setPreview("staffPhoto","staffPreview");
+
+async function loadStaff(){
+ $("staffList").textContent="Loading staff profiles...";
+ const {data,error}=await db.from("titi_staff_profiles").select("*").order("display_order",{ascending:true});
+ if(error)throw error;
+ staffProfiles=data||[];
+ if(!staffProfiles.length){$("staffList").innerHTML='<p class="muted">No staff profiles have been added.</p>';return;}
+ $("staffList").innerHTML=staffProfiles.map(item=>`
+  <div class="media-card">
+   ${item.photo_url?`<img src="${escapeHTML(item.photo_url)}" alt="${escapeHTML(item.full_name)}">`:""}
+   <h4>${escapeHTML(item.full_name)}</h4>
+   <p class="muted">${escapeHTML(item.position||"")}</p>
+   <p>${escapeHTML(item.biography||"")}</p>
+   <p><span class="status ${item.is_active?"OPEN":"CLOSED"}">${item.is_active?"ACTIVE":"INACTIVE"}</span></p>
+   <div class="media-actions">
+    <button class="edit-btn" data-edit-staff="${escapeHTML(item.id)}">EDIT</button>
+    <button class="secondary" data-toggle-staff="${escapeHTML(item.id)}">${item.is_active?"DEACTIVATE":"ACTIVATE"}</button>
+    <button class="delete-btn" data-delete-staff="${escapeHTML(item.id)}">DELETE</button>
+   </div>
+  </div>`).join("");
+ $("staffList").querySelectorAll("[data-edit-staff]").forEach(b=>b.addEventListener("click",()=>editStaff(b.dataset.editStaff)));
+ $("staffList").querySelectorAll("[data-toggle-staff]").forEach(b=>b.addEventListener("click",()=>toggleRecord("titi_staff_profiles",b.dataset.toggleStaff,staffProfiles,"is_active",loadStaff)));
+ $("staffList").querySelectorAll("[data-delete-staff]").forEach(b=>b.addEventListener("click",()=>deleteRecord("titi_staff_profiles",b.dataset.deleteStaff,staffProfiles,loadStaff)));
+}
+
+function clearStaffForm(){
+ $("staffForm").reset();$("staffId").value="";$("staffOldPath").value="";
+ $("staffOrder").value="0";$("staffPreview").classList.add("hidden");
+ $("saveStaffButton").textContent="SAVE STAFF PROFILE";
+}
+
+function editStaff(id){
+ const s=staffProfiles.find(x=>String(x.id)===String(id));if(!s)return;
+ $("staffId").value=s.id;$("staffOldPath").value=s.photo_path||"";
+ $("staffName").value=s.full_name||"";$("staffPosition").value=s.position||"";
+ $("staffBio").value=s.biography||"";$("staffOrder").value=s.display_order??0;
+ if(s.photo_url){$("staffPreview").src=s.photo_url;$("staffPreview").classList.remove("hidden");}
+ $("saveStaffButton").textContent="UPDATE STAFF PROFILE";
+ $("staffForm").scrollIntoView({behavior:"smooth"});
+}
+
+$("staffForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const id=$("staffId").value,oldPath=$("staffOldPath").value,file=$("staffPhoto").files[0];
+ const existing=staffProfiles.find(x=>String(x.id)===String(id));
+ if(!$("staffName").value.trim()){cmsMessage("staffMessage","Staff name is required.",true);return;}
+ $("saveStaffButton").disabled=true;
+ try{
+  const uploaded=file?await uploadMedia(file,"staff"):null;
+  const payload={
+   full_name:$("staffName").value.trim(),
+   position:$("staffPosition").value.trim()||null,
+   biography:$("staffBio").value.trim()||null,
+   display_order:Number($("staffOrder").value)||0,
+   photo_url:uploaded?.url||existing?.photo_url||null,
+   photo_path:uploaded?.path||existing?.photo_path||null
+  };
+  const result=id
+   ?await db.from("titi_staff_profiles").update(payload).eq("id",id).select("id")
+   :await db.from("titi_staff_profiles").insert([payload]).select("id");
+  if(result.error)throw result.error;
+  if(uploaded&&oldPath)await deleteMedia(oldPath);
+  cmsMessage("staffMessage",id?"Staff profile updated.":"Staff profile added.");
+  clearStaffForm();await loadStaff();
+ }catch(error){cmsMessage("staffMessage",error.message,true);}
+ finally{$("saveStaffButton").disabled=false;}
+});
+
+$("clearStaffForm").addEventListener("click",clearStaffForm);
+
+// =====================================================
+// WEBSITE DOCUMENTS
+// =====================================================
+
+async function loadWebsiteDocuments(){
+ $("websiteDocumentsList").innerHTML='<tr><td colspan="4">Loading documents...</td></tr>';
+ const {data,error}=await db.from("titi_website_documents").select("*").order("created_at",{ascending:false});
+ if(error)throw error;
+ websiteDocuments=data||[];
+ if(!websiteDocuments.length){$("websiteDocumentsList").innerHTML='<tr><td colspan="4">No website documents uploaded.</td></tr>';return;}
+ $("websiteDocumentsList").innerHTML=websiteDocuments.map(item=>`
+  <tr>
+   <td><strong>${escapeHTML(item.title)}</strong><br><span class="muted">${escapeHTML(item.description||"")}</span></td>
+   <td>${escapeHTML(item.document_type||"Document")}</td>
+   <td><a href="${escapeHTML(item.file_url)}" target="_blank" rel="noopener">OPEN FILE</a></td>
+   <td><div class="programme-action-buttons">
+    <button class="edit-btn" data-edit-document="${escapeHTML(item.id)}">EDIT</button>
+    <button class="secondary" data-toggle-document="${escapeHTML(item.id)}">${item.is_active?"DEACTIVATE":"ACTIVATE"}</button>
+    <button class="delete-btn" data-delete-document="${escapeHTML(item.id)}">DELETE</button>
+   </div></td>
+  </tr>`).join("");
+ $("websiteDocumentsList").querySelectorAll("[data-edit-document]").forEach(b=>b.addEventListener("click",()=>editWebsiteDocument(b.dataset.editDocument)));
+ $("websiteDocumentsList").querySelectorAll("[data-toggle-document]").forEach(b=>b.addEventListener("click",()=>toggleRecord("titi_website_documents",b.dataset.toggleDocument,websiteDocuments,"is_active",loadWebsiteDocuments)));
+ $("websiteDocumentsList").querySelectorAll("[data-delete-document]").forEach(b=>b.addEventListener("click",()=>deleteRecord("titi_website_documents",b.dataset.deleteDocument,websiteDocuments,loadWebsiteDocuments)));
+}
+
+function clearWebsiteDocumentForm(){
+ $("websiteDocumentForm").reset();
+ $("websiteDocumentId").value="";
+ $("websiteDocumentOldPath").value="";
+ $("saveWebsiteDocumentButton").textContent="UPLOAD DOCUMENT";
+}
+
+function editWebsiteDocument(id){
+ const d=websiteDocuments.find(x=>String(x.id)===String(id));if(!d)return;
+ $("websiteDocumentId").value=d.id;
+ $("websiteDocumentOldPath").value=d.file_path||"";
+ $("websiteDocumentTitle").value=d.title||"";
+ $("websiteDocumentType").value=d.document_type||"";
+ $("websiteDocumentDescription").value=d.description||"";
+ $("saveWebsiteDocumentButton").textContent="UPDATE DOCUMENT";
+ $("websiteDocumentForm").scrollIntoView({behavior:"smooth"});
+}
+
+$("websiteDocumentForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const id=$("websiteDocumentId").value,oldPath=$("websiteDocumentOldPath").value,file=$("websiteDocumentFile").files[0];
+ const existing=websiteDocuments.find(x=>String(x.id)===String(id));
+ if(!id&&!file){cmsMessage("documentsMessage","Please choose a document to upload.",true);return;}
+ if(!$("websiteDocumentTitle").value.trim()){cmsMessage("documentsMessage","Document title is required.",true);return;}
+ $("saveWebsiteDocumentButton").disabled=true;
+ try{
+  const uploaded=file?await uploadMedia(file,"documents"):null;
+  const payload={
+   title:$("websiteDocumentTitle").value.trim(),
+   description:$("websiteDocumentDescription").value.trim()||null,
+   document_type:$("websiteDocumentType").value.trim()||"Document",
+   file_url:uploaded?.url||existing?.file_url,
+   file_path:uploaded?.path||existing?.file_path
+  };
+  const result=id
+   ?await db.from("titi_website_documents").update(payload).eq("id",id).select("id")
+   :await db.from("titi_website_documents").insert([payload]).select("id");
+  if(result.error)throw result.error;
+  if(uploaded&&oldPath)await deleteMedia(oldPath);
+  cmsMessage("documentsMessage",id?"Document updated.":"Document uploaded successfully.");
+  clearWebsiteDocumentForm();await loadWebsiteDocuments();
+ }catch(error){cmsMessage("documentsMessage","Unable to save document: "+error.message,true);}
+ finally{$("saveWebsiteDocumentButton").disabled=false;}
+});
+
+$("clearWebsiteDocumentForm").addEventListener("click",clearWebsiteDocumentForm);
+
+// =====================================================
+// REFRESH AND SESSION RESTORATION
+// =====================================================
+
+$("refreshButton").addEventListener("click",async()=>{
+ try{
+  if(currentModule==="admissions")await loadApplications();
+  if(currentModule==="programmes")await loadProgrammes();
+  if(currentModule==="homepage")await loadSlides();
+  if(currentModule==="gallery")await loadGallery();
+  if(currentModule==="content")await loadWebsiteContent();
+  if(currentModule==="news")await loadNews();
+  if(currentModule==="staff")await loadStaff();
+  if(currentModule==="documents")await loadWebsiteDocuments();
+  showMessage("Current section refreshed successfully.");
+ }catch(error){showMessage("Refresh failed: "+error.message,true);}
+});
+
+async function restoreSession(){
+ try{
+  const {data,error}=await db.auth.getSession();
+  if(error)throw error;
+  if(data.session){
+   await verifyAdministrator(data.session.user);
+   showDashboard();
+   await loadApplications();
+  }
+ }catch(error){
+  await db.auth.signOut();
+  showLogin();
+  console.error("Session restoration:",error.message);
+ }
 }
 
 restoreSession();
-
 </script>
-
 </body>
 </html>
