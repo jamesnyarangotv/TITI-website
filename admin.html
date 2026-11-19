@@ -753,13 +753,27 @@ $("closeDetails").addEventListener("click",()=>{
 
 /* PROGRAMME MANAGEMENT */
 
-/* These are the exact values allowed by the Supabase database constraint. */
+/* Exact programme levels permitted by the Supabase CHECK constraint. */
 const allowedProgrammeLevels=["Certificate","Diploma","Short Course"];
 
-/* Rebuild the dropdown explicitly so all three choices are present. */
+function canonicalProgrammeLevel(value){
+ if(typeof value!=="string")return null;
+
+ const normalised=value
+  .normalize("NFKC")
+  .trim()
+  .replace(/\s+/g," ")
+  .toLowerCase();
+
+ return allowedProgrammeLevels.find(
+  level=>level.toLowerCase()===normalised
+ )||null;
+}
+
+/* Rebuild the dropdown using only database-approved values. */
 function ensureProgrammeLevelOptions(){
  const select=$("programmeLevel");
- const currentValue=select.value;
+ const currentValue=canonicalProgrammeLevel(select.value);
 
  select.replaceChildren();
 
@@ -775,15 +789,14 @@ function ensureProgrammeLevelOptions(){
   select.appendChild(option);
  });
 
- if(allowedProgrammeLevels.includes(currentValue)){
-  select.value=currentValue;
- }
+ if(currentValue)select.value=currentValue;
 }
 
 ensureProgrammeLevelOptions();
 
 async function loadProgrammes(){
  $("programmesBody").innerHTML='<tr><td colspan="5">Loading programmes...</td></tr>';
+
  const {data,error}=await db.from("programmes")
   .select("id,programme_name,programme_level,description,duration,application_open")
   .order("programme_name",{ascending:true});
@@ -793,13 +806,19 @@ async function loadProgrammes(){
   cmsMessage("programmeMessage",error.message,true);
   return;
  }
+
  programmes=data||[];
  renderProgrammes();
 }
 
 function renderProgrammes(){
  const query=$("programmeSearch").value.toLowerCase().trim();
- const filtered=programmes.filter(p=>[p.programme_name,p.programme_level,p.description].join(" ").toLowerCase().includes(query));
+
+ const filtered=programmes.filter(p=>
+  [p.programme_name,p.programme_level,p.description]
+   .join(" ").toLowerCase().includes(query)
+ );
+
  $("programmeCount").textContent=filtered.length+" programme(s) displayed";
 
  if(!filtered.length){
@@ -809,6 +828,7 @@ function renderProgrammes(){
 
  $("programmesBody").innerHTML=filtered.map(p=>{
   const open=p.application_open===true;
+
   return `<tr>
    <td><strong>${escapeHTML(p.programme_name)}</strong></td>
    <td>${escapeHTML(p.programme_level)}</td>
@@ -821,8 +841,13 @@ function renderProgrammes(){
   </tr>`;
  }).join("");
 
- $("programmesBody").querySelectorAll("[data-edit-programme]").forEach(button=>button.addEventListener("click",()=>editProgramme(button.dataset.editProgramme)));
- $("programmesBody").querySelectorAll("[data-delete-programme]").forEach(button=>button.addEventListener("click",()=>deleteProgramme(button.dataset.deleteProgramme)));
+ $("programmesBody").querySelectorAll("[data-edit-programme]").forEach(button=>{
+  button.addEventListener("click",()=>editProgramme(button.dataset.editProgramme));
+ });
+
+ $("programmesBody").querySelectorAll("[data-delete-programme]").forEach(button=>{
+  button.addEventListener("click",()=>deleteProgramme(button.dataset.deleteProgramme));
+ });
 }
 
 function clearProgrammeForm(){
@@ -842,70 +867,150 @@ function editProgramme(id){
 
  $("programmeId").value=p.id;
  $("programmeName").value=p.programme_name||"";
- $("programmeLevel").value=p.programme_level||"";
+
+ const existingLevel=canonicalProgrammeLevel(p.programme_level);
+ $("programmeLevel").value=existingLevel||"";
+
  $("programmeDuration").value=p.duration||"";
  $("programmeDescription").value=p.description||"";
  $("applicationOpen").checked=p.application_open===true;
+
  $("programmeFormTitle").textContent="Edit Programme";
  $("saveProgrammeButton").textContent="UPDATE PROGRAMME";
- $("programmeForm").scrollIntoView({behavior:"smooth"});
+
+ $("programmeForm").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
+/* Save a new programme or update an existing one. */
 $("programmeForm").addEventListener("submit",async event=>{
  event.preventDefault();
 
- const id=$("programmeId").value.trim();
- const selectedLevel=$("programmeLevel").value.trim();
+ const button=$("saveProgrammeButton");
+ if(button.disabled)return;
 
+ const id=$("programmeId").value.trim();
+ const selectedLevel=canonicalProgrammeLevel($("programmeLevel").value);
+ const programmeName=$("programmeName").value.trim();
+
+ if(!programmeName){
+  cmsMessage("programmeMessage","Programme name is required.",true);
+  $("programmeName").focus();
+  return;
+ }
+
+ if(!selectedLevel){
+  cmsMessage(
+   "programmeMessage",
+   "Please select one of the permitted programme levels: Certificate, Diploma or Short Course.",
+   true
+  );
+  $("programmeLevel").focus();
+  return;
+ }
+
+ /*
+  * Send the exact permitted string to Supabase.
+  * Do not send a label, blank value or altered programme level.
+  */
  const payload={
-  programme_name:$("programmeName").value.trim(),
+  programme_name:programmeName,
   programme_level:selectedLevel,
   description:$("programmeDescription").value.trim()||null,
   duration:$("programmeDuration").value.trim()||null,
   application_open:$("applicationOpen").checked
  };
 
- if(!payload.programme_name||!payload.programme_level){
-  cmsMessage("programmeMessage","Programme name and level are required.",true);
-  return;
- }
-
- if(!allowedProgrammeLevels.includes(payload.programme_level)){
-  cmsMessage("programmeMessage","Please select Certificate, Diploma or Short Course.",true);
-  return;
- }
-
- $("saveProgrammeButton").disabled=true;
+ button.disabled=true;
+ button.textContent=id?"UPDATING...":"SAVING...";
 
  try{
-  const result=id
-   ?await db.from("programmes").update(payload).eq("id",id).select("id")
-   :await db.from("programmes").insert([payload]).select("id");
+  let result;
+
+  if(id){
+   result=await db.from("programmes")
+    .update(payload)
+    .eq("id",id)
+    .select("id,programme_level");
+  }else{
+   result=await db.from("programmes")
+    .insert([payload])
+    .select("id,programme_level");
+  }
 
   if(result.error)throw result.error;
-  if(!result.data?.length)throw new Error("No programme was saved. Check database permissions.");
 
-  cmsMessage("programmeMessage",id?"Programme updated successfully.":"New programme added successfully.");
+  if(!result.data||result.data.length===0){
+   throw new Error(
+    "Supabase did not return a saved programme. Check the administrator permissions."
+   );
+  }
+
+  if(result.data[0].programme_level!==selectedLevel){
+   throw new Error(
+    "The programme level returned by the database does not match the selected level."
+   );
+  }
+
+  cmsMessage(
+   "programmeMessage",
+   id?"Programme updated successfully.":"New programme added successfully."
+  );
+
   clearProgrammeForm();
   await loadProgrammes();
+
  }catch(error){
-  cmsMessage("programmeMessage","Unable to save programme: "+error.message,true);
+  console.error("Programme saving failed:",{
+   programmeName:programmeName,
+   selectedLevel:selectedLevel,
+   payload:payload,
+   error:error
+  });
+
+  const details=error.details?" | "+error.details:"";
+  const hint=error.hint?" | "+error.hint:"";
+
+  cmsMessage(
+   "programmeMessage",
+   "Unable to save programme: "+(error.message||"Unknown error")+details+hint,
+   true
+  );
+
  }finally{
-  $("saveProgrammeButton").disabled=false;
+  button.disabled=false;
+  button.textContent=$("programmeId").value
+   ?"UPDATE PROGRAMME"
+   :"SAVE PROGRAMME";
  }
 });
 
 async function deleteProgramme(id){
  const p=programmes.find(item=>String(item.id)===String(id));
- if(!p||!confirm("Delete this programme?\n\n"+p.programme_name+"\n\nThis cannot be undone."))return;
+
+ if(!p||!confirm(
+  "Delete this programme?\n\n"+p.programme_name+"\n\nThis cannot be undone."
+ ))return;
 
  try{
-  const {data,error}=await db.from("programmes").delete().eq("id",id).select("id");
+  const {data,error}=await db.from("programmes")
+   .delete()
+   .eq("id",id)
+   .select("id");
+
   if(error)throw error;
-  if(!data?.length)throw new Error("No programme was deleted. It may be linked to applications or restricted by database permissions.");
+
+  if(!data?.length){
+   throw new Error("No programme was deleted. It may be linked to applications or restricted by database permissions.");
+  }
+
   cmsMessage("programmeMessage","Programme deleted successfully.");
-  if(String($("programmeId").value)===String(id))clearProgrammeForm();
+
+  if(String($("programmeId").value)===String(id)){
+   clearProgrammeForm();
+  }
+
   await loadProgrammes();
+
  }catch(error){
   cmsMessage("programmeMessage",error.message,true);
  }
