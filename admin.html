@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TITI | Administrator Dashboard</title>
+<title>TITI | Central Administration</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,9 +25,8 @@ body{
  color:#172033;
 }
 
-input,textarea,button{font-family:inherit}
+input,textarea,button,select{font-family:inherit}
 
-/* LOGIN BACKGROUND */
 #loginScreen{
  min-height:100vh;
  display:flex;
@@ -37,7 +36,6 @@ input,textarea,button{font-family:inherit}
  background:linear-gradient(135deg,#0F2A5E,#18243c);
 }
 
-/* COMPACT LOGIN CARD */
 .login-card{
  background:#fff;
  width:100%;
@@ -100,7 +98,6 @@ h2{color:var(--navy)}
  box-shadow:0 0 0 2px #0F2A5E12;
 }
 
-/* VISIBLE SHOW/HIDE PASSWORD */
 .password-wrapper{
  display:flex !important;
  align-items:stretch !important;
@@ -140,9 +137,7 @@ h2{color:var(--navy)}
  z-index:5;
 }
 
-.password-toggle:hover{
- background:#dce5f2 !important;
-}
+.password-toggle:hover{background:#dce5f2 !important}
 
 button{
  cursor:pointer;
@@ -174,8 +169,7 @@ button:disabled{
  border-radius:6px;
 }
 
-.login-card .primary:hover{background:#5c0c18}
-.primary:hover{background:#5c0c18}
+.login-card .primary:hover,.primary:hover{background:#5c0c18}
 
 .error{
  color:#b42318;
@@ -187,7 +181,8 @@ button:disabled{
  display:none;
 }
 
-/* ADMIN DASHBOARD */
+/* DASHBOARD */
+
 #dashboard{display:none}
 
 .topbar{
@@ -199,6 +194,7 @@ button:disabled{
  align-items:center;
  gap:15px;
  flex-wrap:wrap;
+ border-bottom:4px solid var(--gold);
 }
 
 .brand{
@@ -240,7 +236,35 @@ button:disabled{
  font-size:13px;
 }
 
+/* DASHBOARD NAVIGATION */
+
+.module-nav{
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+ margin-bottom:23px;
+ padding:12px;
+ background:white;
+ border:1px solid #e7eaf0;
+ border-radius:9px;
+}
+
+.module-btn{
+ background:#edf1f7;
+ color:var(--navy);
+ padding:11px 18px;
+ font-size:13px;
+}
+
+.module-btn.active{
+ background:var(--maroon);
+ color:white;
+}
+
+.module-btn:hover{background:var(--gold);color:#172033}
+
 /* STATISTICS */
+
 .stats{
  display:grid;
  grid-template-columns:repeat(4,1fr);
@@ -263,6 +287,7 @@ button:disabled{
 }
 
 /* PANELS */
+
 .panel{
  background:white;
  padding:22px;
@@ -291,7 +316,6 @@ button:disabled{
  font-family:inherit;
 }
 
-/* APPLICATION TABLE */
 table{
  width:100%;
  border-collapse:collapse;
@@ -317,7 +341,6 @@ th{
  padding:8px 12px;
 }
 
-/* APPLICATION STATUS */
 .status{
  display:inline-block;
  padding:6px 9px;
@@ -349,7 +372,18 @@ th{
  color:#805500;
 }
 
+.status.OPEN{
+ background:#e1f5e9;
+ color:#126536;
+}
+
+.status.CLOSED{
+ background:#fde7e7;
+ color:#a11919;
+}
+
 /* APPLICANT DETAILS */
+
 .detail-grid{
  display:grid;
  grid-template-columns:repeat(2,1fr);
@@ -409,6 +443,7 @@ th{
 }
 
 /* DOCUMENT VERIFICATION */
+
 .document-list{
  display:grid;
  grid-template-columns:repeat(2,minmax(0,1fr));
@@ -463,9 +498,7 @@ th{
  font-weight:600;
 }
 
-.document-actions a.download{
- background:#167744;
-}
+.document-actions a.download{background:#167744}
 
 .document-error{
  background:#fff0ee;
@@ -475,6 +508,130 @@ th{
  font-size:13px;
 }
 
+/* PROGRAMME MANAGEMENT */
+
+#programmePanel{display:none}
+
+.programme-form{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:16px;
+}
+
+.form-group{
+ min-width:0;
+}
+
+.form-group.full{grid-column:1/-1}
+
+.form-group label{
+ display:block;
+ font-weight:600;
+ color:var(--navy);
+ font-size:13px;
+ margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+ width:100%;
+ padding:11px 12px;
+ border:1px solid #d8dee8;
+ border-radius:6px;
+ outline:none;
+ font-size:14px;
+ background:white;
+ color:#172033;
+}
+
+.form-group textarea{
+ resize:vertical;
+ min-height:100px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+ border-color:var(--navy);
+ box-shadow:0 0 0 2px #0F2A5E12;
+}
+
+.checkbox-group{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ background:#f6f7fa;
+ padding:13px;
+ border-radius:6px;
+}
+
+.checkbox-group input{
+ width:18px;
+ height:18px;
+ accent-color:var(--maroon);
+}
+
+.checkbox-group label{
+ margin:0;
+ font-weight:600;
+ color:var(--navy);
+ font-size:13px;
+}
+
+.programme-actions{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-top:20px;
+}
+
+.save-btn{
+ background:var(--maroon);
+ color:white;
+}
+
+.save-btn:hover{background:#5c0c18}
+
+.edit-btn{
+ background:#e9effa;
+ color:var(--navy);
+ padding:8px 12px;
+}
+
+.delete-btn{
+ background:#fde7e7;
+ color:#a11919;
+ padding:8px 12px;
+}
+
+.programme-action-buttons{
+ display:flex;
+ gap:7px;
+ flex-wrap:wrap;
+}
+
+.programme-count{
+ color:var(--navy);
+ font-size:13px;
+ font-weight:700;
+ margin-bottom:12px;
+}
+
+#programmeMessage{
+ display:none;
+ padding:12px;
+ margin:15px 0;
+ border-radius:6px;
+ font-size:13px;
+}
+
+.programme-empty{
+ text-align:center;
+ padding:25px;
+ color:#687386;
+}
+
 footer{
  text-align:center;
  padding:25px;
@@ -482,16 +639,12 @@ footer{
  font-size:12px;
 }
 
-/* RESPONSIVE DESIGN */
 @media(max-width:750px){
- .stats{
-  grid-template-columns:repeat(2,1fr);
- }
-
- .detail-grid,
- .document-list{
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .detail-grid,.document-list,.programme-form{
   grid-template-columns:1fr;
  }
+ .form-group.full{grid-column:auto}
 }
 
 @media(max-width:450px){
@@ -510,8 +663,10 @@ footer{
 
  .stats{gap:9px}
  .stat{padding:14px}
-
  .topbar{padding:16px 20px}
+ .module-nav{gap:6px}
+ .module-btn{padding:10px 12px;font-size:12px}
+ .panel{padding:16px}
 }
 </style>
 </head>
@@ -519,6 +674,7 @@ footer{
 <body>
 
 <!-- ADMINISTRATOR LOGIN -->
+
 <section id="loginScreen">
 <div class="login-card">
 
@@ -538,58 +694,37 @@ Sign in using your existing administrator account.
 <form id="loginForm">
 
 <label for="email">Email Address</label>
-<input
- id="email"
- type="email"
- required
- autocomplete="username"
- placeholder="Enter administrator email"
->
+<input id="email" type="email" required autocomplete="username"
+placeholder="Enter administrator email">
 
 <label for="password">Password</label>
 
 <div class="password-wrapper">
+<input id="password" type="password" required
+autocomplete="current-password" placeholder="Enter password">
 
-<input
- id="password"
- type="password"
- required
- autocomplete="current-password"
- placeholder="Enter password"
->
-
-<button
- type="button"
- id="togglePassword"
- class="password-toggle"
- onclick="togglePasswordVisibility()"
- aria-label="Show password"
- title="Show password"
->
-SHOW
-</button>
-
+<button type="button" id="togglePassword"
+class="password-toggle" onclick="togglePasswordVisibility()"
+aria-label="Show password" title="Show password">SHOW</button>
 </div>
 
-<button class="primary" id="loginButton" type="submit">
-SIGN IN
-</button>
+<button class="primary" id="loginButton" type="submit">SIGN IN</button>
 
 </form>
 
 <div id="loginError" class="error"></div>
-
 </div>
 </section>
 
 <!-- ADMINISTRATOR DASHBOARD -->
+
 <section id="dashboard">
 
 <header class="topbar">
 
 <div class="brand">
-TITI ADMISSIONS
-<small>ADMINISTRATION MANAGEMENT SYSTEM</small>
+TITI CENTRAL
+<small>TAHIDI INTERNATIONAL TRAINING INSTITUTE | ADMINISTRATION SYSTEM</small>
 </div>
 
 <div>
@@ -603,20 +738,22 @@ TITI ADMISSIONS
 
 <div class="welcome">
 <div>
-<h2>Admissions Dashboard</h2>
-<div class="muted">
-Manage applications, verify documents and make admission decisions.
+<h2>Central Administration Dashboard</h2>
+<div class="muted">Manage institute programmes and student admissions.</div>
 </div>
-</div>
-
-<button class="refresh" id="refreshButton">
-↻ Refresh Data
-</button>
+<button class="refresh" id="refreshButton">↻ Refresh Data</button>
 </div>
 
 <div id="message"></div>
 
-<div class="stats">
+<div class="module-nav">
+<button class="module-btn active" id="admissionsTab">ADMISSIONS</button>
+<button class="module-btn" id="programmesTab">PROGRAMMES</button>
+</div>
+
+<!-- STATISTICS -->
+
+<div class="stats" id="admissionsStats">
 
 <div class="stat">
 <span class="muted">Total Applications</span>
@@ -640,19 +777,143 @@ Manage applications, verify documents and make admission decisions.
 
 </div>
 
+<!-- PROGRAMME MANAGEMENT -->
+
+<section id="programmePanel">
+
+<div class="panel">
+
+<h3>Programme Management</h3>
+
+<p class="muted">
+Manage the programmes displayed on the TITI website.
+Add new programmes, edit existing information or remove programmes.
+</p>
+
+<div id="programmeMessage"></div>
+
+<h3 id="programmeFormTitle" style="margin-top:25px">
+Add New Programme
+</h3>
+
+<form id="programmeForm">
+
+<input type="hidden" id="programmeId">
+
+<div class="programme-form">
+
+<div class="form-group">
+<label for="programmeName">Programme Name *</label>
+<input id="programmeName" type="text" required
+placeholder="e.g. Diploma in Accounting and Finance">
+</div>
+
+<div class="form-group">
+<label for="programmeLevel">Programme Level *</label>
+<input id="programmeLevel" type="text" required
+placeholder="e.g. Diploma, Certificate, Short Course">
+</div>
+
+<div class="form-group">
+<label for="programmeDuration">Duration</label>
+<input id="programmeDuration" type="text"
+placeholder="e.g. Two Years">
+</div>
+
+<div class="form-group">
+<label>Application Status</label>
+<div class="checkbox-group">
+<input id="applicationOpen" type="checkbox" checked>
+<label for="applicationOpen">Applications are open</label>
+</div>
+</div>
+
+<div class="form-group full">
+<label for="programmeDescription">Programme Description</label>
+<textarea id="programmeDescription"
+placeholder="Enter a description of this programme..."></textarea>
+</div>
+
+</div>
+
+<div class="programme-actions">
+
+<button type="submit" class="save-btn" id="saveProgrammeButton">
+SAVE PROGRAMME
+</button>
+
+<button type="button" class="secondary" id="cancelProgrammeEdit">
+CLEAR FORM
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+<div class="panel">
+
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+
+<h3 style="margin:0">Existing Programmes</h3>
+
+<button class="refresh" id="refreshProgrammesButton">
+↻ Refresh Programmes
+</button>
+
+</div>
+
+<div class="toolbar" style="margin-top:18px">
+<input id="programmeSearch" type="search"
+placeholder="Search programme name or level...">
+</div>
+
+<div class="programme-count" id="programmeCount">
+Loading programmes...
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Programme Name</th>
+<th>Level</th>
+<th>Duration</th>
+<th>Applications</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="programmesBody">
+<tr><td colspan="5">Loading programmes...</td></tr>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ADMISSIONS MANAGEMENT -->
+
+<div id="admissionsArea">
+
 <div class="panel">
 
 <h3>Applicant Records</h3>
 
 <div class="toolbar">
-<input
- id="searchInput"
- type="search"
- placeholder="Search name, reference, phone or email..."
->
+<input id="searchInput" type="search"
+placeholder="Search name, reference, phone or email...">
 </div>
 
 <div class="table-wrap">
+
 <table>
 
 <thead>
@@ -667,12 +928,11 @@ Manage applications, verify documents and make admission decisions.
 </thead>
 
 <tbody id="applicationsBody">
-<tr>
-<td colspan="6">Loading applications...</td>
-</tr>
+<tr><td colspan="6">Loading applications...</td></tr>
 </tbody>
 
 </table>
+
 </div>
 </div>
 
@@ -686,26 +946,15 @@ Manage applications, verify documents and make admission decisions.
 
 <label for="remarks">Administrator Remarks</label>
 
-<textarea
- id="remarks"
- rows="4"
- style="width:100%;padding:12px;border:1px solid #d8dee8;border-radius:5px;font-family:inherit"
- placeholder="Enter comments about this application..."
-></textarea>
+<textarea id="remarks" rows="4"
+style="width:100%;padding:12px;border:1px solid #d8dee8;border-radius:5px;font-family:inherit"
+placeholder="Enter comments about this application..."></textarea>
 
 <div class="actions">
 
-<button class="approve" id="approveButton">
-APPROVE APPLICATION
-</button>
-
-<button class="reject" id="rejectButton">
-REJECT APPLICATION
-</button>
-
-<button class="secondary" id="closeDetails">
-CLOSE
-</button>
+<button class="approve" id="approveButton">APPROVE APPLICATION</button>
+<button class="reject" id="rejectButton">REJECT APPLICATION</button>
+<button class="secondary" id="closeDetails">CLOSE</button>
 
 </div>
 
@@ -720,14 +969,13 @@ Verify the applicant's documents before making a final decision.
 <h3>Applicant Document Verification</h3>
 
 <p class="muted">
-Uploaded applicant documents are retrieved from your existing
-private Supabase storage bucket.
+Uploaded applicant documents are retrieved from your existing private Supabase storage bucket.
 </p>
 
 <div id="documentsContent">
-<p class="muted">
-Select an applicant to view their uploaded documents.
-</p>
+<p class="muted">Select an applicant to view their uploaded documents.</p>
+</div>
+
 </div>
 
 </div>
@@ -754,12 +1002,11 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 
-const DOCUMENT_BUCKET =
-"titi-applicant-documents";
+const DOCUMENT_BUCKET = "titi-applicant-documents";
 
 const db = window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+ SUPABASE_URL,
+ SUPABASE_KEY
 );
 
 // ======================================
@@ -770,6 +1017,7 @@ let currentAdmin = null;
 let applications = [];
 let selectedApplication = null;
 let currentDocuments = [];
+let programmes = [];
 
 const $ = id => document.getElementById(id);
 
@@ -785,25 +1033,21 @@ function togglePasswordVisibility(){
  if(!password || !button) return;
 
  if(password.type === "password"){
-
   password.type = "text";
   button.textContent = "HIDE";
   button.setAttribute("aria-label","Hide password");
   button.title = "Hide password";
-
  }else{
-
   password.type = "password";
   button.textContent = "SHOW";
   button.setAttribute("aria-label","Show password");
   button.title = "Show password";
-
  }
 
 }
 
 // ======================================
-// SECURITY: HTML ESCAPING
+// HTML ESCAPING
 // ======================================
 
 function escapeHTML(value){
@@ -834,9 +1078,7 @@ function displayStatus(status){
 }
 
 function statusClass(status){
-
  return displayStatus(status).replace(/\s+/g,"_");
-
 }
 
 // ======================================
@@ -844,10 +1086,8 @@ function statusClass(status){
 // ======================================
 
 function showLoginError(message){
-
  $("loginError").textContent = message;
  $("loginError").style.display = "block";
-
 }
 
 function showMessage(message,error=false){
@@ -863,6 +1103,19 @@ function showMessage(message,error=false){
 
 }
 
+function showProgrammeMessage(message,error=false){
+
+ $("programmeMessage").textContent = message;
+ $("programmeMessage").style.display = "block";
+
+ $("programmeMessage").style.background =
+ error ? "#fff0ee" : "#e5f5eb";
+
+ $("programmeMessage").style.color =
+ error ? "#a11919" : "#126536";
+
+}
+
 // ======================================
 // ADMINISTRATOR VERIFICATION
 // ======================================
@@ -870,23 +1123,20 @@ function showMessage(message,error=false){
 async function verifyAdministrator(user){
 
  const {data,error} = await db
- .from("administrator_profiles")
- .select("id,full_name,role")
- .eq("id",user.id)
- .maybeSingle();
+  .from("administrator_profiles")
+  .select("id,full_name,role")
+  .eq("id",user.id)
+  .maybeSingle();
 
  if(error) throw error;
 
  if(!data){
-
   throw new Error(
    "This account has no administrator profile. Access denied."
   );
-
  }
 
  currentAdmin = data;
-
  return data;
 
 }
@@ -918,6 +1168,7 @@ function showLogin(){
  applications = [];
  selectedApplication = null;
  currentDocuments = [];
+ programmes = [];
 
  $("password").value = "";
  $("password").type = "password";
@@ -931,6 +1182,40 @@ function showLogin(){
  '<p class="muted">Select an applicant to view documents.</p>';
 
 }
+
+// ======================================
+// MODULE NAVIGATION
+// ======================================
+
+function showModule(module){
+
+ const programmesMode = module === "programmes";
+
+ $("programmePanel").style.display =
+ programmesMode ? "block" : "none";
+
+ $("admissionsArea").style.display =
+ programmesMode ? "none" : "block";
+
+ $("admissionsStats").style.display =
+ programmesMode ? "none" : "grid";
+
+ $("programmesTab").classList.toggle("active",programmesMode);
+ $("admissionsTab").classList.toggle("active",!programmesMode);
+
+ if(programmesMode){
+  loadProgrammes();
+ }
+
+}
+
+$("programmesTab").addEventListener("click",()=>{
+ showModule("programmes");
+});
+
+$("admissionsTab").addEventListener("click",()=>{
+ showModule("admissions");
+});
 
 // ======================================
 // LOAD APPLICATIONS
@@ -972,7 +1257,7 @@ async function loadApplications(){
  if(error){
 
   $("applicationsBody").innerHTML =
-  '<tr><td colspan="6">Unable to load applications.</td></tr>';
+   '<tr><td colspan="6">Unable to load applications.</td></tr>';
 
   showMessage(error.message,true);
   return;
@@ -1043,7 +1328,7 @@ function renderApplications(){
  if(!filtered.length){
 
   $("applicationsBody").innerHTML =
-  '<tr><td colspan="6">No matching applications found.</td></tr>';
+   '<tr><td colspan="6">No matching applications found.</td></tr>';
 
   return;
 
@@ -1067,9 +1352,7 @@ function renderApplications(){
    <tr>
     <td>${escapeHTML(a.reference_number)}</td>
     <td>${escapeHTML(name)}</td>
-    <td>${escapeHTML(
-     a.programmes?.programme_name || "Not assigned"
-    )}</td>
+    <td>${escapeHTML(a.programmes?.programme_name || "Not assigned")}</td>
     <td>${escapeHTML(date)}</td>
     <td>
      <span class="status ${escapeHTML(statusClass(a.application_status))}">
@@ -1077,10 +1360,7 @@ function renderApplications(){
      </span>
     </td>
     <td>
-     <button class="view-btn"
-      data-id="${escapeHTML(a.id)}">
-      VIEW
-     </button>
+     <button class="view-btn" data-id="${escapeHTML(a.id)}">VIEW</button>
     </td>
    </tr>
   `;
@@ -1090,11 +1370,9 @@ function renderApplications(){
  $("applicationsBody")
  .querySelectorAll(".view-btn")
  .forEach(button=>{
-
   button.addEventListener("click",()=>{
    openApplication(button.dataset.id);
   });
-
  });
 
 }
@@ -1121,7 +1399,6 @@ function detailItem(label,value){
 async function openApplication(id){
 
  const a = applications.find(x=>x.id===id);
-
  if(!a) return;
 
  selectedApplication = a;
@@ -1134,7 +1411,6 @@ async function openApplication(id){
 
  $("applicantDetails").innerHTML = `
   <div class="detail-grid">
-
    ${detailItem("Reference Number",a.reference_number)}
    ${detailItem("Full Name",name)}
    ${detailItem("Gender",a.gender)}
@@ -1149,17 +1425,13 @@ async function openApplication(id){
    ${detailItem("Awarding Institution",a.awarding_institution)}
    ${detailItem("Year Completed",a.year_completed)}
    ${detailItem("Submission Date",
-    a.submitted_at
-     ? new Date(a.submitted_at).toLocaleString()
-     : "Not recorded"
+    a.submitted_at ? new Date(a.submitted_at).toLocaleString() : "Not recorded"
    )}
    ${detailItem("Application Status",displayStatus(a.application_status))}
-
   </div>
  `;
 
- $("remarks").value =
- a.administrator_remarks || "";
+ $("remarks").value = a.administrator_remarks || "";
 
  $("detailPanel").style.display = "block";
 
@@ -1179,21 +1451,21 @@ async function openApplication(id){
 async function loadApplicantDocuments(applicationId){
 
  $("documentsContent").innerHTML =
- '<p class="muted">Loading applicant documents...</p>';
+  '<p class="muted">Loading applicant documents...</p>';
 
  currentDocuments = [];
 
  const {data,error} = await db
-  .from("application_documents")
-  .select(`
-   id,
-   application_id,
-   document_type,
-   storage_path,
-   uploaded_at
-  `)
-  .eq("application_id",applicationId)
-  .order("uploaded_at",{ascending:false});
+ .from("application_documents")
+ .select(`
+  id,
+  application_id,
+  document_type,
+  storage_path,
+  uploaded_at
+ `)
+ .eq("application_id",applicationId)
+ .order("uploaded_at",{ascending:false});
 
  if(error){
 
@@ -1261,20 +1533,15 @@ async function loadApplicantDocuments(applicationId){
   if(result.url && isImage){
 
    preview = `
-    <img
-     src="${escapeHTML(result.url)}"
-     alt="Applicant uploaded document"
-    >
+    <img src="${escapeHTML(result.url)}"
+     alt="Applicant uploaded document">
    `;
 
   }else if(result.url && isPDF){
 
    preview = `
-    <iframe
-     src="${escapeHTML(result.url)}"
-     title="Applicant PDF document"
-     loading="lazy">
-    </iframe>
+    <iframe src="${escapeHTML(result.url)}"
+     title="Applicant PDF document" loading="lazy"></iframe>
    `;
 
   }
@@ -1285,19 +1552,11 @@ async function loadApplicantDocuments(applicationId){
 
    links = `
     <div class="document-actions">
-
      <a href="${escapeHTML(result.url)}"
-      target="_blank"
-      rel="noopener noreferrer">
-      OPEN DOCUMENT
-     </a>
+      target="_blank" rel="noopener noreferrer">OPEN DOCUMENT</a>
 
-     <a class="download"
-      href="${escapeHTML(result.url)}"
-      download="${escapeHTML(fileName)}">
-      DOWNLOAD
-     </a>
-
+     <a class="download" href="${escapeHTML(result.url)}"
+      download="${escapeHTML(fileName)}">DOWNLOAD</a>
     </div>
    `;
 
@@ -1314,21 +1573,11 @@ async function loadApplicantDocuments(applicationId){
 
   return `
    <div class="document-card">
-
     <h4>${escapeHTML(doc.document_type)}</h4>
-
-    <p class="muted">
-     Uploaded: ${escapeHTML(uploaded)}
-    </p>
-
-    <p class="muted">
-     File: ${escapeHTML(fileName)}
-    </p>
-
+    <p class="muted">Uploaded: ${escapeHTML(uploaded)}</p>
+    <p class="muted">File: ${escapeHTML(fileName)}</p>
     ${preview}
-
     ${links}
-
    </div>
   `;
 
@@ -1343,19 +1592,15 @@ async function loadApplicantDocuments(applicationId){
 async function updateDecision(status){
 
  if(!selectedApplication){
-
   showMessage("Select an applicant first.",true);
   return;
-
  }
 
  const allowedStatuses = ["ADMITTED","DECLINED"];
 
  if(!allowedStatuses.includes(status)){
-
   showMessage("Invalid application status.",true);
   return;
-
  }
 
  const confirmation = confirm(
@@ -1385,11 +1630,9 @@ async function updateDecision(status){
   if(error) throw error;
 
   if(!data || !data.length){
-
    throw new Error(
     "No record was updated. Check administrator permissions."
    );
-
   }
 
   showMessage(
@@ -1399,6 +1642,7 @@ async function updateDecision(status){
   );
 
   $("detailPanel").style.display = "none";
+
   $("documentsContent").innerHTML =
    '<p class="muted">Select an applicant to view documents.</p>';
 
@@ -1408,10 +1652,7 @@ async function updateDecision(status){
 
  }catch(error){
 
-  showMessage(
-   "Unable to update application: "+error.message,
-   true
-  );
+  showMessage("Unable to update application: "+error.message,true);
 
  }finally{
 
@@ -1421,6 +1662,342 @@ async function updateDecision(status){
  }
 
 }
+
+// ======================================
+// PROGRAMME MANAGEMENT
+// ======================================
+
+// Load programmes from existing Supabase table.
+
+async function loadProgrammes(){
+
+ $("programmesBody").innerHTML =
+  '<tr><td colspan="5">Loading programmes...</td></tr>';
+
+ $("programmeCount").textContent = "Loading programmes...";
+
+ const {data,error} = await db
+  .from("programmes")
+  .select(`
+   id,
+   programme_name,
+   programme_level,
+   description,
+   duration,
+   application_open
+  `)
+  .order("programme_name",{ascending:true});
+
+ if(error){
+
+  $("programmesBody").innerHTML =
+   '<tr><td colspan="5">Unable to load programmes.</td></tr>';
+
+  $("programmeCount").textContent = "Programme loading failed.";
+
+  showProgrammeMessage(
+   "Unable to load programmes: "+error.message,
+   true
+  );
+
+  return;
+
+ }
+
+ programmes = data || [];
+
+ renderProgrammes();
+
+}
+
+// Render programme records.
+
+function renderProgrammes(){
+
+ const query =
+  $("programmeSearch").value.toLowerCase().trim();
+
+ const filtered = programmes.filter(p=>{
+
+  const text = [
+   p.programme_name,
+   p.programme_level,
+   p.description
+  ].join(" ").toLowerCase();
+
+  return text.includes(query);
+
+ });
+
+ $("programmeCount").textContent =
+  filtered.length+" programme(s) displayed";
+
+ if(!filtered.length){
+
+  $("programmesBody").innerHTML =
+   '<tr><td colspan="5" class="programme-empty">No programmes found.</td></tr>';
+
+  return;
+
+ }
+
+ $("programmesBody").innerHTML = filtered.map(p=>{
+
+  const open = p.application_open === true;
+
+  return `
+   <tr>
+    <td><strong>${escapeHTML(p.programme_name)}</strong></td>
+    <td>${escapeHTML(p.programme_level)}</td>
+    <td>${escapeHTML(p.duration || "Not specified")}</td>
+    <td>
+     <span class="status ${open ? "OPEN" : "CLOSED"}">
+      ${open ? "OPEN" : "CLOSED"}
+     </span>
+    </td>
+    <td>
+     <div class="programme-action-buttons">
+      <button class="edit-btn"
+       data-edit-id="${escapeHTML(p.id)}">EDIT</button>
+
+      <button class="delete-btn"
+       data-delete-id="${escapeHTML(p.id)}">DELETE</button>
+     </div>
+    </td>
+   </tr>
+  `;
+
+ }).join("");
+
+ $("programmesBody")
+ .querySelectorAll("[data-edit-id]")
+ .forEach(button=>{
+  button.addEventListener("click",()=>{
+   editProgramme(button.dataset.editId);
+  });
+ });
+
+ $("programmesBody")
+ .querySelectorAll("[data-delete-id]")
+ .forEach(button=>{
+  button.addEventListener("click",()=>{
+   deleteProgramme(button.dataset.deleteId);
+  });
+ });
+
+}
+
+// Clear programme form.
+
+function clearProgrammeForm(){
+
+ $("programmeForm").reset();
+
+ $("programmeId").value = "";
+ $("applicationOpen").checked = true;
+
+ $("programmeFormTitle").textContent = "Add New Programme";
+
+ $("saveProgrammeButton").textContent = "SAVE PROGRAMME";
+
+}
+
+// Edit existing programme.
+
+function editProgramme(id){
+
+ const p = programmes.find(item=>String(item.id)===String(id));
+
+ if(!p){
+  showProgrammeMessage("Programme record not found.",true);
+  return;
+ }
+
+ $("programmeId").value = p.id;
+ $("programmeName").value = p.programme_name || "";
+ $("programmeLevel").value = p.programme_level || "";
+ $("programmeDuration").value = p.duration || "";
+ $("programmeDescription").value = p.description || "";
+
+ $("applicationOpen").checked = p.application_open === true;
+
+ $("programmeFormTitle").textContent = "Edit Programme";
+
+ $("saveProgrammeButton").textContent = "UPDATE PROGRAMME";
+
+ $("programmeForm").scrollIntoView({
+  behavior:"smooth",
+  block:"start"
+ });
+
+ $("programmeName").focus();
+
+}
+
+// Save new programme or update an existing one.
+
+async function saveProgramme(event){
+
+ event.preventDefault();
+
+ const id = $("programmeId").value.trim();
+
+ const programmeName = $("programmeName").value.trim();
+ const programmeLevel = $("programmeLevel").value.trim();
+ const description = $("programmeDescription").value.trim();
+ const duration = $("programmeDuration").value.trim();
+ const applicationOpen = $("applicationOpen").checked;
+
+ if(!programmeName || !programmeLevel){
+
+  showProgrammeMessage(
+   "Programme Name and Programme Level are required.",
+   true
+  );
+
+  return;
+
+ }
+
+ const payload = {
+  programme_name:programmeName,
+  programme_level:programmeLevel,
+  description:description || null,
+  duration:duration || null,
+  application_open:applicationOpen
+ };
+
+ $("saveProgrammeButton").disabled = true;
+ $("saveProgrammeButton").textContent = "SAVING...";
+
+ try{
+
+  let result;
+
+  if(id){
+
+   result = await db
+    .from("programmes")
+    .update(payload)
+    .eq("id",id)
+    .select("id");
+
+  }else{
+
+   result = await db
+    .from("programmes")
+    .insert([payload])
+    .select("id");
+
+  }
+
+  if(result.error) throw result.error;
+
+  if(!result.data || !result.data.length){
+
+   throw new Error(
+    "No programme record was saved. Check administrator permissions."
+   );
+
+  }
+
+  showProgrammeMessage(
+   id
+    ? "Programme successfully updated."
+    : "New programme successfully added."
+  );
+
+  clearProgrammeForm();
+
+  await loadProgrammes();
+
+ }catch(error){
+
+  showProgrammeMessage(
+   "Unable to save programme: "+error.message,
+   true
+  );
+
+ }finally{
+
+  $("saveProgrammeButton").disabled = false;
+
+  if($("programmeId").value){
+   $("saveProgrammeButton").textContent = "UPDATE PROGRAMME";
+  }else{
+   $("saveProgrammeButton").textContent = "SAVE PROGRAMME";
+  }
+
+ }
+
+}
+
+// Delete programme.
+
+async function deleteProgramme(id){
+
+ const p = programmes.find(item=>String(item.id)===String(id));
+
+ if(!p) return;
+
+ const confirmation = confirm(
+  "Are you sure you want to delete this programme?\n\n"+
+  p.programme_name+
+  "\n\nThis action cannot be undone."
+ );
+
+ if(!confirmation) return;
+
+ try{
+
+  const {data,error} = await db
+   .from("programmes")
+   .delete()
+   .eq("id",id)
+   .select("id");
+
+  if(error) throw error;
+
+  if(!data || !data.length){
+
+   throw new Error(
+    "No programme was deleted. Check administrator permissions."
+   );
+
+  }
+
+  showProgrammeMessage("Programme successfully deleted.");
+
+  if(String($("programmeId").value)===String(id)){
+   clearProgrammeForm();
+  }
+
+  await loadProgrammes();
+
+ }catch(error){
+
+  showProgrammeMessage(
+   "Unable to delete programme: "+error.message+
+   ". It may be linked to existing applications.",
+   true
+  );
+
+ }
+
+}
+
+// Programme controls.
+
+$("programmeForm").addEventListener("submit",saveProgramme);
+
+$("cancelProgrammeEdit").addEventListener("click",()=>{
+ clearProgrammeForm();
+ $("programmeMessage").style.display = "none";
+});
+
+$("refreshProgrammesButton").addEventListener("click",loadProgrammes);
+
+$("programmeSearch").addEventListener("input",renderProgrammes);
 
 // ======================================
 // ADMINISTRATOR LOGIN
@@ -1488,9 +2065,11 @@ $("refreshButton").addEventListener("click",async()=>{
  await loadApplications();
 
  if(selectedApplication){
-
   await loadApplicantDocuments(selectedApplication.id);
+ }
 
+ if($("programmePanel").style.display==="block"){
+  await loadProgrammes();
  }
 
 });
