@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Gallery | Tahidi International Training Institute</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --maroon: #7A1220;
+    --navy: #0F2A5E;
+    --navy-dark: #091B3D;
+    --gold: #D4AF37;
+    --white: #fff;
+    --light: #F4F6F9;
+    --text: #263247;
+    --muted: #697589;
+    --border: #E3E7ED;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    background: var(--light);
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-header {
+    background: var(--white);
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 3px 15px rgba(0,0,0,.07);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+    min-height: 90px;
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand img {
+    width: 170px;
+    max-height: 72px;
+    object-fit: contain;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.navigation a {
+    color: var(--navy-dark);
+    font-size: 16px;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.navigation a:hover,
+.navigation a.active {
+    color: var(--maroon);
+}
+
+.navigation .home-link {
+    background: var(--maroon);
+    color: white;
+    padding: 10px 19px;
+    border-radius: 5px;
+}
+
+.navigation .home-link:hover {
+    background: var(--navy);
+    color: white;
+}
+
+.hero {
+    background: linear-gradient(110deg, rgba(9,27,61,.97), rgba(15,42,94,.91));
+    color: white;
+    text-align: center;
+    padding: 65px 20px 60px;
+    border-bottom: 5px solid var(--gold);
+}
+
+.hero .eyebrow {
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    max-width: 680px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #e5eaf3;
+}
+
+.gallery-section {
+    max-width: 1200px;
+    margin: 55px auto;
+    padding: 0 22px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-heading .small-title {
+    color: var(--maroon);
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    color: var(--navy-dark);
+    font-size: 32px;
+    margin: 5px 0 8px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.gallery-card {
+    background: white;
+    border-radius: 9px;
+    overflow: hidden;
+    box-shadow: 0 5px 22px rgba(9,27,61,.08);
+    border: 1px solid var(--border);
+    transition: transform .3s, box-shadow .3s;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(9,27,61,.14);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 245px;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    background: #e5e9ef;
+}
+
+.gallery-info {
+    padding: 19px 20px 22px;
+}
+
+.gallery-info h3 {
+    color: var(--navy);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.gallery-info p {
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.gallery-status {
+    text-align: center;
+    padding: 35px 15px;
+    color: var(--muted);
+    font-size: 16px;
+    grid-column: 1 / -1;
+}
+
+.gallery-status.error {
+    color: var(--maroon);
+}
+
+.site-footer {
+    background: var(--navy-dark);
+    color: white;
+    margin-top: 70px;
+    padding: 38px 20px 22px;
+    border-top: 5px solid var(--gold);
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-inner h3 {
+    color: var(--gold);
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.footer-inner p {
+    color: #dce3ef;
+    line-height: 1.7;
+}
+
+.footer-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: white;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.copyright {
+    max-width: 1200px;
+    margin: 25px auto 0;
+    padding-top: 17px;
+    border-top: 1px solid rgba(255,255,255,.17);
+    text-align: center;
+    color: #cbd3df;
+    font-size: 14px;
+}
+
+/* Enlarged photograph viewer */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,.93);
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+}
+
+.lightbox img {
+    max-width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.lightbox-caption {
+    color: white;
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 17px;
+    right: 28px;
+    color: white;
+    background: transparent;
+    border: 0;
+    font-size: 42px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+@media(max-width: 850px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .header-inner {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navigation {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 17px;
+    }
+}
+
+@media(max-width: 550px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-image {
+        height: 235px;
+    }
+
+    .hero {
+        padding: 48px 17px;
+    }
+
+    .section-heading h2 {
+        font-size: 27px;
+    }
+
+    .navigation {
+        gap: 13px;
+    }
+
+    .navigation a {
+        font-size: 14px;
+    }
+
+    .brand img {
+        width: 145px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <a class="brand" href="index.html">
+            <img src="BYE.png" alt="Tahidi International Training Institute">
+        </a>
+
+        <nav class="navigation">
+            <a class="home-link" href="index.html">HOME</a>
+            <a class="active" href="gallery.html">GALLERY</a>
+            <a href="index.html#contact">CONTACT</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="eyebrow">TAHIDI INTERNATIONAL TRAINING INSTITUTE</div>
+    <h1>Our Photo Gallery</h1>
+    <p>
+        Discover our campus, learning environment, institutional activities
+        and memorable moments through the TITI photo gallery.
+    </p>
+</section>
+
+<main class="gallery-section">
+    <div class="section-heading">
+        <div class="small-title">Campus Life • Events • Activities</div>
+        <h2>Explore Our Gallery</h2>
+        <p>A collection of moments from Tahidi International Training Institute.</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-status">Loading gallery photographs...</div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div>
+            <h3>TAHIDI INTERNATIONAL TRAINING INSTITUTE</h3>
+            <p>Professional Training for a Better Future.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="index.html#contact">Contact Us</a>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © <span id="year"></span> Tahidi International Training Institute. All Rights Reserved.
+    </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close viewer">&times;</button>
+    <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+</div>
+
+<script>
+const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
+const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
+
+const GALLERY_ENDPOINT =
+    TITI_SUPABASE_URL +
+    '/rest/v1/titi_gallery_images' +
+    '?select=id,title,caption,image_url,display_order,created_at' +
+    '&is_active=eq.true' +
+    '&order=display_order.asc,created_at.desc';
+
+const galleryGrid = document.getElementById('galleryGrid');
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaption = document.getElementById('lightboxCaption');
+
+function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, character => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[character]);
+}
+
+function openLightbox(imageUrl, title, caption) {
+    lightboxImage.src = imageUrl;
+    lightboxImage.alt = title || 'TITI gallery photograph';
+    lightboxCaption.textContent = [title, caption].filter(Boolean).join(' — ');
+    lightbox.classList.add('show');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('show');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImage.src = '';
+    document.body.style.overflow = '';
+}
+
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+
+lightbox.addEventListener('click', function(event) {
+    if (event.target === lightbox) closeLightbox();
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') closeLightbox();
+});
+
+function displayGallery(images) {
+    if (!images.length) {
+        galleryGrid.innerHTML =
+            '<div class="gallery-status">No published photographs are available at the moment. Please check again soon.</div>';
+        return;
+    }
+
+    galleryGrid.innerHTML = images.map((photo, index) => {
+        const title = photo.title || 'TITI Campus Photograph';
+        const caption = photo.caption || '';
+
+        return `
+            <article class="gallery-card">
+                <img
+                    class="gallery-image"
+                    src="${escapeHTML(photo.image_url)}"
+                    alt="${escapeHTML(title)}"
+                    loading="${index < 3 ? 'eager' : 'lazy'}"
+                    data-gallery-index="${index}"
+                >
+                <div class="gallery-info">
+                    <h3>${escapeHTML(title)}</h3>
+                    <p>${escapeHTML(caption)}</p>
+                </div>
+            </article>
+        `;
+    }).join('');
+
+    galleryGrid.querySelectorAll('.gallery-image').forEach((image, index) => {
+        image.addEventListener('click', () => {
+            const photo = images[index];
+            openLightbox(
+                photo.image_url,
+                photo.title || 'TITI Campus Photograph',
+                photo.caption || ''
+            );
+        });
+
+        image.addEventListener('error', () => {
+            image.alt = 'Photograph could not be loaded';
+        });
+    });
+}
+
+async function loadGallery() {
+    try {
+        const response = await fetch(GALLERY_ENDPOINT, {
+            method: 'GET',
+            headers: {
+                'apikey': TITI_SUPABASE_KEY,
+                'Accept': 'application/json'
+            },
+            cache: 'no-store'
+        });
+
+        if (!response.ok) {
+            throw new Error('Gallery request failed: ' + response.status);
+        }
+
+        const images = await response.json();
+        displayGallery(images);
+    } catch (error) {
+        console.error('TITI Gallery:', error);
+        galleryGrid.innerHTML =
+            '<div class="gallery-status error">We could not load the photographs right now. Please refresh the page or try again later.</div>';
+    }
+}
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+loadGallery();
+
+/* Check for newly published photographs every 60 seconds. */
+setInterval(loadGallery, 60000);
+</script>
+
+</body>
+</html>
