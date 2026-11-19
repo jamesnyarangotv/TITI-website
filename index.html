@@ -253,9 +253,11 @@ section{padding:76px 0}
 
 /* CAMPUS GALLERY */
 .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.gallery-card{background:#fff;padding:9px;border:1px solid var(--border);border-radius:6px;box-shadow:var(--shadow)}
+.gallery-card{background:#fff;padding:9px;border:1px solid var(--border);border-radius:6px;box-shadow:var(--shadow);overflow:hidden}
 .gallery-card img{width:100%;height:300px;object-fit:cover;border-radius:4px}
 .gallery-card h3{text-align:center;padding:12px 5px 5px;color:var(--navy);font-size:17px;font-weight:800}
+.gallery-card p{text-align:center;padding:0 10px 12px;color:var(--muted);font-size:13px}
+.gallery-more{text-align:center;margin-top:28px}
 
 /* POSTER */
 .poster-section{background:var(--light)}
@@ -430,7 +432,8 @@ section{padding:49px 0}
 .programme-card p{font-size:9px}
 }
 </style>
-</head><body>
+</head>
+<body>
 
 <div class="topbar">TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS</div>
 
@@ -482,6 +485,7 @@ section{padding:49px 0}
 
 <a href="notices.html">NOTICES</a>
 <a href="#gallery">Campus</a>
+<a href="gallery.html">GALLERY</a>
 <a href="contacts.html">Contact</a>
 <a href="apply.html#online-application" class="nav-apply">Apply Now</a>
 </nav>
@@ -495,7 +499,7 @@ section{padding:49px 0}
 <h2>Welcome to Tahidi International Training Institute</h2>
 <p class="motto">BREAKING THE LIMITS</p>
 </div>
-<div class="slideshow">
+<div class="slideshow" id="homepageSlideshow">
 <img class="slide active" src="tahidi%20bulding%201.png" alt="Tahidi Institute campus building">
 <img class="slide" src="tahidi%20bulding%202.png" alt="Tahidi Institute campus">
 <img class="slide" src="tahidi%20poster.png" alt="Tahidi Institute information poster">
@@ -618,7 +622,8 @@ section{padding:49px 0}
 <div class="gold-line"></div>
 <p>Discover the Tahidi International Training Institute environment.</p>
 </div>
-<div class="gallery-grid">
+
+<div class="gallery-grid" id="homepageGalleryGrid">
 <div class="gallery-card">
 <img src="tahidi%20bulding%201.png" alt="TITI campus building one">
 <h3>Our Institute</h3>
@@ -627,6 +632,10 @@ section{padding:49px 0}
 <img src="tahidi%20bulding%202.png" alt="TITI campus building two">
 <h3>Our Campus Environment</h3>
 </div>
+</div>
+
+<div class="gallery-more">
+<a href="gallery.html" class="primary-btn">View Full Photo Gallery</a>
 </div>
 </div>
 </section>
@@ -701,6 +710,7 @@ section{padding:49px 0}
 <li><a href="apply.html#admissions">Admissions</a></li>
 <li><a href="notices.html">Notice Board</a></li>
 <li><a href="#gallery">Our Campus</a></li>
+<li><a href="gallery.html">Photo Gallery</a></li>
 <li><a href="contacts.html">Contact Us</a></li>
 <li><a href="application-status.html">Check Application Status</a></li>
 </ul>
@@ -724,11 +734,10 @@ section{padding:49px 0}
 <script>
 /* TITI SUPABASE CONFIGURATION */
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
-
-/* Corrected key: matches the key supplied earlier */
 const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
 
 const TITI_PROGRAMMES_TABLE = 'programmes';
+const TITI_GALLERY_TABLE = 'titi_gallery_images';
 
 /* HTML SECURITY */
 function titiEscape(value){
@@ -941,15 +950,152 @@ async function loadTITIProgrammes(){
 }
 
 /* HOMEPAGE SLIDESHOW */
-const slides=document.querySelectorAll('.slide');
 let currentSlide=0;
+let homepageSlideTimer=null;
 
-if(slides.length>1){
-    setInterval(()=>{
-        slides[currentSlide].classList.remove('active');
+function titiStartHomepageSlideshow(){
+    if(homepageSlideTimer){
+        clearInterval(homepageSlideTimer);
+    }
+
+    homepageSlideTimer=setInterval(()=>{
+        const slides=Array.from(document.querySelectorAll('#homepageSlideshow .slide'));
+
+        if(slides.length<=1)return;
+
+        if(currentSlide>=slides.length){
+            currentSlide=0;
+        }
+
+        slides.forEach((slide,index)=>{
+            slide.classList.toggle('active',index===currentSlide);
+        });
+
         currentSlide=(currentSlide+1)%slides.length;
-        slides[currentSlide].classList.add('active');
     },5000);
+}
+
+/* ADD NEW PUBLISHED PHOTOS TO THE HOMEPAGE SLIDESHOW */
+function titiAddGalleryPhotosToSlideshow(images){
+    const slideshow=document.getElementById('homepageSlideshow');
+    if(!slideshow)return;
+
+    const existingSources=new Set(
+        Array.from(slideshow.querySelectorAll('.slide')).map(image=>{
+            try{
+                return new URL(image.src,window.location.href).href;
+            }catch(error){
+                return image.getAttribute('src');
+            }
+        })
+    );
+
+    images.forEach(photo=>{
+        if(!photo.image_url)return;
+
+        let normalizedUrl;
+
+        try{
+            normalizedUrl=new URL(photo.image_url,window.location.href).href;
+        }catch(error){
+            return;
+        }
+
+        if(existingSources.has(normalizedUrl))return;
+
+        const image=document.createElement('img');
+        image.className='slide';
+        image.src=photo.image_url;
+        image.alt=photo.title || 'Tahidi International Training Institute gallery photograph';
+        image.loading='lazy';
+
+        image.addEventListener('error',()=>{
+            console.warn('TITI slideshow image could not be loaded:',photo.image_url);
+            image.remove();
+        });
+
+        slideshow.appendChild(image);
+        existingSources.add(normalizedUrl);
+    });
+
+    titiStartHomepageSlideshow();
+}
+
+/* DISPLAY PUBLISHED PHOTOGRAPHS IN THE CAMPUS SECTION */
+function titiDisplayHomepageGallery(images){
+    const gallery=document.getElementById('homepageGalleryGrid');
+    if(!gallery)return;
+
+    if(!images.length){
+        return;
+    }
+
+    gallery.innerHTML=images.map((photo,index)=>`
+        <a class="gallery-card" href="gallery.html" aria-label="View the full gallery">
+            <img
+                src="${titiEscape(photo.image_url)}"
+                alt="${titiEscape(photo.title || 'TITI campus photograph')}"
+                loading="${index<2?'eager':'lazy'}"
+            >
+            <h3>${titiEscape(photo.title || 'TITI Campus Photograph')}</h3>
+            ${photo.caption ? `<p>${titiEscape(photo.caption)}</p>` : ''}
+        </a>
+    `).join('');
+}
+
+/* LOAD PUBLISHED GALLERY PHOTOS FROM SUPABASE */
+let titiGalleryRequestRunning=false;
+
+async function loadTITIGalleryPhotos(){
+    if(titiGalleryRequestRunning)return;
+
+    titiGalleryRequestRunning=true;
+
+    try{
+        const endpoint=
+            `${TITI_SUPABASE_URL}/rest/v1/${TITI_GALLERY_TABLE}`+
+            `?select=id,title,caption,image_url,display_order,created_at`+
+            `&is_active=eq.true`+
+            `&order=display_order.asc,created_at.desc`;
+
+        const response=await fetch(endpoint,{
+            method:'GET',
+            headers:{
+                'apikey':TITI_SUPABASE_KEY,
+                'Accept':'application/json'
+            },
+            cache:'no-store'
+        });
+
+        if(!response.ok){
+            let message='Gallery photographs could not be retrieved.';
+
+            try{
+                const errorData=await response.json();
+                message=errorData.message || errorData.error || message;
+            }catch(error){}
+
+            throw new Error(`HTTP ${response.status}: ${message}`);
+        }
+
+        const images=await response.json();
+
+        if(!Array.isArray(images)){
+            throw new Error('Unexpected gallery information received.');
+        }
+
+        /* Update homepage slideshow and Campus gallery */
+        titiAddGalleryPhotosToSlideshow(images);
+        titiDisplayHomepageGallery(images);
+
+        console.log('TITI published gallery photographs loaded:',images.length);
+
+    }catch(error){
+        console.error('TITI gallery connection error:',error);
+        /* Existing homepage photographs remain visible if the gallery is unavailable. */
+    }finally{
+        titiGalleryRequestRunning=false;
+    }
 }
 
 /* MOBILE NAVIGATION */
@@ -1021,8 +1167,15 @@ document.addEventListener('click',event=>{
 /* COPYRIGHT */
 document.getElementById('footer-year').textContent=new Date().getFullYear();
 
-/* START DATABASE CONNECTION */
+/* START HOMEPAGE SLIDESHOW */
+titiStartHomepageSlideshow();
+
+/* START DATABASE CONNECTIONS */
 loadTITIProgrammes();
+loadTITIGalleryPhotos();
+
+/* CHECK FOR NEWLY PUBLISHED GALLERY PHOTOS EVERY 60 SECONDS */
+setInterval(loadTITIGalleryPhotos,60000);
 
 </script>
 </body>
