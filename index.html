@@ -42,6 +42,7 @@ z-index:1000;
 border-bottom:3px solid var(--gold);
 }
 
+/* DESKTOP HEADER - COMPACT CITIZEN DIGITAL ARRANGEMENT */
 .container.header-inner{
 width:min(1500px,98%);
 min-height:104px;
@@ -49,7 +50,7 @@ margin:auto;
 display:flex;
 align-items:center;
 justify-content:flex-start;
-gap:clamp(12px,1.5vw,24px);
+gap:12px;
 flex-wrap:nowrap;
 }
 
@@ -72,8 +73,8 @@ nav{
 display:flex;
 align-items:center;
 justify-content:flex-start;
-gap:clamp(10px,1.05vw,17px);
-flex:1;
+gap:clamp(8px,.75vw,12px);
+flex:0 1 auto;
 min-width:0;
 flex-wrap:nowrap;
 white-space:nowrap;
@@ -88,6 +89,7 @@ white-space:nowrap;
 flex-shrink:0;
 padding:12px 0;
 transition:.25s;
+text-transform:uppercase;
 }
 
 nav a:hover,nav button.nav-link:hover,nav a.active{color:var(--gold)}
@@ -168,7 +170,7 @@ padding:12px 17px!important;
 border-radius:4px;
 font-size:15px!important;
 font-weight:800;
-margin-left:5px;
+margin-left:2px;
 }
 
 .nav-apply:hover{background:var(--gold);color:var(--navy)!important}
@@ -454,7 +456,7 @@ section{padding:49px 0}
 <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 
 <nav id="mainNav">
-<a href="#home">Home</a>
+<a href="#home">HOME</a>
 
 <div class="about-menu" id="aboutMenu">
 <button type="button" class="nav-link" id="aboutToggle" aria-expanded="false" aria-controls="aboutSubmenu">ABOUT US <span class="dropdown-arrow">▼</span></button>
@@ -491,9 +493,9 @@ section{padding:49px 0}
 </div>
 
 <a href="notices.html">NOTICES</a>
-<a href="#gallery">Campus</a>
-<a href="contacts.html">Contact</a>
-<a href="apply.html#online-application" class="nav-apply">Apply Now</a>
+<a href="#gallery">CAMPUS</a>
+<a href="contacts.html">CONTACT</a>
+<a href="apply.html#online-application" class="nav-apply">APPLY NOW</a>
 </nav>
 </div>
 </header>
