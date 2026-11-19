@@ -7,71 +7,151 @@
 <title>TAHIDI | Central Administration</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{--navy:#102b50;--navy2:#193d67;--gold:#c69a42;--red:#a51e32;--green:#16804c;--bg:#f2f5f9;--white:#fff;--text:#263449;--muted:#77869a;--border:#e5eaf0;--shadow:0 8px 30px rgba(16,43,80,.07)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Jost,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
-button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 .logo-frame{width:78px;height:66px;background:#fff;border-radius:10px;padding:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .logo-frame img{max-width:100%;max-height:100%;object-fit:contain}
 .login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#0b203d,#183d68)}
 .login-card{background:#fff;width:100%;max-width:470px;padding:38px;border-radius:16px;border-top:5px solid var(--gold);box-shadow:0 25px 80px #0004}
-.login-brand{display:flex;justify-content:center;margin-bottom:20px}.login-brand .logo-frame{width:135px;height:110px}
+.login-brand{display:flex;justify-content:center;margin-bottom:20px}
+.login-brand .logo-frame{width:135px;height:110px}
 .login-card h1{text-align:center;color:var(--navy);font-size:25px;font-weight:800}
 .login-sub{text-align:center;color:var(--muted);font-size:14px;margin:12px 0 25px}
-.field,.form-field{margin-bottom:18px}.field label,.form-field label{display:block;font-weight:800;font-size:13px;margin-bottom:7px;color:#34465e}
+.field,.form-field{margin-bottom:18px}
+.field label,.form-field label{display:block;font-weight:800;font-size:13px;margin-bottom:7px;color:#34465e}
 .field input,.form-field input,.form-field textarea,.form-field select,.toolbar input,.toolbar select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:7px;background:#fff;outline:none;color:var(--text)}
 .field input:focus,.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--navy2);box-shadow:0 0 0 3px #193d6712}
 .primary-btn,.publish-btn,.secondary-btn,.logout-btn,.small-btn{border:0;border-radius:7px;padding:11px 16px;font-weight:800;font-size:13px}
-.primary-btn{background:var(--navy);color:white}.primary-btn:hover{background:var(--navy2)}
-.login-btn{width:100%;padding:15px}.primary-btn:disabled,button:disabled{opacity:.6;cursor:not-allowed}
+.primary-btn{background:var(--navy);color:white}
+.primary-btn:hover{background:var(--navy2)}
+.login-btn{width:100%;padding:15px}
+.primary-btn:disabled,button:disabled{opacity:.6;cursor:not-allowed}
 .login-footer{text-align:center;border-top:1px solid var(--border);margin-top:25px;padding-top:18px;font-size:13px;color:var(--muted)}
 .login-footer strong{color:var(--navy)}
 .topbar{background:linear-gradient(110deg,#0b203c,#183e69);color:white;padding:16px 4%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;border-bottom:4px solid var(--gold)}
-.brand{display:flex;align-items:center;gap:14px}.brand h2{font-size:18px;line-height:1.4}.brand p{font-size:12px;letter-spacing:1px;color:#d5dfeb;margin-top:4px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand h2{font-size:18px;line-height:1.4}
+.brand p{font-size:12px;letter-spacing:1px;color:#d5dfeb;margin-top:4px}
 .admin-info{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
 .admin-role{background:#ffffff17;border:1px solid #ffffff2c;padding:8px 12px;border-radius:6px;font-weight:800;color:#f5dda5}
 .app-shell{max-width:1600px;margin:auto;padding:25px 28px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:23px;align-items:start}
 .sidebar{background:#fff;border:1px solid var(--border);border-radius:11px;box-shadow:var(--shadow);padding:17px;position:sticky;top:18px}
 .sidebar-title{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--gold);padding:5px 10px 13px}
 .nav-btn{width:100%;display:flex;align-items:center;gap:11px;text-align:left;padding:11px 12px;border:0;border-radius:7px;background:transparent;color:#43536a;font-weight:700;font-size:14px;margin:3px 0}
-.nav-btn:hover{background:#f1f4f8;color:var(--navy)}.nav-btn.active{background:var(--navy);color:#fff}
+.nav-btn:hover{background:#f1f4f8;color:var(--navy)}
+.nav-btn.active{background:var(--navy);color:#fff}
 .nav-icon{width:22px;text-align:center;font-size:17px}
 .main-content{min-width:0}
 .page-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin:5px 0 22px}
 .heading-label{font-size:12px;letter-spacing:1.5px;color:var(--gold);font-weight:800}
-.page-heading h1{font-size:29px;color:var(--navy);line-height:1.3}.page-heading p{color:var(--muted);font-size:14px;margin-top:5px}
+.page-heading h1{font-size:29px;color:var(--navy);line-height:1.3}
+.page-heading p{color:var(--muted);font-size:14px;margin-top:5px}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:21px}
 .stat-card,.panel{background:#fff;border:1px solid var(--border);border-radius:11px;box-shadow:var(--shadow)}
-.stat-card{padding:19px}.stat-label{font-size:13px;color:var(--muted);font-weight:800}.stat-card h2{font-size:31px;color:var(--navy);margin-top:8px}
-.panel{overflow:hidden;margin-bottom:20px}.panel-accent{height:4px;background:linear-gradient(90deg,var(--navy),var(--gold))}
-.panel-heading{padding:18px 21px;border-bottom:1px solid var(--border)}.panel-heading h3{font-size:18px;color:var(--navy)}.panel-heading p{font-size:13px;color:var(--muted);margin-top:4px}
-.panel-body{padding:21px}.form-field textarea{min-height:140px;resize:vertical}
-.form-actions{display:flex;gap:9px;flex-wrap:wrap}.form-actions>*{flex:1}
-.secondary-btn{background:#edf1f6;color:var(--navy);border:1px solid #e1e6ed}.publish-btn{background:var(--red);color:white}
+.stat-card{padding:19px}
+.stat-label{font-size:13px;color:var(--muted);font-weight:800}
+.stat-card h2{font-size:31px;color:var(--navy);margin-top:8px}
+.panel{overflow:hidden;margin-bottom:20px}
+.panel-accent{height:4px;background:linear-gradient(90deg,var(--navy),var(--gold))}
+.panel-heading{padding:18px 21px;border-bottom:1px solid var(--border)}
+.panel-heading h3{font-size:18px;color:var(--navy)}
+.panel-heading p{font-size:13px;color:var(--muted);margin-top:4px}
+.panel-body{padding:21px}
+.form-field textarea{min-height:140px;resize:vertical}
+.form-actions{display:flex;gap:9px;flex-wrap:wrap}
+.form-actions>*{flex:1}
+.secondary-btn{background:#edf1f6;color:var(--navy);border:1px solid #e1e6ed}
+.publish-btn{background:var(--red);color:white}
 .toolbar{padding:14px 18px;display:flex;gap:9px;flex-wrap:wrap;border-bottom:1px solid var(--border);background:#fbfcfe}
-.toolbar input{flex:1;min-width:160px}.toolbar select{width:auto;min-width:145px}
+.toolbar input{flex:1;min-width:160px}
+.toolbar select{width:auto;min-width:145px}
 .notice-list,.record-list{padding:5px 20px 15px}
-.notice-item,.record-item{padding:17px 0;border-bottom:1px solid var(--border)}.notice-item:last-child,.record-item:last-child{border-bottom:0}
-.notice-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.notice-item h4,.record-item h4{color:var(--navy);font-size:17px}
-.notice-meta{font-size:12px;color:var(--muted);margin-top:5px}.notice-preview{font-size:14px;color:#68778a;margin-top:9px;white-space:pre-wrap;overflow-wrap:anywhere}
+.notice-item,.record-item{padding:17px 0;border-bottom:1px solid var(--border)}
+.notice-item:last-child,.record-item:last-child{border-bottom:0}
+.notice-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.notice-item h4,.record-item h4{color:var(--navy);font-size:17px}
+.notice-meta{font-size:12px;color:var(--muted);margin-top:5px}
+.notice-preview{font-size:14px;color:#68778a;margin-top:9px;white-space:pre-wrap;overflow-wrap:anywhere}
 .status{font-size:11px;font-weight:800;padding:5px 10px;border-radius:20px;white-space:nowrap}
-.PUBLISHED{background:#e5f5ec;color:var(--green)}.DRAFT{background:#fff4dc;color:#946414}.ARCHIVED{background:#edf0f4;color:#68758a}
+.PUBLISHED{background:#e5f5ec;color:var(--green)}
+.DRAFT{background:#fff4dc;color:#946414}
+.ARCHIVED{background:#edf0f4;color:#68758a}
 .notice-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
-.small-btn{background:#fff;border:1px solid var(--border);color:var(--navy);padding:7px 11px;font-size:11px}.small-btn.delete{color:var(--red)}
+.small-btn{background:#fff;border:1px solid var(--border);color:var(--navy);padding:7px 11px;font-size:11px}
+.small-btn.delete{color:var(--red)}
 .empty{padding:35px 15px;text-align:center;color:var(--muted);font-size:14px}
 .message{padding:12px 14px;border-radius:7px;margin-bottom:14px;font-size:13px;overflow-wrap:anywhere}
-.error{background:#fff0f0;color:#a51e32;border:1px solid #f5d5d5}.success{background:#e7f7ee;color:#126b40;border:1px solid #d0ecdc}
+.error{background:#fff0f0;color:#a51e32;border:1px solid #f5d5d5}
+.success{background:#e7f7ee;color:#126b40;border:1px solid #d0ecdc}
 .note{padding:12px;background:#f5f7fa;border-left:3px solid var(--gold);font-size:12px;color:var(--muted);margin-top:13px}
-.table-wrap{overflow-x:auto}.data-table{width:100%;border-collapse:collapse;font-size:13px}.data-table th,.data-table td{text-align:left;padding:12px;border-bottom:1px solid var(--border);vertical-align:top}.data-table th{background:#f5f7fa;color:var(--navy);font-weight:800;white-space:nowrap}
+.table-wrap{overflow-x:auto}
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table th,.data-table td{text-align:left;padding:12px;border-bottom:1px solid var(--border);vertical-align:top}
+.data-table th{background:#f5f7fa;color:var(--navy);font-weight:800;white-space:nowrap}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;padding:14px 19px;border-radius:8px;box-shadow:0 8px 30px #0003;z-index:100;max-width:90%}
 .dashboard-footer{background:linear-gradient(115deg,#0b203c,#183d67);color:#fff;border-top:4px solid var(--gold);margin-top:20px}
 .footer-bottom{padding:18px 25px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid #ffffff20;font-size:12px;color:#cbd6e4}
 .footer-bottom strong{color:#e5c47a}
-@media(max-width:900px){.app-shell{grid-template-columns:1fr}.sidebar{position:static}.nav-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.stats{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.topbar{padding:13px}.brand h2{font-size:13px}.brand p{font-size:9px}.brand .logo-frame{width:58px;height:50px}.admin-info{width:100%;justify-content:space-between}.app-shell{padding:16px 11px}.stats{grid-template-columns:1fr}.page-heading h1{font-size:24px}.panel-body{padding:15px}.toolbar input,.toolbar select{width:100%;min-width:100%}.nav-grid{grid-template-columns:1fr 1fr}.nav-btn{font-size:12px;padding:9px 7px}.login-card{padding:28px 20px}}
+
+/* GALLERY MANAGEMENT ADDITION */
+.gallery-upload-box{border:2px dashed #cbd5e1;border-radius:10px;padding:24px;text-align:center;background:#fafbfd;transition:.2s}
+.gallery-upload-box:hover{border-color:var(--gold);background:#f7f9fc}
+.gallery-upload-box input[type=file]{display:block;width:100%;margin-top:12px}
+.gallery-preview-wrap{margin-top:15px}
+.gallery-preview-wrap img{display:block;max-width:100%;max-height:300px;margin:0 auto;border-radius:9px;object-fit:contain;background:#edf1f6}
+.gallery-preview-caption{font-size:12px;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:17px;padding:20px}
+.gallery-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:white;min-width:0}
+.gallery-card-image{height:175px;background:#edf1f6;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.gallery-card-image img{width:100%;height:100%;object-fit:cover}
+.gallery-card-content{padding:13px}
+.gallery-card-content h4{font-size:15px;color:var(--navy);overflow-wrap:anywhere}
+.gallery-card-content p{font-size:12px;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}
+.gallery-card-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.gallery-card-actions button{flex:1}
+.gallery-filter{display:flex;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--border);background:#fbfcfe}
+.gallery-filter input,.gallery-filter select{padding:10px 12px;border:1px solid var(--border);border-radius:7px;min-width:140px;flex:1}
+.gallery-count{font-size:12px;color:var(--muted);padding:0 20px 12px}
+.gallery-image-link{display:block}
+.gallery-image-link:hover{opacity:.92}
+.gallery-required{color:var(--red)}
+@media(max-width:900px){
+ .app-shell{grid-template-columns:1fr}
+ .sidebar{position:static}
+ .nav-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}
+ .stats{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+ .topbar{padding:13px}
+ .brand h2{font-size:13px}
+ .brand p{font-size:9px}
+ .brand .logo-frame{width:58px;height:50px}
+ .admin-info{width:100%;justify-content:space-between}
+ .app-shell{padding:16px 11px}
+ .stats{grid-template-columns:1fr}
+ .page-heading h1{font-size:24px}
+ .panel-body{padding:15px}
+ .toolbar input,.toolbar select{width:100%;min-width:100%}
+ .nav-grid{grid-template-columns:1fr 1fr}
+ .nav-btn{font-size:12px;padding:9px 7px}
+ .login-card{padding:28px 20px}
+ .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px}
+ .gallery-card-image{height:125px}
+ .gallery-card-content{padding:9px}
+ .gallery-card-actions button{font-size:10px;padding:7px 5px}
+}
+@media(max-width:360px){
+ .gallery-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
 
 <section id="loginPage" class="login-page">
@@ -114,6 +194,7 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
 </aside>
 
 <main class="main-content">
+
 <section class="page-section" id="page-overview">
  <div class="page-heading"><div><div class="heading-label">INSTITUTIONAL ADMINISTRATION</div><h1>Central Dashboard</h1><p>Welcome to TITI's central administration workspace.</p></div></div>
  <div class="stats">
@@ -217,9 +298,98 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
  <div class="panel"><div class="panel-heading"><h3>Application Records</h3><p>Existing records from the applications table.</p></div><div class="toolbar"><input id="applicationsSearch" placeholder="Search application records..."><button class="secondary-btn" id="refreshApplications">↻ REFRESH</button></div><div class="record-list" id="applicationsList"></div></div>
 </section>
 
+<!-- GALLERY MANAGEMENT -->
 <section class="page-section hidden" id="page-gallery">
- <div class="page-heading"><div><div class="heading-label">MEDIA MANAGEMENT</div><h1>Gallery Management</h1><p>View existing institute gallery records.</p></div></div>
- <div class="panel"><div class="panel-heading"><h3>Gallery Images</h3></div><div class="record-list" id="galleryList"></div></div>
+ <div class="page-heading">
+  <div>
+   <div class="heading-label">MEDIA MANAGEMENT</div>
+   <h1>Gallery Management</h1>
+   <p>Upload, organise and manage photographs displayed on the TITI website.</p>
+  </div>
+  <button class="primary-btn" id="newGalleryButton">＋ ADD PHOTOGRAPH</button>
+ </div>
+
+ <div class="stats">
+  <div class="stat-card"><div class="stat-label">TOTAL PHOTOGRAPHS</div><h2 id="galleryTotal">0</h2></div>
+  <div class="stat-card"><div class="stat-label">PUBLISHED</div><h2 id="galleryPublished">0</h2></div>
+  <div class="stat-card"><div class="stat-label">UNPUBLISHED</div><h2 id="galleryUnpublished">0</h2></div>
+ </div>
+
+ <section class="panel" id="galleryEditor">
+  <div class="panel-accent"></div>
+  <div class="panel-heading">
+   <h3 id="galleryFormHeading">＋ Upload New Photograph</h3>
+   <p>Upload a photograph directly from your computer.</p>
+  </div>
+  <div class="panel-body">
+   <div id="galleryMessage"></div>
+
+   <form id="galleryForm">
+    <input type="hidden" id="galleryId">
+
+    <div class="form-field">
+     <label for="galleryTitle">PHOTOGRAPH TITLE</label>
+     <input id="galleryTitle" maxlength="200" placeholder="Enter photograph title">
+    </div>
+
+    <div class="form-field">
+     <label for="galleryCaption">PHOTOGRAPH CAPTION</label>
+     <textarea id="galleryCaption" placeholder="Write a short description or caption..."></textarea>
+    </div>
+
+    <div class="form-field">
+     <label for="galleryOrder">DISPLAY ORDER</label>
+     <input id="galleryOrder" type="number" min="0" step="1" value="0">
+     <p class="note">Smaller numbers appear first on the public gallery.</p>
+    </div>
+
+    <div class="form-field">
+     <label for="galleryFile">SELECT PHOTOGRAPH <span class="gallery-required">*</span></label>
+     <div class="gallery-upload-box">
+      <div style="font-size:35px">▧</div>
+      <strong>Choose a photograph from your computer</strong>
+      <p class="notice-meta">JPG, JPEG, PNG or WEBP. Maximum 20 MB.</p>
+      <input type="file" id="galleryFile" accept="image/jpeg,image/png,image/webp" required>
+      <div id="galleryPreviewWrap" class="gallery-preview-wrap hidden">
+       <img id="galleryPreview" alt="Selected photograph preview">
+       <p id="galleryPreviewCaption" class="gallery-preview-caption"></p>
+      </div>
+     </div>
+     <div id="galleryCurrentImage" class="note hidden"></div>
+    </div>
+
+    <div class="form-actions">
+     <button class="primary-btn" type="submit" id="saveGalleryButton">UPLOAD PHOTOGRAPH</button>
+     <button class="secondary-btn" type="button" id="clearGalleryButton">CLEAR FORM</button>
+    </div>
+
+    <button type="button" class="secondary-btn hidden" id="cancelGalleryEdit" style="width:100%;margin-top:10px">CANCEL EDITING</button>
+
+    <p class="note">Security safeguard: every new photograph is initially saved as unpublished. You must explicitly publish it before it appears on the public website.</p>
+   </form>
+  </div>
+ </section>
+
+ <section class="panel">
+  <div class="panel-accent"></div>
+  <div class="panel-heading">
+   <h3>Existing Gallery Photographs</h3>
+   <p>Review, edit, publish, unpublish or delete photographs.</p>
+  </div>
+  <div class="gallery-filter">
+   <input type="search" id="gallerySearch" placeholder="Search photographs...">
+   <select id="galleryStatusFilter">
+    <option value="ALL">All photographs</option>
+    <option value="PUBLISHED">Published</option>
+    <option value="UNPUBLISHED">Unpublished</option>
+   </select>
+   <button class="secondary-btn" id="refreshGalleryButton">↻ REFRESH</button>
+  </div>
+  <p class="gallery-count" id="galleryResultCount">Loading photographs...</p>
+  <div id="galleryList">
+   <div class="empty">Loading gallery photographs...</div>
+  </div>
+ </section>
 </section>
 
 <section class="page-section hidden" id="page-news">
@@ -236,10 +406,16 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
  <div class="page-heading"><div><div class="heading-label">INSTITUTIONAL RESOURCES</div><h1>Website Documents</h1><p>View existing website document records.</p></div></div>
  <div class="panel"><div class="panel-heading"><h3>Documents</h3></div><div class="record-list" id="documentsList"></div></div>
 </section>
+
 </main>
 </div>
 
-<footer class="dashboard-footer"><div class="footer-bottom"><span>© 2026 TAHIDI INTERNATIONAL TRAINING INSTITUTE. All Rights Reserved.</span><span>Designed & Developed by <strong>James Nyarang'o</strong></span></div></footer>
+<footer class="dashboard-footer">
+ <div class="footer-bottom">
+  <span>© 2026 TAHIDI INTERNATIONAL TRAINING INSTITUTE. All Rights Reserved.</span>
+  <span>Designed & Developed by <strong>James Nyarang'o</strong></span>
+ </div>
+</footer>
 </section>
 
 <div id="toast" class="toast hidden" aria-live="polite"></div>
@@ -250,7 +426,7 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:
 const SUPABASE_URL="https://jlmbiauilmajuvrnuaul.supabase.co";
 const SUPABASE_KEY="sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 
-/* BOTH VERIFIED ADMINISTRATOR ACCOUNTS */
+/* VERIFIED ADMINISTRATOR ACCOUNTS */
 const ADMIN_ACCOUNTS = [
  {
   id: "8d54b5f8-7336-47a0-a848-ab2e135119df",
@@ -265,29 +441,54 @@ const ADMIN_ACCOUNTS = [
 ];
 
 const STORAGE_BUCKET="notice-attachments";
+const GALLERY_STORAGE_BUCKET="titi-website-media";
 const MAX_FILE_SIZE=20*1024*1024;
 
 let supabaseClient=null,currentUser=null,notices=[],programmes=[],siteContent=null,slides=[];
+let galleryImages=[];
+let galleryObjectUrl=null;
 let currentAdminRole="";
 let toastTimer=null;
 
 const $=id=>document.getElementById(id);
+
 const escapeHTML=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-function message(el,text,type="error"){el.innerHTML='<div class="message '+type+'">'+escapeHTML(text)+'</div>'}
-function clearMessage(el){el.innerHTML=""}
-function toast(text){$("toast").textContent=text;$("toast").classList.remove("hidden");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.add("hidden"),4500)}
-function dateText(v){return v?new Date(v).toLocaleString("en-UG",{dateStyle:"medium",timeStyle:"short"}):""}
-function errorText(error){return error?.message||String(error||"Unknown error")}
+
+function message(el,text,type="error"){
+ el.innerHTML='<div class="message '+type+'">'+escapeHTML(text)+'</div>';
+}
+
+function clearMessage(el){
+ el.innerHTML="";
+}
+
+function toast(text){
+ $("toast").textContent=text;
+ $("toast").classList.remove("hidden");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>$("toast").classList.add("hidden"),4500);
+}
+
+function dateText(v){
+ return v?new Date(v).toLocaleString("en-UG",{dateStyle:"medium",timeStyle:"short"}):"";
+}
+
+function errorText(error){
+ return error?.message||String(error||"Unknown error");
+}
 
 function initialiseSupabase(){
  try{
   if(!window.supabase?.createClient)throw new Error("Supabase could not load. Check your internet connection.");
   supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
   return true;
- }catch(e){message($("loginMessage"),errorText(e));return false}
+ }catch(e){
+  message($("loginMessage"),errorText(e));
+  return false;
+ }
 }
 
-/* VERIFY IDENTITY AND BOTH DATABASE PERMISSIONS */
+/* VERIFY ADMINISTRATOR AND DATABASE PERMISSIONS */
 async function verifyAdmin(user){
  if(!user)return null;
 
@@ -318,7 +519,7 @@ async function verifyAdmin(user){
  return account;
 }
 
-/* ADMINISTRATOR LOGIN */
+/* LOGIN */
 $("loginForm").addEventListener("submit",async e=>{
  e.preventDefault();
  clearMessage($("loginMessage"));
@@ -371,7 +572,7 @@ async function openDashboard(){
  showPage("overview");
 }
 
-/* AUTOMATIC SESSION RESTORATION WITH THE SAME SECURITY CHECKS */
+/* RESTORE SESSION */
 async function checkExistingSession(){
  if(!supabaseClient)return;
 
@@ -410,7 +611,7 @@ function showPage(name){
  if(name==="content")loadSiteContent();
  if(name==="slides")loadSlides();
  if(name==="applications")loadGeneric("applications");
- if(name==="gallery")loadGeneric("gallery");
+ if(name==="gallery")loadGallery();
  if(name==="news")loadGeneric("news");
  if(name==="staff")loadGeneric("staff");
  if(name==="documents")loadGeneric("documents");
@@ -420,6 +621,7 @@ document.querySelectorAll(".nav-btn").forEach(b=>{
  b.addEventListener("click",()=>showPage(b.dataset.page));
 });
 
+/* NOTICE STATISTICS */
 function updateStatistics(){
  $("totalCount").textContent=notices.length;
  $("publishedCount").textContent=notices.filter(n=>n.status==="PUBLISHED").length;
@@ -481,8 +683,7 @@ function renderNotices(){
    attachment+
    '<div class="notice-actions">'+
    '<button class="small-btn" data-action="edit" data-id="'+escapeHTML(n.id)+'">EDIT</button>'+
-   publicationButton+
-   archiveButton+
+   publicationButton+archiveButton+
    '<button class="small-btn delete" data-action="delete" data-id="'+escapeHTML(n.id)+'">DELETE</button>'+
    '</div></article>';
  }).join("");
@@ -580,10 +781,7 @@ async function saveNotice(status){
  const old=id?currentNotice(id):null;
  let uploaded=null;
 
- const payload={
-  title,category,content,status,
-  updated_at:new Date().toISOString()
- };
+ const payload={title,category,content,status,updated_at:new Date().toISOString()};
 
  const buttons=[$("draftButton"),$("publishButton")];
  buttons.forEach(b=>b.disabled=true);
@@ -656,9 +854,7 @@ $("noticeList").addEventListener("click",async e=>{
   const newStatus=action==="archive"?"ARCHIVED":"DRAFT";
   if(!confirm(action==="archive"?"Archive this notice?":"Restore this notice to drafts?"))return;
   try{
-   const {error}=await supabaseClient.from("notices").update({
-    status:newStatus,updated_at:new Date().toISOString()
-   }).eq("id",id);
+   const {error}=await supabaseClient.from("notices").update({status:newStatus,updated_at:new Date().toISOString()}).eq("id",id);
    if(error)throw error;
    toast(action==="archive"?"Notice archived.":"Notice restored to drafts.");
    await loadNotices();
@@ -670,9 +866,7 @@ $("noticeList").addEventListener("click",async e=>{
  if(!confirm(status==="PUBLISHED"?"Publish this notice now?":"Unpublish this notice?"))return;
 
  try{
-  const {error}=await supabaseClient.from("notices").update({
-   status,updated_at:new Date().toISOString()
-  }).eq("id",id);
+  const {error}=await supabaseClient.from("notices").update({status,updated_at:new Date().toISOString()}).eq("id",id);
   if(error)throw error;
   toast(status==="PUBLISHED"?"Notice published.":"Notice unpublished.");
   await loadNotices();
@@ -978,10 +1172,460 @@ $("slideList").addEventListener("click",async e=>{
  }
 });
 
-/* READ-ONLY RECORD VIEWER FOR UNCONFIRMED TABLE STRUCTURES */
+/* ==========================================================
+   GALLERY MANAGEMENT
+   Uses the verified existing table: titi_gallery_images
+
+   Verified fields:
+   id, title, caption, image_url, image_path,
+   display_order, is_active, created_at
+
+   Uses Storage bucket: titi-website-media
+   ========================================================== */
+
+function validateGalleryFile(file){
+ if(!file)throw new Error("Please select a photograph.");
+
+ const allowedTypes=["image/jpeg","image/png","image/webp"];
+
+ if(!allowedTypes.includes(file.type)){
+  throw new Error("Unsupported image format. Please select JPG, PNG or WEBP.");
+ }
+
+ if(file.size>MAX_FILE_SIZE){
+  throw new Error("The selected photograph exceeds the 20 MB limit.");
+ }
+}
+
+function showGalleryPreview(file){
+ if(galleryObjectUrl){
+  URL.revokeObjectURL(galleryObjectUrl);
+  galleryObjectUrl=null;
+ }
+
+ if(!file){
+  $("galleryPreviewWrap").classList.add("hidden");
+  return;
+ }
+
+ galleryObjectUrl=URL.createObjectURL(file);
+
+ $("galleryPreview").src=galleryObjectUrl;
+ $("galleryPreviewCaption").textContent=file.name+" • "+(file.size/1024/1024).toFixed(2)+" MB";
+ $("galleryPreviewWrap").classList.remove("hidden");
+}
+
+$("galleryFile").addEventListener("change",e=>{
+ const file=e.target.files[0];
+
+ if(!file){
+  showGalleryPreview(null);
+  return;
+ }
+
+ try{
+  validateGalleryFile(file);
+  showGalleryPreview(file);
+  clearMessage($("galleryMessage"));
+ }catch(err){
+  e.target.value="";
+  showGalleryPreview(null);
+  message($("galleryMessage"),errorText(err));
+ }
+});
+
+/* UPLOAD A PHOTOGRAPH TO THE VERIFIED STORAGE BUCKET */
+async function uploadGalleryFile(file){
+ validateGalleryFile(file);
+
+ const extension=file.type==="image/png"?"png":file.type==="image/webp"?"webp":"jpg";
+ const path="gallery/"+crypto.randomUUID()+"."+extension;
+
+ const {data,error}=await supabaseClient.storage
+  .from(GALLERY_STORAGE_BUCKET)
+  .upload(path,file,{
+   cacheControl:"3600",
+   upsert:false,
+   contentType:file.type
+  });
+
+ if(error)throw error;
+
+ const {data:publicData}=supabaseClient.storage
+  .from(GALLERY_STORAGE_BUCKET)
+  .getPublicUrl(data.path);
+
+ if(!publicData?.publicUrl){
+  await supabaseClient.storage.from(GALLERY_STORAGE_BUCKET).remove([data.path]);
+  throw new Error("Could not generate the public photograph URL.");
+ }
+
+ return {
+  image_url:publicData.publicUrl,
+  image_path:data.path
+ };
+}
+
+/* REMOVE AN IMAGE FROM STORAGE */
+async function removeGalleryStorageFile(path){
+ if(!path)return;
+
+ const {error}=await supabaseClient.storage
+  .from(GALLERY_STORAGE_BUCKET)
+  .remove([path]);
+
+ if(error){
+  throw new Error("The database record was processed, but the Storage photograph could not be removed: "+error.message);
+ }
+}
+
+/* LOAD EXISTING GALLERY RECORDS */
+async function loadGallery(){
+ $("galleryList").innerHTML='<div class="empty">Loading gallery photographs...</div>';
+ $("galleryResultCount").textContent="Loading photographs...";
+
+ try{
+  const {data,error}=await supabaseClient
+   .from("titi_gallery_images")
+   .select("id,title,caption,image_url,image_path,display_order,is_active,created_at")
+   .order("display_order",{ascending:true})
+   .order("created_at",{ascending:false});
+
+  if(error)throw error;
+
+  galleryImages=data||[];
+
+  updateGalleryStatistics();
+  renderGallery();
+
+ }catch(e){
+  $("galleryList").innerHTML='<div class="empty">Unable to load gallery photographs: '+escapeHTML(errorText(e))+'</div>';
+  $("galleryResultCount").textContent="Gallery loading failed.";
+ }
+}
+
+function updateGalleryStatistics(){
+ $("galleryTotal").textContent=galleryImages.length;
+ $("galleryPublished").textContent=galleryImages.filter(x=>x.is_active===true).length;
+ $("galleryUnpublished").textContent=galleryImages.filter(x=>x.is_active===false).length;
+}
+
+function renderGallery(){
+ const query=$("gallerySearch").value.trim().toLowerCase();
+ const filter=$("galleryStatusFilter").value;
+
+ const rows=galleryImages.filter(item=>{
+  const searchable=[item.title,item.caption].join(" ").toLowerCase();
+  const matchesSearch=searchable.includes(query);
+
+  const matchesStatus=
+   filter==="ALL"||
+   (filter==="PUBLISHED"&&item.is_active===true)||
+   (filter==="UNPUBLISHED"&&item.is_active===false);
+
+  return matchesSearch&&matchesStatus;
+ });
+
+ $("galleryResultCount").textContent="Showing "+rows.length+" of "+galleryImages.length+" photographs.";
+
+ if(!rows.length){
+  $("galleryList").innerHTML='<div class="empty">No matching photographs found.</div>';
+  return;
+ }
+
+ $("galleryList").innerHTML='<div class="gallery-grid">'+rows.map(item=>{
+  const status=item.is_active===true;
+
+  const image=item.image_url
+   ?'<a class="gallery-image-link" href="'+escapeHTML(item.image_url)+'" target="_blank" rel="noopener"><img src="'+escapeHTML(item.image_url)+'" alt="'+escapeHTML(item.title||"TITI Gallery Photograph")+'" loading="lazy"></a>'
+   :'<div class="empty">No photograph URL available.</div>';
+
+  return '<article class="gallery-card">'+
+   '<div class="gallery-card-image">'+image+'</div>'+
+   '<div class="gallery-card-content">'+
+   '<h4>'+escapeHTML(item.title||"Untitled Photograph")+'</h4>'+
+   '<p>'+escapeHTML(item.caption||"No caption provided.")+'</p>'+
+   '<p>Display order: '+escapeHTML(item.display_order)+'</p>'+
+   '<p>'+escapeHTML(dateText(item.created_at))+'</p>'+
+   '<p><span class="status '+(status?"PUBLISHED":"DRAFT")+'">'+(status?"PUBLISHED":"UNPUBLISHED")+'</span></p>'+
+   '<div class="gallery-card-actions">'+
+   '<button class="small-btn" data-gallery-edit="'+escapeHTML(item.id)+'">EDIT</button>'+
+   '<button class="small-btn" data-gallery-toggle="'+escapeHTML(item.id)+'">'+(status?"UNPUBLISH":"PUBLISH")+'</button>'+
+   '<button class="small-btn delete" data-gallery-delete="'+escapeHTML(item.id)+'">DELETE</button>'+
+   '</div></div></article>';
+ }).join("")+'</div>';
+}
+
+/* RESET GALLERY FORM */
+function resetGalleryForm(){
+ $("galleryForm").reset();
+ $("galleryId").value="";
+ $("galleryOrder").value=0;
+ $("galleryFormHeading").textContent="＋ Upload New Photograph";
+ $("saveGalleryButton").textContent="UPLOAD PHOTOGRAPH";
+ $("galleryFile").required=true;
+ $("galleryCurrentImage").classList.add("hidden");
+ $("cancelGalleryEdit").classList.add("hidden");
+
+ if(galleryObjectUrl){
+  URL.revokeObjectURL(galleryObjectUrl);
+  galleryObjectUrl=null;
+ }
+
+ $("galleryPreview").removeAttribute("src");
+ $("galleryPreviewWrap").classList.add("hidden");
+
+ clearMessage($("galleryMessage"));
+}
+
+/* OPEN NEW PHOTOGRAPH FORM */
+$("newGalleryButton").addEventListener("click",()=>{
+ resetGalleryForm();
+ $("galleryEditor").scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+/* CLEAR FORM */
+$("clearGalleryButton").addEventListener("click",resetGalleryForm);
+$("cancelGalleryEdit").addEventListener("click",resetGalleryForm);
+
+/* EDIT EXISTING PHOTOGRAPH */
+function editGalleryImage(id){
+ const item=galleryImages.find(x=>String(x.id)===String(id));
+ if(!item)return;
+
+ resetGalleryForm();
+
+ $("galleryId").value=item.id;
+ $("galleryTitle").value=item.title||"";
+ $("galleryCaption").value=item.caption||"";
+ $("galleryOrder").value=item.display_order??0;
+
+ $("galleryFile").required=false;
+
+ $("galleryFormHeading").textContent="Edit Existing Photograph";
+ $("saveGalleryButton").textContent="SAVE CHANGES";
+ $("cancelGalleryEdit").classList.remove("hidden");
+
+ if(item.image_url){
+  $("galleryCurrentImage").innerHTML=
+   'CURRENT PHOTOGRAPH<br><img src="'+escapeHTML(item.image_url)+'" alt="Current gallery photograph" style="display:block;max-width:100%;max-height:180px;margin-top:10px;border-radius:8px"><p class="notice-meta">Choose a new photograph only if you want to replace the existing one.</p>';
+
+  $("galleryCurrentImage").classList.remove("hidden");
+ }
+
+ $("galleryEditor").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* SAVE NEW OR EDITED PHOTOGRAPH */
+$("galleryForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+
+ clearMessage($("galleryMessage"));
+
+ const id=$("galleryId").value;
+ const title=$("galleryTitle").value.trim();
+ const caption=$("galleryCaption").value.trim();
+ const displayOrder=Number($("galleryOrder").value);
+ const file=$("galleryFile").files[0]||null;
+
+ if(!Number.isInteger(displayOrder)||displayOrder<0){
+  message($("galleryMessage"),"Display order must be a whole number starting from zero.");
+  return;
+ }
+
+ if(file){
+  try{
+   validateGalleryFile(file);
+  }catch(err){
+   message($("galleryMessage"),errorText(err));
+   return;
+  }
+ }
+
+ if(!id&&!file){
+  message($("galleryMessage"),"Please select a photograph to upload.");
+  return;
+ }
+
+ const oldRecord=id?galleryImages.find(x=>String(x.id)===String(id)):null;
+
+ if(id&&!oldRecord){
+  message($("galleryMessage"),"The selected gallery record could not be found. Refresh and try again.");
+  return;
+ }
+
+ const button=$("saveGalleryButton");
+ button.disabled=true;
+
+ let uploaded=null;
+ let databaseSaved=false;
+
+ try{
+  let payload={
+   title:title||null,
+   caption:caption||null,
+   display_order:displayOrder
+  };
+
+  if(file){
+   message($("galleryMessage"),"Uploading photograph to Supabase Storage...","success");
+
+   uploaded=await uploadGalleryFile(file);
+
+   payload.image_url=uploaded.image_url;
+   payload.image_path=uploaded.image_path;
+  }
+
+  if(id){
+   const {error}=await supabaseClient
+    .from("titi_gallery_images")
+    .update(payload)
+    .eq("id",id);
+
+   if(error)throw error;
+
+   databaseSaved=true;
+
+   if(uploaded&&oldRecord.image_path){
+    try{
+     await removeGalleryStorageFile(oldRecord.image_path);
+    }catch(cleanupError){
+     toast(cleanupError.message);
+    }
+   }
+
+   toast("Gallery photograph updated successfully.");
+
+  }else{
+   payload.is_active=false;
+
+   const {error}=await supabaseClient
+    .from("titi_gallery_images")
+    .insert(payload);
+
+   if(error)throw error;
+
+   databaseSaved=true;
+
+   toast("Photograph uploaded successfully. It is currently unpublished.");
+  }
+
+  resetGalleryForm();
+  await loadGallery();
+
+ }catch(err){
+
+  if(uploaded&&!databaseSaved){
+   try{
+    await removeGalleryStorageFile(uploaded.image_path);
+   }catch(cleanupError){
+    console.error("Storage cleanup error:",cleanupError);
+   }
+  }
+
+  message($("galleryMessage"),"Unable to save photograph: "+errorText(err));
+
+ }finally{
+  button.disabled=false;
+  button.textContent=$("galleryId").value?"SAVE CHANGES":"UPLOAD PHOTOGRAPH";
+ }
+});
+
+/* GALLERY EDIT, PUBLISH, UNPUBLISH AND DELETE */
+$("galleryList").addEventListener("click",async e=>{
+ const edit=e.target.closest("[data-gallery-edit]");
+ const toggle=e.target.closest("[data-gallery-toggle]");
+ const del=e.target.closest("[data-gallery-delete]");
+
+ if(edit){
+  editGalleryImage(edit.dataset.galleryEdit);
+  return;
+ }
+
+ if(toggle){
+  const item=galleryImages.find(x=>String(x.id)===toggle.dataset.galleryToggle);
+  if(!item)return;
+
+  const newStatus=!item.is_active;
+
+  if(!confirm(newStatus?"Publish this photograph on the public website?":"Unpublish this photograph?"))return;
+
+  toggle.disabled=true;
+
+  try{
+   const {error}=await supabaseClient
+    .from("titi_gallery_images")
+    .update({is_active:newStatus})
+    .eq("id",item.id);
+
+   if(error)throw error;
+
+   toast(newStatus?"Photograph published successfully.":"Photograph unpublished successfully.");
+
+   await loadGallery();
+
+  }catch(err){
+   toast("Unable to change publication status: "+errorText(err));
+   toggle.disabled=false;
+  }
+
+  return;
+ }
+
+ if(del){
+  const item=galleryImages.find(x=>String(x.id)===del.dataset.galleryDelete);
+  if(!item)return;
+
+  if(!confirm("Permanently delete this photograph and its associated Storage file? This action cannot be undone."))return;
+
+  del.disabled=true;
+
+  try{
+   /*
+    Delete the database record first.
+    If it fails, preserve the Storage file.
+   */
+   const {error}=await supabaseClient
+    .from("titi_gallery_images")
+    .delete()
+    .eq("id",item.id);
+
+   if(error)throw error;
+
+   toast("Gallery database record deleted.");
+
+   await loadGallery();
+
+   /*
+    Remove the corresponding Storage photograph.
+    If cleanup fails, report it rather than claiming
+    that the Storage file was deleted.
+   */
+   if(item.image_path){
+    try{
+     await removeGalleryStorageFile(item.image_path);
+     toast("Photograph and Storage file deleted successfully.");
+    }catch(cleanupError){
+     toast(cleanupError.message);
+    }
+   }else{
+    toast("Gallery record deleted. No Storage path was recorded.");
+   }
+
+  }catch(err){
+   toast("Unable to delete photograph: "+errorText(err));
+   del.disabled=false;
+  }
+ }
+});
+
+$("gallerySearch").addEventListener("input",renderGallery);
+$("galleryStatusFilter").addEventListener("change",renderGallery);
+$("refreshGalleryButton").addEventListener("click",loadGallery);
+
+/* READ-ONLY RECORD VIEWER FOR OTHER UNCONFIRMED TABLES */
 const genericConfig={
  applications:{table:"applications",target:"applicationsList",title:"Applications"},
- gallery:{table:"titi_gallery_images",target:"galleryList",title:"Gallery images"},
  news:{table:"titi_website_news",target:"newsList",title:"Website news"},
  staff:{table:"titi_staff_profiles",target:"staffList",title:"Staff profiles"},
  documents:{table:"titi_website_documents",target:"documentsList",title:"Website documents"}
@@ -1004,6 +1648,7 @@ async function loadGeneric(key){
   }
 
   const cols=Object.keys(data[0]);
+
   target.innerHTML=
    '<div class="table-wrap"><table class="data-table"><thead><tr>'+
    cols.map(c=>'<th>'+escapeHTML(c)+'</th>').join("")+
@@ -1027,6 +1672,7 @@ $("refreshApplications").addEventListener("click",()=>loadGeneric("applications"
 /* LOGOUT */
 $("logoutButton").addEventListener("click",async()=>{
  if(!confirm("Are you sure you want to log out?"))return;
+
  try{
   const {error}=await supabaseClient.auth.signOut();
   if(error)throw error;
@@ -1036,6 +1682,7 @@ $("logoutButton").addEventListener("click",async()=>{
   notices=[];
   programmes=[];
   slides=[];
+  galleryImages=[];
   siteContent=null;
 
   $("dashboard").classList.add("hidden");
@@ -1047,8 +1694,10 @@ $("logoutButton").addEventListener("click",async()=>{
   resetNoticeForm();
   resetProgrammeForm();
   clearSlideForm();
+  resetGalleryForm();
 
   toast("You have logged out.");
+
  }catch(e){
   toast("Logout failed: "+errorText(e));
  }
@@ -1061,5 +1710,6 @@ if(supabaseClient){
  checkExistingSession();
 }
 </script>
+
 </body>
 </html>
