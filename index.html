@@ -42,15 +42,15 @@ z-index:1000;
 border-bottom:3px solid var(--gold);
 }
 
-/* DESKTOP HEADER - COMPACT CITIZEN DIGITAL ARRANGEMENT */
+/* DESKTOP HEADER - CITIZEN DIGITAL REFERENCE ARRANGEMENT */
 .container.header-inner{
-width:min(1500px,98%);
-min-height:104px;
+width:min(1300px,92%);
+min-height:100px;
 margin:auto;
 display:flex;
 align-items:center;
-justify-content:flex-start;
-gap:12px;
+justify-content:space-between;
+gap:20px;
 flex-wrap:nowrap;
 }
 
@@ -63,8 +63,8 @@ margin-left:0;
 }
 
 .brand img{
-width:180px;
-height:85px;
+width:122px;
+height:76px;
 object-fit:contain;
 object-position:left center;
 }
@@ -72,12 +72,13 @@ object-position:left center;
 nav{
 display:flex;
 align-items:center;
-justify-content:flex-start;
-gap:clamp(8px,.75vw,12px);
-flex:0 1 auto;
+justify-content:flex-end;
+gap:clamp(14px,1.4vw,20px);
+flex:0 0 auto;
 min-width:0;
 flex-wrap:nowrap;
 white-space:nowrap;
+margin-left:auto;
 }
 
 nav a,nav button.nav-link{
@@ -166,7 +167,7 @@ padding-left:23px;
 .nav-apply{
 background:var(--maroon);
 color:#fff!important;
-padding:12px 17px!important;
+padding:14px 22px!important;
 border-radius:4px;
 font-size:15px!important;
 font-weight:800;
@@ -303,9 +304,9 @@ section{padding:76px 0}
 
 /* TABLET */
 @media(min-width:851px) and (max-width:1100px){
-.container.header-inner{width:99%;gap:9px;min-height:96px}
+.container.header-inner{width:99%;gap:9px;min-height:96px;justify-content:space-between}
 .brand img{width:145px;height:72px}
-nav{gap:7px}
+nav{gap:7px;flex:0 1 auto}
 nav a,nav button.nav-link{font-size:12px;letter-spacing:0}
 .nav-apply{padding:9px 10px!important;font-size:12px!important;margin-left:0}
 .programme-submenu,.admissions-submenu,.about-submenu{min-width:210px}
@@ -341,6 +342,7 @@ gap:0;
 box-shadow:0 8px 18px rgba(0,0,0,.2);
 max-height:calc(100vh - 88px);
 overflow-y:auto;
+margin-left:0;
 }
 nav.open{display:flex}
 nav>a,nav button.nav-link{
