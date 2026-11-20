@@ -32,6 +32,8 @@ img{max-width:100%;display:block}
 button{font-family:'Jost',sans-serif;cursor:pointer}
 .container{width:min(1180px,92%);margin:auto}
 
+/* TOPBAR */
+
 .topbar{
 background:var(--navy-dark);
 color:#fff;
@@ -41,6 +43,8 @@ text-align:center;
 letter-spacing:1.1px;
 font-weight:700;
 }
+
+/* HEADER */
 
 header{
 background:#FFFFFF;
@@ -215,6 +219,8 @@ cursor:pointer;
 border-radius:4px;
 }
 
+/* HERO */
+
 .hero{
 background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);
 padding:65px 0 70px;
@@ -269,6 +275,8 @@ background:var(--navy);
 transform:translateY(-2px);
 }
 
+/* GENERAL SECTIONS */
+
 section{padding:65px 0}
 
 .section-heading{
@@ -296,6 +304,8 @@ border-radius:5px;
 color:var(--muted);
 font-size:16px;
 }
+
+/* INTRODUCTION */
 
 .intro-section{background:#fff}
 
@@ -334,6 +344,8 @@ height:340px;
 object-fit:cover;
 border-radius:4px;
 }
+
+/* ADMISSIONS INFORMATION */
 
 .explore-section{
 background:var(--light);
@@ -424,6 +436,8 @@ white-space:nowrap;
 }
 
 .apply-banner .primary-btn:hover{background:#fff}
+
+/* INFORMATION DETAIL PAGES */
 
 .detail-view{
 display:none;
@@ -579,6 +593,8 @@ margin:12px 10px 0 0;
 
 .detail-apply:hover{background:var(--navy)}
 
+/* FOOTER */
+
 footer{
 background:var(--navy-dark);
 color:#fff;
@@ -647,6 +663,8 @@ font-size:13px;
 color:#c7ceda;
 }
 
+/* TABLET */
+
 @media(min-width:851px) and (max-width:1100px){
 
 .container.header-inner{
@@ -680,6 +698,8 @@ min-width:210px;
 .footer-grid{gap:20px}
 
 }
+
+/* MOBILE */
 
 @media(max-width:850px){
 
@@ -785,6 +805,8 @@ gap:30px;
 }
 
 }
+
+/* SMALL MOBILE */
 
 @media(max-width:560px){
 
@@ -1070,7 +1092,7 @@ Find the information you need to prepare for admission to Tahidi International T
 
 </div>
 
-<!-- UPDATED ENTRY REQUIREMENTS ONLY -->
+<!-- ENTRY REQUIREMENTS -->
 
 <section class="detail-view" id="requirements">
 <div class="container detail-container">
@@ -1150,6 +1172,8 @@ For foreign qualifications, equivalence to UCE or UACE is determined by UNEB, wh
 </div>
 </section>
 
+<!-- REQUIRED DOCUMENTS -->
+
 <section class="detail-view" id="documents">
 <div class="container detail-container">
 
@@ -1191,6 +1215,8 @@ SUBMIT YOUR APPLICATION →
 </div>
 </div>
 </section>
+
+<!-- INTAKES -->
 
 <section class="detail-view" id="intakes">
 <div class="container detail-container">
@@ -1253,6 +1279,8 @@ Applicants should confirm programme availability and the applicable admission pe
 </div>
 </section>
 
+<!-- ADMISSION ENQUIRIES -->
+
 <section class="detail-view" id="enquiries">
 <div class="container detail-container">
 
@@ -1309,6 +1337,8 @@ Applicants are encouraged to confirm programme availability, admission requireme
 </section>
 
 </main>
+
+<!-- FOOTER -->
 
 <footer>
 <div class="container">
@@ -1372,8 +1402,12 @@ All Rights Reserved.
 
 <script>
 
+/* FOOTER YEAR */
+
 document.getElementById('footer-year').textContent=
 new Date().getFullYear();
+
+/* MOBILE NAVIGATION */
 
 const menuToggle=document.getElementById('menuToggle');
 const mainNav=document.getElementById('mainNav');
@@ -1391,6 +1425,8 @@ isOpen?'Close navigation':'Open navigation'
 );
 
 });
+
+/* DROPDOWN MENUS */
 
 const aboutMenu=document.getElementById('aboutMenu');
 const aboutToggle=document.getElementById('aboutToggle');
@@ -1425,6 +1461,8 @@ admissionsMenu.classList.contains('open')
 );
 });
 
+/* CLOSE MENUS AFTER NAVIGATION */
+
 document.querySelectorAll('#mainNav a').forEach(link=>{
 
 link.addEventListener('click',()=>{
@@ -1446,6 +1484,8 @@ aboutToggle.setAttribute('aria-expanded','false');
 
 });
 
+/* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
+
 document.addEventListener('click',event=>{
 
 if(!programmeMenu.contains(event.target)){
@@ -1464,6 +1504,8 @@ aboutToggle.setAttribute('aria-expanded','false');
 }
 
 });
+
+/* ADMISSIONS INFORMATION NAVIGATION */
 
 const home=document.getElementById('admissionsHome');
 
@@ -1525,6 +1567,8 @@ behavior:'smooth'
 
 }
 
+/* MAIN ADMISSIONS INFORMATION LINKS */
+
 document.querySelectorAll('[data-view-link]').forEach(link=>{
 
 link.addEventListener('click',event=>{
@@ -1537,11 +1581,15 @@ showView(link.dataset.viewLink);
 
 });
 
+/* BACK TO ADMISSIONS BUTTON */
+
 document.querySelectorAll('[data-back]').forEach(button=>{
 
 button.addEventListener('click',()=>showHome());
 
 });
+
+/* READ URL HASH AND DISPLAY CORRECT SECTION */
 
 function routeHash(){
 
@@ -1565,9 +1613,17 @@ window.scrollTo(0,0);
 
 }
 
+/* NAVIGATION FIX */
+
 window.addEventListener('popstate',routeHash);
 
+window.addEventListener('hashchange',routeHash);
+
 window.addEventListener('DOMContentLoaded',routeHash);
+
+/* ALSO INITIALISE IF THE PAGE HAS ALREADY LOADED */
+
+routeHash();
 
 </script>
 
