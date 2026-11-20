@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>About Us | Tahidi International Training Institute</title>
-<meta name="description" content="Discover Tahidi International Training Institute (TITI), our institutional identity, vision, mission, core values, commitment to students and educational philosophy.">
+<meta name="description" content="Discover Tahidi International Training Institute, our vision, mission, core values, educational philosophy and commitment to students.">
 <meta name="theme-color" content="#FFFFFF">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +16,7 @@
 :root{
     --navy:#0F2A5E;
     --navy-dark:#091B3D;
+    --dark-navy:#091B3D;
     --maroon:#7A1220;
     --gold:#D4AF37;
     --white:#FFFFFF;
@@ -26,11 +27,7 @@
     --shadow:0 12px 35px rgba(9,27,61,.09);
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 html{
     scroll-behavior:smooth;
@@ -45,19 +42,9 @@ body{
     overflow-x:hidden;
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-img{
-    max-width:100%;
-    display:block;
-}
-
-button{
-    font-family:'Jost',sans-serif;
-}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:'Jost',sans-serif}
 
 .container{
     width:min(1180px,92%);
@@ -66,7 +53,7 @@ button{
 
 /* =========================================
    INSTITUTIONAL HEADER
-   MATCHES THE APPROVED HOMEPAGE HEADER
+   PRESERVED AS SUPPLIED
 ========================================= */
 
 .topbar{
@@ -207,9 +194,7 @@ nav button.nav-link{
     transition:.25s;
 }
 
-.dropdown-menu a:last-child{
-    border-bottom:0;
-}
+.dropdown-menu a:last-child{border-bottom:0}
 
 .dropdown-menu a:hover{
     background:#F1F4F8;
@@ -245,12 +230,87 @@ nav button.nav-link{
 }
 
 /* =========================================
+   GENERAL PAGE ELEMENTS
+========================================= */
+
+section{scroll-margin-top:115px}
+
+.section{padding:88px 0}
+.section-light{background:var(--light)}
+
+.eyebrow{
+    display:block;
+    color:var(--maroon);
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.section-heading{margin-bottom:43px}
+.section-heading.center{text-align:center}
+
+.section-heading h2{
+    color:var(--navy);
+    font-size:clamp(31px,3.5vw,45px);
+    font-weight:800;
+    line-height:1.18;
+    letter-spacing:-.6px;
+}
+
+.section-heading p{
+    max-width:750px;
+    margin-top:15px;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.9;
+}
+
+.section-heading.center p{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.gold-line{
+    width:66px;
+    height:4px;
+    background:var(--gold);
+    margin-top:19px;
+    border-radius:5px;
+}
+
+.section-heading.center .gold-line{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.text-link{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    color:var(--maroon);
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    border-bottom:1px solid rgba(122,18,32,.25);
+    padding-bottom:5px;
+    transition:.25s;
+}
+
+.text-link:hover{
+    color:var(--navy);
+    gap:14px;
+}
+
+/* =========================================
    HERO
 ========================================= */
 
 .page-hero{
     position:relative;
-    min-height:470px;
+    min-height:480px;
     display:flex;
     align-items:center;
     color:#fff;
@@ -269,9 +329,7 @@ nav button.nav-link{
     height:550px;
     border:1px solid rgba(212,175,55,.23);
     border-radius:50%;
-    box-shadow:
-        0 0 0 45px rgba(212,175,55,.035),
-        0 0 0 90px rgba(212,175,55,.025);
+    box-shadow:0 0 0 45px rgba(212,175,55,.035),0 0 0 90px rgba(212,175,55,.025);
     pointer-events:none;
 }
 
@@ -295,9 +353,7 @@ nav button.nav-link{
     text-transform:uppercase;
 }
 
-.hero-breadcrumb a{
-    color:var(--gold);
-}
+.hero-breadcrumb a{color:var(--gold)}
 
 .hero-label{
     display:block;
@@ -317,9 +373,7 @@ nav button.nav-link{
     margin-bottom:23px;
 }
 
-.page-hero h1 span{
-    color:var(--gold);
-}
+.page-hero h1 span{color:var(--gold)}
 
 .page-hero p{
     max-width:690px;
@@ -351,7 +405,7 @@ nav button.nav-link{
 }
 
 /* =========================================
-   INSTITUTIONAL INTRODUCTION STRIP
+   INSTITUTIONAL IDENTITY STRIP
 ========================================= */
 
 .identity-strip{
@@ -372,13 +426,11 @@ nav button.nav-link{
     border-right:1px solid var(--border);
 }
 
-.identity-item:last-child{
-    border-right:0;
-}
+.identity-item:last-child{border-right:0}
 
 .identity-symbol{
-    width:43px;
-    height:43px;
+    width:46px;
+    height:46px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -392,7 +444,7 @@ nav button.nav-link{
 .identity-item strong{
     display:block;
     color:var(--navy);
-    font-size:14px;
+    font-size:15px;
     font-weight:800;
 }
 
@@ -400,74 +452,6 @@ nav button.nav-link{
     display:block;
     color:var(--muted);
     font-size:12px;
-}
-
-/* =========================================
-   GENERAL SECTIONS
-========================================= */
-
-section{
-    scroll-margin-top:115px;
-}
-
-.section{
-    padding:88px 0;
-}
-
-.section-light{
-    background:var(--light);
-}
-
-.section-heading{
-    margin-bottom:42px;
-}
-
-.section-heading.center{
-    text-align:center;
-}
-
-.section-heading .eyebrow{
-    display:block;
-    color:var(--maroon);
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:2.5px;
-    text-transform:uppercase;
-    margin-bottom:11px;
-}
-
-.section-heading h2{
-    color:var(--navy);
-    font-size:clamp(30px,3.4vw,43px);
-    font-weight:800;
-    line-height:1.2;
-    letter-spacing:-.5px;
-}
-
-.section-heading p{
-    max-width:760px;
-    margin-top:15px;
-    color:var(--muted);
-    font-size:15px;
-    line-height:1.85;
-}
-
-.section-heading.center p{
-    margin-left:auto;
-    margin-right:auto;
-}
-
-.gold-line{
-    width:65px;
-    height:4px;
-    background:var(--gold);
-    margin-top:18px;
-    border-radius:4px;
-}
-
-.section-heading.center .gold-line{
-    margin-left:auto;
-    margin-right:auto;
 }
 
 /* =========================================
@@ -499,7 +483,7 @@ section{
 }
 
 .who-image{
-    min-height:440px;
+    min-height:455px;
     background:
         linear-gradient(rgba(9,27,61,.08),rgba(9,27,61,.08)),
         url("apply.jpeg") center/cover no-repeat;
@@ -525,17 +509,17 @@ section{
     left:-20px;
     bottom:35px;
     z-index:2;
-    max-width:260px;
+    max-width:270px;
     background:var(--navy);
     color:#fff;
-    padding:20px 24px;
+    padding:21px 25px;
     border-left:4px solid var(--gold);
     box-shadow:var(--shadow);
 }
 
 .who-caption strong{
     display:block;
-    font-size:17px;
+    font-size:19px;
     font-weight:800;
     color:var(--gold);
 }
@@ -582,7 +566,7 @@ section{
     position:relative;
     overflow:hidden;
     background:#fff;
-    padding:42px 36px;
+    padding:42px 38px;
     border:1px solid var(--border);
     border-bottom:5px solid var(--gold);
     border-radius:5px;
@@ -648,7 +632,7 @@ section{
     background:#fff;
     border:1px solid var(--border);
     border-radius:5px;
-    padding:30px 27px;
+    padding:31px 28px;
     transition:.3s;
     position:relative;
     overflow:hidden;
@@ -671,9 +655,7 @@ section{
     box-shadow:var(--shadow);
 }
 
-.value-card:hover::before{
-    height:100%;
-}
+.value-card:hover::before{height:100%}
 
 .value-number{
     color:var(--gold);
@@ -685,7 +667,7 @@ section{
 
 .value-card h3{
     color:var(--navy);
-    font-size:19px;
+    font-size:20px;
     font-weight:800;
     margin-bottom:10px;
 }
@@ -700,9 +682,7 @@ section{
    EDUCATIONAL PHILOSOPHY
 ========================================= */
 
-.philosophy-section{
-    background:#fff;
-}
+.philosophy-section{background:#fff}
 
 .philosophy-grid{
     display:grid;
@@ -713,22 +693,29 @@ section{
 
 .philosophy-panel{
     background:var(--navy);
-    padding:40px;
+    padding:43px;
     color:#fff;
     border-radius:5px;
     border-bottom:5px solid var(--gold);
+    position:relative;
+    overflow:hidden;
 }
 
-.philosophy-panel .eyebrow{
-    color:var(--gold);
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
+.philosophy-panel::after{
+    content:"";
+    position:absolute;
+    width:190px;
+    height:190px;
+    right:-90px;
+    bottom:-100px;
+    border:1px solid rgba(212,175,55,.3);
+    border-radius:50%;
 }
+
+.philosophy-panel .eyebrow{color:var(--gold)}
 
 .philosophy-panel h2{
-    font-size:32px;
+    font-size:34px;
     font-weight:800;
     line-height:1.25;
     margin:17px 0;
@@ -742,7 +729,7 @@ section{
 
 .philosophy-content h3{
     color:var(--navy);
-    font-size:24px;
+    font-size:25px;
     font-weight:800;
     margin-bottom:13px;
 }
@@ -751,13 +738,14 @@ section{
     color:var(--muted);
     font-size:15px;
     line-height:1.9;
-    margin-bottom:23px;
+    margin-bottom:18px;
 }
 
 .philosophy-points{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:13px;
+    margin-top:22px;
 }
 
 .philosophy-point{
@@ -801,17 +789,9 @@ section{
     box-shadow:0 0 0 55px rgba(212,175,55,.025);
 }
 
-.commitment-section .section-heading h2{
-    color:#fff;
-}
-
-.commitment-section .section-heading p{
-    color:rgba(255,255,255,.7);
-}
-
-.commitment-section .eyebrow{
-    color:var(--gold);
-}
+.commitment-section .section-heading h2{color:#fff}
+.commitment-section .section-heading p{color:rgba(255,255,255,.7)}
+.commitment-section .eyebrow{color:var(--gold)}
 
 .commitment-grid{
     display:grid;
@@ -824,7 +804,7 @@ section{
 .commitment-item{
     display:flex;
     gap:17px;
-    padding:23px;
+    padding:24px;
     border:1px solid rgba(255,255,255,.15);
     background:rgba(255,255,255,.045);
     border-radius:5px;
@@ -839,8 +819,8 @@ section{
 
 .commitment-check{
     flex-shrink:0;
-    width:36px;
-    height:36px;
+    width:37px;
+    height:37px;
     border-radius:50%;
     background:var(--gold);
     color:var(--dark-navy);
@@ -853,7 +833,7 @@ section{
 
 .commitment-item h3{
     color:#fff;
-    font-size:17px;
+    font-size:18px;
     font-weight:800;
     margin-bottom:6px;
 }
@@ -870,14 +850,13 @@ section{
 
 .motto-section{
     background:var(--light);
-    padding:65px 0;
+    padding:75px 0;
     text-align:center;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
 }
 
-.motto-inner{
-    max-width:850px;
-    margin:auto;
-}
+.motto-inner{max-width:850px;margin:auto}
 
 .motto-inner .eyebrow{
     color:var(--maroon);
@@ -888,19 +867,20 @@ section{
 
 .motto-inner h2{
     color:var(--navy);
-    font-size:clamp(32px,4vw,48px);
+    font-size:clamp(35px,4.5vw,54px);
     font-weight:800;
-    line-height:1.2;
-    margin:13px 0;
+    line-height:1.15;
+    margin:14px 0;
+    letter-spacing:1px;
 }
 
-.motto-inner h2 span{
-    color:var(--maroon);
-}
+.motto-inner h2 span{color:var(--maroon)}
 
 .motto-inner p{
     color:var(--muted);
     font-size:15px;
+    max-width:680px;
+    margin:0 auto;
 }
 
 /* =========================================
@@ -909,7 +889,7 @@ section{
 
 .location-grid{
     display:grid;
-    grid-template-columns:.9fr 1.1fr;
+    grid-template-columns:.95fr 1.05fr;
     gap:30px;
     align-items:stretch;
 }
@@ -917,7 +897,7 @@ section{
 .location-card{
     background:var(--navy);
     color:#fff;
-    padding:37px;
+    padding:39px;
     border-radius:5px;
     border-bottom:5px solid var(--gold);
 }
@@ -925,13 +905,14 @@ section{
 .location-card h3{
     font-size:25px;
     font-weight:800;
-    margin-bottom:25px;
+    margin-bottom:27px;
+    line-height:1.3;
 }
 
 .location-detail{
     display:flex;
     gap:14px;
-    margin-bottom:22px;
+    margin-bottom:23px;
     align-items:flex-start;
 }
 
@@ -949,22 +930,23 @@ section{
 }
 
 .location-detail span{
-    color:rgba(255,255,255,.86);
+    color:rgba(255,255,255,.88);
     font-size:14px;
 }
 
 .location-note{
     background:var(--light);
     border-radius:5px;
-    padding:40px;
+    padding:43px;
     display:flex;
     flex-direction:column;
     justify-content:center;
+    border:1px solid var(--border);
 }
 
 .location-note h3{
     color:var(--navy);
-    font-size:30px;
+    font-size:31px;
     font-weight:800;
     line-height:1.3;
     margin-bottom:15px;
@@ -974,6 +956,7 @@ section{
     color:var(--muted);
     font-size:15px;
     margin-bottom:17px;
+    line-height:1.9;
 }
 
 .contact-button{
@@ -981,7 +964,7 @@ section{
     width:fit-content;
     background:var(--maroon);
     color:#fff;
-    padding:12px 23px;
+    padding:13px 24px;
     border-radius:4px;
     font-size:12px;
     font-weight:800;
@@ -1000,6 +983,7 @@ section{
 
 .contact-section{
     background:var(--light);
+    border-top:1px solid var(--border);
 }
 
 .contact-grid{
@@ -1010,7 +994,7 @@ section{
 
 .contact-card{
     background:#fff;
-    padding:33px 25px;
+    padding:35px 25px;
     text-align:center;
     border-radius:5px;
     border-top:4px solid var(--gold);
@@ -1019,17 +1003,17 @@ section{
 }
 
 .contact-card:hover{
-    transform:translateY(-4px);
+    transform:translateY(-5px);
     box-shadow:var(--shadow);
 }
 
 .contact-icon{
-    width:58px;
-    height:58px;
+    width:59px;
+    height:59px;
     display:flex;
     align-items:center;
     justify-content:center;
-    margin:0 auto 17px;
+    margin:0 auto 18px;
     background:var(--navy);
     color:var(--gold);
     border-radius:50%;
@@ -1047,7 +1031,16 @@ section{
     color:var(--muted);
     font-size:14px;
     line-height:1.8;
+    overflow-wrap:anywhere;
 }
+
+.contact-card a{
+    color:var(--maroon);
+    font-weight:700;
+    transition:.25s;
+}
+
+.contact-card a:hover{color:var(--navy)}
 
 /* =========================================
    CALL TO ACTION
@@ -1055,7 +1048,7 @@ section{
 
 .cta-section{
     background:linear-gradient(110deg,var(--maroon),#4B0D17);
-    padding:65px 0;
+    padding:68px 0;
     color:#fff;
 }
 
@@ -1067,7 +1060,7 @@ section{
 }
 
 .cta-inner h2{
-    font-size:clamp(27px,3vw,38px);
+    font-size:clamp(27px,3vw,39px);
     font-weight:800;
     line-height:1.25;
     margin-bottom:10px;
@@ -1082,7 +1075,7 @@ section{
     display:inline-block;
     background:var(--gold);
     color:var(--dark-navy);
-    padding:14px 27px;
+    padding:15px 29px;
     border-radius:4px;
     font-weight:800;
     font-size:13px;
@@ -1103,11 +1096,12 @@ section{
     background:var(--dark-navy);
     color:#fff;
     padding:65px 0 0;
+    position:relative;
 }
 
 .footer-grid{
     display:grid;
-    grid-template-columns:1.3fr 1fr 1fr 1fr;
+    grid-template-columns:1.35fr 1fr 1fr 1fr;
     gap:35px;
     padding-bottom:45px;
 }
@@ -1126,6 +1120,28 @@ section{
     line-height:1.85;
 }
 
+.footer-about .footer-motto{
+    margin-top:15px;
+    color:var(--gold);
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.footer-contact{
+    margin-top:19px;
+    display:grid;
+    gap:9px;
+}
+
+.footer-contact a,
+.footer-contact span{
+    color:rgba(255,255,255,.75);
+    font-size:13px;
+    overflow-wrap:anywhere;
+}
+
+.footer-contact a:hover{color:var(--gold)}
+
 .footer-column h3{
     font-size:15px;
     font-weight:800;
@@ -1135,13 +1151,9 @@ section{
     letter-spacing:.8px;
 }
 
-.footer-column ul{
-    list-style:none;
-}
+.footer-column ul{list-style:none}
 
-.footer-column li{
-    margin-bottom:11px;
-}
+.footer-column li{margin-bottom:11px}
 
 .footer-column a{
     color:rgba(255,255,255,.75);
@@ -1162,9 +1174,7 @@ section{
     font-size:13px;
 }
 
-.footer-bottom strong{
-    color:var(--gold);
-}
+.footer-bottom strong{color:var(--gold)}
 
 /* =========================================
    BACK TO TOP
@@ -1216,33 +1226,19 @@ section{
         gap:12px;
     }
 
-    .brand img{
-        width:125px;
-    }
-
-    nav{
-        gap:9px;
-    }
+    .brand img{width:125px}
+    nav{gap:9px}
 
     nav>a,
-    nav button.nav-link{
-        font-size:11px;
-    }
+    nav button.nav-link{font-size:11px}
 
-    .nav-apply{
-        padding:9px 10px!important;
-    }
-
-    .who-grid{
-        gap:35px;
-    }
+    .nav-apply{padding:9px 10px!important}
+    .who-grid{gap:35px}
 }
 
 @media(max-width:850px){
 
-    html{
-        scroll-padding-top:90px;
-    }
+    html{scroll-padding-top:90px}
 
     .container.header-inner{
         min-height:90px;
@@ -1254,9 +1250,7 @@ section{
         height:68px;
     }
 
-    .menu-toggle{
-        display:block;
-    }
+    .menu-toggle{display:block}
 
     nav{
         display:none;
@@ -1275,9 +1269,7 @@ section{
         overflow-y:auto;
     }
 
-    nav.active{
-        display:flex;
-    }
+    nav.active{display:flex}
 
     nav>a,
     nav button.nav-link{
@@ -1306,9 +1298,7 @@ section{
         padding:5px 0;
     }
 
-    .dropdown.open .dropdown-menu{
-        display:block;
-    }
+    .dropdown.open .dropdown-menu{display:block}
 
     .dropdown-menu a{
         padding:11px 18px;
@@ -1324,25 +1314,13 @@ section{
 
     .who-grid,
     .philosophy-grid,
-    .location-grid{
-        grid-template-columns:1fr;
-    }
+    .location-grid{grid-template-columns:1fr}
 
-    .who-image{
-        min-height:360px;
-    }
+    .who-image{min-height:370px}
+    .who-caption{left:0}
 
-    .who-caption{
-        left:0;
-    }
-
-    .values-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .footer-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+    .values-grid{grid-template-columns:repeat(2,1fr)}
+    .footer-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:600px){
@@ -1352,25 +1330,12 @@ section{
         letter-spacing:.7px;
     }
 
-    .page-hero{
-        min-height:390px;
-    }
+    .page-hero{min-height:390px}
+    .hero-content{padding:65px 0}
+    .page-hero h1{font-size:44px}
+    .page-hero p{font-size:15px}
 
-    .hero-content{
-        padding:65px 0;
-    }
-
-    .page-hero h1{
-        font-size:44px;
-    }
-
-    .page-hero p{
-        font-size:15px;
-    }
-
-    .identity-grid{
-        grid-template-columns:1fr;
-    }
+    .identity-grid{grid-template-columns:1fr}
 
     .identity-item{
         border-right:0;
@@ -1378,29 +1343,13 @@ section{
         padding:19px 10px;
     }
 
-    .identity-item:last-child{
-        border-bottom:0;
-    }
+    .identity-item:last-child{border-bottom:0}
 
-    .section{
-        padding:63px 0;
-    }
-
-    .section-heading{
-        margin-bottom:30px;
-    }
-
-    .section-heading h2{
-        font-size:31px;
-    }
-
-    .who-grid{
-        gap:35px;
-    }
-
-    .who-image{
-        min-height:300px;
-    }
+    .section{padding:64px 0}
+    .section-heading{margin-bottom:31px}
+    .section-heading h2{font-size:31px}
+    .who-grid{gap:35px}
+    .who-image{min-height:300px}
 
     .who-caption{
         bottom:20px;
@@ -1412,22 +1361,12 @@ section{
     .values-grid,
     .commitment-grid,
     .contact-grid,
-    .philosophy-points{
-        grid-template-columns:1fr;
-    }
+    .philosophy-points{grid-template-columns:1fr}
 
-    .vm-card{
-        padding:30px 25px;
-    }
-
-    .philosophy-panel{
-        padding:30px 25px;
-    }
-
+    .vm-card{padding:30px 25px}
+    .philosophy-panel{padding:31px 26px}
     .location-card,
-    .location-note{
-        padding:28px 23px;
-    }
+    .location-note{padding:29px 24px}
 
     .cta-inner{
         flex-direction:column;
@@ -1436,12 +1375,10 @@ section{
 
     .footer-grid{
         grid-template-columns:1fr;
-        gap:30px;
+        gap:31px;
     }
 
-    .footer{
-        padding-top:48px;
-    }
+    .footer{padding-top:48px}
 
     .back-top{
         right:14px;
@@ -1469,9 +1406,7 @@ section{
     TAHIDI INTERNATIONAL TRAINING INSTITUTE &nbsp; | &nbsp; BREAKING THE LIMITS
 </div>
 
-<!-- =====================================
-     HOMEPAGE-MATCHING HEADER
-===================================== -->
+<!-- APPROVED HOMEPAGE HEADER: PRESERVED -->
 
 <header>
     <div class="container header-inner">
@@ -1550,9 +1485,7 @@ section{
     </div>
 </header>
 
-<!-- =====================================
-     HERO
-===================================== -->
+<!-- HERO -->
 
 <section class="page-hero">
 
@@ -1589,9 +1522,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     INSTITUTIONAL IDENTITY STRIP
-===================================== -->
+<!-- INSTITUTIONAL IDENTITY -->
 
 <div class="identity-strip">
     <div class="container identity-grid">
@@ -1623,9 +1554,7 @@ section{
     </div>
 </div>
 
-<!-- =====================================
-     WHO WE ARE
-===================================== -->
+<!-- WHO WE ARE -->
 
 <section class="section" id="who-we-are">
 
@@ -1640,8 +1569,8 @@ section{
             </div>
 
             <p>
-                Tahidi International Training Institute (TITI) is a
-                training institution committed to providing quality
+                <strong>Tahidi International Training Institute (TITI)</strong>
+                is a training institution committed to providing quality
                 education, practical skills and professional development
                 opportunities.
             </p>
@@ -1695,9 +1624,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     VISION AND MISSION
-===================================== -->
+<!-- VISION AND MISSION -->
 
 <section class="section vision-section">
 
@@ -1717,26 +1644,19 @@ section{
         <div class="vision-mission">
 
             <article class="vm-card" id="our-vision">
-
                 <div class="vm-icon">◎</div>
-
                 <h3>Our Vision</h3>
-
                 <p>
                     To be a leading centre of excellence in education,
                     professional training and skills development,
                     empowering individuals to become competent,
                     innovative and responsible contributors to society.
                 </p>
-
             </article>
 
             <article class="vm-card" id="our-mission">
-
                 <div class="vm-icon">✦</div>
-
                 <h3>Our Mission</h3>
-
                 <p>
                     To provide accessible, relevant and quality education
                     and professional training through effective teaching,
@@ -1744,7 +1664,6 @@ section{
                     preparing learners for meaningful careers and
                     responsible participation in society.
                 </p>
-
             </article>
 
         </div>
@@ -1753,9 +1672,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     CORE VALUES
-===================================== -->
+<!-- CORE VALUES -->
 
 <section class="section" id="our-core-values">
 
@@ -1834,9 +1751,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     EDUCATIONAL PHILOSOPHY
-===================================== -->
+<!-- EDUCATIONAL PHILOSOPHY -->
 
 <section class="section philosophy-section">
 
@@ -1900,9 +1815,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     COMMITMENT TO STUDENTS
-===================================== -->
+<!-- STUDENT COMMITMENT -->
 
 <section class="section commitment-section" id="student-commitment">
 
@@ -1996,9 +1909,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     INSTITUTIONAL MOTTO
-===================================== -->
+<!-- INSTITUTIONAL MOTTO -->
 
 <section class="motto-section">
 
@@ -2021,9 +1932,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     LOCATION
-===================================== -->
+<!-- LOCATION -->
 
 <section class="section" id="our-location">
 
@@ -2056,22 +1965,32 @@ section{
                 <div class="location-detail">
                     <div class="symbol">⌂</div>
                     <div>
-                        <strong>Location</strong>
-                        <span>Nangwe, Busia, Uganda</span>
+                        <strong>Physical Location</strong>
+                        <span>Nangwe, near Bila High School, Busia, Uganda</span>
+                    </div>
+                </div>
+
+                <div class="location-detail">
+                    <div class="symbol">☎</div>
+                    <div>
+                        <strong>Telephone</strong>
+                        <span><a href="tel:+256776433303">+256 776 433303</a></span>
                     </div>
                 </div>
 
                 <div class="location-detail">
                     <div class="symbol">✉</div>
                     <div>
-                        <strong>Enquiries</strong>
-                        <span>Contact the institute for directions and further information.</span>
+                        <strong>Email</strong>
+                        <span><a href="mailto:tahidiinternationalinstitute@gmail.com">tahidiinternationalinstitute@gmail.com</a></span>
                     </div>
                 </div>
 
             </div>
 
             <div class="location-note">
+
+                <span class="eyebrow">Your next step starts here</span>
 
                 <h3>Education. Skills. Opportunity.</h3>
 
@@ -2083,8 +2002,9 @@ section{
                 </p>
 
                 <p>
-                    Take the next step towards your educational and
-                    professional ambitions.
+                    Our team is available to assist you with enquiries
+                    about programmes, admissions and institutional
+                    information.
                 </p>
 
                 <a href="admissions.html#admissions" class="contact-button">
@@ -2099,9 +2019,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     CONTACT INFORMATION
-===================================== -->
+<!-- CONTACT INFORMATION -->
 
 <section class="section contact-section" id="contact-information">
 
@@ -2132,8 +2050,9 @@ section{
                 <h3>Telephone</h3>
 
                 <p>
-                    Contact the institute through its official
-                    telephone contact.
+                    Speak to us directly for information and assistance.
+                    <br><br>
+                    <a href="tel:+256776433303">+256 776 433303</a>
                 </p>
 
             </article>
@@ -2145,8 +2064,9 @@ section{
                 <h3>Email Enquiries</h3>
 
                 <p>
-                    Contact the institute for official information
-                    and assistance.
+                    Send your enquiries to our official institutional email.
+                    <br><br>
+                    <a href="mailto:tahidiinternationalinstitute@gmail.com">tahidiinternationalinstitute@gmail.com</a>
                 </p>
 
             </article>
@@ -2158,8 +2078,8 @@ section{
                 <h3>Visit Us</h3>
 
                 <p>
-                    Get in touch with the institute for directions
-                    and visitor information.
+                    Find us at Nangwe, near Bila High School,
+                    Busia, Uganda.
                 </p>
 
             </article>
@@ -2170,9 +2090,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     CALL TO ACTION
-===================================== -->
+<!-- CALL TO ACTION -->
 
 <section class="cta-section">
 
@@ -2195,9 +2113,7 @@ section{
 
 </section>
 
-<!-- =====================================
-     FOOTER
-===================================== -->
+<!-- COMPLETE FOOTER -->
 
 <footer class="footer">
 
@@ -2215,13 +2131,18 @@ section{
 
                 <p>
                     Tahidi International Training Institute is committed
-                    to education, professional training and skills
-                    development.
+                    to providing quality education, professional training
+                    and skills development for meaningful personal and
+                    professional growth.
                 </p>
 
-                <p style="margin-top:15px;color:#D4AF37;font-weight:800;">
-                    BREAKING THE LIMITS
-                </p>
+                <p class="footer-motto">BREAKING THE LIMITS</p>
+
+                <div class="footer-contact">
+                    <a href="tel:+256776433303">☎ &nbsp; +256 776 433303</a>
+                    <a href="mailto:tahidiinternationalinstitute@gmail.com">✉ &nbsp; tahidiinternationalinstitute@gmail.com</a>
+                    <span>⌖ &nbsp; Nangwe, Busia, Uganda</span>
+                </div>
 
             </div>
 
@@ -2288,14 +2209,11 @@ section{
 
 <!-- BACK TO TOP -->
 
-<button class="back-top" id="backTop"
-        aria-label="Back to top">
+<button class="back-top" id="backTop" aria-label="Back to top">
     ↑
 </button>
 
-<!-- =====================================
-     JAVASCRIPT
-===================================== -->
+<!-- JAVASCRIPT -->
 
 <script>
 
@@ -2369,6 +2287,8 @@ document.querySelectorAll("#mainNav a").forEach(function(link){
 
             document.querySelectorAll(".dropdown").forEach(function(item){
                 item.classList.remove("open");
+                const button = item.querySelector(".dropdown-toggle");
+                if(button) button.setAttribute("aria-expanded","false");
             });
 
         }
@@ -2413,6 +2333,8 @@ window.addEventListener("resize",function(){
 
         document.querySelectorAll(".dropdown").forEach(function(item){
             item.classList.remove("open");
+            const button = item.querySelector(".dropdown-toggle");
+            if(button) button.setAttribute("aria-expanded","false");
         });
 
     }
