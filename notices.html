@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0F2A5E">
+<meta name="theme-color" content="#091B3D">
 
-<title>Notice Board | Tahidi International Training Institute</title>
-
-<meta name="description" content="Official notices, announcements and examination timetables from Tahidi International Training Institute.">
+<title>Official Notices | Tahidi International Training Institute</title>
+<meta name="description" content="Official announcements, examination timetables, student updates and important information from Tahidi International Training Institute.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,181 +17,700 @@
 --navy:#0F2A5E;
 --navy-dark:#091B3D;
 --maroon:#7A1220;
+--maroon-dark:#5C0D18;
 --gold:#D4AF37;
---light:#F4F6F9;
+--light:#F3F5F8;
+--white:#FFFFFF;
 --text:#263247;
---muted:#697589;
+--muted:#718096;
 --border:#E3E7ED;
---white:#fff;
+--green:#16804C;
+--shadow:0 12px 35px rgba(9,27,61,.08);
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box
-}
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth;scroll-padding-top:115px}
 
 body{
 font-family:'Jost',sans-serif;
 color:var(--text);
-background:var(--light);
-line-height:1.7
+background:#fff;
+line-height:1.7;
 }
 
 a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer}
-.container{width:min(1120px,92%);margin:auto}
+button,input{font-family:inherit}
+button{cursor:pointer}
+img{max-width:100%;display:block}
+
+.container{width:min(1500px,94%);margin:0 auto}
+
+/* TOP BAR */
 
 .topbar{
 background:var(--navy-dark);
 color:#fff;
 padding:8px 12px;
-text-align:center;
 font-size:12px;
-font-weight:800;
-letter-spacing:1px
+text-align:center;
+letter-spacing:1.1px;
+font-weight:700;
 }
+
+/* MAIN HEADER */
 
 header{
-background:var(--navy);
-box-shadow:0 5px 20px rgba(0,0,0,.15)
+background:#FFFFFF;
+box-shadow:0 4px 18px rgba(0,0,0,.07);
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:3px solid var(--maroon);
 }
 
-.header-inner{
-min-height:95px;
+.container.header-inner{
+width:min(1500px,94%);
+min-height:94px;
+margin:0 auto;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:20px
+gap:clamp(12px,1.5vw,24px);
+flex-wrap:nowrap;
+}
+
+.brand{
+display:flex;
+align-items:center;
+justify-content:flex-start;
+flex-shrink:0;
+white-space:nowrap;
+margin:0;
 }
 
 .brand img{
-width:165px;
+width:145px;
 height:78px;
-object-fit:contain
+object-fit:contain;
+object-position:center;
 }
 
-nav{
+nav.main-nav{
 display:flex;
 align-items:center;
-gap:25px;
-flex-wrap:wrap
+justify-content:space-between;
+gap:clamp(7px,.85vw,14px);
+flex:1;
+min-width:0;
+margin-left:auto;
+flex-wrap:nowrap;
+white-space:nowrap;
 }
 
-nav a{
-color:#fff;
+nav.main-nav>a,
+nav.main-nav button.nav-link{
+color:#111;
+font-size:clamp(11px,.91vw,14px);
+font-weight:800;
+letter-spacing:.15px;
+text-transform:uppercase;
+white-space:nowrap;
+flex-shrink:0;
+padding:12px 0;
+transition:.25s;
+}
+
+nav.main-nav>a:hover,
+nav.main-nav button.nav-link:hover,
+nav.main-nav>a.active{color:var(--maroon)}
+
+nav.main-nav button.nav-link{
+border:0;
+background:transparent;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:5px;
+}
+
+.dropdown-arrow{
+font-size:11px;
+transition:transform .25s;
+}
+
+.programme-menu.open .dropdown-arrow,
+.admissions-menu.open .dropdown-arrow,
+.about-menu.open .dropdown-arrow{transform:rotate(180deg)}
+
+.programme-menu,
+.admissions-menu,
+.about-menu{
+position:relative;
+display:flex;
+align-items:center;
+flex-shrink:0;
+}
+
+.programme-submenu,
+.admissions-submenu,
+.about-submenu{
+display:none;
+position:absolute;
+top:100%;
+left:-15px;
+min-width:235px;
+background:#fff;
+padding:9px 0;
+border-top:4px solid var(--gold);
+border-radius:0 0 7px 7px;
+box-shadow:0 12px 28px rgba(0,0,0,.2);
+z-index:1100;
+white-space:normal;
+}
+
+.programme-menu:hover .programme-submenu,
+.programme-menu:focus-within .programme-submenu,
+.programme-menu.open .programme-submenu,
+.admissions-menu:hover .admissions-submenu,
+.admissions-menu:focus-within .admissions-submenu,
+.admissions-menu.open .admissions-submenu,
+.about-menu:hover .about-submenu,
+.about-menu:focus-within .about-submenu,
+.about-menu.open .about-submenu{display:block}
+
+.about-submenu{min-width:255px}
+
+.programme-submenu a,
+.admissions-submenu a,
+.about-submenu a{
+display:block;
+padding:11px 18px;
 font-size:13px;
+font-weight:700;
+color:var(--navy);
+border-bottom:1px solid #edf0f4;
+text-transform:none;
+}
+
+.programme-submenu a:last-child,
+.admissions-submenu a:last-child,
+.about-submenu a:last-child{border-bottom:0}
+
+.programme-submenu a:hover,
+.admissions-submenu a:hover,
+.about-submenu a:hover{
+background:#F1F4F8;
+color:var(--maroon);
+padding-left:23px;
+}
+
+.nav-apply{
+background:var(--maroon);
+color:#fff!important;
+padding:10px 12px!important;
+border-radius:4px;
+font-size:12px!important;
 font-weight:800;
-transition:.2s
+margin-left:2px;
+border:1px solid var(--maroon);
 }
 
-nav a:hover,
-nav a.active{
-color:var(--gold)
+.nav-apply:hover{
+background:#fff;
+color:var(--maroon)!important;
 }
 
-.hero{
-background:linear-gradient(115deg,#0B2452,#153A76 65%,#7A1220);
+.menu-toggle{
+display:none;
+border:1px solid var(--maroon);
+background:var(--maroon);
 color:#fff;
-padding:58px 0;
-text-align:center;
-border-bottom:4px solid var(--gold)
+padding:8px 13px;
+font-size:22px;
+cursor:pointer;
+border-radius:4px;
 }
 
-.hero h1{
-font-size:clamp(28px,4vw,42px);
-font-weight:800;
-line-height:1.2;
-margin-bottom:10px
+/* HERO */
+
+.notice-hero{
+position:relative;
+overflow:hidden;
+background:
+linear-gradient(110deg,rgba(9,27,61,.98),rgba(15,42,94,.94) 58%,rgba(122,18,32,.94));
+color:#fff;
+padding:75px 0 68px;
+border-bottom:5px solid var(--gold);
 }
 
-.hero p{
-color:#e4eaf4;
-font-size:15px
+.notice-hero:before,
+.notice-hero:after{
+content:"";
+position:absolute;
+border:1px solid rgba(255,255,255,.09);
+border-radius:50%;
+pointer-events:none;
 }
 
-.hero .motto{
+.notice-hero:before{
+width:430px;
+height:430px;
+right:-100px;
+top:-220px;
+}
+
+.notice-hero:after{
+width:300px;
+height:300px;
+right:80px;
+bottom:-230px;
+}
+
+.hero-content{
+position:relative;
+z-index:1;
+max-width:900px;
+}
+
+.hero-kicker{
+display:inline-flex;
+align-items:center;
+gap:10px;
 color:var(--gold);
 font-size:12px;
 font-weight:800;
-letter-spacing:3px;
-margin-top:10px
+letter-spacing:2.5px;
+text-transform:uppercase;
+margin-bottom:16px;
 }
+
+.hero-kicker:before{
+content:"";
+width:32px;
+height:2px;
+background:var(--gold);
+}
+
+.notice-hero h1{
+font-size:clamp(34px,5vw,58px);
+line-height:1.08;
+font-weight:800;
+letter-spacing:-.5px;
+max-width:850px;
+margin-bottom:17px;
+}
+
+.notice-hero h1 span{color:var(--gold)}
+
+.notice-hero p{
+max-width:680px;
+color:#E1E8F3;
+font-size:16px;
+line-height:1.8;
+}
+
+.hero-bottom{
+display:flex;
+align-items:center;
+gap:18px;
+flex-wrap:wrap;
+margin-top:27px;
+}
+
+.hero-button{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:12px 22px;
+background:var(--gold);
+color:var(--navy-dark);
+font-size:12px;
+font-weight:800;
+letter-spacing:.6px;
+border-radius:3px;
+transition:.2s;
+}
+
+.hero-button:hover{
+background:#fff;
+transform:translateY(-2px);
+}
+
+.hero-note{
+font-size:12px;
+color:#DCE4F0;
+font-weight:600;
+letter-spacing:.5px;
+}
+
+/* QUICK INFORMATION STRIP */
+
+.notice-information{
+background:#fff;
+border-bottom:1px solid var(--border);
+}
+
+.information-inner{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+}
+
+.information-item{
+display:flex;
+align-items:center;
+gap:14px;
+padding:22px 25px;
+border-right:1px solid var(--border);
+}
+
+.information-item:first-child{padding-left:0}
+.information-item:last-child{border-right:0}
+
+.information-icon{
+width:43px;
+height:43px;
+display:grid;
+place-items:center;
+background:#F5F0E3;
+color:var(--maroon);
+font-size:20px;
+border-radius:50%;
+flex-shrink:0;
+}
+
+.information-item strong{
+display:block;
+font-size:13px;
+color:var(--navy);
+font-weight:800;
+}
+
+.information-item span{
+display:block;
+font-size:11px;
+color:var(--muted);
+}
+
+/* MAIN CONTENT */
 
 main{
-min-height:55vh;
-padding:48px 0 75px
+background:var(--light);
+padding:65px 0 85px;
+min-height:60vh;
 }
 
-.page-heading{
-text-align:center;
-margin-bottom:30px
-}
-
-.page-heading h2{
-color:var(--navy);
-font-size:29px;
-font-weight:800
-}
-
-.gold-line{
-width:65px;
-height:4px;
-background:var(--gold);
-margin:12px auto
-}
-
-.page-heading p{
-color:var(--muted);
-font-size:14px
-}
-
-.notice-tools{
+.section-heading{
 display:flex;
 justify-content:space-between;
+align-items:flex-end;
+gap:20px;
+margin-bottom:30px;
+}
+
+.section-heading-left{max-width:700px}
+
+.section-kicker{
+color:var(--maroon);
+font-size:11px;
+font-weight:800;
+letter-spacing:2px;
+text-transform:uppercase;
+margin-bottom:7px;
+}
+
+.section-heading h2{
+color:var(--navy-dark);
+font-size:clamp(26px,3vw,36px);
+font-weight:800;
+line-height:1.2;
+}
+
+.section-heading p{
+color:var(--muted);
+font-size:14px;
+margin-top:8px;
+}
+
+.print-all{
+border:1px solid var(--navy);
+background:#fff;
+color:var(--navy);
+padding:10px 16px;
+border-radius:3px;
+font-size:12px;
+font-weight:800;
+white-space:nowrap;
+transition:.2s;
+}
+
+.print-all:hover{
+background:var(--navy);
+color:#fff;
+}
+
+/* NOTICE SEARCH AND FILTERS */
+
+.notice-control-panel{
+background:#fff;
+border:1px solid var(--border);
+padding:22px;
+border-radius:6px;
+box-shadow:0 5px 20px rgba(10,30,65,.035);
+margin-bottom:30px;
+}
+
+.control-top{
+display:flex;
 align-items:center;
-gap:15px;
-margin-bottom:22px;
-flex-wrap:wrap
+justify-content:space-between;
+gap:18px;
+flex-wrap:wrap;
+margin-bottom:17px;
 }
 
 .notice-count{
-color:var(--muted);
+color:var(--navy);
 font-size:13px;
-font-weight:700
+font-weight:800;
+}
+
+.notice-count span{color:var(--maroon)}
+
+.search-box-wrap{
+position:relative;
+width:min(390px,100%);
+}
+
+.search-icon{
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+font-size:17px;
+color:var(--muted);
+pointer-events:none;
 }
 
 .search-box{
-width:min(340px,100%);
-padding:12px 15px;
+width:100%;
+padding:12px 15px 12px 42px;
 border:1px solid var(--border);
-border-radius:5px;
-font:inherit;
+border-radius:4px;
+font-size:13px;
+color:var(--text);
 outline:none;
-background:#fff
+background:#FAFBFC;
 }
 
 .search-box:focus{
 border-color:var(--navy);
-box-shadow:0 0 0 3px rgba(15,42,94,.08)
+box-shadow:0 0 0 3px rgba(15,42,94,.08);
+background:#fff;
+}
+
+.filter-label{
+color:var(--muted);
+font-size:11px;
+font-weight:800;
+letter-spacing:1px;
+text-transform:uppercase;
+margin-bottom:10px;
+}
+
+.category-filters{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.filter-btn{
+border:1px solid var(--border);
+background:#fff;
+color:#526078;
+padding:8px 15px;
+border-radius:3px;
+font-size:11px;
+font-weight:800;
+transition:.2s;
+}
+
+.filter-btn:hover{
+border-color:var(--maroon);
+color:var(--maroon);
+}
+
+.filter-btn.active{
+background:var(--navy);
+border-color:var(--navy);
+color:#fff;
+}
+
+/* FEATURED NOTICE */
+
+.featured-area{margin-bottom:35px}
+
+.featured-label{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:11px;
+font-weight:800;
+color:var(--maroon);
+letter-spacing:1.5px;
+text-transform:uppercase;
+margin-bottom:13px;
+}
+
+.featured-label:after{
+content:"";
+height:1px;
+background:var(--border);
+flex:1;
+}
+
+.featured-card{
+display:grid;
+grid-template-columns:1fr 230px;
+background:#fff;
+border:1px solid var(--border);
+border-left:5px solid var(--maroon);
+border-radius:5px;
+overflow:hidden;
+box-shadow:var(--shadow);
+}
+
+.featured-main{padding:29px 32px}
+
+.featured-meta{
+display:flex;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:15px;
+}
+
+.featured-badge{
+background:#F8E9EB;
+color:var(--maroon);
+padding:5px 10px;
+font-size:10px;
+font-weight:800;
+letter-spacing:.7px;
+text-transform:uppercase;
+border-radius:2px;
+}
+
+.featured-category{
+color:var(--navy);
+background:#EDF2F8;
+padding:5px 10px;
+font-size:10px;
+font-weight:800;
+text-transform:uppercase;
+border-radius:2px;
+}
+
+.featured-date{
+font-size:11px;
+color:var(--muted);
+}
+
+.featured-title{
+color:var(--navy-dark);
+font-size:clamp(23px,3vw,31px);
+line-height:1.25;
+font-weight:800;
+margin-bottom:12px;
+}
+
+.featured-excerpt{
+font-size:14px;
+color:#59667A;
+line-height:1.8;
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+}
+
+.featured-side{
+background:#F5F7FA;
+border-left:1px solid var(--border);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:25px;
+}
+
+.featured-symbol{
+width:65px;
+height:65px;
+display:grid;
+place-items:center;
+background:var(--navy);
+color:var(--gold);
+border-radius:50%;
+font-size:28px;
+margin-bottom:14px;
+}
+
+.featured-side strong{
+color:var(--navy);
+font-size:13px;
+font-weight:800;
+}
+
+.featured-side span{
+font-size:11px;
+color:var(--muted);
+margin-top:3px;
+}
+
+/* NOTICE LIST */
+
+.notice-list-heading{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+margin-bottom:15px;
+}
+
+.notice-list-heading h3{
+font-size:19px;
+font-weight:800;
+color:var(--navy);
+}
+
+.notice-list-heading span{
+font-size:11px;
+font-weight:700;
+color:var(--muted);
 }
 
 .notice-list{
 display:grid;
-gap:20px
+gap:16px;
 }
 
 .notice-card{
 background:#fff;
 border:1px solid var(--border);
-border-radius:7px;
+border-radius:5px;
 overflow:hidden;
-box-shadow:0 5px 18px rgba(10,30,65,.055)
+box-shadow:0 5px 18px rgba(10,30,65,.045);
+transition:transform .2s,box-shadow .2s;
+}
+
+.notice-card:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 27px rgba(10,30,65,.09);
 }
 
 .notice-top{
-padding:22px 25px 16px;
-border-bottom:1px solid #edf0f4
+padding:21px 25px 16px;
+border-bottom:1px solid #edf0f4;
 }
 
 .notice-meta{
@@ -200,140 +718,157 @@ display:flex;
 align-items:center;
 gap:10px;
 flex-wrap:wrap;
-margin-bottom:10px
+margin-bottom:10px;
 }
 
 .category{
-background:#edf2f8;
+background:#EDF2F8;
 color:var(--navy);
-padding:5px 11px;
-border-radius:3px;
-font-size:11px;
+padding:5px 10px;
+border-radius:2px;
+font-size:10px;
 font-weight:800;
-letter-spacing:.5px
+letter-spacing:.5px;
+text-transform:uppercase;
 }
 
 .published{
-color:#16804c;
-font-size:11px;
+color:var(--green);
+font-size:10px;
 font-weight:800;
-text-transform:uppercase
+text-transform:uppercase;
 }
 
 .notice-date{
 color:var(--muted);
-font-size:12px
+font-size:11px;
 }
 
 .notice-title{
 color:var(--navy);
-font-size:23px;
+font-size:21px;
 font-weight:800;
-line-height:1.3;
-margin-bottom:8px
+line-height:1.35;
+margin-bottom:4px;
 }
 
 .notice-content{
 padding:18px 25px;
-color:#46536A;
-font-size:15px;
+color:#4D5A70;
+font-size:14px;
+line-height:1.85;
 white-space:pre-wrap;
-overflow-wrap:anywhere
+overflow-wrap:anywhere;
 }
 
 .attachment-area{
-margin:0 25px 23px;
+margin:0 25px 22px;
 padding:15px;
 background:#F5F7FA;
 border:1px solid var(--border);
-border-radius:5px;
+border-radius:4px;
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:15px;
-flex-wrap:wrap
+flex-wrap:wrap;
 }
 
 .attachment-info{
 display:flex;
 align-items:center;
 gap:12px;
-min-width:0
+min-width:0;
 }
 
 .file-icon{
 width:43px;
 height:43px;
-border-radius:5px;
+border-radius:4px;
 background:#fff;
 display:grid;
 place-items:center;
-font-size:22px;
+font-size:21px;
 flex-shrink:0;
-border:1px solid var(--border)
+border:1px solid var(--border);
 }
 
 .file-name{
-font-size:13px;
+font-size:12px;
 font-weight:800;
 color:var(--navy);
-overflow-wrap:anywhere
+overflow-wrap:anywhere;
 }
 
 .file-label{
-font-size:11px;
-color:var(--muted)
+font-size:10px;
+color:var(--muted);
+font-weight:600;
 }
 
 .attachment-actions{
 display:flex;
-gap:9px;
-flex-wrap:wrap
+gap:8px;
+flex-wrap:wrap;
 }
 
 .action-btn{
-display:inline-block;
-padding:9px 15px;
-border-radius:4px;
-font-size:12px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:9px 14px;
+border-radius:3px;
+font-size:10px;
 font-weight:800;
 text-align:center;
-border:0
+border:1px solid transparent;
+transition:.2s;
 }
 
 .download-btn{
 background:var(--maroon);
-color:#fff
+color:#fff;
 }
 
-.download-btn:hover{
-background:var(--navy)
-}
+.download-btn:hover{background:var(--navy)}
 
 .open-btn{
 background:var(--navy);
-color:#fff
+color:#fff;
 }
 
-.open-btn:hover{
-background:#193d76
-}
+.open-btn:hover{background:#193D76}
+
+/* STATES */
 
 .loading,.empty,.error{
 background:#fff;
-padding:35px 20px;
+padding:45px 20px;
 text-align:center;
 border:1px solid var(--border);
-border-radius:6px;
-color:var(--muted)
+border-radius:5px;
+color:var(--muted);
 }
 
 .loading{border-top:4px solid var(--gold)}
 .empty{border-top:4px solid var(--gold)}
 .error{
 border-top:4px solid var(--maroon);
-color:var(--maroon)
+color:var(--maroon);
 }
+
+.state-icon{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.loading h3,.empty h3,.error h3{
+color:var(--navy);
+font-size:19px;
+margin-bottom:5px;
+}
+
+.loading p,.empty p,.error p{font-size:13px}
 
 .retry-btn{
 margin-top:15px;
@@ -341,81 +876,313 @@ padding:10px 20px;
 background:var(--navy);
 color:#fff;
 border:0;
-border-radius:4px;
-font-weight:800
+border-radius:3px;
+font-weight:800;
+font-size:11px;
 }
 
 .retry-btn:hover{background:var(--maroon)}
 
+/* INFORMATION FOOTER PANEL */
+
+.notice-reminder{
+margin-top:42px;
+padding:25px 28px;
+background:var(--navy-dark);
+color:#fff;
+border-left:4px solid var(--gold);
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.reminder-icon{
+width:48px;
+height:48px;
+display:grid;
+place-items:center;
+background:rgba(255,255,255,.1);
+border-radius:50%;
+font-size:22px;
+flex-shrink:0;
+}
+
+.notice-reminder strong{
+display:block;
+font-size:14px;
+font-weight:800;
+margin-bottom:3px;
+}
+
+.notice-reminder p{
+font-size:12px;
+color:#D5DEEB;
+}
+
+/* FOOTER */
+
 footer{
 background:var(--navy-dark);
 color:#CBD3E0;
-text-align:center;
-padding:25px 12px;
 border-top:4px solid var(--gold);
-font-size:12px
 }
 
-footer strong{color:var(--gold)}
-
-@media(max-width:700px){
-
-.header-inner{
-padding:12px 0;
-min-height:auto;
-flex-direction:column
+.footer-main{
+display:grid;
+grid-template-columns:1.35fr 1fr 1fr;
+gap:45px;
+padding:48px 0 38px;
 }
 
-.brand img{
-width:135px;
-height:65px
+.footer-brand img{
+width:125px;
+height:72px;
+object-fit:contain;
+background:#fff;
+border-radius:4px;
+padding:5px;
+margin-bottom:15px;
 }
 
-nav{
-justify-content:center;
-gap:13px
+.footer-brand p{
+max-width:350px;
+font-size:12px;
+line-height:1.8;
+color:#BFCADA;
 }
 
-nav a{font-size:12px}
+.footer-column h3{
+color:#fff;
+font-size:13px;
+font-weight:800;
+letter-spacing:.8px;
+margin-bottom:16px;
+padding-bottom:10px;
+border-bottom:1px solid rgba(255,255,255,.13);
+}
 
-.hero{padding:42px 0}
+.footer-column a,
+.footer-column p{
+display:block;
+font-size:12px;
+color:#C5CFDD;
+margin-bottom:9px;
+transition:.2s;
+}
 
-main{padding:35px 0 55px}
+.footer-column a:hover{color:var(--gold)}
 
-.notice-top{padding:18px}
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,.12);
+padding:17px 0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+flex-wrap:wrap;
+font-size:11px;
+color:#AEBACB;
+}
 
-.notice-title{font-size:20px}
+.footer-bottom strong{color:var(--gold)}
 
-.notice-content{padding:15px 18px}
+/* RESPONSIVE */
 
-.attachment-area{margin:0 18px 18px}
+@media(min-width:851px) and (max-width:1100px){
+.container.header-inner{width:96%;gap:8px;min-height:88px}
+.brand img{width:112px;height:68px}
+nav.main-nav{gap:5px}
+nav.main-nav>a,
+nav.main-nav button.nav-link{font-size:10px;letter-spacing:0}
+.nav-apply{padding:8px 8px!important;font-size:10px!important;margin-left:0}
+.programme-submenu,.admissions-submenu,.about-submenu{min-width:210px}
+}
 
-.notice-tools{align-items:stretch}
+@media(max-width:850px){
+.container.header-inner{
+width:94%;
+min-height:88px;
+gap:12px;
+justify-content:space-between;
+}
 
-.search-box{width:100%}
+.brand img{width:145px;height:72px}
+.menu-toggle{display:block;flex-shrink:0}
 
+nav.main-nav{
+display:none;
+position:absolute;
+top:100%;
+left:0;
+right:0;
+width:100%;
+background:#FFFFFF;
+padding:15px 5%;
+flex-direction:column;
+align-items:stretch;
+gap:0;
+box-shadow:0 8px 18px rgba(0,0,0,.15);
+max-height:calc(100vh - 88px);
+overflow-y:auto;
+border-top:1px solid var(--border);
+}
+
+nav.main-nav.open{display:flex}
+
+nav.main-nav>a,
+nav.main-nav button.nav-link{
+color:#111;
+font-size:14px;
+font-weight:800;
+padding:12px 8px;
+border-bottom:1px solid #edf0f4;
+width:100%;
+text-align:left;
+}
+
+nav.main-nav>a:hover,
+nav.main-nav button.nav-link:hover{color:var(--maroon)}
+
+.programme-menu,.admissions-menu,.about-menu{
+display:block;
+width:100%;
+}
+
+nav.main-nav button.nav-link{justify-content:space-between}
+
+.programme-submenu,
+.admissions-submenu,
+.about-submenu{
+position:static;
+min-width:0;
+width:100%;
+box-shadow:none;
+border-top:2px solid var(--gold);
+border-radius:0;
+padding:4px 0;
+background:#F5F6F8;
+}
+
+.programme-submenu a,
+.admissions-submenu a,
+.about-submenu a{
+color:#222;
+padding:11px 20px;
+font-size:13px;
+border-bottom:1px solid #e2e5e9;
+}
+
+.programme-submenu a:hover,
+.admissions-submenu a:hover,
+.about-submenu a:hover{
+background:#fff;
+color:var(--maroon);
+padding-left:25px;
+}
+
+.nav-apply{
+padding:11px 14px!important;
+margin-top:10px;
+text-align:center;
+border-bottom:0;
+background:var(--maroon);
+color:#fff!important;
+}
+
+.information-inner{grid-template-columns:1fr}
+.information-item{
+padding:15px 0;
+border-right:0;
+border-bottom:1px solid var(--border);
+}
+.information-item:last-child{border-bottom:0}
+
+.featured-card{grid-template-columns:1fr}
+.featured-side{
+border-left:0;
+border-top:1px solid var(--border);
+flex-direction:row;
+justify-content:flex-start;
+text-align:left;
+gap:13px;
+padding:16px 25px;
+}
+.featured-symbol{
+width:43px;
+height:43px;
+font-size:20px;
+margin:0;
+}
+.featured-side span{margin-top:0}
+
+.footer-main{grid-template-columns:1fr 1fr;gap:30px}
+.footer-brand{grid-column:1/-1}
+}
+
+@media(max-width:560px){
+.topbar{font-size:11px;letter-spacing:.5px}
+.container.header-inner{min-height:78px}
+.brand img{width:125px;height:65px}
+nav.main-nav{max-height:calc(100vh - 78px)}
+
+.notice-hero{padding:53px 0 48px}
+.notice-hero h1{font-size:36px}
+.notice-hero p{font-size:14px}
+.hero-bottom{align-items:flex-start;flex-direction:column;gap:12px}
+
+main{padding:42px 0 58px}
+
+.section-heading{
+align-items:flex-start;
+flex-direction:column;
+margin-bottom:22px;
+}
+
+.section-heading h2{font-size:27px}
+.print-all{width:100%}
+
+.notice-control-panel{padding:16px}
+.control-top{align-items:stretch}
+.search-box-wrap{width:100%}
+
+.filter-btn{padding:8px 11px;font-size:10px}
+
+.featured-main{padding:21px 18px}
+.featured-title{font-size:23px}
+.featured-excerpt{font-size:13px}
+
+.notice-top{padding:17px}
+.notice-title{font-size:19px}
+.notice-content{padding:15px 17px;font-size:13px}
+.attachment-area{margin:0 17px 17px}
 .attachment-actions{width:100%}
-
 .attachment-actions a{flex:1}
+
+.notice-reminder{
+padding:19px;
+align-items:flex-start;
+}
+
+.footer-main{grid-template-columns:1fr;gap:25px;padding:35px 0}
+.footer-brand{grid-column:auto}
+.footer-bottom{align-items:flex-start;flex-direction:column}
 }
 
 @media print{
+.topbar,header,.notice-hero,.notice-information,
+.notice-control-panel,.print-all,footer,.notice-reminder,
+.attachment-actions{display:none!important}
 
-.topbar,header,.notice-tools,footer,
-.attachment-actions,.hero{
-display:none!important
-}
-
-body{background:#fff}
-
-main{padding:10px 0}
-
-.notice-card{
+body{background:#fff;color:#111}
+main{padding:10px 0;background:#fff}
+.container{width:100%}
+.featured-card,.notice-card{
 box-shadow:none;
 break-inside:avoid;
-margin-bottom:15px
+border:1px solid #ccc;
+margin-bottom:15px;
 }
-
+.featured-side{display:none}
 .attachment-area{background:#fff}
 }
 </style>
@@ -430,79 +1197,309 @@ TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 <header>
 <div class="container header-inner">
 
-<a href="index.html" class="brand">
-<img src="BYE.png" alt="Tahidi International Training Institute">
+<a href="index.html#home" class="brand">
+<img src="BYE.png" alt="Tahidi International Training Institute Logo">
 </a>
 
-<nav aria-label="Main navigation">
-<a href="index.html">HOME</a>
-<a href="about.html">ABOUT US</a>
-<a href="index.html#programmes">PROGRAMMES</a>
-<a href="apply.html#admissions">ADMISSIONS</a>
-<a href="notices.html" class="active">NOTICES</a>
-<a href="index.html#contact">CONTACT</a>
-</nav>
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 
+<nav class="main-nav" id="mainNav" aria-label="Main navigation">
+
+<a href="index.html#home">HOME</a>
+
+<div class="about-menu" id="aboutMenu">
+<button class="nav-link" id="aboutToggle" aria-expanded="false">
+ABOUT US <span class="dropdown-arrow">⌄</span>
+</button>
+<div class="about-submenu">
+<a href="about.html#who-we-are">Who We Are</a>
+<a href="about.html#our-vision">Our Vision</a>
+<a href="about.html#our-mission">Our Mission</a>
+<a href="about.html#our-core-values">Our Core Values</a>
+<a href="about.html#student-commitment">Student Commitment</a>
+<a href="about.html#our-location">Our Location</a>
+<a href="about.html#contact-information">Contact Information</a>
+</div>
+</div>
+
+<div class="programme-menu" id="programmeMenu">
+<button class="nav-link" id="programmeToggle" aria-expanded="false">
+PROGRAMMES <span class="dropdown-arrow">⌄</span>
+</button>
+<div class="programme-submenu">
+<a href="index.html#diploma">Diploma Programmes</a>
+<a href="index.html#certificate">Certificate Programmes</a>
+<a href="index.html#shortCourses">Short Courses</a>
+</div>
+</div>
+
+<div class="admissions-menu" id="admissionsMenu">
+<button class="nav-link" id="admissionsToggle" aria-expanded="false">
+ADMISSIONS <span class="dropdown-arrow">⌄</span>
+</button>
+<div class="admissions-submenu">
+<a href="apply.html#admissions">Admissions Overview</a>
+<a href="apply.html#requirements">Entry Requirements</a>
+<a href="apply.html#documents">Required Documents</a>
+<a href="apply.html#intakes">Intakes</a>
+<a href="apply.html#fees">Fees Information</a>
+<a href="apply.html#enquiries">Admissions Enquiries</a>
+</div>
+</div>
+
+<a href="notices.html" class="active">NOTICES</a>
+<a href="index.html#gallery">CAMPUS</a>
+<a href="gallery.html">GALLERY</a>
+<a href="contacts.html">CONTACT</a>
+<a href="apply.html#online-application" class="nav-apply">APPLY NOW</a>
+
+</nav>
 </div>
 </header>
 
-<section class="hero">
+<section class="notice-hero">
 <div class="container">
-<h1>OFFICIAL NOTICE BOARD</h1>
-<p>Announcements, examination timetables and important information from TITI.</p>
-<div class="motto">TAHIDI INTERNATIONAL TRAINING INSTITUTE</div>
+<div class="hero-content">
+
+<div class="hero-kicker">Official Institute Communication</div>
+
+<h1>INFORMATION THAT<br><span>KEEPS YOU AHEAD.</span></h1>
+
+<p>
+Welcome to the official Tahidi International Training Institute notice board.
+Find important announcements, examination information, academic updates
+and official communications from the institute.
+</p>
+
+<div class="hero-bottom">
+<a href="#latest-notices" class="hero-button">EXPLORE LATEST NOTICES ↓</a>
+<span class="hero-note">STAY INFORMED. STAY PREPARED.</span>
+</div>
+
+</div>
 </div>
 </section>
 
-<main>
+<section class="notice-information">
+<div class="container information-inner">
+
+<div class="information-item">
+<div class="information-icon">📢</div>
+<div>
+<strong>Official Announcements</strong>
+<span>Updates released by the institute</span>
+</div>
+</div>
+
+<div class="information-item">
+<div class="information-icon">📚</div>
+<div>
+<strong>Academic Information</strong>
+<span>Timetables, examinations and learning</span>
+</div>
+</div>
+
+<div class="information-item">
+<div class="information-icon">📄</div>
+<div>
+<strong>Important Documents</strong>
+<span>Read and download published attachments</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<main id="latest-notices">
 <div class="container">
 
-<div class="page-heading">
+<div class="section-heading">
+<div class="section-heading-left">
+<div class="section-kicker">TITI Digital Notice Board</div>
 <h2>Latest Notices &amp; Announcements</h2>
-<div class="gold-line"></div>
-<p>Stay informed. Read, download and print official institute notices.</p>
+<p>Official institute information, organised to help you find what matters.</p>
 </div>
 
-<div class="notice-tools">
+<button class="print-all" onclick="window.print()">PRINT NOTICE BOARD</button>
+</div>
 
+<div class="notice-control-panel">
+
+<div class="control-top">
 <div class="notice-count" id="noticeCount">
-Loading published notices...
+Connecting to the notice database...
 </div>
 
+<div class="search-box-wrap">
+<span class="search-icon">⌕</span>
 <input
 type="search"
 class="search-box"
 id="noticeSearch"
-placeholder="Search notices..."
+placeholder="Search notices, examinations, dates..."
 aria-label="Search published notices">
+</div>
+</div>
+
+<div class="filter-label">Browse by category</div>
+
+<div class="category-filters" id="categoryFilters">
+<button class="filter-btn active" data-category="all">ALL NOTICES</button>
+</div>
 
 </div>
 
+<div id="featuredArea" class="featured-area" hidden></div>
+
+<div class="notice-list-heading">
+<h3 id="listHeading">Institute Notices</h3>
+<span id="resultSummary"></span>
+</div>
+
 <div class="notice-list" id="noticeList">
-<div class="loading">Loading official TITI notices...</div>
+<div class="loading">
+<div class="state-icon">⌛</div>
+<h3>Loading Official Notices</h3>
+<p>Please wait while we retrieve the latest institute announcements.</p>
+</div>
+</div>
+
+<div class="notice-reminder">
+<div class="reminder-icon">ℹ️</div>
+<div>
+<strong>Stay updated with official institute communication</strong>
+<p>Check this notice board regularly for new announcements and important academic information.</p>
+</div>
 </div>
 
 </div>
 </main>
 
 <footer>
+
+<div class="container footer-main">
+
+<div class="footer-brand">
+<img src="BYE.png" alt="Tahidi International Training Institute">
+<p>
+Tahidi International Training Institute is committed to providing
+quality training and empowering learners with knowledge, practical
+skills and opportunities for development.
+</p>
+</div>
+
+<div class="footer-column">
+<h3>QUICK LINKS</h3>
+<a href="index.html#home">Home</a>
+<a href="about.html">About the Institute</a>
+<a href="index.html#diploma">Our Programmes</a>
+<a href="apply.html#admissions">Admissions</a>
+<a href="notices.html">Official Notices</a>
+<a href="gallery.html">Campus Gallery</a>
+</div>
+
+<div class="footer-column">
+<h3>CONTACT THE INSTITUTE</h3>
+<p>Tahidi International Training Institute</p>
+<p>Uganda</p>
+<a href="contacts.html">Contact Information</a>
+<a href="apply.html#enquiries">Admissions Enquiries</a>
+<a href="apply.html#online-application">Apply Online</a>
+</div>
+
+</div>
+
+<div class="container footer-bottom">
 <p>© <span id="year"></span> <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE.</strong> All Rights Reserved.</p>
 <p>BREAKING THE LIMITS</p>
+</div>
+
 </footer>
 
 <script>
 
 /* =====================================
+   TITI NAVIGATION
+===================================== */
+
+const menuToggle=document.getElementById('menuToggle');
+const mainNav=document.getElementById('mainNav');
+
+const aboutMenu=document.getElementById('aboutMenu');
+const aboutToggle=document.getElementById('aboutToggle');
+
+const programmeMenu=document.getElementById('programmeMenu');
+const programmeToggle=document.getElementById('programmeToggle');
+
+const admissionsMenu=document.getElementById('admissionsMenu');
+const admissionsToggle=document.getElementById('admissionsToggle');
+
+menuToggle.addEventListener('click',()=>{
+mainNav.classList.toggle('open');
+
+const isOpen=mainNav.classList.contains('open');
+
+menuToggle.setAttribute('aria-expanded',isOpen);
+menuToggle.setAttribute('aria-label',isOpen?'Close navigation':'Open navigation');
+menuToggle.textContent=isOpen?'✕':'☰';
+});
+
+aboutToggle.addEventListener('click',()=>{
+aboutMenu.classList.toggle('open');
+aboutToggle.setAttribute('aria-expanded',aboutMenu.classList.contains('open'));
+});
+
+programmeToggle.addEventListener('click',()=>{
+programmeMenu.classList.toggle('open');
+programmeToggle.setAttribute('aria-expanded',programmeMenu.classList.contains('open'));
+});
+
+admissionsToggle.addEventListener('click',()=>{
+admissionsMenu.classList.toggle('open');
+admissionsToggle.setAttribute('aria-expanded',admissionsMenu.classList.contains('open'));
+});
+
+document.querySelectorAll('#mainNav a').forEach(link=>{
+link.addEventListener('click',()=>{
+mainNav.classList.remove('open');
+aboutMenu.classList.remove('open');
+programmeMenu.classList.remove('open');
+admissionsMenu.classList.remove('open');
+
+menuToggle.setAttribute('aria-expanded','false');
+menuToggle.setAttribute('aria-label','Open navigation');
+menuToggle.textContent='☰';
+
+aboutToggle.setAttribute('aria-expanded','false');
+programmeToggle.setAttribute('aria-expanded','false');
+admissionsToggle.setAttribute('aria-expanded','false');
+});
+});
+
+document.addEventListener('click',event=>{
+if(!programmeMenu.contains(event.target)){
+programmeMenu.classList.remove('open');
+programmeToggle.setAttribute('aria-expanded','false');
+}
+
+if(!admissionsMenu.contains(event.target)){
+admissionsMenu.classList.remove('open');
+admissionsToggle.setAttribute('aria-expanded','false');
+}
+
+if(!aboutMenu.contains(event.target)){
+aboutMenu.classList.remove('open');
+aboutToggle.setAttribute('aria-expanded','false');
+}
+});
+
+/* =====================================
    TITI SUPABASE CONNECTION
+   EXISTING DATABASE CONNECTION PRESERVED
 ===================================== */
 
 const SUPABASE_URL='https://jlmbiauilmajuvrnuaul.supabase.co';
-
-/* Use the exact active publishable key
-   from your Supabase project API settings. */
-
 const SUPABASE_KEY='sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
-
 const NOTICES_TABLE='notices';
 
 /* =====================================
@@ -512,19 +1509,22 @@ const NOTICES_TABLE='notices';
 const noticeList=document.getElementById('noticeList');
 const noticeCount=document.getElementById('noticeCount');
 const noticeSearch=document.getElementById('noticeSearch');
+const categoryFilters=document.getElementById('categoryFilters');
+const featuredArea=document.getElementById('featuredArea');
+const resultSummary=document.getElementById('resultSummary');
+const listHeading=document.getElementById('listHeading');
 
 document.getElementById('year').textContent=new Date().getFullYear();
 
 let allNotices=[];
+let activeCategory='all';
 
 /* =====================================
-   SECURITY: HTML ESCAPING
+   HTML ESCAPING
 ===================================== */
 
 function escapeHTML(value){
-
 return String(value??'').replace(/[&<>"']/g,function(char){
-
 return {
 '&':'&amp;',
 '<':'&lt;',
@@ -532,9 +1532,7 @@ return {
 '"':'&quot;',
 "'":'&#039;'
 }[char];
-
 });
-
 }
 
 /* =====================================
@@ -542,31 +1540,23 @@ return {
 ===================================== */
 
 function getFirstValue(object,keys){
-
 for(const key of keys){
-
 if(
 object[key]!==undefined &&
 object[key]!==null &&
 object[key]!==''
 ){
-
 return object[key];
-
 }
-
 }
-
 return '';
-
 }
 
 /* =====================================
-   FORMAT NOTICE DATE
+   NOTICE DATE
 ===================================== */
 
 function formatNoticeDate(value){
-
 if(!value)return '';
 
 const date=new Date(value);
@@ -575,192 +1565,24 @@ if(Number.isNaN(date.getTime()))return String(value);
 
 return date.toLocaleString('en-GB',{
 day:'2-digit',
-month:'short',
-year:'numeric',
-hour:'2-digit',
-minute:'2-digit'
+month:'long',
+year:'numeric'
 });
-
 }
 
 /* =====================================
-   DETECT IMAGE ATTACHMENTS
+   NOTICE CATEGORY
 ===================================== */
 
-function isImage(url,type,name){
-
-const value=(String(type)+' '+String(name)+' '+String(url)).toLowerCase();
-
-return /\.(jpg|jpeg|png|webp)(\?|$)/i.test(value) ||
-value.includes('image/');
-
-}
-
-/* =====================================
-   BUILD NOTICE CARD
-===================================== */
-
-function renderNotice(notice){
-
-const title=getFirstValue(notice,[
-'title',
-'notice_title',
-'headline'
-]);
-
-const category=getFirstValue(notice,[
+function getNoticeCategory(notice){
+return getFirstValue(notice,[
 'category',
 'notice_category'
-])||'GENERAL NOTICE';
-
-const content=getFirstValue(notice,[
-'content',
-'message',
-'body',
-'description',
-'notice'
-]);
-
-const date=getFirstValue(notice,[
-'created_at',
-'published_at',
-'date',
-'updated_at'
-]);
-
-const attachmentURL=getFirstValue(notice,[
-'attachment_url',
-'file_url',
-'document_url',
-'image_url',
-'attachment'
-]);
-
-const attachmentName=getFirstValue(notice,[
-'attachment_name',
-'file_name',
-'document_name'
-])||(attachmentURL?'Notice attachment':'');
-
-const attachmentType=getFirstValue(notice,[
-'attachment_type',
-'file_type',
-'mime_type'
-]);
-
-let attachmentHTML='';
-
-if(attachmentURL){
-
-let safeURL='';
-
-try{
-
-const parsedURL=new URL(attachmentURL,SUPABASE_URL);
-
-if(parsedURL.protocol==='https:'){
-safeURL=escapeHTML(parsedURL.href);
-}
-
-}catch(error){
-
-safeURL='';
-
-}
-
-if(safeURL){
-
-const safeName=escapeHTML(attachmentName);
-
-const image=isImage(
-attachmentURL,
-attachmentType,
-attachmentName
-);
-
-const icon=image?'🖼️':'📄';
-
-const label=image?'IMAGE ATTACHMENT':'DOCUMENT ATTACHMENT';
-
-attachmentHTML=`
-
-<div class="attachment-area">
-
-<div class="attachment-info">
-
-<div class="file-icon">${icon}</div>
-
-<div>
-
-<div class="file-name">${safeName}</div>
-
-<div class="file-label">${label}</div>
-
-</div>
-
-</div>
-
-<div class="attachment-actions">
-
-<a
-class="action-btn open-btn"
-href="${safeURL}"
-target="_blank"
-rel="noopener noreferrer"
->OPEN / PRINT</a>
-
-<a
-class="action-btn download-btn"
-href="${safeURL}"
-download="${safeName}"
-target="_blank"
-rel="noopener noreferrer"
->DOWNLOAD</a>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-}
-
-return `
-
-<article class="notice-card">
-
-<div class="notice-top">
-
-<div class="notice-meta">
-
-<span class="category">${escapeHTML(category)}</span>
-
-<span class="published">● PUBLISHED</span>
-
-<span class="notice-date">${escapeHTML(formatNoticeDate(date))}</span>
-
-</div>
-
-<h3 class="notice-title">${escapeHTML(title||'Institute Notice')}</h3>
-
-</div>
-
-${content?`
-<div class="notice-content">${escapeHTML(content)}</div>
-`:''}
-
-${attachmentHTML}
-
-</article>
-
-`;
-
+])||'General Notice';
 }
 
 /* =====================================
-   FILTER PUBLISHED NOTICES
+   PUBLISHED NOTICE CHECK
 ===================================== */
 
 function isPublished(notice){
@@ -770,71 +1592,340 @@ getFirstValue(notice,['status','publication_status'])
 ).toLowerCase().trim();
 
 if(status){
-
 return ['published','active','public'].includes(status);
-
 }
 
 if(notice.is_published!==undefined){
-
 return notice.is_published===true;
-
 }
 
 if(notice.published!==undefined){
-
 return notice.published===true;
-
 }
 
-/* If the table does not use a publication
-   status field, display its returned records. */
+/* Preserve compatibility with tables that
+   do not use a publication status column. */
 
 return true;
+}
+
+/* =====================================
+   ATTACHMENT URL VALIDATION
+===================================== */
+
+function getSafeAttachmentURL(value){
+
+if(!value)return '';
+
+try{
+const parsedURL=new URL(value,SUPABASE_URL);
+
+if(parsedURL.protocol==='https:'){
+return parsedURL.href;
+}
+
+}catch(error){}
+
+return '';
+}
+
+/* =====================================
+   NOTICE ATTACHMENT
+===================================== */
+
+function renderAttachment(notice){
+
+const attachmentURL=getFirstValue(notice,[
+'attachment_url',
+'file_url',
+'document_url',
+'image_url',
+'attachment'
+]);
+
+if(!attachmentURL)return '';
+
+const safeURL=getSafeAttachmentURL(attachmentURL);
+
+if(!safeURL)return '';
+
+const attachmentName=getFirstValue(notice,[
+'attachment_name',
+'file_name',
+'document_name'
+])||'Notice attachment';
+
+const attachmentType=getFirstValue(notice,[
+'attachment_type',
+'file_type',
+'mime_type'
+]);
+
+const value=(
+String(attachmentType)+' '+
+String(attachmentName)+' '+
+String(attachmentURL)
+).toLowerCase();
+
+const image=
+/\.(jpg|jpeg|png|webp)(\?|$)/i.test(value)||
+value.includes('image/');
+
+const icon=image?'🖼️':'📄';
+const label=image?'IMAGE ATTACHMENT':'DOCUMENT ATTACHMENT';
+const safeName=escapeHTML(attachmentName);
+const safeDownloadURL=escapeHTML(safeURL);
+
+return `
+
+<div class="attachment-area">
+
+<div class="attachment-info">
+<div class="file-icon">${icon}</div>
+
+<div>
+<div class="file-name">${safeName}</div>
+<div class="file-label">${label}</div>
+</div>
+</div>
+
+<div class="attachment-actions">
+
+<a
+class="action-btn open-btn"
+href="${safeDownloadURL}"
+target="_blank"
+rel="noopener noreferrer"
+>OPEN / PRINT</a>
+
+<a
+class="action-btn download-btn"
+href="${safeDownloadURL}"
+download="${safeName}"
+target="_blank"
+rel="noopener noreferrer"
+>DOWNLOAD</a>
+
+</div>
+</div>
+
+`;
+}
+
+/* =====================================
+   NOTICE CONTENT
+===================================== */
+
+function getNoticeTitle(notice){
+return getFirstValue(notice,[
+'title',
+'notice_title',
+'headline'
+])||'Institute Notice';
+}
+
+function getNoticeContent(notice){
+return getFirstValue(notice,[
+'content',
+'message',
+'body',
+'description',
+'notice'
+]);
+}
+
+function getNoticeDate(notice){
+return getFirstValue(notice,[
+'published_at',
+'created_at',
+'date',
+'updated_at'
+]);
+}
+
+function getNoticeSearchText(notice){
+
+return [
+getNoticeTitle(notice),
+getNoticeCategory(notice),
+getNoticeContent(notice),
+getFirstValue(notice,['attachment_name','file_name','document_name'])
+].join(' ').toLowerCase();
 
 }
 
 /* =====================================
-   DISPLAY NOTICES
+   FEATURED NOTICE
+===================================== */
+
+function renderFeaturedNotice(notice){
+
+const title=getNoticeTitle(notice);
+const category=getNoticeCategory(notice);
+const content=getNoticeContent(notice);
+const date=getNoticeDate(notice);
+
+const excerpt=content.length>450
+?content.substring(0,450)+'...'
+:content;
+
+return `
+
+<div class="featured-label">Latest published announcement</div>
+
+<article class="featured-card">
+
+<div class="featured-main">
+
+<div class="featured-meta">
+<span class="featured-badge">LATEST NOTICE</span>
+<span class="featured-category">${escapeHTML(category)}</span>
+<span class="featured-date">${escapeHTML(formatNoticeDate(date))}</span>
+</div>
+
+<h3 class="featured-title">${escapeHTML(title)}</h3>
+
+${excerpt?`
+<div class="featured-excerpt">${escapeHTML(excerpt)}</div>
+`:''}
+
+</div>
+
+<div class="featured-side">
+<div class="featured-symbol">📢</div>
+<div>
+<strong>Official TITI Notice</strong>
+<span>Published institute communication</span>
+</div>
+</div>
+
+</article>
+
+`;
+}
+
+/* =====================================
+   BUILD NOTICE CARD
+===================================== */
+
+function renderNotice(notice){
+
+const title=getNoticeTitle(notice);
+const category=getNoticeCategory(notice);
+const content=getNoticeContent(notice);
+const date=getNoticeDate(notice);
+
+return `
+
+<article class="notice-card">
+
+<div class="notice-top">
+
+<div class="notice-meta">
+<span class="category">${escapeHTML(category)}</span>
+<span class="published">● PUBLISHED</span>
+<span class="notice-date">${escapeHTML(formatNoticeDate(date))}</span>
+</div>
+
+<h3 class="notice-title">${escapeHTML(title)}</h3>
+
+</div>
+
+${content?`
+<div class="notice-content">${escapeHTML(content)}</div>
+`:''}
+
+${renderAttachment(notice)}
+
+</article>
+
+`;
+}
+
+/* =====================================
+   BUILD CATEGORY FILTERS
+===================================== */
+
+function buildCategoryFilters(){
+
+const categories=[...new Set(
+allNotices.map(notice=>getNoticeCategory(notice).trim())
+)].filter(Boolean).sort();
+
+categoryFilters.innerHTML=`
+
+<button class="filter-btn ${activeCategory==='all'?'active':''}" data-category="all">
+ALL NOTICES
+</button>
+
+`+categories.map(category=>`
+
+<button
+class="filter-btn ${activeCategory===category?'active':''}"
+data-category="${escapeHTML(category)}"
+>
+${escapeHTML(category.toUpperCase())}
+</button>
+
+`).join('');
+
+categoryFilters.querySelectorAll('.filter-btn').forEach(button=>{
+
+button.addEventListener('click',()=>{
+
+activeCategory=button.dataset.category;
+
+categoryFilters.querySelectorAll('.filter-btn').forEach(item=>{
+item.classList.toggle('active',item.dataset.category===activeCategory);
+});
+
+displayNotices();
+
+});
+
+});
+
+}
+
+/* =====================================
+   DISPLAY AND FILTER NOTICES
 ===================================== */
 
 function displayNotices(){
 
 const searchTerm=noticeSearch.value.toLowerCase().trim();
 
-const filtered=allNotices.filter(notice=>{
+let filtered=allNotices.filter(notice=>{
 
-const searchable=[
+const matchesSearch=getNoticeSearchText(notice).includes(searchTerm);
 
-getFirstValue(notice,['title','notice_title','headline']),
+const matchesCategory=
+activeCategory==='all'||
+getNoticeCategory(notice).trim()===activeCategory;
 
-getFirstValue(notice,['category','notice_category']),
-
-getFirstValue(notice,['content','message','body','description','notice']),
-
-getFirstValue(notice,['attachment_name','file_name','document_name'])
-
-].join(' ').toLowerCase();
-
-return searchable.includes(searchTerm);
+return matchesSearch&&matchesCategory;
 
 });
 
-noticeCount.textContent=
-filtered.length===1
-?'1 published notice'
-:filtered.length+' published notices';
+noticeCount.innerHTML=
+`<span>${filtered.length}</span> ${filtered.length===1?'notice':'notices'} found`;
+
+resultSummary.textContent=
+filtered.length+' displayed';
+
+featuredArea.hidden=true;
+featuredArea.innerHTML='';
 
 if(filtered.length===0){
+
+listHeading.textContent='No Matching Notices';
 
 noticeList.innerHTML=`
 
 <div class="empty">
-
+<div class="state-icon">🔎</div>
 <h3>No Notices Found</h3>
-
-<p>There are currently no notices matching your search.</p>
-
+<p>There are no notices matching your search or selected category.</p>
 </div>
 
 `;
@@ -843,21 +1934,71 @@ return;
 
 }
 
+/* Feature the newest notice only when
+   the user is viewing all notices without a search. */
+
+const showFeatured=
+activeCategory==='all'&&
+searchTerm==='';
+
+if(showFeatured){
+
+featuredArea.hidden=false;
+featuredArea.innerHTML=renderFeaturedNotice(filtered[0]);
+
+listHeading.textContent='More Institute Notices';
+
+const remaining=filtered.slice(1);
+
+if(remaining.length===0){
+
+noticeList.innerHTML=`
+<div class="empty">
+<h3>You are all caught up</h3>
+<p>The latest published notice is displayed above.</p>
+</div>
+`;
+
+resultSummary.textContent='1 latest notice';
+
+return;
+
+}
+
+noticeList.innerHTML=remaining.map(renderNotice).join('');
+
+resultSummary.textContent=remaining.length+' additional notices';
+
+}else{
+
+listHeading.textContent='Matching Institute Notices';
 noticeList.innerHTML=filtered.map(renderNotice).join('');
+
+}
 
 }
 
 /* =====================================
    LOAD NOTICES FROM SUPABASE
+   ORIGINAL REST TABLE APPROACH PRESERVED
 ===================================== */
 
 async function loadNotices(){
 
 noticeList.innerHTML=`
-<div class="loading">Loading official TITI notices...</div>
+
+<div class="loading">
+<div class="state-icon">⌛</div>
+<h3>Loading Official Notices</h3>
+<p>Please wait while we retrieve the latest institute announcements.</p>
+</div>
+
 `;
 
 noticeCount.textContent='Connecting to notice database...';
+
+featuredArea.hidden=true;
+featuredArea.innerHTML='';
 
 try{
 
@@ -872,13 +2013,9 @@ const response=await fetch(endpoint,{
 method:'GET',
 
 headers:{
-
 'apikey':SUPABASE_KEY,
-
 'Authorization':'Bearer '+SUPABASE_KEY,
-
 'Accept':'application/json'
-
 }
 
 });
@@ -888,7 +2025,6 @@ if(!response.ok){
 let errorMessage='Unable to load notices.';
 
 try{
-
 const errorData=await response.json();
 
 errorMessage=
@@ -908,17 +2044,34 @@ throw new Error(
 const data=await response.json();
 
 if(!Array.isArray(data)){
-
 throw new Error('The database returned an unexpected response.');
-
 }
 
-/* Show only published records when a
-   publication status field is available. */
+/* Display published notices only when the
+   database has a publication status field. */
 
 allNotices=data.filter(isPublished);
 
+buildCategoryFilters();
 displayNotices();
+
+if(allNotices.length===0){
+
+noticeCount.textContent='0 published notices';
+
+listHeading.textContent='Institute Notices';
+
+noticeList.innerHTML=`
+
+<div class="empty">
+<div class="state-icon">📭</div>
+<h3>No Published Notices Yet</h3>
+<p>There are currently no published announcements. Please check again later.</p>
+</div>
+
+`;
+
+}
 
 }catch(error){
 
@@ -929,24 +2082,13 @@ noticeCount.textContent='Notice loading failed';
 noticeList.innerHTML=`
 
 <div class="error">
-
+<div class="state-icon">⚠️</div>
 <h3>Unable to Load Official Notices</h3>
-
 <p>${escapeHTML(error.message)}</p>
-
-<p style="margin-top:10px;font-size:13px">
-
-Please check your internet connection and Supabase
-database permissions.
-
+<p style="margin-top:10px;font-size:12px">
+Please check your internet connection and Supabase database permissions.
 </p>
-
-<button class="retry-btn" onclick="loadNotices()">
-
-TRY AGAIN
-
-</button>
-
+<button class="retry-btn" onclick="loadNotices()">TRY AGAIN</button>
 </div>
 
 `;
@@ -956,7 +2098,7 @@ TRY AGAIN
 }
 
 /* =====================================
-   NOTICE SEARCH
+   SEARCH
 ===================================== */
 
 noticeSearch.addEventListener('input',displayNotices);
