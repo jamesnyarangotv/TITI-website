@@ -32,123 +32,51 @@ button{font-family:'Jost',sans-serif}
 .container{width:min(1180px,92%);margin:auto}
 
 .topbar{
-background:var(--navy-dark);
-color:#fff;
-padding:8px 12px;
-font-size:12px;
-text-align:center;
-letter-spacing:1.1px;
-font-weight:700;
+background:var(--navy-dark);color:#fff;padding:8px 12px;
+font-size:12px;text-align:center;letter-spacing:1.1px;font-weight:700;
 }
 
-/* PROFESSIONAL HEADER - PRESERVED */
+/* HEADER - PRESERVED */
 
 header{
-background:#FFFFFF;
-box-shadow:0 4px 18px rgba(0,0,0,.07);
-position:sticky;
-top:0;
-z-index:1000;
-border-bottom:3px solid var(--maroon);
+background:#FFFFFF;box-shadow:0 4px 18px rgba(0,0,0,.07);
+position:sticky;top:0;z-index:1000;border-bottom:3px solid var(--maroon);
 }
-
 .container.header-inner{
-width:min(1500px,94%);
-min-height:94px;
-margin:0 auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:clamp(12px,1.5vw,24px);
-flex-wrap:nowrap;
+width:min(1500px,94%);min-height:94px;margin:0 auto;
+display:flex;align-items:center;justify-content:space-between;
+gap:clamp(12px,1.5vw,24px);flex-wrap:nowrap;
 }
-
-.brand{
-display:flex;
-align-items:center;
-justify-content:flex-start;
-flex-shrink:0;
-white-space:nowrap;
-margin:0;
-}
-
-.brand img{
-width:145px;
-height:78px;
-object-fit:contain;
-object-position:center;
-}
-
+.brand{display:flex;align-items:center;justify-content:flex-start;flex-shrink:0;white-space:nowrap;margin:0}
+.brand img{width:145px;height:78px;object-fit:contain;object-position:center}
 nav{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:clamp(7px,.85vw,14px);
-flex:1;
-min-width:0;
-margin-left:auto;
-flex-wrap:nowrap;
-white-space:nowrap;
+display:flex;align-items:center;justify-content:space-between;
+gap:clamp(7px,.85vw,14px);flex:1;min-width:0;margin-left:auto;
+flex-wrap:nowrap;white-space:nowrap;
 }
-
 nav a,nav button.nav-link{
-color:#111111;
-font-size:clamp(11px,.91vw,14px);
-font-weight:800;
-letter-spacing:.15px;
-text-transform:uppercase;
-white-space:nowrap;
-flex-shrink:0;
-padding:12px 0;
-transition:.25s;
+color:#111;font-size:clamp(11px,.91vw,14px);font-weight:800;
+letter-spacing:.15px;text-transform:uppercase;white-space:nowrap;
+flex-shrink:0;padding:12px 0;transition:.25s;
 }
-
-nav a:hover,nav button.nav-link:hover,nav a.active{
-color:var(--maroon);
-}
-
+nav a:hover,nav button.nav-link:hover,nav a.active{color:var(--maroon)}
 nav button.nav-link{
-border:0;
-background:transparent;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:5px;
+border:0;background:transparent;cursor:pointer;
+display:flex;align-items:center;gap:5px;
 }
-
-.dropdown-arrow{
-font-size:11px;
-transition:transform .25s;
-}
-
+.dropdown-arrow{font-size:11px;transition:transform .25s}
 .programme-menu.open .dropdown-arrow,
 .admissions-menu.open .dropdown-arrow,
-.about-menu.open .dropdown-arrow{
-transform:rotate(180deg);
-}
-
+.about-menu.open .dropdown-arrow{transform:rotate(180deg)}
 .programme-menu,.admissions-menu,.about-menu{
-position:relative;
-display:flex;
-align-items:center;
-flex-shrink:0;
+position:relative;display:flex;align-items:center;flex-shrink:0;
 }
-
 .programme-submenu,.admissions-submenu,.about-submenu{
-display:none;
-position:absolute;
-top:100%;
-left:-15px;
-min-width:235px;
-background:#fff;
-padding:9px 0;
-border-top:4px solid var(--gold);
-border-radius:0 0 7px 7px;
-box-shadow:0 12px 28px rgba(0,0,0,.2);
-z-index:1100;
-white-space:normal;
+display:none;position:absolute;top:100%;left:-15px;min-width:235px;
+background:#fff;padding:9px 0;border-top:4px solid var(--gold);
+border-radius:0 0 7px 7px;box-shadow:0 12px 28px rgba(0,0,0,.2);
+z-index:1100;white-space:normal;
 }
-
 .programme-menu:hover .programme-submenu,
 .programme-menu:focus-within .programme-submenu,
 .programme-menu.open .programme-submenu,
@@ -157,1102 +85,427 @@ white-space:normal;
 .admissions-menu.open .admissions-submenu,
 .about-menu:hover .about-submenu,
 .about-menu:focus-within .about-submenu,
-.about-menu.open .about-submenu{
-display:block;
-}
-
+.about-menu.open .about-submenu{display:block}
 .about-submenu{min-width:255px}
-
 .programme-submenu a,.admissions-submenu a,.about-submenu a{
-display:block;
-padding:11px 18px;
-font-size:13px;
-font-weight:700;
-color:var(--navy);
-border-bottom:1px solid #edf0f4;
-text-transform:none;
+display:block;padding:11px 18px;font-size:13px;font-weight:700;
+color:var(--navy);border-bottom:1px solid #edf0f4;text-transform:none;
 }
-
-.programme-submenu a:last-child,
-.admissions-submenu a:last-child,
+.programme-submenu a:last-child,.admissions-submenu a:last-child,
 .about-submenu a:last-child{border-bottom:0}
-
-.programme-submenu a:hover,
-.admissions-submenu a:hover,
+.programme-submenu a:hover,.admissions-submenu a:hover,
 .about-submenu a:hover{
-background:#F1F4F8;
-color:var(--maroon);
-padding-left:23px;
+background:#F1F4F8;color:var(--maroon);padding-left:23px;
 }
-
 .nav-apply{
-background:var(--maroon);
-color:#fff!important;
-padding:10px 12px!important;
-border-radius:4px;
-font-size:12px!important;
-font-weight:800;
-margin-left:2px;
-border:1px solid var(--maroon);
+background:var(--maroon);color:#fff!important;padding:10px 12px!important;
+border-radius:4px;font-size:12px!important;font-weight:800;
+margin-left:2px;border:1px solid var(--maroon);
 }
-
-.nav-apply:hover{
-background:#fff;
-color:var(--maroon)!important;
-}
-
+.nav-apply:hover{background:#fff;color:var(--maroon)!important}
 .menu-toggle{
-display:none;
-border:1px solid var(--maroon);
-background:var(--maroon);
-color:#fff;
-padding:8px 13px;
-font-size:22px;
-cursor:pointer;
-border-radius:4px;
+display:none;border:1px solid var(--maroon);background:var(--maroon);
+color:#fff;padding:8px 13px;font-size:22px;cursor:pointer;border-radius:4px;
 }
 
-/* HERO - ENHANCED INSTITUTIONAL IDENTITY */
+/* HERO */
 
 .hero{
 background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);
-padding:48px 0 0;
-color:#fff;
-text-align:center;
+padding:48px 0 0;color:#fff;text-align:center;
 }
-
 .hero .container{padding-bottom:30px}
-
-.hero h2{
-font-size:clamp(27px,4vw,45px);
-font-weight:800;
-line-height:1.2;
-margin-bottom:12px;
-}
-
-.hero .motto{
-color:var(--gold);
-font-weight:800;
-letter-spacing:4px;
-font-size:14px;
-}
-
+.hero h2{font-size:clamp(27px,4vw,45px);font-weight:800;line-height:1.2;margin-bottom:12px}
+.hero .motto{color:var(--gold);font-weight:800;letter-spacing:4px;font-size:14px}
 .hero-intro{
-max-width:790px;
-margin:17px auto 18px;
-font-size:clamp(14px,1.5vw,17px);
-line-height:1.8;
-color:#f1f4fa;
-font-weight:500;
+max-width:790px;margin:17px auto 18px;font-size:clamp(14px,1.5vw,17px);
+line-height:1.8;color:#f1f4fa;font-weight:500;
 }
-
 .hero-highlights{
-display:flex;
-justify-content:center;
-align-items:center;
-flex-wrap:wrap;
-gap:10px;
-margin:19px auto 22px;
+display:flex;justify-content:center;align-items:center;flex-wrap:wrap;
+gap:10px;margin:19px auto 22px;
 }
-
 .hero-highlight{
-display:inline-block;
-border:1px solid rgba(255,255,255,.35);
-background:rgba(255,255,255,.09);
-padding:7px 16px;
-border-radius:30px;
-font-size:12px;
-font-weight:800;
-letter-spacing:.5px;
-color:#fff;
+display:inline-block;border:1px solid rgba(255,255,255,.35);
+background:rgba(255,255,255,.09);padding:7px 16px;border-radius:30px;
+font-size:12px;font-weight:800;letter-spacing:.5px;color:#fff;
 }
-
-.hero-location{
-font-size:13px;
-font-weight:600;
-color:#fff;
-margin:13px auto 17px;
-}
-
-.hero-contact{
-display:flex;
-justify-content:center;
-align-items:center;
-flex-wrap:wrap;
-gap:12px;
-}
-
+.hero-location{font-size:13px;font-weight:600;color:#fff;margin:13px auto 17px}
+.hero-contact{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px}
 .hero-contact a{
-display:inline-block;
-padding:9px 17px;
-border-radius:4px;
-font-size:12px;
-font-weight:800;
-transition:.25s;
+display:inline-block;padding:9px 17px;border-radius:4px;
+font-size:12px;font-weight:800;transition:.25s;
 }
-
-.hero-phone{
-background:var(--gold);
-color:var(--navy-dark);
-}
-
-.hero-email{
-border:1px solid rgba(255,255,255,.7);
-color:#fff;
-background:transparent;
-}
-
-.hero-contact a:hover{
-background:#fff;
-color:var(--maroon);
-transform:translateY(-2px);
-}
-
+.hero-phone{background:var(--gold);color:var(--navy-dark)}
+.hero-email{border:1px solid rgba(255,255,255,.7);color:#fff;background:transparent}
+.hero-contact a:hover{background:#fff;color:var(--maroon);transform:translateY(-2px)}
 .slideshow{
-width:100%;
-height:clamp(300px,45vw,600px);
-position:relative;
-overflow:hidden;
-background:#eee;
+width:100%;height:clamp(300px,45vw,600px);
+position:relative;overflow:hidden;background:#eee;
 }
-
 .slide{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-max-width:none;
-object-fit:cover;
-object-position:center;
-opacity:0;
+position:absolute;inset:0;width:100%;height:100%;max-width:none;
+object-fit:cover;object-position:center;opacity:0;
 transition:opacity 1s ease;
 filter:brightness(1.06) contrast(1.05) saturate(1.05);
 }
-
 .slide.active{opacity:1}
 
 /* GENERAL SECTIONS */
 
 section{padding:76px 0}
-
-.section-heading{
-text-align:center;
-margin-bottom:40px;
-}
-
+.section-heading{text-align:center;margin-bottom:40px}
 .section-heading h2{
-color:var(--navy);
-font-size:clamp(26px,3vw,35px);
-font-weight:800;
-line-height:1.25;
-margin-bottom:9px;
+color:var(--navy);font-size:clamp(26px,3vw,35px);
+font-weight:800;line-height:1.25;margin-bottom:9px;
 }
-
-.section-heading p{
-max-width:680px;
-margin:auto;
-color:var(--muted);
-font-size:15px;
-}
-
-.gold-line{
-width:65px;
-height:4px;
-background:var(--gold);
-margin:14px auto;
-border-radius:5px;
-}
+.section-heading p{max-width:680px;margin:auto;color:var(--muted);font-size:15px}
+.gold-line{width:65px;height:4px;background:var(--gold);margin:14px auto;border-radius:5px}
 
 /* QUICK LINKS */
 
-.quick-links{
-background:#F1F4F8;
-padding:27px 0;
-border-bottom:1px solid var(--border);
-}
-
-.quick-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:16px;
-}
-
+.quick-links{background:#F1F4F8;padding:27px 0;border-bottom:1px solid var(--border)}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .quick-card{
-background:#fff;
-padding:19px 12px;
-text-align:center;
-border:1px solid var(--border);
-border-bottom:4px solid var(--gold);
-border-radius:5px;
-color:var(--navy);
-font-weight:800;
-font-size:15px;
-box-shadow:0 3px 12px rgba(0,0,0,.035);
-transition:.25s;
+background:#fff;padding:19px 12px;text-align:center;
+border:1px solid var(--border);border-bottom:4px solid var(--gold);
+border-radius:5px;color:var(--navy);font-weight:800;font-size:15px;
+box-shadow:0 3px 12px rgba(0,0,0,.035);transition:.25s;
 }
-
-.quick-card:hover{
-transform:translateY(-4px);
-color:var(--maroon);
-box-shadow:var(--shadow);
-}
+.quick-card:hover{transform:translateY(-4px);color:var(--maroon);box-shadow:var(--shadow)}
 
 /* ABOUT */
 
-.about-grid{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-align-items:center;
-gap:45px;
-}
-
-.about-text h3{
-color:var(--maroon);
-font-size:27px;
-margin-bottom:14px;
-font-weight:800;
-}
-
-.about-text p{
-margin-bottom:15px;
-font-size:15px;
-color:#46536A;
-}
-
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px}
+.about-text h3{color:var(--maroon);font-size:27px;margin-bottom:14px;font-weight:800}
+.about-text p{margin-bottom:15px;font-size:15px;color:#46536A}
 .about-photo{
-background:#fff;
-padding:10px;
-border:1px solid var(--border);
-border-radius:7px;
-box-shadow:var(--shadow);
+background:#fff;padding:10px;border:1px solid var(--border);
+border-radius:7px;box-shadow:var(--shadow);
 }
-
-.about-photo img{
-width:100%;
-height:340px;
-object-fit:cover;
-border-radius:4px;
-}
-
+.about-photo img{width:100%;height:340px;object-fit:cover;border-radius:4px}
 .primary-btn{
-display:inline-block;
-background:var(--maroon);
-color:#fff;
-padding:12px 25px;
-border-radius:4px;
-font-weight:800;
-margin-top:12px;
-transition:.25s;
+display:inline-block;background:var(--maroon);color:#fff;
+padding:12px 25px;border-radius:4px;font-weight:800;margin-top:12px;transition:.25s;
 }
+.primary-btn:hover{background:var(--navy);transform:translateY(-2px)}
 
-.primary-btn:hover{
-background:var(--navy);
-transform:translateY(-2px);
-}
-
-/* ACADEMIC PROGRAMMES */
+/* ACADEMIC PROGRAMMES - NAVY, WHITE AND GOLD */
 
 .programmes{
-background:var(--light);
-border-top:1px solid var(--border);
-border-bottom:1px solid var(--border);
-padding:55px 0;
+background:var(--light);border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);padding:65px 0;
 }
-
 .programme-columns{
 display:grid;
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:18px;
-align-items:stretch;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:22px;align-items:stretch;
 }
-
 .programme-column{
-background:#fff;
-border:1px solid var(--border);
-border-radius:6px;
-overflow:hidden;
-box-shadow:0 4px 15px rgba(10,30,65,.045);
+background:#fff;border:1px solid #DCE3ED;border-radius:9px;
+overflow:hidden;box-shadow:0 6px 20px rgba(10,30,65,.07);
+transition:transform .25s,box-shadow .25s;
 }
-
+.programme-column:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 28px rgba(10,30,65,.11);
+}
 .programme-column-header{
-background:var(--navy);
-color:#fff;
-padding:17px 16px;
-min-height:105px;
+background:linear-gradient(125deg,#0F2A5E,#091B3D);
+color:#fff;padding:21px 18px;min-height:112px;
+border-bottom:4px solid var(--gold);
 }
-
 .programme-column-header-top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:8px;
-margin-bottom:5px;
+display:flex;justify-content:space-between;align-items:center;
+gap:8px;margin-bottom:7px;
 }
-
-.programme-column-header h3{
-font-size:19px;
-font-weight:800;
-line-height:1.25;
-}
-
-.programme-column-header p{
-font-size:12px;
-color:#dce4f2;
-}
-
+.programme-column-header h3{font-size:19px;font-weight:800;line-height:1.25}
+.programme-column-header p{font-size:12px;color:#DCE4F2}
 .programme-count{
-background:var(--gold);
-color:var(--navy);
-font-size:11px;
-font-weight:800;
-padding:5px 9px;
-border-radius:20px;
-white-space:nowrap;
+background:var(--gold);color:#091B3D;font-size:11px;
+font-weight:800;padding:5px 10px;border-radius:20px;white-space:nowrap;
 }
-
 .programme-list{
-padding:12px;
-display:flex;
-flex-direction:column;
-gap:10px;
+padding:15px;display:flex;flex-direction:column;gap:12px;
 }
-
 .programme-card{
-background:#fff;
-border:1px solid var(--border);
-border-left:4px solid var(--gold);
-border-radius:4px;
-padding:13px 12px;
-transition:.2s;
+background:#fff;border:1px solid #E0E6EF;
+border-left:4px solid var(--gold);border-radius:6px;
+padding:16px 14px;transition:.25s;
 }
-
 .programme-card:hover{
-border-left-color:var(--maroon);
-box-shadow:0 4px 12px rgba(10,30,65,.08);
+border-color:#C7D2E2;border-left-color:var(--navy);
+background:#F9FBFE;
+box-shadow:0 6px 16px rgba(10,30,65,.08);
 }
-
 .programme-card h3{
-font-size:15px;
-color:var(--navy);
-font-weight:800;
-line-height:1.35;
-margin-bottom:5px;
+font-size:15px;color:var(--navy);font-weight:800;
+line-height:1.4;margin-bottom:7px;
 }
-
 .programme-card p{
-font-size:12px;
-color:var(--muted);
-line-height:1.5;
-margin-bottom:7px;
+font-size:12px;color:#657187;line-height:1.65;margin-bottom:10px;
 }
-
 .programme-duration{
-display:block;
-font-size:11px;
-color:var(--maroon);
-font-weight:800;
-margin-bottom:8px;
+display:block;font-size:12px;color:#946F08;
+font-weight:800;margin-bottom:11px;
 }
-
 .programme-action{
-display:inline-block;
-background:var(--maroon);
-color:#fff;
-padding:7px 11px;
-border-radius:3px;
-font-size:11px;
-font-weight:800;
-transition:.2s;
+display:inline-block;background:var(--navy);color:#fff;
+padding:8px 13px;border-radius:4px;font-size:11px;
+font-weight:800;transition:.2s;border:1px solid var(--navy);
 }
-
-.programme-action:hover{background:var(--navy)}
-
+.programme-action:hover{background:var(--gold);color:var(--navy-dark);border-color:var(--gold)}
 .programme-closed{
-display:inline-block;
-background:#edf0f4;
-color:#697589;
-padding:7px 10px;
-border-radius:3px;
-font-size:10px;
-font-weight:800;
+display:inline-block;background:#EEF1F5;color:#68758A;
+padding:7px 11px;border-radius:4px;font-size:10px;font-weight:800;
 }
-
 .programme-loading{
-text-align:center;
-color:var(--muted);
-font-size:13px;
-padding:20px 8px;
+text-align:center;color:var(--muted);font-size:13px;padding:20px 8px;
 }
-
 .programme-error{
-background:#fff5f5;
-color:var(--maroon);
-border:1px solid #edcaca;
-padding:15px;
-border-radius:5px;
-font-size:12px;
-line-height:1.5;
+background:#F4F6F9;color:var(--navy);
+border:1px solid #DCE3ED;border-left:4px solid var(--gold);
+padding:15px;border-radius:5px;font-size:12px;line-height:1.5;
 }
-
 .programme-empty{
-text-align:center;
-color:var(--muted);
-padding:16px 8px;
-font-size:12px;
+text-align:center;color:var(--muted);padding:18px 8px;font-size:12px;
 }
-
-.programme-summary{
-text-align:center;
-color:var(--muted);
-font-size:12px;
-margin-top:22px;
-}
+.programme-summary{text-align:center;color:var(--muted);font-size:12px;margin-top:25px}
 
 /* ADMISSIONS */
 
 .admissions{
 background:linear-gradient(120deg,var(--navy),var(--navy-dark));
-color:#fff;
-text-align:center;
-padding:58px 20px;
+color:#fff;text-align:center;padding:58px 20px;
 }
-
-.admissions h2{
-font-size:32px;
-font-weight:800;
-margin-bottom:10px;
-}
-
-.admissions p{
-max-width:720px;
-margin:0 auto 20px;
-color:#e2e8f2;
-font-size:15px;
-}
-
-.admissions .primary-btn{
-background:var(--gold);
-color:var(--navy);
-}
-
+.admissions h2{font-size:32px;font-weight:800;margin-bottom:10px}
+.admissions p{max-width:720px;margin:0 auto 20px;color:#e2e8f2;font-size:15px}
+.admissions .primary-btn{background:var(--gold);color:var(--navy)}
 .admissions .primary-btn:hover{background:#fff}
 
-/* APPLICATION IMAGE */
+/* APPLICATION */
 
-.application-section{
-background:#fff;
-text-align:center;
-}
-
+.application-section{background:#fff;text-align:center}
 .application-wrap{
-max-width:850px;
-margin:0 auto;
-background:#fff;
-padding:12px;
-border:1px solid var(--border);
-border-radius:7px;
-box-shadow:var(--shadow);
+max-width:850px;margin:0 auto;background:#fff;padding:12px;
+border:1px solid var(--border);border-radius:7px;box-shadow:var(--shadow);
 }
-
-.application-wrap img{
-width:100%;
-height:auto;
-max-height:650px;
-object-fit:contain;
-}
-
-.application-note{
-font-size:13px;
-color:var(--muted);
-margin-top:12px;
-}
+.application-wrap img{width:100%;height:auto;max-height:650px;object-fit:contain}
+.application-note{font-size:13px;color:var(--muted);margin-top:12px}
 
 /* CAMPUS GALLERY */
 
-.gallery-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-}
-
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .gallery-card{
-background:#fff;
-padding:9px;
-border:1px solid var(--border);
-border-radius:6px;
-box-shadow:var(--shadow);
-overflow:hidden;
+background:#fff;padding:9px;border:1px solid var(--border);
+border-radius:6px;box-shadow:var(--shadow);overflow:hidden;
 }
-
-.gallery-card img{
-width:100%;
-height:300px;
-object-fit:cover;
-border-radius:4px;
-}
-
+.gallery-card img{width:100%;height:300px;object-fit:cover;border-radius:4px}
 .gallery-card h3{
-text-align:center;
-padding:12px 5px 5px;
-color:var(--navy);
-font-size:17px;
-font-weight:800;
+text-align:center;padding:12px 5px 5px;
+color:var(--navy);font-size:17px;font-weight:800;
 }
-
-.gallery-card p{
-text-align:center;
-padding:0 10px 12px;
-color:var(--muted);
-font-size:13px;
-}
-
-.gallery-more{
-text-align:center;
-margin-top:28px;
-}
+.gallery-card p{text-align:center;padding:0 10px 12px;color:var(--muted);font-size:13px}
+.gallery-more{text-align:center;margin-top:28px}
 
 /* INSTITUTE POSTER */
 
 .poster-section{background:var(--light)}
-
 .poster-wrap{
-max-width:750px;
-margin:auto;
-padding:10px;
-background:#fff;
-border:1px solid var(--border);
-border-radius:6px;
-box-shadow:var(--shadow);
+max-width:750px;margin:auto;padding:10px;background:#fff;
+border:1px solid var(--border);border-radius:6px;box-shadow:var(--shadow);
 }
+.poster-wrap img{width:100%;height:auto;object-fit:contain}
 
-.poster-wrap img{
-width:100%;
-height:auto;
-object-fit:contain;
-}
+/* PROFESSIONAL SHORT COURSES - NAVY, WHITE AND GOLD */
 
-/* SHORT COURSES */
-
+#shortCourseInformation{background:#fff}
 .short-course-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:13px;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
 }
-
 .short-course{
-background:#fff;
-border:1px solid var(--border);
-border-left:4px solid var(--gold);
-padding:16px;
-border-radius:5px;
-color:var(--navy);
-font-size:14px;
-font-weight:800;
+position:relative;background:#fff;
+border:1px solid #E0E6EF;border-top:4px solid var(--gold);
+padding:20px 18px;border-radius:7px;
+color:var(--navy);font-size:15px;font-weight:800;
+box-shadow:0 5px 17px rgba(10,30,65,.055);
+transition:transform .25s,box-shadow .25s;
 }
-
+.short-course:hover{
+transform:translateY(-4px);
+box-shadow:0 11px 25px rgba(10,30,65,.11);
+border-color:#D3DCE9;
+border-top-color:var(--gold);
+}
 .course-description{
-display:block;
-font-size:12px;
-font-weight:400;
-color:var(--muted);
-margin-top:5px;
+display:block;font-size:12px;font-weight:400;
+color:var(--muted);margin-top:8px;line-height:1.7;
 }
-
 .course-duration{
-display:block;
-font-size:11px;
-color:var(--maroon);
-font-weight:700;
-margin-top:6px;
+display:block;font-size:11px;color:#946F08;
+font-weight:800;margin-top:11px;
 }
 
 /* CONTACT */
 
-.contact-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
-}
-
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .contact-card{
-background:#fff;
-border:1px solid var(--border);
-border-top:4px solid var(--gold);
-padding:22px;
-border-radius:5px;
+background:#fff;border:1px solid var(--border);
+border-top:4px solid var(--gold);padding:22px;border-radius:5px;
 }
+.contact-card h3{color:var(--navy);font-size:17px;font-weight:800;margin-bottom:8px}
+.contact-card p{color:var(--muted);font-size:13px}
+.contact-card a{color:var(--maroon);font-weight:800;overflow-wrap:anywhere}
+.contact-card a:hover{color:var(--navy);text-decoration:underline}
 
-.contact-card h3{
-color:var(--navy);
-font-size:17px;
-font-weight:800;
-margin-bottom:8px;
-}
+/* FOOTER - PRESERVED */
 
-.contact-card p{
-color:var(--muted);
-font-size:13px;
-}
-
-.contact-card a{
-color:var(--maroon);
-font-weight:800;
-overflow-wrap:anywhere;
-}
-
-.contact-card a:hover{
-color:var(--navy);
-text-decoration:underline;
-}
-
-/* FOOTER */
-
-.site-footer{
-background:var(--navy-dark);
-color:#fff;
-padding:55px 0 0;
-}
-
+.site-footer{background:var(--navy-dark);color:#fff;padding:55px 0 0}
 .footer-grid{
-display:grid;
-grid-template-columns:1.2fr 1fr 1fr;
-gap:35px;
-padding-bottom:35px;
+display:grid;grid-template-columns:1.2fr 1fr 1fr;
+gap:35px;padding-bottom:35px;
 }
-
-.footer-brand h3{
-font-size:21px;
-line-height:1.3;
-font-weight:800;
-margin-bottom:8px;
-}
-
-.footer-motto{
-color:var(--gold);
-font-weight:800;
-letter-spacing:2px;
-font-size:12px;
-margin-bottom:14px;
-}
-
-.footer-brand p,.footer-column p{
-font-size:13px;
-color:#d4dbea;
-margin-bottom:12px;
-}
-
-.footer-column h3{
-font-size:17px;
-font-weight:800;
-margin-bottom:15px;
-color:var(--gold);
-}
-
+.footer-brand h3{font-size:21px;line-height:1.3;font-weight:800;margin-bottom:8px}
+.footer-motto{color:var(--gold);font-weight:800;letter-spacing:2px;font-size:12px;margin-bottom:14px}
+.footer-brand p,.footer-column p{font-size:13px;color:#d4dbea;margin-bottom:12px}
+.footer-column h3{font-size:17px;font-weight:800;margin-bottom:15px;color:var(--gold)}
 .footer-column ul{list-style:none}
-
 .footer-column li{margin-bottom:7px}
-
-.footer-column a{
-font-size:13px;
-color:#e4e9f2;
-}
-
+.footer-column a{font-size:13px;color:#e4e9f2}
 .footer-column a:hover{color:var(--gold)}
-
-.footer-contact-link{
-overflow-wrap:anywhere;
-}
-
+.footer-contact-link{overflow-wrap:anywhere}
 .footer-apply{
-display:inline-block;
-background:var(--maroon);
-padding:10px 17px;
-border-radius:4px;
-font-weight:800;
-margin-top:7px;
+display:inline-block;background:var(--maroon);padding:10px 17px;
+border-radius:4px;font-weight:800;margin-top:7px;
 }
-
-.footer-bottom{
-border-top:1px solid rgba(255,255,255,.15);
-padding:17px 0;
-text-align:center;
-}
-
-.footer-bottom p{
-font-size:12px;
-color:#cbd3e1;
-}
-
+.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding:17px 0;text-align:center}
+.footer-bottom p{font-size:12px;color:#cbd3e1}
 .footer-bottom strong{color:var(--gold)}
-
 .site-footer,.site-footer *{font-weight:700!important}
 
 /* TABLET */
 
 @media(min-width:851px) and (max-width:1100px){
-
-.container.header-inner{
-width:96%;
-gap:8px;
-min-height:88px;
-}
-
-.brand img{
-width:112px;
-height:68px;
-}
-
+.container.header-inner{width:96%;gap:8px;min-height:88px}
+.brand img{width:112px;height:68px}
 nav{gap:5px}
-
-nav a,nav button.nav-link{
-font-size:10px;
-letter-spacing:0;
-}
-
-.nav-apply{
-padding:8px 8px!important;
-font-size:10px!important;
-margin-left:0;
-}
-
-.programme-submenu,.admissions-submenu,.about-submenu{
-min-width:210px;
-}
-
-.programme-columns{gap:11px}
-
-.programme-column-header{padding:14px 10px}
-
-.programme-column-header h3{font-size:16px}
-
-.programme-card{padding:11px 9px}
-
-.programme-card h3{font-size:14px}
+nav a,nav button.nav-link{font-size:10px;letter-spacing:0}
+.nav-apply{padding:8px 8px!important;font-size:10px!important;margin-left:0}
+.programme-submenu,.admissions-submenu,.about-submenu{min-width:210px}
+.programme-columns{gap:16px}
+.programme-column-header{padding:17px 13px}
+.programme-column-header h3{font-size:17px}
 }
 
 /* MOBILE */
 
 @media(max-width:850px){
-
 .container.header-inner{
-width:94%;
-min-height:88px;
-gap:12px;
-justify-content:space-between;
+width:94%;min-height:88px;gap:12px;justify-content:space-between;
 }
-
-.brand img{
-width:145px;
-height:72px;
-}
-
-.menu-toggle{
-display:block;
-flex-shrink:0;
-}
-
+.brand img{width:145px;height:72px}
+.menu-toggle{display:block;flex-shrink:0}
 nav{
-display:none;
-position:absolute;
-top:100%;
-left:0;
-right:0;
-width:100%;
-background:#FFFFFF;
-padding:15px 5%;
-flex-direction:column;
-align-items:stretch;
-gap:0;
-box-shadow:0 8px 18px rgba(0,0,0,.15);
-max-height:calc(100vh - 88px);
-overflow-y:auto;
-border-top:1px solid var(--border);
+display:none;position:absolute;top:100%;left:0;right:0;width:100%;
+background:#FFFFFF;padding:15px 5%;flex-direction:column;
+align-items:stretch;gap:0;box-shadow:0 8px 18px rgba(0,0,0,.15);
+max-height:calc(100vh - 88px);overflow-y:auto;border-top:1px solid var(--border);
 }
-
 nav.open{display:flex}
-
 nav>a,nav button.nav-link{
-color:#111111;
-font-size:14px;
-font-weight:800;
-padding:12px 8px;
-border-bottom:1px solid #edf0f4;
-width:100%;
-text-align:left;
+color:#111;font-size:14px;font-weight:800;padding:12px 8px;
+border-bottom:1px solid #edf0f4;width:100%;text-align:left;
 }
-
 nav a:hover,nav button.nav-link:hover{color:var(--maroon)}
-
-.programme-menu,.admissions-menu,.about-menu{
-display:block;
-width:100%;
-}
-
+.programme-menu,.admissions-menu,.about-menu{display:block;width:100%}
 nav button.nav-link{justify-content:space-between}
-
 .programme-submenu,.admissions-submenu,.about-submenu{
-position:static;
-min-width:0;
-width:100%;
-box-shadow:none;
-border-top:2px solid var(--gold);
-border-radius:0;
-padding:4px 0;
-background:#F5F6F8;
+position:static;min-width:0;width:100%;box-shadow:none;
+border-top:2px solid var(--gold);border-radius:0;padding:4px 0;background:#F5F6F8;
 }
-
 .programme-submenu a,.admissions-submenu a,.about-submenu a{
-color:#222;
-padding:11px 20px;
-font-size:13px;
-border-bottom:1px solid #e2e5e9;
+color:#222;padding:11px 20px;font-size:13px;border-bottom:1px solid #e2e5e9;
 }
-
-.programme-submenu a:hover,
-.admissions-submenu a:hover,
-.about-submenu a:hover{
-background:#fff;
-color:var(--maroon);
-padding-left:25px;
+.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{
+background:#fff;color:var(--maroon);padding-left:25px;
 }
-
 .nav-apply{
-padding:11px 14px!important;
-margin-top:10px;
-text-align:center;
-border-bottom:0;
-background:var(--maroon);
-color:#fff!important;
+padding:11px 14px!important;margin-top:10px;text-align:center;
+border-bottom:0;background:var(--maroon);color:#fff!important;
 }
-
 .about-grid{grid-template-columns:1fr}
-
-.programme-columns{
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:9px;
-}
-
-.programme-column-header{padding:12px 9px}
-
-.programme-column-header h3{font-size:15px}
-
-.programme-column-header p{font-size:10px}
-
-.programme-count{
-font-size:10px;
-padding:4px 6px;
-}
-
-.programme-list{
-padding:7px;
-gap:7px;
-}
-
-.programme-card{padding:10px 8px}
-
-.programme-card h3{font-size:13px}
-
+.programme-columns{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.programme-column-header{padding:16px 12px}
+.programme-column-header h3{font-size:16px}
+.programme-column-header p{font-size:11px}
+.programme-list{padding:11px;gap:9px}
+.programme-card{padding:13px 10px}
+.programme-card h3{font-size:14px}
 .programme-card p{font-size:11px}
-
 .quick-grid{grid-template-columns:repeat(2,1fr)}
-
-.footer-grid{
-grid-template-columns:1fr 1fr;
-gap:30px;
-}
-
-.short-course-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:1fr 1fr;gap:30px}
+.short-course-grid{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
 }
 
 /* SMALL MOBILE */
 
 @media(max-width:560px){
-
-.topbar{
-font-size:11px;
-letter-spacing:.5px;
-}
-
+.topbar{font-size:11px;letter-spacing:.5px}
 .header-inner{min-height:78px}
-
-.brand img{
-width:125px;
-height:65px;
-}
-
+.brand img{width:125px;height:65px}
 nav{max-height:calc(100vh - 78px)}
-
 .hero{padding:30px 0 0}
-
 .hero .container{padding-bottom:23px}
-
 .hero h2{font-size:27px}
-
-.hero .motto{
-font-size:12px;
-letter-spacing:3px;
-}
-
-.hero-intro{
-font-size:13px;
-line-height:1.7;
-margin:13px auto;
-}
-
-.hero-highlights{
-gap:7px;
-margin:15px auto;
-}
-
-.hero-highlight{
-font-size:10px;
-padding:6px 10px;
-}
-
-.hero-location{
-font-size:11px;
-line-height:1.6;
-padding:0 8px;
-}
-
+.hero .motto{font-size:12px;letter-spacing:3px}
+.hero-intro{font-size:13px;line-height:1.7;margin:13px auto}
+.hero-highlights{gap:7px;margin:15px auto}
+.hero-highlight{font-size:10px;padding:6px 10px}
+.hero-location{font-size:11px;line-height:1.6;padding:0 8px}
 .hero-contact{gap:8px}
-
-.hero-contact a{
-font-size:11px;
-padding:9px 12px;
-}
-
-.slideshow{
-width:100%;
-height:245px;
-}
-
+.hero-contact a{font-size:11px;padding:9px 12px}
+.slideshow{width:100%;height:245px}
 section{padding:49px 0}
-
 .section-heading{margin-bottom:30px}
-
-.programmes{padding:40px 0}
-
-.programmes .section-heading{margin-bottom:22px}
-
+.programmes{padding:43px 0}
+.programmes .section-heading{margin-bottom:25px}
 .programmes .section-heading h2{font-size:25px}
-
 .programmes .section-heading p{font-size:12px}
-
-.programme-columns{
-grid-template-columns:repeat(3,minmax(0,1fr));
-gap:6px;
-}
-
-.programme-column{border-radius:4px}
-
-.programme-column-header{
-padding:10px 5px;
-min-height:83px;
-}
-
-.programme-column-header-top{
-flex-direction:column;
-align-items:flex-start;
-gap:4px;
-}
-
-.programme-column-header h3{
-font-size:12px;
-line-height:1.25;
-}
-
-.programme-column-header p{
-font-size:9px;
-line-height:1.3;
-}
-
-.programme-count{
-font-size:9px;
-padding:3px 6px;
-}
-
-.programme-list{
-padding:5px;
-gap:6px;
-}
-
-.programme-card{
-padding:8px 6px;
-border-left-width:2px;
-}
-
-.programme-card h3{
-font-size:11px;
-line-height:1.35;
-}
-
-.programme-card p{
-font-size:10px;
-line-height:1.4;
-}
-
-.programme-duration{font-size:9px}
-
-.programme-action{
-font-size:9px;
-padding:6px 4px;
-}
-
-.programme-closed{
-font-size:8px;
-padding:5px 3px;
-}
-
-.programme-summary{
-font-size:10px;
-line-height:1.5;
-}
-
+.programme-columns{grid-template-columns:1fr;gap:16px}
+.programme-column{border-radius:7px}
+.programme-column-header{padding:17px 15px;min-height:0}
+.programme-column-header-top{flex-direction:row;align-items:center;gap:8px}
+.programme-column-header h3{font-size:16px}
+.programme-column-header p{font-size:11px}
+.programme-count{font-size:10px;padding:4px 8px}
+.programme-list{padding:12px;gap:10px}
+.programme-card{padding:14px 12px;border-left-width:4px}
+.programme-card h3{font-size:14px;line-height:1.4}
+.programme-card p{font-size:12px;line-height:1.6}
+.programme-duration{font-size:11px}
+.programme-action{font-size:10px;padding:8px 12px}
+.programme-closed{font-size:9px;padding:6px 8px}
+.programme-summary{font-size:10px;line-height:1.5}
 .gallery-grid{grid-template-columns:1fr}
-
 .gallery-card img{height:240px}
-
-.short-course-grid{grid-template-columns:1fr 1fr}
-
+.short-course-grid{grid-template-columns:1fr}
+.short-course{padding:18px 15px}
 .contact-grid{grid-template-columns:1fr}
-
 .admissions{padding:45px 18px}
-
 .admissions h2{font-size:25px}
-
-.application-wrap{
-width:96%;
-padding:7px;
-}
-
+.application-wrap{width:96%;padding:7px}
 .application-note{font-size:12px}
-
 .site-footer{padding-top:42px}
-
-.footer-grid{
-grid-template-columns:1fr;
-gap:29px;
-}
+.footer-grid{grid-template-columns:1fr;gap:29px}
 }
 
 @media(max-width:360px){
-
-.programme-columns{gap:4px}
-
-.programme-column-header{padding:8px 4px}
-
-.programme-column-header h3{font-size:10px}
-
-.programme-count{font-size:8px}
-
-.programme-list{padding:4px}
-
-.programme-card{padding:7px 5px}
-
-.programme-card h3{font-size:10px}
-
-.programme-card p{font-size:9px}
+.programme-column-header h3{font-size:15px}
+.programme-card{padding:12px 10px}
+.programme-card h3{font-size:13px}
+.programme-card p{font-size:11px}
 }
 </style>
 </head>
@@ -1328,14 +581,11 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 
 <main>
 
-<!-- ENHANCED INSTITUTIONAL WELCOME -->
+<!-- WELCOME -->
 
 <section class="hero" id="home">
-
 <div class="container">
-
 <h2>Welcome to Tahidi International Training Institute</h2>
-
 <p class="motto">BREAKING THE LIMITS</p>
 
 <p class="hero-intro">
@@ -1356,7 +606,6 @@ Empowering learners through quality education, practical professional training a
 <a href="tel:+25677643303" class="hero-phone">☎ +25677643303</a>
 <a href="mailto:tahidiinternationalinstitute@gmail.com" class="hero-email">✉ Email TITI</a>
 </div>
-
 </div>
 
 <div class="slideshow" id="homepageSlideshow">
@@ -1364,7 +613,6 @@ Empowering learners through quality education, practical professional training a
 <img class="slide" src="tahidi%20bulding%202.png" alt="Tahidi Institute campus">
 <img class="slide" src="tahidi%20poster.png" alt="Tahidi Institute information poster">
 </div>
-
 </section>
 
 <!-- QUICK LINKS -->
@@ -1382,7 +630,6 @@ Empowering learners through quality education, practical professional training a
 
 <section id="about">
 <div class="container">
-
 <div class="section-heading">
 <h2>About Our Institute</h2>
 <div class="gold-line"></div>
@@ -1390,29 +637,23 @@ Empowering learners through quality education, practical professional training a
 </div>
 
 <div class="about-grid">
-
 <div class="about-text">
 <h3>Welcome to TITI</h3>
-
 <p>
 Tahidi International Training Institute is committed to providing quality education and practical training that prepares learners for opportunities in the world of work and further education.
 </p>
-
 <p>
 Our focus is on developing knowledge, professional skills, creativity and responsible individuals who can make a positive contribution to society.
 </p>
-
 <p>
 At TITI, we believe in the potential of every learner. Our motto is <strong>BREAKING THE LIMITS.</strong>
 </p>
-
 <a href="#programmes" class="primary-btn">Explore Programmes</a>
 </div>
 
 <div class="about-photo">
 <img src="tahidi%20bulding%201.png" alt="TITI campus building">
 </div>
-
 </div>
 </div>
 </section>
@@ -1492,7 +733,6 @@ Connecting to the TITI admissions database...
 
 <section class="application-section">
 <div class="container">
-
 <div class="section-heading">
 <h2>Application Information</h2>
 <div class="gold-line"></div>
@@ -1508,7 +748,6 @@ Connecting to the TITI admissions database...
 <p class="application-note">
 Click the application image to proceed to our online application page.
 </p>
-
 </div>
 </section>
 
@@ -1516,7 +755,6 @@ Click the application image to proceed to our online application page.
 
 <section id="gallery">
 <div class="container">
-
 <div class="section-heading">
 <h2>Our Campus</h2>
 <div class="gold-line"></div>
@@ -1524,7 +762,6 @@ Click the application image to proceed to our online application page.
 </div>
 
 <div class="gallery-grid" id="homepageGalleryGrid">
-
 <div class="gallery-card">
 <img src="tahidi%20bulding%201.png" alt="TITI campus building one">
 <h3>Our Institute</h3>
@@ -1534,21 +771,18 @@ Click the application image to proceed to our online application page.
 <img src="tahidi%20bulding%202.png" alt="TITI campus building two">
 <h3>Our Campus Environment</h3>
 </div>
-
 </div>
 
 <div class="gallery-more">
 <a href="gallery.html" class="primary-btn">View Full Photo Gallery</a>
 </div>
-
 </div>
 </section>
 
-<!-- INSTITUTE INFORMATION POSTER - SEPARATE SECTION -->
+<!-- INSTITUTE POSTER -->
 
 <section class="poster-section">
 <div class="container">
-
 <div class="section-heading">
 <h2>Institute Information</h2>
 <div class="gold-line"></div>
@@ -1558,7 +792,6 @@ Click the application image to proceed to our online application page.
 <div class="poster-wrap">
 <img src="tahidi%20poster.png" alt="Tahidi International Training Institute poster">
 </div>
-
 </div>
 </section>
 
@@ -1566,7 +799,6 @@ Click the application image to proceed to our online application page.
 
 <section id="shortCourseInformation">
 <div class="container">
-
 <div class="section-heading">
 <h2>Professional Short Courses</h2>
 <div class="gold-line"></div>
@@ -1576,15 +808,13 @@ Click the application image to proceed to our online application page.
 <div class="short-course-grid" id="shortCourseInformationGrid">
 <div class="programme-loading">Loading Short Courses...</div>
 </div>
-
 </div>
 </section>
 
-<!-- CONTACT - OFFICIAL INSTITUTIONAL DETAILS -->
+<!-- CONTACT -->
 
 <section class="contact-section" id="contact">
 <div class="container">
-
 <div class="section-heading">
 <h2>Get in Touch</h2>
 <div class="gold-line"></div>
@@ -1634,9 +864,7 @@ Send us your enquiries and requests for information.
 <div class="footer-grid">
 
 <div class="footer-brand">
-
 <h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
-
 <div class="footer-motto">BREAKING THE LIMITS</div>
 
 <p>
@@ -1648,13 +876,10 @@ Committed to quality education, practical skills and professional training that 
 Nangwe, near Bila High School,<br>
 Busia, Uganda.
 </p>
-
 </div>
 
 <div class="footer-column">
-
 <h3>Explore TITI</h3>
-
 <ul>
 <li><a href="#home">Home</a></li>
 <li><a href="about.html">About Our Institute</a></li>
@@ -1667,11 +892,9 @@ Busia, Uganda.
 <li><a href="contacts.html">Contact Us</a></li>
 <li><a href="application-status.html">Check Application Status</a></li>
 </ul>
-
 </div>
 
 <div class="footer-column">
-
 <h3>Contact Information</h3>
 
 <p>
@@ -1695,7 +918,6 @@ Tahidi International Training Institute
 </p>
 
 <a href="apply.html#online-application" class="footer-apply">Apply Now</a>
-
 </div>
 
 </div>
