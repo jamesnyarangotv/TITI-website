@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tahidi International Training Institute | TITI</title>
-<meta name="description" content="Tahidi International Training Institute – Breaking the Limits. Explore academic programmes, admissions and professional training.">
+<meta name="description" content="Tahidi International Training Institute – Breaking the Limits. Quality education and professional training in Nangwe, Busia, Uganda.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,12 +31,17 @@ img{max-width:100%;display:block}
 button{font-family:'Jost',sans-serif}
 .container{width:min(1180px,92%);margin:auto}
 
-.topbar{background:var(--navy-dark);color:#fff;padding:8px 12px;font-size:12px;text-align:center;letter-spacing:1.1px;font-weight:700}
+.topbar{
+background:var(--navy-dark);
+color:#fff;
+padding:8px 12px;
+font-size:12px;
+text-align:center;
+letter-spacing:1.1px;
+font-weight:700;
+}
 
-/* ==================================================
-   TITI PROFESSIONAL HEADER
-   LOGO AND NAVIGATION ON ONE HORIZONTAL LINE
-================================================== */
+/* PROFESSIONAL HEADER - PRESERVED */
 
 header{
 background:#FFFFFF;
@@ -73,8 +78,6 @@ height:78px;
 object-fit:contain;
 object-position:center;
 }
-
-/* MAIN NAVIGATION */
 
 nav{
 display:flex;
@@ -182,8 +185,6 @@ color:var(--maroon);
 padding-left:23px;
 }
 
-/* APPLY NOW */
-
 .nav-apply{
 background:var(--maroon);
 color:#fff!important;
@@ -200,8 +201,6 @@ background:#fff;
 color:var(--maroon)!important;
 }
 
-/* MOBILE MENU BUTTON */
-
 .menu-toggle{
 display:none;
 border:1px solid var(--maroon);
@@ -213,158 +212,745 @@ cursor:pointer;
 border-radius:4px;
 }
 
-/* HERO */
-.hero{background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);padding:42px 0 0;color:#fff;text-align:center}
-.hero .container{padding-bottom:26px}
-.hero h2{font-size:clamp(26px,4vw,43px);font-weight:800;line-height:1.2;margin-bottom:9px}
-.hero .motto{color:var(--gold);font-weight:800;letter-spacing:4px;font-size:14px}
-.slideshow{width:100%;height:clamp(300px,45vw,600px);position:relative;overflow:hidden;background:#eee}
-.slide{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center;opacity:0;transition:opacity 1s ease;filter:brightness(1.06) contrast(1.05) saturate(1.05)}
+/* HERO - ENHANCED INSTITUTIONAL IDENTITY */
+
+.hero{
+background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);
+padding:48px 0 0;
+color:#fff;
+text-align:center;
+}
+
+.hero .container{padding-bottom:30px}
+
+.hero h2{
+font-size:clamp(27px,4vw,45px);
+font-weight:800;
+line-height:1.2;
+margin-bottom:12px;
+}
+
+.hero .motto{
+color:var(--gold);
+font-weight:800;
+letter-spacing:4px;
+font-size:14px;
+}
+
+.hero-intro{
+max-width:790px;
+margin:17px auto 18px;
+font-size:clamp(14px,1.5vw,17px);
+line-height:1.8;
+color:#f1f4fa;
+font-weight:500;
+}
+
+.hero-highlights{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+margin:19px auto 22px;
+}
+
+.hero-highlight{
+display:inline-block;
+border:1px solid rgba(255,255,255,.35);
+background:rgba(255,255,255,.09);
+padding:7px 16px;
+border-radius:30px;
+font-size:12px;
+font-weight:800;
+letter-spacing:.5px;
+color:#fff;
+}
+
+.hero-location{
+font-size:13px;
+font-weight:600;
+color:#fff;
+margin:13px auto 17px;
+}
+
+.hero-contact{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:12px;
+}
+
+.hero-contact a{
+display:inline-block;
+padding:9px 17px;
+border-radius:4px;
+font-size:12px;
+font-weight:800;
+transition:.25s;
+}
+
+.hero-phone{
+background:var(--gold);
+color:var(--navy-dark);
+}
+
+.hero-email{
+border:1px solid rgba(255,255,255,.7);
+color:#fff;
+background:transparent;
+}
+
+.hero-contact a:hover{
+background:#fff;
+color:var(--maroon);
+transform:translateY(-2px);
+}
+
+.slideshow{
+width:100%;
+height:clamp(300px,45vw,600px);
+position:relative;
+overflow:hidden;
+background:#eee;
+}
+
+.slide{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+max-width:none;
+object-fit:cover;
+object-position:center;
+opacity:0;
+transition:opacity 1s ease;
+filter:brightness(1.06) contrast(1.05) saturate(1.05);
+}
+
 .slide.active{opacity:1}
 
 /* GENERAL SECTIONS */
+
 section{padding:76px 0}
-.section-heading{text-align:center;margin-bottom:40px}
-.section-heading h2{color:var(--navy);font-size:clamp(26px,3vw,35px);font-weight:800;line-height:1.25;margin-bottom:9px}
-.section-heading p{max-width:680px;margin:auto;color:var(--muted);font-size:15px}
-.gold-line{width:65px;height:4px;background:var(--gold);margin:14px auto;border-radius:5px}
+
+.section-heading{
+text-align:center;
+margin-bottom:40px;
+}
+
+.section-heading h2{
+color:var(--navy);
+font-size:clamp(26px,3vw,35px);
+font-weight:800;
+line-height:1.25;
+margin-bottom:9px;
+}
+
+.section-heading p{
+max-width:680px;
+margin:auto;
+color:var(--muted);
+font-size:15px;
+}
+
+.gold-line{
+width:65px;
+height:4px;
+background:var(--gold);
+margin:14px auto;
+border-radius:5px;
+}
 
 /* QUICK LINKS */
-.quick-links{background:#F1F4F8;padding:27px 0;border-bottom:1px solid var(--border)}
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.quick-card{background:#fff;padding:19px 12px;text-align:center;border:1px solid var(--border);border-bottom:4px solid var(--gold);border-radius:5px;color:var(--navy);font-weight:800;font-size:15px;box-shadow:0 3px 12px rgba(0,0,0,.035);transition:.25s}
-.quick-card:hover{transform:translateY(-4px);color:var(--maroon);box-shadow:var(--shadow)}
+
+.quick-links{
+background:#F1F4F8;
+padding:27px 0;
+border-bottom:1px solid var(--border);
+}
+
+.quick-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
+}
+
+.quick-card{
+background:#fff;
+padding:19px 12px;
+text-align:center;
+border:1px solid var(--border);
+border-bottom:4px solid var(--gold);
+border-radius:5px;
+color:var(--navy);
+font-weight:800;
+font-size:15px;
+box-shadow:0 3px 12px rgba(0,0,0,.035);
+transition:.25s;
+}
+
+.quick-card:hover{
+transform:translateY(-4px);
+color:var(--maroon);
+box-shadow:var(--shadow);
+}
 
 /* ABOUT */
-.about-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px}
-.about-text h3{color:var(--maroon);font-size:27px;margin-bottom:14px;font-weight:800}
-.about-text p{margin-bottom:15px;font-size:15px;color:#46536A}
-.about-photo{background:#fff;padding:10px;border:1px solid var(--border);border-radius:7px;box-shadow:var(--shadow)}
-.about-photo img{width:100%;height:340px;object-fit:cover;border-radius:4px}
-.primary-btn{display:inline-block;background:var(--maroon);color:#fff;padding:12px 25px;border-radius:4px;font-weight:800;margin-top:12px;transition:.25s}
-.primary-btn:hover{background:var(--navy);transform:translateY(-2px)}
+
+.about-grid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+align-items:center;
+gap:45px;
+}
+
+.about-text h3{
+color:var(--maroon);
+font-size:27px;
+margin-bottom:14px;
+font-weight:800;
+}
+
+.about-text p{
+margin-bottom:15px;
+font-size:15px;
+color:#46536A;
+}
+
+.about-photo{
+background:#fff;
+padding:10px;
+border:1px solid var(--border);
+border-radius:7px;
+box-shadow:var(--shadow);
+}
+
+.about-photo img{
+width:100%;
+height:340px;
+object-fit:cover;
+border-radius:4px;
+}
+
+.primary-btn{
+display:inline-block;
+background:var(--maroon);
+color:#fff;
+padding:12px 25px;
+border-radius:4px;
+font-weight:800;
+margin-top:12px;
+transition:.25s;
+}
+
+.primary-btn:hover{
+background:var(--navy);
+transform:translateY(-2px);
+}
 
 /* ACADEMIC PROGRAMMES */
-.programmes{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:55px 0}
-.programme-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
-.programme-column{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:0 4px 15px rgba(10,30,65,.045)}
-.programme-column-header{background:var(--navy);color:#fff;padding:17px 16px;min-height:105px}
-.programme-column-header-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:5px}
-.programme-column-header h3{font-size:19px;font-weight:800;line-height:1.25}
-.programme-column-header p{font-size:12px;color:#dce4f2}
-.programme-count{background:var(--gold);color:var(--navy);font-size:11px;font-weight:800;padding:5px 9px;border-radius:20px;white-space:nowrap}
-.programme-list{padding:12px;display:flex;flex-direction:column;gap:10px}
-.programme-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:4px;padding:13px 12px;transition:.2s}
-.programme-card:hover{border-left-color:var(--maroon);box-shadow:0 4px 12px rgba(10,30,65,.08)}
-.programme-card h3{font-size:15px;color:var(--navy);font-weight:800;line-height:1.35;margin-bottom:5px}
-.programme-card p{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:7px}
-.programme-duration{display:block;font-size:11px;color:var(--maroon);font-weight:800;margin-bottom:8px}
-.programme-action{display:inline-block;background:var(--maroon);color:#fff;padding:7px 11px;border-radius:3px;font-size:11px;font-weight:800;transition:.2s}
+
+.programmes{
+background:var(--light);
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+padding:55px 0;
+}
+
+.programme-columns{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:18px;
+align-items:stretch;
+}
+
+.programme-column{
+background:#fff;
+border:1px solid var(--border);
+border-radius:6px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(10,30,65,.045);
+}
+
+.programme-column-header{
+background:var(--navy);
+color:#fff;
+padding:17px 16px;
+min-height:105px;
+}
+
+.programme-column-header-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:8px;
+margin-bottom:5px;
+}
+
+.programme-column-header h3{
+font-size:19px;
+font-weight:800;
+line-height:1.25;
+}
+
+.programme-column-header p{
+font-size:12px;
+color:#dce4f2;
+}
+
+.programme-count{
+background:var(--gold);
+color:var(--navy);
+font-size:11px;
+font-weight:800;
+padding:5px 9px;
+border-radius:20px;
+white-space:nowrap;
+}
+
+.programme-list{
+padding:12px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.programme-card{
+background:#fff;
+border:1px solid var(--border);
+border-left:4px solid var(--gold);
+border-radius:4px;
+padding:13px 12px;
+transition:.2s;
+}
+
+.programme-card:hover{
+border-left-color:var(--maroon);
+box-shadow:0 4px 12px rgba(10,30,65,.08);
+}
+
+.programme-card h3{
+font-size:15px;
+color:var(--navy);
+font-weight:800;
+line-height:1.35;
+margin-bottom:5px;
+}
+
+.programme-card p{
+font-size:12px;
+color:var(--muted);
+line-height:1.5;
+margin-bottom:7px;
+}
+
+.programme-duration{
+display:block;
+font-size:11px;
+color:var(--maroon);
+font-weight:800;
+margin-bottom:8px;
+}
+
+.programme-action{
+display:inline-block;
+background:var(--maroon);
+color:#fff;
+padding:7px 11px;
+border-radius:3px;
+font-size:11px;
+font-weight:800;
+transition:.2s;
+}
+
 .programme-action:hover{background:var(--navy)}
-.programme-closed{display:inline-block;background:#edf0f4;color:#697589;padding:7px 10px;border-radius:3px;font-size:10px;font-weight:800}
-.programme-loading{text-align:center;color:var(--muted);font-size:13px;padding:20px 8px}
-.programme-error{background:#fff5f5;color:var(--maroon);border:1px solid #edcaca;padding:15px;border-radius:5px;font-size:12px;line-height:1.5}
-.programme-summary{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+
+.programme-closed{
+display:inline-block;
+background:#edf0f4;
+color:#697589;
+padding:7px 10px;
+border-radius:3px;
+font-size:10px;
+font-weight:800;
+}
+
+.programme-loading{
+text-align:center;
+color:var(--muted);
+font-size:13px;
+padding:20px 8px;
+}
+
+.programme-error{
+background:#fff5f5;
+color:var(--maroon);
+border:1px solid #edcaca;
+padding:15px;
+border-radius:5px;
+font-size:12px;
+line-height:1.5;
+}
+
+.programme-empty{
+text-align:center;
+color:var(--muted);
+padding:16px 8px;
+font-size:12px;
+}
+
+.programme-summary{
+text-align:center;
+color:var(--muted);
+font-size:12px;
+margin-top:22px;
+}
 
 /* ADMISSIONS */
-.admissions{background:linear-gradient(120deg,var(--navy),var(--navy-dark));color:#fff;text-align:center;padding:58px 20px}
-.admissions h2{font-size:32px;font-weight:800;margin-bottom:10px}
-.admissions p{max-width:720px;margin:0 auto 20px;color:#e2e8f2;font-size:15px}
-.admissions .primary-btn{background:var(--gold);color:var(--navy)}
+
+.admissions{
+background:linear-gradient(120deg,var(--navy),var(--navy-dark));
+color:#fff;
+text-align:center;
+padding:58px 20px;
+}
+
+.admissions h2{
+font-size:32px;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.admissions p{
+max-width:720px;
+margin:0 auto 20px;
+color:#e2e8f2;
+font-size:15px;
+}
+
+.admissions .primary-btn{
+background:var(--gold);
+color:var(--navy);
+}
+
 .admissions .primary-btn:hover{background:#fff}
 
 /* APPLICATION IMAGE */
-.application-section{background:#fff;text-align:center}
-.application-wrap{max-width:850px;margin:0 auto;background:#fff;padding:12px;border:1px solid var(--border);border-radius:7px;box-shadow:var(--shadow)}
-.application-wrap img{width:100%;height:auto;max-height:650px;object-fit:contain}
-.application-note{font-size:13px;color:var(--muted);margin-top:12px}
+
+.application-section{
+background:#fff;
+text-align:center;
+}
+
+.application-wrap{
+max-width:850px;
+margin:0 auto;
+background:#fff;
+padding:12px;
+border:1px solid var(--border);
+border-radius:7px;
+box-shadow:var(--shadow);
+}
+
+.application-wrap img{
+width:100%;
+height:auto;
+max-height:650px;
+object-fit:contain;
+}
+
+.application-note{
+font-size:13px;
+color:var(--muted);
+margin-top:12px;
+}
 
 /* CAMPUS GALLERY */
-.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.gallery-card{background:#fff;padding:9px;border:1px solid var(--border);border-radius:6px;box-shadow:var(--shadow);overflow:hidden}
-.gallery-card img{width:100%;height:300px;object-fit:cover;border-radius:4px}
-.gallery-card h3{text-align:center;padding:12px 5px 5px;color:var(--navy);font-size:17px;font-weight:800}
-.gallery-card p{text-align:center;padding:0 10px 12px;color:var(--muted);font-size:13px}
-.gallery-more{text-align:center;margin-top:28px}
 
-/* POSTER */
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.gallery-card{
+background:#fff;
+padding:9px;
+border:1px solid var(--border);
+border-radius:6px;
+box-shadow:var(--shadow);
+overflow:hidden;
+}
+
+.gallery-card img{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:4px;
+}
+
+.gallery-card h3{
+text-align:center;
+padding:12px 5px 5px;
+color:var(--navy);
+font-size:17px;
+font-weight:800;
+}
+
+.gallery-card p{
+text-align:center;
+padding:0 10px 12px;
+color:var(--muted);
+font-size:13px;
+}
+
+.gallery-more{
+text-align:center;
+margin-top:28px;
+}
+
+/* INSTITUTE POSTER */
+
 .poster-section{background:var(--light)}
-.poster-wrap{max-width:750px;margin:auto;padding:10px;background:#fff;border:1px solid var(--border);border-radius:6px;box-shadow:var(--shadow)}
-.poster-wrap img{width:100%;height:auto;object-fit:contain}
+
+.poster-wrap{
+max-width:750px;
+margin:auto;
+padding:10px;
+background:#fff;
+border:1px solid var(--border);
+border-radius:6px;
+box-shadow:var(--shadow);
+}
+
+.poster-wrap img{
+width:100%;
+height:auto;
+object-fit:contain;
+}
 
 /* SHORT COURSES */
-.short-course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.short-course{background:#fff;border:1px solid var(--border);border-left:4px solid var(--gold);padding:16px;border-radius:5px;color:var(--navy);font-size:14px;font-weight:800}
-.course-description{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:5px}
-.course-duration{display:block;font-size:11px;color:var(--maroon);font-weight:700;margin-top:6px}
+
+.short-course-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:13px;
+}
+
+.short-course{
+background:#fff;
+border:1px solid var(--border);
+border-left:4px solid var(--gold);
+padding:16px;
+border-radius:5px;
+color:var(--navy);
+font-size:14px;
+font-weight:800;
+}
+
+.course-description{
+display:block;
+font-size:12px;
+font-weight:400;
+color:var(--muted);
+margin-top:5px;
+}
+
+.course-duration{
+display:block;
+font-size:11px;
+color:var(--maroon);
+font-weight:700;
+margin-top:6px;
+}
 
 /* CONTACT */
-.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.contact-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--gold);padding:22px;border-radius:5px}
-.contact-card h3{color:var(--navy);font-size:17px;font-weight:800;margin-bottom:8px}
-.contact-card p{color:var(--muted);font-size:13px}
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
+
+.contact-card{
+background:#fff;
+border:1px solid var(--border);
+border-top:4px solid var(--gold);
+padding:22px;
+border-radius:5px;
+}
+
+.contact-card h3{
+color:var(--navy);
+font-size:17px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.contact-card p{
+color:var(--muted);
+font-size:13px;
+}
+
+.contact-card a{
+color:var(--maroon);
+font-weight:800;
+overflow-wrap:anywhere;
+}
+
+.contact-card a:hover{
+color:var(--navy);
+text-decoration:underline;
+}
 
 /* FOOTER */
-.site-footer{background:var(--navy-dark);color:#fff;padding:55px 0 0}
-.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:35px;padding-bottom:35px}
-.footer-brand h3{font-size:21px;line-height:1.3;font-weight:800;margin-bottom:8px}
-.footer-motto{color:var(--gold);font-weight:800;letter-spacing:2px;font-size:12px;margin-bottom:14px}
-.footer-brand p,.footer-column p{font-size:13px;color:#d4dbea;margin-bottom:12px}
-.footer-column h3{font-size:17px;font-weight:800;margin-bottom:15px;color:var(--gold)}
+
+.site-footer{
+background:var(--navy-dark);
+color:#fff;
+padding:55px 0 0;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.2fr 1fr 1fr;
+gap:35px;
+padding-bottom:35px;
+}
+
+.footer-brand h3{
+font-size:21px;
+line-height:1.3;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.footer-motto{
+color:var(--gold);
+font-weight:800;
+letter-spacing:2px;
+font-size:12px;
+margin-bottom:14px;
+}
+
+.footer-brand p,.footer-column p{
+font-size:13px;
+color:#d4dbea;
+margin-bottom:12px;
+}
+
+.footer-column h3{
+font-size:17px;
+font-weight:800;
+margin-bottom:15px;
+color:var(--gold);
+}
+
 .footer-column ul{list-style:none}
+
 .footer-column li{margin-bottom:7px}
-.footer-column a{font-size:13px;color:#e4e9f2}
+
+.footer-column a{
+font-size:13px;
+color:#e4e9f2;
+}
+
 .footer-column a:hover{color:var(--gold)}
-.footer-apply{display:inline-block;background:var(--maroon);padding:10px 17px;border-radius:4px;font-weight:800;margin-top:7px}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding:17px 0;text-align:center}
-.footer-bottom p{font-size:12px;color:#cbd3e1}
+
+.footer-contact-link{
+overflow-wrap:anywhere;
+}
+
+.footer-apply{
+display:inline-block;
+background:var(--maroon);
+padding:10px 17px;
+border-radius:4px;
+font-weight:800;
+margin-top:7px;
+}
+
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,.15);
+padding:17px 0;
+text-align:center;
+}
+
+.footer-bottom p{
+font-size:12px;
+color:#cbd3e1;
+}
+
 .footer-bottom strong{color:var(--gold)}
+
 .site-footer,.site-footer *{font-weight:700!important}
 
-/* TABLET: KEEP LOGO AND NAVIGATION ON ONE LINE */
+/* TABLET */
+
 @media(min-width:851px) and (max-width:1100px){
+
 .container.header-inner{
 width:96%;
 gap:8px;
 min-height:88px;
 }
+
 .brand img{
 width:112px;
 height:68px;
 }
-nav{
-gap:5px;
-}
+
+nav{gap:5px}
+
 nav a,nav button.nav-link{
 font-size:10px;
 letter-spacing:0;
 }
+
 .nav-apply{
 padding:8px 8px!important;
 font-size:10px!important;
 margin-left:0;
 }
-.programme-submenu,.admissions-submenu,.about-submenu{min-width:210px}
+
+.programme-submenu,.admissions-submenu,.about-submenu{
+min-width:210px;
+}
+
 .programme-columns{gap:11px}
+
 .programme-column-header{padding:14px 10px}
+
 .programme-column-header h3{font-size:16px}
+
 .programme-card{padding:11px 9px}
+
 .programme-card h3{font-size:14px}
 }
 
 /* MOBILE */
+
 @media(max-width:850px){
+
 .container.header-inner{
 width:94%;
 min-height:88px;
 gap:12px;
 justify-content:space-between;
 }
+
 .brand img{
 width:145px;
 height:72px;
 }
-.menu-toggle{display:block;flex-shrink:0}
+
+.menu-toggle{
+display:block;
+flex-shrink:0;
+}
+
 nav{
 display:none;
 position:absolute;
@@ -382,7 +968,9 @@ max-height:calc(100vh - 88px);
 overflow-y:auto;
 border-top:1px solid var(--border);
 }
+
 nav.open{display:flex}
+
 nav>a,nav button.nav-link{
 color:#111111;
 font-size:14px;
@@ -392,9 +980,16 @@ border-bottom:1px solid #edf0f4;
 width:100%;
 text-align:left;
 }
+
 nav a:hover,nav button.nav-link:hover{color:var(--maroon)}
-.programme-menu,.admissions-menu,.about-menu{display:block;width:100%}
+
+.programme-menu,.admissions-menu,.about-menu{
+display:block;
+width:100%;
+}
+
 nav button.nav-link{justify-content:space-between}
+
 .programme-submenu,.admissions-submenu,.about-submenu{
 position:static;
 min-width:0;
@@ -405,13 +1000,22 @@ border-radius:0;
 padding:4px 0;
 background:#F5F6F8;
 }
+
 .programme-submenu a,.admissions-submenu a,.about-submenu a{
 color:#222;
 padding:11px 20px;
 font-size:13px;
 border-bottom:1px solid #e2e5e9;
 }
-.programme-submenu a:hover,.admissions-submenu a:hover,.about-submenu a:hover{background:#fff;color:var(--maroon);padding-left:25px}
+
+.programme-submenu a:hover,
+.admissions-submenu a:hover,
+.about-submenu a:hover{
+background:#fff;
+color:var(--maroon);
+padding-left:25px;
+}
+
 .nav-apply{
 padding:11px 14px!important;
 margin-top:10px;
@@ -420,78 +1024,244 @@ border-bottom:0;
 background:var(--maroon);
 color:#fff!important;
 }
+
 .about-grid{grid-template-columns:1fr}
-.programme-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+
+.programme-columns{
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:9px;
+}
+
 .programme-column-header{padding:12px 9px}
+
 .programme-column-header h3{font-size:15px}
+
 .programme-column-header p{font-size:10px}
-.programme-count{font-size:10px;padding:4px 6px}
-.programme-list{padding:7px;gap:7px}
+
+.programme-count{
+font-size:10px;
+padding:4px 6px;
+}
+
+.programme-list{
+padding:7px;
+gap:7px;
+}
+
 .programme-card{padding:10px 8px}
+
 .programme-card h3{font-size:13px}
+
 .programme-card p{font-size:11px}
+
 .quick-grid{grid-template-columns:repeat(2,1fr)}
-.footer-grid{grid-template-columns:1fr 1fr;gap:30px}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
 .short-course-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 /* SMALL MOBILE */
+
 @media(max-width:560px){
-.topbar{font-size:11px;letter-spacing:.5px}
-.header-inner{min-height:78px}
-.brand img{width:125px;height:65px}
-nav{max-height:calc(100vh - 78px)}
-.hero{padding:28px 0 0}
-.hero .container{padding-bottom:21px}
-.hero .motto{font-size:12px;letter-spacing:3px}
-.slideshow{width:100%;height:245px}
-section{padding:49px 0}
-.section-heading{margin-bottom:30px}
-.programmes{padding:40px 0}
-.programmes .section-heading{margin-bottom:22px}
-.programmes .section-heading h2{font-size:25px}
-.programmes .section-heading p{font-size:12px}
-.programme-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-.programme-column{border-radius:4px}
-.programme-column-header{padding:10px 5px;min-height:83px}
-.programme-column-header-top{flex-direction:column;align-items:flex-start;gap:4px}
-.programme-column-header h3{font-size:12px;line-height:1.25}
-.programme-column-header p{font-size:9px;line-height:1.3}
-.programme-count{font-size:9px;padding:3px 6px}
-.programme-list{padding:5px;gap:6px}
-.programme-card{padding:8px 6px;border-left-width:2px}
-.programme-card h3{font-size:11px;line-height:1.35}
-.programme-card p{font-size:10px;line-height:1.4}
-.programme-duration{font-size:9px}
-.programme-action{font-size:9px;padding:6px 4px}
-.programme-closed{font-size:8px;padding:5px 3px}
-.programme-summary{font-size:10px;line-height:1.5}
-.gallery-grid{grid-template-columns:1fr}
-.gallery-card img{height:240px}
-.short-course-grid{grid-template-columns:1fr 1fr}
-.contact-grid{grid-template-columns:1fr}
-.admissions{padding:45px 18px}
-.admissions h2{font-size:25px}
-.application-wrap{width:96%;padding:7px}
-.application-note{font-size:12px}
-.site-footer{padding-top:42px}
-.footer-grid{grid-template-columns:1fr;gap:29px}
+
+.topbar{
+font-size:11px;
+letter-spacing:.5px;
 }
+
+.header-inner{min-height:78px}
+
+.brand img{
+width:125px;
+height:65px;
+}
+
+nav{max-height:calc(100vh - 78px)}
+
+.hero{padding:30px 0 0}
+
+.hero .container{padding-bottom:23px}
+
+.hero h2{font-size:27px}
+
+.hero .motto{
+font-size:12px;
+letter-spacing:3px;
+}
+
+.hero-intro{
+font-size:13px;
+line-height:1.7;
+margin:13px auto;
+}
+
+.hero-highlights{
+gap:7px;
+margin:15px auto;
+}
+
+.hero-highlight{
+font-size:10px;
+padding:6px 10px;
+}
+
+.hero-location{
+font-size:11px;
+line-height:1.6;
+padding:0 8px;
+}
+
+.hero-contact{gap:8px}
+
+.hero-contact a{
+font-size:11px;
+padding:9px 12px;
+}
+
+.slideshow{
+width:100%;
+height:245px;
+}
+
+section{padding:49px 0}
+
+.section-heading{margin-bottom:30px}
+
+.programmes{padding:40px 0}
+
+.programmes .section-heading{margin-bottom:22px}
+
+.programmes .section-heading h2{font-size:25px}
+
+.programmes .section-heading p{font-size:12px}
+
+.programme-columns{
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:6px;
+}
+
+.programme-column{border-radius:4px}
+
+.programme-column-header{
+padding:10px 5px;
+min-height:83px;
+}
+
+.programme-column-header-top{
+flex-direction:column;
+align-items:flex-start;
+gap:4px;
+}
+
+.programme-column-header h3{
+font-size:12px;
+line-height:1.25;
+}
+
+.programme-column-header p{
+font-size:9px;
+line-height:1.3;
+}
+
+.programme-count{
+font-size:9px;
+padding:3px 6px;
+}
+
+.programme-list{
+padding:5px;
+gap:6px;
+}
+
+.programme-card{
+padding:8px 6px;
+border-left-width:2px;
+}
+
+.programme-card h3{
+font-size:11px;
+line-height:1.35;
+}
+
+.programme-card p{
+font-size:10px;
+line-height:1.4;
+}
+
+.programme-duration{font-size:9px}
+
+.programme-action{
+font-size:9px;
+padding:6px 4px;
+}
+
+.programme-closed{
+font-size:8px;
+padding:5px 3px;
+}
+
+.programme-summary{
+font-size:10px;
+line-height:1.5;
+}
+
+.gallery-grid{grid-template-columns:1fr}
+
+.gallery-card img{height:240px}
+
+.short-course-grid{grid-template-columns:1fr 1fr}
+
+.contact-grid{grid-template-columns:1fr}
+
+.admissions{padding:45px 18px}
+
+.admissions h2{font-size:25px}
+
+.application-wrap{
+width:96%;
+padding:7px;
+}
+
+.application-note{font-size:12px}
+
+.site-footer{padding-top:42px}
+
+.footer-grid{
+grid-template-columns:1fr;
+gap:29px;
+}
+}
+
 @media(max-width:360px){
+
 .programme-columns{gap:4px}
+
 .programme-column-header{padding:8px 4px}
+
 .programme-column-header h3{font-size:10px}
+
 .programme-count{font-size:8px}
+
 .programme-list{padding:4px}
+
 .programme-card{padding:7px 5px}
+
 .programme-card h3{font-size:10px}
+
 .programme-card p{font-size:9px}
 }
 </style>
 </head>
+
 <body>
 
-<div class="topbar">TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS</div>
+<div class="topbar">
+TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
+</div>
 
 <header>
 <div class="container header-inner">
@@ -503,10 +1273,13 @@ section{padding:49px 0}
 <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 
 <nav id="mainNav">
+
 <a href="#home">HOME</a>
 
 <div class="about-menu" id="aboutMenu">
-<button type="button" class="nav-link" id="aboutToggle" aria-expanded="false" aria-controls="aboutSubmenu">ABOUT US <span class="dropdown-arrow">▼</span></button>
+<button type="button" class="nav-link" id="aboutToggle" aria-expanded="false" aria-controls="aboutSubmenu">
+ABOUT US <span class="dropdown-arrow">▼</span>
+</button>
 <div class="about-submenu" id="aboutSubmenu">
 <a href="about.html#who-we-are">Who We Are</a>
 <a href="about.html#our-vision">Our Vision</a>
@@ -519,7 +1292,9 @@ section{padding:49px 0}
 </div>
 
 <div class="programme-menu" id="programmeMenu">
-<button type="button" class="nav-link" id="programmeToggle" aria-expanded="false" aria-controls="programmeSubmenu">PROGRAMMES <span class="dropdown-arrow">▼</span></button>
+<button type="button" class="nav-link" id="programmeToggle" aria-expanded="false" aria-controls="programmeSubmenu">
+PROGRAMMES <span class="dropdown-arrow">▼</span>
+</button>
 <div class="programme-submenu" id="programmeSubmenu">
 <a href="#diploma">Diploma Programmes</a>
 <a href="#certificate">Certificate Programmes</a>
@@ -528,7 +1303,9 @@ section{padding:49px 0}
 </div>
 
 <div class="admissions-menu" id="admissionsMenu">
-<button type="button" class="nav-link" id="admissionsToggle" aria-expanded="false" aria-controls="admissionsSubmenu">ADMISSIONS <span class="dropdown-arrow">▼</span></button>
+<button type="button" class="nav-link" id="admissionsToggle" aria-expanded="false" aria-controls="admissionsSubmenu">
+ADMISSIONS <span class="dropdown-arrow">▼</span>
+</button>
 <div class="admissions-submenu" id="admissionsSubmenu">
 <a href="apply.html#admissions">Admissions at TITI</a>
 <a href="apply.html#requirements">Entry Requirements</a>
@@ -544,23 +1321,53 @@ section{padding:49px 0}
 <a href="gallery.html">GALLERY</a>
 <a href="contacts.html">CONTACT</a>
 <a href="apply.html#online-application" class="nav-apply">APPLY NOW</a>
+
 </nav>
 </div>
 </header>
 
 <main>
 
+<!-- ENHANCED INSTITUTIONAL WELCOME -->
+
 <section class="hero" id="home">
+
 <div class="container">
+
 <h2>Welcome to Tahidi International Training Institute</h2>
+
 <p class="motto">BREAKING THE LIMITS</p>
+
+<p class="hero-intro">
+Empowering learners through quality education, practical professional training and skills development. We are committed to preparing individuals for meaningful opportunities in employment, entrepreneurship and further education.
+</p>
+
+<div class="hero-highlights">
+<span class="hero-highlight">KNOWLEDGE</span>
+<span class="hero-highlight">SKILLS</span>
+<span class="hero-highlight">OPPORTUNITIES</span>
 </div>
+
+<p class="hero-location">
+📍 Nangwe, Near Bila High School, Busia, Uganda
+</p>
+
+<div class="hero-contact">
+<a href="tel:+25677643303" class="hero-phone">☎ +25677643303</a>
+<a href="mailto:tahidiinternationalinstitute@gmail.com" class="hero-email">✉ Email TITI</a>
+</div>
+
+</div>
+
 <div class="slideshow" id="homepageSlideshow">
 <img class="slide active" src="tahidi%20bulding%201.png" alt="Tahidi Institute campus building">
 <img class="slide" src="tahidi%20bulding%202.png" alt="Tahidi Institute campus">
 <img class="slide" src="tahidi%20poster.png" alt="Tahidi Institute information poster">
 </div>
+
 </section>
+
+<!-- QUICK LINKS -->
 
 <div class="quick-links">
 <div class="container quick-grid">
@@ -571,30 +1378,50 @@ section{padding:49px 0}
 </div>
 </div>
 
+<!-- ABOUT -->
+
 <section id="about">
 <div class="container">
+
 <div class="section-heading">
 <h2>About Our Institute</h2>
 <div class="gold-line"></div>
 <p>Building knowledge, practical skills and confidence for a better future.</p>
 </div>
+
 <div class="about-grid">
+
 <div class="about-text">
 <h3>Welcome to TITI</h3>
-<p>Tahidi International Training Institute is committed to providing quality education and practical training that prepares learners for opportunities in the world of work and further education.</p>
-<p>Our focus is on developing knowledge, professional skills, creativity and responsible individuals who can make a positive contribution to society.</p>
-<p>At TITI, we believe in the potential of every learner. Our motto is <strong>BREAKING THE LIMITS.</strong></p>
+
+<p>
+Tahidi International Training Institute is committed to providing quality education and practical training that prepares learners for opportunities in the world of work and further education.
+</p>
+
+<p>
+Our focus is on developing knowledge, professional skills, creativity and responsible individuals who can make a positive contribution to society.
+</p>
+
+<p>
+At TITI, we believe in the potential of every learner. Our motto is <strong>BREAKING THE LIMITS.</strong>
+</p>
+
 <a href="#programmes" class="primary-btn">Explore Programmes</a>
 </div>
+
 <div class="about-photo">
 <img src="tahidi%20bulding%201.png" alt="TITI campus building">
 </div>
+
 </div>
 </div>
 </section>
 
+<!-- ACADEMIC PROGRAMMES - SUPABASE CONNECTED -->
+
 <section class="programmes" id="programmes">
 <div class="container">
+
 <div class="section-heading">
 <h2>Our Academic Programmes</h2>
 <div class="gold-line"></div>
@@ -643,9 +1470,15 @@ section{padding:49px 0}
 </div>
 
 </div>
-<p class="programme-summary" id="programmeSummary">Connecting to the TITI admissions database...</p>
+
+<p class="programme-summary" id="programmeSummary">
+Connecting to the TITI admissions database...
+</p>
+
 </div>
 </section>
+
+<!-- ADMISSIONS -->
 
 <section class="admissions" id="admissions">
 <div class="container">
@@ -655,24 +1488,35 @@ section{padding:49px 0}
 </div>
 </section>
 
+<!-- APPLICATION INFORMATION -->
+
 <section class="application-section">
 <div class="container">
+
 <div class="section-heading">
 <h2>Application Information</h2>
 <div class="gold-line"></div>
 <p>Take the next step towards joining Tahidi International Training Institute.</p>
 </div>
+
 <div class="application-wrap">
 <a href="apply.html#online-application" aria-label="Open TITI online application">
 <img src="apply.jpeg" alt="TITI application information">
 </a>
 </div>
-<p class="application-note">Click the application image to proceed to our online application page.</p>
+
+<p class="application-note">
+Click the application image to proceed to our online application page.
+</p>
+
 </div>
 </section>
 
+<!-- CAMPUS GALLERY -->
+
 <section id="gallery">
 <div class="container">
+
 <div class="section-heading">
 <h2>Our Campus</h2>
 <div class="gold-line"></div>
@@ -680,84 +1524,137 @@ section{padding:49px 0}
 </div>
 
 <div class="gallery-grid" id="homepageGalleryGrid">
+
 <div class="gallery-card">
 <img src="tahidi%20bulding%201.png" alt="TITI campus building one">
 <h3>Our Institute</h3>
 </div>
+
 <div class="gallery-card">
 <img src="tahidi%20bulding%202.png" alt="TITI campus building two">
 <h3>Our Campus Environment</h3>
 </div>
+
 </div>
 
 <div class="gallery-more">
 <a href="gallery.html" class="primary-btn">View Full Photo Gallery</a>
 </div>
+
 </div>
 </section>
 
+<!-- INSTITUTE INFORMATION POSTER - SEPARATE SECTION -->
+
 <section class="poster-section">
 <div class="container">
+
 <div class="section-heading">
 <h2>Institute Information</h2>
 <div class="gold-line"></div>
 <p>Find out more about Tahidi International Training Institute.</p>
 </div>
+
 <div class="poster-wrap">
 <img src="tahidi%20poster.png" alt="Tahidi International Training Institute poster">
 </div>
+
 </div>
 </section>
 
+<!-- PROFESSIONAL SHORT COURSES -->
+
 <section id="shortCourseInformation">
 <div class="container">
+
 <div class="section-heading">
 <h2>Professional Short Courses</h2>
 <div class="gold-line"></div>
 <p>Practical skills for personal growth, employment and entrepreneurship.</p>
 </div>
+
 <div class="short-course-grid" id="shortCourseInformationGrid">
 <div class="programme-loading">Loading Short Courses...</div>
 </div>
+
 </div>
 </section>
 
+<!-- CONTACT - OFFICIAL INSTITUTIONAL DETAILS -->
+
 <section class="contact-section" id="contact">
 <div class="container">
+
 <div class="section-heading">
 <h2>Get in Touch</h2>
 <div class="gold-line"></div>
-<p>Contact Tahidi International Training Institute for enquiries and admissions information.</p>
+<p>We welcome enquiries about our academic programmes, admissions and professional training opportunities.</p>
 </div>
+
 <div class="contact-grid">
+
 <div class="contact-card">
-<h3>Visit Us</h3>
-<p>Contact the institute for campus location and directions.</p>
+<h3>Visit Our Institute</h3>
+<p>
+Tahidi International Training Institute<br>
+Nangwe, near Bila High School,<br>
+Busia, Uganda.
+</p>
 </div>
+
 <div class="contact-card">
-<h3>Admissions</h3>
-<p>Speak to our team about available programmes and enrolment.</p>
+<h3>Call Our Institute</h3>
+<p>
+Speak to our administration about programmes, admissions and enrolment.
+<br><br>
+<a href="tel:+25677643303">+25677643303</a>
+</p>
 </div>
+
 <div class="contact-card">
-<h3>Enquiries</h3>
-<p>Reach out to the institute for more information.</p>
+<h3>Email Our Institute</h3>
+<p>
+Send us your enquiries and requests for information.
+<br><br>
+<a href="mailto:tahidiinternationalinstitute@gmail.com">tahidiinternationalinstitute@gmail.com</a>
+</p>
 </div>
+
 </div>
 </div>
 </section>
 
 </main>
 
+<!-- FOOTER -->
+
 <footer class="site-footer">
 <div class="container">
-<div class="footer-grid"><div class="footer-brand">
+
+<div class="footer-grid">
+
+<div class="footer-brand">
+
 <h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
+
 <div class="footer-motto">BREAKING THE LIMITS</div>
-<p>Committed to quality education, practical skills and professional training that prepares learners for opportunities in the world of work.</p>
+
+<p>
+Committed to quality education, practical skills and professional training that prepares learners for opportunities in the world of work.
+</p>
+
+<p>
+<strong>Our Location:</strong><br>
+Nangwe, near Bila High School,<br>
+Busia, Uganda.
+</p>
+
 </div>
 
 <div class="footer-column">
+
 <h3>Explore TITI</h3>
+
 <ul>
 <li><a href="#home">Home</a></li>
 <li><a href="about.html">About Our Institute</a></li>
@@ -770,25 +1667,54 @@ section{padding:49px 0}
 <li><a href="contacts.html">Contact Us</a></li>
 <li><a href="application-status.html">Check Application Status</a></li>
 </ul>
+
 </div>
 
 <div class="footer-column">
+
 <h3>Contact Information</h3>
-<p><strong>Institution:</strong><br>Tahidi International Training Institute</p>
-<p><strong>Enquiries:</strong><br>Contact the institute administration for programme, admission and campus information.</p>
-<p><strong>Website:</strong><br><a href="https://jamesnyarangotv.github.io/TITI-website/">TITI Official Website</a></p>
+
+<p>
+<strong>Institution:</strong><br>
+Tahidi International Training Institute
+</p>
+
+<p>
+<strong>Telephone:</strong><br>
+<a class="footer-contact-link" href="tel:+25677643303">+25677643303</a>
+</p>
+
+<p>
+<strong>Email:</strong><br>
+<a class="footer-contact-link" href="mailto:tahidiinternationalinstitute@gmail.com">tahidiinternationalinstitute@gmail.com</a>
+</p>
+
+<p>
+<strong>Website:</strong><br>
+<a href="https://jamesnyarangotv.github.io/TITI-website/">TITI Official Website</a>
+</p>
+
 <a href="apply.html#online-application" class="footer-apply">Apply Now</a>
+
 </div>
 
 </div>
+
 <div class="footer-bottom">
-<p>© <span id="footer-year"></span> <strong>Tahidi International Training Institute.</strong> All Rights Reserved.</p>
+<p>
+© <span id="footer-year"></span>
+<strong>Tahidi International Training Institute.</strong>
+All Rights Reserved.
+</p>
 </div>
+
 </div>
 </footer>
 
 <script>
-/* TITI SUPABASE CONFIGURATION */
+
+/* TITI SUPABASE CONFIGURATION - PRESERVED */
+
 const TITI_SUPABASE_URL = 'https://jlmbiauilmajuvrnuaul.supabase.co';
 const TITI_SUPABASE_KEY = 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
 
@@ -796,6 +1722,7 @@ const TITI_PROGRAMMES_TABLE = 'programmes';
 const TITI_GALLERY_TABLE = 'titi_gallery_images';
 
 /* HTML SECURITY */
+
 function titiEscape(value){
     return String(value ?? '').replace(/[&<>"']/g,function(character){
         const entities={
@@ -810,11 +1737,15 @@ function titiEscape(value){
 }
 
 /* PROGRAMME CARDS */
+
 function titiProgrammeCard(programme){
+
     const name=titiEscape(programme.programme_name);
+
     const description=titiEscape(
         programme.description || 'Professional training designed to develop knowledge and practical skills.'
     );
+
     const duration=programme.duration
         ? `<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`
         : '';
@@ -833,10 +1764,13 @@ function titiProgrammeCard(programme){
 }
 
 function titiShortCourseCard(programme){
+
     const name=titiEscape(programme.programme_name);
+
     const description=titiEscape(
         programme.description || 'Practical professional skills training.'
     );
+
     const duration=programme.duration
         ? `<div class="programme-duration">Duration: ${titiEscape(programme.duration)}</div>`
         : '';
@@ -851,10 +1785,13 @@ function titiShortCourseCard(programme){
 }
 
 function titiShortCourseInformationCard(programme){
+
     const name=titiEscape(programme.programme_name);
+
     const description=titiEscape(
         programme.description || 'Practical professional skills training.'
     );
+
     const duration=programme.duration
         ? `<span class="course-duration">Duration: ${titiEscape(programme.duration)}</span>`
         : '';
@@ -868,7 +1805,9 @@ function titiShortCourseInformationCard(programme){
 }
 
 /* DATABASE ERROR DISPLAY */
+
 function titiShowError(message){
+
     const errorHTML=`
         <div class="programme-error">
             <strong>Programme information is temporarily unavailable.</strong>
@@ -890,6 +1829,7 @@ function titiShowError(message){
 }
 
 /* LOAD PROGRAMMES FROM SUPABASE */
+
 async function loadTITIProgrammes(){
 
     const diplomaGrid=document.getElementById('diplomaGrid');
@@ -899,6 +1839,7 @@ async function loadTITIProgrammes(){
     const summary=document.getElementById('programmeSummary');
 
     try{
+
         const endpoint =
             `${TITI_SUPABASE_URL}/rest/v1/${TITI_PROGRAMMES_TABLE}?select=id,programme_name,programme_level,description,duration,application_open&order=programme_level.asc,programme_name.asc`;
 
@@ -911,17 +1852,21 @@ async function loadTITIProgrammes(){
         });
 
         if(!response.ok){
+
             let errorMessage='Database request failed.';
             let errorCode='';
             let errorDetails='';
             let errorHint='';
 
             try{
+
                 const errorData=await response.json();
+
                 errorMessage=errorData.message || errorData.error || errorMessage;
                 errorCode=errorData.code || '';
                 errorDetails=errorData.details || '';
                 errorHint=errorData.hint || '';
+
             }catch(error){
                 console.error('Could not read Supabase error response:',error);
             }
@@ -1000,22 +1945,29 @@ async function loadTITIProgrammes(){
         });
 
     }catch(error){
+
         console.error('TITI programme database error:',error);
+
         titiShowError(error.message||'Please check your database connection.');
     }
 }
 
 /* HOMEPAGE SLIDESHOW */
+
 let currentSlide=0;
 let homepageSlideTimer=null;
 
 function titiStartHomepageSlideshow(){
+
     if(homepageSlideTimer){
         clearInterval(homepageSlideTimer);
     }
 
     homepageSlideTimer=setInterval(()=>{
-        const slides=Array.from(document.querySelectorAll('#homepageSlideshow .slide'));
+
+        const slides=Array.from(
+            document.querySelectorAll('#homepageSlideshow .slide')
+        );
 
         if(slides.length<=1)return;
 
@@ -1028,25 +1980,32 @@ function titiStartHomepageSlideshow(){
         });
 
         currentSlide=(currentSlide+1)%slides.length;
+
     },5000);
 }
 
 /* ADD NEW PUBLISHED PHOTOS TO THE HOMEPAGE SLIDESHOW */
+
 function titiAddGalleryPhotosToSlideshow(images){
+
     const slideshow=document.getElementById('homepageSlideshow');
+
     if(!slideshow)return;
 
     const existingSources=new Set(
         Array.from(slideshow.querySelectorAll('.slide')).map(image=>{
+
             try{
                 return new URL(image.src,window.location.href).href;
             }catch(error){
                 return image.getAttribute('src');
             }
+
         })
     );
 
     images.forEach(photo=>{
+
         if(!photo.image_url)return;
 
         let normalizedUrl;
@@ -1060,6 +2019,7 @@ function titiAddGalleryPhotosToSlideshow(images){
         if(existingSources.has(normalizedUrl))return;
 
         const image=document.createElement('img');
+
         image.className='slide';
         image.src=photo.image_url;
         image.alt=photo.title || 'Tahidi International Training Institute gallery photograph';
@@ -1072,14 +2032,18 @@ function titiAddGalleryPhotosToSlideshow(images){
 
         slideshow.appendChild(image);
         existingSources.add(normalizedUrl);
+
     });
 
     titiStartHomepageSlideshow();
 }
 
 /* DISPLAY PUBLISHED PHOTOGRAPHS IN THE CAMPUS SECTION */
+
 function titiDisplayHomepageGallery(images){
+
     const gallery=document.getElementById('homepageGalleryGrid');
+
     if(!gallery)return;
 
     if(!images.length){
@@ -1087,27 +2051,36 @@ function titiDisplayHomepageGallery(images){
     }
 
     gallery.innerHTML=images.map((photo,index)=>`
+
         <a class="gallery-card" href="gallery.html" aria-label="View the full gallery">
+
             <img
                 src="${titiEscape(photo.image_url)}"
                 alt="${titiEscape(photo.title || 'TITI campus photograph')}"
                 loading="${index<2?'eager':'lazy'}"
             >
+
             <h3>${titiEscape(photo.title || 'TITI Campus Photograph')}</h3>
+
             ${photo.caption ? `<p>${titiEscape(photo.caption)}</p>` : ''}
+
         </a>
+
     `).join('');
 }
 
 /* LOAD PUBLISHED GALLERY PHOTOS FROM SUPABASE */
+
 let titiGalleryRequestRunning=false;
 
 async function loadTITIGalleryPhotos(){
+
     if(titiGalleryRequestRunning)return;
 
     titiGalleryRequestRunning=true;
 
     try{
+
         const endpoint=
             `${TITI_SUPABASE_URL}/rest/v1/${TITI_GALLERY_TABLE}`+
             `?select=id,title,caption,image_url,display_order,created_at`+
@@ -1124,6 +2097,7 @@ async function loadTITIGalleryPhotos(){
         });
 
         if(!response.ok){
+
             let message='Gallery photographs could not be retrieved.';
 
             try{
@@ -1146,28 +2120,40 @@ async function loadTITIGalleryPhotos(){
         console.log('TITI published gallery photographs loaded:',images.length);
 
     }catch(error){
+
         console.error('TITI gallery connection error:',error);
+
     }finally{
+
         titiGalleryRequestRunning=false;
+
     }
 }
 
 /* MOBILE NAVIGATION */
+
 const menuToggle=document.getElementById('menuToggle');
 const mainNav=document.getElementById('mainNav');
 
 menuToggle.addEventListener('click',()=>{
+
     mainNav.classList.toggle('open');
+
     const isOpen=mainNav.classList.contains('open');
+
     menuToggle.setAttribute('aria-expanded',isOpen);
     menuToggle.setAttribute('aria-label',isOpen?'Close navigation':'Open navigation');
+
 });
 
 /* DROPDOWN MENUS */
+
 const aboutMenu=document.getElementById('aboutMenu');
 const aboutToggle=document.getElementById('aboutToggle');
+
 const programmeMenu=document.getElementById('programmeMenu');
 const programmeToggle=document.getElementById('programmeToggle');
+
 const admissionsMenu=document.getElementById('admissionsMenu');
 const admissionsToggle=document.getElementById('admissionsToggle');
 
@@ -1187,50 +2173,67 @@ admissionsToggle.addEventListener('click',()=>{
 });
 
 /* CLOSE MENUS AFTER LINK SELECTION */
+
 document.querySelectorAll('#mainNav a').forEach(link=>{
+
     link.addEventListener('click',()=>{
+
         mainNav.classList.remove('open');
+
         programmeMenu.classList.remove('open');
         admissionsMenu.classList.remove('open');
         aboutMenu.classList.remove('open');
 
         menuToggle.setAttribute('aria-expanded','false');
         menuToggle.setAttribute('aria-label','Open navigation');
+
         programmeToggle.setAttribute('aria-expanded','false');
         admissionsToggle.setAttribute('aria-expanded','false');
         aboutToggle.setAttribute('aria-expanded','false');
+
     });
+
 });
 
 /* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
+
 document.addEventListener('click',event=>{
+
     if(!programmeMenu.contains(event.target)){
         programmeMenu.classList.remove('open');
         programmeToggle.setAttribute('aria-expanded','false');
     }
+
     if(!admissionsMenu.contains(event.target)){
         admissionsMenu.classList.remove('open');
         admissionsToggle.setAttribute('aria-expanded','false');
     }
+
     if(!aboutMenu.contains(event.target)){
         aboutMenu.classList.remove('open');
         aboutToggle.setAttribute('aria-expanded','false');
     }
+
 });
 
 /* COPYRIGHT */
+
 document.getElementById('footer-year').textContent=new Date().getFullYear();
 
 /* START HOMEPAGE SLIDESHOW */
+
 titiStartHomepageSlideshow();
 
 /* START DATABASE CONNECTIONS */
+
 loadTITIProgrammes();
 loadTITIGalleryPhotos();
 
 /* CHECK FOR NEWLY PUBLISHED GALLERY PHOTOS EVERY 60 SECONDS */
+
 setInterval(loadTITIGalleryPhotos,60000);
 
 </script>
+
 </body>
 </html>
