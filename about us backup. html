@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Us | Tahidi International Training Institute</title>
+<meta name="description" content="Discover Tahidi International Training Institute, our institutional background, vision, mission, core values, commitment and location.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --navy: #0F2A5E;
+    --dark-navy: #091B3D;
+    --maroon: #7A1220;
+    --gold: #D4AF37;
+    --white: #FFFFFF;
+    --light: #F5F7FB;
+    --text: #263247;
+    --muted: #68758A;
+    --border: #E5EAF1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 115px;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: 'Jost', sans-serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* HEADER */
+
+.top-header {
+    width: 100%;
+    background: var(--navy);
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+}
+
+.header-inner {
+    max-width: 1400px;
+    min-height: 108px;
+    margin: auto;
+    padding: 10px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.brand img {
+    width: 160px;
+    height: 75px;
+    object-fit: contain;
+    display: block;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 23px;
+    flex: 1;
+}
+
+.navigation > a,
+.dropdown > a {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.navigation > a:hover,
+.dropdown > a:hover {
+    color: var(--gold);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown > a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dropdown > a::after {
+    content: "⌄";
+    font-size: 15px;
+    color: var(--gold);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 245px;
+    padding: 12px 0;
+    background: var(--white);
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    border-radius: 0 0 7px 7px;
+    display: none;
+    z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 18px;
+    color: var(--dark-navy);
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+.dropdown-menu a:hover {
+    background: var(--light);
+    color: var(--maroon);
+    padding-left: 24px;
+}
+
+.apply-button {
+    background: var(--maroon);
+    color: var(--white) !important;
+    padding: 12px 21px;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    border: 1px solid var(--maroon);
+    transition: 0.3s;
+}
+
+.apply-button:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark-navy) !important;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 8px 12px;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* PAGE HERO */
+
+.page-hero {
+    min-height: 390px;
+    background:
+        linear-gradient(90deg, rgba(9,27,61,0.96), rgba(15,42,94,0.78)),
+        url("apply.jpeg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    position: relative;
+}
+
+.hero-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 75px 0;
+}
+
+.hero-label {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.page-hero h1 {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 780px;
+    margin-bottom: 18px;
+}
+
+.page-hero p {
+    font-size: 18px;
+    max-width: 690px;
+    color: rgba(255,255,255,0.88);
+}
+
+.hero-line {
+    width: 75px;
+    height: 5px;
+    background: var(--gold);
+    margin-top: 25px;
+}
+
+/* GENERAL SECTIONS */
+
+section {
+    scroll-margin-top: 115px;
+}
+
+.section {
+    padding: 85px 0;
+}
+
+.section-light {
+    background: var(--light);
+}
+
+.section-heading {
+    margin-bottom: 35px;
+}
+
+.section-heading .eyebrow {
+    color: var(--maroon);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 9px;
+}
+
+.section-heading h2 {
+    color: var(--navy);
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    font-size: clamp(29px, 3vw, 40px);
+    line-height: 1.25;
+}
+
+.section-heading p {
+    color: var(--muted);
+    max-width: 760px;
+    margin-top: 12px;
+}
+
+.gold-line {
+    width: 65px;
+    height: 4px;
+    background: var(--gold);
+    margin-top: 17px;
+}
+
+/* WHO WE ARE */
+
+.who-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 55px;
+    align-items: center;
+}
+
+.who-text p {
+    margin-bottom: 17px;
+    color: #536176;
+    font-size: 16px;
+}
+
+.who-image {
+    min-height: 390px;
+    background:
+        linear-gradient(rgba(9,27,61,0.10), rgba(9,27,61,0.10)),
+        url("apply.jpeg") center/cover no-repeat;
+    border-radius: 8px;
+    box-shadow: 18px 18px 0 var(--gold);
+}
+
+.highlight-box {
+    border-left: 5px solid var(--maroon);
+    padding: 20px 24px;
+    background: var(--light);
+    margin-top: 25px;
+}
+
+.highlight-box strong {
+    display: block;
+    color: var(--navy);
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.highlight-box p {
+    margin: 0;
+}
+
+/* VISION AND MISSION */
+
+.vision-mission {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.vm-card {
+    background: var(--white);
+    padding: 38px 32px;
+    border-radius: 8px;
+    border-bottom: 5px solid var(--gold);
+    box-shadow: 0 8px 30px rgba(9,27,61,0.07);
+    transition: 0.3s;
+}
+
+.vm-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(9,27,61,0.12);
+}
+
+.vm-icon {
+    width: 58px;
+    height: 58px;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.vm-card h3 {
+    color: var(--navy);
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    margin-bottom: 13px;
+}
+
+.vm-card p {
+    color: var(--muted);
+}
+
+/* CORE VALUES */
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.value-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 28px 25px;
+    transition: 0.3s;
+}
+
+.value-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(9,27,61,0.08);
+}
+
+.value-number {
+    font-family: 'Jost', sans-serif;
+    color: var(--gold);
+    font-size: 35px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.value-card h3 {
+    color: var(--navy);
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+.value-card p {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+/* COMMITMENT */
+
+.commitment-section {
+    background: var(--dark-navy);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.commitment-section .section-heading h2 {
+    color: var(--white);
+}
+
+.commitment-section .section-heading p {
+    color: rgba(255,255,255,0.75);
+}
+
+.commitment-section .eyebrow {
+    color: var(--gold);
+}
+
+.commitment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.commitment-item {
+    display: flex;
+    gap: 17px;
+    padding: 22px;
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.05);
+    border-radius: 7px;
+}
+
+.commitment-check {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--dark-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.commitment-item h3 {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.commitment-item p {
+    color: rgba(255,255,255,0.72);
+    font-size: 14px;
+}
+
+/* LOCATION */
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 35px;
+    align-items: stretch;
+}
+
+.location-card {
+    background: var(--navy);
+    color: var(--white);
+    padding: 35px;
+    border-radius: 8px;
+}
+
+.location-card h3 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.location-detail {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.location-detail .symbol {
+    color: var(--gold);
+    font-size: 21px;
+    min-width: 25px;
+}
+
+.location-detail strong {
+    display: block;
+    color: var(--gold);
+    margin-bottom: 3px;
+}
+
+.location-detail span {
+    color: rgba(255,255,255,0.85);
+}
+
+.location-note {
+    background: var(--light);
+    border-radius: 8px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.location-note h3 {
+    color: var(--navy);
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    font-size: 27px;
+    margin-bottom: 13px;
+}
+
+.location-note p {
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.contact-button {
+    display: inline-block;
+    width: fit-content;
+    background: var(--maroon);
+    color: var(--white);
+    padding: 12px 22px;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.contact-button:hover {
+    background: var(--gold);
+    color: var(--dark-navy);
+}
+
+/* CONTACT INFORMATION */
+
+.contact-section {
+    background: var(--light);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.contact-card {
+    background: var(--white);
+    padding: 30px 25px;
+    text-align: center;
+    border-radius: 7px;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 7px 25px rgba(9,27,61,0.06);
+}
+
+.contact-card .contact-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.contact-card h3 {
+    color: var(--navy);
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.contact-card p,
+.contact-card a {
+    color: var(--muted);
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.contact-card a:hover {
+    color: var(--maroon);
+}
+
+/* CALL TO ACTION */
+
+.cta-section {
+    background: linear-gradient(110deg, var(--maroon), #4B0D17);
+    padding: 65px 0;
+    color: var(--white);
+}
+
+.cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.cta-inner h2 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    font-size: clamp(27px, 3vw, 37px);
+    margin-bottom: 8px;
+}
+
+.cta-inner p {
+    color: rgba(255,255,255,0.85);
+}
+
+.cta-button {
+    background: var(--gold);
+    color: var(--dark-navy);
+    padding: 14px 25px;
+    border-radius: 4px;
+    font-weight: 800;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background: var(--white);
+}
+
+/* FOOTER */
+
+.footer {
+    background: var(--dark-navy);
+    color: var(--white);
+    padding: 65px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 35px;
+    padding-bottom: 45px;
+}
+
+.footer-logo {
+    width: 160px;
+    height: 75px;
+    object-fit: contain;
+    margin-bottom: 18px;
+}
+
+.footer-about p {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    max-width: 290px;
+}
+
+.footer-column h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 10px;
+}
+
+.footer-column a,
+.footer-column p {
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    transition: 0.25s;
+    overflow-wrap: anywhere;
+}
+
+.footer-column a:hover {
+    color: var(--gold);
+    padding-left: 4px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding: 20px 0;
+    text-align: center;
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+}
+
+.footer-bottom strong {
+    color: var(--gold);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 1150px) {
+    .header-inner {
+        padding: 10px 22px;
+        gap: 15px;
+    }
+
+    .brand img {
+        width: 145px;
+        height: 70px;
+    }
+
+    .navigation {
+        gap: 14px;
+    }
+
+    .navigation > a,
+    .dropdown > a {
+        font-size: 13px;
+    }
+
+    .apply-button {
+        padding: 10px 14px;
+    }
+}
+
+@media (max-width: 850px) {
+    .header-inner {
+        min-height: 90px;
+        padding: 8px 5%;
+    }
+
+    .brand img {
+        width: 140px;
+        height: 68px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .navigation {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--dark-navy);
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        padding: 12px 5% 22px;
+        box-shadow: 0 12px 20px rgba(0,0,0,0.18);
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
+    }
+
+    .navigation.active {
+        display: flex;
+    }
+
+    .navigation > a,
+    .dropdown > a {
+        display: flex;
+        width: 100%;
+        padding: 13px 4px;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+        font-size: 15px;
+    }
+
+    .dropdown > a {
+        justify-content: space-between;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: none;
+        width: 100%;
+        min-width: unset;
+        background: rgba(255,255,255,0.97);
+        border-top: 3px solid var(--gold);
+        box-shadow: none;
+        border-radius: 0;
+        padding: 5px 0;
+    }
+
+    .dropdown.open .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        padding: 10px 18px;
+    }
+
+    .navigation .apply-button {
+        margin-top: 14px;
+        justify-content: center;
+        border: none;
+        padding: 13px;
+    }
+
+    .who-grid,
+    .location-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .who-image {
+        min-height: 320px;
+        margin: 0 10px 10px 0;
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .page-hero {
+        min-height: 330px;
+    }
+
+    .hero-content {
+        padding: 60px 0;
+    }
+
+    .page-hero p {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .vision-mission,
+    .values-grid,
+    .commitment-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vm-card {
+        padding: 28px 23px;
+    }
+
+    .location-card,
+    .location-note {
+        padding: 27px 23px;
+    }
+
+    .cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer {
+        padding-top: 48px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="top-header">
+    <div class="header-inner">
+
+        <a href="index.html" class="brand">
+            <img src="BYE.png" alt="Tahidi International Training Institute Logo">
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+            ☰
+        </button>
+
+        <nav class="navigation" id="mainNav">
+
+            <a href="index.html">HOME</a>
+
+            <div class="dropdown">
+                <a href="about.html" class="dropdown-toggle">ABOUT US</a>
+                <div class="dropdown-menu">
+                    <a href="#who-we-are">Who We Are</a>
+                    <a href="#our-vision">Our Vision</a>
+                    <a href="#our-mission">Our Mission</a>
+                    <a href="#our-core-values">Our Core Values</a>
+                    <a href="#student-commitment">Our Commitment to Students</a>
+                    <a href="#our-location">Our Location</a>
+                    <a href="#contact-information">Contact Information</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="index.html#programmes" class="dropdown-toggle">PROGRAMMES</a>
+                <div class="dropdown-menu">
+                    <a href="index.html#diploma">Diploma Programmes</a>
+                    <a href="index.html#certificate">Certificate Programmes</a>
+                    <a href="index.html#shortCourses">Short Courses</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="admissions.html#admissions" class="dropdown-toggle">ADMISSIONS</a>
+                <div class="dropdown-menu">
+                    <a href="admissions.html#admissions">Admissions at TITI</a>
+                    <a href="admissions.html#requirements">Entry Requirements</a>
+                    <a href="admissions.html#documents">Required Documents</a>
+                    <a href="admissions.html#intakes">Intakes &amp; Admission</a>
+                    <a href="admissions.html#fees">Fees &amp; Payment</a>
+                    <a href="admissions.html#enquiries">Admission Enquiries</a>
+                </div>
+            </div>
+
+            <a href="index.html#gallery">CAMPUS</a>
+            <a href="index.html#contact">CONTACT</a>
+            <a href="apply.html#online-application" class="apply-button">APPLY NOW</a>
+
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div class="hero-content">
+        <span class="hero-label">TAHIDI INTERNATIONAL TRAINING INSTITUTE</span>
+        <h1>ABOUT US</h1>
+        <p>
+            Discover who we are, what we stand for and our commitment
+            to developing knowledge, skills, professionalism and excellence.
+        </p>
+        <div class="hero-line"></div>
+    </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="section" id="who-we-are">
+    <div class="container">
+
+        <div class="who-grid">
+
+            <div class="who-text">
+                <div class="section-heading">
+                    <span class="eyebrow">Get to know us</span>
+                    <h2>Who We Are</h2>
+                    <div class="gold-line"></div>
+                </div>
+
+                <p>
+                    Tahidi International Training Institute (TITI) is a
+                    training institution committed to providing quality
+                    education, practical skills and professional development
+                    opportunities.
+                </p>
+
+                <p>
+                    We believe that education should go beyond classroom
+                    instruction. It should equip learners with the knowledge,
+                    competencies, confidence and practical abilities required
+                    to contribute meaningfully to society and the world of work.
+                </p>
+
+                <p>
+                    Through our academic programmes, professional training
+                    and student-centred learning approach, we aim to create
+                    an environment where individuals can discover their
+                    potential, develop their abilities and pursue their ambitions.
+                </p>
+
+                <p>
+                    At TITI, we are guided by our motto:
+                    <strong>BREAKING THE LIMITS.</strong>
+                    We encourage our learners to challenge limitations,
+                    embrace opportunities and work towards a better future.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Our Motto: BREAKING THE LIMITS</strong>
+                    <p>
+                        Inspiring learners to grow, achieve and make a
+                        meaningful difference through education and skills.
+                    </p>
+                </div>
+            </div>
+
+            <div class="who-image" role="img" aria-label="Tahidi International Training Institute"></div>
+
+        </div>
+    </div>
+</section>
+
+<!-- VISION AND MISSION -->
+<section class="section section-light">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">Our direction and purpose</span>
+            <h2>Our Vision &amp; Mission</h2>
+            <p>
+                Our vision and mission provide the foundation for our
+                institutional goals, educational approach and commitment
+                to excellence.
+            </p>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="vision-mission">
+
+            <article class="vm-card" id="our-vision">
+                <div class="vm-icon">◎</div>
+                <h3>Our Vision</h3>
+                <p>
+                    To be a leading centre of excellence in education,
+                    professional training and skills development,
+                    empowering individuals to become competent,
+                    innovative and responsible contributors to society.
+                </p>
+            </article>
+
+            <article class="vm-card" id="our-mission">
+                <div class="vm-icon">✦</div>
+                <h3>Our Mission</h3>
+                <p>
+                    To provide accessible, relevant and quality education
+                    and professional training through effective teaching,
+                    practical learning and continuous development,
+                    preparing learners for meaningful careers and
+                    responsible participation in society.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="section" id="our-core-values">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">What guides us</span>
+            <h2>Our Core Values</h2>
+            <p>
+                Our values shape our institutional culture, guide our
+                decisions and influence the way we serve our learners
+                and the wider community.
+            </p>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="values-grid">
+
+            <article class="value-card">
+                <div class="value-number">01</div>
+                <h3>Excellence</h3>
+                <p>
+                    We pursue high standards in teaching, learning,
+                    service delivery and institutional performance.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <div class="value-number">02</div>
+                <h3>Integrity</h3>
+                <p>
+                    We uphold honesty, transparency, accountability
+                    and ethical conduct in all our activities.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <div class="value-number">03</div>
+                <h3>Professionalism</h3>
+                <p>
+                    We promote responsible conduct, competence,
+                    discipline and respect in the learning environment.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <div class="value-number">04</div>
+                <h3>Innovation</h3>
+                <p>
+                    We encourage creativity, new ideas and practical
+                    approaches to learning and problem-solving.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <div class="value-number">05</div>
+                <h3>Inclusiveness</h3>
+                <p>
+                    We value diversity, equal opportunity, mutual respect
+                    and an environment where learners can thrive.
+                </p>
+            </article>
+
+            <article class="value-card">
+                <div class="value-number">06</div>
+                <h3>Commitment</h3>
+                <p>
+                    We are dedicated to supporting learners and pursuing
+                    our institutional objectives with determination.
+                </p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- COMMITMENT TO STUDENTS -->
+<section class="section commitment-section" id="student-commitment">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">The TITI experience</span>
+            <h2>Our Commitment to Students</h2>
+            <p>
+                We recognise that every learner has unique ambitions
+                and potential. We are committed to creating an environment
+                that supports academic growth, practical learning and
+                personal development.
+            </p>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="commitment-grid">
+
+            <article class="commitment-item">
+                <div class="commitment-check">✓</div>
+                <div>
+                    <h3>Quality Education</h3>
+                    <p>
+                        Promoting meaningful teaching and learning
+                        experiences that support academic development.
+                    </p>
+                </div>
+            </article>
+
+            <article class="commitment-item">
+                <div class="commitment-check">✓</div>
+                <div>
+                    <h3>Practical Skills Development</h3>
+                    <p>
+                        Encouraging the acquisition of relevant
+                        competencies for professional and everyday life.
+                    </p>
+                </div>
+            </article>
+
+            <article class="commitment-item">
+                <div class="commitment-check">✓</div>
+                <div>
+                    <h3>Student Support</h3>
+                    <p>
+                        Promoting a supportive learning environment
+                        that recognises and responds to learners' needs.
+                    </p>
+                </div>
+            </article>
+
+            <article class="commitment-item">
+                <div class="commitment-check">✓</div>
+                <div>
+                    <h3>Professional Development</h3>
+                    <p>
+                        Encouraging discipline, confidence, responsibility
+                        and professional conduct.
+                    </p>
+                </div>
+            </article>
+
+            <article class="commitment-item">
+                <div class="commitment-check">✓</div>
+                <div>
+                    <h3>Personal Growth</h3>
+                    <p>
+                        Inspiring learners to identify their strengths,
+                        build confidence and pursue their ambitions.
+                    </p>
+                </div>
+            </article>
+
+            <article class="commitment-item">
+                <div class="commitment-check">✓</div>
+                <div>
+                    <h3>Opportunity and Progress</h3>
+                    <p>
+                        Preparing learners to pursue further education,
+                        employment and entrepreneurial opportunities.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- LOCATION -->
+<section class="section" id="our-location">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">Find us</span>
+            <h2>Our Location</h2>
+            <p>
+                We welcome prospective students, parents, partners
+                and visitors who would like to learn more about TITI.
+            </p>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="location-grid">
+
+            <div class="location-card">
+                <h3>Visit Tahidi International Training Institute</h3>
+
+                <div class="location-detail">
+                    <div class="symbol">⌖</div>
+                    <div>
+                        <strong>Institution</strong>
+                        <span>Tahidi International Training Institute (TITI)</span>
+                    </div>
+                </div>
+
+                <div class="location-detail">
+                    <div class="symbol">⌂</div>
+                    <div>
+                        <strong>Location</strong>
+                        <span>Uganda</span>
+                    </div>
+                </div>
+
+                <div class="location-detail">
+                    <div class="symbol">✉</div>
+                    <div>
+                        <strong>Enquiries</strong>
+                        <span>Contact the institute for directions and further information.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-note">
+                <h3>Education. Skills. Opportunity.</h3>
+                <p>
+                    Whether you are seeking a certificate programme,
+                    diploma qualification or short professional course,
+                    TITI welcomes you to explore the available learning
+                    opportunities.
+                </p>
+                <p>
+                    Take the next step towards your educational and
+                    professional ambitions.
+                </p>
+                <a href="admissions.html#admissions" class="contact-button">
+                    EXPLORE ADMISSIONS
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT INFORMATION -->
+<section class="section contact-section" id="contact-information">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">We are ready to assist</span>
+            <h2>Contact Information</h2>
+            <p>
+                For enquiries about programmes, admissions, training
+                opportunities and other institutional matters, please
+                get in touch with Tahidi International Training Institute.
+            </p>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="contact-grid">
+
+            <article class="contact-card">
+                <div class="contact-icon">☎</div>
+                <h3>Telephone</h3>
+                <p>
+                    Contact the institute through its official
+                    telephone contact.
+                </p>
+            </article>
+
+            <article class="contact-card">
+                <div class="contact-icon">✉</div>
+                <h3>Email Enquiries</h3>
+                <p>
+                    Contact the institute for official information
+                    and assistance.
+                </p>
+            </article>
+
+            <article class="contact-card">
+                <div class="contact-icon">⌖</div>
+                <h3>Visit Us</h3>
+                <p>
+                    Get in touch with the institute for directions
+                    and visitor information.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="cta-section">
+    <div class="container cta-inner">
+
+        <div>
+            <h2>Your Future Begins with a Decision.</h2>
+            <p>
+                Explore our programmes and take the next step
+                towards your educational ambitions.
+            </p>
+        </div>
+
+        <a href="apply.html#online-application" class="cta-button">
+            APPLY TO TITI
+        </a>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-about">
+                <a href="index.html">
+                    <img src="BYE.png" alt="TITI Logo" class="footer-logo">
+                </a>
+
+                <p>
+                    Tahidi International Training Institute is committed
+                    to education, professional training and skills
+                    development.
+                </p>
+
+                <p style="margin-top:15px;color:#D4AF37;font-weight:800;">
+                    BREAKING THE LIMITS
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>ABOUT TITI</h3>
+                <ul>
+                    <li><a href="#who-we-are">Who We Are</a></li>
+                    <li><a href="#our-vision">Our Vision</a></li>
+                    <li><a href="#our-mission">Our Mission</a></li>
+                    <li><a href="#our-core-values">Our Core Values</a></li>
+                    <li><a href="#student-commitment">Our Commitment</a></li>
+                    <li><a href="#our-location">Our Location</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#diploma">Diploma Programmes</a></li>
+                    <li><a href="index.html#certificate">Certificate Programmes</a></li>
+                    <li><a href="index.html#shortCourses">Short Courses</a></li>
+                    <li><a href="admissions.html#admissions">Admissions</a></li>
+                    <li><a href="apply.html#online-application">Apply Now</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>ADMISSIONS</h3>
+                <ul>
+                    <li><a href="admissions.html#requirements">Entry Requirements</a></li>
+                    <li><a href="admissions.html#documents">Required Documents</a></li>
+                    <li><a href="admissions.html#intakes">Intakes &amp; Admission</a></li>
+                    <li><a href="admissions.html#fees">Fees &amp; Payment</a></li>
+                    <li><a href="admissions.html#enquiries">Admission Enquiries</a></li>
+                    <li><a href="#contact-information">Contact Us</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; <span id="currentYear"></span>
+                <strong>Tahidi International Training Institute (TITI).</strong>
+                All Rights Reserved. | BREAKING THE LIMITS
+            </p>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+/* MOBILE NAVIGATION */
+
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", function () {
+    mainNav.classList.toggle("active");
+
+    const isOpen = mainNav.classList.contains("active");
+
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.innerHTML = isOpen ? "✕" : "☰";
+});
+
+/* MOBILE DROPDOWN MENUS */
+
+document.querySelectorAll(".dropdown > .dropdown-toggle").forEach(function(toggle) {
+    toggle.addEventListener("click", function(event) {
+        if (window.innerWidth <= 850) {
+            event.preventDefault();
+
+            const dropdown = this.parentElement;
+
+            document.querySelectorAll(".dropdown").forEach(function(item) {
+                if (item !== dropdown) {
+                    item.classList.remove("open");
+                }
+            });
+
+            dropdown.classList.toggle("open");
+        }
+    });
+});
+
+/* CLOSE MOBILE MENU AFTER NAVIGATION */
+
+document.querySelectorAll("#mainNav a:not(.dropdown-toggle)").forEach(function(link) {
+    link.addEventListener("click", function() {
+        if (window.innerWidth <= 850) {
+            mainNav.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.innerHTML = "☰";
+        }
+    });
+});
+
+/* CURRENT YEAR */
+
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
