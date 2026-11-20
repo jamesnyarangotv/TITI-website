@@ -398,6 +398,7 @@ const $ = id => document.getElementById(id);
 let currentAdmin=null;
 let applications=[];
 let selectedApplication=null;
+let applicantDocuments=[];
 let programmes=[];
 let slides=[];
 let galleryImages=[];
@@ -677,10 +678,14 @@ async function openApplication(id){
  await loadApplicantDocuments(a.id);
 }
 
+/* APPLICANT DOCUMENT VERIFICATION */
+
 async function loadApplicantDocuments(applicationId){
  $("documentsContent").innerHTML='<p class="muted">Loading applicant documents...</p>';
+ applicantDocuments=[];
+
  const {data,error}=await db.from("application_documents")
-  .select("id,application_id,document_type,storage_path,uploaded_at")
+  .select("id,application_id,document_type,storage_path,uploaded_at,verification_status,verification_notes,verified_by,verified_at")
   .eq("application_id",applicationId)
   .order("uploaded_at",{ascending:false});
 
@@ -688,30 +693,232 @@ async function loadApplicantDocuments(applicationId){
   $("documentsContent").innerHTML=`<div class="document-error">${escapeHTML(error.message)}</div>`;
   return;
  }
- if(!data?.length){
+
+ applicantDocuments=data||[];
+
+ if(!applicantDocuments.length){
   $("documentsContent").innerHTML='<p class="muted">No uploaded documents were found for this applicant.</p>';
   return;
  }
 
- const results=await Promise.all(data.map(async doc=>{
-  const {data:signedData,error:signedError}=await db.storage.from(DOCUMENT_BUCKET).createSignedUrl(doc.storage_path,300);
-  return {doc,url:signedData?.signedUrl,error:signedError};
+ const results=await Promise.all(applicantDocuments.map(async doc=>{
+  const {data:signedData,error:signedError}=await db.storage
+   .from(DOCUMENT_BUCKET)
+   .createSignedUrl(doc.storage_path,300);
+
+  return {
+   doc,
+   url:signedData?.signedUrl||null,
+   error:signedError
+  };
  }));
 
  $("documentsContent").innerHTML=results.map(result=>{
   const doc=result.doc;
   const fileName=String(doc.storage_path||"").split("/").pop();
   const extension=fileName.split(".").pop().toLowerCase();
+
   const isImage=["jpg","jpeg","png","webp"].includes(extension);
   const isPDF=extension==="pdf";
-  const uploaded=doc.uploaded_at?new Date(doc.uploaded_at).toLocaleString():"Not recorded";
+
+  const uploaded=doc.uploaded_at
+   ?new Date(doc.uploaded_at).toLocaleString()
+   :"Not recorded";
+
+  const verificationStatus=doc.verification_status||"PENDING";
+  const statusLabel=verificationStatus.toUpperCase();
+
+  const verifiedAt=doc.verified_at
+   ?new Date(doc.verified_at).toLocaleString()
+   :"Not yet verified";
+
   let preview="";
-  if(result.url&&isImage)preview=`<img src="${escapeHTML(result.url)}" alt="Applicant document">`;
-  if(result.url&&isPDF)preview=`<iframe src="${escapeHTML(result.url)}" title="Applicant PDF"></iframe>`;
-  const links=result.url?`<div class="document-actions"><a href="${escapeHTML(result.url)}" target="_blank" rel="noopener">OPEN DOCUMENT</a><a class="download" href="${escapeHTML(result.url)}" download="${escapeHTML(fileName)}">DOWNLOAD</a></div>`:`<div class="document-error">${escapeHTML(result.error?.message||"Unable to create secure link")}</div>`;
-  return `<div class="document-card"><h4>${escapeHTML(doc.document_type)}</h4><p class="muted">Uploaded: ${escapeHTML(uploaded)}</p><p class="muted">File: ${escapeHTML(fileName)}</p>${preview}${links}</div>`;
+
+  if(result.url&&isImage){
+   preview=`<img src="${escapeHTML(result.url)}" alt="Applicant document">`;
+  }
+
+  if(result.url&&isPDF){
+   preview=`<iframe src="${escapeHTML(result.url)}" title="Applicant PDF"></iframe>`;
+  }
+
+  const links=result.url
+   ?`<div class="document-actions">
+      <a href="${escapeHTML(result.url)}" target="_blank" rel="noopener">OPEN DOCUMENT</a>
+      <a class="download" href="${escapeHTML(result.url)}" download="${escapeHTML(fileName)}">DOWNLOAD</a>
+     </div>`
+   :`<div class="document-error">${escapeHTML(result.error?.message||"Unable to create secure document link")}</div>`;
+
+  return `
+   <div class="document-card" data-document-card="${escapeHTML(doc.id)}">
+
+    <h4>${escapeHTML(doc.document_type||"Applicant Document")}</h4>
+
+    <p class="muted">Uploaded: ${escapeHTML(uploaded)}</p>
+    <p class="muted">File: ${escapeHTML(fileName)}</p>
+
+    <p>
+     <strong>Verification Status:</strong>
+     <span class="status ${escapeHTML(statusClass(verificationStatus))}">
+      ${escapeHTML(statusLabel)}
+     </span>
+    </p>
+
+    ${preview}
+
+    ${links}
+
+    <div class="form-group" style="margin-top:18px">
+     <label for="document-notes-${escapeHTML(doc.id)}">Verification Notes</label>
+     <textarea
+      id="document-notes-${escapeHTML(doc.id)}"
+      rows="3"
+      placeholder="Enter verification comments or reasons for rejection..."
+     >${escapeHTML(doc.verification_notes||"")}</textarea>
+    </div>
+
+    <p class="muted">
+     Last verification: ${escapeHTML(verifiedAt)}
+    </p>
+
+    ${doc.verified_by
+     ?`<p class="muted">Administrator ID: ${escapeHTML(doc.verified_by)}</p>`
+     :""
+    }
+
+    <div class="document-actions">
+     <button
+      type="button"
+      class="approve"
+      data-verify-document="${escapeHTML(doc.id)}"
+     >MARK VERIFIED</button>
+
+     <button
+      type="button"
+      class="reject"
+      data-reject-document="${escapeHTML(doc.id)}"
+     >REJECT DOCUMENT</button>
+    </div>
+
+   </div>
+  `;
  }).join("");
+
+ $("documentsContent").querySelectorAll("[data-verify-document]").forEach(button=>{
+  button.addEventListener("click",()=>{
+   updateDocumentVerification(button.dataset.verifyDocument,"VERIFIED");
+  });
+ });
+
+ $("documentsContent").querySelectorAll("[data-reject-document]").forEach(button=>{
+  button.addEventListener("click",()=>{
+   updateDocumentVerification(button.dataset.rejectDocument,"REJECTED");
+  });
+ });
 }
+
+async function updateDocumentVerification(documentId,status){
+
+ if(!selectedApplication){
+  showMessage("Please select an applicant first.",true);
+  return;
+ }
+
+ if(!["VERIFIED","REJECTED"].includes(status)){
+  showMessage("Invalid document verification status.",true);
+  return;
+ }
+
+ if(!currentAdmin||!currentAdmin.user_id){
+  showMessage("Administrator identity could not be verified. Please sign in again.",true);
+  return;
+ }
+
+ const doc=applicantDocuments.find(
+  item=>String(item.id)===String(documentId)
+ );
+
+ if(!doc){
+  showMessage("Document record could not be found. Refresh the applicant documents.",true);
+  return;
+ }
+
+ const notesElement=$("document-notes-"+documentId);
+
+ if(!notesElement){
+  showMessage("Verification notes field could not be found.",true);
+  return;
+ }
+
+ const notes=notesElement.value.trim();
+
+ if(status==="REJECTED"&&!notes){
+  showMessage("Please enter a reason before rejecting this document.",true);
+  notesElement.focus();
+  return;
+ }
+
+ const action=status==="VERIFIED"?"verify":"reject";
+
+ if(!confirm(
+  status==="VERIFIED"
+   ?"Confirm that this applicant document has been verified?"
+   :"Confirm rejection of this applicant document?"
+ )){
+  return;
+ }
+
+ const card=document.querySelector(
+  `[data-document-card="${CSS.escape(String(documentId))}"]`
+ );
+
+ const buttons=card?card.querySelectorAll("button"):[];
+ buttons.forEach(button=>button.disabled=true);
+
+ try{
+
+  const payload={
+   verification_status:status,
+   verification_notes:notes||null,
+   verified_by:currentAdmin.user_id,
+   verified_at:new Date().toISOString()
+  };
+
+  const {data,error}=await db
+   .from("application_documents")
+   .update(payload)
+   .eq("id",documentId)
+   .eq("application_id",selectedApplication.id)
+   .select("id");
+
+  if(error)throw error;
+
+  if(!data||data.length===0){
+   throw new Error(
+    "No document was updated. Check administrator permissions and database access."
+   );
+  }
+
+  showMessage(
+   status==="VERIFIED"
+    ?"Applicant document successfully verified."
+    :"Applicant document successfully rejected."
+  );
+
+  await loadApplicantDocuments(selectedApplication.id);
+
+ }catch(error){
+
+  showMessage(
+   "Unable to "+action+" document: "+error.message,
+   true
+  );
+
+  buttons.forEach(button=>button.disabled=false);
+ }
+}
+
+/* APPLICATION APPROVAL AND REJECTION - UNCHANGED */
 
 async function updateDecision(status){
  if(!selectedApplication){showMessage("Select an applicant first.",true);return;}
@@ -733,6 +940,7 @@ async function updateDecision(status){
   showMessage(status==="ADMITTED"?"Applicant successfully approved.":"Applicant successfully rejected.");
   $("detailPanel").style.display="none";
   selectedApplication=null;
+  applicantDocuments=[];
   $("documentsContent").innerHTML='<p class="muted">Select an applicant to view documents.</p>';
   await loadApplications();
  }catch(error){
@@ -748,6 +956,7 @@ $("rejectButton").addEventListener("click",()=>updateDecision("DECLINED"));
 $("closeDetails").addEventListener("click",()=>{
  $("detailPanel").style.display="none";
  selectedApplication=null;
+ applicantDocuments=[];
  $("documentsContent").innerHTML='<p class="muted">Select an applicant to view documents.</p>';
 });
 
@@ -770,7 +979,6 @@ function canonicalProgrammeLevel(value){
  )||null;
 }
 
-/* Rebuild the dropdown using only database-approved values. */
 function ensureProgrammeLevelOptions(){
  const select=$("programmeLevel");
  const currentValue=canonicalProgrammeLevel(select.value);
@@ -881,7 +1089,6 @@ function editProgramme(id){
  $("programmeForm").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-/* Save a new programme or update an existing one. */
 $("programmeForm").addEventListener("submit",async event=>{
  event.preventDefault();
 
@@ -899,19 +1106,11 @@ $("programmeForm").addEventListener("submit",async event=>{
  }
 
  if(!selectedLevel){
-  cmsMessage(
-   "programmeMessage",
-   "Please select one of the permitted programme levels: Certificate, Diploma or Short Course.",
-   true
-  );
+  cmsMessage("programmeMessage","Please select one of the permitted programme levels: Certificate, Diploma or Short Course.",true);
   $("programmeLevel").focus();
   return;
  }
 
- /*
-  * Send the exact permitted string to Supabase.
-  * Do not send a label, blank value or altered programme level.
-  */
  const payload={
   programme_name:programmeName,
   programme_level:selectedLevel,
@@ -940,21 +1139,14 @@ $("programmeForm").addEventListener("submit",async event=>{
   if(result.error)throw result.error;
 
   if(!result.data||result.data.length===0){
-   throw new Error(
-    "Supabase did not return a saved programme. Check the administrator permissions."
-   );
+   throw new Error("Supabase did not return a saved programme. Check the administrator permissions.");
   }
 
   if(result.data[0].programme_level!==selectedLevel){
-   throw new Error(
-    "The programme level returned by the database does not match the selected level."
-   );
+   throw new Error("The programme level returned by the database does not match the selected level.");
   }
 
-  cmsMessage(
-   "programmeMessage",
-   id?"Programme updated successfully.":"New programme added successfully."
-  );
+  cmsMessage("programmeMessage",id?"Programme updated successfully.":"New programme added successfully.");
 
   clearProgrammeForm();
   await loadProgrammes();
@@ -970,26 +1162,18 @@ $("programmeForm").addEventListener("submit",async event=>{
   const details=error.details?" | "+error.details:"";
   const hint=error.hint?" | "+error.hint:"";
 
-  cmsMessage(
-   "programmeMessage",
-   "Unable to save programme: "+(error.message||"Unknown error")+details+hint,
-   true
-  );
+  cmsMessage("programmeMessage","Unable to save programme: "+(error.message||"Unknown error")+details+hint,true);
 
  }finally{
   button.disabled=false;
-  button.textContent=$("programmeId").value
-   ?"UPDATE PROGRAMME"
-   :"SAVE PROGRAMME";
+  button.textContent=$("programmeId").value?"UPDATE PROGRAMME":"SAVE PROGRAMME";
  }
 });
 
 async function deleteProgramme(id){
  const p=programmes.find(item=>String(item.id)===String(id));
 
- if(!p||!confirm(
-  "Delete this programme?\n\n"+p.programme_name+"\n\nThis cannot be undone."
- ))return;
+ if(!p||!confirm("Delete this programme?\n\n"+p.programme_name+"\n\nThis cannot be undone."))return;
 
  try{
   const {data,error}=await db.from("programmes")
