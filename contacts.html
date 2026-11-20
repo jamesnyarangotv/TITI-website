@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Contact Us | Tahidi International Training Institute</title>
-<meta name="description" content="Contact Tahidi International Training Institute. Call, WhatsApp or email our administration for admissions, programmes and student enquiries.">
+<meta name="description" content="Contact Tahidi International Training Institute for admissions, academic programmes, student support and general enquiries.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,19 +18,19 @@
 --navy:#0F2A5E;
 --navy-dark:#091B3D;
 --gold:#D4AF37;
---white:#fff;
+--white:#FFFFFF;
 --light:#F4F6F9;
 --text:#263247;
 --muted:#697589;
 --border:#E3E7ED;
---shadow:0 8px 25px rgba(10,30,65,.09);
+--shadow:0 12px 35px rgba(9,27,61,.09);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 html{
 scroll-behavior:smooth;
-scroll-padding-top:115px;
+scroll-padding-top:120px;
 }
 
 body{
@@ -41,53 +42,52 @@ line-height:1.7;
 
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
-button,input,textarea,select{font-family:'Jost',sans-serif}
-.container{width:min(1180px,92%);margin:auto}
+button,input,textarea,select{font-family:inherit}
+.container{width:min(1200px,92%);margin:auto}
 
 /* TOP BAR */
 
 .topbar{
 background:var(--navy-dark);
 color:#fff;
-padding:8px 12px;
-font-size:12px;
+padding:8px 15px;
 text-align:center;
-letter-spacing:1.1px;
+font-size:12px;
 font-weight:700;
+letter-spacing:1.1px;
 }
 
 /* HEADER */
 
 header{
-background:var(--navy);
-box-shadow:0 5px 20px rgba(0,0,0,.16);
 position:sticky;
 top:0;
 z-index:1000;
+background:#fff;
 border-bottom:3px solid var(--gold);
+box-shadow:0 5px 20px rgba(9,27,61,.09);
 }
 
-.container.header-inner{
+.header-inner{
 width:min(1500px,98%);
-min-height:104px;
+min-height:100px;
 margin:auto;
+padding:5px 15px;
 display:flex;
 align-items:center;
-justify-content:flex-start;
-gap:clamp(12px,1.5vw,24px);
-flex-wrap:nowrap;
+justify-content:space-between;
+gap:20px;
 }
 
 .brand{
 display:flex;
 align-items:center;
 flex-shrink:0;
-white-space:nowrap;
 }
 
 .brand img{
-width:180px;
-height:85px;
+width:175px;
+height:82px;
 object-fit:contain;
 object-position:left center;
 }
@@ -95,108 +95,106 @@ object-position:left center;
 nav{
 display:flex;
 align-items:center;
-justify-content:flex-start;
-gap:clamp(10px,1.05vw,17px);
+justify-content:flex-end;
+gap:clamp(10px,1.25vw,19px);
 flex:1;
-min-width:0;
-flex-wrap:nowrap;
 white-space:nowrap;
 }
 
-nav>a,nav button.nav-link{
-color:#fff;
-font-size:clamp(14px,1.05vw,16px);
+nav>a,
+.nav-link{
+color:var(--navy);
+font-size:14px;
 font-weight:800;
-letter-spacing:.15px;
-white-space:nowrap;
-flex-shrink:0;
-padding:12px 0;
+padding:13px 0;
 transition:.25s;
 }
 
 nav>a:hover,
-nav button.nav-link:hover,
-nav>a.active{color:var(--gold)}
+.nav-link:hover,
+nav>a.active{
+color:var(--maroon);
+}
 
-nav button.nav-link{
+.nav-link{
 border:0;
 background:transparent;
 cursor:pointer;
 display:flex;
 align-items:center;
-gap:5px;
+gap:6px;
 }
 
 .dropdown-arrow{
-font-size:12px;
-transition:transform .25s;
+font-size:11px;
+transition:.25s;
 }
 
+.about-menu.open .dropdown-arrow,
 .programme-menu.open .dropdown-arrow,
-.admissions-menu.open .dropdown-arrow,
-.about-menu.open .dropdown-arrow{
+.admissions-menu.open .dropdown-arrow{
 transform:rotate(180deg);
 }
 
+.about-menu,
 .programme-menu,
-.admissions-menu,
-.about-menu{
+.admissions-menu{
 position:relative;
 display:flex;
 align-items:center;
-flex-shrink:0;
 }
 
+.about-submenu,
 .programme-submenu,
-.admissions-submenu,
-.about-submenu{
+.admissions-submenu{
 display:none;
 position:absolute;
 top:100%;
 left:-15px;
-min-width:235px;
+min-width:240px;
 background:#fff;
-padding:9px 0;
+padding:8px 0;
 border-top:4px solid var(--gold);
-border-radius:0 0 7px 7px;
-box-shadow:0 12px 28px rgba(0,0,0,.2);
+border-radius:0 0 6px 6px;
+box-shadow:0 12px 28px rgba(0,0,0,.15);
 z-index:1100;
 white-space:normal;
 }
 
+.about-menu:hover .about-submenu,
+.about-menu:focus-within .about-submenu,
+.about-menu.open .about-submenu,
 .programme-menu:hover .programme-submenu,
 .programme-menu:focus-within .programme-submenu,
 .programme-menu.open .programme-submenu,
 .admissions-menu:hover .admissions-submenu,
 .admissions-menu:focus-within .admissions-submenu,
-.admissions-menu.open .admissions-submenu,
-.about-menu:hover .about-submenu,
-.about-menu:focus-within .about-submenu,
-.about-menu.open .about-submenu{
+.admissions-menu.open .admissions-submenu{
 display:block;
 }
 
-.about-submenu{min-width:255px}
-
+.about-submenu a,
 .programme-submenu a,
-.admissions-submenu a,
-.about-submenu a{
+.admissions-submenu a{
 display:block;
-padding:11px 18px;
+padding:11px 17px;
 font-size:13px;
 font-weight:700;
 color:var(--navy);
 border-bottom:1px solid #edf0f4;
+transition:.2s;
 }
 
+.about-submenu a:last-child,
 .programme-submenu a:last-child,
-.admissions-submenu a:last-child,
-.about-submenu a:last-child{border-bottom:0}
+.admissions-submenu a:last-child{
+border-bottom:0;
+}
 
+.about-submenu a:hover,
 .programme-submenu a:hover,
-.admissions-submenu a:hover,
-.about-submenu a:hover{
-background:#F1F4F8;
+.admissions-submenu a:hover{
+background:#F4F6F9;
 color:var(--maroon);
 padding-left:23px;
 }
@@ -204,11 +202,8 @@ padding-left:23px;
 .nav-apply{
 background:var(--maroon);
 color:#fff!important;
-padding:12px 17px!important;
+padding:12px 18px!important;
 border-radius:4px;
-font-size:15px!important;
-font-weight:800;
-margin-left:5px;
 }
 
 .nav-apply:hover{
@@ -218,32 +213,32 @@ color:var(--navy)!important;
 
 .menu-toggle{
 display:none;
-border:1px solid rgba(255,255,255,.3);
-background:var(--maroon);
+border:0;
+background:var(--navy);
 color:#fff;
-padding:8px 13px;
-font-size:22px;
-cursor:pointer;
+padding:9px 14px;
+font-size:23px;
 border-radius:4px;
+cursor:pointer;
 }
 
-/* CONTACT HERO */
+/* HERO */
 
 .contact-hero{
 position:relative;
-min-height:410px;
+min-height:430px;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 color:#fff;
 background:
-linear-gradient(110deg,rgba(9,27,61,.94),rgba(15,42,94,.82),rgba(122,18,32,.82)),
+linear-gradient(110deg,rgba(9,27,61,.94),rgba(15,42,94,.82),rgba(122,18,32,.78)),
 url("tahidi%20bulding%201.png") center/cover no-repeat;
 border-bottom:5px solid var(--gold);
 }
 
-.contact-hero-content{
+.hero-content{
 width:min(850px,92%);
 padding:75px 0;
 }
@@ -254,29 +249,29 @@ color:var(--gold);
 font-size:13px;
 font-weight:800;
 letter-spacing:3px;
-margin-bottom:15px;
+margin-bottom:16px;
 }
 
 .contact-hero h1{
-font-size:clamp(35px,5vw,57px);
+font-size:clamp(36px,5vw,60px);
 font-weight:800;
-line-height:1.15;
-margin-bottom:15px;
-}
-
-.contact-hero p{
-font-size:17px;
-color:#E7EDF6;
-max-width:690px;
-margin:auto;
+line-height:1.12;
+margin-bottom:16px;
 }
 
 .hero-divider{
 width:75px;
 height:4px;
 background:var(--gold);
-margin:22px auto;
 border-radius:5px;
+margin:22px auto;
+}
+
+.contact-hero p{
+max-width:690px;
+margin:auto;
+color:#E5EAF3;
+font-size:17px;
 }
 
 .hero-actions{
@@ -284,14 +279,14 @@ display:flex;
 justify-content:center;
 gap:13px;
 flex-wrap:wrap;
-margin-top:27px;
+margin-top:28px;
 }
 
 .hero-btn{
 display:inline-block;
-padding:12px 24px;
+padding:13px 24px;
 border-radius:4px;
-font-size:14px;
+font-size:13px;
 font-weight:800;
 transition:.25s;
 }
@@ -312,26 +307,25 @@ background:#fff;
 color:var(--maroon);
 }
 
-/* GENERAL SECTIONS */
+/* SECTION HEADINGS */
 
 section{padding:76px 0}
 
 .section-heading{
 text-align:center;
-margin-bottom:40px;
+margin-bottom:42px;
 }
 
 .section-heading h2{
 color:var(--navy);
-font-size:clamp(26px,3vw,35px);
+font-size:clamp(27px,3vw,36px);
 font-weight:800;
 line-height:1.25;
-margin-bottom:9px;
 }
 
 .section-heading p{
-max-width:680px;
-margin:auto;
+max-width:700px;
+margin:12px auto 0;
 color:var(--muted);
 font-size:15px;
 }
@@ -340,11 +334,11 @@ font-size:15px;
 width:65px;
 height:4px;
 background:var(--gold);
-margin:14px auto;
+margin:15px auto;
 border-radius:5px;
 }
 
-/* CONTACT INFORMATION */
+/* CONTACT CARDS */
 
 .contact-information{
 background:var(--light);
@@ -354,34 +348,34 @@ border-bottom:1px solid var(--border);
 .contact-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:20px;
+gap:22px;
 }
 
 .contact-card{
 background:#fff;
-padding:30px 22px;
+padding:34px 24px;
+text-align:center;
 border:1px solid var(--border);
 border-bottom:4px solid var(--gold);
 border-radius:7px;
-text-align:center;
-box-shadow:0 3px 12px rgba(0,0,0,.035);
-transition:.25s;
+box-shadow:0 4px 15px rgba(9,27,61,.04);
+transition:.3s;
 }
 
 .contact-card:hover{
-transform:translateY(-5px);
+transform:translateY(-7px);
 box-shadow:var(--shadow);
 border-bottom-color:var(--maroon);
 }
 
 .contact-icon{
-width:62px;
-height:62px;
-margin:0 auto 17px;
+width:66px;
+height:66px;
+margin:0 auto 18px;
 display:flex;
 align-items:center;
 justify-content:center;
-background:#F5E9EB;
+background:#F7ECEE;
 color:var(--maroon);
 border-radius:50%;
 font-size:27px;
@@ -390,23 +384,22 @@ font-weight:800;
 
 .contact-card h3{
 color:var(--navy);
-font-size:20px;
+font-size:21px;
 font-weight:800;
-margin-bottom:7px;
+margin-bottom:8px;
 }
 
 .contact-card p{
 color:var(--muted);
-font-size:13px;
-margin-bottom:16px;
-overflow-wrap:anywhere;
+font-size:14px;
+margin-bottom:19px;
 }
 
 .contact-action{
 display:inline-block;
 background:var(--maroon);
 color:#fff;
-padding:10px 20px;
+padding:11px 19px;
 border-radius:4px;
 font-size:13px;
 font-weight:800;
@@ -418,52 +411,46 @@ background:var(--navy);
 transform:translateY(-2px);
 }
 
-.contact-action.whatsapp{
-background:#168B50;
-}
-
-.contact-action.whatsapp:hover{
-background:#0D6538;
-}
-
-.contact-action.email{
-background:var(--navy);
-}
-
-.contact-action.email:hover{
-background:var(--maroon);
-}
+.contact-action.whatsapp{background:#168B50}
+.contact-action.whatsapp:hover{background:#0D6538}
+.contact-action.email{background:var(--navy)}
+.contact-action.email:hover{background:var(--maroon)}
 
 .contact-note{
 text-align:center;
 color:var(--muted);
 font-size:13px;
-margin-top:25px;
+margin-top:27px;
 }
 
-/* MESSAGE AND INSTITUTION PANEL */
+.contact-note a{
+color:var(--maroon);
+font-weight:800;
+}
+
+/* ENQUIRY AREA */
 
 .message-section{background:#fff}
 
 .message-grid{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:35px;
+grid-template-columns:1.05fr .95fr;
+gap:32px;
 align-items:stretch;
 }
 
 .message-panel{
 background:#fff;
+padding:35px;
 border:1px solid var(--border);
+border-top:5px solid var(--gold);
 border-radius:7px;
-padding:32px;
 box-shadow:var(--shadow);
-border-top:4px solid var(--gold);
 }
 
 .message-panel h3{
 color:var(--navy);
-font-size:24px;
+font-size:25px;
 font-weight:800;
 margin-bottom:7px;
 }
@@ -471,24 +458,24 @@ margin-bottom:7px;
 .message-panel>p{
 color:var(--muted);
 font-size:14px;
-margin-bottom:23px;
+margin-bottom:25px;
 }
 
-.form-group{margin-bottom:16px}
+.form-group{margin-bottom:17px}
 
 .form-group label{
 display:block;
 color:var(--navy);
 font-size:13px;
 font-weight:800;
-margin-bottom:6px;
+margin-bottom:7px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select{
 width:100%;
-padding:12px 13px;
+padding:13px 14px;
 border:1px solid var(--border);
 border-radius:4px;
 background:#FAFBFC;
@@ -507,7 +494,7 @@ box-shadow:0 0 0 3px rgba(122,18,32,.07);
 }
 
 .form-group textarea{
-min-height:135px;
+min-height:145px;
 resize:vertical;
 }
 
@@ -516,7 +503,7 @@ width:100%;
 border:0;
 background:var(--maroon);
 color:#fff;
-padding:14px;
+padding:15px;
 border-radius:4px;
 font-size:15px;
 font-weight:800;
@@ -532,23 +519,23 @@ background:var(--navy);
 font-size:12px;
 color:var(--muted);
 margin-top:13px;
-line-height:1.6;
+line-height:1.7;
 }
 
 .institution-panel{
 position:relative;
 overflow:hidden;
+min-height:590px;
 border-radius:7px;
-min-height:540px;
 background:
-linear-gradient(180deg,rgba(9,27,61,.12),rgba(9,27,61,.94)),
+linear-gradient(180deg,rgba(9,27,61,.12),rgba(9,27,61,.96)),
 url("tahidi%20bulding%202.png") center/cover no-repeat;
 display:flex;
 align-items:flex-end;
 }
 
 .institution-content{
-padding:36px;
+padding:38px;
 color:#fff;
 }
 
@@ -560,29 +547,29 @@ letter-spacing:2px;
 }
 
 .institution-content h3{
-font-size:30px;
+font-size:34px;
 font-weight:800;
 line-height:1.2;
-margin:12px 0;
+margin:13px 0;
 }
 
 .institution-content p{
 color:#E2E9F4;
 font-size:14px;
-margin-bottom:18px;
+margin-bottom:22px;
 }
 
-.institution-content .primary-link{
+.primary-link{
 display:inline-block;
 background:var(--gold);
 color:var(--navy);
-padding:11px 20px;
+padding:12px 21px;
 border-radius:4px;
 font-weight:800;
 font-size:13px;
 }
 
-.institution-content .primary-link:hover{
+.primary-link:hover{
 background:#fff;
 }
 
@@ -592,13 +579,13 @@ background:#fff;
 background:linear-gradient(110deg,#0B2452,#153A76);
 color:#fff;
 text-align:center;
-padding:55px 20px;
+padding:58px 20px;
 border-top:4px solid var(--gold);
 border-bottom:4px solid var(--gold);
 }
 
 .support-banner h2{
-font-size:clamp(25px,3vw,34px);
+font-size:clamp(26px,3vw,35px);
 font-weight:800;
 margin-bottom:10px;
 }
@@ -611,7 +598,7 @@ font-size:14px;
 }
 
 .support-banner .hero-btn{
-margin-top:20px;
+margin-top:23px;
 background:var(--gold);
 color:var(--navy);
 }
@@ -624,7 +611,7 @@ border-top:1px solid var(--border);
 }
 
 .faq-container{
-width:min(850px,100%);
+width:min(870px,100%);
 margin:auto;
 }
 
@@ -641,14 +628,14 @@ box-shadow:0 2px 8px rgba(10,30,65,.035);
 width:100%;
 border:0;
 background:#fff;
-padding:18px 20px;
+padding:19px 21px;
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:15px;
 text-align:left;
 color:var(--navy);
-font-size:16px;
+font-size:15px;
 font-weight:800;
 cursor:pointer;
 }
@@ -660,8 +647,8 @@ background:#FCFCFD;
 
 .faq-arrow{
 color:var(--maroon);
-font-size:19px;
-transition:transform .25s;
+font-size:20px;
+transition:.25s;
 flex-shrink:0;
 }
 
@@ -671,13 +658,18 @@ transform:rotate(180deg);
 
 .faq-answer{
 display:none;
-padding:0 20px 19px;
+padding:0 21px 20px;
 color:var(--muted);
 font-size:14px;
 line-height:1.8;
 }
 
 .faq-item.open .faq-answer{display:block}
+
+.faq-answer a{
+color:var(--maroon);
+font-weight:800;
+}
 
 /* LOCATION */
 
@@ -687,31 +679,31 @@ line-height:1.8;
 background:var(--light);
 border:1px solid var(--border);
 border-left:5px solid var(--gold);
-padding:30px;
+padding:32px;
 border-radius:6px;
 display:flex;
 align-items:center;
-gap:24px;
+gap:25px;
 }
 
 .location-icon{
-width:65px;
-height:65px;
+width:68px;
+height:68px;
 background:var(--maroon);
 color:#fff;
 display:flex;
 align-items:center;
 justify-content:center;
 border-radius:50%;
-font-size:27px;
+font-size:28px;
 flex-shrink:0;
 }
 
 .location-content h3{
 color:var(--navy);
-font-size:21px;
+font-size:22px;
 font-weight:800;
-margin-bottom:5px;
+margin-bottom:6px;
 }
 
 .location-content p{
@@ -723,7 +715,7 @@ font-size:14px;
 display:inline-block;
 color:var(--maroon);
 font-weight:800;
-margin-top:9px;
+margin-top:10px;
 font-size:13px;
 }
 
@@ -732,13 +724,13 @@ font-size:13px;
 .final-cta{
 background:#F4F6F9;
 text-align:center;
-padding:53px 20px;
+padding:57px 20px;
 border-top:1px solid var(--border);
 }
 
 .final-cta h2{
 color:var(--navy);
-font-size:29px;
+font-size:30px;
 font-weight:800;
 margin-bottom:9px;
 }
@@ -746,45 +738,46 @@ margin-bottom:9px;
 .final-cta p{
 color:var(--muted);
 font-size:14px;
-margin-bottom:18px;
+margin-bottom:20px;
 }
 
 .final-cta a{
 display:inline-block;
 background:var(--maroon);
 color:#fff;
-padding:12px 24px;
+padding:13px 25px;
 border-radius:4px;
 font-size:14px;
 font-weight:800;
+transition:.25s;
 }
+
+.final-cta a:hover{background:var(--navy)}
 
 /* FOOTER */
 
 .site-footer{
 background:#091B3D;
 color:#fff;
-padding:58px 0 0;
+padding:60px 0 0;
 border-top:4px solid var(--gold);
-text-align:left;
 }
 
 .footer-grid{
 display:grid;
 grid-template-columns:1.1fr .9fr 1.35fr;
-gap:48px;
-padding-bottom:40px;
+gap:45px;
+padding-bottom:42px;
 }
 
 .footer-brand h3{
-font-size:19px;
+font-size:20px;
 line-height:1.4;
 font-weight:800;
-color:#fff;
-margin-bottom:8px;
+margin-bottom:9px;
 }
 
-.footer-brand .footer-motto{
+.footer-motto{
 color:var(--gold);
 font-size:12px;
 font-weight:800;
@@ -792,12 +785,14 @@ letter-spacing:2px;
 margin-bottom:15px;
 }
 
-.footer-brand p{
+.footer-brand p,
+.footer-column p{
 color:#CBD3E0;
 font-size:13px;
 line-height:1.9;
-max-width:310px;
 }
+
+.footer-brand p{max-width:310px}
 
 .footer-column h3{
 color:#fff;
@@ -819,7 +814,7 @@ color:#CBD3E0;
 
 .footer-column a{
 color:#CBD3E0;
-transition:.25s;
+transition:.2s;
 }
 
 .footer-column a:hover{
@@ -828,9 +823,6 @@ padding-left:4px;
 }
 
 .footer-column p{
-color:#CBD3E0;
-font-size:13px;
-line-height:1.9;
 margin-bottom:13px;
 overflow-wrap:anywhere;
 }
@@ -847,13 +839,12 @@ margin-top:8px;
 
 .footer-apply:hover{
 background:#fff;
-color:var(--maroon)!important;
 padding-left:18px!important;
 }
 
 .footer-bottom{
 border-top:1px solid rgba(255,255,255,.15);
-padding:18px 0;
+padding:19px 0;
 text-align:center;
 }
 
@@ -864,56 +855,39 @@ font-size:12px;
 
 .footer-bottom strong{color:var(--gold)}
 
-.site-footer,.site-footer *{font-weight:700!important}
+.site-footer,.site-footer *{font-weight:700}
 
 /* TABLET */
 
 @media(min-width:851px) and (max-width:1100px){
 
-.container.header-inner{
-width:99%;
-gap:9px;
-min-height:96px;
-}
-
+.header-inner{gap:10px}
 .brand img{width:145px;height:72px}
-nav{gap:7px}
+nav{gap:9px}
 
-nav>a,nav button.nav-link{
-font-size:12px;
-letter-spacing:0;
-}
+nav>a,.nav-link{font-size:12px}
 
 .nav-apply{
-padding:9px 10px!important;
-font-size:12px!important;
-margin-left:0;
+padding:10px 12px!important;
+font-size:12px;
 }
-
-.programme-submenu,
-.admissions-submenu,
-.about-submenu{min-width:210px}
 
 .footer-grid{gap:25px}
 }
 
-/* MOBILE */
+/* MOBILE NAVIGATION */
 
 @media(max-width:850px){
 
-.container.header-inner{
+.header-inner{
 width:94%;
 min-height:88px;
 gap:12px;
-justify-content:space-between;
 }
 
 .brand img{width:145px;height:72px}
 
-.menu-toggle{
-display:block;
-flex-shrink:0;
-}
+.menu-toggle{display:block}
 
 nav{
 display:none;
@@ -922,12 +896,12 @@ top:100%;
 left:0;
 right:0;
 width:100%;
-background:var(--navy);
-padding:15px 5%;
+background:#fff;
+padding:13px 5%;
 flex-direction:column;
 align-items:stretch;
 gap:0;
-box-shadow:0 8px 18px rgba(0,0,0,.2);
+box-shadow:0 10px 20px rgba(0,0,0,.14);
 max-height:calc(100vh - 88px);
 overflow-y:auto;
 }
@@ -935,64 +909,60 @@ overflow-y:auto;
 nav.open{display:flex}
 
 nav>a,
-nav button.nav-link{
-color:#fff;
-font-size:15px;
-padding:12px 8px;
-border-bottom:1px solid rgba(255,255,255,.16);
+nav .nav-link{
 width:100%;
 text-align:left;
+padding:13px 8px;
+font-size:15px;
+border-bottom:1px solid var(--border);
 }
 
+.about-menu,
 .programme-menu,
-.admissions-menu,
-.about-menu{
+.admissions-menu{
 display:block;
 width:100%;
 }
 
-nav button.nav-link{justify-content:space-between}
+nav .nav-link{justify-content:space-between}
 
+.about-submenu,
 .programme-submenu,
-.admissions-submenu,
-.about-submenu{
+.admissions-submenu{
 position:static;
-min-width:0;
 width:100%;
+min-width:0;
 box-shadow:none;
 border-top:2px solid var(--gold);
 border-radius:0;
+background:#F4F6F9;
 padding:4px 0;
-background:var(--navy-dark);
 }
 
+.about-submenu a,
 .programme-submenu a,
-.admissions-submenu a,
-.about-submenu a{
-color:#fff;
+.admissions-submenu a{
+color:var(--navy);
 padding:11px 20px;
-font-size:13px;
-border-bottom:1px solid rgba(255,255,255,.1);
+border-bottom:1px solid #e1e5ec;
 }
 
+.about-submenu a:hover,
 .programme-submenu a:hover,
-.admissions-submenu a:hover,
-.about-submenu a:hover{
-background:#12366F;
-color:var(--gold);
-padding-left:25px;
+.admissions-submenu a:hover{
+background:#fff;
+color:var(--maroon);
 }
 
 .nav-apply{
-padding:11px 14px!important;
-margin-top:10px;
+margin-top:12px;
 text-align:center;
 border-bottom:0;
 }
 
 .contact-grid{grid-template-columns:repeat(2,1fr)}
 .message-grid{grid-template-columns:1fr}
-.institution-panel{min-height:420px}
+.institution-panel{min-height:440px}
 .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
 
 }
@@ -1002,41 +972,31 @@ border-bottom:0;
 @media(max-width:560px){
 
 .topbar{
-font-size:11px;
+font-size:10px;
 letter-spacing:.5px;
 }
 
 .brand img{width:125px;height:65px}
 
-nav{max-height:calc(100vh - 78px)}
-
 .contact-hero{min-height:370px}
-
-.contact-hero-content{padding:55px 0}
-
+.hero-content{padding:55px 0}
 .contact-hero p{font-size:14px}
-
 .hero-label{font-size:11px}
 
 .hero-actions{gap:9px}
-
 .hero-btn{padding:11px 16px;font-size:12px}
 
-section{padding:49px 0}
-
+section{padding:50px 0}
 .section-heading{margin-bottom:30px}
+.section-heading p{font-size:14px}
 
 .contact-grid{grid-template-columns:1fr}
+.contact-card{padding:28px 19px}
 
-.contact-card{padding:25px 18px}
-
-.message-panel{padding:22px 17px}
-
-.institution-panel{min-height:370px}
-
+.message-panel{padding:24px 18px}
+.institution-panel{min-height:390px}
 .institution-content{padding:25px}
-
-.institution-content h3{font-size:25px}
+.institution-content h3{font-size:27px}
 
 .faq-question{
 font-size:14px;
@@ -1045,39 +1005,37 @@ padding:16px 14px;
 
 .faq-answer{
 font-size:13px;
-padding:0 14px 16px;
+padding:0 14px 17px;
 }
 
 .location-panel{
 align-items:flex-start;
 flex-direction:column;
-padding:23px;
+padding:24px;
 }
 
-.support-banner{padding:43px 18px}
-
+.support-banner{padding:45px 18px}
 .final-cta h2{font-size:25px}
 
-.site-footer{padding-top:42px}
+.site-footer{padding-top:43px}
 
 .footer-grid{
 grid-template-columns:1fr;
-gap:29px;
+gap:30px;
 }
 
 }
-
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
+TAHIDI INTERNATIONAL TRAINING INSTITUTE &nbsp; | &nbsp; BREAKING THE LIMITS
 </div>
 
 <header>
-<div class="container header-inner">
+<div class="header-inner">
 
 <a href="index.html#home" class="brand">
 <img src="BYE.png" alt="Tahidi International Training Institute Logo">
@@ -1147,11 +1105,10 @@ ADMISSIONS <span class="dropdown-arrow">▼</span>
 
 <main>
 
-<!-- CONTACT HERO -->
+<!-- HERO -->
 
 <section class="contact-hero">
-
-<div class="contact-hero-content">
+<div class="hero-content">
 
 <span class="hero-label">TAHIDI INTERNATIONAL TRAINING INSTITUTE</span>
 
@@ -1166,16 +1123,9 @@ Reach out to TITI and let us help you take the next step.
 </p>
 
 <div class="hero-actions">
-
-<a href="tel:+256776433303" class="hero-btn gold">
-☎ CALL OUR OFFICE
-</a>
-
+<a href="tel:+256776433303" class="hero-btn gold">☎ CALL OUR OFFICE</a>
 <a href="https://wa.me/256776433303"
-target="_blank" rel="noopener" class="hero-btn outline">
-WHATSAPP US
-</a>
-
+target="_blank" rel="noopener" class="hero-btn outline">WHATSAPP US</a>
 </div>
 
 </div>
@@ -1184,7 +1134,6 @@ WHATSAPP US
 <!-- CONTACT INFORMATION -->
 
 <section class="contact-information" id="contact-information">
-
 <div class="container">
 
 <div class="section-heading">
@@ -1199,54 +1148,26 @@ We look forward to hearing from you.
 <div class="contact-grid">
 
 <div class="contact-card">
-
 <div class="contact-icon">☎</div>
-
 <h3>Call Our Office</h3>
-
-<p>
-Speak directly with the institute through our official telephone line.
-</p>
-
-<a href="tel:+256776433303" class="contact-action">
-CALL +256 776 433303
-</a>
-
+<p>Speak directly with the institute through our official telephone line.</p>
+<a href="tel:+256776433303" class="contact-action">CALL +256 776 433303</a>
 </div>
 
 <div class="contact-card">
-
 <div class="contact-icon">◉</div>
-
 <h3>WhatsApp Us</h3>
-
-<p>
-Send us a WhatsApp message for enquiries and assistance.
-</p>
-
+<p>Send us a WhatsApp message for enquiries and assistance.</p>
 <a href="https://wa.me/256776433303"
-target="_blank" rel="noopener"
-class="contact-action whatsapp">
-START WHATSAPP CHAT
-</a>
-
+target="_blank" rel="noopener" class="contact-action whatsapp">START WHATSAPP CHAT</a>
 </div>
 
 <div class="contact-card">
-
 <div class="contact-icon">✉</div>
-
 <h3>Email Our Institute</h3>
-
-<p>
-Send your questions, requests and official correspondence by email.
-</p>
-
+<p>Send your questions, requests and official correspondence by email.</p>
 <a href="mailto:tahidiinternationalinstitute@gmail.com"
-class="contact-action email">
-SEND AN EMAIL
-</a>
-
+class="contact-action email">SEND AN EMAIL</a>
 </div>
 
 </div>
@@ -1254,19 +1175,15 @@ SEND AN EMAIL
 <p class="contact-note">
 Official website:
 <a href="https://www.tahidiinternationaltraininginstitute.ac.ug"
-target="_blank" rel="noopener"
-style="color:var(--maroon);font-weight:800;">
-www.tahidiinternationaltraininginstitute.ac.ug
-</a>
+target="_blank" rel="noopener">www.tahidiinternationaltraininginstitute.ac.ug</a>
 </p>
 
 </div>
 </section>
 
-<!-- MESSAGE FORM AND CAMPUS IMAGE -->
+<!-- ENQUIRY FORM -->
 
 <section class="message-section" id="send-message">
-
 <div class="container">
 
 <div class="section-heading">
@@ -1274,7 +1191,7 @@ www.tahidiinternationaltraininginstitute.ac.ug
 <div class="gold-line"></div>
 <p>
 Have a question about admissions, academic programmes or the institute?
-Send us a message.
+Our team is ready to hear from you.
 </p>
 </div>
 
@@ -1283,34 +1200,31 @@ Send us a message.
 <div class="message-panel">
 
 <h3>Write to TITI</h3>
-
-<p>
-Complete the form below. Your email application will open with your enquiry prepared for sending.
-</p>
+<p>Complete the form below to prepare your enquiry for our administration.</p>
 
 <form id="enquiryForm">
 
 <div class="form-group">
 <label for="fullName">Full Name *</label>
-<input type="text" id="fullName"
-placeholder="Enter your full name" required>
+<input type="text" id="fullName" name="fullName"
+placeholder="Enter your full name" autocomplete="name" required>
 </div>
 
 <div class="form-group">
 <label for="emailAddress">Email Address *</label>
-<input type="email" id="emailAddress"
-placeholder="Enter your email address" required>
+<input type="email" id="emailAddress" name="emailAddress"
+placeholder="Enter your email address" autocomplete="email" required>
 </div>
 
 <div class="form-group">
 <label for="telephone">Telephone Number</label>
-<input type="tel" id="telephone"
-placeholder="Enter your telephone number">
+<input type="tel" id="telephone" name="telephone"
+placeholder="Enter your telephone number" autocomplete="tel">
 </div>
 
 <div class="form-group">
 <label for="enquirySubject">Enquiry Category *</label>
-<select id="enquirySubject" required>
+<select id="enquirySubject" name="enquirySubject" required>
 <option value="">Select enquiry category</option>
 <option>Admissions and Applications</option>
 <option>Academic Programmes</option>
@@ -1324,9 +1238,8 @@ placeholder="Enter your telephone number">
 
 <div class="form-group">
 <label for="message">Your Message *</label>
-<textarea id="message"
-placeholder="Write your enquiry here..."
-required></textarea>
+<textarea id="message" name="message"
+placeholder="Write your enquiry here..." required></textarea>
 </div>
 
 <button type="submit" class="form-submit">
@@ -1334,16 +1247,14 @@ SEND YOUR ENQUIRY →
 </button>
 
 <p class="form-notice">
-Submitting this form opens your email application.
-Review the prepared message and press Send to deliver it to TITI.
+Your email application will open with your enquiry prepared.
+Review the message and press Send to deliver it to TITI.
 </p>
 
 </form>
-
 </div>
 
 <div class="institution-panel">
-
 <div class="institution-content">
 
 <span>YOUR FUTURE STARTS HERE</span>
@@ -1367,10 +1278,9 @@ EXPLORE ADMISSIONS
 </div>
 </section>
 
-<!-- STUDENT SUPPORT -->
+<!-- SUPPORT BANNER -->
 
 <div class="support-banner">
-
 <div class="container">
 
 <h2>Need Immediate Assistance?</h2>
@@ -1388,10 +1298,9 @@ CHAT WITH TITI ON WHATSAPP
 </div>
 </div>
 
-<!-- FREQUENTLY ASKED QUESTIONS -->
+<!-- FAQ -->
 
 <section class="faq-section" id="frequently-asked-questions">
-
 <div class="container">
 
 <div class="section-heading">
@@ -1414,8 +1323,7 @@ Select a question to read its answer.
 Visit our Admissions page and complete the online application form.
 You can also contact our office through telephone or WhatsApp
 if you need assistance with the application process.
-<a href="apply.html#online-application"
-style="color:var(--maroon);font-weight:800;">Apply online here.</a>
+<a href="apply.html#online-application">Apply online here.</a>
 </div>
 </div>
 
@@ -1428,8 +1336,7 @@ style="color:var(--maroon);font-weight:800;">Apply online here.</a>
 TITI provides Diploma, Certificate and Short Course programmes.
 Visit the Academic Programmes section on our homepage to explore
 the available programmes and their descriptions.
-<a href="index.html#programmes"
-style="color:var(--maroon);font-weight:800;">Explore our programmes.</a>
+<a href="index.html#programmes">Explore our programmes.</a>
 </div>
 </div>
 
@@ -1442,8 +1349,7 @@ style="color:var(--maroon);font-weight:800;">Explore our programmes.</a>
 Entry requirements depend on the programme you intend to pursue.
 Please visit our Admissions page and review the requirements
 for your preferred programme.
-<a href="apply.html#requirements"
-style="color:var(--maroon);font-weight:800;">View admission requirements.</a>
+<a href="apply.html#requirements">View admission requirements.</a>
 </div>
 </div>
 
@@ -1456,8 +1362,7 @@ style="color:var(--maroon);font-weight:800;">View admission requirements.</a>
 Information about fees and payment arrangements is available
 through our Admissions section. You may also contact the
 institute directly for clarification.
-<a href="apply.html#fees"
-style="color:var(--maroon);font-weight:800;">View fees and payment information.</a>
+<a href="apply.html#fees">View fees and payment information.</a>
 </div>
 </div>
 
@@ -1469,8 +1374,7 @@ style="color:var(--maroon);font-weight:800;">View fees and payment information.<
 <div class="faq-answer">
 Applicants can use the Check Application Status facility
 available on the TITI website to follow up on their applications.
-<a href="application-status.html"
-style="color:var(--maroon);font-weight:800;">Check application status.</a>
+<a href="application-status.html">Check application status.</a>
 </div>
 </div>
 
@@ -1482,7 +1386,7 @@ style="color:var(--maroon);font-weight:800;">Check application status.</a>
 <div class="faq-answer">
 Call our official number +256 776 433303 or send a WhatsApp
 message to the same number. You can also email us at
-tahidiinternationalinstitute@gmail.com.
+<a href="mailto:tahidiinternationalinstitute@gmail.com">tahidiinternationalinstitute@gmail.com</a>.
 </div>
 </div>
 
@@ -1514,10 +1418,9 @@ Our team will be glad to assist.
 </div>
 </section>
 
-<!-- LOCATION INFORMATION -->
+<!-- LOCATION -->
 
 <section class="location-section">
-
 <div class="container">
 
 <div class="section-heading">
@@ -1534,30 +1437,22 @@ guardians and institutional partners.
 <div class="location-icon">⌖</div>
 
 <div class="location-content">
-
 <h3>Connect With TITI Administration</h3>
-
 <p>
 For the institute's physical address, campus directions,
 office arrangements and appointments, please contact our
 administration directly.
 </p>
-
-<a href="tel:+256776433303">
-CALL +256 776 433303 →
-</a>
-
+<a href="tel:+256776433303">CALL +256 776 433303 →</a>
 </div>
 
 </div>
-
 </div>
 </section>
 
 <!-- FINAL CTA -->
 
 <div class="final-cta">
-
 <div class="container">
 
 <h2>Still Have a Question?</h2>
@@ -1567,9 +1462,7 @@ We are ready to hear from you. Reach out to Tahidi International Training Instit
 </p>
 
 <a href="https://wa.me/256776433303"
-target="_blank" rel="noopener">
-CONTACT TITI NOW
-</a>
+target="_blank" rel="noopener">CONTACT TITI NOW</a>
 
 </div>
 </div>
@@ -1579,29 +1472,22 @@ CONTACT TITI NOW
 <!-- FOOTER -->
 
 <footer class="site-footer">
-
 <div class="container">
 
 <div class="footer-grid">
 
 <div class="footer-brand">
-
 <h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
-
 <div class="footer-motto">BREAKING THE LIMITS</div>
-
 <p>
 Committed to quality education, practical skills and
 professional training that prepares learners for
 opportunities in the world of work.
 </p>
-
 </div>
 
 <div class="footer-column">
-
 <h3>Explore TITI</h3>
-
 <ul>
 <li><a href="index.html#home">Home</a></li>
 <li><a href="about.html">About Our Institute</a></li>
@@ -1613,11 +1499,9 @@ opportunities in the world of work.
 <li><a href="contacts.html">Contact Us</a></li>
 <li><a href="application-status.html">Check Application Status</a></li>
 </ul>
-
 </div>
 
 <div class="footer-column">
-
 <h3>Contact Information</h3>
 
 <p>
@@ -1645,22 +1529,17 @@ www.tahidiinternationaltraininginstitute.ac.ug
 </a>
 </p>
 
-<a href="apply.html#online-application" class="footer-apply">
-Apply Now
-</a>
-
+<a href="apply.html#online-application" class="footer-apply">Apply Now</a>
 </div>
 
 </div>
 
 <div class="footer-bottom">
-
 <p>
 © <span id="footer-year"></span>
 <strong>Tahidi International Training Institute.</strong>
 All Rights Reserved.
 </p>
-
 </div>
 
 </div>
@@ -1679,116 +1558,87 @@ menuToggle.addEventListener('click',()=>{
     const isOpen=mainNav.classList.contains('open');
 
     menuToggle.setAttribute('aria-expanded',isOpen);
-    menuToggle.setAttribute(
-        'aria-label',
-        isOpen?'Close navigation':'Open navigation'
-    );
+    menuToggle.setAttribute('aria-label',
+        isOpen?'Close navigation':'Open navigation');
+    menuToggle.textContent=isOpen?'✕':'☰';
 });
 
 /* DROPDOWN MENUS */
 
-const aboutMenu=document.getElementById('aboutMenu');
-const aboutToggle=document.getElementById('aboutToggle');
+const menus=[
+    ['aboutMenu','aboutToggle'],
+    ['programmeMenu','programmeToggle'],
+    ['admissionsMenu','admissionsToggle']
+];
 
-const programmeMenu=document.getElementById('programmeMenu');
-const programmeToggle=document.getElementById('programmeToggle');
+menus.forEach(([menuId,toggleId])=>{
+    const menu=document.getElementById(menuId);
+    const toggle=document.getElementById(toggleId);
 
-const admissionsMenu=document.getElementById('admissionsMenu');
-const admissionsToggle=document.getElementById('admissionsToggle');
+    toggle.addEventListener('click',()=>{
+        const willOpen=!menu.classList.contains('open');
 
-aboutToggle.addEventListener('click',()=>{
-    aboutMenu.classList.toggle('open');
-    aboutToggle.setAttribute(
-        'aria-expanded',
-        aboutMenu.classList.contains('open')
-    );
+        menus.forEach(([otherMenu,otherToggle])=>{
+            document.getElementById(otherMenu).classList.remove('open');
+            document.getElementById(otherToggle).setAttribute('aria-expanded','false');
+        });
+
+        menu.classList.toggle('open',willOpen);
+        toggle.setAttribute('aria-expanded',willOpen);
+    });
 });
 
-programmeToggle.addEventListener('click',()=>{
-    programmeMenu.classList.toggle('open');
-    programmeToggle.setAttribute(
-        'aria-expanded',
-        programmeMenu.classList.contains('open')
-    );
-});
-
-admissionsToggle.addEventListener('click',()=>{
-    admissionsMenu.classList.toggle('open');
-    admissionsToggle.setAttribute(
-        'aria-expanded',
-        admissionsMenu.classList.contains('open')
-    );
-});
-
-/* CLOSE NAVIGATION AFTER SELECTING A LINK */
+/* CLOSE MOBILE MENU AFTER NAVIGATION */
 
 document.querySelectorAll('#mainNav a').forEach(link=>{
     link.addEventListener('click',()=>{
         mainNav.classList.remove('open');
-
-        aboutMenu.classList.remove('open');
-        programmeMenu.classList.remove('open');
-        admissionsMenu.classList.remove('open');
-
         menuToggle.setAttribute('aria-expanded','false');
         menuToggle.setAttribute('aria-label','Open navigation');
+        menuToggle.textContent='☰';
 
-        aboutToggle.setAttribute('aria-expanded','false');
-        programmeToggle.setAttribute('aria-expanded','false');
-        admissionsToggle.setAttribute('aria-expanded','false');
+        menus.forEach(([menuId,toggleId])=>{
+            document.getElementById(menuId).classList.remove('open');
+            document.getElementById(toggleId).setAttribute('aria-expanded','false');
+        });
     });
 });
 
 /* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
 
 document.addEventListener('click',event=>{
+    menus.forEach(([menuId,toggleId])=>{
+        const menu=document.getElementById(menuId);
 
-    if(!aboutMenu.contains(event.target)){
-        aboutMenu.classList.remove('open');
-        aboutToggle.setAttribute('aria-expanded','false');
-    }
-
-    if(!programmeMenu.contains(event.target)){
-        programmeMenu.classList.remove('open');
-        programmeToggle.setAttribute('aria-expanded','false');
-    }
-
-    if(!admissionsMenu.contains(event.target)){
-        admissionsMenu.classList.remove('open');
-        admissionsToggle.setAttribute('aria-expanded','false');
-    }
-
+        if(!menu.contains(event.target)){
+            menu.classList.remove('open');
+            document.getElementById(toggleId).setAttribute('aria-expanded','false');
+        }
+    });
 });
 
 /* FAQ ACCORDION */
 
 document.querySelectorAll('.faq-question').forEach(button=>{
-
     button.addEventListener('click',()=>{
-
         const currentItem=button.closest('.faq-item');
         const wasOpen=currentItem.classList.contains('open');
 
         document.querySelectorAll('.faq-item').forEach(item=>{
             item.classList.remove('open');
-
-            const question=item.querySelector('.faq-question');
-            question.setAttribute('aria-expanded','false');
+            item.querySelector('.faq-question').setAttribute('aria-expanded','false');
         });
 
         if(!wasOpen){
             currentItem.classList.add('open');
             button.setAttribute('aria-expanded','true');
         }
-
     });
-
 });
 
 /* ENQUIRY FORM */
 
 document.getElementById('enquiryForm').addEventListener('submit',function(event){
-
     event.preventDefault();
 
     const fullName=document.getElementById('fullName').value.trim();
@@ -1802,9 +1652,7 @@ document.getElementById('enquiryForm').addEventListener('submit',function(event)
         return;
     }
 
-    const emailSubject=encodeURIComponent(
-        'TITI Website Enquiry - '+subject
-    );
+    const emailSubject=encodeURIComponent('TITI Website Enquiry - '+subject);
 
     const emailBody=encodeURIComponent(
 `Dear Tahidi International Training Institute,
@@ -1829,13 +1677,11 @@ ${fullName}`
         +'&body='+emailBody;
 
     window.location.href=mailtoLink;
-
 });
 
 /* COPYRIGHT YEAR */
 
-document.getElementById('footer-year').textContent=
-    new Date().getFullYear();
+document.getElementById('footer-year').textContent=new Date().getFullYear();
 
 </script>
 
