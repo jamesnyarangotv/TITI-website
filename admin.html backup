@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TITI | Central Administration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+ --maroon:#7A1220;
+ --navy:#0F2A5E;
+ --gold:#D4AF37;
+ --white:#fff;
+ --black:#111;
+ --light:#f3f5f8;
+ --border:#e5e9f0;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+ margin:0;
+ font-family:'Jost',sans-serif;
+ background:#f3f5f8;
+ color:#172033;
+ line-height:1.6;
+}
+
+input,textarea,button,select{font-family:inherit}
+
+button{cursor:pointer}
+
+button:disabled{
+ opacity:.6;
+ cursor:wait;
+}
+
+/* =====================================
+   ADMINISTRATOR LOGIN
+===================================== */
+
+#loginScreen{
+ min-height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ padding:15px;
+ background:linear-gradient(135deg,#0F2A5E,#18243c);
+}
+
+.login-card{
+ background:#fff;
+ width:100%;
+ max-width:390px;
+ padding:20px 23px;
+ border-radius:12px;
+ box-shadow:0 15px 45px #0004;
+}
+
+.logo{
+ text-align:center;
+ color:var(--maroon);
+ font-size:30px;
+ font-weight:800;
+ letter-spacing:1px;
+}
+
+.subtitle{
+ text-align:center;
+ color:#687386;
+ margin:2px 0 12px;
+ font-size:11px;
+ line-height:1.5;
+}
+
+h2{color:var(--navy)}
+
+.login-card h2{
+ color:var(--navy);
+ font-size:21px;
+ text-align:center;
+ margin:8px 0 3px;
+}
+
+.login-card .muted{
+ font-size:12px;
+ line-height:1.5;
+ margin:4px 0 12px;
+ text-align:center;
+}
+
+.login-card label{
+ display:block;
+ font-weight:600;
+ margin:10px 0 5px;
+ font-size:13px;
+}
+
+.login-card input{
+ width:100%;
+ padding:10px 11px;
+ border:1px solid #d8dee8;
+ border-radius:6px;
+ font-size:14px;
+ outline:none;
+}
+
+.login-card input:focus{
+ border-color:var(--navy);
+ box-shadow:0 0 0 2px #0F2A5E12;
+}
+
+.password-wrapper{
+ display:flex !important;
+ align-items:stretch !important;
+ gap:7px;
+ width:100%;
+}
+
+.password-wrapper input{
+ flex:1 1 auto;
+ min-width:0;
+ width:0;
+ height:42px;
+}
+
+.password-toggle{
+ display:inline-flex !important;
+ visibility:visible !important;
+ opacity:1 !important;
+ position:static !important;
+ transform:none !important;
+ flex:0 0 76px;
+ width:76px;
+ min-width:76px;
+ height:42px;
+ padding:0 8px !important;
+ margin:0 !important;
+ border:1px solid #d8dee8 !important;
+ border-radius:6px;
+ background:#edf1f7 !important;
+ color:var(--navy) !important;
+ font-size:12px;
+ font-weight:800;
+ letter-spacing:.4px;
+ cursor:pointer;
+ align-items:center !important;
+ justify-content:center !important;
+ z-index:5;
+}
+
+.password-toggle:hover{background:#dce5f2 !important}
+
+button{
+ cursor:pointer;
+ border:0;
+ border-radius:6px;
+ padding:12px 17px;
+ font-weight:700;
+}
+
+.primary{
+ background:var(--maroon);
+ color:white;
+ width:100%;
+ margin-top:22px;
+}
+
+.login-card .primary{
+ background:var(--maroon);
+ color:white;
+ width:100%;
+ margin-top:15px;
+ padding:11px;
+ font-size:14px;
+ border-radius:6px;
+}
+
+.login-card .primary:hover,
+.primary:hover{background:#5c0c18}
+
+.error{
+ color:#b42318;
+ background:#fff0ee;
+ padding:11px;
+ border-radius:5px;
+ margin-top:15px;
+ font-size:13px;
+ display:none;
+}
+
+/* =====================================
+   INSTITUTIONAL WHITE HEADER
+===================================== */
+
+#dashboard{display:none}
+
+.topbar{
+ background:#fff;
+ color:#111;
+ padding:12px 3%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:20px;
+ flex-wrap:nowrap;
+ border-bottom:3px solid var(--maroon);
+ box-shadow:0 4px 18px rgba(0,0,0,.07);
+ position:sticky;
+ top:0;
+ z-index:1000;
+}
+
+.brand{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ color:#111;
+ font-size:23px;
+ font-weight:800;
+ letter-spacing:.7px;
+ line-height:1.2;
+ flex-shrink:0;
+}
+
+.brand small{
+ display:block;
+ color:#555;
+ font-size:10px;
+ font-weight:700;
+ margin-top:5px;
+ letter-spacing:.5px;
+}
+
+.header-navigation{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:clamp(12px,2vw,30px);
+ flex:1;
+}
+
+.header-navigation .module-btn{
+ background:transparent;
+ color:#111;
+ border:0;
+ border-radius:0;
+ padding:15px 2px;
+ font-size:13px;
+ font-weight:800;
+ letter-spacing:.4px;
+ position:relative;
+ white-space:nowrap;
+ transition:.25s;
+}
+
+.header-navigation .module-btn:hover{
+ color:var(--maroon);
+ background:transparent;
+}
+
+.header-navigation .module-btn.active{
+ color:var(--maroon);
+ background:transparent;
+}
+
+.header-navigation .module-btn.active::after{
+ content:"";
+ position:absolute;
+ bottom:5px;
+ left:0;
+ width:100%;
+ height:3px;
+ background:var(--maroon);
+ border-radius:5px;
+}
+
+.header-account{
+ display:flex;
+ align-items:center;
+ justify-content:flex-end;
+ gap:12px;
+ flex-shrink:0;
+}
+
+#adminName{
+ font-size:12px;
+ color:#333;
+ font-weight:700;
+}
+
+.logout{
+ background:var(--maroon);
+ color:white;
+ padding:10px 17px;
+ border-radius:4px;
+ font-size:12px;
+ font-weight:800;
+ letter-spacing:.3px;
+ white-space:nowrap;
+ transition:.25s;
+}
+
+.logout:hover{
+ background:var(--navy);
+}
+
+/* =====================================
+   MAIN DASHBOARD
+===================================== */
+
+.container{
+ max-width:1250px;
+ margin:30px auto;
+ padding:0 20px;
+}
+
+.welcome{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ flex-wrap:wrap;
+ gap:10px;
+ margin-bottom:25px;
+}
+
+.welcome h2{
+ margin:0 0 7px;
+ font-size:26px;
+ font-weight:800;
+}
+
+.muted{
+ color:#687386;
+ font-size:13px;
+}
+
+.refresh{
+ background:var(--navy);
+ color:white;
+}
+
+.refresh:hover{background:var(--maroon)}
+
+/* =====================================
+   STATISTICS
+===================================== */
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:16px;
+ margin-bottom:25px;
+}
+
+.stat{
+ background:white;
+ border-radius:9px;
+ padding:20px;
+ border:1px solid #e7eaf0;
+ border-top:3px solid var(--gold);
+ box-shadow:0 3px 12px rgba(0,0,0,.025);
+}
+
+.stat strong{
+ display:block;
+ font-size:29px;
+ color:var(--navy);
+ margin-top:9px;
+}
+
+/* =====================================
+   PANELS
+===================================== */
+
+.panel{
+ background:white;
+ padding:22px;
+ border-radius:9px;
+ border:1px solid #e7eaf0;
+ margin-bottom:22px;
+ box-shadow:0 3px 12px rgba(0,0,0,.025);
+}
+
+.panel h3{
+ color:var(--navy);
+ margin-top:0;
+ font-size:19px;
+ font-weight:800;
+}
+
+.toolbar{
+ display:flex;
+ gap:10px;
+ margin-bottom:18px;
+ flex-wrap:wrap;
+}
+
+.toolbar input{
+ max-width:450px;
+ width:100%;
+ padding:11px;
+ border:1px solid #d8dee8;
+ border-radius:5px;
+ font-family:inherit;
+}
+
+table{
+ width:100%;
+ border-collapse:collapse;
+ font-size:13px;
+}
+
+th,td{
+ text-align:left;
+ padding:13px 10px;
+ border-bottom:1px solid #e9edf2;
+}
+
+th{
+ background:#f5f6f9;
+ color:var(--navy);
+ font-weight:800;
+}
+
+.table-wrap{overflow-x:auto}
+
+.view-btn{
+ background:var(--navy);
+ color:white;
+ padding:8px 12px;
+}
+
+.view-btn:hover{background:var(--maroon)}
+
+.status{
+ display:inline-block;
+ padding:6px 9px;
+ border-radius:20px;
+ background:#fff3d8;
+ color:#805500;
+ font-size:11px;
+ font-weight:bold;
+ white-space:nowrap;
+}
+
+.status.APPROVED{
+ background:#e1f5e9;
+ color:#126536;
+}
+
+.status.REJECTED{
+ background:#fde7e7;
+ color:#a11919;
+}
+
+.status.VERIFIED{
+ background:#e5edff;
+ color:#17428b;
+}
+
+.status.UNDER_REVIEW{
+ background:#fff3d8;
+ color:#805500;
+}
+
+.status.OPEN{
+ background:#e1f5e9;
+ color:#126536;
+}
+
+.status.CLOSED{
+ background:#fde7e7;
+ color:#a11919;
+}
+
+/* =====================================
+   APPLICANT DETAILS
+===================================== */
+
+.detail-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:15px;
+}
+
+.detail-item{
+ padding:12px;
+ background:#f6f7fa;
+ border-radius:6px;
+ overflow-wrap:anywhere;
+}
+
+.detail-item small{
+ display:block;
+ color:#687386;
+ margin-bottom:6px;
+}
+
+.detail-item strong{font-size:14px}
+
+.actions{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-top:18px;
+}
+
+.approve{
+ background:#167744;
+ color:white;
+}
+
+.reject{
+ background:#a51d2d;
+ color:white;
+}
+
+.secondary{
+ background:#e8edf4;
+ color:var(--navy);
+}
+
+#detailPanel{display:none}
+
+#message{
+ padding:12px;
+ margin-bottom:15px;
+ border-radius:6px;
+ display:none;
+ font-size:13px;
+}
+
+/* =====================================
+   DOCUMENT VERIFICATION
+===================================== */
+
+.document-list{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:15px;
+}
+
+.document-card{
+ border:1px solid #e5e9f0;
+ padding:16px;
+ border-radius:8px;
+ background:#fff;
+ min-width:0;
+}
+
+.document-card h4{
+ color:var(--navy);
+ margin:0 0 8px;
+ font-size:15px;
+}
+
+.document-card img{
+ width:100%;
+ max-height:300px;
+ object-fit:contain;
+ background:#f3f5f8;
+ border-radius:6px;
+ margin-top:12px;
+}
+
+.document-card iframe{
+ width:100%;
+ height:350px;
+ border:1px solid #e5e9f0;
+ border-radius:6px;
+ margin-top:12px;
+}
+
+.document-actions{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+ margin-top:12px;
+}
+
+.document-actions a{
+ text-decoration:none;
+ background:var(--navy);
+ color:white;
+ padding:9px 12px;
+ border-radius:5px;
+ font-size:12px;
+ font-weight:600;
+}
+
+.document-actions a.download{background:#167744}
+
+.document-error{
+ background:#fff0ee;
+ color:#a11919;
+ padding:12px;
+ border-radius:6px;
+ font-size:13px;
+}
+
+/* =====================================
+   PROGRAMME MANAGEMENT
+===================================== */
+
+#programmePanel{display:none}
+
+.programme-form{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:16px;
+}
+
+.form-group{min-width:0}
+
+.form-group.full{grid-column:1/-1}
+
+.form-group label{
+ display:block;
+ font-weight:600;
+ color:var(--navy);
+ font-size:13px;
+ margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+ width:100%;
+ padding:11px 12px;
+ border:1px solid #d8dee8;
+ border-radius:6px;
+ outline:none;
+ font-size:14px;
+ background:white;
+ color:#172033;
+}
+
+.form-group textarea{
+ resize:vertical;
+ min-height:100px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+ border-color:var(--navy);
+ box-shadow:0 0 0 2px #0F2A5E12;
+}
+
+.checkbox-group{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ background:#f6f7fa;
+ padding:13px;
+ border-radius:6px;
+}
+
+.checkbox-group input{
+ width:18px;
+ height:18px;
+ accent-color:var(--maroon);
+}
+
+.checkbox-group label{
+ margin:0;
+ font-weight:600;
+ color:var(--navy);
+ font-size:13px;
+}
+
+.programme-actions{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-top:20px;
+}
+
+.save-btn{
+ background:var(--maroon);
+ color:white;
+}
+
+.save-btn:hover{background:#5c0c18}
+
+.edit-btn{
+ background:#e9effa;
+ color:var(--navy);
+ padding:8px 12px;
+}
+
+.delete-btn{
+ background:#fde7e7;
+ color:#a11919;
+ padding:8px 12px;
+}
+
+.programme-action-buttons{
+ display:flex;
+ gap:7px;
+ flex-wrap:wrap;
+}
+
+.programme-count{
+ color:var(--navy);
+ font-size:13px;
+ font-weight:700;
+ margin-bottom:12px;
+}
+
+#programmeMessage{
+ display:none;
+ padding:12px;
+ margin:15px 0;
+ border-radius:6px;
+ font-size:13px;
+}
+
+.programme-empty{
+ text-align:center;
+ padding:25px;
+ color:#687386;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer{
+ text-align:center;
+ padding:25px;
+ background:#fff;
+ color:#596477;
+ font-size:12px;
+ border-top:3px solid var(--maroon);
+ margin-top:35px;
+ letter-spacing:.3px;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media(max-width:950px){
+
+ .topbar{
+  flex-wrap:wrap;
+  padding:13px 3%;
+ }
+
+ .brand{
+  font-size:21px;
+ }
+
+ .header-navigation{
+  order:3;
+  flex-basis:100%;
+  justify-content:flex-start;
+  border-top:1px solid #e9edf2;
+  padding-top:5px;
+ }
+
+ .header-account{
+  margin-left:auto;
+ }
+
+}
+
+@media(max-width:750px){
+
+ .stats{grid-template-columns:repeat(2,1fr)}
+
+ .detail-grid,
+ .document-list,
+ .programme-form{
+  grid-template-columns:1fr;
+ }
+
+ .form-group.full{grid-column:auto}
+
+ .welcome h2{font-size:22px}
+
+ .container{
+  margin:22px auto;
+  padding:0 14px;
+ }
+
+ .panel{padding:17px}
+
+ .header-navigation{
+  gap:20px;
+  overflow-x:auto;
+  white-space:nowrap;
+ }
+
+ .header-navigation .module-btn{
+  font-size:12px;
+ }
+
+}
+
+@media(max-width:450px){
+
+ .login-card{
+  max-width:340px;
+  padding:19px 18px;
+ }
+
+ .login-card h2{font-size:20px}
+
+ .password-toggle{
+  flex-basis:72px;
+  width:72px;
+  min-width:72px;
+ }
+
+ .stats{gap:9px}
+
+ .stat{padding:14px}
+
+ .topbar{
+  padding:12px 15px;
+  gap:9px;
+ }
+
+ .brand{font-size:19px}
+
+ .brand small{
+  font-size:9px;
+ }
+
+ .header-account{
+  gap:6px;
+ }
+
+ #adminName{
+  max-width:125px;
+  font-size:10px;
+ }
+
+ .logout{
+  padding:9px 11px;
+  font-size:10px;
+ }
+
+ .header-navigation{
+  gap:18px;
+ }
+
+ .header-navigation .module-btn{
+  padding:12px 0;
+  font-size:11px;
+ }
+
+ .panel{padding:15px}
+
+ .welcome h2{font-size:20px}
+
+ .toolbar input{max-width:100%}
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     ADMINISTRATOR LOGIN
+===================================== -->
+
+<section id="loginScreen">
+
+<div class="login-card">
+
+<div class="logo">TITI</div>
+
+<div class="subtitle">
+TAHIDI INTERNATIONAL TRAINING INSTITUTE<br>
+ADMINISTRATION PORTAL
+</div>
+
+<h2>Administrator Login</h2>
+
+<p class="muted">
+Sign in using your existing administrator account.
+</p>
+
+<form id="loginForm">
+
+<label for="email">Email Address</label>
+
+<input id="email" type="email" required
+autocomplete="username"
+placeholder="Enter administrator email">
+
+<label for="password">Password</label>
+
+<div class="password-wrapper">
+
+<input id="password" type="password" required
+autocomplete="current-password"
+placeholder="Enter password">
+
+<button type="button" id="togglePassword"
+class="password-toggle"
+onclick="togglePasswordVisibility()"
+aria-label="Show password"
+title="Show password">SHOW</button>
+
+</div>
+
+<button class="primary" id="loginButton" type="submit">
+SIGN IN
+</button>
+
+</form>
+
+<div id="loginError" class="error"></div>
+
+</div>
+</section>
+
+
+<!-- =====================================
+     CENTRAL ADMINISTRATION DASHBOARD
+===================================== -->
+
+<section id="dashboard">
+
+<header class="topbar">
+
+<div class="brand">
+TITI CENTRAL
+<small>TAHIDI INTERNATIONAL TRAINING INSTITUTE | ADMINISTRATION SYSTEM</small>
+</div>
+
+<!-- BLACK UPPERCASE INSTITUTIONAL NAVIGATION -->
+
+<nav class="header-navigation">
+
+<button class="module-btn active" id="admissionsTab">
+ADMISSIONS
+</button>
+
+<button class="module-btn" id="programmesTab">
+PROGRAMMES
+</button>
+
+</nav>
+
+<div class="header-account">
+
+<span id="adminName"></span>
+
+<button class="logout" id="logoutButton">
+LOG OUT
+</button>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<div class="welcome">
+
+<div>
+<h2>Central Administration Dashboard</h2>
+
+<div class="muted">
+Manage institute programmes and student admissions.
+</div>
+</div>
+
+<button class="refresh" id="refreshButton">
+↻ Refresh Data
+</button>
+
+</div>
+
+<div id="message"></div>
+
+
+<!-- =====================================
+     STATISTICS
+===================================== -->
+
+<div class="stats" id="admissionsStats">
+
+<div class="stat">
+<span class="muted">Total Applications</span>
+<strong id="totalCount">0</strong>
+</div>
+
+<div class="stat">
+<span class="muted">Submitted</span>
+<strong id="submittedCount">0</strong>
+</div>
+
+<div class="stat">
+<span class="muted">Approved</span>
+<strong id="approvedCount">0</strong>
+</div>
+
+<div class="stat">
+<span class="muted">Rejected</span>
+<strong id="rejectedCount">0</strong>
+</div>
+
+</div>
+
+
+<!-- =====================================
+     PROGRAMME MANAGEMENT
+===================================== -->
+
+<section id="programmePanel">
+
+<div class="panel">
+
+<h3>Programme Management</h3>
+
+<p class="muted">
+Manage the programmes displayed on the TITI website.
+Add new programmes, edit existing information or remove programmes.
+</p>
+
+<div id="programmeMessage"></div>
+
+<h3 id="programmeFormTitle" style="margin-top:25px">
+Add New Programme
+</h3>
+
+<form id="programmeForm">
+
+<input type="hidden" id="programmeId">
+
+<div class="programme-form">
+
+<div class="form-group">
+
+<label for="programmeName">Programme Name *</label>
+
+<input id="programmeName" type="text" required
+placeholder="e.g. Diploma in Accounting and Finance">
+
+</div>
+
+<div class="form-group">
+
+<label for="programmeLevel">Programme Level *</label>
+
+<input id="programmeLevel" type="text" required
+placeholder="e.g. Diploma, Certificate, Short Course">
+
+</div>
+
+<div class="form-group">
+
+<label for="programmeDuration">Duration</label>
+
+<input id="programmeDuration" type="text"
+placeholder="e.g. Two Years">
+
+</div>
+
+<div class="form-group">
+
+<label>Application Status</label>
+
+<div class="checkbox-group">
+
+<input id="applicationOpen" type="checkbox" checked>
+
+<label for="applicationOpen">
+Applications are open
+</label>
+
+</div>
+
+</div>
+
+<div class="form-group full">
+
+<label for="programmeDescription">
+Programme Description
+</label>
+
+<textarea id="programmeDescription"
+placeholder="Enter a description of this programme..."></textarea>
+
+</div>
+
+</div>
+
+<div class="programme-actions">
+
+<button type="submit" class="save-btn"
+id="saveProgrammeButton">
+SAVE PROGRAMME
+</button>
+
+<button type="button" class="secondary"
+id="cancelProgrammeEdit">
+CLEAR FORM
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+
+<div class="panel">
+
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+
+<h3 style="margin:0">Existing Programmes</h3>
+
+<button class="refresh" id="refreshProgrammesButton">
+↻ Refresh Programmes
+</button>
+
+</div>
+
+<div class="toolbar" style="margin-top:18px">
+
+<input id="programmeSearch" type="search"
+placeholder="Search programme name or level...">
+
+</div>
+
+<div class="programme-count" id="programmeCount">
+Loading programmes...
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Programme Name</th>
+<th>Level</th>
+<th>Duration</th>
+<th>Applications</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="programmesBody">
+<tr><td colspan="5">Loading programmes...</td></tr>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================
+     ADMISSIONS MANAGEMENT
+===================================== -->
+
+<div id="admissionsArea">
+
+<div class="panel">
+
+<h3>Applicant Records</h3>
+
+<div class="toolbar">
+
+<input id="searchInput" type="search"
+placeholder="Search name, reference, phone or email...">
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Reference</th>
+<th>Applicant</th>
+<th>Programme</th>
+<th>Submission Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="applicationsBody">
+<tr><td colspan="6">Loading applications...</td></tr>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- APPLICANT DETAILS -->
+
+<div class="panel" id="detailPanel">
+
+<h3>Applicant Information</h3>
+
+<div id="applicantDetails"></div>
+
+<h3 style="margin-top:25px">Administrator Review</h3>
+
+<label for="remarks">Administrator Remarks</label>
+
+<textarea id="remarks" rows="4"
+style="width:100%;padding:12px;border:1px solid #d8dee8;border-radius:5px;font-family:inherit"
+placeholder="Enter comments about this application..."></textarea>
+
+<div class="actions">
+
+<button class="approve" id="approveButton">
+APPROVE APPLICATION
+</button>
+
+<button class="reject" id="rejectButton">
+REJECT APPLICATION
+</button>
+
+<button class="secondary" id="closeDetails">
+CLOSE
+</button>
+
+</div>
+
+<p class="muted" style="margin-top:15px">
+Verify the applicant's documents before making a final decision.
+</p>
+
+</div>
+
+
+<!-- DOCUMENT VERIFICATION -->
+
+<div class="panel" id="documentPanel">
+
+<h3>Applicant Document Verification</h3>
+
+<p class="muted">
+Uploaded applicant documents are retrieved from your existing private Supabase storage bucket.
+</p>
+
+<div id="documentsContent">
+
+<p class="muted">
+Select an applicant to view their uploaded documents.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong><br>
+
+BREAKING THE LIMITS<br><br>
+
+TITI Administration Portal
+
+</footer>
+
+</section>
+
+
+<script>
+
+// ======================================
+// SUPABASE CONFIGURATION
+// ======================================
+
+const SUPABASE_URL =
+"https://jlmbiauilmajuvrnuaul.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+
+const DOCUMENT_BUCKET = "titi-applicant-documents";
+
+const db = window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_KEY
+);
+
+
+// ======================================
+// GLOBAL VARIABLES
+// ======================================
+
+let currentAdmin = null;
+let applications = [];
+let selectedApplication = null;
+let currentDocuments = [];
+let programmes = [];
+
+const $ = id => document.getElementById(id);
+
+
+// ======================================
+// SHOW / HIDE PASSWORD
+// ======================================
+
+function togglePasswordVisibility(){
+
+ const password = $("password");
+ const button = $("togglePassword");
+
+ if(!password || !button) return;
+
+ if(password.type === "password"){
+
+  password.type = "text";
+  button.textContent = "HIDE";
+  button.setAttribute("aria-label","Hide password");
+  button.title = "Hide password";
+
+ }else{
+
+  password.type = "password";
+  button.textContent = "SHOW";
+  button.setAttribute("aria-label","Show password");
+  button.title = "Show password";
+
+ }
+
+}
+
+
+// ======================================
+// HTML ESCAPING
+// ======================================
+
+function escapeHTML(value){
+
+ return String(value ?? "").replace(/[&<>"']/g,char=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ })[char]);
+
+}
+
+
+// ======================================
+// STATUS DISPLAY
+// ======================================
+
+function displayStatus(status){
+
+ const map = {
+  ADMITTED:"APPROVED",
+  DECLINED:"REJECTED"
+ };
+
+ return map[status] || status || "SUBMITTED";
+
+}
+
+function statusClass(status){
+
+ return displayStatus(status).replace(/\s+/g,"_");
+
+}
+
+
+// ======================================
+// MESSAGES
+// ======================================
+
+function showLoginError(message){
+
+ $("loginError").textContent = message;
+ $("loginError").style.display = "block";
+
+}
+
+function showMessage(message,error=false){
+
+ $("message").textContent = message;
+ $("message").style.display = "block";
+
+ $("message").style.background =
+ error ? "#fff0ee" : "#e5f5eb";
+
+ $("message").style.color =
+ error ? "#a11919" : "#126536";
+
+}
+
+function showProgrammeMessage(message,error=false){
+
+ $("programmeMessage").textContent = message;
+ $("programmeMessage").style.display = "block";
+
+ $("programmeMessage").style.background =
+ error ? "#fff0ee" : "#e5f5eb";
+
+ $("programmeMessage").style.color =
+ error ? "#a11919" : "#126536";
+
+}
+
+
+// ======================================
+// ADMINISTRATOR VERIFICATION
+// ======================================
+
+async function verifyAdministrator(user){
+
+ const {data,error} = await db
+  .from("administrator_profiles")
+  .select("id,full_name,role")
+  .eq("id",user.id)
+  .maybeSingle();
+
+ if(error) throw error;
+
+ if(!data){
+
+  throw new Error(
+   "This account has no administrator profile. Access denied."
+  );
+
+ }
+
+ currentAdmin = data;
+
+ return data;
+
+}
+
+
+// ======================================
+// SHOW DASHBOARD
+// ======================================
+
+function showDashboard(){
+
+ $("loginScreen").style.display = "none";
+ $("dashboard").style.display = "block";
+
+ $("adminName").textContent =
+ currentAdmin.full_name + " | " + currentAdmin.role;
+
+}
+
+
+// ======================================
+// SHOW LOGIN
+// ======================================
+
+function showLogin(){
+
+ $("dashboard").style.display = "none";
+ $("loginScreen").style.display = "flex";
+
+ currentAdmin = null;
+ applications = [];
+ selectedApplication = null;
+ currentDocuments = [];
+ programmes = [];
+
+ $("password").value = "";
+ $("password").type = "password";
+
+ $("togglePassword").textContent = "SHOW";
+
+ $("togglePassword").setAttribute(
+  "aria-label",
+  "Show password"
+ );
+
+ $("loginError").style.display = "none";
+
+ $("detailPanel").style.display = "none";
+
+ $("documentsContent").innerHTML =
+ '<p class="muted">Select an applicant to view documents.</p>';
+
+}
+
+
+// ======================================
+// MODULE NAVIGATION
+// ======================================
+
+function showModule(module){
+
+ const programmesMode = module === "programmes";
+
+ $("programmePanel").style.display =
+ programmesMode ? "block" : "none";
+
+ $("admissionsArea").style.display =
+ programmesMode ? "none" : "block";
+
+ $("admissionsStats").style.display =
+ programmesMode ? "none" : "grid";
+
+ $("programmesTab").classList.toggle(
+  "active",
+  programmesMode
+ );
+
+ $("admissionsTab").classList.toggle(
+  "active",
+  !programmesMode
+ );
+
+ if(programmesMode){
+  loadProgrammes();
+ }
+
+}
+
+$("programmesTab").addEventListener("click",()=>{
+ showModule("programmes");
+});
+
+$("admissionsTab").addEventListener("click",()=>{
+ showModule("admissions");
+});
+
+
+// ======================================
+// LOAD APPLICATIONS
+// ======================================
+
+async function loadApplications(){
+
+ $("applicationsBody").innerHTML =
+ '<tr><td colspan="6">Loading applications...</td></tr>';
+
+ const {data,error} = await db
+ .from("applications")
+ .select(`
+  id,
+  reference_number,
+  first_name,
+  middle_name,
+  last_name,
+  gender,
+  date_of_birth,
+  nationality,
+  phone_number,
+  email,
+  residential_address,
+  programme_id,
+  application_status,
+  administrator_remarks,
+  submitted_at,
+  highest_qualification,
+  awarding_institution,
+  year_completed,
+  programmes(
+   programme_name,
+   programme_level
+  )
+ `)
+ .order("submitted_at",{ascending:false});
+
+ if(error){
+
+  $("applicationsBody").innerHTML =
+   '<tr><td colspan="6">Unable to load applications.</td></tr>';
+
+  showMessage(error.message,true);
+
+  return;
+
+ }
+
+ applications = data || [];
+
+ updateStatistics();
+ renderApplications();
+
+}
+
+
+// ======================================
+// STATISTICS
+// ======================================
+
+function updateStatistics(){
+
+ $("totalCount").textContent = applications.length;
+
+ $("submittedCount").textContent =
+ applications.filter(a=>
+  a.application_status==="SUBMITTED"
+ ).length;
+
+ $("approvedCount").textContent =
+ applications.filter(a=>
+  a.application_status==="ADMITTED"
+ ).length;
+
+ $("rejectedCount").textContent =
+ applications.filter(a=>
+  a.application_status==="DECLINED"
+ ).length;
+
+}
+
+
+// ======================================
+// APPLICATION LIST
+// ======================================
+
+function renderApplications(){
+
+ const query =
+ $("searchInput").value.toLowerCase().trim();
+
+ const filtered = applications.filter(a=>{
+
+  const name = [
+   a.first_name,
+   a.middle_name,
+   a.last_name
+  ].filter(Boolean).join(" ");
+
+  const text = [
+   name,
+   a.reference_number,
+   a.phone_number,
+   a.email,
+   a.programmes?.programme_name
+  ].join(" ").toLowerCase();
+
+  return text.includes(query);
+
+ });
+
+ if(!filtered.length){
+
+  $("applicationsBody").innerHTML =
+   '<tr><td colspan="6">No matching applications found.</td></tr>';
+
+  return;
+
+ }
+
+ $("applicationsBody").innerHTML = filtered.map(a=>{
+
+  const name = [
+   a.first_name,
+   a.middle_name,
+   a.last_name
+  ].filter(Boolean).join(" ");
+
+  const date = a.submitted_at
+   ? new Date(a.submitted_at).toLocaleDateString()
+   : "Not recorded";
+
+  const status = displayStatus(a.application_status);
+
+  return `
+   <tr>
+    <td>${escapeHTML(a.reference_number)}</td>
+    <td>${escapeHTML(name)}</td>
+    <td>${escapeHTML(a.programmes?.programme_name || "Not assigned")}</td>
+    <td>${escapeHTML(date)}</td>
+    <td>
+     <span class="status ${escapeHTML(statusClass(a.application_status))}">
+      ${escapeHTML(status)}
+     </span>
+    </td>
+    <td>
+     <button class="view-btn" data-id="${escapeHTML(a.id)}">VIEW</button>
+    </td>
+   </tr>
+  `;
+
+ }).join("");
+
+ $("applicationsBody")
+ .querySelectorAll(".view-btn")
+ .forEach(button=>{
+
+  button.addEventListener("click",()=>{
+   openApplication(button.dataset.id);
+  });
+
+ });
+
+}
+
+
+// ======================================
+// APPLICANT DETAIL ITEM
+// ======================================
+
+function detailItem(label,value){
+
+ return `
+  <div class="detail-item">
+   <small>${escapeHTML(label)}</small>
+   <strong>${escapeHTML(value || "Not provided")}</strong>
+  </div>
+ `;
+
+}
+
+
+// ======================================
+// OPEN APPLICANT
+// ======================================
+
+async function openApplication(id){
+
+ const a = applications.find(x=>x.id===id);
+
+ if(!a) return;
+
+ selectedApplication = a;
+
+ const name = [
+  a.first_name,
+  a.middle_name,
+  a.last_name
+ ].filter(Boolean).join(" ");
+
+ $("applicantDetails").innerHTML = `
+
+  <div class="detail-grid">
+
+   ${detailItem("Reference Number",a.reference_number)}
+
+   ${detailItem("Full Name",name)}
+
+   ${detailItem("Gender",a.gender)}
+
+   ${detailItem("Date of Birth",a.date_of_birth)}
+
+   ${detailItem("Nationality",a.nationality)}
+
+   ${detailItem("Phone Number",a.phone_number)}
+
+   ${detailItem("Email",a.email)}
+
+   ${detailItem("Residential Address",a.residential_address)}
+
+   ${detailItem("Programme",a.programmes?.programme_name)}
+
+   ${detailItem("Programme Level",a.programmes?.programme_level)}
+
+   ${detailItem("Highest Qualification",a.highest_qualification)}
+
+   ${detailItem("Awarding Institution",a.awarding_institution)}
+
+   ${detailItem("Year Completed",a.year_completed)}
+
+   ${detailItem("Submission Date",
+    a.submitted_at
+     ? new Date(a.submitted_at).toLocaleString()
+     : "Not recorded"
+   )}
+
+   ${detailItem("Application Status",displayStatus(a.application_status))}
+
+  </div>
+
+ `;
+
+ $("remarks").value = a.administrator_remarks || "";
+
+ $("detailPanel").style.display = "block";
+
+ $("detailPanel").scrollIntoView({
+  behavior:"smooth",
+  block:"start"
+ });
+
+ await loadApplicantDocuments(a.id);
+
+}
+
+
+// ======================================
+// LOAD APPLICANT DOCUMENTS
+// ======================================
+
+async function loadApplicantDocuments(applicationId){
+
+ $("documentsContent").innerHTML =
+  '<p class="muted">Loading applicant documents...</p>';
+
+ currentDocuments = [];
+
+ const {data,error} = await db
+  .from("application_documents")
+  .select(`
+   id,
+   application_id,
+   document_type,
+   storage_path,
+   uploaded_at
+  `)
+  .eq("application_id",applicationId)
+  .order("uploaded_at",{ascending:false});
+
+ if(error){
+
+  $("documentsContent").innerHTML = `
+   <div class="document-error">
+    Unable to retrieve document records.
+    ${escapeHTML(error.message)}
+   </div>
+  `;
+
+  return;
+
+ }
+
+ currentDocuments = data || [];
+
+ if(!currentDocuments.length){
+
+  $("documentsContent").innerHTML =
+   '<p class="muted">No uploaded documents were found for this applicant.</p>';
+
+  return;
+
+ }
+
+ $("documentsContent").innerHTML =
+  '<p class="muted">Generating secure document access links...</p>';
+
+ const results = await Promise.all(
+  currentDocuments.map(async doc=>{
+
+   const {data:signedData,error:signedError} =
+    await db.storage
+     .from(DOCUMENT_BUCKET)
+     .createSignedUrl(doc.storage_path,300);
+
+   return {
+    doc,
+    url:signedData?.signedUrl || null,
+    error:signedError
+   };
+
+  })
+ );
+
+ $("documentsContent").innerHTML = results.map(result=>{
+
+  const doc = result.doc;
+
+  const fileName =
+   String(doc.storage_path || "").split("/").pop();
+
+  const extension =
+   fileName.split(".").pop().toLowerCase();
+
+  const isImage = ["jpg","jpeg","png"].includes(extension);
+
+  const isPDF = extension === "pdf";
+
+  const uploaded = doc.uploaded_at
+   ? new Date(doc.uploaded_at).toLocaleString()
+   : "Not recorded";
+
+  let preview = "";
+
+  if(result.url && isImage){
+
+   preview = `
+    <img src="${escapeHTML(result.url)}"
+     alt="Applicant uploaded document">
+   `;
+
+  }else if(result.url && isPDF){
+
+   preview = `
+    <iframe src="${escapeHTML(result.url)}"
+     title="Applicant PDF document" loading="lazy"></iframe>
+   `;
+
+  }
+
+  let links = "";
+
+  if(result.url){
+
+   links = `
+    <div class="document-actions">
+
+     <a href="${escapeHTML(result.url)}"
+      target="_blank" rel="noopener noreferrer">
+      OPEN DOCUMENT
+     </a>
+
+     <a class="download"
+      href="${escapeHTML(result.url)}"
+      download="${escapeHTML(fileName)}">
+      DOWNLOAD
+     </a>
+
+    </div>
+   `;
+
+  }else{
+
+   links = `
+    <div class="document-error">
+     Secure access unavailable:
+     ${escapeHTML(result.error?.message || "Unable to create signed URL")}
+    </div>
+   `;
+
+  }
+
+  return `
+
+   <div class="document-card">
+
+    <h4>${escapeHTML(doc.document_type)}</h4>
+
+    <p class="muted">
+     Uploaded: ${escapeHTML(uploaded)}
+    </p>
+
+    <p class="muted">
+     File: ${escapeHTML(fileName)}
+    </p>
+
+    ${preview}
+
+    ${links}
+
+   </div>
+
+  `;
+
+ }).join("");
+
+}
+
+
+// ======================================
+// UPDATE ADMISSION DECISION
+// ======================================
+
+async function updateDecision(status){
+
+ if(!selectedApplication){
+
+  showMessage("Select an applicant first.",true);
+
+  return;
+
+ }
+
+ const allowedStatuses = ["ADMITTED","DECLINED"];
+
+ if(!allowedStatuses.includes(status)){
+
+  showMessage("Invalid application status.",true);
+
+  return;
+
+ }
+
+ const confirmation = confirm(
+  status==="ADMITTED"
+   ? "Confirm admission of this applicant?"
+   : "Confirm rejection of this applicant?"
+ );
+
+ if(!confirmation) return;
+
+ $("approveButton").disabled = true;
+ $("rejectButton").disabled = true;
+
+ showMessage("Updating application...");
+
+ try{
+
+  const {data,error} = await db
+   .from("applications")
+   .update({
+    application_status:status,
+    administrator_remarks:$("remarks").value.trim()
+   })
+   .eq("id",selectedApplication.id)
+   .select("id,application_status");
+
+  if(error) throw error;
+
+  if(!data || !data.length){
+
+   throw new Error(
+    "No record was updated. Check administrator permissions."
+   );
+
+  }
+
+  showMessage(
+   status==="ADMITTED"
+    ? "Applicant successfully approved."
+    : "Applicant successfully rejected."
+  );
+
+  $("detailPanel").style.display = "none";
+
+  $("documentsContent").innerHTML =
+   '<p class="muted">Select an applicant to view documents.</p>';
+
+  selectedApplication = null;
+
+  await loadApplications();
+
+ }catch(error){
+
+  showMessage(
+   "Unable to update application: "+error.message,
+   true
+  );
+
+ }finally{
+
+  $("approveButton").disabled = false;
+  $("rejectButton").disabled = false;
+
+ }
+
+
+// ======================================
+// PROGRAMME MANAGEMENT
+// ======================================
+
+
+// LOAD PROGRAMMES
+
+async function loadProgrammes(){
+
+ $("programmesBody").innerHTML =
+  '<tr><td colspan="5">Loading programmes...</td></tr>';
+
+ $("programmeCount").textContent = "Loading programmes...";
+
+ const {data,error} = await db
+  .from("programmes")
+  .select(`
+   id,
+   programme_name,
+   programme_level,
+   description,
+   duration,
+   application_open
+  `)
+  .order("programme_name",{ascending:true});
+
+ if(error){
+
+  $("programmesBody").innerHTML =
+   '<tr><td colspan="5">Unable to load programmes.</td></tr>';
+
+  $("programmeCount").textContent = "Programme loading failed.";
+
+  showProgrammeMessage(
+   "Unable to load programmes: "+error.message,
+   true
+  );
+
+  return;
+
+ }
+
+ programmes = data || [];
+
+ renderProgrammes();
+
+}
+
+
+// RENDER PROGRAMMES
+
+function renderProgrammes(){
+
+ const query =
+  $("programmeSearch").value.toLowerCase().trim();
+
+ const filtered = programmes.filter(p=>{
+
+  const text = [
+   p.programme_name,
+   p.programme_level,
+   p.description
+  ].join(" ").toLowerCase();
+
+  return text.includes(query);
+
+ });
+
+ $("programmeCount").textContent =
+  filtered.length+" programme(s) displayed";
+
+ if(!filtered.length){
+
+  $("programmesBody").innerHTML =
+   '<tr><td colspan="5" class="programme-empty">No programmes found.</td></tr>';
+
+  return;
+
+ }
+
+ $("programmesBody").innerHTML = filtered.map(p=>{
+
+  const open = p.application_open === true;
+
+  return `
+
+   <tr>
+
+    <td>
+     <strong>${escapeHTML(p.programme_name)}</strong>
+    </td>
+
+    <td>${escapeHTML(p.programme_level)}</td>
+
+    <td>${escapeHTML(p.duration || "Not specified")}</td>
+
+    <td>
+
+     <span class="status ${open ? "OPEN" : "CLOSED"}">
+      ${open ? "OPEN" : "CLOSED"}
+     </span>
+
+    </td>
+
+    <td>
+
+     <div class="programme-action-buttons">
+
+      <button class="edit-btn"
+       data-edit-id="${escapeHTML(p.id)}">
+       EDIT
+      </button>
+
+      <button class="delete-btn"
+       data-delete-id="${escapeHTML(p.id)}">
+       DELETE
+      </button>
+
+     </div>
+
+    </td>
+
+   </tr>
+
+  `;
+
+ }).join("");
+
+ $("programmesBody")
+ .querySelectorAll("[data-edit-id]")
+ .forEach(button=>{
+
+  button.addEventListener("click",()=>{
+   editProgramme(button.dataset.editId);
+  });
+
+ });
+
+ $("programmesBody")
+ .querySelectorAll("[data-delete-id]")
+ .forEach(button=>{
+
+  button.addEventListener("click",()=>{
+   deleteProgramme(button.dataset.deleteId);
+  });
+
+ });
+
+}
+
+
+// CLEAR PROGRAMME FORM
+
+function clearProgrammeForm(){
+
+ $("programmeForm").reset();
+
+ $("programmeId").value = "";
+
+ $("applicationOpen").checked = true;
+
+ $("programmeFormTitle").textContent = "Add New Programme";
+
+ $("saveProgrammeButton").textContent = "SAVE PROGRAMME";
+
+}
+
+
+// EDIT PROGRAMME
+
+function editProgramme(id){
+
+ const p = programmes.find(
+  item=>String(item.id)===String(id)
+ );
+
+ if(!p){
+
+  showProgrammeMessage(
+   "Programme record not found.",
+   true
+  );
+
+  return;
+
+ }
+
+ $("programmeId").value = p.id;
+
+ $("programmeName").value =
+  p.programme_name || "";
+
+ $("programmeLevel").value =
+  p.programme_level || "";
+
+ $("programmeDuration").value =
+  p.duration || "";
+
+ $("programmeDescription").value =
+  p.description || "";
+
+ $("applicationOpen").checked =
+  p.application_open === true;
+
+ $("programmeFormTitle").textContent =
+  "Edit Programme";
+
+ $("saveProgrammeButton").textContent =
+  "UPDATE PROGRAMME";
+
+ $("programmeForm").scrollIntoView({
+  behavior:"smooth",
+  block:"start"
+ });
+
+ $("programmeName").focus();
+
+}
+
+
+// SAVE OR UPDATE PROGRAMME
+
+async function saveProgramme(event){
+
+ event.preventDefault();
+
+ const id = $("programmeId").value.trim();
+
+ const programmeName =
+  $("programmeName").value.trim();
+
+ const programmeLevel =
+  $("programmeLevel").value.trim();
+
+ const description =
+  $("programmeDescription").value.trim();
+
+ const duration =
+  $("programmeDuration").value.trim();
+
+ const applicationOpen =
+  $("applicationOpen").checked;
+
+ if(!programmeName || !programmeLevel){
+
+  showProgrammeMessage(
+   "Programme Name and Programme Level are required.",
+   true
+  );
+
+  return;
+
+ }
+
+ const payload = {
+
+  programme_name:programmeName,
+
+  programme_level:programmeLevel,
+
+  description:description || null,
+
+  duration:duration || null,
+
+  application_open:applicationOpen
+
+ };
+
+ $("saveProgrammeButton").disabled = true;
+
+ $("saveProgrammeButton").textContent = "SAVING...";
+
+ try{
+
+  let result;
+
+  if(id){
+
+   result = await db
+    .from("programmes")
+    .update(payload)
+    .eq("id",id)
+    .select("id");
+
+  }else{
+
+   result = await db
+    .from("programmes")
+    .insert([payload])
+    .select("id");
+
+  }
+
+  if(result.error) throw result.error;
+
+  if(!result.data || !result.data.length){
+
+   throw new Error(
+    "No programme record was saved. Check administrator permissions."
+   );
+
+  }
+
+  showProgrammeMessage(
+   id
+    ? "Programme successfully updated."
+    : "New programme successfully added."
+  );
+
+  clearProgrammeForm();
+
+  await loadProgrammes();
+
+ }catch(error){
+
+  showProgrammeMessage(
+   "Unable to save programme: "+error.message,
+   true
+  );
+
+ }finally{
+
+  $("saveProgrammeButton").disabled = false;
+
+  if($("programmeId").value){
+
+   $("saveProgrammeButton").textContent =
+    "UPDATE PROGRAMME";
+
+  }else{
+
+   $("saveProgrammeButton").textContent =
+    "SAVE PROGRAMME";
+
+  }
+
+ }
+
+}
+
+
+// DELETE PROGRAMME
+
+async function deleteProgramme(id){
+
+ const p = programmes.find(
+  item=>String(item.id)===String(id)
+ );
+
+ if(!p) return;
+
+ const confirmation = confirm(
+
+  "Are you sure you want to delete this programme?\n\n"+
+  p.programme_name+
+  "\n\nThis action cannot be undone."
+
+ );
+
+ if(!confirmation) return;
+
+ try{
+
+  const {data,error} = await db
+   .from("programmes")
+   .delete()
+   .eq("id",id)
+   .select("id");
+
+  if(error) throw error;
+
+  if(!data || !data.length){
+
+   throw new Error(
+    "No programme was deleted. Check administrator permissions."
+   );
+
+  }
+
+  showProgrammeMessage("Programme successfully deleted.");
+
+  if(String($("programmeId").value)===String(id)){
+
+   clearProgrammeForm();
+
+  }
+
+  await loadProgrammes();
+
+ }catch(error){
+
+  showProgrammeMessage(
+   "Unable to delete programme: "+error.message+
+   ". It may be linked to existing applications.",
+   true
+  );
+
+ }
+
+}
+
+
+// PROGRAMME CONTROLS
+
+$("programmeForm").addEventListener(
+ "submit",
+ saveProgramme
+);
+
+$("cancelProgrammeEdit").addEventListener("click",()=>{
+
+ clearProgrammeForm();
+
+ $("programmeMessage").style.display = "none";
+
+});
+
+$("refreshProgrammesButton").addEventListener(
+ "click",
+ loadProgrammes
+);
+
+$("programmeSearch").addEventListener(
+ "input",
+ renderProgrammes
+);
+
+
+// ======================================
+// ADMINISTRATOR LOGIN
+// ======================================
+
+$("loginForm").addEventListener("submit",async event=>{
+
+ event.preventDefault();
+
+ $("loginError").style.display = "none";
+
+ $("loginButton").disabled = true;
+
+ $("loginButton").textContent = "SIGNING IN...";
+
+ try{
+
+  const {data,error} = await db.auth.signInWithPassword({
+
+   email:$("email").value.trim(),
+
+   password:$("password").value
+
+  });
+
+  if(error) throw error;
+
+  await verifyAdministrator(data.user);
+
+  showDashboard();
+
+  await loadApplications();
+
+ }catch(error){
+
+  await db.auth.signOut();
+
+  showLoginError(error.message || "Login failed.");
+
+ }finally{
+
+  $("loginButton").disabled = false;
+
+  $("loginButton").textContent = "SIGN IN";
+
+ }
+
+});
+
+
+// ======================================
+// LOGOUT
+// ======================================
+
+$("logoutButton").addEventListener("click",async()=>{
+
+ await db.auth.signOut();
+
+ showLogin();
+
+});
+
+
+// ======================================
+// DASHBOARD CONTROLS
+// ======================================
+
+$("refreshButton").addEventListener("click",async()=>{
+
+ await loadApplications();
+
+ if(selectedApplication){
+
+  await loadApplicantDocuments(selectedApplication.id);
+
+ }
+
+ if($("programmePanel").style.display==="block"){
+
+  await loadProgrammes();
+
+ }
+
+});
+
+$("searchInput").addEventListener(
+ "input",
+ renderApplications
+);
+
+$("approveButton").addEventListener("click",()=>{
+
+ updateDecision("ADMITTED");
+
+});
+
+$("rejectButton").addEventListener("click",()=>{
+
+ updateDecision("DECLINED");
+
+});
+
+$("closeDetails").addEventListener("click",()=>{
+
+ $("detailPanel").style.display = "none";
+
+ $("documentsContent").innerHTML =
+  '<p class="muted">Select an applicant to view documents.</p>';
+
+ selectedApplication = null;
+
+ currentDocuments = [];
+
+});
+
+
+// ======================================
+// RESTORE EXISTING SESSION
+// ======================================
+
+async function restoreSession(){
+
+ try{
+
+  const {data,error} = await db.auth.getSession();
+
+  if(error) throw error;
+
+  if(data.session){
+
+   await verifyAdministrator(data.session.user);
+
+   showDashboard();
+
+   await loadApplications();
+
+  }
+
+ }catch(error){
+
+  await db.auth.signOut();
+
+  showLogin();
+
+  console.error(
+   "Session restoration:",
+   error.message
+  );
+
+ }
+
+}
+
+restoreSession();
+
+</script>
+
+</body>
+</html>
