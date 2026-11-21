@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Resources | TITI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+ --maroon:#7A1220;
+ --navy:#0F2A5E;
+ --gold:#D4AF37;
+ --white:#fff;
+ --light:#f3f5f8;
+ --border:#e5e9f0;
+}
+
+body{
+ margin:0;
+ font-family:'Jost',sans-serif;
+ background:var(--light);
+ color:#172033;
+ line-height:1.6;
+}
+
+a{text-decoration:none}
+button,input,select{font-family:inherit}
+
+.header{
+ background:white;
+ border-bottom:4px solid var(--maroon);
+ box-shadow:0 4px 16px #0000000d;
+}
+
+.header-inner{
+ max-width:1250px;
+ margin:auto;
+ padding:17px 22px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:20px;
+}
+
+.brand{
+ color:var(--maroon);
+ font-size:29px;
+ font-weight:800;
+ line-height:1.1;
+ letter-spacing:1px;
+}
+
+.brand small{
+ display:block;
+ font-size:10px;
+ color:#596477;
+ letter-spacing:.7px;
+ margin-top:6px;
+}
+
+.navigation{
+ display:flex;
+ align-items:center;
+ gap:22px;
+}
+
+.navigation a{
+ color:var(--navy);
+ font-size:13px;
+ font-weight:700;
+}
+
+.navigation a:hover{color:var(--maroon)}
+
+.hero{
+ background:linear-gradient(120deg,#0F2A5E,#182f5c);
+ color:white;
+ padding:58px 20px;
+ text-align:center;
+ border-bottom:5px solid var(--gold);
+}
+
+.hero h1{
+ margin:0;
+ font-size:clamp(30px,5vw,45px);
+ font-weight:800;
+ letter-spacing:.5px;
+}
+
+.hero p{
+ max-width:690px;
+ margin:12px auto 0;
+ color:#e0e7f4;
+ font-size:16px;
+}
+
+.hero-label{
+ display:inline-block;
+ color:var(--gold);
+ font-size:12px;
+ font-weight:800;
+ letter-spacing:2px;
+ margin-bottom:10px;
+}
+
+.container{
+ max-width:1150px;
+ margin:38px auto;
+ padding:0 20px;
+}
+
+.intro{
+ margin-bottom:25px;
+}
+
+.intro h2{
+ color:var(--navy);
+ font-size:25px;
+ margin:0 0 5px;
+}
+
+.intro p{
+ color:#687386;
+ margin:0;
+ font-size:14px;
+}
+
+.resource-tools{
+ background:white;
+ border:1px solid var(--border);
+ border-radius:10px;
+ padding:20px;
+ display:grid;
+ grid-template-columns:1fr 260px;
+ gap:13px;
+ margin-bottom:25px;
+}
+
+.resource-tools input,
+.resource-tools select{
+ width:100%;
+ padding:13px 14px;
+ border:1px solid #d8dee8;
+ border-radius:6px;
+ outline:none;
+ background:white;
+ color:#172033;
+ font-size:14px;
+}
+
+.resource-tools input:focus,
+.resource-tools select:focus{
+ border-color:var(--navy);
+}
+
+.resource-summary{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-bottom:17px;
+}
+
+.resource-summary h3{
+ color:var(--navy);
+ margin:0;
+ font-size:19px;
+}
+
+.count{
+ background:#f1e7e9;
+ color:var(--maroon);
+ padding:6px 12px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:800;
+}
+
+.resource-grid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:17px;
+}
+
+.resource-card{
+ background:white;
+ border:1px solid var(--border);
+ border-radius:9px;
+ padding:20px;
+ transition:.2s;
+ min-width:0;
+}
+
+.resource-card:hover{
+ transform:translateY(-3px);
+ box-shadow:0 8px 24px #0000000c;
+ border-color:#c8cfdb;
+}
+
+.resource-top{
+ display:flex;
+ align-items:flex-start;
+ gap:14px;
+}
+
+.file-icon{
+ width:48px;
+ height:52px;
+ flex-shrink:0;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ border-radius:7px;
+ background:#f4e8ea;
+ color:var(--maroon);
+ font-size:13px;
+ font-weight:800;
+}
+
+.resource-info{
+ min-width:0;
+ flex:1;
+}
+
+.resource-info h4{
+ color:var(--navy);
+ font-size:17px;
+ line-height:1.35;
+ margin:0 0 5px;
+ overflow-wrap:anywhere;
+}
+
+.resource-type{
+ display:inline-block;
+ color:#7A1220;
+ background:#f7ecee;
+ font-size:10px;
+ font-weight:800;
+ padding:3px 9px;
+ border-radius:20px;
+ margin-top:4px;
+}
+
+.resource-description{
+ color:#687386;
+ font-size:13px;
+ margin:14px 0;
+ overflow-wrap:anywhere;
+}
+
+.resource-date{
+ color:#8791a1;
+ font-size:11px;
+ border-top:1px solid #edf0f4;
+ padding-top:10px;
+}
+
+.resource-actions{
+ display:flex;
+ gap:9px;
+ flex-wrap:wrap;
+ margin-top:15px;
+}
+
+.resource-actions a{
+ display:inline-block;
+ padding:9px 15px;
+ border-radius:5px;
+ color:white;
+ background:var(--navy);
+ font-size:12px;
+ font-weight:800;
+ text-align:center;
+}
+
+.resource-actions a.download{
+ background:var(--maroon);
+}
+
+.resource-actions a:hover{
+ opacity:.88;
+}
+
+.state-message{
+ background:white;
+ border:1px solid var(--border);
+ padding:35px 20px;
+ border-radius:9px;
+ text-align:center;
+ color:#687386;
+ grid-column:1/-1;
+}
+
+.state-message strong{
+ display:block;
+ color:var(--navy);
+ font-size:17px;
+ margin-bottom:5px;
+}
+
+.state-message.error{
+ color:#a11919;
+ background:#fff0ee;
+}
+
+.footer{
+ background:#0F2A5E;
+ color:white;
+ text-align:center;
+ padding:30px 20px;
+ margin-top:55px;
+ border-top:4px solid var(--maroon);
+}
+
+.footer strong{
+ font-size:17px;
+ letter-spacing:.5px;
+}
+
+.footer p{
+ color:#dce3ef;
+ font-size:12px;
+ margin:5px 0;
+}
+
+.footer small{
+ display:block;
+ color:#c5cddd;
+ margin-top:15px;
+ font-size:11px;
+}
+
+@media(max-width:700px){
+ .header-inner{
+  flex-direction:column;
+  align-items:flex-start;
+  padding:15px 18px;
+  gap:13px;
+ }
+ .navigation{
+  width:100%;
+  gap:20px;
+  overflow-x:auto;
+  padding-bottom:5px;
+ }
+ .navigation a{white-space:nowrap}
+ .hero{padding:43px 17px}
+ .resource-tools{grid-template-columns:1fr}
+ .resource-grid{grid-template-columns:1fr}
+ .container{padding:0 14px;margin:27px auto}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+ <div class="header-inner">
+  <a href="index.html" class="brand">
+   TITI
+   <small>TAHIDI INTERNATIONAL TRAINING INSTITUTE</small>
+  </a>
+
+  <nav class="navigation">
+   <a href="index.html">HOME</a>
+   <a href="index.html#about">ABOUT US</a>
+   <a href="student-resources.html">STUDENT RESOURCES</a>
+  </nav>
+ </div>
+</header>
+
+<section class="hero">
+ <span class="hero-label">TITI STUDENT PORTAL</span>
+ <h1>STUDENT RESOURCES</h1>
+ <p>
+  Access institutional documents, academic resources,
+  forms, policies and other important learning materials
+  provided by Tahidi International Training Institute.
+ </p>
+</section>
+
+<main class="container">
+
+ <section class="intro">
+  <h2>Academic and Institutional Documents</h2>
+  <p>
+   Find and access official documents published by the institute.
+   New resources become available automatically when administrators publish them.
+  </p>
+ </section>
+
+ <section class="resource-tools">
+  <input
+   type="search"
+   id="searchInput"
+   placeholder="Search documents by title or description..."
+   aria-label="Search student resources"
+  >
+
+  <select id="categoryFilter" aria-label="Filter by document category">
+   <option value="">All Categories</option>
+  </select>
+ </section>
+
+ <div class="resource-summary">
+  <h3>Available Resources</h3>
+  <span class="count" id="resourceCount">Loading...</span>
+ </div>
+
+ <section class="resource-grid" id="resourceGrid">
+  <div class="state-message">
+   <strong>Loading Student Resources</strong>
+   Please wait while we retrieve available documents.
+  </div>
+ </section>
+
+</main>
+
+<footer class="footer">
+ <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong>
+ <p>BREAKING THE LIMITS</p>
+ <p>Student Resources Portal</p>
+ <small>© <span id="year"></span> TITI. All Rights Reserved.</small>
+</footer>
+
+<script>
+/* ======================================
+   SUPABASE CONNECTION
+====================================== */
+
+const SUPABASE_URL="https://jlmbiauilmajuvrnuaul.supabase.co";
+
+const SUPABASE_KEY="sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+
+const db=window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_KEY
+);
+
+let resources=[];
+
+const $=id=>document.getElementById(id);
+
+/* ======================================
+   SECURITY AND DISPLAY HELPERS
+====================================== */
+
+function escapeHTML(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[c]));
+}
+
+function safeDocumentURL(value){
+ try{
+  const url=new URL(value);
+  if(url.protocol==="https:"||url.protocol==="http:"){
+   return url.href;
+  }
+ }catch(e){}
+ return null;
+}
+
+function formatDate(value){
+ if(!value)return "Date unavailable";
+
+ const date=new Date(value);
+
+ if(Number.isNaN(date.getTime()))return "Date unavailable";
+
+ return date.toLocaleDateString("en-UG",{
+  day:"numeric",
+  month:"long",
+  year:"numeric"
+ });
+}
+
+function fileExtension(url){
+ try{
+  const pathname=new URL(url).pathname;
+  const filename=pathname.split("/").pop();
+  const parts=filename.split(".");
+  return parts.length>1?parts.pop().toUpperCase():"FILE";
+ }catch(e){
+  return "FILE";
+ }
+}
+
+/* ======================================
+   LOAD DOCUMENTS FROM SUPABASE
+====================================== */
+
+async function loadResources(){
+
+ const grid=$("resourceGrid");
+
+ grid.innerHTML=`
+  <div class="state-message">
+   <strong>Loading Student Resources</strong>
+   Retrieving published institutional documents...
+  </div>
+ `;
+
+ $("resourceCount").textContent="Loading...";
+
+ try{
+
+  const {data,error}=await db
+   .from("titi_website_documents")
+   .select(`
+    id,
+    title,
+    description,
+    file_url,
+    file_path,
+    document_type,
+    is_active,
+    created_at
+   `)
+   .eq("is_active",true)
+   .order("created_at",{ascending:false});
+
+  if(error)throw error;
+
+  resources=(data||[]).filter(item=>
+   item.title &&
+   safeDocumentURL(item.file_url)
+  );
+
+  populateCategories();
+  renderResources();
+
+ }catch(error){
+
+  console.error("Student resources error:",error);
+
+  $("resourceCount").textContent="Unavailable";
+
+  grid.innerHTML=`
+   <div class="state-message error">
+    <strong>Unable to Load Student Resources</strong>
+    We could not retrieve the documents at this time.
+    Please try refreshing the page.
+    <br><br>
+    <button onclick="loadResources()"
+     style="background:#7A1220;color:white;padding:10px 18px;border-radius:5px">
+     TRY AGAIN
+    </button>
+   </div>
+  `;
+
+ }
+}
+
+/* ======================================
+   DOCUMENT CATEGORIES
+====================================== */
+
+function populateCategories(){
+
+ const select=$("categoryFilter");
+ const selected=select.value;
+
+ const categories=[
+  ...new Set(
+   resources
+    .map(r=>(r.document_type||"General").trim())
+    .filter(Boolean)
+  )
+ ].sort((a,b)=>a.localeCompare(b));
+
+ select.innerHTML=
+  '<option value="">All Categories</option>'+
+  categories.map(category=>
+   `<option value="${escapeHTML(category)}">${escapeHTML(category)}</option>`
+  ).join("");
+
+ if(categories.includes(selected)){
+  select.value=selected;
+ }
+}
+
+/* ======================================
+   DISPLAY DOCUMENTS
+====================================== */
+
+function renderResources(){
+
+ const query=$("searchInput").value.toLowerCase().trim();
+ const category=$("categoryFilter").value;
+
+ const filtered=resources.filter(item=>{
+
+  const searchable=[
+   item.title,
+   item.description,
+   item.document_type
+  ].join(" ").toLowerCase();
+
+  const matchesSearch=searchable.includes(query);
+
+  const matchesCategory=!category||
+   (item.document_type||"General").trim()===category;
+
+  return matchesSearch&&matchesCategory;
+ });
+
+ $("resourceCount").textContent=
+  filtered.length+" DOCUMENT"+(filtered.length===1?"":"S");
+
+ const grid=$("resourceGrid");
+
+ if(!filtered.length){
+
+  grid.innerHTML=`
+   <div class="state-message">
+    <strong>No Resources Found</strong>
+    No documents match your search.
+    Try another title or category.
+   </div>
+  `;
+
+  return;
+ }
+
+ grid.innerHTML=filtered.map(item=>{
+
+  const url=safeDocumentURL(item.file_url);
+
+  if(!url)return "";
+
+  const extension=fileExtension(url);
+
+  const title=escapeHTML(item.title);
+  const description=escapeHTML(
+   item.description||"Official institutional resource."
+  );
+
+  const type=escapeHTML(item.document_type||"General");
+  const date=escapeHTML(formatDate(item.created_at));
+
+  return `
+   <article class="resource-card">
+
+    <div class="resource-top">
+
+     <div class="file-icon">
+      ${escapeHTML(extension)}
+     </div>
+
+     <div class="resource-info">
+
+      <h4>${title}</h4>
+
+      <span class="resource-type">
+       ${type}
+      </span>
+
+     </div>
+
+    </div>
+
+    <p class="resource-description">
+     ${description}
+    </p>
+
+    <div class="resource-date">
+     Published: ${date}
+    </div>
+
+    <div class="resource-actions">
+
+     <a
+      href="${escapeHTML(url)}"
+      target="_blank"
+      rel="noopener noreferrer">
+      VIEW DOCUMENT
+     </a>
+
+     <a
+      class="download"
+      href="${escapeHTML(url)}"
+      download>
+      DOWNLOAD
+     </a>
+
+    </div>
+
+   </article>
+  `;
+
+ }).join("");
+
+}
+
+/* ======================================
+   SEARCH AND FILTER
+====================================== */
+
+$("searchInput").addEventListener(
+ "input",
+ renderResources
+);
+
+$("categoryFilter").addEventListener(
+ "change",
+ renderResources
+);
+
+/* ======================================
+   INITIALISE PAGE
+====================================== */
+
+$("year").textContent=new Date().getFullYear();
+
+loadResources();
+
+</script>
+
+</body>
+</html>
