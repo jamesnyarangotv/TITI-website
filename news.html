@@ -4,641 +4,1426 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>News & Updates | Tahidi International Training Institute</title>
-<meta name="description" content="Latest news, announcements and updates from Tahidi International Training Institute.">
+<title>Institutional News | Tahidi International Training Institute</title>
+<meta name="description" content="Institutional news, announcements, campus developments and updates from Tahidi International Training Institute, Busia, Uganda.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-:root {
-    --maroon: #721c35;
-    --maroon-dark: #501126;
-    --gold: #d5a84b;
-    --ink: #20242b;
-    --muted: #707782;
-    --line: #e8e8e8;
-    --light: #f5f6f8;
-    --white: #ffffff;
+:root{
+--maroon:#7A1220;
+--navy:#0F2A5E;
+--navy-dark:#091B3D;
+--gold:#D4AF37;
+--white:#fff;
+--light:#F4F6F9;
+--text:#263247;
+--muted:#697589;
+--border:#E3E7ED;
+--shadow:0 8px 25px rgba(10,30,65,.09);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{
+scroll-behavior:smooth;
+scroll-padding-top:115px;
 }
 
-body {
-    font-family: 'Jost', sans-serif;
-    background: #fff;
-    color: var(--ink);
-    line-height: 1.55;
+body{
+font-family:'Jost',sans-serif;
+color:var(--text);
+background:#fff;
+line-height:1.7;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:'Jost',sans-serif}
+.container{width:min(1180px,92%);margin:auto}
+
+/* TOP BAR - MATCHING HOMEPAGE */
+
+.topbar{
+background:var(--navy-dark);
+color:#fff;
+padding:8px 12px;
+font-size:12px;
+text-align:center;
+letter-spacing:1.1px;
+font-weight:700;
 }
 
-.container {
-    width: min(1180px, 94%);
-    margin: auto;
+/* APPROVED TITI HEADER */
+
+header{
+background:#FFFFFF;
+box-shadow:0 4px 18px rgba(0,0,0,.07);
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:3px solid var(--maroon);
 }
 
-/* TOP BAR */
-.topbar {
-    background: var(--maroon-dark);
-    color: white;
-    font-size: 12px;
-    padding: 7px 0;
+.container.header-inner{
+width:min(1500px,94%);
+min-height:94px;
+margin:0 auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:clamp(12px,1.5vw,24px);
+flex-wrap:nowrap;
 }
 
-.topbar-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+.brand{
+display:flex;
+align-items:center;
+justify-content:flex-start;
+flex-shrink:0;
+white-space:nowrap;
+margin:0;
 }
 
-/* HEADER */
-.site-header {
-    background: white;
-    border-bottom: 1px solid var(--line);
+.brand img{
+width:145px;
+height:78px;
+object-fit:contain;
+object-position:center;
 }
 
-.header-inner {
-    min-height: 92px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
+nav{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:clamp(7px,.85vw,14px);
+flex:1;
+min-width:0;
+margin-left:auto;
+flex-wrap:nowrap;
+white-space:nowrap;
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 13px;
+nav a,
+nav button.nav-link{
+color:#111;
+font-size:clamp(11px,.91vw,14px);
+font-weight:800;
+letter-spacing:.15px;
+text-transform:uppercase;
+white-space:nowrap;
+flex-shrink:0;
+padding:12px 0;
+transition:.25s;
 }
 
-.brand-mark {
-    width: 62px;
-    height: 62px;
-    border-radius: 7px;
-    background: var(--maroon);
-    color: white;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    flex-shrink: 0;
+nav a:hover,
+nav button.nav-link:hover,
+nav a.active{
+color:var(--maroon);
 }
 
-.brand-name {
-    font-size: 19px;
-    font-weight: 800;
-    line-height: 1.15;
-    color: var(--maroon-dark);
+nav button.nav-link{
+border:0;
+background:transparent;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:5px;
 }
 
-.brand-subtitle {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    margin-top: 4px;
+.dropdown-arrow{
+font-size:11px;
+transition:transform .25s;
 }
 
-.header-action {
-    background: var(--maroon);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 600;
+.programme-menu.open .dropdown-arrow,
+.admissions-menu.open .dropdown-arrow,
+.about-menu.open .dropdown-arrow,
+.news-menu.open .dropdown-arrow{
+transform:rotate(180deg);
 }
 
-/* NAVIGATION */
-.navigation {
-    background: var(--maroon);
-    color: white;
+.programme-menu,
+.admissions-menu,
+.about-menu{
+position:relative;
+display:flex;
+align-items:center;
+flex-shrink:0;
 }
 
-.nav-inner {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+/* NEWS NAVIGATION */
+
+.news-menu{
+position:relative;
+display:flex;
+align-items:center;
+flex-shrink:0;
+gap:5px;
 }
 
-.nav-inner a {
-    padding: 13px 17px;
-    font-size: 13px;
-    font-weight: 600;
-    transition: background .2s;
+.news-main-link{
+display:inline-flex;
+align-items:center;
 }
 
-.nav-inner a:hover,
-.nav-inner a.active {
-    background: var(--maroon-dark);
+.news-toggle{
+padding:12px 2px!important;
 }
 
-/* PAGE HEADING */
-.page-heading {
-    background: var(--light);
-    border-bottom: 1px solid var(--line);
-    padding: 25px 0;
+.news-submenu{
+display:none;
+position:absolute;
+top:100%;
+left:-15px;
+min-width:235px;
+background:#fff;
+padding:9px 0;
+border-top:4px solid var(--gold);
+border-radius:0 0 7px 7px;
+box-shadow:0 12px 28px rgba(0,0,0,.2);
+z-index:1100;
+white-space:normal;
 }
 
-.breadcrumb {
-    color: var(--muted);
-    font-size: 12px;
-    margin-bottom: 5px;
+.news-menu:hover .news-submenu,
+.news-menu:focus-within .news-submenu,
+.news-menu.open .news-submenu{
+display:block;
 }
 
-.page-heading h1 {
-    font-size: 29px;
-    font-weight: 800;
-    color: var(--maroon-dark);
-    line-height: 1.2;
+.news-submenu a{
+display:block;
+padding:11px 18px;
+font-size:13px;
+font-weight:700;
+color:var(--navy);
+border-bottom:1px solid #edf0f4;
+text-transform:none;
 }
 
-.page-heading p {
-    font-size: 14px;
-    color: var(--muted);
-    margin-top: 5px;
+.news-submenu a:last-child{border-bottom:0}
+
+.news-submenu a:hover{
+background:#F1F4F8;
+color:var(--maroon);
+padding-left:23px;
 }
 
-/* MAIN LAYOUT */
-.news-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 285px;
-    gap: 32px;
-    padding-top: 28px;
-    padding-bottom: 45px;
+/* EXISTING DROPDOWNS */
+
+.programme-submenu,
+.admissions-submenu,
+.about-submenu{
+display:none;
+position:absolute;
+top:100%;
+left:-15px;
+min-width:235px;
+background:#fff;
+padding:9px 0;
+border-top:4px solid var(--gold);
+border-radius:0 0 7px 7px;
+box-shadow:0 12px 28px rgba(0,0,0,.2);
+z-index:1100;
+white-space:normal;
 }
 
-.section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid var(--maroon);
-    margin-bottom: 17px;
-    padding-bottom: 9px;
+.programme-menu:hover .programme-submenu,
+.programme-menu:focus-within .programme-submenu,
+.programme-menu.open .programme-submenu,
+.admissions-menu:hover .admissions-submenu,
+.admissions-menu:focus-within .admissions-submenu,
+.admissions-menu.open .admissions-submenu,
+.about-menu:hover .about-submenu,
+.about-menu:focus-within .about-submenu,
+.about-menu.open .about-submenu{
+display:block;
 }
 
-.section-heading h2 {
-    font-size: 19px;
-    font-weight: 800;
-    color: var(--maroon-dark);
+.about-submenu{min-width:255px}
+
+.programme-submenu a,
+.admissions-submenu a,
+.about-submenu a{
+display:block;
+padding:11px 18px;
+font-size:13px;
+font-weight:700;
+color:var(--navy);
+border-bottom:1px solid #edf0f4;
+text-transform:none;
 }
 
-.section-heading span {
-    font-size: 11px;
-    color: var(--muted);
+.programme-submenu a:last-child,
+.admissions-submenu a:last-child,
+.about-submenu a:last-child{
+border-bottom:0;
 }
 
-/* FILTERS */
-.filters {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 17px;
+.programme-submenu a:hover,
+.admissions-submenu a:hover,
+.about-submenu a:hover{
+background:#F1F4F8;
+color:var(--maroon);
+padding-left:23px;
 }
 
-.filter-btn {
-    border: 1px solid #ddd;
-    background: white;
-    color: #555;
-    padding: 6px 13px;
-    border-radius: 3px;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
+.nav-apply{
+background:var(--maroon);
+color:#fff!important;
+padding:10px 12px!important;
+border-radius:4px;
+font-size:12px!important;
+font-weight:800;
+margin-left:2px;
+border:1px solid var(--maroon);
+}
+
+.nav-apply:hover{
+background:#fff;
+color:var(--maroon)!important;
+}
+
+.menu-toggle{
+display:none;
+border:1px solid var(--maroon);
+background:var(--maroon);
+color:#fff;
+padding:8px 13px;
+font-size:22px;
+cursor:pointer;
+border-radius:4px;
+}
+
+/* NEWSROOM INTRODUCTION */
+
+.newsroom-intro{
+background:linear-gradient(120deg,#091B3D 0%,#0F2A5E 70%,#173B75 100%);
+color:#fff;
+padding:48px 0 43px;
+position:relative;
+overflow:hidden;
+}
+
+.newsroom-intro:after{
+content:"";
+position:absolute;
+width:330px;
+height:330px;
+border:1px solid rgba(212,175,55,.2);
+border-radius:50%;
+right:-100px;
+top:-160px;
+box-shadow:0 0 0 35px rgba(212,175,55,.035),
+0 0 0 75px rgba(212,175,55,.025);
+pointer-events:none;
+}
+
+.intro-content{
+position:relative;
+z-index:1;
+}
+
+.breadcrumb{
+font-size:12px;
+color:#D7E0EF;
+margin-bottom:12px;
+font-weight:600;
+}
+
+.breadcrumb a:hover{color:var(--gold)}
+
+.intro-label{
+display:inline-block;
+font-size:11px;
+font-weight:800;
+letter-spacing:2px;
+color:var(--gold);
+text-transform:uppercase;
+margin-bottom:8px;
+}
+
+.newsroom-intro h1{
+font-size:clamp(32px,4vw,48px);
+line-height:1.15;
+font-weight:800;
+color:#fff;
+margin-bottom:10px;
+}
+
+.newsroom-intro p{
+max-width:700px;
+font-size:15px;
+color:#E1E8F2;
+line-height:1.8;
+}
+
+.intro-rule{
+width:65px;
+height:4px;
+background:var(--gold);
+margin-top:19px;
+border-radius:5px;
+}
+
+/* NEWSROOM BODY */
+
+.newsroom-main{
+background:#fff;
+padding:43px 0 65px;
+}
+
+.newsroom-layout{
+display:grid;
+grid-template-columns:minmax(0,1fr) 310px;
+gap:35px;
+align-items:start;
+}
+
+.section-heading{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+border-bottom:2px solid var(--navy);
+padding-bottom:11px;
+margin-bottom:19px;
+}
+
+.section-heading h2{
+font-size:22px;
+font-weight:800;
+color:var(--navy);
+line-height:1.3;
+}
+
+.section-heading span{
+font-size:12px;
+color:var(--muted);
+font-weight:600;
+white-space:nowrap;
+}
+
+/* FEATURED STORY */
+
+.featured-story{
+background:#fff;
+border:1px solid var(--border);
+border-radius:8px;
+overflow:hidden;
+box-shadow:var(--shadow);
+margin-bottom:34px;
+}
+
+.featured-image-link{
+display:block;
+height:360px;
+overflow:hidden;
+background:#E9EDF3;
+}
+
+.featured-image{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .45s;
+}
+
+.featured-story:hover .featured-image{
+transform:scale(1.025);
+}
+
+.featured-placeholder{
+width:100%;
+height:100%;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,#0F2A5E,#091B3D);
+color:var(--gold);
+font-size:24px;
+font-weight:800;
+letter-spacing:3px;
+}
+
+.featured-content{
+padding:23px 25px 25px;
+}
+
+.featured-label{
+display:inline-block;
+background:#EEF2F8;
+color:var(--navy);
+padding:5px 10px;
+border-left:3px solid var(--gold);
+font-size:10px;
+font-weight:800;
+letter-spacing:1px;
+text-transform:uppercase;
+margin-bottom:10px;
+}
+
+.featured-category{
+font-size:11px;
+font-weight:800;
+color:#8B6B13;
+text-transform:uppercase;
+letter-spacing:1px;
+margin-bottom:5px;
+}
+
+.featured-title{
+font-size:clamp(21px,2.5vw,29px);
+line-height:1.25;
+font-weight:800;
+color:var(--navy-dark);
+margin-bottom:9px;
+}
+
+.featured-title a:hover{color:#8B6B13}
+
+.featured-summary{
+font-size:14px;
+line-height:1.75;
+color:#5D6879;
+margin-bottom:13px;
+}
+
+.article-meta{
+display:flex;
+align-items:center;
+flex-wrap:wrap;
+gap:12px;
+font-size:11px;
+color:#7A8494;
+font-weight:600;
+}
+
+.read-story{
+display:inline-flex;
+align-items:center;
+gap:8px;
+margin-top:17px;
+background:var(--navy);
+color:#fff;
+padding:10px 17px;
+border-radius:4px;
+font-size:12px;
+font-weight:800;
+transition:.2s;
+}
+
+.read-story:hover{
+background:var(--gold);
+color:var(--navy-dark);
+transform:translateY(-2px);
+}
+
+/* CATEGORY FILTERS */
+
+.latest-heading{margin-top:5px}
+
+.filters{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:18px;
+}
+
+.filter-btn{
+border:1px solid #DCE2EB;
+background:#fff;
+color:#526078;
+padding:7px 14px;
+border-radius:4px;
+font-family:inherit;
+font-size:12px;
+font-weight:700;
+cursor:pointer;
+transition:.2s;
 }
 
 .filter-btn:hover,
-.filter-btn.active {
-    background: var(--maroon);
-    color: white;
-    border-color: var(--maroon);
+.filter-btn.active{
+background:var(--navy);
+color:#fff;
+border-color:var(--navy);
 }
 
-/* NEWS LIST */
-.news-list {
-    display: flex;
-    flex-direction: column;
+/* LATEST NEWS LIST */
+
+.news-list{
+display:flex;
+flex-direction:column;
 }
 
-.news-item {
-    display: grid;
-    grid-template-columns: 175px minmax(0, 1fr);
-    gap: 17px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--line);
+.news-item{
+display:grid;
+grid-template-columns:190px minmax(0,1fr);
+gap:19px;
+padding:17px 0;
+border-bottom:1px solid var(--border);
 }
 
-.news-image-link {
-    display: block;
-    height: 112px;
-    overflow: hidden;
-    background: #eceef1;
-    border-radius: 3px;
+.news-image-link{
+display:block;
+height:125px;
+overflow:hidden;
+border-radius:5px;
+background:#E9EDF3;
 }
 
-.news-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform .3s;
+.news-image{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .35s;
 }
 
-.news-item:hover .news-image {
-    transform: scale(1.04);
+.news-item:hover .news-image{transform:scale(1.05)}
+
+.news-image-placeholder{
+width:100%;
+height:100%;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,#0F2A5E,#091B3D);
+color:var(--gold);
+font-size:14px;
+font-weight:800;
+letter-spacing:1px;
 }
 
-.news-image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-    color: #999;
-    font-size: 12px;
-    background: #eceef1;
+.news-category{
+color:#8B6B13;
+font-size:10px;
+font-weight:800;
+text-transform:uppercase;
+letter-spacing:1px;
+margin-bottom:5px;
 }
 
-.news-category {
-    color: var(--maroon);
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    margin-bottom: 3px;
+.news-title{
+font-size:18px;
+line-height:1.3;
+font-weight:800;
+color:var(--navy-dark);
+margin-bottom:6px;
 }
 
-.news-title {
-    font-size: 17px;
-    line-height: 1.3;
-    font-weight: 700;
-    color: #20242b;
-    margin-bottom: 5px;
+.news-title a:hover{color:#8B6B13}
+
+.news-summary{
+color:#687487;
+font-size:13px;
+line-height:1.6;
+margin-bottom:8px;
 }
 
-.news-title a:hover {
-    color: var(--maroon);
-}
-
-.news-summary {
-    color: #666e78;
-    font-size: 13px;
-    line-height: 1.45;
-    margin-bottom: 6px;
-}
-
-.news-meta {
-    font-size: 11px;
-    color: #9298a0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.news-meta{
+font-size:11px;
+color:#8993A2;
+display:flex;
+flex-wrap:wrap;
+gap:11px;
+font-weight:600;
 }
 
 /* SIDEBAR */
-.sidebar-box {
-    border: 1px solid var(--line);
-    margin-bottom: 18px;
-    background: white;
+
+.sidebar-box{
+border:1px solid var(--border);
+background:#fff;
+border-radius:6px;
+overflow:hidden;
+margin-bottom:19px;
 }
 
-.sidebar-title {
-    padding: 11px 14px;
-    background: var(--maroon);
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
+.sidebar-title{
+background:var(--navy);
+color:#fff;
+padding:13px 17px;
+font-size:14px;
+font-weight:800;
+border-bottom:3px solid var(--gold);
 }
 
-.sidebar-content {
-    padding: 14px;
-    font-size: 13px;
-    color: #626a74;
+.sidebar-content{
+padding:17px;
+font-size:13px;
+color:#667286;
 }
 
-.sidebar-content p {
-    margin-bottom: 9px;
+.sidebar-content p{
+margin-bottom:12px;
+line-height:1.7;
 }
 
-.sidebar-link {
-    display: inline-block;
-    margin-top: 5px;
-    color: var(--maroon);
-    font-weight: 700;
+.sidebar-link{
+display:inline-block;
+color:var(--navy);
+font-weight:800;
+font-size:12px;
 }
 
-/* STATES */
-.state-message {
-    text-align: center;
-    padding: 45px 15px;
-    color: var(--muted);
-    font-size: 14px;
+.sidebar-link:hover{
+color:#8B6B13;
+text-decoration:underline;
 }
 
-.state-message strong {
-    display: block;
-    font-size: 17px;
-    color: var(--maroon-dark);
-    margin-bottom: 5px;
+.sidebar-list{
+list-style:none;
 }
 
-/* FOOTER */
-.site-footer {
-    background: var(--maroon-dark);
-    color: white;
-    padding: 30px 0 15px;
+.sidebar-list li{
+padding:8px 0;
+border-bottom:1px solid #EDF0F4;
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 30px;
-    padding-bottom: 22px;
+.sidebar-list li:last-child{border-bottom:0}
+
+.sidebar-list a{
+font-size:13px;
+font-weight:700;
+color:#44516A;
 }
 
-.footer-grid h3 {
-    font-size: 14px;
-    margin-bottom: 10px;
-    color: var(--gold);
+.sidebar-list a:hover{color:#8B6B13}
+
+/* INSTITUTIONAL INFORMATION PANEL */
+
+.institution-panel{
+background:#F4F6F9;
+border:1px solid #E3E7ED;
+border-left:4px solid var(--gold);
+border-radius:5px;
+padding:18px;
+margin-bottom:19px;
 }
 
-.footer-grid p,
-.footer-grid a {
-    display: block;
-    font-size: 12px;
-    color: #e7dfe2;
-    margin-bottom: 6px;
+.institution-panel h3{
+color:var(--navy);
+font-size:15px;
+font-weight:800;
+margin-bottom:7px;
 }
 
-.footer-grid a:hover {
-    color: white;
-    text-decoration: underline;
+.institution-panel p{
+font-size:12px;
+color:#657187;
+line-height:1.7;
 }
 
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,.18);
-    padding-top: 13px;
-    text-align: center;
-    color: #d9cbd0;
-    font-size: 11px;
+/* EMPTY AND ERROR STATES */
+
+.state-message{
+text-align:center;
+padding:48px 18px;
+color:var(--muted);
+font-size:14px;
+background:#F8F9FB;
+border:1px solid var(--border);
+border-radius:6px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 800px) {
-    .news-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .sidebar {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
-
-    .sidebar-box {
-        margin: 0;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+.state-message strong{
+display:block;
+font-size:18px;
+color:var(--navy);
+margin-bottom:6px;
 }
 
-@media (max-width: 560px) {
-    .topbar-inner {
-        justify-content: center;
-        text-align: center;
-    }
+/* FOOTER - MATCHING HOMEPAGE */
 
-    .header-inner {
-        min-height: 75px;
-    }
+.site-footer{
+background:var(--navy-dark);
+color:#fff;
+padding:55px 0 0;
+}
 
-    .brand-mark {
-        width: 49px;
-        height: 49px;
-        font-size: 16px;
-    }
+.footer-grid{
+display:grid;
+grid-template-columns:1.2fr 1fr 1fr;
+gap:35px;
+padding-bottom:35px;
+}
 
-    .brand-name {
-        font-size: 15px;
-    }
+.footer-brand h3{
+font-size:21px;
+line-height:1.3;
+font-weight:800;
+margin-bottom:8px;
+}
 
-    .brand-subtitle {
-        font-size: 9px;
-    }
+.footer-motto{
+color:var(--gold);
+font-weight:800;
+letter-spacing:2px;
+font-size:12px;
+margin-bottom:14px;
+}
 
-    .header-action {
-        padding: 8px 10px;
-        font-size: 11px;
-    }
+.footer-brand p,
+.footer-column p{
+font-size:13px;
+color:#d4dbea;
+margin-bottom:12px;
+}
 
-    .nav-inner {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-    }
+.footer-column h3{
+font-size:17px;
+font-weight:800;
+margin-bottom:15px;
+color:var(--gold);
+}
 
-    .nav-inner a {
-        padding: 11px 13px;
-        white-space: nowrap;
-        font-size: 12px;
-    }
+.footer-column ul{list-style:none}
 
-    .page-heading {
-        padding: 19px 0;
-    }
+.footer-column li{margin-bottom:7px}
 
-    .page-heading h1 {
-        font-size: 24px;
-    }
+.footer-column a{
+font-size:13px;
+color:#e4e9f2;
+}
 
-    .news-layout {
-        padding-top: 19px;
-    }
+.footer-column a:hover{color:var(--gold)}
 
-    .news-item {
-        grid-template-columns: 116px minmax(0, 1fr);
-        gap: 11px;
-        padding: 12px 0;
-    }
+.footer-contact-link{overflow-wrap:anywhere}
 
-    .news-image-link {
-        height: 91px;
-    }
+.footer-apply{
+display:inline-block;
+background:var(--maroon);
+padding:10px 17px;
+border-radius:4px;
+font-weight:800;
+margin-top:7px;
+}
 
-    .news-title {
-        font-size: 14px;
-        line-height: 1.3;
-        margin-bottom: 4px;
-    }
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,.15);
+padding:17px 0;
+text-align:center;
+}
 
-    .news-summary {
-        font-size: 11px;
-        margin-bottom: 4px;
-    }
+.footer-bottom p{
+font-size:12px;
+color:#cbd3e1;
+}
 
-    .news-category,
-    .news-meta {
-        font-size: 10px;
-    }
+.footer-bottom strong{color:var(--gold)}
 
-    .sidebar {
-        grid-template-columns: 1fr;
-    }
+.site-footer,
+.site-footer *{font-weight:700!important}
 
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 17px;
-    }
+/* TABLET */
+
+@media(min-width:851px) and (max-width:1100px){
+
+.container.header-inner{
+width:96%;
+gap:8px;
+min-height:88px;
+}
+
+.brand img{width:112px;height:68px}
+
+nav{gap:5px}
+
+nav a,
+nav button.nav-link{
+font-size:10px;
+letter-spacing:0;
+}
+
+.nav-apply{
+padding:8px 8px!important;
+font-size:10px!important;
+margin-left:0;
+}
+
+.programme-submenu,
+.admissions-submenu,
+.about-submenu,
+.news-submenu{min-width:210px}
+
+.newsroom-layout{
+grid-template-columns:minmax(0,1fr) 270px;
+gap:23px;
+}
+
+.featured-image-link{height:310px}
+
+}
+
+/* MOBILE NAVIGATION */
+
+@media(max-width:850px){
+
+.container.header-inner{
+width:94%;
+min-height:88px;
+gap:12px;
+justify-content:space-between;
+}
+
+.brand img{width:145px;height:72px}
+
+.menu-toggle{
+display:block;
+flex-shrink:0;
+}
+
+nav{
+display:none;
+position:absolute;
+top:100%;
+left:0;
+right:0;
+width:100%;
+background:#FFFFFF;
+padding:15px 5%;
+flex-direction:column;
+align-items:stretch;
+gap:0;
+box-shadow:0 8px 18px rgba(0,0,0,.15);
+max-height:calc(100vh - 88px);
+overflow-y:auto;
+border-top:1px solid var(--border);
+}
+
+nav.open{display:flex}
+
+nav>a,
+nav button.nav-link{
+color:#111;
+font-size:14px;
+font-weight:800;
+padding:12px 8px;
+border-bottom:1px solid #edf0f4;
+width:100%;
+text-align:left;
+}
+
+nav a:hover,
+nav button.nav-link:hover{color:var(--maroon)}
+
+.programme-menu,
+.admissions-menu,
+.about-menu,
+.news-menu{
+display:block;
+width:100%;
+}
+
+nav button.nav-link{justify-content:space-between}
+
+/* MOBILE NEWS DROPDOWN */
+
+.news-menu{position:relative}
+
+.news-menu .news-main-link{
+display:inline-flex;
+width:calc(100% - 45px);
+padding:12px 8px;
+font-size:14px;
+font-weight:800;
+}
+
+.news-menu .news-toggle{
+position:absolute;
+right:0;
+top:0;
+width:45px!important;
+height:46px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-bottom:1px solid #edf0f4;
+}
+
+.news-submenu{
+position:static;
+min-width:0;
+width:100%;
+box-shadow:none;
+border-top:2px solid var(--gold);
+border-radius:0;
+padding:4px 0;
+background:#F5F6F8;
+}
+
+.news-submenu a{
+color:#222;
+padding:11px 20px;
+font-size:13px;
+border-bottom:1px solid #e2e5e9;
+}
+
+.news-submenu a:hover{
+background:#fff;
+color:var(--maroon);
+padding-left:25px;
+}
+
+/* EXISTING MOBILE DROPDOWNS */
+
+.programme-submenu,
+.admissions-submenu,
+.about-submenu{
+position:static;
+min-width:0;
+width:100%;
+box-shadow:none;
+border-top:2px solid var(--gold);
+border-radius:0;
+padding:4px 0;
+background:#F5F6F8;
+}
+
+.programme-submenu a,
+.admissions-submenu a,
+.about-submenu a{
+color:#222;
+padding:11px 20px;
+font-size:13px;
+border-bottom:1px solid #e2e5e9;
+}
+
+.programme-submenu a:hover,
+.admissions-submenu a:hover,
+.about-submenu a:hover{
+background:#fff;
+color:var(--maroon);
+padding-left:25px;
+}
+
+.nav-apply{
+padding:11px 14px!important;
+margin-top:10px;
+text-align:center;
+border-bottom:0;
+background:var(--maroon);
+color:#fff!important;
+}
+
+.newsroom-layout{
+grid-template-columns:1fr;
+gap:28px;
+}
+
+.sidebar{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:13px;
+}
+
+.sidebar-box{margin:0}
+
+.featured-image-link{height:340px}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+}
+
+/* SMALL MOBILE */
+
+@media(max-width:560px){
+
+.topbar{
+font-size:11px;
+letter-spacing:.5px;
+}
+
+.header-inner{min-height:78px}
+
+.brand img{width:125px;height:65px}
+
+nav{max-height:calc(100vh - 78px)}
+
+.newsroom-intro{padding:32px 0 30px}
+
+.newsroom-intro h1{font-size:31px}
+
+.newsroom-intro p{font-size:13px}
+
+.newsroom-main{padding:29px 0 45px}
+
+.section-heading h2{font-size:19px}
+
+.featured-image-link{height:225px}
+
+.featured-content{padding:17px}
+
+.featured-title{font-size:21px}
+
+.featured-summary{font-size:12px}
+
+.news-item{
+grid-template-columns:116px minmax(0,1fr);
+gap:12px;
+padding:13px 0;
+}
+
+.news-image-link{height:91px}
+
+.news-title{
+font-size:14px;
+line-height:1.35;
+margin-bottom:4px;
+}
+
+.news-summary{
+font-size:11px;
+line-height:1.45;
+margin-bottom:5px;
+}
+
+.news-category,
+.news-meta{font-size:10px}
+
+.filter-btn{
+padding:6px 10px;
+font-size:11px;
+}
+
+.sidebar{grid-template-columns:1fr}
+
+.footer-grid{
+grid-template-columns:1fr;
+gap:29px;
+}
+
+.site-footer{padding-top:42px}
+
+}
+
+@media(max-width:360px){
+
+.brand img{width:115px}
+
+.news-item{
+grid-template-columns:105px minmax(0,1fr);
+gap:10px;
+}
+
+.news-image-link{height:84px}
+
+.news-title{font-size:13px}
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- TITI TOP BAR -->
+
 <div class="topbar">
-    <div class="container topbar-inner">
-        <span>TAHIDI INTERNATIONAL TRAINING INSTITUTE</span>
-        <span>Breaking the Limits</span>
-    </div>
+TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
 </div>
 
-<header class="site-header">
-    <div class="container header-inner">
-        <a href="index.html" class="brand">
-            <div class="brand-mark">TITI</div>
-            <div>
-                <div class="brand-name">TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</div>
-                <div class="brand-subtitle">QUALITY EDUCATION & PROFESSIONAL TRAINING</div>
-            </div>
-        </a>
+<!-- APPROVED TITI HEADER -->
 
-        <a href="apply.html" class="header-action">APPLY NOW</a>
-    </div>
+<header>
+<div class="container header-inner">
+
+<a href="index.html#home" class="brand">
+<img src="BYE.png" alt="Tahidi International Training Institute Logo">
+</a>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+
+<nav id="mainNav">
+
+<a href="index.html#home">HOME</a>
+
+<div class="about-menu" id="aboutMenu">
+<button type="button" class="nav-link" id="aboutToggle" aria-expanded="false" aria-controls="aboutSubmenu">
+ABOUT US <span class="dropdown-arrow">▼</span>
+</button>
+<div class="about-submenu" id="aboutSubmenu">
+<a href="about.html#who-we-are">Who We Are</a>
+<a href="about.html#our-vision">Our Vision</a>
+<a href="about.html#our-mission">Our Mission</a>
+<a href="about.html#our-core-values">Our Core Values</a>
+<a href="about.html#student-commitment">Our Commitment to Students</a>
+<a href="about.html#our-location">Our Location</a>
+<a href="about.html#contact-information">Contact Information</a>
+</div>
+</div>
+
+<div class="programme-menu" id="programmeMenu">
+<button type="button" class="nav-link" id="programmeToggle" aria-expanded="false" aria-controls="programmeSubmenu">
+PROGRAMMES <span class="dropdown-arrow">▼</span>
+</button>
+<div class="programme-submenu" id="programmeSubmenu">
+<a href="index.html#diploma">Diploma Programmes</a>
+<a href="index.html#certificate">Certificate Programmes</a>
+<a href="index.html#shortCourses">Short Courses</a>
+</div>
+</div>
+
+<div class="admissions-menu" id="admissionsMenu">
+<button type="button" class="nav-link" id="admissionsToggle" aria-expanded="false" aria-controls="admissionsSubmenu">
+ADMISSIONS <span class="dropdown-arrow">▼</span>
+</button>
+<div class="admissions-submenu" id="admissionsSubmenu">
+<a href="apply.html#admissions">Admissions at TITI</a>
+<a href="apply.html#requirements">Entry Requirements</a>
+<a href="apply.html#documents">Required Documents</a>
+<a href="apply.html#intakes">Intakes &amp; Admission</a>
+<a href="apply.html#fees">Fees &amp; Payment</a>
+<a href="apply.html#enquiries">Admission Enquiries</a>
+</div>
+</div>
+
+<a href="notices.html">NOTICES</a>
+
+<div class="news-menu" id="newsMenu">
+
+<a href="news.html" class="news-main-link active">NEWS</a>
+
+<button
+type="button"
+class="nav-link news-toggle"
+id="newsToggle"
+aria-label="Open News submenu"
+aria-expanded="false"
+aria-controls="newsSubmenu">
+<span class="dropdown-arrow">▼</span>
+</button>
+
+<div class="news-submenu" id="newsSubmenu">
+<a href="student-resources.html">Student Resources</a>
+</div>
+
+</div>
+
+<a href="index.html#gallery">CAMPUS</a>
+<a href="gallery.html">GALLERY</a>
+<a href="contacts.html">CONTACT</a>
+<a href="apply.html#online-application" class="nav-apply">APPLY NOW</a>
+
+</nav>
+</div>
 </header>
 
-<nav class="navigation">
-    <div class="container nav-inner">
-        <a href="index.html">HOME</a>
-        <a href="about.html">ABOUT US</a>
-        <a href="programmes.html">PROGRAMMES</a>
-        <a href="admissions.html">ADMISSIONS</a>
-        <a href="news.html" class="active">NEWS & UPDATES</a>
-        <a href="contact.html">CONTACT</a>
-    </div>
-</nav>
+<!-- NEWSROOM INTRODUCTION -->
 
-<section class="page-heading">
-    <div class="container">
-        <div class="breadcrumb">Home / News & Updates</div>
-        <h1>News & Updates</h1>
-        <p>Latest stories, institutional announcements and developments from TITI.</p>
-    </div>
+<section class="newsroom-intro">
+<div class="container intro-content">
+
+<div class="breadcrumb">
+<a href="index.html">Home</a> / Institutional News
+</div>
+
+<div class="intro-label">TITI DIGITAL NEWSROOM</div>
+
+<h1>News &amp; Updates</h1>
+
+<p>
+Stay informed about institutional announcements, academic developments, campus activities and the latest stories from Tahidi International Training Institute.
+</p>
+
+<div class="intro-rule"></div>
+
+</div>
 </section>
 
-<main class="container news-layout">
+<!-- NEWSROOM CONTENT -->
 
-    <section>
-        <div class="section-heading">
-            <h2>Latest News</h2>
-            <span id="newsCount">Loading stories...</span>
-        </div>
+<main class="newsroom-main">
+<div class="container newsroom-layout">
 
-        <div class="filters" id="newsFilters">
-            <button class="filter-btn active" data-category="All">All News</button>
-        </div>
+<section class="main-news-column">
 
-        <div class="news-list" id="newsList">
-            <div class="state-message">
-                Loading latest news...
-            </div>
-        </div>
-    </section>
+<div class="section-heading">
+<h2>Featured Story</h2>
+<span id="newsCount">Loading stories...</span>
+</div>
 
-    <aside class="sidebar">
+<div id="featuredNews">
+<div class="state-message">
+<strong>Welcome to the TITI Newsroom</strong>
+Loading the latest institutional stories...
+</div>
+</div>
 
-        <div class="sidebar-box">
-            <div class="sidebar-title">About TITI</div>
-            <div class="sidebar-content">
-                <p>Tahidi International Training Institute is committed to quality education, professional training and empowering learners with practical skills.</p>
-                <a href="about.html" class="sidebar-link">Discover TITI →</a>
-            </div>
-        </div>
+<div class="section-heading latest-heading">
+<h2>Latest News</h2>
+<span>Institutional updates</span>
+</div>
 
-        <div class="sidebar-box">
-            <div class="sidebar-title">Quick Links</div>
-            <div class="sidebar-content">
-                <p><a href="programmes.html" class="sidebar-link">Explore our programmes →</a></p>
-                <p><a href="apply.html" class="sidebar-link">Apply for admission →</a></p>
-                <p><a href="contact.html" class="sidebar-link">Contact the institute →</a></p>
-            </div>
-        </div>
+<div class="filters" id="newsFilters">
+<button class="filter-btn active" data-category="All">All News</button>
+</div>
 
-    </aside>
+<div class="news-list" id="newsList">
+<div class="state-message">
+Loading latest news...
+</div>
+</div>
 
+</section>
+
+<!-- NEWSROOM SIDEBAR -->
+
+<aside class="sidebar">
+
+<div class="sidebar-box">
+<div class="sidebar-title">About TITI</div>
+<div class="sidebar-content">
+<p>
+Tahidi International Training Institute is committed to quality education, practical professional training and empowering learners with knowledge and skills for meaningful opportunities.
+</p>
+<a href="about.html" class="sidebar-link">Discover Our Institute →</a>
+</div>
+</div>
+
+<div class="sidebar-box">
+<div class="sidebar-title">Explore TITI</div>
+<div class="sidebar-content">
+<ul class="sidebar-list">
+<li><a href="about.html">About Our Institute</a></li>
+<li><a href="index.html#programmes">Academic Programmes</a></li>
+<li><a href="apply.html#admissions">Admissions</a></li>
+<li><a href="notices.html">Official Notices</a></li>
+<li><a href="student-resources.html">Student Resources</a></li>
+<li><a href="gallery.html">Campus Gallery</a></li>
+<li><a href="contacts.html">Contact TITI</a></li>
+</ul>
+</div>
+</div>
+
+<div class="institution-panel">
+<h3>Breaking the Limits</h3>
+<p>
+Knowledge, practical skills and professional training for a better future.
+</p>
+</div>
+
+<div class="sidebar-box">
+<div class="sidebar-title">Admissions Enquiries</div>
+<div class="sidebar-content">
+<p>
+Interested in joining Tahidi International Training Institute?
+</p>
+<a href="apply.html#online-application" class="sidebar-link">Apply for Admission →</a>
+</div>
+</div>
+
+</aside>
+
+</div>
 </main>
 
+<!-- APPROVED TITI FOOTER -->
+
 <footer class="site-footer">
-    <div class="container">
-        <div class="footer-grid">
+<div class="container">
 
-            <div>
-                <h3>ABOUT TITI</h3>
-                <p>Tahidi International Training Institute.</p>
-                <p>Breaking the Limits.</p>
-                <p>Quality education and professional training.</p>
-            </div>
+<div class="footer-grid">
 
-            <div>
-                <h3>QUICK LINKS</h3>
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="programmes.html">Programmes</a>
-                <a href="news.html">News & Updates</a>
-            </div>
+<div class="footer-brand">
+<h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
+<div class="footer-motto">BREAKING THE LIMITS</div>
 
-            <div>
-                <h3>CONTACT</h3>
-                <p>Nangwe, Busia, Uganda</p>
-                <a href="contact.html">Contact our institute</a>
-            </div>
+<p>
+Committed to quality education, practical skills and professional training that prepares learners for opportunities in the world of work.
+</p>
 
-        </div>
+<p>
+<strong>Our Location:</strong><br>
+Nangwe, near Bila High School,<br>
+Busia, Uganda.
+</p>
+</div>
 
-        <div class="footer-bottom">
-            © <span id="currentYear"></span> Tahidi International Training Institute. All Rights Reserved.
-        </div>
-    </div>
+<div class="footer-column">
+<h3>Explore TITI</h3>
+<ul>
+<li><a href="index.html#home">Home</a></li>
+<li><a href="about.html">About Our Institute</a></li>
+<li><a href="index.html#programmes">Academic Programmes</a></li>
+<li><a href="index.html#shortCourses">Short Courses</a></li>
+<li><a href="apply.html#admissions">Admissions</a></li>
+<li><a href="notices.html">Notice Board</a></li>
+<li><a href="news.html">Institutional News</a></li>
+<li><a href="student-resources.html">Student Resources</a></li>
+<li><a href="index.html#gallery">Our Campus</a></li>
+<li><a href="gallery.html">Photo Gallery</a></li>
+<li><a href="contacts.html">Contact Us</a></li>
+<li><a href="application-status.html">Check Application Status</a></li>
+</ul>
+</div>
+
+<div class="footer-column">
+<h3>Contact Information</h3>
+
+<p>
+<strong>Institution:</strong><br>
+Tahidi International Training Institute
+</p>
+
+<p>
+<strong>Telephone:</strong><br>
+<a class="footer-contact-link" href="tel:+256776433303">+256776433303</a>
+</p>
+
+<p>
+<strong>Email:</strong><br>
+<a class="footer-contact-link" href="mailto:tahidiinternationalinstitute@gmail.com">tahidiinternationalinstitute@gmail.com</a>
+</p>
+
+<p>
+<strong>Website:</strong><br>
+<a href="https://www.titi.ac.ug/">www.titi.ac.ug</a>
+</p>
+
+<a href="apply.html#online-application" class="footer-apply">Apply Now</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<p>
+© <span id="footer-year"></span>
+<strong>Tahidi International Training Institute.</strong>
+All Rights Reserved.
+</p>
+</div>
+
+</div>
 </footer>
 
 <script>
-/* EXISTING TITI SUPABASE PROJECT */
+
+/* TITI SUPABASE NEWS CONNECTION - PRESERVED */
+
 const SUPABASE_URL = "https://jlmbiauilmajuvrnuaul.supabase.co";
 const SUPABASE_KEY = "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const newsList = document.getElementById("newsList");
+const featuredNews = document.getElementById("featuredNews");
 const newsCount = document.getElementById("newsCount");
 const newsFilters = document.getElementById("newsFilters");
 
 let allNews = [];
 let activeCategory = "All";
 
-document.getElementById("currentYear").textContent = new Date().getFullYear();
+document.getElementById("footer-year").textContent = new Date().getFullYear();
+
+/* HTML SECURITY */
 
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => ({
@@ -650,6 +1435,8 @@ function escapeHTML(value) {
     })[character]);
 }
 
+/* DATE FORMATTING */
+
 function formatDate(dateValue) {
     if (!dateValue) return "Recently published";
 
@@ -659,16 +1446,88 @@ function formatDate(dateValue) {
 
     return date.toLocaleDateString("en-UG", {
         day: "numeric",
-        month: "short",
+        month: "long",
         year: "numeric"
     });
 }
+
+/* ARTICLE DESTINATION */
 
 function createArticleLink(article) {
     return "news-article.html?id=" + encodeURIComponent(article.id);
 }
 
+/* FEATURED STORY */
+
+function renderFeaturedStory() {
+
+    if (!allNews.length) {
+        featuredNews.innerHTML = `
+            <div class="state-message">
+                <strong>No featured story is available yet.</strong>
+                Published institutional stories will appear here.
+            </div>
+        `;
+        return;
+    }
+
+    const article = allNews[0];
+    const link = createArticleLink(article);
+
+    const image = article.image_url
+        ? `
+            <img
+                class="featured-image"
+                src="${escapeHTML(article.image_url)}"
+                alt="${escapeHTML(article.title)}"
+                loading="eager">
+        `
+        : `<div class="featured-placeholder">TITI NEWSROOM</div>`;
+
+    const summary = article.summary
+        ? escapeHTML(article.summary)
+        : "Read the latest institutional update from Tahidi International Training Institute.";
+
+    featuredNews.innerHTML = `
+        <article class="featured-story">
+
+            <a class="featured-image-link" href="${link}" aria-label="Read ${escapeHTML(article.title)}">
+                ${image}
+            </a>
+
+            <div class="featured-content">
+
+                <span class="featured-label">TOP STORY</span>
+
+                <div class="featured-category">
+                    ${escapeHTML(article.category || "Institutional News")}
+                </div>
+
+                <h2 class="featured-title">
+                    <a href="${link}">${escapeHTML(article.title)}</a>
+                </h2>
+
+                <p class="featured-summary">${summary}</p>
+
+                <div class="article-meta">
+                    <span>${formatDate(article.published_at || article.created_at)}</span>
+                    ${article.author ? `<span>By ${escapeHTML(article.author)}</span>` : ""}
+                </div>
+
+                <a class="read-story" href="${link}">
+                    Read Full Story <span aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+        </article>
+    `;
+}
+
+/* CATEGORY FILTERS */
+
 function renderFilters() {
+
     const categories = [...new Set(
         allNews
             .map(article => article.category || "News")
@@ -679,6 +1538,7 @@ function renderFilters() {
 
     newsFilters.innerHTML = buttons.map(category => `
         <button
+            type="button"
             class="filter-btn ${activeCategory === category ? "active" : ""}"
             data-category="${escapeHTML(category)}">
             ${category === "All" ? "All News" : escapeHTML(category)}
@@ -686,29 +1546,50 @@ function renderFilters() {
     `).join("");
 }
 
+/* LATEST NEWS */
+
 function renderNews() {
+
     const filteredNews = activeCategory === "All"
-        ? allNews
-        : allNews.filter(article =>
-            (article.category || "News") === activeCategory
+        ? allNews.slice(1)
+        : allNews.filter((article, index) =>
+            (article.category || "News") === activeCategory &&
+            (activeCategory !== "All" || index !== 0)
         );
 
-    newsCount.textContent = `${filteredNews.length} ${filteredNews.length === 1 ? "story" : "stories"}`;
+    const displayedCount = activeCategory === "All"
+        ? allNews.length
+        : allNews.filter(article =>
+            (article.category || "News") === activeCategory
+        ).length;
+
+    newsCount.textContent =
+        `${displayedCount} ${displayedCount === 1 ? "story" : "stories"}`;
 
     if (!filteredNews.length) {
+
         newsList.innerHTML = `
             <div class="state-message">
-                <strong>No news available in this category.</strong>
-                Please check another category.
-            </div>`;
+                <strong>No additional stories in this category.</strong>
+                Please select another category or check back later.
+            </div>
+        `;
+
         return;
     }
 
     newsList.innerHTML = filteredNews.map(article => {
+
         const link = createArticleLink(article);
 
         const image = article.image_url
-            ? `<img class="news-image" src="${escapeHTML(article.image_url)}" alt="${escapeHTML(article.title)}" loading="lazy">`
+            ? `
+                <img
+                    class="news-image"
+                    src="${escapeHTML(article.image_url)}"
+                    alt="${escapeHTML(article.title)}"
+                    loading="lazy">
+            `
             : `<div class="news-image-placeholder">TITI NEWS</div>`;
 
         const summary = article.summary
@@ -723,7 +1604,10 @@ function renderNews() {
                 </a>
 
                 <div>
-                    <div class="news-category">${escapeHTML(article.category || "News")}</div>
+
+                    <div class="news-category">
+                        ${escapeHTML(article.category || "Institutional News")}
+                    </div>
 
                     <h3 class="news-title">
                         <a href="${link}">${escapeHTML(article.title)}</a>
@@ -735,25 +1619,43 @@ function renderNews() {
                         <span>${formatDate(article.published_at || article.created_at)}</span>
                         ${article.author ? `<span>By ${escapeHTML(article.author)}</span>` : ""}
                     </div>
+
                 </div>
 
             </article>
         `;
+
     }).join("");
 }
 
+/* FILTER BUTTON INTERACTION */
+
 newsFilters.addEventListener("click", event => {
+
     const button = event.target.closest(".filter-btn");
+
     if (!button) return;
 
     activeCategory = button.dataset.category;
+
     renderFilters();
     renderNews();
+
 });
 
+/* LOAD PUBLISHED NEWS FROM SUPABASE */
+
 async function loadNews() {
+
     newsList.innerHTML = `
         <div class="state-message">Loading latest news...</div>
+    `;
+
+    featuredNews.innerHTML = `
+        <div class="state-message">
+            <strong>Loading the featured story...</strong>
+            Please wait.
+        </div>
     `;
 
     const { data, error } = await db
@@ -764,42 +1666,176 @@ async function loadNews() {
         .order("created_at", { ascending: false });
 
     if (error) {
+
         console.error("TITI news loading error:", error);
 
         newsCount.textContent = "Unable to load";
 
-        newsList.innerHTML = `
+        featuredNews.innerHTML = `
             <div class="state-message">
                 <strong>News could not be loaded.</strong>
                 Please refresh the page or try again later.
             </div>
         `;
+
+        newsList.innerHTML = "";
+
         return;
     }
 
     allNews = data || [];
 
     if (!allNews.length) {
+
         newsCount.textContent = "0 stories";
 
-        newsList.innerHTML = `
+        featuredNews.innerHTML = `
             <div class="state-message">
-                <strong>No published news yet.</strong>
-                New stories and announcements will appear here.
+                <strong>Welcome to the TITI Newsroom.</strong>
+                New institutional stories and announcements will appear here when published.
             </div>
         `;
 
+        newsList.innerHTML = "";
+
         newsFilters.innerHTML = `
-            <button class="filter-btn active" data-category="All">All News</button>
+            <button type="button" class="filter-btn active" data-category="All">
+                All News
+            </button>
         `;
+
         return;
     }
 
+    activeCategory = "All";
+
+    renderFeaturedStory();
     renderFilters();
     renderNews();
+
+    console.log("TITI published news successfully loaded:", allNews.length);
 }
 
+/* MOBILE NAVIGATION - MATCHING HOMEPAGE */
+
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", () => {
+
+    mainNav.classList.toggle("open");
+
+    const isOpen = mainNav.classList.contains("open");
+
+    menuToggle.setAttribute("aria-expanded", isOpen);
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation" : "Open navigation"
+    );
+
+});
+
+/* DROPDOWN MENUS */
+
+const aboutMenu = document.getElementById("aboutMenu");
+const aboutToggle = document.getElementById("aboutToggle");
+
+const programmeMenu = document.getElementById("programmeMenu");
+const programmeToggle = document.getElementById("programmeToggle");
+
+const admissionsMenu = document.getElementById("admissionsMenu");
+const admissionsToggle = document.getElementById("admissionsToggle");
+
+const newsMenu = document.getElementById("newsMenu");
+const newsToggle = document.getElementById("newsToggle");
+
+aboutToggle.addEventListener("click", () => {
+    aboutMenu.classList.toggle("open");
+    aboutToggle.setAttribute(
+        "aria-expanded",
+        aboutMenu.classList.contains("open")
+    );
+});
+
+programmeToggle.addEventListener("click", () => {
+    programmeMenu.classList.toggle("open");
+    programmeToggle.setAttribute(
+        "aria-expanded",
+        programmeMenu.classList.contains("open")
+    );
+});
+
+admissionsToggle.addEventListener("click", () => {
+    admissionsMenu.classList.toggle("open");
+    admissionsToggle.setAttribute(
+        "aria-expanded",
+        admissionsMenu.classList.contains("open")
+    );
+});
+
+newsToggle.addEventListener("click", () => {
+    newsMenu.classList.toggle("open");
+    newsToggle.setAttribute(
+        "aria-expanded",
+        newsMenu.classList.contains("open")
+    );
+});
+
+/* CLOSE MENUS AFTER LINK SELECTION */
+
+document.querySelectorAll("#mainNav a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        mainNav.classList.remove("open");
+
+        programmeMenu.classList.remove("open");
+        admissionsMenu.classList.remove("open");
+        aboutMenu.classList.remove("open");
+        newsMenu.classList.remove("open");
+
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+
+        programmeToggle.setAttribute("aria-expanded", "false");
+        admissionsToggle.setAttribute("aria-expanded", "false");
+        aboutToggle.setAttribute("aria-expanded", "false");
+        newsToggle.setAttribute("aria-expanded", "false");
+
+    });
+
+});
+
+/* CLOSE DROPDOWNS WHEN CLICKING OUTSIDE */
+
+document.addEventListener("click", event => {
+
+    if (!programmeMenu.contains(event.target)) {
+        programmeMenu.classList.remove("open");
+        programmeToggle.setAttribute("aria-expanded", "false");
+    }
+
+    if (!admissionsMenu.contains(event.target)) {
+        admissionsMenu.classList.remove("open");
+        admissionsToggle.setAttribute("aria-expanded", "false");
+    }
+
+    if (!aboutMenu.contains(event.target)) {
+        aboutMenu.classList.remove("open");
+        aboutToggle.setAttribute("aria-expanded", "false");
+    }
+
+    if (!newsMenu.contains(event.target)) {
+        newsMenu.classList.remove("open");
+        newsToggle.setAttribute("aria-expanded", "false");
+    }
+
+});
+
+/* START NEWSROOM */
+
 loadNews();
+
 </script>
 
 </body>
