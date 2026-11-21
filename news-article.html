@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>News Article | Tahidi International Training Institute</title>
+<meta name="description" content="Read the latest news and updates from Tahidi International Training Institute.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+    --maroon: #721c35;
+    --maroon-dark: #501126;
+    --gold: #d5a84b;
+    --ink: #20242b;
+    --muted: #707782;
+    --line: #e8e8e8;
+    --light: #f5f6f8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    color: var(--ink);
+    background: white;
+    line-height: 1.65;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1120px, 94%);
+    margin: auto;
+}
+
+/* TOP BAR */
+.topbar {
+    background: var(--maroon-dark);
+    color: white;
+    font-size: 12px;
+    padding: 7px 0;
+}
+
+.topbar-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* HEADER */
+.site-header {
+    background: white;
+    border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+    min-height: 92px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.brand-mark {
+    width: 62px;
+    height: 62px;
+    border-radius: 7px;
+    background: var(--maroon);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--maroon-dark);
+}
+
+.brand-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.header-action {
+    background: var(--maroon);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* NAVIGATION */
+.navigation {
+    background: var(--maroon);
+    color: white;
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-inner a {
+    padding: 13px 17px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nav-inner a:hover,
+.nav-inner a.active {
+    background: var(--maroon-dark);
+}
+
+/* BREADCRUMB */
+.breadcrumb-bar {
+    background: var(--light);
+    border-bottom: 1px solid var(--line);
+    padding: 13px 0;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.breadcrumb-bar a {
+    color: var(--maroon);
+    font-weight: 600;
+}
+
+/* ARTICLE */
+.article-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 780px) 270px;
+    gap: 35px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.article-category {
+    display: inline-block;
+    background: var(--maroon);
+    color: white;
+    padding: 4px 11px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 12px;
+}
+
+.article-title {
+    font-size: clamp(27px, 4vw, 39px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--maroon-dark);
+    margin-bottom: 13px;
+}
+
+.article-summary {
+    font-size: 17px;
+    line-height: 1.55;
+    color: #626a74;
+    margin-bottom: 17px;
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12px;
+    color: #8a9098;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 17px;
+    margin-bottom: 20px;
+}
+
+.article-image {
+    width: 100%;
+    max-height: 440px;
+    object-fit: cover;
+    display: block;
+    border-radius: 3px;
+    margin-bottom: 23px;
+    background: var(--light);
+}
+
+.article-content {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #363c44;
+    overflow-wrap: anywhere;
+}
+
+.article-content p {
+    margin-bottom: 17px;
+}
+
+.article-content h2,
+.article-content h3 {
+    color: var(--maroon-dark);
+    line-height: 1.3;
+    margin: 24px 0 12px;
+}
+
+.article-content ul,
+.article-content ol {
+    padding-left: 25px;
+    margin-bottom: 17px;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* SHARE / BACK */
+.article-actions {
+    border-top: 1px solid var(--line);
+    margin-top: 25px;
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.back-link,
+.share-link {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.back-link {
+    background: var(--maroon);
+    color: white;
+}
+
+.share-link {
+    border: 1px solid var(--line);
+    background: white;
+    color: var(--maroon);
+    font-family: inherit;
+}
+
+/* SIDEBAR */
+.sidebar-box {
+    border: 1px solid var(--line);
+    margin-bottom: 18px;
+}
+
+.sidebar-title {
+    background: var(--maroon);
+    color: white;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.sidebar-content {
+    padding: 14px;
+    color: #626a74;
+    font-size: 13px;
+}
+
+.sidebar-content p {
+    margin-bottom: 9px;
+}
+
+.sidebar-content a {
+    color: var(--maroon);
+    font-weight: 700;
+}
+
+/* STATES */
+.state-message {
+    text-align: center;
+    padding: 55px 15px;
+    color: var(--muted);
+}
+
+.state-message h2 {
+    color: var(--maroon-dark);
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.state-message a {
+    display: inline-block;
+    margin-top: 15px;
+    background: var(--maroon);
+    color: white;
+    padding: 9px 17px;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+/* FOOTER */
+.site-footer {
+    background: var(--maroon-dark);
+    color: white;
+    padding: 30px 0 15px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 30px;
+    padding-bottom: 22px;
+}
+
+.footer-grid h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--gold);
+}
+
+.footer-grid p,
+.footer-grid a {
+    display: block;
+    font-size: 12px;
+    color: #e7dfe2;
+    margin-bottom: 6px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.18);
+    padding-top: 13px;
+    text-align: center;
+    color: #d9cbd0;
+    font-size: 11px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 800px) {
+    .article-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 560px) {
+    .topbar-inner {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-inner {
+        min-height: 75px;
+    }
+
+    .brand-mark {
+        width: 49px;
+        height: 49px;
+        font-size: 16px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+    }
+
+    .brand-subtitle {
+        font-size: 9px;
+    }
+
+    .header-action {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .nav-inner {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .nav-inner a {
+        white-space: nowrap;
+        padding: 11px 13px;
+        font-size: 12px;
+    }
+
+    .article-layout {
+        padding-top: 22px;
+    }
+
+    .article-title {
+        font-size: 27px;
+    }
+
+    .article-summary {
+        font-size: 15px;
+    }
+
+    .article-content {
+        font-size: 15px;
+    }
+
+    .article-image {
+        max-height: 280px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="container topbar-inner">
+        <span>TAHIDI INTERNATIONAL TRAINING INSTITUTE</span>
+        <span>Breaking the Limits</span>
+    </div>
+</div>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html" class="brand">
+            <div class="brand-mark">TITI</div>
+            <div>
+                <div class="brand-name">TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</div>
+                <div class="brand-subtitle">QUALITY EDUCATION & PROFESSIONAL TRAINING</div>
+            </div>
+        </a>
+
+        <a href="apply.html" class="header-action">APPLY NOW</a>
+    </div>
+</header>
+
+<nav class="navigation">
+    <div class="container nav-inner">
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT US</a>
+        <a href="programmes.html">PROGRAMMES</a>
+        <a href="admissions.html">ADMISSIONS</a>
+        <a href="news.html" class="active">NEWS & UPDATES</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+</nav>
+
+<div class="breadcrumb-bar">
+    <div class="container">
+        <a href="index.html">Home</a>
+        &nbsp; / &nbsp;
+        <a href="news.html">News & Updates</a>
+        &nbsp; / &nbsp;
+        Article
+    </div>
+</div>
+
+<main class="container article-layout">
+
+    <article id="articleArea">
+        <div class="state-message">
+            Loading article...
+        </div>
+    </article>
+
+    <aside>
+
+        <div class="sidebar-box">
+            <div class="sidebar-title">About TITI</div>
+            <div class="sidebar-content">
+                <p>Tahidi International Training Institute is committed to quality education, professional training and empowering learners with practical skills.</p>
+                <a href="about.html">Discover TITI →</a>
+            </div>
+        </div>
+
+        <div class="sidebar-box">
+            <div class="sidebar-title">More News</div>
+            <div class="sidebar-content">
+                <p>Explore the latest institutional news, stories and announcements.</p>
+                <a href="news.html">View all news →</a>
+            </div>
+        </div>
+
+        <div class="sidebar-box">
+            <div class="sidebar-title">Quick Links</div>
+            <div class="sidebar-content">
+                <p><a href="programmes.html">Explore programmes →</a></p>
+                <p><a href="apply.html">Apply for admission →</a></p>
+                <p><a href="contact.html">Contact TITI →</a></p>
+            </div>
+        </div>
+
+    </aside>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+
+            <div>
+                <h3>ABOUT TITI</h3>
+                <p>Tahidi International Training Institute.</p>
+                <p>Breaking the Limits.</p>
+                <p>Quality education and professional training.</p>
+            </div>
+
+            <div>
+                <h3>QUICK LINKS</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="programmes.html">Programmes</a>
+                <a href="news.html">News & Updates</a>
+            </div>
+
+            <div>
+                <h3>CONTACT</h3>
+                <p>Nangwe, Busia, Uganda</p>
+                <a href="contact.html">Contact our institute</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © <span id="currentYear"></span> Tahidi International Training Institute. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+/* EXISTING TITI SUPABASE PROJECT */
+const SUPABASE_URL = "https://jlmbiauilmajuvrnuaul.supabase.co";
+const SUPABASE_KEY = "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const articleArea = document.getElementById("articleArea");
+
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[character]);
+}
+
+function formatDate(dateValue) {
+    if (!dateValue) return "Recently published";
+
+    const date = new Date(dateValue);
+
+    if (Number.isNaN(date.getTime())) return "Recently published";
+
+    return date.toLocaleDateString("en-UG", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+}
+
+function showError(message) {
+    articleArea.innerHTML = `
+        <div class="state-message">
+            <h2>${escapeHTML(message)}</h2>
+            <p>The article may have been removed or is no longer available.</p>
+            <a href="news.html">Return to News & Updates</a>
+        </div>
+    `;
+}
+
+function displayArticle(article) {
+    document.title = article.title + " | Tahidi International Training Institute";
+
+    const image = article.image_url
+        ? `<img class="article-image" src="${escapeHTML(article.image_url)}" alt="${escapeHTML(article.title)}">`
+        : "";
+
+    /*
+      Article content is plain text.
+      New lines are converted into paragraphs.
+    */
+    const content = String(article.article_content || "")
+        .trim()
+        .split(/\n\s*\n/)
+        .filter(paragraph => paragraph.trim())
+        .map(paragraph => `<p>${escapeHTML(paragraph).replace(/\n/g, "<br>")}</p>`)
+        .join("");
+
+    const safeSummary = escapeHTML(article.summary || "");
+
+    articleArea.innerHTML = `
+        <div class="article-category">${escapeHTML(article.category || "News")}</div>
+
+        <h1 class="article-title">${escapeHTML(article.title)}</h1>
+
+        ${safeSummary ? `<p class="article-summary">${safeSummary}</p>` : ""}
+
+        <div class="article-meta">
+            <span>${formatDate(article.published_at || article.created_at)}</span>
+            ${article.author ? `<span>By ${escapeHTML(article.author)}</span>` : ""}
+            <span>Tahidi International Training Institute</span>
+        </div>
+
+        ${image}
+
+        <div class="article-content">
+            ${content || "<p>The full story will be updated soon.</p>"}
+        </div>
+
+        <div class="article-actions">
+            <a href="news.html" class="back-link">← Back to All News</a>
+
+            <button class="share-link" id="shareArticle">
+                Share Article
+            </button>
+        </div>
+    `;
+
+    document.getElementById("shareArticle").addEventListener("click", async () => {
+        const shareData = {
+            title: article.title,
+            text: article.summary || article.title,
+            url: window.location.href
+        };
+
+        try {
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else if (navigator.clipboard) {
+                await navigator.clipboard.writeText(window.location.href);
+                alert("Article link copied successfully.");
+            } else {
+                alert("Copy this article link from your browser address bar.");
+            }
+        } catch (error) {
+            if (error.name !== "AbortError") {
+                console.error("Sharing failed:", error);
+            }
+        }
+    });
+}
+
+async function loadArticle() {
+    const params = new URLSearchParams(window.location.search);
+    const articleId = params.get("id");
+
+    if (!articleId) {
+        showError("Article not found");
+        return;
+    }
+
+    const { data, error } = await db
+        .from("titi_website_news")
+        .select("*")
+        .eq("id", articleId)
+        .eq("is_published", true)
+        .maybeSingle();
+
+    if (error) {
+        console.error("Article loading error:", error);
+        showError("Unable to load this article");
+        return;
+    }
+
+    if (!data) {
+        showError("Article not found");
+        return;
+    }
+
+    displayArticle(data);
+}
+
+loadArticle();
+</script>
+
+</body>
+</html>
