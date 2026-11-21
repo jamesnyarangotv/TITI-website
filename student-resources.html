@@ -50,19 +50,17 @@ button,input,select{font-family:inherit}
 }
 
 .brand{
- color:var(--maroon);
- font-size:29px;
- font-weight:800;
- line-height:1.1;
- letter-spacing:1px;
+ display:inline-flex;
+ align-items:center;
+ flex-shrink:0;
 }
 
-.brand small{
+.brand-logo{
  display:block;
- font-size:10px;
- color:#596477;
- letter-spacing:.7px;
- margin-top:6px;
+ width:220px;
+ max-height:80px;
+ object-fit:contain;
+ object-position:left center;
 }
 
 .navigation{
@@ -345,6 +343,10 @@ button,input,select{font-family:inherit}
   padding:15px 18px;
   gap:13px;
  }
+ .brand-logo{
+  width:190px;
+  max-height:70px;
+ }
  .navigation{
   width:100%;
   gap:20px;
@@ -365,8 +367,11 @@ button,input,select{font-family:inherit}
 <header class="header">
  <div class="header-inner">
   <a href="index.html" class="brand">
-   TITI
-   <small>TAHIDI INTERNATIONAL TRAINING INSTITUTE</small>
+   <img
+    src="BYE.png"
+    alt="Tahidi International Training Institute Logo"
+    class="brand-logo"
+   >
   </a>
 
   <nav class="navigation">
