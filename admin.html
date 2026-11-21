@@ -42,9 +42,7 @@ button:disabled{
  cursor:wait;
 }
 
-/* =====================================
-   ADMINISTRATOR LOGIN
-===================================== */
+/* ADMINISTRATOR LOGIN */
 
 #loginScreen{
  min-height:100vh;
@@ -196,9 +194,7 @@ button{
  display:none;
 }
 
-/* =====================================
-   INSTITUTIONAL WHITE HEADER
-===================================== */
+/* INSTITUTIONAL HEADER */
 
 #dashboard{display:none}
 
@@ -308,13 +304,9 @@ button{
  transition:.25s;
 }
 
-.logout:hover{
- background:var(--navy);
-}
+.logout:hover{background:var(--navy)}
 
-/* =====================================
-   MAIN DASHBOARD
-===================================== */
+/* MAIN DASHBOARD */
 
 .container{
  max-width:1250px;
@@ -349,9 +341,7 @@ button{
 
 .refresh:hover{background:var(--maroon)}
 
-/* =====================================
-   STATISTICS
-===================================== */
+/* STATISTICS */
 
 .stats{
  display:grid;
@@ -376,9 +366,7 @@ button{
  margin-top:9px;
 }
 
-/* =====================================
-   PANELS
-===================================== */
+/* PANELS */
 
 .panel{
  background:white;
@@ -451,39 +439,14 @@ th{
  white-space:nowrap;
 }
 
-.status.APPROVED{
- background:#e1f5e9;
- color:#126536;
-}
+.status.APPROVED{background:#e1f5e9;color:#126536}
+.status.REJECTED{background:#fde7e7;color:#a11919}
+.status.VERIFIED{background:#e5edff;color:#17428b}
+.status.UNDER_REVIEW{background:#fff3d8;color:#805500}
+.status.OPEN{background:#e1f5e9;color:#126536}
+.status.CLOSED{background:#fde7e7;color:#a11919}
 
-.status.REJECTED{
- background:#fde7e7;
- color:#a11919;
-}
-
-.status.VERIFIED{
- background:#e5edff;
- color:#17428b;
-}
-
-.status.UNDER_REVIEW{
- background:#fff3d8;
- color:#805500;
-}
-
-.status.OPEN{
- background:#e1f5e9;
- color:#126536;
-}
-
-.status.CLOSED{
- background:#fde7e7;
- color:#a11919;
-}
-
-/* =====================================
-   APPLICANT DETAILS
-===================================== */
+/* APPLICANT DETAILS */
 
 .detail-grid{
  display:grid;
@@ -513,20 +476,9 @@ th{
  margin-top:18px;
 }
 
-.approve{
- background:#167744;
- color:white;
-}
-
-.reject{
- background:#a51d2d;
- color:white;
-}
-
-.secondary{
- background:#e8edf4;
- color:var(--navy);
-}
+.approve{background:#167744;color:white}
+.reject{background:#a51d2d;color:white}
+.secondary{background:#e8edf4;color:var(--navy)}
 
 #detailPanel{display:none}
 
@@ -538,9 +490,7 @@ th{
  font-size:13px;
 }
 
-/* =====================================
-   DOCUMENT VERIFICATION
-===================================== */
+/* DOCUMENT VERIFICATION */
 
 .document-list{
  display:grid;
@@ -606,9 +556,7 @@ th{
  font-size:13px;
 }
 
-/* =====================================
-   PROGRAMME MANAGEMENT
-===================================== */
+/* PROGRAMME MANAGEMENT */
 
 #programmePanel{display:none}
 
@@ -684,11 +632,7 @@ th{
  margin-top:20px;
 }
 
-.save-btn{
- background:var(--maroon);
- color:white;
-}
-
+.save-btn{background:var(--maroon);color:white}
 .save-btn:hover{background:#5c0c18}
 
 .edit-btn{
@@ -730,9 +674,7 @@ th{
  color:#687386;
 }
 
-/* =====================================
-   FOOTER
-===================================== */
+/* FOOTER */
 
 footer{
  text-align:center;
@@ -745,9 +687,7 @@ footer{
  letter-spacing:.3px;
 }
 
-/* =====================================
-   RESPONSIVE DESIGN
-===================================== */
+/* RESPONSIVE DESIGN */
 
 @media(max-width:950px){
 
@@ -756,9 +696,7 @@ footer{
   padding:13px 3%;
  }
 
- .brand{
-  font-size:21px;
- }
+ .brand{font-size:21px}
 
  .header-navigation{
   order:3;
@@ -768,9 +706,7 @@ footer{
   padding-top:5px;
  }
 
- .header-account{
-  margin-left:auto;
- }
+ .header-account{margin-left:auto}
 
 }
 
@@ -801,9 +737,7 @@ footer{
   white-space:nowrap;
  }
 
- .header-navigation .module-btn{
-  font-size:12px;
- }
+ .header-navigation .module-btn{font-size:12px}
 
 }
 
@@ -823,7 +757,6 @@ footer{
  }
 
  .stats{gap:9px}
-
  .stat{padding:14px}
 
  .topbar{
@@ -833,13 +766,9 @@ footer{
 
  .brand{font-size:19px}
 
- .brand small{
-  font-size:9px;
- }
+ .brand small{font-size:9px}
 
- .header-account{
-  gap:6px;
- }
+ .header-account{gap:6px}
 
  #adminName{
   max-width:125px;
@@ -851,9 +780,7 @@ footer{
   font-size:10px;
  }
 
- .header-navigation{
-  gap:18px;
- }
+ .header-navigation{gap:18px}
 
  .header-navigation .module-btn{
   padding:12px 0;
@@ -872,9 +799,7 @@ footer{
 
 <body>
 
-<!-- =====================================
-     ADMINISTRATOR LOGIN
-===================================== -->
+<!-- ADMINISTRATOR LOGIN -->
 
 <section id="loginScreen">
 
@@ -929,9 +854,7 @@ SIGN IN
 </section>
 
 
-<!-- =====================================
-     CENTRAL ADMINISTRATION DASHBOARD
-===================================== -->
+<!-- CENTRAL ADMINISTRATION DASHBOARD -->
 
 <section id="dashboard">
 
@@ -955,13 +878,8 @@ PROGRAMMES
 </nav>
 
 <div class="header-account">
-
 <span id="adminName"></span>
-
-<button class="logout" id="logoutButton">
-LOG OUT
-</button>
-
+<button class="logout" id="logoutButton">LOG OUT</button>
 </div>
 
 </header>
@@ -973,24 +891,19 @@ LOG OUT
 
 <div>
 <h2>Central Administration Dashboard</h2>
-
 <div class="muted">
 Manage institute programmes and student admissions.
 </div>
 </div>
 
-<button class="refresh" id="refreshButton">
-↻ Refresh Data
-</button>
+<button class="refresh" id="refreshButton">↻ Refresh Data</button>
 
 </div>
 
 <div id="message"></div>
 
 
-<!-- =====================================
-     STATISTICS
-===================================== -->
+<!-- STATISTICS -->
 
 <div class="stats" id="admissionsStats">
 
@@ -1017,9 +930,7 @@ Manage institute programmes and student admissions.
 </div>
 
 
-<!-- =====================================
-     PROGRAMME MANAGEMENT
-===================================== -->
+<!-- PROGRAMME MANAGEMENT -->
 
 <section id="programmePanel">
 
@@ -1057,8 +968,17 @@ placeholder="e.g. Diploma in Accounting and Finance">
 
 <label for="programmeLevel">Programme Level *</label>
 
-<input id="programmeLevel" type="text" required
-placeholder="e.g. Diploma, Certificate, Short Course">
+<select id="programmeLevel" required>
+
+<option value="">Select Programme Level</option>
+
+<option value="Certificate">Certificate</option>
+
+<option value="Diploma">Diploma</option>
+
+<option value="Short Course">Short Course</option>
+
+</select>
 
 </div>
 
@@ -1079,9 +999,7 @@ placeholder="e.g. Two Years">
 
 <input id="applicationOpen" type="checkbox" checked>
 
-<label for="applicationOpen">
-Applications are open
-</label>
+<label for="applicationOpen">Applications are open</label>
 
 </div>
 
@@ -1089,9 +1007,7 @@ Applications are open
 
 <div class="form-group full">
 
-<label for="programmeDescription">
-Programme Description
-</label>
+<label for="programmeDescription">Programme Description</label>
 
 <textarea id="programmeDescription"
 placeholder="Enter a description of this programme..."></textarea>
@@ -1102,13 +1018,11 @@ placeholder="Enter a description of this programme..."></textarea>
 
 <div class="programme-actions">
 
-<button type="submit" class="save-btn"
-id="saveProgrammeButton">
+<button type="submit" class="save-btn" id="saveProgrammeButton">
 SAVE PROGRAMME
 </button>
 
-<button type="button" class="secondary"
-id="cancelProgrammeEdit">
+<button type="button" class="secondary" id="cancelProgrammeEdit">
 CLEAR FORM
 </button>
 
@@ -1169,9 +1083,7 @@ Loading programmes...
 </section>
 
 
-<!-- =====================================
-     ADMISSIONS MANAGEMENT
-===================================== -->
+<!-- ADMISSIONS MANAGEMENT -->
 
 <div id="admissionsArea">
 
@@ -1230,17 +1142,11 @@ placeholder="Enter comments about this application..."></textarea>
 
 <div class="actions">
 
-<button class="approve" id="approveButton">
-APPROVE APPLICATION
-</button>
+<button class="approve" id="approveButton">APPROVE APPLICATION</button>
 
-<button class="reject" id="rejectButton">
-REJECT APPLICATION
-</button>
+<button class="reject" id="rejectButton">REJECT APPLICATION</button>
 
-<button class="secondary" id="closeDetails">
-CLOSE
-</button>
+<button class="secondary" id="closeDetails">CLOSE</button>
 
 </div>
 
@@ -1276,8 +1182,6 @@ Select an applicant to view their uploaded documents.
 </main>
 
 
-<!-- FOOTER -->
-
 <footer>
 
 <strong>TAHIDI INTERNATIONAL TRAINING INSTITUTE</strong><br>
@@ -1293,9 +1197,7 @@ TITI Administration Portal
 
 <script>
 
-// ======================================
 // SUPABASE CONFIGURATION
-// ======================================
 
 const SUPABASE_URL =
 "https://jlmbiauilmajuvrnuaul.supabase.co";
@@ -1311,9 +1213,7 @@ const db = window.supabase.createClient(
 );
 
 
-// ======================================
 // GLOBAL VARIABLES
-// ======================================
 
 let currentAdmin = null;
 let applications = [];
@@ -1324,9 +1224,7 @@ let programmes = [];
 const $ = id => document.getElementById(id);
 
 
-// ======================================
-// SHOW / HIDE PASSWORD
-// ======================================
+// PASSWORD VISIBILITY
 
 function togglePasswordVisibility(){
 
@@ -1354,9 +1252,7 @@ function togglePasswordVisibility(){
 }
 
 
-// ======================================
 // HTML ESCAPING
-// ======================================
 
 function escapeHTML(value){
 
@@ -1371,9 +1267,7 @@ function escapeHTML(value){
 }
 
 
-// ======================================
 // STATUS DISPLAY
-// ======================================
 
 function displayStatus(status){
 
@@ -1393,9 +1287,7 @@ function statusClass(status){
 }
 
 
-// ======================================
 // MESSAGES
-// ======================================
 
 function showLoginError(message){
 
@@ -1431,9 +1323,7 @@ function showProgrammeMessage(message,error=false){
 }
 
 
-// ======================================
 // ADMINISTRATOR VERIFICATION
-// ======================================
 
 async function verifyAdministrator(user){
 
@@ -1460,9 +1350,7 @@ async function verifyAdministrator(user){
 }
 
 
-// ======================================
 // SHOW DASHBOARD
-// ======================================
 
 function showDashboard(){
 
@@ -1475,9 +1363,7 @@ function showDashboard(){
 }
 
 
-// ======================================
 // SHOW LOGIN
-// ======================================
 
 function showLogin(){
 
@@ -1510,9 +1396,7 @@ function showLogin(){
 }
 
 
-// ======================================
 // MODULE NAVIGATION
-// ======================================
 
 function showModule(module){
 
@@ -1552,9 +1436,7 @@ $("admissionsTab").addEventListener("click",()=>{
 });
 
 
-// ======================================
 // LOAD APPLICATIONS
-// ======================================
 
 async function loadApplications(){
 
@@ -1608,9 +1490,7 @@ async function loadApplications(){
 }
 
 
-// ======================================
 // STATISTICS
-// ======================================
 
 function updateStatistics(){
 
@@ -1634,9 +1514,7 @@ function updateStatistics(){
 }
 
 
-// ======================================
 // APPLICATION LIST
-// ======================================
 
 function renderApplications(){
 
@@ -1718,9 +1596,7 @@ function renderApplications(){
 }
 
 
-// ======================================
 // APPLICANT DETAIL ITEM
-// ======================================
 
 function detailItem(label,value){
 
@@ -1734,9 +1610,7 @@ function detailItem(label,value){
 }
 
 
-// ======================================
 // OPEN APPLICANT
-// ======================================
 
 async function openApplication(id){
 
@@ -1757,29 +1631,17 @@ async function openApplication(id){
   <div class="detail-grid">
 
    ${detailItem("Reference Number",a.reference_number)}
-
    ${detailItem("Full Name",name)}
-
    ${detailItem("Gender",a.gender)}
-
    ${detailItem("Date of Birth",a.date_of_birth)}
-
    ${detailItem("Nationality",a.nationality)}
-
    ${detailItem("Phone Number",a.phone_number)}
-
    ${detailItem("Email",a.email)}
-
    ${detailItem("Residential Address",a.residential_address)}
-
    ${detailItem("Programme",a.programmes?.programme_name)}
-
    ${detailItem("Programme Level",a.programmes?.programme_level)}
-
    ${detailItem("Highest Qualification",a.highest_qualification)}
-
    ${detailItem("Awarding Institution",a.awarding_institution)}
-
    ${detailItem("Year Completed",a.year_completed)}
 
    ${detailItem("Submission Date",
@@ -1808,9 +1670,7 @@ async function openApplication(id){
 }
 
 
-// ======================================
 // LOAD APPLICANT DOCUMENTS
-// ======================================
 
 async function loadApplicantDocuments(applicationId){
 
@@ -1970,9 +1830,7 @@ async function loadApplicantDocuments(applicationId){
 }
 
 
-// ======================================
 // UPDATE ADMISSION DECISION
-// ======================================
 
 async function updateDecision(status){
 
@@ -2057,7 +1915,7 @@ async function updateDecision(status){
 
  }
 
-} // IMPORTANT: CLOSE updateDecision FUNCTION
+}
 
 
 // ======================================
@@ -2252,6 +2110,7 @@ function editProgramme(id){
  $("programmeName").value =
   p.programme_name || "";
 
+ // Select the exact existing database value.
  $("programmeLevel").value =
   p.programme_level || "";
 
@@ -2291,8 +2150,9 @@ async function saveProgramme(event){
  const programmeName =
   $("programmeName").value.trim();
 
+ // Read the exact selected dropdown value.
  const programmeLevel =
-  $("programmeLevel").value.trim();
+  $("programmeLevel").value;
 
  const description =
   $("programmeDescription").value.trim();
@@ -2302,6 +2162,9 @@ async function saveProgramme(event){
 
  const applicationOpen =
   $("applicationOpen").checked;
+
+
+ // Validate required fields.
 
  if(!programmeName || !programmeLevel){
 
@@ -2313,6 +2176,29 @@ async function saveProgramme(event){
   return;
 
  }
+
+
+ // These are the exact values permitted by Supabase.
+
+ const allowedLevels = [
+  "Certificate",
+  "Diploma",
+  "Short Course"
+ ];
+
+ if(!allowedLevels.includes(programmeLevel)){
+
+  showProgrammeMessage(
+   "Please select a valid Programme Level.",
+   true
+  );
+
+  return;
+
+ }
+
+
+ // Prepare programme data.
 
  const payload = {
 
@@ -2328,15 +2214,19 @@ async function saveProgramme(event){
 
  };
 
+
  $("saveProgrammeButton").disabled = true;
 
  $("saveProgrammeButton").textContent = "SAVING...";
+
 
  try{
 
   let result;
 
   if(id){
+
+   // UPDATE EXISTING PROGRAMME
 
    result = await db
     .from("programmes")
@@ -2346,12 +2236,15 @@ async function saveProgramme(event){
 
   }else{
 
+   // INSERT NEW PROGRAMME
+
    result = await db
     .from("programmes")
     .insert([payload])
     .select("id");
 
   }
+
 
   if(result.error) throw result.error;
 
@@ -2363,15 +2256,18 @@ async function saveProgramme(event){
 
   }
 
+
   showProgrammeMessage(
    id
     ? "Programme successfully updated."
     : "New programme successfully added."
   );
 
+
   clearProgrammeForm();
 
   await loadProgrammes();
+
 
  }catch(error){
 
@@ -2488,9 +2384,7 @@ $("programmeSearch").addEventListener(
 );
 
 
-// ======================================
 // ADMINISTRATOR LOGIN
-// ======================================
 
 $("loginForm").addEventListener("submit",async event=>{
 
@@ -2537,9 +2431,7 @@ $("loginForm").addEventListener("submit",async event=>{
 });
 
 
-// ======================================
 // LOGOUT
-// ======================================
 
 $("logoutButton").addEventListener("click",async()=>{
 
@@ -2550,9 +2442,7 @@ $("logoutButton").addEventListener("click",async()=>{
 });
 
 
-// ======================================
 // DASHBOARD CONTROLS
-// ======================================
 
 $("refreshButton").addEventListener("click",async()=>{
 
@@ -2603,9 +2493,7 @@ $("closeDetails").addEventListener("click",()=>{
 });
 
 
-// ======================================
 // RESTORE EXISTING SESSION
-// ======================================
 
 async function restoreSession(){
 
@@ -2645,4 +2533,4 @@ restoreSession();
 </script>
 
 </body>
-</html> 
+</html>
