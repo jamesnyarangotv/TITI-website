@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>News & Updates | Tahidi International Training Institute</title>
+<meta name="description" content="Latest news, announcements and updates from Tahidi International Training Institute.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+    --maroon: #721c35;
+    --maroon-dark: #501126;
+    --gold: #d5a84b;
+    --ink: #20242b;
+    --muted: #707782;
+    --line: #e8e8e8;
+    --light: #f5f6f8;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    background: #fff;
+    color: var(--ink);
+    line-height: 1.55;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1180px, 94%);
+    margin: auto;
+}
+
+/* TOP BAR */
+.topbar {
+    background: var(--maroon-dark);
+    color: white;
+    font-size: 12px;
+    padding: 7px 0;
+}
+
+.topbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* HEADER */
+.site-header {
+    background: white;
+    border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+    min-height: 92px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.brand-mark {
+    width: 62px;
+    height: 62px;
+    border-radius: 7px;
+    background: var(--maroon);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--maroon-dark);
+}
+
+.brand-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.header-action {
+    background: var(--maroon);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* NAVIGATION */
+.navigation {
+    background: var(--maroon);
+    color: white;
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-inner a {
+    padding: 13px 17px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background .2s;
+}
+
+.nav-inner a:hover,
+.nav-inner a.active {
+    background: var(--maroon-dark);
+}
+
+/* PAGE HEADING */
+.page-heading {
+    background: var(--light);
+    border-bottom: 1px solid var(--line);
+    padding: 25px 0;
+}
+
+.breadcrumb {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.page-heading h1 {
+    font-size: 29px;
+    font-weight: 800;
+    color: var(--maroon-dark);
+    line-height: 1.2;
+}
+
+.page-heading p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+/* MAIN LAYOUT */
+.news-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 285px;
+    gap: 32px;
+    padding-top: 28px;
+    padding-bottom: 45px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--maroon);
+    margin-bottom: 17px;
+    padding-bottom: 9px;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--maroon-dark);
+}
+
+.section-heading span {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* FILTERS */
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 17px;
+}
+
+.filter-btn {
+    border: 1px solid #ddd;
+    background: white;
+    color: #555;
+    padding: 6px 13px;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--maroon);
+    color: white;
+    border-color: var(--maroon);
+}
+
+/* NEWS LIST */
+.news-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-item {
+    display: grid;
+    grid-template-columns: 175px minmax(0, 1fr);
+    gap: 17px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.news-image-link {
+    display: block;
+    height: 112px;
+    overflow: hidden;
+    background: #eceef1;
+    border-radius: 3px;
+}
+
+.news-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s;
+}
+
+.news-item:hover .news-image {
+    transform: scale(1.04);
+}
+
+.news-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: #999;
+    font-size: 12px;
+    background: #eceef1;
+}
+
+.news-category {
+    color: var(--maroon);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 3px;
+}
+
+.news-title {
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #20242b;
+    margin-bottom: 5px;
+}
+
+.news-title a:hover {
+    color: var(--maroon);
+}
+
+.news-summary {
+    color: #666e78;
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 6px;
+}
+
+.news-meta {
+    font-size: 11px;
+    color: #9298a0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* SIDEBAR */
+.sidebar-box {
+    border: 1px solid var(--line);
+    margin-bottom: 18px;
+    background: white;
+}
+
+.sidebar-title {
+    padding: 11px 14px;
+    background: var(--maroon);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.sidebar-content {
+    padding: 14px;
+    font-size: 13px;
+    color: #626a74;
+}
+
+.sidebar-content p {
+    margin-bottom: 9px;
+}
+
+.sidebar-link {
+    display: inline-block;
+    margin-top: 5px;
+    color: var(--maroon);
+    font-weight: 700;
+}
+
+/* STATES */
+.state-message {
+    text-align: center;
+    padding: 45px 15px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.state-message strong {
+    display: block;
+    font-size: 17px;
+    color: var(--maroon-dark);
+    margin-bottom: 5px;
+}
+
+/* FOOTER */
+.site-footer {
+    background: var(--maroon-dark);
+    color: white;
+    padding: 30px 0 15px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 30px;
+    padding-bottom: 22px;
+}
+
+.footer-grid h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--gold);
+}
+
+.footer-grid p,
+.footer-grid a {
+    display: block;
+    font-size: 12px;
+    color: #e7dfe2;
+    margin-bottom: 6px;
+}
+
+.footer-grid a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.18);
+    padding-top: 13px;
+    text-align: center;
+    color: #d9cbd0;
+    font-size: 11px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+    .news-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .sidebar-box {
+        margin: 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .topbar-inner {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-inner {
+        min-height: 75px;
+    }
+
+    .brand-mark {
+        width: 49px;
+        height: 49px;
+        font-size: 16px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+    }
+
+    .brand-subtitle {
+        font-size: 9px;
+    }
+
+    .header-action {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .nav-inner {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .nav-inner a {
+        padding: 11px 13px;
+        white-space: nowrap;
+        font-size: 12px;
+    }
+
+    .page-heading {
+        padding: 19px 0;
+    }
+
+    .page-heading h1 {
+        font-size: 24px;
+    }
+
+    .news-layout {
+        padding-top: 19px;
+    }
+
+    .news-item {
+        grid-template-columns: 116px minmax(0, 1fr);
+        gap: 11px;
+        padding: 12px 0;
+    }
+
+    .news-image-link {
+        height: 91px;
+    }
+
+    .news-title {
+        font-size: 14px;
+        line-height: 1.3;
+        margin-bottom: 4px;
+    }
+
+    .news-summary {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+
+    .news-category,
+    .news-meta {
+        font-size: 10px;
+    }
+
+    .sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="container topbar-inner">
+        <span>TAHIDI INTERNATIONAL TRAINING INSTITUTE</span>
+        <span>Breaking the Limits</span>
+    </div>
+</div>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html" class="brand">
+            <div class="brand-mark">TITI</div>
+            <div>
+                <div class="brand-name">TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</div>
+                <div class="brand-subtitle">QUALITY EDUCATION & PROFESSIONAL TRAINING</div>
+            </div>
+        </a>
+
+        <a href="apply.html" class="header-action">APPLY NOW</a>
+    </div>
+</header>
+
+<nav class="navigation">
+    <div class="container nav-inner">
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT US</a>
+        <a href="programmes.html">PROGRAMMES</a>
+        <a href="admissions.html">ADMISSIONS</a>
+        <a href="news.html" class="active">NEWS & UPDATES</a>
+        <a href="contact.html">CONTACT</a>
+    </div>
+</nav>
+
+<section class="page-heading">
+    <div class="container">
+        <div class="breadcrumb">Home / News & Updates</div>
+        <h1>News & Updates</h1>
+        <p>Latest stories, institutional announcements and developments from TITI.</p>
+    </div>
+</section>
+
+<main class="container news-layout">
+
+    <section>
+        <div class="section-heading">
+            <h2>Latest News</h2>
+            <span id="newsCount">Loading stories...</span>
+        </div>
+
+        <div class="filters" id="newsFilters">
+            <button class="filter-btn active" data-category="All">All News</button>
+        </div>
+
+        <div class="news-list" id="newsList">
+            <div class="state-message">
+                Loading latest news...
+            </div>
+        </div>
+    </section>
+
+    <aside class="sidebar">
+
+        <div class="sidebar-box">
+            <div class="sidebar-title">About TITI</div>
+            <div class="sidebar-content">
+                <p>Tahidi International Training Institute is committed to quality education, professional training and empowering learners with practical skills.</p>
+                <a href="about.html" class="sidebar-link">Discover TITI →</a>
+            </div>
+        </div>
+
+        <div class="sidebar-box">
+            <div class="sidebar-title">Quick Links</div>
+            <div class="sidebar-content">
+                <p><a href="programmes.html" class="sidebar-link">Explore our programmes →</a></p>
+                <p><a href="apply.html" class="sidebar-link">Apply for admission →</a></p>
+                <p><a href="contact.html" class="sidebar-link">Contact the institute →</a></p>
+            </div>
+        </div>
+
+    </aside>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+
+            <div>
+                <h3>ABOUT TITI</h3>
+                <p>Tahidi International Training Institute.</p>
+                <p>Breaking the Limits.</p>
+                <p>Quality education and professional training.</p>
+            </div>
+
+            <div>
+                <h3>QUICK LINKS</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="programmes.html">Programmes</a>
+                <a href="news.html">News & Updates</a>
+            </div>
+
+            <div>
+                <h3>CONTACT</h3>
+                <p>Nangwe, Busia, Uganda</p>
+                <a href="contact.html">Contact our institute</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © <span id="currentYear"></span> Tahidi International Training Institute. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+/* EXISTING TITI SUPABASE PROJECT */
+const SUPABASE_URL = "https://jlmbiauilmajuvrnuaul.supabase.co";
+const SUPABASE_KEY = "sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
+
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const newsList = document.getElementById("newsList");
+const newsCount = document.getElementById("newsCount");
+const newsFilters = document.getElementById("newsFilters");
+
+let allNews = [];
+let activeCategory = "All";
+
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[character]);
+}
+
+function formatDate(dateValue) {
+    if (!dateValue) return "Recently published";
+
+    const date = new Date(dateValue);
+
+    if (Number.isNaN(date.getTime())) return "Recently published";
+
+    return date.toLocaleDateString("en-UG", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+}
+
+function createArticleLink(article) {
+    return "news-article.html?id=" + encodeURIComponent(article.id);
+}
+
+function renderFilters() {
+    const categories = [...new Set(
+        allNews
+            .map(article => article.category || "News")
+            .filter(Boolean)
+    )];
+
+    const buttons = ["All", ...categories];
+
+    newsFilters.innerHTML = buttons.map(category => `
+        <button
+            class="filter-btn ${activeCategory === category ? "active" : ""}"
+            data-category="${escapeHTML(category)}">
+            ${category === "All" ? "All News" : escapeHTML(category)}
+        </button>
+    `).join("");
+}
+
+function renderNews() {
+    const filteredNews = activeCategory === "All"
+        ? allNews
+        : allNews.filter(article =>
+            (article.category || "News") === activeCategory
+        );
+
+    newsCount.textContent = `${filteredNews.length} ${filteredNews.length === 1 ? "story" : "stories"}`;
+
+    if (!filteredNews.length) {
+        newsList.innerHTML = `
+            <div class="state-message">
+                <strong>No news available in this category.</strong>
+                Please check another category.
+            </div>`;
+        return;
+    }
+
+    newsList.innerHTML = filteredNews.map(article => {
+        const link = createArticleLink(article);
+
+        const image = article.image_url
+            ? `<img class="news-image" src="${escapeHTML(article.image_url)}" alt="${escapeHTML(article.title)}" loading="lazy">`
+            : `<div class="news-image-placeholder">TITI NEWS</div>`;
+
+        const summary = article.summary
+            ? escapeHTML(article.summary)
+            : "Read the latest update from Tahidi International Training Institute.";
+
+        return `
+            <article class="news-item">
+
+                <a class="news-image-link" href="${link}" aria-label="Read ${escapeHTML(article.title)}">
+                    ${image}
+                </a>
+
+                <div>
+                    <div class="news-category">${escapeHTML(article.category || "News")}</div>
+
+                    <h3 class="news-title">
+                        <a href="${link}">${escapeHTML(article.title)}</a>
+                    </h3>
+
+                    <p class="news-summary">${summary}</p>
+
+                    <div class="news-meta">
+                        <span>${formatDate(article.published_at || article.created_at)}</span>
+                        ${article.author ? `<span>By ${escapeHTML(article.author)}</span>` : ""}
+                    </div>
+                </div>
+
+            </article>
+        `;
+    }).join("");
+}
+
+newsFilters.addEventListener("click", event => {
+    const button = event.target.closest(".filter-btn");
+    if (!button) return;
+
+    activeCategory = button.dataset.category;
+    renderFilters();
+    renderNews();
+});
+
+async function loadNews() {
+    newsList.innerHTML = `
+        <div class="state-message">Loading latest news...</div>
+    `;
+
+    const { data, error } = await db
+        .from("titi_website_news")
+        .select("id,title,summary,category,author,image_url,published_at,created_at")
+        .eq("is_published", true)
+        .order("published_at", { ascending: false, nullsFirst: false })
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("TITI news loading error:", error);
+
+        newsCount.textContent = "Unable to load";
+
+        newsList.innerHTML = `
+            <div class="state-message">
+                <strong>News could not be loaded.</strong>
+                Please refresh the page or try again later.
+            </div>
+        `;
+        return;
+    }
+
+    allNews = data || [];
+
+    if (!allNews.length) {
+        newsCount.textContent = "0 stories";
+
+        newsList.innerHTML = `
+            <div class="state-message">
+                <strong>No published news yet.</strong>
+                New stories and announcements will appear here.
+            </div>
+        `;
+
+        newsFilters.innerHTML = `
+            <button class="filter-btn active" data-category="All">All News</button>
+        `;
+        return;
+    }
+
+    renderFilters();
+    renderNews();
+}
+
+loadNews();
+</script>
+
+</body>
+</html>
