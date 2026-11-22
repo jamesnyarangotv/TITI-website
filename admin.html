@@ -133,6 +133,16 @@ th{background:#f5f6f9;color:var(--navy);font-weight:800}
 .video-placeholder{text-align:center;padding:35px 20px;background:#f7f8fb;border:1px dashed #cbd3df;border-radius:8px}
 .video-placeholder strong{display:block;color:var(--navy);font-size:18px;margin-bottom:8px}
 .file-note{font-size:11px;color:#687386;margin-top:5px}
+
+/* VIDEO MODULE */
+.video-source-note{background:#f5f7fb;border-left:4px solid var(--gold);padding:11px 14px;margin:12px 0;font-size:12px;color:#566176}
+.video-thumbnail{width:105px;height:65px;object-fit:cover;border-radius:6px;background:#edf0f5}
+.video-preview-frame{width:100%;max-width:720px;aspect-ratio:16/9;border:0;border-radius:8px;background:#111}
+.video-preview-video{width:100%;max-width:720px;max-height:420px;border-radius:8px;background:#111}
+.video-preview-wrap{margin-top:15px;padding:15px;background:#f5f7fb;border:1px solid var(--border);border-radius:8px}
+.video-preview-wrap h4{margin:0 0 10px}
+.video-status{display:flex;gap:6px;flex-wrap:wrap}
+.video-url-cell{max-width:220px;overflow-wrap:anywhere}
 footer{text-align:center;padding:25px;background:#fff;color:#596477;font-size:12px;border-top:3px solid var(--maroon);margin-top:35px;letter-spacing:.3px}
 
 @media(max-width:1050px){
@@ -337,10 +347,9 @@ footer{text-align:center;padding:25px;background:#fff;color:#596477;font-size:12
  <section id="videosPanel" style="display:none">
   <div class="panel">
    <h3>Video Management</h3>
-   <div class="video-placeholder">
-    <strong>Video Management Database Not Yet Configured</strong>
-    <p class="muted">The database structure inspected for this dashboard did not include a dedicated video table. I have not connected this module to an unrelated table or created a new database table without your approval.</p>
-    <p class="muted">Your existing website and other dashboard modules remain unaffected.</p>
+   <p class="muted">Upload institute videos or add YouTube videos for display on the public TITI website.</p>
+   <div id="videoModuleContent">
+    <p class="muted">Loading video management...</p>
    </div>
   </div>
  </section>
@@ -362,6 +371,7 @@ const SUPABASE_KEY="sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W";
 const DOCUMENT_BUCKET="titi-applicant-documents";
 const WEBSITE_BUCKET="titi-website-media";
 const NOTICE_BUCKET="titi-notices";
+const VIDEO_BUCKET="titi-website-videos";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
 let currentAdmin=null,applications=[],selectedApplication=null,currentDocuments=[],programmes=[];
@@ -456,6 +466,7 @@ function showModule(module){
  if(module==="website")loadWebsiteModule(activeCms);
  if(module==="notices"){loadNotices();loadNoticeDocuments();}
  if(module==="news")loadNews();
+ if(module==="videos")loadVideos();
 }
 document.querySelectorAll(".module-btn").forEach(b=>b.addEventListener("click",()=>showModule(b.dataset.module)));
 
@@ -850,7 +861,6 @@ async function saveAboutContent(e){
   let result;
   if(aboutRecord?.id)result=await db.from("titi_site_content").update(payload).eq("id",aboutRecord.id).select("id");
   else{
-   // content_key is required by the inspected schema; use the standard site-wide key for the initial record.
    payload.content_key="main";
    result=await db.from("titi_site_content").insert(payload).select("id");
   }
@@ -1067,6 +1077,475 @@ async function deleteNoticeDocument(id){
 }
 
 /* =========================================
+   VIDEO MANAGEMENT
+========================================= */
+let videoRecords=[],editingVideoId=null;
+
+async function loadVideos(){
+ const host=$("videoModuleContent");
+ host.innerHTML='<p class="muted">Loading website videos...</p>';
+
+ const {data,error}=await db.from("titi_website_videos")
+  .select("*")
+  .order("display_order",{ascending:true})
+  .order("created_at",{ascending:false});
+
+ if(error){
+  host.innerHTML=`<div class="document-error">Unable to load website videos: ${escapeHTML(error.message)}</div>`;
+  return;
+ }
+
+ videoRecords=data||[];
+ renderVideoManager();
+}
+
+function renderVideoManager(){
+ const host=$("videoModuleContent");
+
+ host.innerHTML=`
+ <div class="cms-help">
+ Manage videos displayed on the public TITI website. You can upload an MP4, WebM or MOV video, or add a YouTube video link. Uploaded videos are stored in the <strong>${VIDEO_BUCKET}</strong> storage bucket.
+ </div>
+
+ <div class="content-section">
+  <h4 id="videoFormTitle">Add New Video</h4>
+
+  <form id="videoForm">
+   <input type="hidden" id="videoId">
+
+   <div class="cms-form">
+
+    ${cmsFormField("videoTitle","Video Title *","","text",true,"Enter the video title")}
+
+    ${cmsFormField("videoDescription","Video Description","","textarea",true,"Describe this video")}
+
+    <div class="form-group">
+     <label for="videoType">Video Source *</label>
+     <select id="videoType" required>
+      <option value="upload">Upload Video File</option>
+      <option value="youtube">YouTube Video Link</option>
+     </select>
+    </div>
+
+    <div class="form-group" id="videoFileGroup">
+     <label for="videoFile">Select Video File</label>
+     <input id="videoFile" type="file" accept="video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov">
+     <div class="file-note">Maximum file size: 100 MB. Supported formats: MP4, WebM and MOV.</div>
+    </div>
+
+    <div class="form-group hidden" id="videoUrlGroup">
+     <label for="videoUrl">YouTube Video URL *</label>
+     <input id="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=...">
+     <div class="file-note">Paste the normal YouTube video link.</div>
+    </div>
+
+    <div class="form-group full">
+     <label for="videoThumbnail">Video Thumbnail (Optional)</label>
+     <input id="videoThumbnail" type="file" accept="image/*">
+     <div class="file-note">Choose a thumbnail image from your device. Leave empty to keep the existing thumbnail.</div>
+    </div>
+
+    <div class="form-group">
+     <label for="videoOrder">Display Order</label>
+     <input id="videoOrder" type="number" min="0" value="0">
+    </div>
+
+    ${cmsCheckbox("videoPublished","Publish this video on the public website",false)}
+    ${cmsCheckbox("videoActive","Make this video active and visible",true)}
+
+   </div>
+
+   <div class="video-source-note" id="videoExistingNote">
+    For an uploaded video, select a video file. For a YouTube video, change the source above and paste its link.
+   </div>
+
+   <div class="cms-actions">
+    <button class="save-btn" id="saveVideoButton" type="submit">SAVE VIDEO</button>
+    <button class="secondary" id="videoClearButton" type="button">CLEAR FORM</button>
+   </div>
+
+   <div id="videoPreviewArea"></div>
+  </form>
+ </div>
+
+ <div class="content-section">
+  <div class="cms-heading">
+   <h4>Existing Website Videos</h4>
+   <span class="muted">${videoRecords.length} video(s)</span>
+  </div>
+
+  <div class="table-wrap">
+   <table>
+    <thead>
+     <tr>
+      <th>Thumbnail</th>
+      <th>Video Details</th>
+      <th>Source</th>
+      <th>Order</th>
+      <th>Status</th>
+      <th>Actions</th>
+     </tr>
+    </thead>
+    <tbody id="videoRows"></tbody>
+   </table>
+  </div>
+ </div>
+ `;
+
+ $("videoForm").addEventListener("submit",saveVideo);
+ $("videoType").addEventListener("change",toggleVideoSource);
+ $("videoClearButton").addEventListener("click",clearVideoForm);
+
+ toggleVideoSource();
+ renderVideoRows();
+}
+
+function toggleVideoSource(){
+ const type=$("videoType").value;
+ $("videoFileGroup").classList.toggle("hidden",type!=="upload");
+ $("videoUrlGroup").classList.toggle("hidden",type!=="youtube");
+
+ $("videoFile").required=type==="upload"&&!$("videoId").value;
+ $("videoUrl").required=type==="youtube";
+}
+
+function clearVideoForm(){
+ $("videoForm").reset();
+ $("videoId").value="";
+ $("videoType").value="upload";
+ $("videoOrder").value="0";
+ $("videoPublished").checked=false;
+ $("videoActive").checked=true;
+ $("videoFormTitle").textContent="Add New Video";
+ $("saveVideoButton").textContent="SAVE VIDEO";
+ $("videoPreviewArea").innerHTML="";
+ $("videoExistingNote").textContent="For an uploaded video, select a video file. For a YouTube video, change the source above and paste its link.";
+ toggleVideoSource();
+}
+
+function renderVideoRows(){
+ const body=$("videoRows");
+
+ if(!videoRecords.length){
+  body.innerHTML='<tr><td colspan="6" class="programme-empty">No website videos have been added yet.</td></tr>';
+  return;
+ }
+
+ body.innerHTML=videoRecords.map(v=>{
+  const thumbnail=v.thumbnail_url
+   ?`<img class="video-thumbnail" src="${escapeHTML(v.thumbnail_url)}" alt="${escapeHTML(v.title)}">`
+   :'<div class="video-thumbnail" style="display:flex;align-items:center;justify-content:center">VIDEO</div>';
+
+  const publication=v.is_published
+   ?'<span class="status PUBLISHED">PUBLISHED</span>'
+   :'<span class="status DRAFT">DRAFT</span>';
+
+  const active=v.is_active
+   ?'<span class="status OPEN">ACTIVE</span>'
+   :'<span class="status CLOSED">HIDDEN</span>';
+
+  return `<tr>
+   <td>${thumbnail}</td>
+   <td>
+    <strong>${escapeHTML(v.title)}</strong><br>
+    <span class="muted">${escapeHTML(v.description||"No description")}</span>
+   </td>
+   <td class="video-url-cell">
+    ${v.video_type==="youtube"?"YouTube":"Uploaded video"}
+   </td>
+   <td>${escapeHTML(v.display_order??0)}</td>
+   <td><div class="video-status">${publication}${active}</div></td>
+   <td>
+    <div class="cms-table-actions">
+     <button class="view-btn" data-video-preview="${escapeHTML(v.id)}">PREVIEW</button>
+     <button class="edit-btn" data-video-edit="${escapeHTML(v.id)}">EDIT</button>
+     <button class="delete-btn" data-video-delete="${escapeHTML(v.id)}">DELETE</button>
+    </div>
+   </td>
+  </tr>`;
+ }).join("");
+
+ body.querySelectorAll("[data-video-preview]").forEach(b=>{
+  b.addEventListener("click",()=>previewVideo(b.dataset.videoPreview));
+ });
+
+ body.querySelectorAll("[data-video-edit]").forEach(b=>{
+  b.addEventListener("click",()=>editVideo(b.dataset.videoEdit));
+ });
+
+ body.querySelectorAll("[data-video-delete]").forEach(b=>{
+  b.addEventListener("click",()=>deleteVideo(b.dataset.videoDelete));
+ });
+}
+
+function editVideo(id){
+ const v=videoRecords.find(x=>String(x.id)===String(id));
+ if(!v)return;
+
+ $("videoId").value=v.id;
+ $("videoTitle").value=v.title||"";
+ $("videoDescription").value=v.description||"";
+ $("videoType").value=v.video_type||"upload";
+ $("videoUrl").value=v.video_type==="youtube"?(v.video_url||""):"";
+ $("videoOrder").value=v.display_order??0;
+ $("videoPublished").checked=v.is_published===true;
+ $("videoActive").checked=v.is_active===true;
+
+ $("videoFormTitle").textContent="Edit Video";
+ $("saveVideoButton").textContent="UPDATE VIDEO";
+
+ $("videoExistingNote").textContent=
+  v.video_type==="youtube"
+   ?"Existing YouTube video: paste a new URL only if you want to replace it."
+   :"Existing uploaded video: select a new file only if you want to replace it.";
+
+ $("videoPreviewArea").innerHTML="";
+ toggleVideoSource();
+
+ $("videoForm").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function getYouTubeEmbedUrl(url){
+ try{
+  const parsed=new URL(url);
+  let id="";
+
+  if(parsed.hostname==="youtu.be"){
+   id=parsed.pathname.split("/").filter(Boolean)[0]||"";
+  }else if(parsed.hostname.includes("youtube.com")){
+   if(parsed.pathname==="/watch"){
+    id=parsed.searchParams.get("v")||"";
+   }else{
+    const parts=parsed.pathname.split("/").filter(Boolean);
+    if(["embed","shorts","live"].includes(parts[0]))id=parts[1]||"";
+   }
+  }
+
+  if(!/^[a-zA-Z0-9_-]{11}$/.test(id))return null;
+  return "https://www.youtube-nocookie.com/embed/"+id;
+ }catch(e){
+  return null;
+ }
+}
+
+function getVideoPreviewMarkup(video){
+ if(video.video_type==="youtube"){
+  const embed=getYouTubeEmbedUrl(video.video_url);
+  if(!embed)return '<p class="document-error">This YouTube URL is not valid or could not be recognised.</p>';
+  return `<iframe class="video-preview-frame" src="${escapeHTML(embed)}" title="${escapeHTML(video.title)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+ }
+
+ if(video.video_url){
+  return `<video class="video-preview-video" controls preload="metadata" src="${escapeHTML(video.video_url)}"></video>`;
+ }
+
+ return '<p class="muted">No video file is available to preview.</p>';
+}
+
+function previewVideo(id){
+ const video=videoRecords.find(v=>String(v.id)===String(id));
+ if(!video)return;
+
+ $("videoPreviewArea").innerHTML=`
+  <div class="video-preview-wrap">
+   <h4>Video Preview: ${escapeHTML(video.title)}</h4>
+   ${getVideoPreviewMarkup(video)}
+  </div>
+ `;
+
+ $("videoPreviewArea").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+async function saveVideo(e){
+ e.preventDefault();
+
+ const id=$("videoId").value.trim();
+ const title=$("videoTitle").value.trim();
+ const type=$("videoType").value;
+ const description=$("videoDescription").value.trim()||null;
+ const videoFile=$("videoFile").files[0];
+ const thumbnailFile=$("videoThumbnail").files[0];
+
+ if(!title){
+  showCmsMessage("Enter a video title.",true);
+  return;
+ }
+
+ if(!["upload","youtube"].includes(type)){
+  showCmsMessage("Select a valid video source.",true);
+  return;
+ }
+
+ if(type==="youtube"){
+  const url=$("videoUrl").value.trim();
+  if(!url||!getYouTubeEmbedUrl(url)){
+   showCmsMessage("Enter a valid YouTube video URL.",true);
+   return;
+  }
+ }
+
+ if(type==="upload"&&!id&&!videoFile){
+  showCmsMessage("Please select a video file to upload.",true);
+  return;
+ }
+
+ if(videoFile){
+  if(videoFile.size>100*1024*1024){
+   showCmsMessage("The video file exceeds the maximum upload size of 100 MB.",true);
+   return;
+  }
+
+  const allowed=["video/mp4","video/webm","video/quicktime"];
+  const extension=videoFile.name.split(".").pop().toLowerCase();
+
+  if(!allowed.includes(videoFile.type)&&!["mp4","webm","mov"].includes(extension)){
+   showCmsMessage("Unsupported video format. Use MP4, WebM or MOV.",true);
+   return;
+  }
+ }
+
+ if(thumbnailFile&&!thumbnailFile.type.startsWith("image/")){
+  showCmsMessage("Please select a valid image for the thumbnail.",true);
+  return;
+ }
+
+ const existing=id?videoRecords.find(v=>String(v.id)===String(id)):null;
+
+ const payload={
+  title,
+  description,
+  video_type:type,
+  display_order:Math.max(0,Number($("videoOrder").value)||0),
+  is_published:$("videoPublished").checked,
+  is_active:$("videoActive").checked,
+  updated_at:new Date().toISOString()
+ };
+
+ if(type==="youtube"){
+  payload.video_url=$("videoUrl").value.trim();
+  payload.video_path=null;
+ }else if(existing){
+  payload.video_url=existing.video_url;
+  payload.video_path=existing.video_path;
+ }
+
+ if(payload.is_published&&!existing?.published_at){
+  payload.published_at=new Date().toISOString();
+ }
+
+ if(!payload.is_published){
+  payload.published_at=existing?.published_at||null;
+ }
+
+ const button=$("saveVideoButton");
+ setButtonBusy(button,true,"SAVING...");
+
+ let uploadedVideo=null;
+ let uploadedThumbnail=null;
+
+ try{
+  if(videoFile){
+   uploadedVideo=await uploadFile(VIDEO_BUCKET,videoFile,"videos");
+   payload.video_url=uploadedVideo.url;
+   payload.video_path=uploadedVideo.path;
+  }
+
+  if(thumbnailFile){
+   uploadedThumbnail=await uploadFile(VIDEO_BUCKET,thumbnailFile,"thumbnails");
+   payload.thumbnail_url=uploadedThumbnail.url;
+   payload.thumbnail_path=uploadedThumbnail.path;
+  }
+
+  let result;
+
+  if(id){
+   result=await db.from("titi_website_videos")
+    .update(payload)
+    .eq("id",id)
+    .select("id");
+  }else{
+   result=await db.from("titi_website_videos")
+    .insert(payload)
+    .select("id");
+  }
+
+  if(result.error)throw result.error;
+
+  if(!result.data?.length){
+   throw new Error("No video record was saved. Check your administrator permissions.");
+  }
+
+  if(existing){
+   if(uploadedVideo&&existing.video_path){
+    await removeStorageFile(VIDEO_BUCKET,existing.video_path);
+   }
+
+   if(uploadedThumbnail&&existing.thumbnail_path){
+    await removeStorageFile(VIDEO_BUCKET,existing.thumbnail_path);
+   }
+
+   if(type==="youtube"&&existing.video_path){
+    await removeStorageFile(VIDEO_BUCKET,existing.video_path);
+   }
+  }
+
+  showCmsMessage(id?"Video successfully updated.":"Video successfully added.");
+
+  await loadVideos();
+
+ }catch(err){
+  if(uploadedVideo?.path){
+   await removeStorageFile(VIDEO_BUCKET,uploadedVideo.path);
+  }
+
+  if(uploadedThumbnail?.path){
+   await removeStorageFile(VIDEO_BUCKET,uploadedThumbnail.path);
+  }
+
+  showCmsMessage("Unable to save video: "+err.message,true);
+
+ }finally{
+  setButtonBusy(button,false);
+ }
+}
+
+async function deleteVideo(id){
+ const video=videoRecords.find(v=>String(v.id)===String(id));
+ if(!video)return;
+
+ if(!confirm("Are you sure you want to delete this video?\n\n"+video.title+"\n\nThis action cannot be undone.")){
+  return;
+ }
+
+ try{
+  const {data,error}=await db.from("titi_website_videos")
+   .delete()
+   .eq("id",id)
+   .select("id");
+
+  if(error)throw error;
+
+  if(!data?.length){
+   throw new Error("No video record was deleted. Check administrator permissions.");
+  }
+
+  if(video.video_path){
+   await removeStorageFile(VIDEO_BUCKET,video.video_path);
+  }
+
+  if(video.thumbnail_path){
+   await removeStorageFile(VIDEO_BUCKET,video.thumbnail_path);
+  }
+
+  showCmsMessage("Video successfully deleted.");
+  await loadVideos();
+
+ }catch(err){
+  showCmsMessage("Unable to delete video: "+err.message,true);
+ }
+}
+
+/* =========================================
    EVENT LISTENERS AND SESSION
 ========================================= */
 $("loginForm").addEventListener("submit",async e=>{
@@ -1089,12 +1568,14 @@ $("closeDetails").addEventListener("click",()=>{
 $("programmeForm").addEventListener("submit",saveProgramme);
 $("cancelProgrammeEdit").addEventListener("click",()=>{clearProgrammeForm();hideBox("programmeMessage");});
 $("refreshProgrammesButton").addEventListener("click",loadProgrammes);
+
 $("refreshButton").addEventListener("click",async()=>{
  if(activeModule==="admissions")await loadApplications();
  else if(activeModule==="programmes")await loadProgrammes();
  else if(activeModule==="website")await loadWebsiteModule(activeCms);
  else if(activeModule==="notices"){await loadNotices();await loadNoticeDocuments();}
  else if(activeModule==="news")await loadNews();
+ else if(activeModule==="videos")await loadVideos();
 });
 
 async function restoreSession(){
