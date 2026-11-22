@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#091B3D">
+<title>Videos | Tahidi International Training Institute</title>
+<meta name="description" content="Watch institutional videos, academic activities and updates from Tahidi International Training Institute.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root{
+ --maroon:#7A1220;
+ --navy:#0F2A5E;
+ --dark:#091B3D;
+ --gold:#D4AF37;
+ --light:#F4F6F9;
+ --text:#263247;
+ --muted:#697589;
+ --border:#E3E7ED;
+ --shadow:0 8px 25px rgba(10,30,65,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;color:var(--text);background:#fff;line-height:1.7}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+.container{width:min(1180px,92%);margin:auto}
+
+/* TOP BAR */
+.topbar{
+ background:var(--dark);color:#fff;text-align:center;
+ padding:8px 12px;font-size:12px;font-weight:700;letter-spacing:1px
+}
+
+/* HEADER */
+header{
+ background:#fff;position:sticky;top:0;z-index:100;
+ border-bottom:3px solid var(--maroon);
+ box-shadow:0 4px 18px rgba(0,0,0,.07)
+}
+.header-inner{
+ width:min(1450px,94%);min-height:88px;margin:auto;
+ display:flex;align-items:center;justify-content:space-between;gap:20px
+}
+.brand img{width:145px;height:75px;object-fit:contain}
+nav{display:flex;align-items:center;gap:clamp(12px,2vw,27px)}
+nav a{
+ color:#111;font-size:13px;font-weight:800;
+ text-transform:uppercase;white-space:nowrap;transition:.2s
+}
+nav a:hover,nav a.active{color:var(--maroon)}
+nav .apply{
+ background:var(--maroon);color:#fff;padding:10px 15px;border-radius:4px
+}
+nav .apply:hover{background:var(--navy);color:#fff}
+.menu-toggle{
+ display:none;background:var(--maroon);color:#fff;
+ border:0;border-radius:4px;padding:8px 13px;font-size:22px
+}
+
+/* HERO */
+.hero{
+ background:linear-gradient(115deg,#0B2452 0%,#12366F 55%,#7A1220 100%);
+ color:#fff;text-align:center;padding:65px 15px 58px
+}
+.hero-label{
+ display:inline-block;background:rgba(255,255,255,.12);
+ border:1px solid rgba(255,255,255,.3);
+ padding:6px 17px;border-radius:30px;font-size:11px;
+ font-weight:800;letter-spacing:2px;margin-bottom:15px
+}
+.hero h1{
+ font-size:clamp(30px,4.5vw,49px);line-height:1.2;
+ font-weight:800;margin-bottom:12px
+}
+.hero h1 span{color:var(--gold)}
+.hero p{
+ max-width:750px;margin:0 auto;color:#edf1f8;
+ font-size:16px;line-height:1.8
+}
+.gold-line{height:4px;width:65px;background:var(--gold);margin:20px auto 0;border-radius:5px}
+
+/* VIDEO SECTION */
+.video-section{padding:65px 0 80px;background:var(--light);min-height:400px}
+.section-heading{text-align:center;margin-bottom:35px}
+.section-heading h2{font-size:30px;color:var(--navy);font-weight:800}
+.section-heading p{font-size:14px;color:var(--muted);margin-top:5px}
+
+.video-count{
+ display:inline-block;background:#fff;color:var(--navy);
+ padding:7px 15px;border:1px solid var(--border);
+ border-radius:30px;font-size:12px;font-weight:800;margin-top:13px
+}
+.video-grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:25px;align-items:start
+}
+.video-card{
+ background:#fff;border:1px solid var(--border);
+ border-radius:9px;overflow:hidden;box-shadow:var(--shadow);
+ transition:transform .25s,box-shadow .25s;min-width:0
+}
+.video-card:hover{
+ transform:translateY(-3px);
+ box-shadow:0 13px 30px rgba(10,30,65,.13)
+}
+.video-player{
+ width:100%;aspect-ratio:16/9;background:#101828;
+ display:block;object-fit:contain;border:0
+}
+.video-information{padding:20px 21px 22px}
+.video-information h3{
+ color:var(--navy);font-size:20px;font-weight:800;
+ line-height:1.35;margin-bottom:9px
+}
+.video-information p{
+ font-size:14px;color:#657187;line-height:1.75;
+ overflow-wrap:anywhere
+}
+.video-meta{
+ display:flex;align-items:center;gap:8px;
+ margin-top:14px;flex-wrap:wrap
+}
+.video-tag{
+ background:#f0f3f8;color:var(--navy);
+ border-radius:20px;padding:5px 11px;
+ font-size:10px;font-weight:800;text-transform:uppercase
+}
+.video-date{font-size:11px;color:var(--muted)}
+
+.video-empty,.video-loading,.video-error{
+ background:#fff;border:1px solid var(--border);
+ border-radius:8px;text-align:center;padding:45px 20px;
+ box-shadow:var(--shadow);grid-column:1/-1
+}
+.video-empty h3,.video-loading h3,.video-error h3{
+ color:var(--navy);font-size:20px;margin-bottom:8px
+}
+.video-empty p,.video-loading p,.video-error p{
+ color:var(--muted);font-size:14px
+}
+.video-icon{font-size:35px;margin-bottom:12px}
+.retry-button{
+ margin-top:17px;background:var(--maroon);color:#fff;
+ padding:10px 20px;border:0;border-radius:4px;font-weight:800
+}
+.retry-button:hover{background:var(--navy)}
+
+/* FOOTER */
+.site-footer{background:var(--dark);color:#fff;padding:48px 0 0}
+.footer-grid{
+ display:grid;grid-template-columns:1.2fr 1fr 1fr;
+ gap:35px;padding-bottom:30px
+}
+.footer-brand h3{font-size:20px;line-height:1.4;margin-bottom:9px}
+.footer-motto{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:13px}
+.footer-grid p{font-size:13px;color:#d4dbea;margin-bottom:12px}
+.footer-column h3{font-size:16px;color:var(--gold);margin-bottom:13px}
+.footer-column ul{list-style:none}
+.footer-column li{margin-bottom:7px}
+.footer-column a{font-size:13px;color:#e4e9f2}
+.footer-column a:hover{color:var(--gold)}
+.footer-bottom{
+ border-top:1px solid rgba(255,255,255,.15);
+ padding:17px 0;text-align:center
+}
+.footer-bottom p{font-size:12px;color:#cbd3e1}
+.footer-bottom strong{color:var(--gold)}
+
+@media(max-width:850px){
+ .header-inner{min-height:78px}
+ .brand img{width:125px;height:68px}
+ .menu-toggle{display:block}
+ nav{
+  display:none;position:absolute;top:100%;left:0;right:0;
+  background:#fff;padding:12px 5%;flex-direction:column;
+  align-items:stretch;gap:0;box-shadow:0 8px 18px #0002;
+  max-height:calc(100vh - 78px);overflow-y:auto
+ }
+ nav.open{display:flex}
+ nav a{padding:12px 5px;border-bottom:1px solid var(--border)}
+ nav .apply{margin-top:10px;text-align:center}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+ .hero{padding:43px 15px}
+ .hero h1{font-size:29px}
+ .hero p{font-size:13px}
+ .video-section{padding:43px 0 55px}
+ .section-heading h2{font-size:25px}
+ .video-grid{grid-template-columns:1fr;gap:18px}
+ .video-information{padding:16px}
+ .video-information h3{font-size:18px}
+ .video-information p{font-size:13px}
+ .footer-grid{grid-template-columns:1fr;gap:25px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+TAHIDI INTERNATIONAL TRAINING INSTITUTE | BREAKING THE LIMITS
+</div>
+
+<header>
+ <div class="header-inner">
+  <a href="index.html" class="brand" aria-label="TITI Home">
+   <img src="BYE.png" alt="Tahidi International Training Institute Logo">
+  </a>
+
+  <button class="menu-toggle" id="menuToggle"
+   aria-label="Open navigation" aria-expanded="false">☰</button>
+
+  <nav id="mainNav">
+   <a href="index.html">HOME</a>
+   <a href="about.html">ABOUT US</a>
+   <a href="index.html#programmes">PROGRAMMES</a>
+   <a href="apply.html#admissions">ADMISSIONS</a>
+   <a href="notices.html">NOTICES</a>
+   <a href="news.html">NEWS</a>
+   <a href="gallery.html">GALLERY</a>
+   <a href="videos.html" class="active">VIDEOS</a>
+   <a href="contacts.html">CONTACT</a>
+   <a href="apply.html#online-application" class="apply">APPLY NOW</a>
+  </nav>
+ </div>
+</header>
+
+<main>
+
+<section class="hero">
+ <div class="container">
+  <div class="hero-label">TITI MEDIA CENTRE</div>
+  <h1>SEE THE NEWS. <span>HEAR THE STORY.</span></h1>
+  <p>
+   Explore videos from Tahidi International Training Institute.
+   Discover our institution, academic programmes, student experiences,
+   campus activities and important announcements.
+  </p>
+  <div class="gold-line"></div>
+ </div>
+</section>
+
+<section class="video-section">
+ <div class="container">
+
+  <div class="section-heading">
+   <h2>Our Videos</h2>
+   <p>Watch and discover life, learning and activities at TITI.</p>
+   <div class="video-count" id="videoCount">Loading videos...</div>
+  </div>
+
+  <div class="video-grid" id="videoGrid">
+   <div class="video-loading">
+    <div class="video-icon">▶</div>
+    <h3>Loading TITI Videos</h3>
+    <p>Please wait while we connect to our media library.</p>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+ <div class="container">
+  <div class="footer-grid">
+
+   <div class="footer-brand">
+    <h3>TAHIDI INTERNATIONAL<br>TRAINING INSTITUTE</h3>
+    <div class="footer-motto">BREAKING THE LIMITS</div>
+    <p>
+     Committed to quality education, practical skills and professional
+     training that prepares learners for opportunities in the world of work.
+    </p>
+    <p><strong>Our Location:</strong><br>
+     Nangwe, near Bila High School,<br>Busia, Uganda.
+    </p>
+   </div>
+
+   <div class="footer-column">
+    <h3>Explore TITI</h3>
+    <ul>
+     <li><a href="index.html">Home</a></li>
+     <li><a href="about.html">About Our Institute</a></li>
+     <li><a href="index.html#programmes">Academic Programmes</a></li>
+     <li><a href="apply.html#admissions">Admissions</a></li>
+     <li><a href="notices.html">Notice Board</a></li>
+     <li><a href="news.html">Institutional News</a></li>
+     <li><a href="gallery.html">Photo Gallery</a></li>
+     <li><a href="videos.html">Videos</a></li>
+     <li><a href="contacts.html">Contact Us</a></li>
+    </ul>
+   </div>
+
+   <div class="footer-column">
+    <h3>Contact Information</h3>
+    <p><strong>Institution:</strong><br>
+     Tahidi International Training Institute</p>
+    <p><strong>Telephone:</strong><br>
+     <a href="tel:+256776433303">+256776433303</a></p>
+    <p><strong>Email:</strong><br>
+     <a href="mailto:tahidiinternationalinstitute@gmail.com">
+      tahidiinternationalinstitute@gmail.com
+     </a>
+    </p>
+    <p><strong>Website:</strong><br>
+     <a href="https://www.titi.ac.ug/">www.titi.ac.ug</a>
+    </p>
+   </div>
+
+  </div>
+
+  <div class="footer-bottom">
+   <p>© <span id="footerYear"></span>
+    <strong>Tahidi International Training Institute.</strong>
+    All Rights Reserved.
+   </p>
+  </div>
+ </div>
+</footer>
+
+<script>
+/* ==========================================
+   TITI SUPABASE CONNECTION
+   ========================================== */
+
+const TITI_SUPABASE_URL =
+ 'https://jlmbiauilmajuvrnuaul.supabase.co';
+
+const TITI_SUPABASE_KEY =
+ 'sb_publishable_b3g7gWtSGVtI5lCyCR5LxA_KjFXh08W';
+
+const TITI_VIDEO_TABLE = 'titi_website_videos';
+const TITI_VIDEO_BUCKET = 'titi-website-videos';
+
+const titiSupabase = window.supabase.createClient(
+ TITI_SUPABASE_URL,
+ TITI_SUPABASE_KEY
+);
+
+const videoGrid = document.getElementById('videoGrid');
+const videoCount = document.getElementById('videoCount');
+
+/* ==========================================
+   SAFE TEXT AND URL HELPERS
+   ========================================== */
+
+function escapeHTML(value){
+ return String(value ?? '').replace(/[&<>"']/g, character => ({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#039;'
+ })[character]);
+}
+
+function safeHTTPURL(value){
+ if(!value || typeof value !== 'string') return '';
+
+ try{
+  const url = new URL(value, window.location.href);
+
+  if(url.protocol !== 'https:' && url.protocol !== 'http:'){
+   return '';
+  }
+
+  return url.href;
+ }catch(error){
+  return '';
+ }
+}
+
+/* ==========================================
+   GET PUBLIC STORAGE URL
+   ========================================== */
+
+function getStorageURL(path){
+ if(!path) return '';
+
+ try{
+  return titiSupabase
+   .storage
+   .from(TITI_VIDEO_BUCKET)
+   .getPublicUrl(path).data.publicUrl;
+ }catch(error){
+  console.error('Storage URL error:',error);
+  return '';
+ }
+}
+
+/* ==========================================
+   YOUTUBE VIDEO URL CONVERSION
+   ========================================== */
+
+function getYouTubeEmbedURL(value){
+
+ const safeURL = safeHTTPURL(value);
+ if(!safeURL) return '';
+
+ try{
+  const url = new URL(safeURL);
+  const host = url.hostname.replace(/^www\./,'');
+
+  let videoID = '';
+
+  if(host === 'youtu.be'){
+   videoID = url.pathname.split('/').filter(Boolean)[0] || '';
+  }
+  else if(
+   host === 'youtube.com' ||
+   host === 'm.youtube.com' ||
+   host === 'youtube-nocookie.com'
+  ){
+   if(url.pathname === '/watch'){
+    videoID = url.searchParams.get('v') || '';
+   }else{
+    const parts = url.pathname.split('/').filter(Boolean);
+
+    if(['embed','shorts','live'].includes(parts[0])){
+     videoID = parts[1] || '';
+    }
+   }
+  }
+
+  if(!/^[A-Za-z0-9_-]{11}$/.test(videoID)){
+   return '';
+  }
+
+  return 'https://www.youtube-nocookie.com/embed/' +
+   videoID + '?rel=0';
+
+ }catch(error){
+  return '';
+ }
+}
+
+/* ==========================================
+   DETERMINE VIDEO SOURCE
+   ========================================== */
+
+function isYouTubeVideo(video){
+
+ const type = String(video.video_type || '').toLowerCase();
+
+ if(type.includes('youtube')) return true;
+
+ const url = String(video.video_url || '').toLowerCase();
+
+ return url.includes('youtube.com') ||
+        url.includes('youtu.be');
+}
+
+/* ==========================================
+   VIDEO THUMBNAIL
+   ========================================== */
+
+function getThumbnail(video){
+
+ let thumbnail = safeHTTPURL(video.thumbnail_url);
+
+ if(!thumbnail && video.thumbnail_path){
+  thumbnail = safeHTTPURL(getStorageURL(video.thumbnail_path));
+ }
+
+ return thumbnail;
+}
+
+/* ==========================================
+   VIDEO PLAYER
+   ========================================== */
+
+function createVideoPlayer(video){
+
+ const youtube = isYouTubeVideo(video);
+
+ if(youtube){
+
+  const embedURL = getYouTubeEmbedURL(video.video_url);
+
+  if(!embedURL){
+   return `
+    <div class="video-empty">
+     <h3>Video unavailable</h3>
+     <p>This YouTube video link could not be opened.</p>
+    </div>`;
+  }
+
+  return `
+   <iframe
+    class="video-player"
+    src="${escapeHTML(embedURL)}"
+    title="${escapeHTML(video.title || 'TITI video')}"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write;
+     encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+   </iframe>`;
+ }
+
+ let videoURL = safeHTTPURL(video.video_url);
+
+ if(!videoURL && video.video_path){
+  videoURL = safeHTTPURL(getStorageURL(video.video_path));
+ }
+
+ if(!videoURL){
+  return `
+   <div class="video-empty">
+    <h3>Video unavailable</h3>
+    <p>The uploaded video file could not be located.</p>
+   </div>`;
+ }
+
+ const poster = getThumbnail(video);
+
+ return `
+  <video
+   class="video-player"
+   controls
+   playsinline
+   preload="metadata"
+   ${poster ? `poster="${escapeHTML(poster)}"` : ''}
+  >
+   <source src="${escapeHTML(videoURL)}">
+   Your browser does not support HTML5 video.
+  </video>`;
+}
+
+/* ==========================================
+   DISPLAY VIDEO CARDS
+   ========================================== */
+
+function renderVideo(video){
+
+ const title = escapeHTML(video.title || 'TITI Video');
+ const description = escapeHTML(
+  video.description || 'Watch this video from Tahidi International Training Institute.'
+ );
+
+ const youtube = isYouTubeVideo(video);
+ const sourceLabel = youtube ? 'YouTube Video' : 'Institutional Video';
+
+ const date = video.published_at
+  ? new Date(video.published_at)
+  : null;
+
+ const dateText = date && !isNaN(date.getTime())
+  ? date.toLocaleDateString('en-UG',{
+     day:'numeric',
+     month:'long',
+     year:'numeric'
+    })
+  : '';
+
+ return `
+  <article class="video-card">
+
+   ${createVideoPlayer(video)}
+
+   <div class="video-information">
+
+    <h3>${title}</h3>
+
+    <p>${description}</p>
+
+    <div class="video-meta">
+     <span class="video-tag">${sourceLabel}</span>
+     ${dateText
+      ? `<span class="video-date">Published ${escapeHTML(dateText)}</span>`
+      : ''}
+    </div>
+
+   </div>
+  </article>`;
+}
+
+/* ==========================================
+   LOAD PUBLISHED AND ACTIVE VIDEOS
+   ========================================== */
+
+async function loadTITIVideos(){
+
+ videoGrid.innerHTML = `
+  <div class="video-loading">
+   <div class="video-icon">▶</div>
+   <h3>Loading TITI Videos</h3>
+   <p>Please wait while we connect to our media library.</p>
+  </div>`;
+
+ videoCount.textContent = 'Loading videos...';
+
+ try{
+
+  const {data:videos,error} = await titiSupabase
+   .from(TITI_VIDEO_TABLE)
+   .select(`
+    id,
+    title,
+    description,
+    video_type,
+    video_url,
+    video_path,
+    thumbnail_url,
+    thumbnail_path,
+    display_order,
+    is_published,
+    is_active,
+    published_at,
+    created_at
+   `)
+   .eq('is_published',true)
+   .eq('is_active',true)
+   .order('display_order',{ascending:true})
+   .order('created_at',{ascending:false});
+
+  if(error){
+   throw error;
+  }
+
+  if(!Array.isArray(videos)){
+   throw new Error('Unexpected video information received.');
+  }
+
+  videoCount.textContent =
+   videos.length + (videos.length === 1 ? ' VIDEO AVAILABLE' : ' VIDEOS AVAILABLE');
+
+  if(videos.length === 0){
+
+   videoGrid.innerHTML = `
+    <div class="video-empty">
+     <div class="video-icon">▶</div>
+     <h3>No Videos Available Yet</h3>
+     <p>Our institutional videos will appear here when they are published.</p>
+    </div>`;
+
+   return;
+  }
+
+  videoGrid.innerHTML = videos.map(renderVideo).join('');
+
+  console.log('TITI videos successfully loaded:',videos.length);
+
+ }catch(error){
+
+  console.error('TITI Videos database error:',error);
+
+  videoCount.textContent = 'Videos temporarily unavailable';
+
+  videoGrid.innerHTML = `
+   <div class="video-error">
+    <div class="video-icon">!</div>
+    <h3>Unable to Load Videos</h3>
+    <p>
+     We could not retrieve videos from the TITI media library.
+     Please refresh the page or try again later.
+    </p>
+    <button class="retry-button" id="retryVideos">TRY AGAIN</button>
+   </div>`;
+
+  document.getElementById('retryVideos')
+   .addEventListener('click',loadTITIVideos);
+ }
+}
+
+/* ==========================================
+   MOBILE NAVIGATION
+   ========================================== */
+
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+
+menuToggle.addEventListener('click',()=>{
+
+ mainNav.classList.toggle('open');
+
+ const open = mainNav.classList.contains('open');
+
+ menuToggle.setAttribute('aria-expanded',String(open));
+ menuToggle.setAttribute(
+  'aria-label',
+  open ? 'Close navigation' : 'Open navigation'
+ );
+});
+
+mainNav.querySelectorAll('a').forEach(link=>{
+ link.addEventListener('click',()=>{
+  mainNav.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded','false');
+  menuToggle.setAttribute('aria-label','Open navigation');
+ });
+});
+
+/* ==========================================
+   COPYRIGHT YEAR
+   ========================================== */
+
+document.getElementById('footerYear').textContent =
+ new Date().getFullYear();
+
+/* ==========================================
+   START VIDEOS PAGE
+   ========================================== */
+
+loadTITIVideos();
+
+/* Refresh video listings every 60 seconds. */
+setInterval(loadTITIVideos,60000);
+
+</script>
+
+</body>
+</html>
