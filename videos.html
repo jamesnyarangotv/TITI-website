@@ -82,14 +82,22 @@ nav .apply:hover{background:var(--navy);color:#fff}
  max-width:750px;margin:0 auto;color:#edf1f8;
  font-size:16px;line-height:1.8
 }
-.gold-line{height:4px;width:65px;background:var(--gold);margin:20px auto 0;border-radius:5px}
+.gold-line{
+ height:4px;width:65px;background:var(--gold);
+ margin:20px auto 0;border-radius:5px
+}
 
 /* VIDEO SECTION */
-.video-section{padding:65px 0 80px;background:var(--light);min-height:400px}
+.video-section{
+ padding:65px 0 80px;background:var(--light);min-height:400px
+}
 .section-heading{text-align:center;margin-bottom:35px}
-.section-heading h2{font-size:30px;color:var(--navy);font-weight:800}
-.section-heading p{font-size:14px;color:var(--muted);margin-top:5px}
-
+.section-heading h2{
+ font-size:30px;color:var(--navy);font-weight:800
+}
+.section-heading p{
+ font-size:14px;color:var(--muted);margin-top:5px
+}
 .video-count{
  display:inline-block;background:#fff;color:var(--navy);
  padding:7px 15px;border:1px solid var(--border);
@@ -157,7 +165,10 @@ nav .apply:hover{background:var(--navy);color:#fff}
  gap:35px;padding-bottom:30px
 }
 .footer-brand h3{font-size:20px;line-height:1.4;margin-bottom:9px}
-.footer-motto{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:13px}
+.footer-motto{
+ color:var(--gold);font-size:12px;font-weight:800;
+ letter-spacing:2px;margin-bottom:13px
+}
 .footer-grid p{font-size:13px;color:#d4dbea;margin-bottom:12px}
 .footer-column h3{font-size:16px;color:var(--gold);margin-bottom:13px}
 .footer-column ul{list-style:none}
@@ -348,6 +359,8 @@ const titiSupabase = window.supabase.createClient(
 const videoGrid = document.getElementById('videoGrid');
 const videoCount = document.getElementById('videoCount');
 
+let isLoadingVideos = false;
+
 /* ==========================================
    SAFE TEXT AND URL HELPERS
    ========================================== */
@@ -379,7 +392,7 @@ function safeHTTPURL(value){
 }
 
 /* ==========================================
-   GET PUBLIC STORAGE URL
+   PUBLIC STORAGE URL
    ========================================== */
 
 function getStorageURL(path){
@@ -542,12 +555,17 @@ function createVideoPlayer(video){
 function renderVideo(video){
 
  const title = escapeHTML(video.title || 'TITI Video');
+
  const description = escapeHTML(
-  video.description || 'Watch this video from Tahidi International Training Institute.'
+  video.description ||
+  'Watch this video from Tahidi International Training Institute.'
  );
 
  const youtube = isYouTubeVideo(video);
- const sourceLabel = youtube ? 'YouTube Video' : 'Institutional Video';
+
+ const sourceLabel = youtube
+  ? 'YouTube Video'
+  : 'Institutional Video';
 
  const date = video.published_at
   ? new Date(video.published_at)
@@ -584,10 +602,14 @@ function renderVideo(video){
 }
 
 /* ==========================================
-   LOAD PUBLISHED AND ACTIVE VIDEOS
+   LOAD PUBLICLY APPROVED VIDEOS
    ========================================== */
 
 async function loadTITIVideos(){
+
+ if(isLoadingVideos) return;
+
+ isLoadingVideos = true;
 
  videoGrid.innerHTML = `
   <div class="video-loading">
@@ -614,11 +636,13 @@ async function loadTITIVideos(){
     display_order,
     is_published,
     is_active,
+    show_on_videos_page,
     published_at,
     created_at
    `)
    .eq('is_published',true)
    .eq('is_active',true)
+   .eq('show_on_videos_page',true)
    .order('display_order',{ascending:true})
    .order('created_at',{ascending:false});
 
@@ -631,7 +655,10 @@ async function loadTITIVideos(){
   }
 
   videoCount.textContent =
-   videos.length + (videos.length === 1 ? ' VIDEO AVAILABLE' : ' VIDEOS AVAILABLE');
+   videos.length +
+   (videos.length === 1
+    ? ' VIDEO AVAILABLE'
+    : ' VIDEOS AVAILABLE');
 
   if(videos.length === 0){
 
@@ -639,7 +666,10 @@ async function loadTITIVideos(){
     <div class="video-empty">
      <div class="video-icon">▶</div>
      <h3>No Videos Available Yet</h3>
-     <p>Our institutional videos will appear here when they are published.</p>
+     <p>
+      Our institutional videos will appear here
+      when they are published by TITI.
+     </p>
     </div>`;
 
    return;
@@ -647,7 +677,10 @@ async function loadTITIVideos(){
 
   videoGrid.innerHTML = videos.map(renderVideo).join('');
 
-  console.log('TITI videos successfully loaded:',videos.length);
+  console.log(
+   'TITI public videos successfully loaded:',
+   videos.length
+  );
 
  }catch(error){
 
@@ -663,11 +696,18 @@ async function loadTITIVideos(){
      We could not retrieve videos from the TITI media library.
      Please refresh the page or try again later.
     </p>
-    <button class="retry-button" id="retryVideos">TRY AGAIN</button>
+    <button class="retry-button" id="retryVideos">
+     TRY AGAIN
+    </button>
    </div>`;
 
   document.getElementById('retryVideos')
    .addEventListener('click',loadTITIVideos);
+
+ }finally{
+
+  isLoadingVideos = false;
+
  }
 }
 
@@ -685,6 +725,7 @@ menuToggle.addEventListener('click',()=>{
  const open = mainNav.classList.contains('open');
 
  menuToggle.setAttribute('aria-expanded',String(open));
+
  menuToggle.setAttribute(
   'aria-label',
   open ? 'Close navigation' : 'Open navigation'
@@ -692,10 +733,15 @@ menuToggle.addEventListener('click',()=>{
 });
 
 mainNav.querySelectorAll('a').forEach(link=>{
+
  link.addEventListener('click',()=>{
+
   mainNav.classList.remove('open');
+
   menuToggle.setAttribute('aria-expanded','false');
+
   menuToggle.setAttribute('aria-label','Open navigation');
+
  });
 });
 
@@ -713,6 +759,7 @@ document.getElementById('footerYear').textContent =
 loadTITIVideos();
 
 /* Refresh video listings every 60 seconds. */
+
 setInterval(loadTITIVideos,60000);
 
 </script>
